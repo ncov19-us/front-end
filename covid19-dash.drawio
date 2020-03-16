@@ -1,1 +1,76 @@
-<mxfile host="app.diagrams.net" modified="2020-03-16T19:17:40.167Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36" etag="sncQr60jWNvNXkt3On38" version="12.8.5" type="github"><diagram id="R7CWjI_aJi_1nqXZ0ite" name="Page-1">zZZdk5sgFIZ/jZc7gxJN9jJNdtvuR9sZs+010RNliuIgxqS/vqCosZjOdmbT7I0DL3DkPL4HcfAqO3wUpEifeQzM8VB8cPDa8bxZgNRTC8dWmPtBKySCxq3kDkJIf4ERzbqkojGUo4mScyZpMRYjnucQyZFGhOD1eNqOs/FbC5KAJYQRYbb6g8YybdWFjwb9E9Ak7d7sIjOSkW6yEcqUxLw+kfCdg1eCc9m2ssMKmGbXcWnX3Z8Z7TcmIJevWeBFm8fP22B/O3/h36P97usDLG9MlD1hlUnYbFYeOwKCV3kMOghy8Ic6pRLCgkR6tFafXGmpzJjquappwoGQcDi7T7fPXrkGeAZSHNUUs6BDawyzMN16oD/vtPSEvD8zIjFfPOkjD1BUw3D5B0aexeglVP3n5TfHUxHRpvWjajGa/2wMqhOutoxG2sF83/izyqXOslT8yqtDXowhT1HGtxOU+7p8c8rYohwyVfri3aHyXokquBSpmUXqiSeNFQOS6fzzbVk0uaM1oezYunQZyYqwq9P00RgnxhM40QRO92I8fYvnhkuNCq14vqMiU3iuje0PE7ozm5o7dSpeDFpwFtoa1J/v+idcn/pfkPWn2X9BtrCR1VRKfcShe9Am03X6BdSVxarkd1a1UzDfrGpVd7gVNWMnV0t89xs=</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2020-03-16T23:33:53.805Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36" etag="MBnfkXaJpi4NM7hyZOsF" version="12.8.5" type="github">
+  <diagram id="R7CWjI_aJi_1nqXZ0ite" name="Page-1">
+    <mxGraphModel dx="1422" dy="766" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="50" y="80" width="780" height="540" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-2" value="US MAP, Tooltip link to public gov county sites" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="280" width="390" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-3" value="Slider" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="220" width="390" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-4" value="Log,&amp;nbsp; Daily, Actual" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="330" width="300" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-5" value="Total Confirmed" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="140" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-6" value="Total Deaths" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="260" y="140" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-8" value="Twitter Feed, News&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="140" width="300" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Vao_2RSRmShFTEB191CJ-1" target="Vao_2RSRmShFTEB191CJ-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-1" value="Github JHU CSSE Data" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="780" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Vao_2RSRmShFTEB191CJ-2" target="Vao_2RSRmShFTEB191CJ-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-2" value="Lambda Function" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="900" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Vao_2RSRmShFTEB191CJ-6" target="Vao_2RSRmShFTEB191CJ-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="1060" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="310" y="1000" />
+              <mxPoint x="270" y="1000" />
+              <mxPoint x="270" y="1050" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-6" value="Mongo DB" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="890" width="70" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-9" value="Heroku Plotly Dash" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="1020" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Vao_2RSRmShFTEB191CJ-10" target="Vao_2RSRmShFTEB191CJ-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="860" />
+              <mxPoint x="170" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-10" value="COVID 19 API" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="780" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-12" value="MONGO DB COLLECTIONS (AKA TABLES)&lt;br&gt;&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="640" width="470" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-13" value="Daily {&quot;date&quot;:&amp;nbsp;&lt;br&gt;&quot;state&quot;:&lt;br&gt;&quot;city&quot;:&lt;br&gt;&quot;county&quot;:&lt;br&gt;&quot;lat, long&quot;:&lt;br&gt;&quot;confirmed&quot;:&lt;br&gt;&quot;deaths&quot;:&lt;br&gt;&quot;recovered&quot;:&lt;br&gt;}&lt;br&gt;&lt;br&gt;Total {&quot;state&quot;:&lt;br&gt;&quot;city&quot;:&lt;br&gt;&quot;county&quot;:&lt;br&gt;&quot;lat, long&quot;:&lt;br&gt;&quot;confirmed&quot;:&lt;br&gt;&quot;deaths&quot;:&lt;br&gt;&quot;recovered&quot;:&lt;br&gt;&quot;last_updated&quot;:&lt;br&gt;}&lt;br&gt;&lt;br&gt;Twitter Data&lt;br&gt;{&quot;state&quot;:&lt;br&gt;&quot;twititer_urls&quot;: []&lt;br&gt;}" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="430" y="760" width="420" height="360" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
