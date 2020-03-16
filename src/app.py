@@ -7,7 +7,8 @@ import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 from dash.dependencies import Input, Output, State
-import cufflinks as cf
+import 
+ as cf
 
 # Initialize app
 
@@ -26,3 +27,4 @@ APP_PATH = str(pathlib.Path(__file__).parent.resolve())
 df_lat_lon = pd.read_csv(
     os.path.join(APP_PATH, os.path.join("data", "lat_lon_counties.csv"))
 )
+

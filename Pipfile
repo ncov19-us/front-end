@@ -10,6 +10,8 @@ gunicorn = "*"
 plotly = "*"
 pandas = "*"
 pymongo = "*"
+jupyter = "*"
+python-decouple = "*"
 
 [dev-packages]
 
