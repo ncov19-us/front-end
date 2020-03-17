@@ -4,6 +4,7 @@ from decouple import config
 import pprint
 import json
 import os
+import pandas as pd
 
 
 class CovidMongo:
@@ -50,3 +51,8 @@ class CovidMongo:
 
     def get_all_records(self):
         return list(self.collection.find())
+
+    def get_records_in_df(self):
+        df = pd.DataFrame(self.get_all_records())
+        del df['_id']
+        return df

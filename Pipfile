@@ -12,6 +12,8 @@ pandas = "*"
 pymongo = "*"
 jupyter = "*"
 python-decouple = "*"
+tweepy = "*"
+requests = "*"
 
 [dev-packages]
 pylint = "*"
