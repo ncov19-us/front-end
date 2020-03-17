@@ -112,3 +112,23 @@ def wrangle(df):
 
 df_usa = wrangle(df)
 print(df_usa.head())
+
+
+# data = requests.get("https://covidtracking.com/api/states/info").json()
+
+# parse_data = []
+# for row in data:
+#     twitter_user_data = {}
+#     twitter_user_data['State'] = row['state']
+#     twitter_handle = row['twitter']
+#     if twitter_handle:
+#         twitter_handle = twitter_handle[1:]
+#     twitter_user_data['Username'] = twitter_handle
+#     parse_data.append(twitter_user_data)
+
+# # print(parse_data)
+# print("Total States: ", len(parse_data))
+
+# cm = CovidMongo(db_name="covid", collection_name="twitter", verbose=True)
+
+# cm.dump_json_data_to_collection(parse_data, verbose=True)
