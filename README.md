@@ -5,6 +5,11 @@
 - MongoDB
 - Twitter API
 
+
+# Architecture
+
+![](covid19-dash.png)
+
 # Contributors
 
 | [Harsh Desai](https://github.com/hurshd0)     | [Elizabeth Ter Sahakyan](https://github.com/elizabethts) | [Han Lee](https://github.com/leehanchung) |
