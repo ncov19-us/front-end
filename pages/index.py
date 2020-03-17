@@ -319,36 +319,16 @@ def twitter_feed_right(state=None):
     df = pd.DataFrame(json_data)
     df = pd.DataFrame(df[["title", "url"]])
     max_rows = 10
-    div = html.Div(
-        children=[
-            html.P(
-                f'Last update : {datetime.now().strftime("%H:%M:%S")}'),
-            # dbc table is fat and ugly.
-            # dbc.Table.from_dataframe(df, striped=True, hover=True)
-            html.Table(
-                className="table-news",
-                children=[
-                    html.Tr(
-                        children=[
-                            html.Td(
-                                children=[
-                                    html.A(
-                                        className="td-link",
-                                        children=df.iloc[i]["title"],
-                                        href=df.iloc[i]["url"],
-                                        target="_blank",
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                    for i in range(min(len(df), max_rows))
-                ],
-            ),
-        ]
-    )
 
-    return div
+    card = dbc.Card(
+        dbc.ListGroup(
+            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')]+#%MM:%DD:%H:%M:%S:")}')] +
+            [dbc.ListGroupItem(df.iloc[i]["title"], href=df.iloc[i]["url"]) for i in range(min(len(df), max_rows))],
+            flush=True
+            ),
+        )   
+
+    return card
 
 
 ########################################################################
