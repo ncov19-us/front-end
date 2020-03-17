@@ -7,8 +7,7 @@ import dash_html_components as html
 # stylesheet tbd
 external_stylesheets = [
     dbc.themes.SLATE,  # Bootswatch theme
-    'https://use.fontawesome.com/releases/v5.9.0/css/all.css',  # for social media icons
-    'static/css/main.css'
+    'https://use.fontawesome.com/releases/v5.9.0/css/all.css'  # for social media icons
 ]
 
 meta_tags = [
