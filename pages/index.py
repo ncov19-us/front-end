@@ -30,7 +30,7 @@ px.set_mapbox_access_token(mapbox_access_token)
 
 # API Requests for news div
 news_requests = requests.get(
-    "https://newsapi.org/v2/top-headlines?country=us&q=covid19&apiKey=da8e2e705b914f9f86ed2e9692e66012"
+    "https://newsapi.org/v2/top-headlines?country=us&apiKey=da8e2e705b914f9f86ed2e9692e66012"
 )
 
 ########################################################################
