@@ -49,4 +49,4 @@ class CovidMongo:
         return result
 
     def get_all_records(self):
-        return self.collection.find()
+        return list(self.collection.find())
