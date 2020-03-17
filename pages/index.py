@@ -152,7 +152,7 @@ def build_scatter_mapbox() -> dbc.Card:
     fig.update_layout(coloraxis_showscale=False)
 
     card = dbc.Card(
-                    dbc.CardBody(dcc.Graph(figure=fig, style={'height':"67vh"}))#850}))
+                    dbc.CardBody(dcc.Graph(figure=fig, style={'height':"54vh"}))
         )
     return card
 
@@ -168,7 +168,7 @@ def bottom_left_chart(state=None):
                       showlegend=False)
 
     card = dbc.Card(
-                    dbc.CardBody(dcc.Graph(figure=fig))
+                    dbc.CardBody(dcc.Graph(figure=fig, style={'height':"20vh"}))
     )
     return card
 
@@ -184,7 +184,7 @@ def bottom_right_chart(state=None):
                       showlegend=False)
 
     card = dbc.Card(
-                    dbc.CardBody(dcc.Graph(figure=fig))
+                    dbc.CardBody(dcc.Graph(figure=fig, style={'height':"20vh"}))
     )
     return card
 
@@ -232,26 +232,40 @@ layout = html.Div(
                 dbc.Col(
                     news_feed_right(),
                     style={"overflow-y": "scroll",
-                            "height": "70vh"},
+                            "height": "80vh"},
                     width=2
                 ),
                 # Div for center map
                 dbc.Col(
-                    build_scatter_mapbox(),
-                    style={"height" : "70vh"},
+                    [
+                        html.Div(
+                            build_scatter_mapbox(),
+                        ),
+                        html.Div(
+                            dbc.Row(
+                                [
+                                    dbc.Col(
+                                        bottom_left_chart(),
+                                    ),
+                                    dbc.Col(
+                                        bottom_right_chart(), 
+                                    )
+                                ],
+                                no_gutters=True
+                            )
+                        ),
+                    ],
                     width=8
                 ),
                 # Div for right hand side
                 dbc.Col(
                     news_feed_right(),
                     style={"overflow-y": "scroll",
-                            "height": "70vh"},
+                            "height": "80vh"},
                     width=2
                 ),
             ],
             no_gutters=True,
-            className='mt-5'
         ),
-        
     ]
 )
