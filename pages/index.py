@@ -153,62 +153,130 @@ def build_top_bar():
         tested = 0
         recovered = 0
 
-    cols = [
-        dbc.Col(html.Div(
-            id="card-1",
-            children=[
-                html.P("Tested"),
-                daq.LEDDisplay(
+    card_tested = dbc.Card(
+        [
+            dbc.CardHeader(html.P("Tested", className="card-text")),
+            dbc.CardBody(daq.LEDDisplay(
                     id="total-tested-led",
                     value=tested,
                     color="#92e0d3",
                     backgroundColor="#1e2130",
-                    size=50,
-                ),
-            ],
-        ), md=3),
-        dbc.Col(
-            html.Div(
-                id="card-2",
-                children=[
-                    html.P("Confirmed"),
-                    daq.LEDDisplay(
-                        id="total-confirmed-led",
-                        value=confirmed,
-                        color="#92e0d3",
-                        backgroundColor="#1e2130",
-                        size=50,
-                    ),
-                ],
-            ),
-            md=3
-        ),
-        dbc.Col(html.Div(
-            id="card-3",
-            children=[
-                html.P("Deaths"),
-                daq.LEDDisplay(
+                    size=40,
+                )),
+
+        ],
+        style={"text-align": "center"}
+    )
+    card_confirmed = dbc.Card(
+        [
+            dbc.CardHeader(html.P("Confirmed", className="card-text")),
+            dbc.CardBody(daq.LEDDisplay(
+                    id="total-confirmed-led",
+                    value=confirmed,
+                    color="#92e0d3",
+                    backgroundColor="#1e2130",
+                    size=40,
+                )),
+
+        ],
+        style={"text-align": "center"}
+    )
+    card_deaths = dbc.Card(
+        [
+            dbc.CardHeader(html.P("Deaths", className="card-text")),
+            dbc.CardBody(daq.LEDDisplay(
                     id="total-deaths-led",
                     value=deaths,
                     color="#92e0d3",
                     backgroundColor="#1e2130",
-                    size=50,
-                ),
-            ],
-        ), md=3),
-        dbc.Col(html.Div(
-            id="card-4",
-            children=[
-                html.P("Recovered"),
-                daq.LEDDisplay(
+                    size=40,
+                )),
+
+        ],
+        style={"text-align": "center"}
+    )
+    card_recovered = dbc.Card(
+        [
+            dbc.CardHeader(html.P("Recovered", className="card-text")),
+            dbc.CardBody(daq.LEDDisplay(
                     id="total-recovered-led",
                     value=recovered,
                     color="#92e0d3",
                     backgroundColor="#1e2130",
-                    size=50,
-                ),
-            ],
-        ), md=3)
+                    size=40,
+            )),
+        ],
+        style={"text-align": "center"}
+    )
+
+    cols = [#dbc.CardGroup([
+        # card_tested,# width="auto"),
+        # card_confirmed,# width="auto"),
+        # card_deaths,# width="auto"),
+        # card_recovered#, width="auto"),
+    
+        
+        dbc.Col(card_tested, width=3),#"auto"),
+        dbc.Col(card_confirmed, width=3),#"auto"),
+        dbc.Col(card_deaths, width=3),#"auto"),
+        dbc.Col(card_recovered, width=3),#"auto"),
+    
+        # dbc.Col(html.Div(
+        #     id="card-1",
+        #     children=[
+        #         html.P("Tested"),
+        #         daq.LEDDisplay(
+        #             id="total-tested-led",
+        #             value=tested,
+        #             color="#92e0d3",
+        #             backgroundColor="#1e2130",
+        #             size=50,
+        #         ),
+        #     ],
+        # ), md=3),
+    
+        # dbc.Col(
+        #     html.Div(
+        #         id="card-2",
+        #         children=[
+        #             html.P("Confirmed"),
+        #             daq.LEDDisplay(
+        #                 id="total-confirmed-led",
+        #                 value=confirmed,
+        #                 color="#92e0d3",
+        #                 backgroundColor="#1e2130",
+        #                 size=50,
+        #             ),
+        #         ],
+        #     ),
+        #     md=3
+        # ),
+        # dbc.Col(html.Div(
+        #     id="card-3",
+        #     children=[
+        #         html.P("Deaths"),
+        #         daq.LEDDisplay(
+        #             id="total-deaths-led",
+        #             value=deaths,
+        #             color="#92e0d3",
+        #             backgroundColor="#1e2130",
+        #             size=50,
+        #         ),
+        #     ],
+        # ), md=3),
+        # dbc.Col(html.Div(
+        #     id="card-4",
+        #     children=[
+        #         html.P("Recovered"),
+        #         daq.LEDDisplay(
+        #             id="total-recovered-led",
+        #             value=recovered,
+        #             color="#92e0d3",
+        #             backgroundColor="#1e2130",
+        #             size=50,
+        #         ),
+        #     ],
+        # ), md=3)
     ]
 
     return cols
