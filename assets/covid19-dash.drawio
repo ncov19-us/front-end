@@ -1,0 +1,91 @@
+<mxfile host="app.diagrams.net" modified="2020-03-17T03:08:57.196Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36" etag="1Ef7tCUc3-FPAIYsp4t9" version="12.8.5" type="github">
+  <diagram id="R7CWjI_aJi_1nqXZ0ite" name="Page-1">
+    <mxGraphModel dx="1422" dy="766" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Vao_2RSRmShFTEB191CJ-15" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=3;fillColor=#DBDBDB;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="10" y="1160" width="830" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="50" y="80" width="780" height="540" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-2" value="US MAP, Tooltip link to public gov county sites" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="280" width="390" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-3" value="Slider" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="220" width="390" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-4" value="Log,&amp;nbsp; Daily, Actual" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="330" width="300" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-5" value="Total Confirmed" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="140" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-6" value="Total Deaths" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="260" y="140" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2cTKIb6v97UoVcvfOJeA-8" value="Twitter Feed, News&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="140" width="300" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-12" value="MONGO DB COLLECTIONS (AKA TABLES)&lt;br&gt;&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="640" width="470" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-13" value="Daily {&quot;date&quot;:&amp;nbsp;&lt;br&gt;&quot;state&quot;:&lt;br&gt;&quot;city&quot;:&lt;br&gt;&quot;county&quot;:&lt;br&gt;&quot;lat, long&quot;:&lt;br&gt;&quot;confirmed&quot;:&lt;br&gt;&quot;deaths&quot;:&lt;br&gt;&quot;recovered&quot;:&lt;br&gt;}&lt;br&gt;&lt;br&gt;Total {&quot;state&quot;:&lt;br&gt;&quot;city&quot;:&lt;br&gt;&quot;county&quot;:&lt;br&gt;&quot;lat, long&quot;:&lt;br&gt;&quot;confirmed&quot;:&lt;br&gt;&quot;deaths&quot;:&lt;br&gt;&quot;recovered&quot;:&lt;br&gt;&quot;last_updated&quot;:&lt;br&gt;}&lt;br&gt;&lt;br&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="180" y="770" width="420" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-18" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry x="130" y="1180" width="680" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-9" value="&lt;font color=&quot;#0f0f0f&quot;&gt;Heroku Plotly Dash&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="1324" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-30" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="Vao_2RSRmShFTEB191CJ-6" target="Vao_2RSRmShFTEB191CJ-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-31" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="Vao_2RSRmShFTEB191CJ-6" target="Vao_2RSRmShFTEB191CJ-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-6" value="Mongo DB" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="1313.75" width="53" height="82.5" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-28" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.855;entryY=0.145;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="Vao_2RSRmShFTEB191CJ-1" target="Vao_2RSRmShFTEB191CJ-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-1" value="Github JHU CSSE Data" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-29" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="Vao_2RSRmShFTEB191CJ-10" target="Vao_2RSRmShFTEB191CJ-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-10" value="COVID 19 API" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1340" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-22" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.lambda_function;fillColor=#F58534;gradientColor=none;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1324" width="59" height="61" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-27" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;entryX=0.855;entryY=0.855;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Vao_2RSRmShFTEB191CJ-26" target="Vao_2RSRmShFTEB191CJ-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-26" value="Twitter API" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1420" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-34" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="Vao_2RSRmShFTEB191CJ-32" target="Vao_2RSRmShFTEB191CJ-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-32" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.mobile_client;fillColor=#D2D3D3;gradientColor=none;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1270" width="30" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-35" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="Vao_2RSRmShFTEB191CJ-33" target="Vao_2RSRmShFTEB191CJ-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-33" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Laptop.svg;rounded=1;fillColor=#B18DF0;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="30" y="1369.57" width="72" height="73.03" as="geometry" />
+        </mxCell>
+        <mxCell id="Vao_2RSRmShFTEB191CJ-36" value="&lt;b&gt;COVID19&amp;nbsp; US Dashboard&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="1200" width="150" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
