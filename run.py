@@ -9,6 +9,7 @@ from dash.dependencies import Input, Output
 from app import app, server
 from pages import index
 
+
 navbar = dbc.NavbarSimple(
     brand='COVID19 US Dashboard',
     brand_href='/',
@@ -16,12 +17,12 @@ navbar = dbc.NavbarSimple(
         dbc.NavItem(dcc.Link('About', href='/about', className='nav-link')),
     ],
     sticky='top',
-    color="#082255",
+    color="dark",
     dark=True,
-    fluid=True,
-    className='h1',
+    fluid=True
 )
 
+# TODO : Add common email, twitter, github org up here
 footer = dbc.Container(
     dbc.Row(
         dbc.Col(
@@ -33,7 +34,7 @@ footer = dbc.Container(
                     # html.A(html.I(className='fab fa-linkedin mr-3'), href='https://www.linkedin.com/in//'),
                     # html.A(html.I(className='fab fa-twitter-square mr-3'), href='https://twitter.com/'),
                 ],
-                className='h1'  # 'lead'
+                className='lead'
             )
         )
     ),
