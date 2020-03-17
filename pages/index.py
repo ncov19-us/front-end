@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import os
 import pathlib
 import re
@@ -15,7 +16,7 @@ from app import app
 import plotly.express as px
 import plotly.graph_objects as go
 import dash_daq as daq
-import datetime
+
 
 ########################################################################
 #
@@ -33,6 +34,39 @@ news_requests = requests.get(
     "https://newsapi.org/v2/top-headlines?country=us&apiKey=da8e2e705b914f9f86ed2e9692e66012"
 )
 
+# API Requests for DailyReports
+BASE_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
+
+try:
+    todays_date = datetime.now().strftime("%m-%d-%Y")
+    csv_url = BASE_URL + todays_date + ".csv"
+    daily_reports = pd.read_csv(csv_url
+                                )
+except Exception as ex:
+    previous_day_date = datetime.now() - timedelta(days=1)
+    previous_day_date = previous_day_date.strftime("%m-%d-%Y")
+    csv_url = BASE_URL + previous_day_date + ".csv"
+    daily_reports = pd.read_csv(csv_url
+                                )
+
+
+def wrangle(df):
+    # Extract US
+    df = df[df['Country/Region'] == 'US']
+    # Remove Cruise Ships
+    df = df[~ (df["Province/State"].str.endswith("Princess"))]
+    # Re-order columns
+    df = df[['Province/State', 'Country/Region', 'Latitude', 'Longitude', 'Confirmed',
+             'Deaths', 'Recovered', 'Last Update']]
+    # Parse datetime
+    df["Last Update"] = pd.to_datetime(
+        df["Last Update"], infer_datetime_format=True)
+    return df
+
+
+daily_reports = wrangle(daily_reports)
+
+
 ########################################################################
 #
 # App Callbacks
@@ -40,13 +74,15 @@ news_requests = requests.get(
 ########################################################################
 
 # @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
+
+
 def build_scatter_mapbox():
     """Displays choroplepth map for the data. For the whole US, the map is divided by state. 
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
     """
-    df = cm.get_records_in_df()
-    fig = px.scatter_mapbox(df, 
+    # df = cm.get_records_in_df()
+    fig = px.scatter_mapbox(daily_reports,
                             lat="Latitude",
                             lon="Longitude",
                             color="Confirmed",
@@ -108,32 +144,34 @@ def build_top_bar():
         response = requests.get(
             url="https://covidtracking.com/api/us").json()[0]
         tested = response['posNeg']
-        confirmed = response['positive']
-        deaths = response['death']
+        confirmed = daily_reports["Confirmed"].sum()
+        deaths = daily_reports["Deaths"].sum()
+        recovered = daily_reports["Recovered"].sum()
     except:
         confirmed = 0
         deaths = 0
         tested = 0
+        recovered = 0
 
     cols = [
         dbc.Col(html.Div(
             id="card-1",
             children=[
-                html.P("Total Tested"),
+                html.P("Tested"),
                 daq.LEDDisplay(
-                    id="total-confirmed-led",
+                    id="total-tested-led",
                     value=tested,
                     color="#92e0d3",
                     backgroundColor="#1e2130",
                     size=50,
                 ),
             ],
-        ), md=4),
+        ), md=3),
         dbc.Col(
             html.Div(
                 id="card-2",
                 children=[
-                    html.P("Total Confirmed"),
+                    html.P("Confirmed"),
                     daq.LEDDisplay(
                         id="total-confirmed-led",
                         value=confirmed,
@@ -143,21 +181,34 @@ def build_top_bar():
                     ),
                 ],
             ),
-            md=4
+            md=3
         ),
         dbc.Col(html.Div(
             id="card-3",
             children=[
-                html.P("Total Deaths"),
+                html.P("Deaths"),
                 daq.LEDDisplay(
-                    id="total-confirmed-led",
+                    id="total-deaths-led",
                     value=deaths,
                     color="#92e0d3",
                     backgroundColor="#1e2130",
                     size=50,
                 ),
             ],
-        ), md=4),
+        ), md=3),
+        dbc.Col(html.Div(
+            id="card-4",
+            children=[
+                html.P("Recovered"),
+                daq.LEDDisplay(
+                    id="total-recovered-led",
+                    value=recovered,
+                    color="#92e0d3",
+                    backgroundColor="#1e2130",
+                    size=50,
+                ),
+            ],
+        ), md=3)
     ]
 
     return cols
@@ -202,7 +253,8 @@ def twitter_feed_right(state=None):
     max_rows = 10
     div = html.Div(
         children=[
-            html.P(f'Last update : {datetime.datetime.now().strftime("%H:%M:%S")}'),
+            html.P(
+                f'Last update : {datetime.now().strftime("%H:%M:%S")}'),
             # dbc table is fat and ugly.
             # dbc.Table.from_dataframe(df, striped=True, hover=True)
             html.Table(
@@ -231,13 +283,11 @@ def twitter_feed_right(state=None):
     return div
 
 
-
 ########################################################################
 #
 # App layout
 #
 ########################################################################
-
 layout = html.Div(
     [
         dbc.Row(
@@ -257,12 +307,12 @@ layout = html.Div(
                 ),
                 # Div for right hand side
                 dbc.Col(html.Div(id='news', children=twitter_feed_right()),
-                    # [
-                    #     # dcc.Input(id='map-input', value=None),
-                    #     dcc.Graph(id='us-map', figure=build_scatter_mapbox()),
-                    # ], 
-                    width=2
-                ),
+                        # [
+                        #     # dcc.Input(id='map-input', value=None),
+                        #     dcc.Graph(id='us-map', figure=build_scatter_mapbox()),
+                        # ],
+                        width=2
+                        ),
 
             ]
         ),
