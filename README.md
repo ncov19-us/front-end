@@ -1,16 +1,20 @@
 # COVID19 US Specific Dashboard
 
-# Tech Stack
+## About this app
+
+This app creates a dashboard to easily visualize COVID19 cases in US and get tweets from public officials.
+
+## Tech Stack
 - Plotly Dash
 - MongoDB
 - Twitter API
 
 
-# Architecture
+## Architecture
 
 ![](assets/covid19-dash.png)
 
-# Contributors
+## Contributors
 
 | [Harsh Desai](https://github.com/hurshd0)     | [Elizabeth Ter Sahakyan](https://github.com/elizabethts) | [Han Lee](https://github.com/leehanchung) |
 | :--------------------: | :--------------------: | :--------------------: | 

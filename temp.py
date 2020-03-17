@@ -15,5 +15,11 @@ cm = CovidMongo("covid", "state", verbose=False)
 # print(df["Recovered"].sum())
 
 
-response = requests.get(url="https://covidtracking.com/api/us").json()
-print(response)
+data = requests.get(url="https://covidtracking.com/api/states").json()
+df = pd.DataFrame(data)
+# print(df.info())
+# print(df.isnull().sum())
+
+
+def custom_text(txt):
+    return
