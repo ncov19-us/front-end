@@ -75,40 +75,6 @@ daily_reports = wrangle(daily_reports)
 #
 ########################################################################
 
-# @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
-
-
-def build_scatter_mapbox() -> dbc.Card:
-    """Displays choroplepth map for the data. For the whole US, the map is divided by state. 
-    TODO: For individual states,the map will be divided by county lines. Add callbacks
-
-    :return card: A dash boostrap component Card object with a dash component Graph inside drawn using plotly express scatter_mapbox
-    :rtype: dbc.Card
-    """
-    fig = px.scatter_mapbox(daily_reports,
-                            lat="Latitude",
-                            lon="Longitude",
-                            color="Confirmed",
-                            size="Confirmed",
-                            hover_name="Province/State",
-                            hover_data=["Confirmed", "Deaths", "Recovered"],
-                            color_continuous_scale=px.colors.cyclical.IceFire)
-
-    fig.layout.update(margin={"r": 0, "t": 0, "l": 0, "b": 0},
-                      mapbox_style="dark",
-                      mapbox=dict(accesstoken=mapbox_access_token,
-                                  center=dict(lat=39.8097343,
-                                              lon=-98.5556199),
-                                  zoom=3.5))
-    # This takes away the colorbar on the right hand side of the plot
-    fig.update_layout(coloraxis_showscale=False)
-
-    card = dbc.Card(
-                    dbc.CardBody(dcc.Graph(figure=fig))
-        )   
-    return card
-
-
 def build_top_bar() -> List[dbc.Col]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
     TODO: move to internal API.
@@ -155,30 +121,72 @@ def build_top_bar() -> List[dbc.Col]:
     return cards
 
 
-def bar_chart_left(state=None):
+# @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
+
+
+def build_scatter_mapbox() -> dbc.Card:
+    """Displays choroplepth map for the data. For the whole US, the map is divided by state. 
+    TODO: For individual states,the map will be divided by county lines. Add callbacks
+
+    :return card: A dash boostrap component Card object with a dash component Graph inside drawn using plotly express scatter_mapbox
+    :rtype: dbc.Card
+    """
+    fig = px.scatter_mapbox(daily_reports,
+                            lat="Latitude",
+                            lon="Longitude",
+                            color="Confirmed",
+                            size="Confirmed",
+                            hover_name="Province/State",
+                            hover_data=["Confirmed", "Deaths", "Recovered"],
+                            color_continuous_scale=px.colors.cyclical.IceFire)
+
+    fig.layout.update(margin={"r": 0, "t": 0, "l": 0, "b": 0},
+                      mapbox_style="dark",
+                      mapbox=dict(accesstoken=mapbox_access_token,
+                                  center=dict(lat=39.8097343,
+                                              lon=-98.5556199),
+                                  zoom=4.2)
+                                #   zoom=3.5) # for auto sized middle map
+                      )
+    # This takes away the colorbar on the right hand side of the plot
+    fig.update_layout(coloraxis_showscale=False)
+
+    card = dbc.Card(
+                    dbc.CardBody(dcc.Graph(figure=fig, style={'height':"67vh"}))#850}))
+        )
+    return card
+
+
+def bottom_left_chart(state=None):
     """Bar chart data for the selected state.
 
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
-    if state is not None:
-        cm.get_data_by_state(state)
-    else:
-        pass
+    df = px.data.gapminder().query("continent == 'Oceania'")
+    fig = px.line(df, x='year', y='lifeExp', color='country')
+    fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0},
+                      showlegend=False)
 
-    raise NotImplementedError
+    card = dbc.Card(
+                    dbc.CardBody(dcc.Graph(figure=fig))
+    )
+    return card
 
 
-def line_chart_left_bottom(state=None):
+def bottom_right_chart(state=None):
     """Line chart data for the selected state.
 
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
-    if state is not None:
-        cm.get_data_by_state(state)
-    else:
-        pass
+    df = px.data.gapminder().query("continent == 'Oceania'")
+    fig = px.line(df, x='year', y='lifeExp', color='country')
+    fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0},
+                      showlegend=False)
 
-    raise NotImplementedError
+    card = dbc.Card(
+                    dbc.CardBody(dcc.Graph(figure=fig))
+    )
+    return card
 
 
 def news_feed_right(state=None) -> dbc.Card:
@@ -215,41 +223,35 @@ def news_feed_right(state=None) -> dbc.Card:
 layout = html.Div(
     [
         dbc.Row(
-
-            build_top_bar()
-
+            build_top_bar(),
+            no_gutters=True
         ),
         dbc.Row(
             [
                 # Div for left hand side
                 dbc.Col(
-                            html.Div(id='twitter',
-                                     children=news_feed_right(),
-                                     style={"overflow-y": "scroll",
-                                            "height" : "70vh"},
-                            ),
-                            width=2
-                        ),
+                    news_feed_right(),
+                    style={"overflow-y": "scroll",
+                            "height": "70vh"},
+                    width=2
+                ),
                 # Div for center map
                 dbc.Col(
-                    [
-                        html.Div(id='us-map',
-                                 children=build_scatter_mapbox(),
-                                 style={"height" : "70vh"}),
-                    ],
+                    build_scatter_mapbox(),
+                    style={"height" : "70vh"},
                     width=8
                 ),
                 # Div for right hand side
                 dbc.Col(
-                            html.Div(id='news',
-                                     children=news_feed_right(),
-                                     style={"overflow-y": "scroll",
-                                            "height" : "70vh"},
-                            ),
-                            width=2
-                        ),
+                    news_feed_right(),
+                    style={"overflow-y": "scroll",
+                            "height": "70vh"},
+                    width=2
+                ),
             ],
+            no_gutters=True,
             className='mt-5'
         ),
+        
     ]
 )
