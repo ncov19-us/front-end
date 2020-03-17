@@ -11,6 +11,7 @@ class CovidMongo:
     """
     Covid Mongodb wrapper over PyMongo, that makes it easier to dump data, fetch records, insert new data
     """
+
     def __init__(self, db_name: str, collection_name: str, verbose=True):
         """
         Creates mongodb connection to coivd-ds database and covid data collection.
@@ -143,14 +144,15 @@ class CovidMongo:
     def get_base_meme_texts(self, meme_name: str):
         data = self.get_base_meme_data(meme_name)
         return data["meme_text"]
-    
+
     def get_base_meme_id(self, meme_name: str):
         data = self.get_base_meme_data(meme_name)
         return data["meme_id"]
 
     def insert_one_document(self, meme_name: str, meme_id: int, generated_meme_txts: list, verbose=False):
         try:
-            data = {"meme_id":meme_id, "meme_name":meme_name, "generated_meme_texts":generated_meme_txts}
+            data = {"meme_id": meme_id, "meme_name": meme_name,
+                    "generated_meme_texts": generated_meme_txts}
             status = self.collection.insert_one(data)
         except DuplicateKeyError as de:
             print('NOTE: You can only insert data once.')
@@ -159,8 +161,7 @@ class CovidMongo:
             print(
                 f"Adding document: {data} to {self.collection.name}")
         return status
-    
-    
+
     @property
     def meme_count(self):
         return self.collection.count_documents()

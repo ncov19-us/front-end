@@ -6,7 +6,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 # Imports from this application
-from src import app, server
+from app import app, server
 from pages import index
 
 navbar = dbc.NavbarSimple(
