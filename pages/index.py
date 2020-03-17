@@ -1,7 +1,8 @@
-from datetime import datetime, timedelta
 import os
 import pathlib
 import re
+from datetime import datetime, timedelta
+from typing import List
 import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
@@ -12,6 +13,7 @@ import requests
 from decouple import config
 import json
 from utils.utils import CovidMongo
+from utils.settings import theme
 from app import app
 import plotly.express as px
 import plotly.graph_objects as go
@@ -50,7 +52,7 @@ except Exception as ex:
                                 )
 
 
-def wrangle(df):
+def wrangle(df) -> pd.DataFrame:
     # Extract US
     df = df[df['Country/Region'] == 'US']
     # Remove Cruise Ships
@@ -76,12 +78,13 @@ daily_reports = wrangle(daily_reports)
 # @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
 
 
-def build_scatter_mapbox():
+def build_scatter_mapbox() -> dbc.Card:
     """Displays choroplepth map for the data. For the whole US, the map is divided by state. 
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
+    :return card: A dash boostrap component Card object with a dash component Graph inside drawn using plotly express scatter_mapbox
+    :rtype: dbc.Card
     """
-    # df = cm.get_records_in_df()
     fig = px.scatter_mapbox(daily_reports,
                             lat="Latitude",
                             lon="Longitude",
@@ -90,36 +93,7 @@ def build_scatter_mapbox():
                             hover_name="Province/State",
                             hover_data=["Confirmed", "Deaths", "Recovered"],
                             color_continuous_scale=px.colors.cyclical.IceFire)
-    # # fig = go.Figure(go.Scattermapbox(lat=df.Latitute,
-    # #                                  lon=df.Longtitude,
-    # #                                  mode='markers',
-    # # 39.8097343, -98.5556199
 
-    # data = go.Scattermapbox(
-    #     lat=df["Latitude"],
-    #     lon=df["Longitude"],
-    #     mode="markers",
-    #     marker=go.scattermapbox.Marker(
-    #         size=14
-    #     ),
-    #     # text={"Confirmed": df["Confirmed"],
-    #     #       "Deaths": df["Deaths"], "Recovered": df["Recovered"]},
-    #     # hoverinfo='text'
-
-    # )
-
-    # layout = go.Layout(
-    #     autosize=True,
-    #     hovermode='closest',
-    #     mapbox=go.layout.Mapbox(
-    #         bearing=0,
-    #         center=go.layout.mapbox.Center(lat=0, lon=0),
-    #         pitch=0,
-    #         zoom=3.5
-    #     ),
-    # )
-
-    # fig = go.Figure(data=data, layout=layout)
     fig.layout.update(margin={"r": 0, "t": 0, "l": 0, "b": 0},
                       mapbox_style="dark",
                       mapbox=dict(accesstoken=mapbox_access_token,
@@ -129,16 +103,19 @@ def build_scatter_mapbox():
     # This takes away the colorbar on the right hand side of the plot
     fig.update_layout(coloraxis_showscale=False)
 
-    return fig
+    card = dbc.Card(
+                    dbc.CardBody(dcc.Graph(figure=fig))
+        )   
+    return card
 
 
-def build_top_bar():
+def build_top_bar() -> List[dbc.Col]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
     TODO: move to internal API.
 
     :param none: none
-    :return cols: A list of plotly dash Col objects displaying tested, confirmed, deaths.
-    :rtype: list of plotly dash Col objects.
+    :return cols: A list of plotly dash boostrap components Card objects displaying tested, confirmed, deaths.
+    :rtype: list of plotly dash bootstrap coomponent Col objects.
     """
     try:
         response = requests.get(
@@ -148,70 +125,34 @@ def build_top_bar():
         deaths = daily_reports["Deaths"].sum()
         recovered = daily_reports["Recovered"].sum()
     except:
-        confirmed = 0
-        deaths = 0
-        tested = 0
-        recovered = 0
+        confirmed, deaths, tested, recovered = 0, 0, 0, 0
 
-    cols = [
-        dbc.Col(html.Div(
-            id="card-1",
-            children=[
-                html.P("Tested"),
-                daq.LEDDisplay(
-                    id="total-tested-led",
-                    value=tested,
-                    color="#92e0d3",
-                    backgroundColor="#1e2130",
-                    size=50,
-                ),
-            ],
-        ), md=3),
-        dbc.Col(
-            html.Div(
-                id="card-2",
-                children=[
-                    html.P("Confirmed"),
-                    daq.LEDDisplay(
-                        id="total-confirmed-led",
-                        value=confirmed,
-                        color="#92e0d3",
-                        backgroundColor="#1e2130",
-                        size=50,
+    stats = {"Tested": tested, "Confirmed": confirmed, "Deaths": deaths, "Recovered": recovered}
+
+    # Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays
+    # items and values of the stats pulled from the API.
+    cards = [
+                dbc.Col(
+                    dbc.Card([
+                            dbc.CardHeader(html.P(f'{key}', className="card-text")),
+                            dbc.CardBody(daq.LEDDisplay(
+                                id=f"total-{key}-led",
+                                value=value,
+                                color=theme["primary"],
+                                backgroundColor="#1e2130",
+                                size=40,
+                                style={"border-width": "0px"}
+                                )
+                            ),
+                        ],
+                        style={"text-align": "center"}
                     ),
-                ],
-            ),
-            md=3
-        ),
-        dbc.Col(html.Div(
-            id="card-3",
-            children=[
-                html.P("Deaths"),
-                daq.LEDDisplay(
-                    id="total-deaths-led",
-                    value=deaths,
-                    color="#92e0d3",
-                    backgroundColor="#1e2130",
-                    size=50,
-                ),
-            ],
-        ), md=3),
-        dbc.Col(html.Div(
-            id="card-4",
-            children=[
-                html.P("Recovered"),
-                daq.LEDDisplay(
-                    id="total-recovered-led",
-                    value=recovered,
-                    color="#92e0d3",
-                    backgroundColor="#1e2130",
-                    size=50,
-                ),
-            ],
-        ), md=3)
-    ]
+                    width=3          
+                )
+                for key, value in stats.items()
+            ]
 
-    return cols
+    return cards
 
 
 def bar_chart_left(state=None):
@@ -240,47 +181,30 @@ def line_chart_left_bottom(state=None):
     raise NotImplementedError
 
 
-def twitter_feed_right(state=None):
+def news_feed_right(state=None) -> dbc.Card:
     """Displays twitter feed on the right hand side of the display.
     TODO: Get twitter feed
 
     :params state: display twitter feed for a particular state. If None, display twitter feed
         for the whole US
+
+    :return card: A dash boostrap components Card objects cointaining a dbc ListGroup containing news feeds.
+    :rtype: dbc.Card.
     """
     json_data = news_requests.json()["articles"]
     df = pd.DataFrame(json_data)
     df = pd.DataFrame(df[["title", "url"]])
-    max_rows = 10
-    div = html.Div(
-        children=[
-            html.P(
-                f'Last update : {datetime.now().strftime("%H:%M:%S")}'),
-            # dbc table is fat and ugly.
-            # dbc.Table.from_dataframe(df, striped=True, hover=True)
-            html.Table(
-                className="table-news",
-                children=[
-                    html.Tr(
-                        children=[
-                            html.Td(
-                                children=[
-                                    html.A(
-                                        className="td-link",
-                                        children=df.iloc[i]["title"],
-                                        href=df.iloc[i]["url"],
-                                        target="_blank",
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                    for i in range(min(len(df), max_rows))
-                ],
-            ),
-        ]
-    )
+    max_rows = 50
 
-    return div
+    card = dbc.Card(
+        dbc.ListGroup(
+            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')] +
+            [dbc.ListGroupItem(df.iloc[i]["title"], href=df.iloc[i]["url"]) for i in range(min(len(df), max_rows))],
+            flush=True
+            ),
+        )   
+
+    return card
 
 
 ########################################################################
@@ -297,24 +221,35 @@ layout = html.Div(
         ),
         dbc.Row(
             [
+                # Div for left hand side
+                dbc.Col(
+                            html.Div(id='twitter',
+                                     children=news_feed_right(),
+                                     style={"overflow-y": "scroll",
+                                            "height" : "70vh"},
+                            ),
+                            width=2
+                        ),
                 # Div for center map
                 dbc.Col(
                     [
-                        # dcc.Input(id='map-input', value=None),
-                        dcc.Graph(id='us-map', figure=build_scatter_mapbox()),
+                        html.Div(id='us-map',
+                                 children=build_scatter_mapbox(),
+                                 style={"height" : "70vh"}),
                     ],
-                    width=10
+                    width=8
                 ),
                 # Div for right hand side
-                dbc.Col(html.Div(id='news', children=twitter_feed_right()),
-                        # [
-                        #     # dcc.Input(id='map-input', value=None),
-                        #     dcc.Graph(id='us-map', figure=build_scatter_mapbox()),
-                        # ],
-                        width=2
+                dbc.Col(
+                            html.Div(id='news',
+                                     children=news_feed_right(),
+                                     style={"overflow-y": "scroll",
+                                            "height" : "70vh"},
+                            ),
+                            width=2
                         ),
-
-            ]
+            ],
+            className='mt-5'
         ),
     ]
 )

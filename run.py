@@ -9,6 +9,8 @@ from dash.dependencies import Input, Output
 from app import app, server
 from pages import index
 
+# Import settings
+from utils.settings import theme
 
 navbar = dbc.NavbarSimple(
     brand='COVID19 US Dashboard',
@@ -18,7 +20,7 @@ navbar = dbc.NavbarSimple(
     ],
     sticky='top',
     color="dark",
-    dark=True,
+    dark=theme["dark"],
     fluid=True
 )
 
