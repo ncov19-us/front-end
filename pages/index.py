@@ -30,7 +30,7 @@ px.set_mapbox_access_token(mapbox_access_token)
 
 # API Requests for news div
 news_requests = requests.get(
-    "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=da8e2e705b914f9f86ed2e9692e66012"
+    "https://newsapi.org/v2/top-headlines?country=us&apiKey=da8e2e705b914f9f86ed2e9692e66012"
 )
 
 ########################################################################
@@ -202,12 +202,9 @@ def twitter_feed_right(state=None):
     max_rows = 10
     div = html.Div(
         children=[
-            # html.P(className="p-news", children="Headlines"),
-            html.P(
-                className="p-news float-right",
-                children="Last update : "
-                + datetime.datetime.now().strftime("%H:%M:%S"),
-            ),
+            html.P(f'Last update : {datetime.datetime.now().strftime("%H:%M:%S")}'),
+            # dbc table is fat and ugly.
+            # dbc.Table.from_dataframe(df, striped=True, hover=True)
             html.Table(
                 className="table-news",
                 children=[
