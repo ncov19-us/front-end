@@ -1,4 +1,4 @@
-# COVID 19 US Dashboard
+# COVID19 US Specific Dashboard
 
 # Tech Stack
 - Plotly Dash
@@ -8,7 +8,7 @@
 
 # Architecture
 
-![](covid19-dash.png)
+![](assets/covid19-dash.png)
 
 # Contributors
 
