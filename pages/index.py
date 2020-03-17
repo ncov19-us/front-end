@@ -15,6 +15,7 @@ from app import app
 import plotly.express as px
 import plotly.graph_objects as go
 import dash_daq as daq
+import datetime
 
 ########################################################################
 #
@@ -26,6 +27,11 @@ DEFAULT_OPACITY = 0.8
 cm = CovidMongo("covid", "state", verbose=False)
 mapbox_access_token = config("MAPBOX_ACCESS_TOKEN")
 px.set_mapbox_access_token(mapbox_access_token)
+
+# API Requests for news div
+news_requests = requests.get(
+    "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=da8e2e705b914f9f86ed2e9692e66012"
+)
 
 ########################################################################
 #
@@ -185,12 +191,48 @@ def line_chart_left_bottom(state=None):
 
 def twitter_feed_right(state=None):
     """Displays twitter feed on the right hand side of the display.
+    TODO: Get twitter feed
 
     :params state: display twitter feed for a particular state. If None, display twitter feed
         for the whole US
     """
+    json_data = news_requests.json()["articles"]
+    df = pd.DataFrame(json_data)
+    df = pd.DataFrame(df[["title", "url"]])
+    max_rows = 10
+    div = html.Div(
+        children=[
+            # html.P(className="p-news", children="Headlines"),
+            html.P(
+                className="p-news float-right",
+                children="Last update : "
+                + datetime.datetime.now().strftime("%H:%M:%S"),
+            ),
+            html.Table(
+                className="table-news",
+                children=[
+                    html.Tr(
+                        children=[
+                            html.Td(
+                                children=[
+                                    html.A(
+                                        className="td-link",
+                                        children=df.iloc[i]["title"],
+                                        href=df.iloc[i]["url"],
+                                        target="_blank",
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+                    for i in range(min(len(df), max_rows))
+                ],
+            ),
+        ]
+    )
 
-    raise NotImplementedError
+    return div
+
 
 
 ########################################################################
@@ -217,11 +259,11 @@ layout = html.Div(
                     width=10
                 ),
                 # Div for right hand side
-                dbc.Col(
-                    [
-                        # dcc.Input(id='map-input', value=None),
-                        dcc.Graph(id='us-map', figure=build_scatter_mapbox()),
-                    ], 
+                dbc.Col(html.Div(id='news', children=twitter_feed_right()),
+                    # [
+                    #     # dcc.Input(id='map-input', value=None),
+                    #     dcc.Graph(id='us-map', figure=build_scatter_mapbox()),
+                    # ], 
                     width=2
                 ),
 
