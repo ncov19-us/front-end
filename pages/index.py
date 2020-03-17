@@ -12,6 +12,7 @@ import requests
 from decouple import config
 import json
 from utils.utils import CovidMongo
+from utils.settings import theme
 from app import app
 import plotly.express as px
 import plotly.graph_objects as go
@@ -157,12 +158,12 @@ def build_top_bar():
         [
             dbc.CardHeader(html.P("Tested", className="card-text")),
             dbc.CardBody(daq.LEDDisplay(
-                    id="total-tested-led",
-                    value=tested,
-                    color="#92e0d3",
-                    backgroundColor="#1e2130",
-                    size=40,
-                )),
+                id="total-tested-led",
+                value=tested,
+                color=theme["primary"],
+                backgroundColor="#1e2130",
+                size=40,
+            )),
 
         ],
         style={"text-align": "center"}
@@ -171,12 +172,12 @@ def build_top_bar():
         [
             dbc.CardHeader(html.P("Confirmed", className="card-text")),
             dbc.CardBody(daq.LEDDisplay(
-                    id="total-confirmed-led",
-                    value=confirmed,
-                    color="#92e0d3",
-                    backgroundColor="#1e2130",
-                    size=40,
-                )),
+                id="total-confirmed-led",
+                value=confirmed,
+                color=theme["primary"],
+                backgroundColor="#1e2130",
+                size=40,
+            )),
 
         ],
         style={"text-align": "center"}
@@ -185,12 +186,12 @@ def build_top_bar():
         [
             dbc.CardHeader(html.P("Deaths", className="card-text")),
             dbc.CardBody(daq.LEDDisplay(
-                    id="total-deaths-led",
-                    value=deaths,
-                    color="#92e0d3",
-                    backgroundColor="#1e2130",
-                    size=40,
-                )),
+                id="total-deaths-led",
+                value=deaths,
+                color=theme["primary"],
+                backgroundColor="#1e2130",
+                size=40,
+            )),
 
         ],
         style={"text-align": "center"}
@@ -199,28 +200,29 @@ def build_top_bar():
         [
             dbc.CardHeader(html.P("Recovered", className="card-text")),
             dbc.CardBody(daq.LEDDisplay(
-                    id="total-recovered-led",
-                    value=recovered,
-                    color="#92e0d3",
-                    backgroundColor="#1e2130",
-                    size=40,
+                id="total-recovered-led",
+                value=recovered,
+                color=theme["primary"],
+                backgroundColor="#1e2130",
+                size=40,
+                style={"border-width": "0px"}
             )),
         ],
         style={"text-align": "center"}
     )
 
-    cols = [#dbc.CardGroup([
+    cols = [  # dbc.CardGroup([
         # card_tested,# width="auto"),
         # card_confirmed,# width="auto"),
         # card_deaths,# width="auto"),
         # card_recovered#, width="auto"),
-    
-        
-        dbc.Col(card_tested, width=3),#"auto"),
-        dbc.Col(card_confirmed, width=3),#"auto"),
-        dbc.Col(card_deaths, width=3),#"auto"),
-        dbc.Col(card_recovered, width=3),#"auto"),
-    
+
+
+        dbc.Col(card_tested, width=3),  # "auto"),
+        dbc.Col(card_confirmed, width=3),  # "auto"),
+        dbc.Col(card_deaths, width=3),  # "auto"),
+        dbc.Col(card_recovered, width=3),  # "auto"),
+
         # dbc.Col(html.Div(
         #     id="card-1",
         #     children=[
@@ -234,7 +236,7 @@ def build_top_bar():
         #         ),
         #     ],
         # ), md=3),
-    
+
         # dbc.Col(
         #     html.Div(
         #         id="card-2",
@@ -382,7 +384,8 @@ layout = html.Div(
                         width=2
                         ),
 
-            ]
+            ],
+            className='mt-5'
         ),
     ]
 )
