@@ -3,10 +3,12 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 
+
 # stylesheet tbd
 external_stylesheets = [
-    dbc.themes.BOOTSTRAP,  # Bootswatch theme
+    dbc.themes.SLATE,  # Bootswatch theme
     'https://use.fontawesome.com/releases/v5.9.0/css/all.css',  # for social media icons
+    'static/css/main.css'
 ]
 
 meta_tags = [
