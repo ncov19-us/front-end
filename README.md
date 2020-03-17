@@ -1,6 +1,6 @@
 # COVID 19 US Dashboard
 
-# Uses
+# Tech Stack
 - Plotly Dash
 - MongoDB
 - Twitter API
