@@ -91,36 +91,7 @@ def build_scatter_mapbox():
                             hover_name="Province/State",
                             hover_data=["Confirmed", "Deaths", "Recovered"],
                             color_continuous_scale=px.colors.cyclical.IceFire)
-    # # fig = go.Figure(go.Scattermapbox(lat=df.Latitute,
-    # #                                  lon=df.Longtitude,
-    # #                                  mode='markers',
-    # # 39.8097343, -98.5556199
 
-    # data = go.Scattermapbox(
-    #     lat=df["Latitude"],
-    #     lon=df["Longitude"],
-    #     mode="markers",
-    #     marker=go.scattermapbox.Marker(
-    #         size=14
-    #     ),
-    #     # text={"Confirmed": df["Confirmed"],
-    #     #       "Deaths": df["Deaths"], "Recovered": df["Recovered"]},
-    #     # hoverinfo='text'
-
-    # )
-
-    # layout = go.Layout(
-    #     autosize=True,
-    #     hovermode='closest',
-    #     mapbox=go.layout.Mapbox(
-    #         bearing=0,
-    #         center=go.layout.mapbox.Center(lat=0, lon=0),
-    #         pitch=0,
-    #         zoom=3.5
-    #     ),
-    # )
-
-    # fig = go.Figure(data=data, layout=layout)
     fig.layout.update(margin={"r": 0, "t": 0, "l": 0, "b": 0},
                       mapbox_style="dark",
                       mapbox=dict(accesstoken=mapbox_access_token,
@@ -211,74 +182,11 @@ def build_top_bar():
         style={"text-align": "center"}
     )
 
-    cols = [  # dbc.CardGroup([
-        # card_tested,# width="auto"),
-        # card_confirmed,# width="auto"),
-        # card_deaths,# width="auto"),
-        # card_recovered#, width="auto"),
-
-
-        dbc.Col(card_tested, width=3),  # "auto"),
-        dbc.Col(card_confirmed, width=3),  # "auto"),
-        dbc.Col(card_deaths, width=3),  # "auto"),
-        dbc.Col(card_recovered, width=3),  # "auto"),
-
-        # dbc.Col(html.Div(
-        #     id="card-1",
-        #     children=[
-        #         html.P("Tested"),
-        #         daq.LEDDisplay(
-        #             id="total-tested-led",
-        #             value=tested,
-        #             color="#92e0d3",
-        #             backgroundColor="#1e2130",
-        #             size=50,
-        #         ),
-        #     ],
-        # ), md=3),
-
-        # dbc.Col(
-        #     html.Div(
-        #         id="card-2",
-        #         children=[
-        #             html.P("Confirmed"),
-        #             daq.LEDDisplay(
-        #                 id="total-confirmed-led",
-        #                 value=confirmed,
-        #                 color="#92e0d3",
-        #                 backgroundColor="#1e2130",
-        #                 size=50,
-        #             ),
-        #         ],
-        #     ),
-        #     md=3
-        # ),
-        # dbc.Col(html.Div(
-        #     id="card-3",
-        #     children=[
-        #         html.P("Deaths"),
-        #         daq.LEDDisplay(
-        #             id="total-deaths-led",
-        #             value=deaths,
-        #             color="#92e0d3",
-        #             backgroundColor="#1e2130",
-        #             size=50,
-        #         ),
-        #     ],
-        # ), md=3),
-        # dbc.Col(html.Div(
-        #     id="card-4",
-        #     children=[
-        #         html.P("Recovered"),
-        #         daq.LEDDisplay(
-        #             id="total-recovered-led",
-        #             value=recovered,
-        #             color="#92e0d3",
-        #             backgroundColor="#1e2130",
-        #             size=50,
-        #         ),
-        #     ],
-        # ), md=3)
+    cols = [
+        dbc.Col(card_tested, width=3),
+        dbc.Col(card_confirmed, width=3),
+        dbc.Col(card_deaths, width=3),
+        dbc.Col(card_recovered, width=3),
     ]
 
     return cols
@@ -310,7 +218,7 @@ def line_chart_left_bottom(state=None):
     raise NotImplementedError
 
 
-def twitter_feed_right(state=None):
+def news_feed_right(state=None):
     """Displays twitter feed on the right hand side of the display.
     TODO: Get twitter feed
 
@@ -320,7 +228,7 @@ def twitter_feed_right(state=None):
     json_data = news_requests.json()["articles"]
     df = pd.DataFrame(json_data)
     df = pd.DataFrame(df[["title", "url"]])
-    max_rows = 10
+    max_rows = 50
 
     card = dbc.Card(
         dbc.ListGroup(
@@ -347,23 +255,32 @@ layout = html.Div(
         ),
         dbc.Row(
             [
+                # Div for left hand side
+                dbc.Col(
+                            html.Div(id='twitter',
+                                     children=news_feed_right(),
+                                     style={"overflow-y": "scroll",
+                                            "height" : "70vh"},
+                            ),
+                            width=2
+                        ),
                 # Div for center map
                 dbc.Col(
                     [
                         # dcc.Input(id='map-input', value=None),
                         dcc.Graph(id='us-map', figure=build_scatter_mapbox()),
                     ],
-                    width=10
+                    width=8
                 ),
                 # Div for right hand side
-                dbc.Col(html.Div(id='news', children=twitter_feed_right()),
-                        # [
-                        #     # dcc.Input(id='map-input', value=None),
-                        #     dcc.Graph(id='us-map', figure=build_scatter_mapbox()),
-                        # ],
-                        width=2
+                dbc.Col(
+                            html.Div(id='news',
+                                     children=news_feed_right(),
+                                     style={"overflow-y": "scroll",
+                                            "height" : "70vh"},
+                            ),
+                            width=2
                         ),
-
             ],
             className='mt-5'
         ),
