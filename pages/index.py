@@ -1,7 +1,8 @@
-from datetime import datetime, timedelta
 import os
 import pathlib
 import re
+from datetime import datetime, timedelta
+from typing import List
 import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
@@ -51,7 +52,7 @@ except Exception as ex:
                                 )
 
 
-def wrangle(df):
+def wrangle(df) -> pd.DataFrame:
     # Extract US
     df = df[df['Country/Region'] == 'US']
     # Remove Cruise Ships
@@ -77,12 +78,13 @@ daily_reports = wrangle(daily_reports)
 # @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
 
 
-def build_scatter_mapbox():
+def build_scatter_mapbox() -> dbc.Card:
     """Displays choroplepth map for the data. For the whole US, the map is divided by state. 
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
+    :return card: A dash boostrap component Card object with a dash component Graph inside drawn using plotly express scatter_mapbox
+    :rtype: dbc.Card
     """
-    # df = cm.get_records_in_df()
     fig = px.scatter_mapbox(daily_reports,
                             lat="Latitude",
                             lon="Longitude",
@@ -101,16 +103,19 @@ def build_scatter_mapbox():
     # This takes away the colorbar on the right hand side of the plot
     fig.update_layout(coloraxis_showscale=False)
 
-    return fig
+    card = dbc.Card(
+                    dbc.CardBody(dcc.Graph(figure=fig))
+        )   
+    return card
 
 
-def build_top_bar():
+def build_top_bar() -> List[dbc.Col]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
     TODO: move to internal API.
 
     :param none: none
-    :return cols: A list of plotly dash Col objects displaying tested, confirmed, deaths.
-    :rtype: list of plotly dash Col objects.
+    :return cols: A list of plotly dash boostrap components Card objects displaying tested, confirmed, deaths.
+    :rtype: list of plotly dash bootstrap coomponent Col objects.
     """
     try:
         response = requests.get(
@@ -120,76 +125,34 @@ def build_top_bar():
         deaths = daily_reports["Deaths"].sum()
         recovered = daily_reports["Recovered"].sum()
     except:
-        confirmed = 0
-        deaths = 0
-        tested = 0
-        recovered = 0
+        confirmed, deaths, tested, recovered = 0, 0, 0, 0
 
-    card_tested = dbc.Card(
-        [
-            dbc.CardHeader(html.P("Tested", className="card-text")),
-            dbc.CardBody(daq.LEDDisplay(
-                id="total-tested-led",
-                value=tested,
-                color=theme["primary"],
-                backgroundColor="#1e2130",
-                size=40,
-            )),
+    stats = {"Tested": tested, "Confirmed": confirmed, "Deaths": deaths, "Recovered": recovered}
 
-        ],
-        style={"text-align": "center"}
-    )
-    card_confirmed = dbc.Card(
-        [
-            dbc.CardHeader(html.P("Confirmed", className="card-text")),
-            dbc.CardBody(daq.LEDDisplay(
-                id="total-confirmed-led",
-                value=confirmed,
-                color=theme["primary"],
-                backgroundColor="#1e2130",
-                size=40,
-            )),
+    # Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays
+    # items and values of the stats pulled from the API.
+    cards = [
+                dbc.Col(
+                    dbc.Card([
+                            dbc.CardHeader(html.P(f'{key}', className="card-text")),
+                            dbc.CardBody(daq.LEDDisplay(
+                                id=f"total-{key}-led",
+                                value=value,
+                                color=theme["primary"],
+                                backgroundColor="#1e2130",
+                                size=40,
+                                style={"border-width": "0px"}
+                                )
+                            ),
+                        ],
+                        style={"text-align": "center"}
+                    ),
+                    width=3          
+                )
+                for key, value in stats.items()
+            ]
 
-        ],
-        style={"text-align": "center"}
-    )
-    card_deaths = dbc.Card(
-        [
-            dbc.CardHeader(html.P("Deaths", className="card-text")),
-            dbc.CardBody(daq.LEDDisplay(
-                id="total-deaths-led",
-                value=deaths,
-                color=theme["primary"],
-                backgroundColor="#1e2130",
-                size=40,
-            )),
-
-        ],
-        style={"text-align": "center"}
-    )
-    card_recovered = dbc.Card(
-        [
-            dbc.CardHeader(html.P("Recovered", className="card-text")),
-            dbc.CardBody(daq.LEDDisplay(
-                id="total-recovered-led",
-                value=recovered,
-                color=theme["primary"],
-                backgroundColor="#1e2130",
-                size=40,
-                style={"border-width": "0px"}
-            )),
-        ],
-        style={"text-align": "center"}
-    )
-
-    cols = [
-        dbc.Col(card_tested, width=3),
-        dbc.Col(card_confirmed, width=3),
-        dbc.Col(card_deaths, width=3),
-        dbc.Col(card_recovered, width=3),
-    ]
-
-    return cols
+    return cards
 
 
 def bar_chart_left(state=None):
@@ -218,12 +181,15 @@ def line_chart_left_bottom(state=None):
     raise NotImplementedError
 
 
-def news_feed_right(state=None):
+def news_feed_right(state=None) -> dbc.Card:
     """Displays twitter feed on the right hand side of the display.
     TODO: Get twitter feed
 
     :params state: display twitter feed for a particular state. If None, display twitter feed
         for the whole US
+
+    :return card: A dash boostrap components Card objects cointaining a dbc ListGroup containing news feeds.
+    :rtype: dbc.Card.
     """
     json_data = news_requests.json()["articles"]
     df = pd.DataFrame(json_data)
@@ -232,7 +198,7 @@ def news_feed_right(state=None):
 
     card = dbc.Card(
         dbc.ListGroup(
-            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')]+#%MM:%DD:%H:%M:%S:")}')] +
+            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')] +
             [dbc.ListGroupItem(df.iloc[i]["title"], href=df.iloc[i]["url"]) for i in range(min(len(df), max_rows))],
             flush=True
             ),
@@ -267,8 +233,9 @@ layout = html.Div(
                 # Div for center map
                 dbc.Col(
                     [
-                        # dcc.Input(id='map-input', value=None),
-                        dcc.Graph(id='us-map', figure=build_scatter_mapbox()),
+                        html.Div(id='us-map',
+                                 children=build_scatter_mapbox(),
+                                 style={"height" : "70vh"}),
                     ],
                     width=8
                 ),
