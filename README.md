@@ -1,4 +1,4 @@
-# COVID19 US Specific Dashboard
+# [COVID19 US Specific Dashboard](http://ncov19.us/)
 
 ## About this app
 
