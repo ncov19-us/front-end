@@ -39,6 +39,9 @@ news_requests = requests.get(
 # API Requests for DailyReports
 BASE_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
 
+# API Requests for JHU time series reports
+TIME_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+
 try:
     todays_date = datetime.now().strftime("%m-%d-%Y")
     csv_url = BASE_URL + todays_date + ".csv"
@@ -162,8 +165,18 @@ def bottom_left_chart(state=None):
 
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
-    df = px.data.gapminder().query("continent == 'Oceania'")
-    fig = px.line(df, x='year', y='lifeExp', color='country')
+
+    df = pd.read_csv(TIME_URL)
+    df = df[df['Country/Region']=='US']
+    # let all the Princess go
+    df = df[~df['Province/State'].str.contains("Princess")]
+    df = df.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
+    df = df.sum(axis=0).to_frame().reset_index()
+    df['index'] = pd.to_datetime(df['index'])
+    df = df.rename(columns={'index': "Date", 0: "Confirmed_Cases"})  
+
+    # df = px.data.gapminder().query("continent == 'Oceania'")
+    fig = px.line(df, x='Date', y='Confirmed_Cases')#, color='country')
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0},
                       showlegend=False)
 
