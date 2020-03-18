@@ -30,13 +30,11 @@ footer = dbc.Container(
         dbc.Col(
             html.P(
                 [
-                    # html.Span('Hanchung Lee      ', className='mr-2'),
-                    # html.A(html.I(className='fas fa-envelope-square mr-3'), href='mailto:@gmail.com'),
-                    # html.A(html.I(className='fab fa-github-square mr-3'), href='https://github.com/'),
-                    # html.A(html.I(className='fab fa-linkedin mr-3'), href='https://www.linkedin.com/in//'),
-                    # html.A(html.I(className='fab fa-twitter-square mr-3'), href='https://twitter.com/'),
+                    html.Span('Data from U.S. Fderal, State, and local governments, WHO, and John Hopkins CSSU. Website for information purposes and makes no guarantee to be accurate. © Copyright 2019, ncov19.us.'),
+                    html.A(html.I(className='fas fa-envelope-square mr-3'), href='mailto:@gmail.com'),
+                    html.A(html.I(className='fab fa-twitter-square mr-3'), href='https://twitter.com/'),
                 ],
-                className='lead'
+                # className='lead'
             )
         )
     ),

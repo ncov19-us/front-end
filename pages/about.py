@@ -6,29 +6,35 @@ from dash.dependencies import Input, Output
 
 from app import app
 
+column0 = dbc.Col(
+    html.Div(
+        dcc.Markdown(),
+    ),
+    md=2,
+)
+
 column1 = dbc.Col(
-    [
+    html.Div([
         dcc.Markdown(
             """
-        
-            ## Insights
+            # About
 
-            '''
-            this is a code
-            '''
+            # Links
 
-            
+
+            # Contributors
+
             """
-        ),
-    ],
-    md=4,
+        ),],
+    ),        
+    md=8,
 )
-
 
 column2 = dbc.Col(
-    [
-        
-    ]
+    html.Div(
+        dcc.Markdown(),
+    ),
+    md=2,
 )
 
-layout = dbc.Row([column1, column2])
+layout = html.Div([dbc.Row([column0, column1, column2], no_gutters=True)])
