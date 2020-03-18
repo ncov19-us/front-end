@@ -34,14 +34,12 @@ px.set_mapbox_access_token(MAPBOX_ACCESS_TOKEN)
 try:
     todays_date = datetime.now().strftime("%m-%d-%Y")
     csv_url = BASE_URL + todays_date + ".csv"
-    daily_reports = pd.read_csv(csv_url
-                                )
+    daily_reports = pd.read_csv(csv_url)
 except Exception as ex:
     previous_day_date = datetime.now() - timedelta(days=1)
     previous_day_date = previous_day_date.strftime("%m-%d-%Y")
     csv_url = BASE_URL + previous_day_date + ".csv"
-    daily_reports = pd.read_csv(csv_url
-                                )
+    daily_reports = pd.read_csv(csv_url)
 
 
 def wrangle(df) -> pd.DataFrame:
@@ -126,18 +124,25 @@ def build_scatter_mapbox() -> dbc.Card:
                             size="Confirmed",
                             size_max=35,
                             hover_name="Province/State",
-                            hover_data=["Confirmed", "Deaths", "Recovered"],
+                            hover_data=["Confirmed", "Deaths",
+                                        "Recovered", "Province/State"],
                             color_continuous_scale=color_scale)
 
     fig.layout.update(margin={"r": 0, "t": 0, "l": 0, "b": 0},
+                      # This takes away the colorbar on the right hand side of the plot
                       coloraxis_showscale=False,
                       mapbox_style="dark",
                       mapbox=dict(center=dict(lat=39.8097343,
                                               lon=-98.5556199),
                                   zoom=3)
                       )
-    # This takes away the colorbar on the right hand side of the plot
-    # fig.update_layout(coloraxis_showscale=False)
+
+    # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
+    # print(fig.data[0].hovertemplate)
+    # <b>%{hovertext}</b><br><br>Confirmed=%{marker.color}\\
+    # <br>Deaths=%{customdata[1]}<br>Recovered=%{customdata[2]}<br>Latitude=%{lat}<br>Longitude=%{lon}
+    fig.data[0].update(
+        hovertemplate='Location=%{customdata[3]}<br>Confirmed=%{marker.size}<br>Deaths=%{customdata[1]}<br>Recovered=%{customdata[2]}')
 
     card = dbc.Card(
         dbc.CardBody(dcc.Graph(figure=fig, style={'height': "54vh"}))
@@ -181,42 +186,36 @@ def bottom_right_chart(state=None):
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
     df = pd.read_csv(TIME_URL)
+    kr = df[df['Country/Region'] == "Korea, South"]
     us = df[df['Country/Region'] == 'US']
     it = df[df['Country/Region'] == 'Italy']
-    kr = df[df['Country/Region'] == "Korea, South"]
 
     us = us[~us['Province/State'].str.contains("Princess")]
     us = us.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     us = us.sum(axis=0).to_frame().reset_index()
-    us['index'] = pd.to_datetime(us['index'])
-    us = us.rename(columns={'index': "Date", 0: "United States"})
+    us = us.rename(columns={0: "United States"})
     us = us[us['United States'] > 200]
     us = us.reset_index(drop=True)
-    us = us.drop(columns=['Date'])
 
     it = it.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     it = it.sum(axis=0).to_frame().reset_index()
-    it['index'] = pd.to_datetime(it['index'])
-    it = it.rename(columns={'index': "Date", 0: "Italy"})
+    it = it.rename(columns={0: "Italy"})
     it = it[it['Italy'] > 200]
     it = it.reset_index(drop=True)
-    it = it.drop(columns=['Date'])
 
     kr = kr.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     kr = kr.sum(axis=0).to_frame().reset_index()
-    kr['index'] = pd.to_datetime(kr['index'])
-    kr = kr.rename(columns={'index': "Date", 0: "South Korea"})
+    kr = kr.rename(columns={0: "South Korea"})
     kr = kr[kr['South Korea'] > 200]
     kr = kr.reset_index(drop=True)
-    kr = kr.drop(columns=['Date'])
 
-    merged = pd.concat([it['Italy'], kr['South Korea'],
+    merged = pd.concat([kr['South Korea'], it['Italy'],
                         us['United States']], axis=1)
     merged = merged.reset_index()
     merged = merged.rename(columns={'index': "Days"})
-    merged = merged[:-30]
-    # del it kr, us
-    # del df
+
+    del df, it, kr, us
+
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['United States'],
@@ -230,7 +229,6 @@ def bottom_right_chart(state=None):
                              y=merged['South Korea'],
                              name="South Korea",
                              mode='lines+markers'))
-
     fig.update_layout(margin={"r": 10, "t": 40, "l": 0, "b": 0},
                       template="plotly_dark",
                       title="Days since 200 Cases",
