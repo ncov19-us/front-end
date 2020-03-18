@@ -96,8 +96,7 @@ def build_top_bar() -> List[dbc.Col]:
                 dbc.CardBody([html.H1(value), html.P(
                     f'{key}', className="card-text")])
             ],
-                style={"textAlign": "center",
-                       "width": "35rem"},
+                style={"textAlign": "center"},
                 outline=False
             ),
             width=3,
@@ -219,20 +218,25 @@ def bottom_right_chart(state=None):
     fig = go.Figure()
 
     template = "%{y} confirmed cases %{x} days since 200 cases"
-    fig.add_trace(go.Scatter(x=merged['Days'],
-                             y=merged['United States'],
-                             name="United States",
-                             text="United States",
-                             mode='lines+markers',
-                             hovertemplate=template))
+    
     fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['Italy'],
                              name="Italy",
+                             opacity=0.7,
                              mode='lines+markers',
                              hovertemplate=template))
     fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['South Korea'],
                              name="South Korea",
+                             opacity=0.7,
+                             mode='lines+markers',
+                             hovertemplate=template))
+    fig.add_trace(go.Scatter(x=merged['Days'],
+                             y=merged['United States'],
+                             name="United States",
+                             text="United States",
+                             line={"width":5,
+                                   "color": "#00BFFF"},
                              mode='lines+markers',
                              hovertemplate=template))
     fig.update_layout(margin={"r": 10, "t": 40, "l": 0, "b": 0},
@@ -266,25 +270,27 @@ def twitter_feed_left(state=None) -> dbc.ListGroup:
         cards += [dbc.Card(
             dbc.CardBody(
                 [
-                    html.Div([html.Img(src=profile_pic,
-                                       className='img-fluid'),
-                              html.Div([html.H6(full_name, className="card-title"),
-                                        html.H6("@" + username,
-                                                className="card-subtitle")
-                                        ]
-                                       )
-                              ],
-                             className="d-flex",
-                             ),
+                    # html.Div([html.Img(src=profile_pic,
+                    #                    className='img-fluid',
+                    #                    style={"borderRadius": "50%",
+                    #                           "width": "50px",
+                    #                           "height": "50px"})
+                    #           ],
+                    #          ),
                     html.A(html.P(tweet["full_text"][:100] + "...",
-                                  className="card-text"), href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}", target="_blank")
+                                  className="card-text"), href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}", target="_blank"),
+                    html.P([
+                        html.Strong(f"- {full_name} (@{username})"),
+                        html.P(
+                            f"{tweet['created_at'].strftime('%a %d, %Y at %I: %M %p')}")
+                    ], style={"fontWeigth": "0.25rem"}
+                    ),
                 ]
-            )
+            ),
         )
             for tweet in tweets
         ]
     return html.Div(cards)
-
 
 def news_feed_right(state=None) -> dbc.Card:
     NEWS_API_URL="https://newsapi.org/v2/top-headlines?country=us&q=virus&q=coronavirus&apiKey=da8e2e705b914f9f86ed2e9692e66012"
@@ -296,14 +302,15 @@ def news_feed_right(state=None) -> dbc.Card:
 
     card = dbc.Card(
         dbc.ListGroup(
-            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')] +
+            [dbc.ListGroupItem(f"Last update : {datetime.now().strftime('%a %d, %Y at %I: %M %p')}")] +
             [dbc.ListGroupItem([
                 html.H6(f"{df.iloc[i]['title'].split(' - ')[0]}."),
-                html.H6(f"   - {df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['publishedAt']}")
-                ], 
+                html.H6(
+                    f"   - {df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['publishedAt'][:10]}")
+            ],
                 href=df.iloc[i]["url"],
-                target="_blank")                               
-            for i in range(min(len(df), max_rows))],
+                target="_blank")
+                for i in range(min(len(df), max_rows))],
             flush=True
         ),
     )
