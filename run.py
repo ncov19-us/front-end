@@ -7,7 +7,7 @@ from dash.dependencies import Input, Output
 
 # Imports from this application
 from app import app, server
-from pages import index
+from pages import index, about
 
 # Import settings
 from utils.settings import theme
@@ -59,6 +59,8 @@ app.layout = html.Div([
 def display_page(pathname):
     if pathname == '/':
         return index.layout
+    if pathname == '/about':
+        return about.layout
     else:
         return dcc.Markdown('## Page not found')
 

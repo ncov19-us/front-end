@@ -96,7 +96,8 @@ def build_top_bar() -> List[dbc.Col]:
                 dbc.CardBody([html.H1(value), html.P(
                     f'{key}', className="card-text")])
             ],
-                style={"textAlign": "center"},
+                style={"textAlign": "center",
+                       "width": "35rem"},
                 outline=False
             ),
             width=3,
@@ -123,7 +124,7 @@ def build_scatter_mapbox() -> dbc.Card:
                             lon="Longitude",
                             color="Confirmed",
                             size="Confirmed",
-                            size_max=50,
+                            size_max=35,
                             hover_name="Province/State",
                             hover_data=["Confirmed", "Deaths", "Recovered"],
                             color_continuous_scale=color_scale)
