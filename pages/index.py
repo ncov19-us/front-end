@@ -18,6 +18,7 @@ import plotly.graph_objects as go
 import dash_daq as daq
 from utils.settings import *
 
+
 ########################################################################
 #
 # API data requests
@@ -134,14 +135,15 @@ def build_scatter_mapbox() -> dbc.Card:
                             color_continuous_scale=px.colors.cyclical.IceFire)
 
     fig.layout.update(margin={"r": 0, "t": 0, "l": 0, "b": 0},
+                      coloraxis_showscale=False,
+                      template="plotly_dark",
                       mapbox_style="dark",
-                      mapbox=dict(
-                                  center=dict(lat=39.8097343,
+                      mapbox=dict(center=dict(lat=39.8097343,
                                               lon=-98.5556199),
                                   zoom=4.2)
                       )
     # This takes away the colorbar on the right hand side of the plot
-    fig.update_layout(coloraxis_showscale=False)
+    # fig.update_layout(coloraxis_showscale=False)
 
     card = dbc.Card(
         dbc.CardBody(dcc.Graph(figure=fig, style={'height': "54vh"}))
@@ -157,16 +159,19 @@ def bottom_left_chart(state=None):
 
     df = pd.read_csv(TIME_URL)
     df = df[df['Country/Region'] == 'US']
-    # let all the Princess go
+    # "Let it go, let it go" - Princess Elsa
     df = df[~df['Province/State'].str.contains("Princess")]
     df = df.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     df = df.sum(axis=0).to_frame().reset_index()
     df['index'] = pd.to_datetime(df['index'])
-    df = df.rename(columns={'index': "Date", 0: "Confirmed_Cases"})
+    df = df.rename(columns={'index': "Date", 0: "Confirmed Cases"})
 
-    # df = px.data.gapminder().query("continent == 'Oceania'")
-    fig = px.line(df, x='Date', y='Confirmed_Cases')  # , color='country')
-    fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0},
+    fig = px.line(df, x='Date', y='Confirmed Cases')
+    fig.update_layout(margin={"r": 10, "t": 40, "l": 0, "b": 0},
+                      template="plotly_dark",
+                      title="U.S. Confirmed Cases",
+                      xaxis_title=None,
+                      yaxis_title=None,
                       showlegend=False)
 
     card = dbc.Card(
@@ -180,10 +185,86 @@ def bottom_right_chart(state=None):
 
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
-    df = px.data.gapminder().query("continent == 'Oceania'")
-    fig = px.line(df, x='year', y='lifeExp', color='country')
-    fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0},
-                      showlegend=False)
+    df = pd.read_csv(TIME_URL)
+    kr = df[df['Country/Region']=="Korea, South"]
+    cn = df[df['Country/Region']=='China']
+    us = df[df['Country/Region']=='US']
+    it = df[df['Country/Region']=='Italy']
+    remove_list = ['Italy', "Korea, South", 'China', 'US']
+    row = df[~df['Country/Region'].isin(remove_list)]
+    
+    us = us[~us['Province/State'].str.contains("Princess")]
+    us = us.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
+    us = us.sum(axis=0).to_frame().reset_index()
+    us['index'] = pd.to_datetime(us['index'])
+    us = us.rename(columns={'index': "Date", 0: "United States"})
+    us = us[us['United States'] > 200]
+    us = us.reset_index(drop=True)
+    us = us.drop(columns=['Date'])
+    
+    cn = cn.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
+    cn = cn.sum(axis=0).to_frame().reset_index()
+    cn['index'] = pd.to_datetime(cn['index'])
+    cn = cn.rename(columns={'index': "Date", 0: "China"})
+    cn = cn.reset_index(drop=True)
+    cn = cn.drop(columns=['Date'])
+
+    it = df[df['Country/Region']=='Italy']
+    it = it.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
+    it = it.sum(axis=0).to_frame().reset_index()
+    it['index'] = pd.to_datetime(it['index'])
+    it = it.rename(columns={'index': "Date", 0: "Italy"})
+    it = it[it['Italy'] > 200]
+    it = it.reset_index(drop=True)
+    it = it.drop(columns=['Date'])
+    
+    kr = kr.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
+    kr = kr.sum(axis=0).to_frame().reset_index()
+    kr['index'] = pd.to_datetime(kr['index'])
+    kr = kr.rename(columns={'index': "Date", 0: "South Korea"})
+    kr = kr[kr['South Korea'] > 200]
+    kr = kr.reset_index(drop=True)
+    kr = kr.drop(columns=['Date'])
+    
+    row = row.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
+    row = row.sum(axis=0).to_frame().reset_index()
+    row['index'] = pd.to_datetime(row['index'])
+    row = row.rename(columns={'index': "Date", 0: "Rest of World"})
+    row = row[row['Rest of World'] > 200]
+    row = row.reset_index(drop=True)
+    row = row.drop(columns=['Date'])
+    
+    merged = pd.concat([cn['China'], it['Italy'], kr['South Korea'], us['United States'], row['Rest of World']], axis=1)
+    merged = merged.reset_index()
+    merged = merged.rename(columns={'index': "Days"})
+    merged = merged[:-30]
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=merged['Days'], 
+                             y=merged['United States'],
+                             name="United States",
+                             mode='lines+markers'))
+    # fig.add_trace(go.Scatter(x=merged['Days'],
+    #                          y=merged['China'],
+    #                          name="China",
+    #                          mode='lines+markers'))
+    fig.add_trace(go.Scatter(x=merged['Days'],
+                             y=merged['Italy'],
+                             name="Italy",
+                             mode='lines+markers'))
+    fig.add_trace(go.Scatter(x=merged['Days'],
+                             y=merged['South Korea'],
+                             name="South Korea",
+                             mode='lines+markers'))
+    # fig.add_trace(go.Scatter(x=merged['Days'],
+    #                          y=merged['Rest of World'],
+    #                          name="Rest of World",
+    #                          mode='lines+markers'))
+    
+    fig.update_layout(margin={"r": 10, "t": 40, "l": 0, "b": 0},
+                      template="plotly_dark",
+                      title="Days since 200 Cases",                      
+                      showlegend=True)
 
     card = dbc.Card(
         dbc.CardBody(dcc.Graph(figure=fig, style={'height': "20vh"}))
