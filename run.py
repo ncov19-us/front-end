@@ -18,7 +18,6 @@ navbar = dbc.NavbarSimple(
     children=[
         dbc.NavItem(dcc.Link('About', href='/about', className='nav-link')),
     ],
-    sticky='top',
     color="dark",
     dark=theme["dark"],
     fluid=True
@@ -28,22 +27,23 @@ navbar = dbc.NavbarSimple(
 footer = dbc.Container(
     dbc.Row([
         dbc.Col(
-                [
-                    html.Span("""
+            [
+                html.Span("""
                     This Website relies upon publicly available data from multiple sources, including 
                     and not limited to U.S. Fderal, State, and local governments, WHO, John Hopkins
-                    CSSU. The content of this Website is for information purposes and makes no guarantee
+                    CSSE. The content of this Website is for information purposes and makes no guarantee
                     to be accurate."""),
-            
-                ],
-                width=10,
+
+            ],
+            width=10,
         ),
         dbc.Col([
-                    html.Span("                                    ©Copyright 2020, ncov19.us.      "),
-                    html.A(html.I(className='fas fa-envelope-square mr-3'), href='mailto:@gmail.com'),
-                    html.A(html.I(className='fab fa-twitter-square mr-3'), href='https://twitter.com/'),
-                ],
-                width=2,
+            html.Span(
+                "                                    ©Copyright 2020, ncov19.us.      "),
+            # html.A(html.I(className='fas fa-envelope-square mr-3'), href='mailto:@gmail.com'),
+            # html.A(html.I(className='fab fa-twitter-square mr-3'), href='https://twitter.com/'),
+        ],
+            width=2,
         )
     ]),
     fluid=True

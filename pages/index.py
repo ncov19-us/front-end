@@ -181,12 +181,9 @@ def bottom_right_chart(state=None):
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
     df = pd.read_csv(TIME_URL)
-    kr = df[df['Country/Region'] == "Korea, South"]
-    cn = df[df['Country/Region'] == 'China']
     us = df[df['Country/Region'] == 'US']
     it = df[df['Country/Region'] == 'Italy']
-    remove_list = ['Italy', "Korea, South", 'China', 'US']
-    row = df[~df['Country/Region'].isin(remove_list)]
+    kr = df[df['Country/Region'] == "Korea, South"]
 
     us = us[~us['Province/State'].str.contains("Princess")]
     us = us.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
@@ -197,14 +194,6 @@ def bottom_right_chart(state=None):
     us = us.reset_index(drop=True)
     us = us.drop(columns=['Date'])
 
-    cn = cn.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
-    cn = cn.sum(axis=0).to_frame().reset_index()
-    cn['index'] = pd.to_datetime(cn['index'])
-    cn = cn.rename(columns={'index': "Date", 0: "China"})
-    cn = cn.reset_index(drop=True)
-    cn = cn.drop(columns=['Date'])
-
-    it = df[df['Country/Region'] == 'Italy']
     it = it.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     it = it.sum(axis=0).to_frame().reset_index()
     it['index'] = pd.to_datetime(it['index'])
@@ -221,29 +210,18 @@ def bottom_right_chart(state=None):
     kr = kr.reset_index(drop=True)
     kr = kr.drop(columns=['Date'])
 
-    row = row.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
-    row = row.sum(axis=0).to_frame().reset_index()
-    row['index'] = pd.to_datetime(row['index'])
-    row = row.rename(columns={'index': "Date", 0: "Rest of World"})
-    row = row[row['Rest of World'] > 200]
-    row = row.reset_index(drop=True)
-    row = row.drop(columns=['Date'])
-
-    merged = pd.concat([cn['China'], it['Italy'], kr['South Korea'],
-                        us['United States'], row['Rest of World']], axis=1)
+    merged = pd.concat([it['Italy'], kr['South Korea'],
+                        us['United States']], axis=1)
     merged = merged.reset_index()
     merged = merged.rename(columns={'index': "Days"})
     merged = merged[:-30]
-
+    # del it kr, us
+    # del df
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['United States'],
                              name="United States",
                              mode='lines+markers'))
-    # fig.add_trace(go.Scatter(x=merged['Days'],
-    #                          y=merged['China'],
-    #                          name="China",
-    #                          mode='lines+markers'))
     fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['Italy'],
                              name="Italy",
@@ -252,10 +230,6 @@ def bottom_right_chart(state=None):
                              y=merged['South Korea'],
                              name="South Korea",
                              mode='lines+markers'))
-    # fig.add_trace(go.Scatter(x=merged['Days'],
-    #                          y=merged['Rest of World'],
-    #                          name="Rest of World",
-    #                          mode='lines+markers'))
 
     fig.update_layout(margin={"r": 10, "t": 40, "l": 0, "b": 0},
                       template="plotly_dark",
@@ -288,20 +262,23 @@ def twitter_feed_left(state=None) -> dbc.ListGroup:
         cards += [dbc.Card(
             dbc.CardBody(
                 [
-                    html.Div([html.Img(src=profile_pic,
-                                       className='img-fluid'),
-                              html.Div([html.H6(full_name, className="card-title"),
-                                        html.H6("@" + username,
-                                                className="card-subtitle")
-                                        ]
-                                       )
-                              ],
-                             className="d-flex",
-                             ),
+                    # html.Div([html.Img(src=profile_pic,
+                    #                    className='img-fluid',
+                    #                    style={"borderRadius": "50%",
+                    #                           "width": "50px",
+                    #                           "height": "50px"})
+                    #           ],
+                    #          ),
                     html.A(html.P(tweet["full_text"][:100] + "...",
-                                  className="card-text"), href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}", target="_blank")
+                                  className="card-text"), href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}", target="_blank"),
+                    html.P([
+                        html.Strong(f"- {full_name} (@{username})"),
+                        html.P(
+                            f"{tweet['created_at'].strftime('%a %d, %Y at %I: %M %p')}")
+                    ], style={"fontWeigth": "0.25rem"}
+                    ),
                 ]
-            )
+            ),
         )
             for tweet in tweets
         ]
@@ -309,7 +286,7 @@ def twitter_feed_left(state=None) -> dbc.ListGroup:
 
 
 def news_feed_right(state=None) -> dbc.Card:
-    NEWS_API_URL="https://newsapi.org/v2/top-headlines?country=us&q=virus&q=coronavirus&apiKey=da8e2e705b914f9f86ed2e9692e66012"
+    NEWS_API_URL = "https://newsapi.org/v2/top-headlines?country=us&q=virus&q=coronavirus&apiKey=da8e2e705b914f9f86ed2e9692e66012"
     news_requests = requests.get(NEWS_API_URL)
     json_data = news_requests.json()["articles"]
     df = pd.DataFrame(json_data)
@@ -321,16 +298,18 @@ def news_feed_right(state=None) -> dbc.Card:
             [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')] +
             [dbc.ListGroupItem([
                 html.H6(f"{df.iloc[i]['title'].split(' - ')[0]}."),
-                html.H6(f"   - {df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['publishedAt']}")
-                ], 
+                html.H6(
+                    f"   - {df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['publishedAt'][:10]}")
+            ],
                 href=df.iloc[i]["url"],
-                target="_blank")                               
-            for i in range(min(len(df), max_rows))],
+                target="_blank")
+                for i in range(min(len(df), max_rows))],
             flush=True
         ),
     )
 
     return card
+
 
 ########################################################################
 #
@@ -385,4 +364,6 @@ layout = html.Div(
             no_gutters=True,
         ),
     ]
+
+
 )

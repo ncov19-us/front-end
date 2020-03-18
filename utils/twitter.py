@@ -86,3 +86,8 @@ def add_or_update_user(username):
 if __name__ == "__main__":
     # INIT MONGO DB
     # init_mongodb()
+    doc = tm.get_data_by_user("Alaska_DHSS")
+    tweets = doc["tweets"]
+    tweet = tweets[0]
+    print(tweet["created_at"].strftime("%a %d, %Y at %I:%M %p"))
+    print(tweet["created_at"].strftime("%c"))
