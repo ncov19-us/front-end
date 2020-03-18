@@ -181,69 +181,40 @@ def bottom_right_chart(state=None):
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
     df = pd.read_csv(TIME_URL)
-    kr = df[df['Country/Region'] == "Korea, South"]
-    cn = df[df['Country/Region'] == 'China']
-    us = df[df['Country/Region'] == 'US']
-    it = df[df['Country/Region'] == 'Italy']
-    remove_list = ['Italy', "Korea, South", 'China', 'US']
-    row = df[~df['Country/Region'].isin(remove_list)]
-
+    kr = df[df['Country/Region']=="Korea, South"]
+    us = df[df['Country/Region']=='US']
+    it = df[df['Country/Region']=='Italy']
+    
     us = us[~us['Province/State'].str.contains("Princess")]
     us = us.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     us = us.sum(axis=0).to_frame().reset_index()
-    us['index'] = pd.to_datetime(us['index'])
-    us = us.rename(columns={'index': "Date", 0: "United States"})
+    us = us.rename(columns={0: "United States"})
     us = us[us['United States'] > 200]
     us = us.reset_index(drop=True)
-    us = us.drop(columns=['Date'])
 
-    cn = cn.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
-    cn = cn.sum(axis=0).to_frame().reset_index()
-    cn['index'] = pd.to_datetime(cn['index'])
-    cn = cn.rename(columns={'index': "Date", 0: "China"})
-    cn = cn.reset_index(drop=True)
-    cn = cn.drop(columns=['Date'])
-
-    it = df[df['Country/Region'] == 'Italy']
     it = it.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     it = it.sum(axis=0).to_frame().reset_index()
-    it['index'] = pd.to_datetime(it['index'])
-    it = it.rename(columns={'index': "Date", 0: "Italy"})
+    it = it.rename(columns={0: "Italy"})
     it = it[it['Italy'] > 200]
     it = it.reset_index(drop=True)
-    it = it.drop(columns=['Date'])
-
+    
     kr = kr.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     kr = kr.sum(axis=0).to_frame().reset_index()
-    kr['index'] = pd.to_datetime(kr['index'])
-    kr = kr.rename(columns={'index': "Date", 0: "South Korea"})
+    kr = kr.rename(columns={0: "South Korea"})
     kr = kr[kr['South Korea'] > 200]
     kr = kr.reset_index(drop=True)
-    kr = kr.drop(columns=['Date'])
-
-    row = row.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
-    row = row.sum(axis=0).to_frame().reset_index()
-    row['index'] = pd.to_datetime(row['index'])
-    row = row.rename(columns={'index': "Date", 0: "Rest of World"})
-    row = row[row['Rest of World'] > 200]
-    row = row.reset_index(drop=True)
-    row = row.drop(columns=['Date'])
-
-    merged = pd.concat([cn['China'], it['Italy'], kr['South Korea'],
-                        us['United States'], row['Rest of World']], axis=1)
+    
+    merged = pd.concat([kr['South Korea'], it['Italy'], us['United States']], axis=1)
     merged = merged.reset_index()
     merged = merged.rename(columns={'index': "Days"})
-    merged = merged[:-30]
+
+    del df, it, kr, us
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['United States'],
                              name="United States",
                              mode='lines+markers'))
-    # fig.add_trace(go.Scatter(x=merged['Days'],
-    #                          y=merged['China'],
-    #                          name="China",
-    #                          mode='lines+markers'))
     fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['Italy'],
                              name="Italy",
@@ -252,11 +223,6 @@ def bottom_right_chart(state=None):
                              y=merged['South Korea'],
                              name="South Korea",
                              mode='lines+markers'))
-    # fig.add_trace(go.Scatter(x=merged['Days'],
-    #                          y=merged['Rest of World'],
-    #                          name="Rest of World",
-    #                          mode='lines+markers'))
-
     fig.update_layout(margin={"r": 10, "t": 40, "l": 0, "b": 0},
                       template="plotly_dark",
                       title="Days since 200 Cases",
