@@ -272,7 +272,7 @@ def twitter_feed_left(state=None) -> dbc.ListGroup:
                     html.P([
                         html.Strong(f"- {full_name} (@{username})"),
                         html.P(
-                            f"{tweet['created_at'].strftime('%a %d, %Y at %I: %M %p')}")
+                            f"{tweet['created_at'].strftime('%a %d, %Y %I: %M %p')}")
                     ], style={"fontWeigth": "0.25rem"}
                     ),
                 ]
@@ -293,7 +293,7 @@ def news_feed_right(state=None) -> dbc.Card:
 
     card = dbc.Card(
         dbc.ListGroup(
-            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')] +
+            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%a %d, %Y %I: %M %p")}')] +
             [dbc.ListGroupItem([
                 html.H6(f"{df.iloc[i]['title'].split(' - ')[0]}."),
                 html.H6(
