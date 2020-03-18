@@ -34,12 +34,14 @@ px.set_mapbox_access_token(MAPBOX_ACCESS_TOKEN)
 try:
     todays_date = datetime.now().strftime("%m-%d-%Y")
     csv_url = BASE_URL + todays_date + ".csv"
-    daily_reports = pd.read_csv(csv_url)
+    daily_reports = pd.read_csv(csv_url
+                                )
 except Exception as ex:
     previous_day_date = datetime.now() - timedelta(days=1)
     previous_day_date = previous_day_date.strftime("%m-%d-%Y")
     csv_url = BASE_URL + previous_day_date + ".csv"
-    daily_reports = pd.read_csv(csv_url)
+    daily_reports = pd.read_csv(csv_url
+                                )
 
 
 def wrangle(df) -> pd.DataFrame:
@@ -124,8 +126,7 @@ def build_scatter_mapbox() -> dbc.Card:
                             size="Confirmed",
                             size_max=35,
                             hover_name="Province/State",
-                            hover_data=["Confirmed", "Deaths",
-                                        "Recovered", "Province/State"],
+                            hover_data=["Confirmed", "Deaths", "Recovered", "Province/State"],
                             color_continuous_scale=color_scale)
 
     fig.layout.update(margin={"r": 0, "t": 0, "l": 0, "b": 0},
@@ -142,7 +143,7 @@ def build_scatter_mapbox() -> dbc.Card:
     # <b>%{hovertext}</b><br><br>Confirmed=%{marker.color}\\
     # <br>Deaths=%{customdata[1]}<br>Recovered=%{customdata[2]}<br>Latitude=%{lat}<br>Longitude=%{lon}
     fig.data[0].update(
-        hovertemplate='Location=%{customdata[3]}<br>Confirmed=%{marker.size}<br>Deaths=%{customdata[1]}<br>Recovered=%{customdata[2]}')
+        hovertemplate='%{customdata[3]}<br>Confirmed: %{marker.size} Deaths: %{customdata[1]} Recovered: %{customdata[2]}')
 
     card = dbc.Card(
         dbc.CardBody(dcc.Graph(figure=fig, style={'height': "54vh"}))
@@ -186,10 +187,10 @@ def bottom_right_chart(state=None):
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
     df = pd.read_csv(TIME_URL)
-    kr = df[df['Country/Region'] == "Korea, South"]
-    us = df[df['Country/Region'] == 'US']
-    it = df[df['Country/Region'] == 'Italy']
-
+    kr = df[df['Country/Region']=="Korea, South"]
+    us = df[df['Country/Region']=='US']
+    it = df[df['Country/Region']=='Italy']
+    
     us = us[~us['Province/State'].str.contains("Princess")]
     us = us.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     us = us.sum(axis=0).to_frame().reset_index()
@@ -202,33 +203,38 @@ def bottom_right_chart(state=None):
     it = it.rename(columns={0: "Italy"})
     it = it[it['Italy'] > 200]
     it = it.reset_index(drop=True)
-
+    
     kr = kr.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     kr = kr.sum(axis=0).to_frame().reset_index()
     kr = kr.rename(columns={0: "South Korea"})
     kr = kr[kr['South Korea'] > 200]
     kr = kr.reset_index(drop=True)
-
-    merged = pd.concat([kr['South Korea'], it['Italy'],
-                        us['United States']], axis=1)
+    
+    merged = pd.concat([kr['South Korea'], it['Italy'], us['United States']], axis=1)
     merged = merged.reset_index()
     merged = merged.rename(columns={'index': "Days"})
 
     del df, it, kr, us
 
     fig = go.Figure()
+
+    template = "%{y} confirmed cases %{x} days since 200 cases"
     fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['United States'],
                              name="United States",
-                             mode='lines+markers'))
+                             text="United States",
+                             mode='lines+markers',
+                             hovertemplate=template))
     fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['Italy'],
                              name="Italy",
-                             mode='lines+markers'))
+                             mode='lines+markers',
+                             hovertemplate=template))
     fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['South Korea'],
                              name="South Korea",
-                             mode='lines+markers'))
+                             mode='lines+markers',
+                             hovertemplate=template))
     fig.update_layout(margin={"r": 10, "t": 40, "l": 0, "b": 0},
                       template="plotly_dark",
                       title="Days since 200 Cases",
@@ -260,23 +266,20 @@ def twitter_feed_left(state=None) -> dbc.ListGroup:
         cards += [dbc.Card(
             dbc.CardBody(
                 [
-                    # html.Div([html.Img(src=profile_pic,
-                    #                    className='img-fluid',
-                    #                    style={"borderRadius": "50%",
-                    #                           "width": "50px",
-                    #                           "height": "50px"})
-                    #           ],
-                    #          ),
+                    html.Div([html.Img(src=profile_pic,
+                                       className='img-fluid'),
+                              html.Div([html.H6(full_name, className="card-title"),
+                                        html.H6("@" + username,
+                                                className="card-subtitle")
+                                        ]
+                                       )
+                              ],
+                             className="d-flex",
+                             ),
                     html.A(html.P(tweet["full_text"][:100] + "...",
-                                  className="card-text"), href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}", target="_blank"),
-                    html.P([
-                        html.Strong(f"- {full_name} (@{username})"),
-                        html.P(
-                            f"{tweet['created_at'].strftime('%a %d, %Y %I: %M %p')}")
-                    ], style={"fontWeigth": "0.25rem"}
-                    ),
+                                  className="card-text"), href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}", target="_blank")
                 ]
-            ),
+            )
         )
             for tweet in tweets
         ]
@@ -284,7 +287,7 @@ def twitter_feed_left(state=None) -> dbc.ListGroup:
 
 
 def news_feed_right(state=None) -> dbc.Card:
-    NEWS_API_URL = "https://newsapi.org/v2/top-headlines?country=us&q=virus&q=coronavirus&apiKey=da8e2e705b914f9f86ed2e9692e66012"
+    NEWS_API_URL="https://newsapi.org/v2/top-headlines?country=us&q=virus&q=coronavirus&apiKey=da8e2e705b914f9f86ed2e9692e66012"
     news_requests = requests.get(NEWS_API_URL)
     json_data = news_requests.json()["articles"]
     df = pd.DataFrame(json_data)
@@ -293,21 +296,19 @@ def news_feed_right(state=None) -> dbc.Card:
 
     card = dbc.Card(
         dbc.ListGroup(
-            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%a %d, %Y %I: %M %p")}')] +
+            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')] +
             [dbc.ListGroupItem([
                 html.H6(f"{df.iloc[i]['title'].split(' - ')[0]}."),
-                html.H6(
-                    f"   - {df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['publishedAt'][:10]}")
-            ],
+                html.H6(f"   - {df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['publishedAt']}")
+                ], 
                 href=df.iloc[i]["url"],
-                target="_blank")
-                for i in range(min(len(df), max_rows))],
+                target="_blank")                               
+            for i in range(min(len(df), max_rows))],
             flush=True
         ),
     )
 
     return card
-
 
 ########################################################################
 #
@@ -362,6 +363,4 @@ layout = html.Div(
             no_gutters=True,
         ),
     ]
-
-
 )
