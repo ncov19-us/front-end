@@ -100,11 +100,11 @@ def build_top_bar() -> List[dbc.Col]:
                     color=theme["primary"],
                     backgroundColor="#1e2130",
                     size=40,
-                    style={"border-width": "0px"}
+                    style={"borderWidth": "0%"}
                 )
                 ),
             ],
-                style={"text-align": "center"}
+                style={"textAlign": "center"}
             ),
             width=3
         )
@@ -118,7 +118,7 @@ def build_top_bar() -> List[dbc.Col]:
 
 
 def build_scatter_mapbox() -> dbc.Card:
-    """Displays choroplepth map for the data. For the whole US, the map is divided by state. 
+    """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
     :return card: A dash boostrap component Card object with a dash component Graph inside drawn using plotly express scatter_mapbox
@@ -136,10 +136,10 @@ def build_scatter_mapbox() -> dbc.Card:
     fig.layout.update(margin={"r": 0, "t": 0, "l": 0, "b": 0},
                       mapbox_style="dark",
                       mapbox=dict(
-                                  center=dict(lat=39.8097343,
-                                              lon=-98.5556199),
-                                  zoom=4.2)
-                      )
+        center=dict(lat=39.8097343,
+                    lon=-98.5556199),
+        zoom=4.2)
+    )
     # This takes away the colorbar on the right hand side of the plot
     fig.update_layout(coloraxis_showscale=False)
 
@@ -200,7 +200,7 @@ def news_feed_right(state=None) -> dbc.Card:
     card = dbc.Card(
         dbc.ListGroup(
             [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')] +
-            [dbc.ListGroupItem(df.iloc[i]["title"], href=df.iloc[i]["url"])
+            [dbc.ListGroupItem(df.iloc[i]["title"], href=df.iloc[i]["url"], target="_blank")
              for i in range(min(len(df), max_rows))],
             flush=True
         ),
@@ -209,7 +209,7 @@ def news_feed_right(state=None) -> dbc.Card:
     return card
 
 
-def twitter_feed_left():
+def twitter_feed_left(state=None) -> dbc.ListGroup:
     """Displays twitter feed on the right hand side of the display.
     TODO: Get twitter feed
 
@@ -219,7 +219,34 @@ def twitter_feed_left():
     :return card: A dash boostrap components Card objects cointaining a dbc ListGroup containing news feeds.
     :rtype: dbc.Card.
     """
-    pass
+    recs = tm.get_all_records()
+    cards = []
+    for doc in recs:
+        username = doc["username"]
+        profile_pic = doc["profile_image_url"]
+        full_name = doc["full_name"]
+        tweets = doc["tweets"]
+        cards += [dbc.Card(
+            dbc.CardBody(
+                [
+                    html.Div([html.Img(src=profile_pic,
+                                       className='img-fluid'),
+                              html.Div([html.H6(full_name, className="card-title"),
+                                        html.H6("@" + username,
+                                                className="card-subtitle")
+                                        ]
+                                       )
+                              ],
+                             className="d-flex",
+                             ),
+                    html.A(html.P(tweet["full_text"][:100] + "...",
+                                  className="card-text"), href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}", target="_blank")
+                ]
+            )
+        )
+            for tweet in tweets
+        ]
+    return html.Div(cards)
 
 
 ########################################################################
@@ -238,7 +265,7 @@ layout = html.Div(
                 # Div for left hand side
                 dbc.Col(
                     twitter_feed_left(),
-                    style={"overflow-y": "scroll",
+                    style={"overflowY": "scroll",
                            "height": "80vh"},
                     width=2
                 ),
@@ -267,7 +294,7 @@ layout = html.Div(
                 # Div for right hand side
                 dbc.Col(
                     news_feed_right(),
-                    style={"overflow-y": "scroll",
+                    style={"overflowY": "scroll",
                            "height": "80vh"},
                     width=2
                 ),
@@ -275,4 +302,6 @@ layout = html.Div(
             no_gutters=True,
         ),
     ]
+
+
 )

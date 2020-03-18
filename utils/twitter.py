@@ -62,7 +62,7 @@ def add_or_update_user(username):
         if tweets:
             latest_tweet_id = tweets[0].id
             tm.update_user_latest_tweet_id(username, latest_tweet_id)
-            print(f"[DEBUG] Updating latest_tweet_id: {latest_tweet_id}")
+            # print(f"[DEBUG] Updating latest_tweet_id: {latest_tweet_id}")
 
         # 5. Loop through newly fetched tweets
         #tweets_to_update = []
@@ -72,7 +72,7 @@ def add_or_update_user(username):
             created_at = tweet.created_at
             row = {"tweet_id": tweet_id, "full_text": full_text,
                    "created_at": created_at}
-            print(f"[DEBUG] Adding Tweet #{idx}")
+            # print(f"[DEBUG] Adding Tweet #{idx}")
             tm.update_user_tweets(username, row)
             # tweets_to_update.append()
 
