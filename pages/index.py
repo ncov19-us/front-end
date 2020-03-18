@@ -218,20 +218,25 @@ def bottom_right_chart(state=None):
     fig = go.Figure()
 
     template = "%{y} confirmed cases %{x} days since 200 cases"
-    fig.add_trace(go.Scatter(x=merged['Days'],
-                             y=merged['United States'],
-                             name="United States",
-                             text="United States",
-                             mode='lines+markers',
-                             hovertemplate=template))
+    
     fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['Italy'],
                              name="Italy",
+                             opacity=0.7,
                              mode='lines+markers',
                              hovertemplate=template))
     fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['South Korea'],
                              name="South Korea",
+                             opacity=0.7,
+                             mode='lines+markers',
+                             hovertemplate=template))
+    fig.add_trace(go.Scatter(x=merged['Days'],
+                             y=merged['United States'],
+                             name="United States",
+                             text="United States",
+                             line={"width":5,
+                                   "color": "#00BFFF"},
                              mode='lines+markers',
                              hovertemplate=template))
     fig.update_layout(margin={"r": 10, "t": 40, "l": 0, "b": 0},
