@@ -93,21 +93,13 @@ def build_top_bar() -> List[dbc.Col]:
     cards = [
         dbc.Col(
             dbc.Card([
-                dbc.CardHeader(
-                    html.P(f'{key}', className="card-text")),
-                dbc.CardBody(daq.LEDDisplay(
-                    id=f"total-{key}-led",
-                    value=value,
-                    color=theme["primary"],
-                    backgroundColor="#1e2130",
-                    size=40,
-                    style={"borderWidth": "0%"}
-                )
-                ),
+                dbc.CardBody([html.H1(value), html.P(
+                    f'{key}', className="card-text")])
             ],
-                style={"textAlign": "center"}
+                style={"textAlign": "center"},
+                outline=False
             ),
-            width=3
+            width=3,
         )
         for key, value in stats.items()
     ]
@@ -131,18 +123,17 @@ def build_scatter_mapbox() -> dbc.Card:
                             lon="Longitude",
                             color="Confirmed",
                             size="Confirmed",
-                            size_max=20,
+                            size_max=50,
                             hover_name="Province/State",
                             hover_data=["Confirmed", "Deaths", "Recovered"],
                             color_continuous_scale=color_scale)
 
     fig.layout.update(margin={"r": 0, "t": 0, "l": 0, "b": 0},
                       coloraxis_showscale=False,
-                      template="plotly_dark",
                       mapbox_style="dark",
                       mapbox=dict(center=dict(lat=39.8097343,
                                               lon=-98.5556199),
-                                  zoom=4)
+                                  zoom=3)
                       )
     # This takes away the colorbar on the right hand side of the plot
     # fig.update_layout(coloraxis_showscale=False)
@@ -342,7 +333,7 @@ layout = html.Div(
     [
         dbc.Row(
             build_top_bar(),
-            no_gutters=True
+            # no_gutters=True
         ),
         dbc.Row(
             [
