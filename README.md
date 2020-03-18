@@ -2,7 +2,7 @@
 
 ## About this app
 
-Visualizing COVID19 pandemic in the U.S. by states and by the whole country, with newsfeeds from major news channels and twitter feeds from public officials and institutions.
+Visualizing COVID19 pandemic in the U.S. by states and by the whole country, with newsfeeds from major news channels and twitter feeds from public officials and institutions. The app can be [found here](http://ncov19.us/).
 
 ## Tech Stack
 - Plotly Dash
