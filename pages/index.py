@@ -125,14 +125,16 @@ def build_scatter_mapbox() -> dbc.Card:
     :return card: A dash boostrap component Card object with a dash component Graph inside drawn using plotly express scatter_mapbox
     :rtype: dbc.Card
     """
+    color_scale = ["#ffbaba", "#ff7b7b", "#ff5252", "#ff0000", "#a70000"]
     fig = px.scatter_mapbox(daily_reports,
                             lat="Latitude",
                             lon="Longitude",
                             color="Confirmed",
                             size="Confirmed",
+                            size_max=20,
                             hover_name="Province/State",
                             hover_data=["Confirmed", "Deaths", "Recovered"],
-                            color_continuous_scale=px.colors.cyclical.IceFire)
+                            color_continuous_scale=color_scale)
 
     fig.layout.update(margin={"r": 0, "t": 0, "l": 0, "b": 0},
                       coloraxis_showscale=False,
@@ -140,7 +142,7 @@ def build_scatter_mapbox() -> dbc.Card:
                       mapbox_style="dark",
                       mapbox=dict(center=dict(lat=39.8097343,
                                               lon=-98.5556199),
-                                  zoom=4.2)
+                                  zoom=4)
                       )
     # This takes away the colorbar on the right hand side of the plot
     # fig.update_layout(coloraxis_showscale=False)
