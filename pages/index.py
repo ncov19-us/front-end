@@ -175,8 +175,7 @@ def bottom_left_chart(state=None):
     df['index'] = pd.to_datetime(df['index'])
     df = df.rename(columns={'index': "Date", 0: "Confirmed_Cases"})  
 
-    # df = px.data.gapminder().query("continent == 'Oceania'")
-    fig = px.line(df, x='Date', y='Confirmed_Cases')#, color='country')
+    fig = px.line(df, x='Date', y='Confirmed_Cases')
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0},
                       showlegend=False)
 
