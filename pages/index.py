@@ -96,8 +96,7 @@ def build_top_bar() -> List[dbc.Col]:
                 dbc.CardBody([html.H1(value), html.P(
                     f'{key}', className="card-text")])
             ],
-                style={"textAlign": "center",
-                       "width": "35rem"},
+                style={"textAlign": "center"},
                 outline=False
             ),
             width=3,
