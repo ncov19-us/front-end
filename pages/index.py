@@ -135,11 +135,10 @@ def build_scatter_mapbox() -> dbc.Card:
 
     fig.layout.update(margin={"r": 0, "t": 0, "l": 0, "b": 0},
                       mapbox_style="dark",
-                      mapbox=dict(accesstoken=mapbox_access_token,
+                      mapbox=dict(
                                   center=dict(lat=39.8097343,
                                               lon=-98.5556199),
                                   zoom=4.2)
-                      #   zoom=3.5) # for auto sized middle map
                       )
     # This takes away the colorbar on the right hand side of the plot
     fig.update_layout(coloraxis_showscale=False)
