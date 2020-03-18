@@ -1,13 +1,15 @@
-from utils import TwitterMongo
 import requests
-from
+from utils.settings import TWITTER, tm
 
-# {
-# "username":
-# "state":
-# "tweets":[{"id":1239738257279086593, "text":"", created_at:""}]
-# "newest_tweet_id":
-# }
+"""
+Mongo DB Document Format:
+    {
+    "username":
+    "state":
+    "tweets":[{"id":1239738257279086593, "text":"", created_at:""}]
+    "newest_tweet_id":
+    }
+"""
 
 
 def init_mongodb(verbose=True):
@@ -81,5 +83,6 @@ def add_or_update_user(username):
         print(ex)
 
 
-# INIT MONGO DB
-# init_mongodb()
+if __name__ == "__main__":
+    # INIT MONGO DB
+    # init_mongodb()
