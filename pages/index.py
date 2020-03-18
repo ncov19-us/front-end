@@ -101,11 +101,11 @@ def build_top_bar() -> List[dbc.Col]:
                     color=theme["primary"],
                     backgroundColor="#1e2130",
                     size=40,
-                    style={"border-width": "0px"}
+                    style={"borderWidth": "0%"}
                 )
                 ),
             ],
-                style={"text-align": "center"}
+                style={"textAlign": "center"}
             ),
             width=3
         )
@@ -119,7 +119,7 @@ def build_top_bar() -> List[dbc.Col]:
 
 
 def build_scatter_mapbox() -> dbc.Card:
-    """Displays choroplepth map for the data. For the whole US, the map is divided by state. 
+    """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
     :return card: A dash boostrap component Card object with a dash component Graph inside drawn using plotly express scatter_mapbox
@@ -186,13 +186,13 @@ def bottom_right_chart(state=None):
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
     df = pd.read_csv(TIME_URL)
-    kr = df[df['Country/Region']=="Korea, South"]
-    cn = df[df['Country/Region']=='China']
-    us = df[df['Country/Region']=='US']
-    it = df[df['Country/Region']=='Italy']
+    kr = df[df['Country/Region'] == "Korea, South"]
+    cn = df[df['Country/Region'] == 'China']
+    us = df[df['Country/Region'] == 'US']
+    it = df[df['Country/Region'] == 'Italy']
     remove_list = ['Italy', "Korea, South", 'China', 'US']
     row = df[~df['Country/Region'].isin(remove_list)]
-    
+
     us = us[~us['Province/State'].str.contains("Princess")]
     us = us.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     us = us.sum(axis=0).to_frame().reset_index()
@@ -201,7 +201,7 @@ def bottom_right_chart(state=None):
     us = us[us['United States'] > 200]
     us = us.reset_index(drop=True)
     us = us.drop(columns=['Date'])
-    
+
     cn = cn.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     cn = cn.sum(axis=0).to_frame().reset_index()
     cn['index'] = pd.to_datetime(cn['index'])
@@ -209,7 +209,7 @@ def bottom_right_chart(state=None):
     cn = cn.reset_index(drop=True)
     cn = cn.drop(columns=['Date'])
 
-    it = df[df['Country/Region']=='Italy']
+    it = df[df['Country/Region'] == 'Italy']
     it = it.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     it = it.sum(axis=0).to_frame().reset_index()
     it['index'] = pd.to_datetime(it['index'])
@@ -217,7 +217,7 @@ def bottom_right_chart(state=None):
     it = it[it['Italy'] > 200]
     it = it.reset_index(drop=True)
     it = it.drop(columns=['Date'])
-    
+
     kr = kr.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     kr = kr.sum(axis=0).to_frame().reset_index()
     kr['index'] = pd.to_datetime(kr['index'])
@@ -225,7 +225,7 @@ def bottom_right_chart(state=None):
     kr = kr[kr['South Korea'] > 200]
     kr = kr.reset_index(drop=True)
     kr = kr.drop(columns=['Date'])
-    
+
     row = row.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     row = row.sum(axis=0).to_frame().reset_index()
     row['index'] = pd.to_datetime(row['index'])
@@ -233,14 +233,15 @@ def bottom_right_chart(state=None):
     row = row[row['Rest of World'] > 200]
     row = row.reset_index(drop=True)
     row = row.drop(columns=['Date'])
-    
-    merged = pd.concat([cn['China'], it['Italy'], kr['South Korea'], us['United States'], row['Rest of World']], axis=1)
+
+    merged = pd.concat([cn['China'], it['Italy'], kr['South Korea'],
+                        us['United States'], row['Rest of World']], axis=1)
     merged = merged.reset_index()
     merged = merged.rename(columns={'index': "Days"})
     merged = merged[:-30]
 
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=merged['Days'], 
+    fig.add_trace(go.Scatter(x=merged['Days'],
                              y=merged['United States'],
                              name="United States",
                              mode='lines+markers'))
@@ -260,10 +261,10 @@ def bottom_right_chart(state=None):
     #                          y=merged['Rest of World'],
     #                          name="Rest of World",
     #                          mode='lines+markers'))
-    
+
     fig.update_layout(margin={"r": 10, "t": 40, "l": 0, "b": 0},
                       template="plotly_dark",
-                      title="Days since 200 Cases",                      
+                      title="Days since 200 Cases",
                       showlegend=True)
 
     card = dbc.Card(
@@ -281,7 +282,7 @@ def news_feed_right(state=None) -> dbc.Card:
     card = dbc.Card(
         dbc.ListGroup(
             [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')] +
-            [dbc.ListGroupItem(df.iloc[i]["title"], href=df.iloc[i]["url"])
+            [dbc.ListGroupItem(df.iloc[i]["title"], href=df.iloc[i]["url"], target="_blank")
              for i in range(min(len(df), max_rows))],
             flush=True
         ),
@@ -290,7 +291,7 @@ def news_feed_right(state=None) -> dbc.Card:
     return card
 
 
-def twitter_feed_left():
+def twitter_feed_left(state=None) -> dbc.ListGroup:
     """Displays twitter feed on the right hand side of the display.
     TODO: Get twitter feed
 
@@ -300,7 +301,34 @@ def twitter_feed_left():
     :return card: A dash boostrap components Card objects cointaining a dbc ListGroup containing news feeds.
     :rtype: dbc.Card.
     """
-    pass
+    recs = tm.get_all_records()
+    cards = []
+    for doc in recs:
+        username = doc["username"]
+        profile_pic = doc["profile_image_url"]
+        full_name = doc["full_name"]
+        tweets = doc["tweets"]
+        cards += [dbc.Card(
+            dbc.CardBody(
+                [
+                    html.Div([html.Img(src=profile_pic,
+                                       className='img-fluid'),
+                              html.Div([html.H6(full_name, className="card-title"),
+                                        html.H6("@" + username,
+                                                className="card-subtitle")
+                                        ]
+                                       )
+                              ],
+                             className="d-flex",
+                             ),
+                    html.A(html.P(tweet["full_text"][:100] + "...",
+                                  className="card-text"), href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}", target="_blank")
+                ]
+            )
+        )
+            for tweet in tweets
+        ]
+    return html.Div(cards)
 
 
 ########################################################################
@@ -319,7 +347,7 @@ layout = html.Div(
                 # Div for left hand side
                 dbc.Col(
                     twitter_feed_left(),
-                    style={"overflow-y": "scroll",
+                    style={"overflowY": "scroll",
                            "height": "80vh"},
                     width=2
                 ),
@@ -348,7 +376,7 @@ layout = html.Div(
                 # Div for right hand side
                 dbc.Col(
                     news_feed_right(),
-                    style={"overflow-y": "scroll",
+                    style={"overflowY": "scroll",
                            "height": "80vh"},
                     width=2
                 ),
@@ -356,4 +384,6 @@ layout = html.Div(
             no_gutters=True,
         ),
     ]
+
+
 )
