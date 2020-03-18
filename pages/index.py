@@ -12,13 +12,11 @@ from dash.dependencies import Input, Output, State
 import requests
 from decouple import config
 import json
-from utils.utils import CovidMongo
-from utils.settings import theme
 from app import app
 import plotly.express as px
 import plotly.graph_objects as go
 import dash_daq as daq
-
+from utils.settings import *
 
 ########################################################################
 #
@@ -26,21 +24,11 @@ import dash_daq as daq
 #
 #########################################################################
 
-DEFAULT_OPACITY = 0.8
-cm = CovidMongo("covid", "state", verbose=False)
-mapbox_access_token = config("MAPBOX_ACCESS_TOKEN")
-px.set_mapbox_access_token(mapbox_access_token)
+
+px.set_mapbox_access_token(MAPBOX_ACCESS_TOKEN)
 
 # API Requests for news div
-news_requests = requests.get(
-    "https://newsapi.org/v2/top-headlines?country=us&apiKey=da8e2e705b914f9f86ed2e9692e66012"
-)
-
-# API Requests for DailyReports
-BASE_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
-
-# API Requests for JHU time series reports
-TIME_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+news_requests = requests.get(NEWS_API_URL)
 
 try:
     todays_date = datetime.now().strftime("%m-%d-%Y")
@@ -96,30 +84,32 @@ def build_top_bar() -> List[dbc.Col]:
     except:
         confirmed, deaths, tested, recovered = 0, 0, 0, 0
 
-    stats = {"Tested": tested, "Confirmed": confirmed, "Deaths": deaths, "Recovered": recovered}
+    stats = {"Tested": tested, "Confirmed": confirmed,
+             "Deaths": deaths, "Recovered": recovered}
 
     # Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays
     # items and values of the stats pulled from the API.
     cards = [
-                dbc.Col(
-                    dbc.Card([
-                            dbc.CardHeader(html.P(f'{key}', className="card-text")),
-                            dbc.CardBody(daq.LEDDisplay(
-                                id=f"total-{key}-led",
-                                value=value,
-                                color=theme["primary"],
-                                backgroundColor="#1e2130",
-                                size=40,
-                                style={"border-width": "0px"}
-                                )
-                            ),
-                        ],
-                        style={"text-align": "center"}
-                    ),
-                    width=3          
+        dbc.Col(
+            dbc.Card([
+                dbc.CardHeader(
+                    html.P(f'{key}', className="card-text")),
+                dbc.CardBody(daq.LEDDisplay(
+                    id=f"total-{key}-led",
+                    value=value,
+                    color=theme["primary"],
+                    backgroundColor="#1e2130",
+                    size=40,
+                    style={"border-width": "0px"}
                 )
-                for key, value in stats.items()
-            ]
+                ),
+            ],
+                style={"text-align": "center"}
+            ),
+            width=3
+        )
+        for key, value in stats.items()
+    ]
 
     return cards
 
@@ -149,14 +139,14 @@ def build_scatter_mapbox() -> dbc.Card:
                                   center=dict(lat=39.8097343,
                                               lon=-98.5556199),
                                   zoom=4.2)
-                                #   zoom=3.5) # for auto sized middle map
+                      #   zoom=3.5) # for auto sized middle map
                       )
     # This takes away the colorbar on the right hand side of the plot
     fig.update_layout(coloraxis_showscale=False)
 
     card = dbc.Card(
-                    dbc.CardBody(dcc.Graph(figure=fig, style={'height':"54vh"}))
-        )
+        dbc.CardBody(dcc.Graph(figure=fig, style={'height': "54vh"}))
+    )
     return card
 
 
@@ -167,21 +157,21 @@ def bottom_left_chart(state=None):
     """
 
     df = pd.read_csv(TIME_URL)
-    df = df[df['Country/Region']=='US']
+    df = df[df['Country/Region'] == 'US']
     # let all the Princess go
     df = df[~df['Province/State'].str.contains("Princess")]
     df = df.drop(columns=['Lat', 'Long', 'Province/State', 'Country/Region'])
     df = df.sum(axis=0).to_frame().reset_index()
     df['index'] = pd.to_datetime(df['index'])
-    df = df.rename(columns={'index': "Date", 0: "Confirmed_Cases"})  
+    df = df.rename(columns={'index': "Date", 0: "Confirmed_Cases"})
 
     # df = px.data.gapminder().query("continent == 'Oceania'")
-    fig = px.line(df, x='Date', y='Confirmed_Cases')#, color='country')
+    fig = px.line(df, x='Date', y='Confirmed_Cases')  # , color='country')
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0},
                       showlegend=False)
 
     card = dbc.Card(
-                    dbc.CardBody(dcc.Graph(figure=fig, style={'height':"20vh"}))
+        dbc.CardBody(dcc.Graph(figure=fig, style={'height': "20vh"}))
     )
     return card
 
@@ -197,12 +187,30 @@ def bottom_right_chart(state=None):
                       showlegend=False)
 
     card = dbc.Card(
-                    dbc.CardBody(dcc.Graph(figure=fig, style={'height':"20vh"}))
+        dbc.CardBody(dcc.Graph(figure=fig, style={'height': "20vh"}))
     )
     return card
 
 
 def news_feed_right(state=None) -> dbc.Card:
+    json_data = news_requests.json()["articles"]
+    df = pd.DataFrame(json_data)
+    df = pd.DataFrame(df[["title", "url"]])
+    max_rows = 50
+
+    card = dbc.Card(
+        dbc.ListGroup(
+            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')] +
+            [dbc.ListGroupItem(df.iloc[i]["title"], href=df.iloc[i]["url"])
+             for i in range(min(len(df), max_rows))],
+            flush=True
+        ),
+    )
+
+    return card
+
+
+def twitter_feed_left():
     """Displays twitter feed on the right hand side of the display.
     TODO: Get twitter feed
 
@@ -212,20 +220,7 @@ def news_feed_right(state=None) -> dbc.Card:
     :return card: A dash boostrap components Card objects cointaining a dbc ListGroup containing news feeds.
     :rtype: dbc.Card.
     """
-    json_data = news_requests.json()["articles"]
-    df = pd.DataFrame(json_data)
-    df = pd.DataFrame(df[["title", "url"]])
-    max_rows = 50
-
-    card = dbc.Card(
-        dbc.ListGroup(
-            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')] +
-            [dbc.ListGroupItem(df.iloc[i]["title"], href=df.iloc[i]["url"]) for i in range(min(len(df), max_rows))],
-            flush=True
-            ),
-        )   
-
-    return card
+    pass
 
 
 ########################################################################
@@ -243,9 +238,9 @@ layout = html.Div(
             [
                 # Div for left hand side
                 dbc.Col(
-                    news_feed_right(),
+                    twitter_feed_left(),
                     style={"overflow-y": "scroll",
-                            "height": "80vh"},
+                           "height": "80vh"},
                     width=2
                 ),
                 # Div for center map
@@ -261,7 +256,7 @@ layout = html.Div(
                                         bottom_left_chart(),
                                     ),
                                     dbc.Col(
-                                        bottom_right_chart(), 
+                                        bottom_right_chart(),
                                     )
                                 ],
                                 no_gutters=True
@@ -274,7 +269,7 @@ layout = html.Div(
                 dbc.Col(
                     news_feed_right(),
                     style={"overflow-y": "scroll",
-                            "height": "80vh"},
+                           "height": "80vh"},
                     width=2
                 ),
             ],
