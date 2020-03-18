@@ -1,6 +1,7 @@
 # scrap files
 utils/scrap.py
-
+*~
+*.py.swp
 .vscode
 
 .ipynb_checkpoints
