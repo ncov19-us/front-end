@@ -29,7 +29,7 @@ from utils.settings import *
 px.set_mapbox_access_token(MAPBOX_ACCESS_TOKEN)
 
 # API Requests for news div
-news_requests = requests.get(NEWS_API_URL)
+
 
 try:
     todays_date = datetime.now().strftime("%m-%d-%Y")
@@ -268,24 +268,6 @@ def bottom_right_chart(state=None):
     return card
 
 
-def news_feed_right(state=None) -> dbc.Card:
-    json_data = news_requests.json()["articles"]
-    df = pd.DataFrame(json_data)
-    df = pd.DataFrame(df[["title", "url"]])
-    max_rows = 50
-
-    card = dbc.Card(
-        dbc.ListGroup(
-            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')] +
-            [dbc.ListGroupItem(df.iloc[i]["title"], href=df.iloc[i]["url"], target="_blank")
-             for i in range(min(len(df), max_rows))],
-            flush=True
-        ),
-    )
-
-    return card
-
-
 def twitter_feed_left(state=None) -> dbc.ListGroup:
     """Displays twitter feed on the right hand side of the display.
     TODO: Get twitter feed
@@ -325,6 +307,30 @@ def twitter_feed_left(state=None) -> dbc.ListGroup:
         ]
     return html.Div(cards)
 
+
+def news_feed_right(state=None) -> dbc.Card:
+    NEWS_API_URL="https://newsapi.org/v2/top-headlines?country=us&q=virus&q=coronavirus&apiKey=da8e2e705b914f9f86ed2e9692e66012"
+    news_requests = requests.get(NEWS_API_URL)
+    json_data = news_requests.json()["articles"]
+    df = pd.DataFrame(json_data)
+    df = pd.DataFrame(df[["title", "url", "publishedAt"]])
+    max_rows = 50
+
+    card = dbc.Card(
+        dbc.ListGroup(
+            [dbc.ListGroupItem(f'Last update : {datetime.now().strftime("%c")}')] +
+            [dbc.ListGroupItem([
+                html.H6(f"{df.iloc[i]['title'].split(' - ')[0]}."),
+                html.H6(f"   - {df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['publishedAt']}")
+                ], 
+                href=df.iloc[i]["url"],
+                target="_blank")                               
+            for i in range(min(len(df), max_rows))],
+            flush=True
+        ),
+    )
+
+    return card
 
 ########################################################################
 #

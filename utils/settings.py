@@ -1,5 +1,6 @@
 import tweepy
 from decouple import config
+# from utils.utils import CovidMongo, TwitterMongo
 from utils.utils import CovidMongo, TwitterMongo
 
 # Mongo DB
