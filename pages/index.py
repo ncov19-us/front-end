@@ -159,6 +159,7 @@ def bottom_left_chart(state=None):
     df = df.sum(axis=0).to_frame().reset_index()
     df['index'] = pd.to_datetime(df['index'])
     df = df.rename(columns={'index': "Date", 0: "Confirmed Cases"})
+    df = df[30:]
 
     fig = px.line(df, x='Date', y='Confirmed Cases')
     fig.update_layout(margin={"r": 10, "t": 40, "l": 0, "b": 0},
@@ -378,6 +379,4 @@ layout = html.Div(
             no_gutters=True,
         ),
     ]
-
-
 )
