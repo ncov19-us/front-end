@@ -24,20 +24,28 @@ navbar = dbc.NavbarSimple(
     fluid=True
 )
 
-# TODO : Add common email, twitter, github org up here
+# TODO : Add common email, twitter
 footer = dbc.Container(
-    dbc.Row(
+    dbc.Row([
         dbc.Col(
-            html.P(
                 [
-                    html.Span('Data from U.S. Fderal, State, and local governments, WHO, and John Hopkins CSSU. Website for information purposes and makes no guarantee to be accurate. © Copyright 2019, ncov19.us.'),
+                    html.Span("""
+                    This Website relies upon publicly available data from multiple sources, including 
+                    and not limited to U.S. Fderal, State, and local governments, WHO, John Hopkins
+                    CSSU. The content of this Website is for information purposes and makes no guarantee
+                    to be accurate."""),
+            
+                ],
+                width=10,
+        ),
+        dbc.Col([
+                    html.Span("                                    ©Copyright 2020, ncov19.us.      "),
                     html.A(html.I(className='fas fa-envelope-square mr-3'), href='mailto:@gmail.com'),
                     html.A(html.I(className='fab fa-twitter-square mr-3'), href='https://twitter.com/'),
                 ],
-                # className='lead'
-            )
+                width=2,
         )
-    ),
+    ]),
     fluid=True
 )
 
@@ -48,7 +56,7 @@ app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     navbar,
     dbc.Container(id='page-content', className='mt-4', fluid=True),
-    html.Hr(),
+    # html.Hr(),
     footer
 ])
 
