@@ -1,7 +1,7 @@
 import tweepy
 from decouple import config
-from .utils import CovidMongo, TwitterMongo
-# from utils.utils import CovidMongo, TwitterMongo
+# from .utils import CovidMongo, TwitterMongo
+from utils.utils import CovidMongo, TwitterMongo
 
 # Mongo DB
 DB_NAME = "covid"
