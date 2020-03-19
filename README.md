@@ -13,6 +13,15 @@ Visualizing COVID19 pandemic in the U.S. by states and by the whole country, wit
 
 ![](assets/images/covid19-dash.png)
 
+# Data Sources
+
+- [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19)
+- State & Local Govs.
+- Twitter API
+- News API
+
+
+
 ## Contributors
 
 | [Harsh Desai](https://github.com/hurshd0)     | [Elizabeth Ter Sahakyan](https://github.com/elizabethts) | [Han Lee](https://github.com/leehanchung) |
