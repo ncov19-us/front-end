@@ -14,33 +14,34 @@ from utils.settings import theme
 
 
 navbar = dbc.NavbarSimple(
-    brand='COVID19 US Dashboard',
+    brand='Coronavirus COVID-19 US Cases - Dashboard',
     brand_href='/',
-    color="dark",
+    color="#222222",
     dark=theme["dark"],
     fluid=True
 )
 
-# TODO : Add common email, twitter
+
 footer = dbc.Container(
     dbc.Row([
         dbc.Col(
-                html.P(
-                    [
-                        html.Span("""
-                            This Website relies upon publicly available data from various sources, including 
+            html.P(
+                [
+                    html.Span("""
+                            This Website relies upon publicly available data from various sources, including
                             and not limited to U.S. Fderal, State, and local governments, World Health Organization,
-                            and John Hopkins CSSE. News feeds obtained from Twitter and NewsAPI. The content of 
+                            and John Hopkins CSSE. News feeds obtained from Twitter and NewsAPI. The content of
                             this Website is for information purposes and makes no guarantee to be accurate.""", className="mr-4"),
-                    ],
-                    className="lead"
-                ),
-                width=10,
+                ],
+                className="lead"
+            ),
+            width=10,
         ),
         dbc.Col([
-            html.Span("© Copyright 2020, ncov19.us.", className="mr-1"),
-            html.A(html.I(className='fab fa-github mr-3'), href='https://github.com/hurshd0/covid19-dash'),
-            
+            html.Span("© Copyright 2020, ncov19.us.", className="lead mr-1"),
+            html.A(html.I(className='fab fa-github'),
+                   href='https://github.com/hurshd0/covid19-dash'),
+
         ], width=2)
     ]),
     fluid=True
