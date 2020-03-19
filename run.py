@@ -18,33 +18,40 @@ navbar = dbc.NavbarSimple(
     brand_href='/',
     color="#222222",
     dark=theme["dark"],
+    light=False,
     fluid=True
 )
 
 
 footer = dbc.Container(
-    dbc.Row([
-        dbc.Col(
-            html.P(
-                [
-                    html.Span("""
-                            This Website relies upon publicly available data from various sources, including
-                            and not limited to U.S. Fderal, State, and local governments, World Health Organization,
-                            and John Hopkins CSSE. News feeds obtained from Twitter and NewsAPI. The content of
-                            this Website is for information purposes and makes no guarantee to be accurate.""", className="mr-4"),
-                ],
-                className="lead"
+    [
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.P(
+                    [
+                        html.Span("""
+                                This Website relies upon publicly available data from various sources, including
+                                and not limited to U.S. Fderal, State, and local governments, World Health Organization,
+                                and John Hopkins CSSE. News feeds obtained from Twitter and NewsAPI. The content of
+                                this Website is for information purposes and makes no guarantee to be accurate.""", className="mr-4"),
+                    ],
+                    className="lead"
+                ),
+                width=10,
             ),
-            width=10,
-        ),
-        dbc.Col([
-            html.Span("© Copyright 2020, ncov19.us.", className="lead mr-1"),
-            html.A(html.I(className='fab fa-github'),
-                   href='https://github.com/hurshd0/covid19-dash'),
+            dbc.Col([
+                html.Span("© Copyright 2020, ncov19.us.",
+                          className="lead mr-1"),
+                html.A(html.I(className='fab fa-github'),
+                       href='https://github.com/hurshd0/covid19-dash'),
 
-        ], width=2)
-    ]),
-    fluid=True
+            ], width=2)
+        ]),
+    ],
+    fluid=True,
+    className="footer-content"
+
 )
 
 # For more explanation, see:
@@ -54,7 +61,6 @@ app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     navbar,
     dbc.Container(id='page-content', className='mt-4', fluid=True),
-    html.Hr(),
     footer
 ])
 

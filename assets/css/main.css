@@ -1,0 +1,29 @@
+.left-col-twitter-feed-content{
+    overflow-y: scroll;
+    height: 80vh;
+}
+.right-col-news-feed-content{
+    overflow-y: scroll;
+    height: 80vh;
+}
+
+.top-bar-card-Tested {
+    color: #fefefe;
+    text-align: center;
+
+}
+
+.top-bar-card-Confirmed{
+    color: #efae4e;
+    text-align: center;
+}
+
+.top-bar-card-Deaths{
+    color: #d9534f;
+    text-align: center;
+}
+
+.top-bar-card-Recovered{
+    color: #5cb85d;
+    text-align: center;
+}
