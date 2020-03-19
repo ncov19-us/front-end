@@ -1,5 +1,6 @@
 import pymongo
 from pymongo.errors import DuplicateKeyError
+from decouple import config
 
 import pprint
 import json
