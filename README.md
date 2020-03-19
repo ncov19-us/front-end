@@ -1,8 +1,7 @@
-# [COVID19 US Specific Dashboard](http://ncov19.us/)
+# <img src="assets/images/covid19-logo.png" width="50px" height="50px">[COVID19 US Specific Dashboard](https://ncov19.us/)
 
 ## About this app
-
-Visualizing COVID19 pandemic in the U.S. by states and by the whole country, with newsfeeds from major news channels and twitter feeds from public officials and institutions. The app can be [found here](http://ncov19.us/).
+Visualizing COVID19 pandemic in the U.S. by states and by the whole country, with newsfeeds from major news channels and twitter feeds from public officials and institutions. The app can be [found here](https://ncov19.us/).
 
 ## Tech Stack
 - Plotly Dash
