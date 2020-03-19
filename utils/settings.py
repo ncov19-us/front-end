@@ -1,7 +1,7 @@
 import tweepy
 from decouple import config
+from .utils import CovidMongo, TwitterMongo
 # from utils.utils import CovidMongo, TwitterMongo
-from utils.utils import CovidMongo, TwitterMongo
 
 # Mongo DB
 DB_NAME = "covid"
@@ -10,8 +10,7 @@ COLLECTION_TWITTER = "twitter"
 
 # Connect to MongoDB
 cm = CovidMongo(DB_NAME, COLLECTION_STATE, verbose=False)
-tm = TwitterMongo(
-    DB_NAME, COLLECTION_TWITTER, verbose=False)
+tm = TwitterMongo(DB_NAME, COLLECTION_TWITTER, verbose=False)
 
 # Tweepy
 TWITTER_AUTH = tweepy.OAuthHandler(
@@ -35,7 +34,6 @@ MAPBOX_ACCESS_TOKEN = config("MAPBOX_ACCESS_TOKEN")
 
 
 # Data API URL
-
 NEWS_API_URL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=da8e2e705b914f9f86ed2e9692e66012"
 
 # API Requests for DailyReports
