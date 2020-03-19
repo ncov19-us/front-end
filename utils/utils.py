@@ -1,6 +1,6 @@
 import pymongo
 from pymongo.errors import DuplicateKeyError
-from decouple import config
+
 import pprint
 import json
 import os
@@ -24,17 +24,16 @@ class TwitterMongo:
         """
         self.db_name = db_name
         self.collection_name = collection_name
-        self.client = pymongo.MongoClient(
-            host=config('MONGODB_CONNECTION_URI'))
+        self.client = pymongo.MongoClient(host=config("MONGODB_CONNECTION_URI"))
 
         self.db = self.client[self.db_name]
         self.collection = self.db[self.collection_name]
         if verbose:
-            print('-------- MongoDB Atlas --------')
+            print("-------- MongoDB Atlas --------")
             print(f"Version: {self.client.server_info()['version']}")
-            print('Databases: ')
+            print("Databases: ")
             pprint.pprint(self.client.list_database_names())
-            print(f'Collections in database {self.db_name}:')
+            print(f"Collections in database {self.db_name}:")
             pprint.pprint(self.db.list_collection_names())
 
     def dump_json_data_to_collection(self, data, verbose=False):
@@ -47,11 +46,12 @@ class TwitterMongo:
         """
         if not (isinstance(data, list) or isinstance(data, dict)):
             raise ValueError(
-                f'Parameter data passed must either be a python dict or list data type not {type(data)}')
+                f"Parameter data passed must either be a python dict or list data type not {type(data)}"
+            )
         try:
             status = self.collection.insert_many(data)
         except DuplicateKeyError as de:
-            print('You can only insert data once.')
+            print("You can only insert data once.")
             raise de
         except Exception as e:
             raise e
@@ -62,22 +62,25 @@ class TwitterMongo:
     def get_data_by_user(self, username: str, verbose=False):
         if not username:
             raise ValueError(
-                f"The parameter username: {username} must be non-nill reference.")
+                f"The parameter username: {username} must be non-nill reference."
+            )
         result = self.collection.find_one({"username": username})
         if result is None:
             print(
-                f"Can't find username:{username} in the collection {self.collection_name}.")
+                f"Can't find username:{username} in the collection {self.collection_name}."
+            )
         if verbose and result is not None:
             pprint.pprint(result)
         return result
 
     def update_user_tweets(self, username: str, tweet: dict):
-        self.collection.update({"username": username}, {
-                               "$push": {"tweets": tweet}})
+        self.collection.update({"username": username}, {"$push": {"tweets": tweet}})
 
     def update_user_latest_tweet_id(self, username: str, latest_tweet_id: str):
-        self.collection.update({"username": username}, {
-                               "$set": {"newest_tweets_since_id": latest_tweet_id}})
+        self.collection.update(
+            {"username": username},
+            {"$set": {"newest_tweets_since_id": latest_tweet_id}},
+        )
 
     def get_all_records(self):
         return list(self.collection.find())
@@ -100,27 +103,28 @@ class CovidMongo:
         """
         self.db_name = db_name
         self.collection_name = collection_name
-        self.client = pymongo.MongoClient(
-            host=config('MONGODB_CONNECTION_URI'))
+        self.client = pymongo.MongoClient(host=config("MONGODB_CONNECTION_URI"))
 
         self.db = self.client[self.db_name]
         self.collection = self.db[self.collection_name]
         if verbose:
-            print('-------- MongoDB Atlas --------')
+            print("-------- MongoDB Atlas --------")
             print(f"Version: {self.client.server_info()['version']}")
-            print('Databases: ')
+            print("Databases: ")
             pprint.pprint(self.client.list_database_names())
-            print(f'Collections in database {self.db_name}:')
+            print(f"Collections in database {self.db_name}:")
             pprint.pprint(self.db.list_collection_names())
 
     def get_data_by_state(self, state_abbr: str, verbose=False):
         if not state_abbr:
             raise ValueError(
-                f"The parameter state_abbr: {state_abbr} must be non-nill reference.")
+                f"The parameter state_abbr: {state_abbr} must be non-nill reference."
+            )
         result = self.collection.find_one({"State": state_abbr})
         if result is None:
             print(
-                f"Can't find base meme name {state_abbr} in the collection {self.collection_name}.")
+                f"Can't find base meme name {state_abbr} in the collection {self.collection_name}."
+            )
         if verbose and result is not None:
             pprint.pprint(result)
         return result
@@ -130,5 +134,6 @@ class CovidMongo:
 
     def get_records_in_df(self):
         df = pd.DataFrame(self.get_all_records())
-        del df['_id']
+        del df["_id"]
         return df
+
