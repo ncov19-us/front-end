@@ -142,7 +142,7 @@ def build_scatter_mapbox() -> dbc.Card:
     # <b>%{hovertext}</b><br><br>Confirmed=%{marker.color}\\
     # <br>Deaths=%{customdata[1]}<br>Recovered=%{customdata[2]}<br>Latitude=%{lat}<br>Longitude=%{lon}
     fig.data[0].update(
-        hovertemplate='%{customdata[3]}<br>Confirmed: %{marker.size} Deaths: %{customdata[1]} Recovered: %{customdata[2]}')
+        hovertemplate='%{customdata[3]}<br>Confirmed: %{marker.size}<br>Deaths: %{customdata[1]}<br>Recovered: %{customdata[2]}')
 
     card = dbc.Card(
         dbc.CardBody(dcc.Graph(figure=fig, style={'height': "54vh"}))
@@ -261,7 +261,8 @@ def twitter_feed_left(state=None) -> dbc.ListGroup:
     :rtype: dbc.Card.
     """
     recs = tm.get_all_records()
-    cards = []
+    # cards = []
+    cards = [dbc.Card(dbc.CardHeader([html.I(className='fab fa-twitter mr-1'), "Twitter Feed"]))]
     for doc in recs:
         username = doc["username"]
         profile_pic = doc["profile_image_url"]
@@ -300,9 +301,9 @@ def news_feed_right(state=None) -> dbc.Card:
     df = pd.DataFrame(df[["title", "url", "publishedAt"]])
     max_rows = 50
 
-    card = dbc.Card(
-        dbc.ListGroup(
-            [dbc.ListGroupItem(f"Last update : {datetime.now().strftime('%a %d, %Y at %I: %M %p')}")] +
+    
+    card = dbc.ListGroup(
+            [dbc.Card(dbc.CardHeader([html.I(className='fas fa-newspaper mr-1'), "News Feed"]))] +
             [dbc.ListGroupItem([
                 html.H6(f"{df.iloc[i]['title'].split(' - ')[0]}."),
                 html.H6(
@@ -313,7 +314,7 @@ def news_feed_right(state=None) -> dbc.Card:
                 for i in range(min(len(df), max_rows))],
             flush=True
         ),
-    )
+    
 
     return card
 

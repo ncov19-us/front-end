@@ -7,17 +7,15 @@ from dash.dependencies import Input, Output
 
 # Imports from this application
 from app import app, server
-from pages import index, about
+from pages import index
 
 # Import settings
 from utils.settings import theme
 
+
 navbar = dbc.NavbarSimple(
     brand='COVID19 US Dashboard',
     brand_href='/',
-    children=[
-        dbc.NavItem(dcc.Link('About', href='/about', className='nav-link')),
-    ],
     color="dark",
     dark=theme["dark"],
     fluid=True
@@ -27,24 +25,23 @@ navbar = dbc.NavbarSimple(
 footer = dbc.Container(
     dbc.Row([
         dbc.Col(
-            [
-                html.Span("""
-                    This Website relies upon publicly available data from multiple sources, including 
-                    and not limited to U.S. Fderal, State, and local governments, WHO, John Hopkins
-                    CSSE. The content of this Website is for information purposes and makes no guarantee
-                    to be accurate."""),
-
-            ],
-            width=10,
+                html.P(
+                    [
+                        html.Span("""
+                            This Website relies upon publicly available data from various sources, including 
+                            and not limited to U.S. Fderal, State, and local governments, World Health Organization,
+                            and John Hopkins CSSE. News feeds obtained from Twitter and NewsAPI. The content of 
+                            this Website is for information purposes and makes no guarantee to be accurate.""", className="mr-4"),
+                    ],
+                    className="lead"
+                ),
+                width=10,
         ),
         dbc.Col([
-            html.Span(
-                "                                    ©Copyright 2020, ncov19.us.      "),
-            # html.A(html.I(className='fas fa-envelope-square mr-3'), href='mailto:@gmail.com'),
-            # html.A(html.I(className='fab fa-twitter-square mr-3'), href='https://twitter.com/'),
-        ],
-            width=2,
-        )
+            html.Span("© Copyright 2020, ncov19.us.", className="mr-1"),
+            html.A(html.I(className='fab fa-github mr-3'), href='https://github.com/hurshd0/covid19-dash'),
+            
+        ], width=2)
     ]),
     fluid=True
 )
@@ -56,7 +53,7 @@ app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     navbar,
     dbc.Container(id='page-content', className='mt-4', fluid=True),
-    # html.Hr(),
+    html.Hr(),
     footer
 ])
 
@@ -65,8 +62,6 @@ app.layout = html.Div([
 def display_page(pathname):
     if pathname == '/':
         return index.layout
-    if pathname == '/about':
-        return about.layout
     else:
         return dcc.Markdown('## Page not found')
 
