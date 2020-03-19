@@ -265,9 +265,12 @@ def twitter_feed_left(state=None) -> dbc.ListGroup:
     cards = [dbc.Card(dbc.CardHeader([html.I(className='fab fa-twitter mr-1'), "Twitter Feed"]))]
     for doc in recs:
         username = doc["username"]
-        profile_pic = doc["profile_image_url"]
+        # profile_pic = doc["profile_image_url"]
         full_name = doc["full_name"]
         tweets = doc["tweets"]
+        # 2020-03-19 triage. lots of empty list at the end of tweets, filtering them out
+        tweets = [*filter(None, tweets)]
+        # print(tweets)
         cards += [dbc.Card(
             dbc.CardBody(
                 [
