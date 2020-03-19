@@ -7,8 +7,8 @@ import dash_html_components as html
 # stylesheet tbd
 external_stylesheets = [
     dbc.themes.SLATE,                                           # Bootswatch theme
-    'https://use.fontawesome.com/releases/v5.9.0/css/all.css'   # for social media icons
-
+    'https://use.fontawesome.com/releases/v5.9.0/css/all.css',   # for social media icons
+    'assets/css/main.css'
 ]
 
 meta_tags = [
@@ -30,13 +30,13 @@ app.index_string = """<!DOCTYPE html>
 <html>
     <head>
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-T7EJZN12YD"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3QRH180VJK"></script>
         <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-T7EJZN12YD');
+        gtag('config', 'G-3QRH180VJK');
         </script>
         {%metas%}
         <title>{%title%}</title>
@@ -52,7 +52,6 @@ app.index_string = """<!DOCTYPE html>
         </footer>
     </body>
 </html>"""
-
 
 
 app.config.suppress_callback_exceptions = True
