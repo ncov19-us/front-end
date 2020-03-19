@@ -1,5 +1,5 @@
 import requests
-from utils.settings import TWITTER, tm
+from settings import TWITTER, tm
 
 """
 Mongo DB Document Format:
