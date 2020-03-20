@@ -1,5 +1,6 @@
 import tweepy
 from decouple import config
+
 # from .utils import CovidMongo, TwitterMongo
 from utils.utils import CovidMongo, TwitterMongo
 
@@ -14,18 +15,20 @@ tm = TwitterMongo(DB_NAME, COLLECTION_TWITTER, verbose=False)
 
 # Tweepy
 TWITTER_AUTH = tweepy.OAuthHandler(
-    config('TWITTER_CONSUMER_KEY'), config('TWITTER_CONSUMER_SECRET_KEY'))
+    config("TWITTER_CONSUMER_KEY"), config("TWITTER_CONSUMER_SECRET_KEY")
+)
 TWITTER_AUTH.set_access_token(
-    config('TWITTER_ACCESS_TOKEN'), config('TWITTER_ACCESS_TOKEN_SECRET'))
+    config("TWITTER_ACCESS_TOKEN"), config("TWITTER_ACCESS_TOKEN_SECRET")
+)
 TWITTER = tweepy.API(TWITTER_AUTH)
 
 # Plotly Dash
 DEFAULT_OPACITY = 0.8
 theme = {
-    'dark': True,
-    'detail': '#007439',
-    'primary': '#00EA64',
-    'secondary': '#6E6E6E'
+    "dark": True,
+    "detail": "#007439",
+    "primary": "#00EA64",
+    "secondary": "#6E6E6E",
 }
 
 
@@ -44,3 +47,9 @@ TIME_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/css
 
 # API Requests for WHO time series reports
 WHO_URL = "https://covid.ourworldindata.org/data/total_cases.csv"
+
+# COVID-TRACKING API
+CVTRACK_URL = "https://covidtracking.com/api/us"
+
+# https://github.com/javieraviles/covidAPI
+TMP_URL = "https://coronavirus-19-api.herokuapp.com/countries/US"

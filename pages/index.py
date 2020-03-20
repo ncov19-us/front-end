@@ -68,13 +68,26 @@ daily_reports = wrangle(daily_reports)
 
 def get_daily_stats():
     try:
-        response = requests.get(url="https://covidtracking.com/api/us").json()[0]
-        tested = response["posNeg"]
-        confirmed = daily_reports["Confirmed"].sum()
-        deaths = daily_reports["Deaths"].sum()
-        recovered = daily_reports["Recovered"].sum()
+        data1 = requests.get(url=CVTRACK_URL).json()[0]
+        data2 = requests.get(url=TMP_URL).json()
+        tested = data1["posNeg"]
+        confirmed = data2["cases"]
+        todays_confirmed = data2["todayCases"]
+        deaths = data2["deaths"]
+        todays_deaths = data2["todayDeaths"]
+        recovered = data2["recovered"]
+        critical = data2["critical"]
+        active = data2["active"]
+
     except:
-        confirmed, deaths, tested, recovered = 0, 0, 0, 0
+        confirmed, todays_confirmed, deaths, todays_deaths, tested, recovered = (
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+        )
 
     stats = {
         "Tested": tested,
