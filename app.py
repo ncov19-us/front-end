@@ -6,14 +6,12 @@ import dash_html_components as html
 
 # stylesheet tbd
 external_stylesheets = [
-    dbc.themes.SLATE,                                           # Bootswatch theme
-    'https://use.fontawesome.com/releases/v5.9.0/css/all.css',   # for social media icons
-    'assets/css/main.css'
+    dbc.themes.SLATE,  # Bootswatch theme
+    "https://use.fontawesome.com/releases/v5.9.0/css/all.css",  # for social media icons
+    "assets/css/main.css",
 ]
 
-meta_tags = [
-    {"name": "viewport", "content": "width=device-width, initial-scale=1.0"}
-]
+meta_tags = [{"name": "viewport", "content": "width=device-width, initial-scale=1.0"}]
 
 # bootstrap shit
 # https://dash-bootstrap-components.opensource.faculty.ai/docs/
@@ -21,9 +19,8 @@ meta_tags = [
 
 # Initialize app
 app = dash.Dash(
-    __name__,
-    external_stylesheets=external_stylesheets,
-    meta_tags=meta_tags)
+    __name__, external_stylesheets=external_stylesheets, meta_tags=meta_tags
+)
 
 
 app.index_string = """<!DOCTYPE html>
@@ -55,5 +52,5 @@ app.index_string = """<!DOCTYPE html>
 
 
 app.config.suppress_callback_exceptions = True
-app.title = 'COVID19 US Dashboard'  # for browser titlebar
+app.title = "COVID19 US Dashboard"  # for browser titlebar
 server = app.server
