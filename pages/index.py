@@ -91,8 +91,8 @@ def get_daily_stats():
 
     stats = {
         "Tested": tested,
-        "Confirmed": confirmed,
-        "Deaths": deaths,
+        "Confirmed": [confirmed, todays_confirmed],
+        "Deaths": [deaths, todays_deaths],
         "Recovered": recovered,
     }
     return stats
@@ -115,19 +115,41 @@ def build_top_bar() -> List[dbc.Col]:
     """
     # 1. Fetch Stats
     stats = get_daily_stats()
-
+    # print(stats)
     # 2. Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays
     # items and values of the stats pulled from the API.
-    cards = [
-        dbc.Col(
-            dbc.Card(
-                dbc.CardBody([html.H1(value), html.P(f"{key}", className="card-text")]),
-                className=f"top-bar-card-{key}",
-            ),
-            width=3,
-        )
-        for key, value in stats.items()
-    ]
+    cards = []
+    for key, value in stats.items():
+        if key not in ["Tested", "Recovered"]:
+            card = dbc.Col(
+                dbc.Card(
+                    dbc.CardBody(
+                        [
+                            html.P(
+                                f"+ {value[1]} in past 24h",
+                                className=f"top-bar-perc-change-{key.lower()}",
+                            ),
+                            html.H1(value[0]),
+                            html.P(f"{key}", className="card-text"),
+                        ]
+                    ),
+                    className=f"top-bar-card-{key.lower()}",
+                ),
+                width=3,
+            )
+        else:
+            card = dbc.Col(
+                dbc.Card(
+                    dbc.CardBody(
+                        [html.H1(value), html.P(f"{key}", className="card-text")]
+                    ),
+                    className=f"top-bar-card-{key.lower()}",
+                ),
+                width=3,
+            )
+
+        cards.append(card)
+
     return cards
 
 

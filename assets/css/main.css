@@ -7,23 +7,37 @@
     height: 80vh;
 }
 
-.top-bar-card-Tested {
+.top-bar-card-tested {
     color: #fefefe;
     text-align: center;
-
 }
 
-.top-bar-card-Confirmed{
+.top-bar-card-confirmed {
     color: #efae4e;
     text-align: center;
 }
 
-.top-bar-card-Deaths{
+.top-bar-card-deaths {
     color: #d9534f;
     text-align: center;
 }
 
-.top-bar-card-Recovered{
+.top-bar-card-recovered {
     color: #5cb85d;
     text-align: center;
+}
+
+.top-bar-perc-change-confirmed {
+    color: gray;
+    padding: 0px;
+}
+
+.top-bar-perc-change-deaths {
+    color: gray;
+    padding: 0px;
+}
+
+.top-bar-perc-change-recovered {
+    color: gray;
+    padding: 0px;
 }
