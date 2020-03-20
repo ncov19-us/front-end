@@ -75,7 +75,7 @@ footer = dbc.Container(
                         this Website is for information purposes and makes no guarantee to be accurate.""",
                     className="footer-disclaimer-text",
                 ),
-                className="footer-disclaimer-content mt-3",
+                className="footer-disclaimer-content",
                 width=10,
             ),
             dbc.Col(
@@ -85,16 +85,17 @@ footer = dbc.Container(
                             html.I(className="fab fa-github"),
                             href="https://github.com/hurshd0/covid19-dash",
                         ),
-                        className="footer-social-icons mr-5",
+                        className="footer-social-icons mr-3",
                     ),
                     html.Span(
                         "Copyright ncov19.us 2020", className="footer-copyright-text"
                     ),
                 ],
-                className="footer-social-copyright-content mt-2",
+                className="footer-social-copyright-content",
                 width=2,
             ),
-        ]
+        ],
+        no_gutters=True,
     ),
     fluid=True,
     className="footer-content",
