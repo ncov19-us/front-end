@@ -1,12 +1,4 @@
-.left-col-twitter-feed-content{
-    overflow-y: scroll;
-    height: 80vh;
-}
-.right-col-news-feed-content{
-    overflow-y: scroll;
-    height: 80vh;
-}
-
+/* Top Bar */
 .top-bar-card-tested {
     color: #fefefe;
     text-align: center;
@@ -41,4 +33,35 @@
 .top-bar-perc-change-recovered {
     color: gray;
     padding: 0px;
+}
+
+/* Left Twitter Feed */
+.left-col-twitter-feed-content{
+    overflow-y: scroll;
+    height: 80vh;
+}
+
+/* Right News Feed */
+.right-col-news-feed-content{
+    overflow-y: scroll;
+    height: 80vh;
+}
+
+
+/* Footer */
+.footer-content {
+    background-color: #1f1d1e;
+}
+
+.footer-disclaimer-content {
+    padding-top: 1rem;
+}
+
+.footer-social-icons {
+    font-size: 3rem;
+}
+
+.footer-copyright-text {
+    font-size: large;
+
 }
