@@ -58,47 +58,44 @@ navbar = dbc.Navbar(
         dbc.NavbarToggler(id="navbar-toggler"),
         dbc.Collapse(search_bar, id="navbar-collapse", navbar=True),
     ],
-    color="#222222",
+    color="#1f1d1e",
     dark=True,
 )
 
 
 footer = dbc.Container(
-    [
-        html.Hr(),
-        dbc.Row(
-            [
-                dbc.Col(
-                    html.P(
-                        [
-                            html.Span(
-                                """
-                                This Website relies upon publicly available data from various sources, including
-                                and not limited to U.S. Fderal, State, and local governments, World Health Organization,
-                                and John Hopkins CSSE. News feeds obtained from Twitter and NewsAPI. The content of
-                                this Website is for information purposes and makes no guarantee to be accurate.""",
-                                className="mr-4",
-                            ),
-                        ],
-                        className="lead",
-                    ),
-                    width=10,
+    dbc.Row(
+        [
+            dbc.Col(
+                html.P(
+                    """
+                        This Website relies upon publicly available data from various sources, including
+                        and not limited to U.S. Federal, State, and local governments, WHO,
+                        and John Hopkins CSSE. News feeds obtained from Twitter and NewsAPI. The content of
+                        this Website is for information purposes and makes no guarantee to be accurate.""",
+                    className="footer-disclaimer-text",
                 ),
-                dbc.Col(
-                    [
-                        html.Span(
-                            "© Copyright 2020, ncov19.us.", className="lead mr-1"
-                        ),
+                className="footer-disclaimer-content mt-3",
+                width=10,
+            ),
+            dbc.Col(
+                [
+                    html.Span(
                         html.A(
                             html.I(className="fab fa-github"),
                             href="https://github.com/hurshd0/covid19-dash",
                         ),
-                    ],
-                    width=2,
-                ),
-            ]
-        ),
-    ],
+                        className="footer-social-icons mr-5",
+                    ),
+                    html.Span(
+                        "Copyright ncov19.us 2020", className="footer-copyright-text"
+                    ),
+                ],
+                className="footer-social-copyright-content mt-2",
+                width=2,
+            ),
+        ]
+    ),
     fluid=True,
     className="footer-content",
 )
