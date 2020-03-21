@@ -1,3 +1,8 @@
+# crawler
+crawler/
+# lambda
+lambda/
+
 # scrap files
 utils/scrap.py
 *~

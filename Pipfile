@@ -10,7 +10,6 @@ gunicorn = "*"
 plotly = "*"
 pandas = "*"
 pymongo = "*"
-jupyter = "*"
 python-decouple = "*"
 tweepy = "*"
 requests = "*"
@@ -19,6 +18,7 @@ dash-daq = "*"
 [dev-packages]
 pylint = "*"
 black = "*"
+jupyter = "*"
 
 [requires]
 python_version = "3.7"
