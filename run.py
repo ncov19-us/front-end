@@ -83,7 +83,7 @@ footer = dbc.Container(
                     html.Span(
                         html.A(
                             html.I(className="fab fa-github"),
-                            href="https://github.com/hurshd0/covid19-dash",
+                            href="https://github.com/ncov19-us/front-end",
                         ),
                         className="footer-social-icons mr-3",
                     ),

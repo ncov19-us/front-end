@@ -47,5 +47,5 @@ app.index_string = """<!DOCTYPE html>
 
 
 app.config.suppress_callback_exceptions = True
-app.title = "COVID19 US Dashboard"  # for browser titlebar
+app.title = "Coronavirus COVID19 US Dashboard"  # for browser titlebar
 server = app.server
