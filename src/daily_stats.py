@@ -34,7 +34,7 @@ def get_daily_stats()->Dict:
         "Deaths": [deaths, todays_deaths],
         "Recovered": recovered,
     }
-    print(data2, stats)
+    # print(data2, stats)
     return stats
 
 

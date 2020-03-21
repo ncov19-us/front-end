@@ -25,6 +25,7 @@ def twitter_feed(state=None) -> List[dbc.Card]:
             dbc.CardHeader([html.I(className="fab fa-twitter mr-1"), "Twitter Feed"])
         )
     ]
+    
     for doc in recs:
         username = doc["username"]
         # profile_pic = doc["profile_image_url"]
