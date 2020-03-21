@@ -4,11 +4,10 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 
 from app import app
-from src import test
-from src import daily_stats
-from src import news_feed, twitter_feed
-from src import confirmed_cases_chart, infection_trajectory_chart
-from src import scatter_mapbox
+from components import daily_stats
+from components import news_feed, twitter_feed
+from components import confirmed_cases_chart, infection_trajectory_chart
+from components import scatter_mapbox
 
 
 ########################################################################
@@ -16,7 +15,6 @@ from src import scatter_mapbox
 # App layout
 #
 ########################################################################
-
 layout = [
     dbc.Row(daily_stats(), className="top-bar-content"),  # TOP BAR
     dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
