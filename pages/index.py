@@ -1,23 +1,28 @@
 import os
 import pathlib
 import re
+import json
 from datetime import datetime, timedelta
 from typing import List
+import requests
+from decouple import config
+import pandas as pd
+
 import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
-import pandas as pd
 from dash.dependencies import Input, Output, State
-import requests
-from decouple import config
-import json
-from app import app
 import plotly.express as px
 import plotly.graph_objects as go
 import dash_daq as daq
-from utils.settings import *
 
+from app import app
+from utils.settings import *
+from src import test
+from src.daily_stats import daily_stats, get_daily_stats
+from src.news_feed import news_feed
+from src.twitter_feed import twitter_feed
 
 ########################################################################
 #
@@ -66,91 +71,12 @@ def wrangle(df) -> pd.DataFrame:
 daily_reports = wrangle(daily_reports)
 
 
-def get_daily_stats():
-    try:
-        data1 = requests.get(url=CVTRACK_URL).json()[0]
-        data2 = requests.get(url=TMP_URL).json()
-        tested = data1["posNeg"]
-        confirmed = data2["cases"]
-        todays_confirmed = data2["todayCases"]
-        deaths = data2["deaths"]
-        todays_deaths = data2["todayDeaths"]
-        recovered = data2["recovered"]
-        critical = data2["critical"]
-        active = data2["active"]
-
-    except:
-        confirmed, todays_confirmed, deaths, todays_deaths, tested, recovered = (
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-        )
-
-    stats = {
-        "Tested": tested,
-        "Confirmed": [confirmed, todays_confirmed],
-        "Deaths": [deaths, todays_deaths],
-        "Recovered": recovered,
-    }
-    return stats
-
-
 ########################################################################
 #
 # App Callbacks
 #
 ########################################################################
 
-
-def build_top_bar() -> List[dbc.Col]:
-    """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
-    TODO: move to internal API.
-
-    :param none: none
-    :return cols: A list of plotly dash boostrap components Card objects displaying tested, confirmed, deaths.
-    :rtype: list of plotly dash bootstrap coomponent Col objects.
-    """
-    # 1. Fetch Stats
-    stats = get_daily_stats()
-    # print(stats)
-    # 2. Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays
-    # items and values of the stats pulled from the API.
-    cards = []
-    for key, value in stats.items():
-        if key not in ["Tested", "Recovered"]:
-            card = dbc.Col(
-                dbc.Card(
-                    dbc.CardBody(
-                        [
-                            html.P(
-                                f"+ {value[1]} in past 24h",
-                                className=f"top-bar-perc-change-{key.lower()}",
-                            ),
-                            html.H1(value[0]),
-                            html.P(f"{key}", className="card-text"),
-                        ]
-                    ),
-                    className=f"top-bar-card-{key.lower()}",
-                ),
-                width=3,
-            )
-        else:
-            card = dbc.Col(
-                dbc.Card(
-                    dbc.CardBody(
-                        [html.H1(value), html.P(f"{key}", className="card-text")]
-                    ),
-                    className=f"top-bar-card-{key.lower()}",
-                ),
-                width=3,
-            )
-
-        cards.append(card)
-
-    return cards
 
 
 # @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
@@ -305,109 +231,6 @@ def bottom_right_chart(state=None):
     return card
 
 
-def twitter_feed_left(state=None) -> list:
-    """Displays twitter feed on the left hand side of the display.
-
-    TODO: Add callbacks based on state
-
-    :params state: display twitter feed for a particular state. If None, display twitter feed
-        for the whole US.
-
-    :return cards: A list of dash boostrap Card components, where each cahrd contains tweets for twitter feed.
-    :rtype: list
-    """
-    recs = tm.get_all_records()
-    # cards = []
-    cards = [
-        dbc.Card(
-            dbc.CardHeader([html.I(className="fab fa-twitter mr-1"), "Twitter Feed"])
-        )
-    ]
-    for doc in recs:
-        username = doc["username"]
-        # profile_pic = doc["profile_image_url"]
-        full_name = doc["full_name"]
-        tweets = doc["tweets"]
-
-        # 2020-03-19 triage. lots of empty list at the end of tweets, filtering them out
-        tweets = [*filter(None, tweets)]
-        cards += [
-            dbc.Card(
-                dbc.CardBody(
-                    [
-                        # html.Div([html.Img(src=profile_pic,
-                        #                    className='img-fluid',
-                        #                    style={"borderRadius": "50%",
-                        #                           "width": "50px",
-                        #                           "height": "50px"})
-                        #           ],
-                        #          ),
-                        html.A(
-                            html.P(
-                                tweet["full_text"][:100] + "...", className="card-text"
-                            ),
-                            href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}",
-                            target="_blank",
-                        ),
-                        html.P(
-                            [
-                                html.Strong(f"- {full_name} (@{username})"),
-                                html.P(
-                                    f"{tweet['created_at'].strftime('%a %d, %Y at %I: %M %p')}"
-                                ),
-                            ],
-                            style={"fontWeigth": "0.25rem"},
-                        ),
-                    ]
-                ),
-            )
-            for tweet in tweets
-        ]
-    return cards
-
-
-def news_feed_right(state=None) -> dbc.ListGroup:
-    """Displays news feed on the right hand side of the display.
-    
-    TODO: Add callbacks to fetch local state news, if none get entire US news
-    
-    :params state: display news feed for a particular state. If None, display news feed
-        for the whole US
-
-    :return list_group: A bootstramp ListGroup containing ListGroupItem returns news feeds.
-    :rtype: dbc.ListGroup    
-    """
-    NEWS_API_URL = "https://newsapi.org/v2/top-headlines?country=us&q=virus&q=coronavirus&apiKey=da8e2e705b914f9f86ed2e9692e66012"
-    news_requests = requests.get(NEWS_API_URL)
-    json_data = news_requests.json()["articles"]
-    df = pd.DataFrame(json_data)
-    df = pd.DataFrame(df[["title", "url", "publishedAt"]])
-    max_rows = 50
-    list_group = dbc.ListGroup(
-        [
-            dbc.Card(
-                dbc.CardHeader([html.I(className="fas fa-newspaper mr-1"), "News Feed"])
-            )
-        ]
-        + [
-            dbc.ListGroupItem(
-                [
-                    html.H6(f"{df.iloc[i]['title'].split(' - ')[0]}."),
-                    html.H6(
-                        f"   - {df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['publishedAt'][:10]}"
-                    ),
-                ],
-                href=df.iloc[i]["url"],
-                target="_blank",
-            )
-            for i in range(min(len(df), max_rows))
-        ],
-        flush=True,
-    )
-
-    return list_group
-
-
 ########################################################################
 #
 # App layout
@@ -415,7 +238,7 @@ def news_feed_right(state=None) -> dbc.ListGroup:
 ########################################################################
 
 layout = [
-    dbc.Row(build_top_bar(), className="top-bar-content"),  # TOP BAR
+    dbc.Row(daily_stats(), className="top-bar-content"),  # TOP BAR
     dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
         [
             # LEFT - TWITTER COL
@@ -450,7 +273,7 @@ layout = [
             ),
             # RIGHT - NEWS FEED COL
             dbc.Col(
-                news_feed_right(), className="right-col-news-feed-content", width=2
+                news_feed(), className="right-col-news-feed-content", width=2
             ),
         ],
         no_gutters=True,
