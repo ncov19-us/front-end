@@ -12,10 +12,6 @@ from app import app, server
 from pages import index, mobile
 
 
-# Import settings
-from utils.settings import theme
-
-
 search_bar = dbc.Row(
     [
         dbc.Col(dbc.Input(type="search", placeholder="Search")),
@@ -89,7 +85,6 @@ footer = dbc.Container(
                 width=2,
             ),
         ],
-        no_gutters=True,
     ),
     fluid=True,
     className="footer-content",

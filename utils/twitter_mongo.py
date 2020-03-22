@@ -13,6 +13,7 @@ class TwitterMongo:
     """
     Twiter Mongodb wrapper over PyMongo, that makes it easier to fetch and filter records
     """
+
     def __init__(self, db_name: str, collection_name: str, verbose=True):
         """
         Creates mongodb connection to coivd-ds database and covid data collection.
@@ -24,17 +25,16 @@ class TwitterMongo:
         """
         self.db_name = db_name
         self.collection_name = collection_name
-        self.client = pymongo.MongoClient(
-            host=config('MONGODB_CONNECTION_URI'))
+        self.client = pymongo.MongoClient(host=config("MONGODB_CONNECTION_URI"))
 
         self.db = self.client[self.db_name]
         self.collection = self.db[self.collection_name]
         if verbose:
-            print('-------- MongoDB Atlas --------')
+            print("-------- MongoDB Atlas --------")
             print(f"Version: {self.client.server_info()['version']}")
-            print('Databases: ')
+            print("Databases: ")
             pprint.pprint(self.client.list_database_names())
-            print(f'Collections in database {self.db_name}:')
+            print(f"Collections in database {self.db_name}:")
             pprint.pprint(self.db.list_collection_names())
 
     def dump_json_data_to_collection(self, data, verbose=False):
@@ -48,11 +48,12 @@ class TwitterMongo:
         """
         if not (isinstance(data, list) or isinstance(data, dict)):
             raise ValueError(
-                f'Parameter data passed must either be a python dict or list data type not {type(data)}')
+                f"Parameter data passed must either be a python dict or list data type not {type(data)}"
+            )
         try:
             status = self.collection.insert_many(data)
         except DuplicateKeyError as de:
-            print('You can only insert data once.')
+            print("You can only insert data once.")
             raise de
         except Exception as e:
             raise e
@@ -60,20 +61,42 @@ class TwitterMongo:
             print("-------- MongoDB Data Dump Result --------")
             print(f"Total records inserted: {len(status.inserted_ids)}")
 
-    def get_data_by_user(self, username: str, verbose=False):
+    def get_tweet_by_user(self, username: str, verbose=False):
         """Get stored user data by username
 
         :param: username: username to be added
         :param: verbose: Default False.
         
-        :return: none
+        :return: JSON Object
         """
         if not username:
-            raise ValueError(f"The parameter username: {username} must be non-nill reference.")
+            raise ValueError(
+                f"The parameter username: {username} must be non-nill reference."
+            )
         result = self.collection.find_one({"username": username})
         if result is None:
             print(
-                f"Can't find username:{username} in the collection {self.collection_name}.")
+                f"Can't find username:{username} in the collection {self.collection_name}."
+            )
+        if verbose and result is not None:
+            pprint.pprint(result)
+        return result
+
+    def get_tweet_by_state(self, state: str, verbose=False):
+        """Get state document
+
+        :param: state: state 2-char identifier
+        :param: verbose: Default False.
+        
+        :return: JSON object
+        """
+        if not state:
+            raise ValueError(
+                f"The parameter username: {state} must be non-nill reference."
+            )
+        result = self.collection.find_one({"state": state})
+        if result is None:
+            print(f"Can't find state:{state} in the collection {self.collection_name}.")
         if verbose and result is not None:
             pprint.pprint(result)
         return result
@@ -86,8 +109,9 @@ class TwitterMongo:
         
         :return: none
         """
-        self.collection.update({"username": username}, {"$addToSet": {"tweets": {"$each": tweet}}})
-        
+        self.collection.update(
+            {"username": username}, {"$addToSet": {"tweets": {"$each": tweet}}}
+        )
 
     def update_user_latest_tweet_id(self, username: str, latest_tweet_id: int):
         """Update user's latest_tweet_id field.
@@ -97,8 +121,10 @@ class TwitterMongo:
         
         :return: none
         """
-        self.collection.update({"username": username}, {
-                               "$set": {"newest_tweets_since_id": int(latest_tweet_id)}})
+        self.collection.update(
+            {"username": username},
+            {"$set": {"newest_tweets_since_id": int(latest_tweet_id)}},
+        )
 
     def get_all_records(self):
         """get all records in the collection"""
@@ -106,4 +132,4 @@ class TwitterMongo:
 
     def get_all_users(self):
         """get all usernamse"""
-        return [doc['username'] for doc in self.get_all_records()]
+        return [doc["username"] for doc in self.get_all_records()]

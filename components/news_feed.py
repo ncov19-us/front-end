@@ -3,6 +3,7 @@ import pandas as pd
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
+from utils.settings import NEWS_API_URL
 
 
 def news_feed(state=None) -> dbc.ListGroup:
@@ -16,11 +17,25 @@ def news_feed(state=None) -> dbc.ListGroup:
     :return list_group: A bootstramp ListGroup containing ListGroupItem returns news feeds.
     :rtype: dbc.ListGroup    
     """
-    NEWS_API_URL = "https://newsapi.org/v2/top-headlines?country=us&q=virus&q=coronavirus&apiKey=da8e2e705b914f9f86ed2e9692e66012"
+
     news_requests = requests.get(NEWS_API_URL)
     json_data = news_requests.json()["articles"]
     df = pd.DataFrame(json_data)
     df = pd.DataFrame(df[["title", "url", "publishedAt"]])
+    # Infer datetime
+    df["publishedAt"] = pd.to_datetime(df["publishedAt"], infer_datetime_format=True)
+    # Assuming timedelta of 5 hours based on what i compared from CNN articles from API
+    df["publishedAt"] = df["publishedAt"] - pd.Timedelta("5 hours")
+
+    """
+    # Format date time way you want to display, https://strftime.org/
+    """
+
+    def dt_fmt(val):
+        return val.strftime("%a %d, %Y, %I: %M %p")
+
+    # Apply pandas function to format news published date
+    df["publishedAt"] = df["publishedAt"].apply(dt_fmt)
     max_rows = 50
     list_group = dbc.ListGroup(
         [
@@ -31,9 +46,13 @@ def news_feed(state=None) -> dbc.ListGroup:
         + [
             dbc.ListGroupItem(
                 [
-                    html.H6(f"{df.iloc[i]['title'].split(' - ')[0]}."),
                     html.H6(
-                        f"   - {df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['publishedAt'][:10]}"
+                        f"{df.iloc[i]['title'].split(' - ')[0]}.",
+                        className="news-txt-headline",
+                    ),
+                    html.P(
+                        f"by {df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['publishedAt']}",
+                        className="news-txt-by-dt",
                     ),
                 ],
                 href=df.iloc[i]["url"],

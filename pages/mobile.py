@@ -17,29 +17,33 @@ from components import daily_stats_mobile
 #
 ########################################################################
 mobile_layout = [
-    
-    html.Div(daily_stats_mobile()), #, className="mobile-top-bar-content"),
-
+    html.Div(daily_stats_mobile(), className="mobile-top-bar-content"),
     dbc.Row(
-        [   
+        [
             html.Div(html.H2("US Map", className="mobile-map-heading")),
-            # dbc.ListGroupItem(html.H2("US Map")),
-            scatter_mapbox()
+            scatter_mapbox(),
         ],
-        style={"margin-bottom": "1.5rem"}
-    ),# className="mobile-top-middle-scatter-mapbox"),
-    
-    dbc.Row(confirmed_cases_chart(),
-            style={"margin-bottom": "1.5rem"}
-            ),# className="mobile-top-bottom-left-chart",),
-    
-    dbc.Row(infection_trajectory_chart(),
-            style={"margin-bottom": "1.5rem"}
-            ),#,className="mobile-top-bottom-right-chart",),
-    
-    dbc.Row(news_feed(),
-            style={"margin-bottom": "1.5rem"}),#, className="mobile-right-col-news-feed-content"),
-    
-    dbc.Row(twitter_feed(),
-            style={"margin-bottom": "1.5rem"})#, className="mobile-left-col-twitter-feed-content"),
+        style={"margin-bottom": "1.5rem"},
+        className="mobile-top-middle-scatter-mapbox",
+    ),
+    dbc.Row(
+        confirmed_cases_chart(),
+        style={"margin-bottom": "1.5rem"},
+        className="mobile-top-bottom-left-chart",
+    ),
+    dbc.Row(
+        infection_trajectory_chart(),
+        style={"margin-bottom": "1.5rem"},
+        className="mobile-top-bottom-right-chart",
+    ),
+    dbc.Row(
+        news_feed(),
+        style={"margin-bottom": "1.5rem"},
+        className="mobile-right-col-news-feed-content",
+    ),
+    dbc.Row(
+        twitter_feed(),
+        style={"margin-bottom": "1.5rem"},
+        className="mobile-left-col-twitter-feed-content",
+    ),
 ]

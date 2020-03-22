@@ -35,7 +35,8 @@ def init_mongodb(verbose=True):
 
     def create_twitter_collection(verbose=verbose):
         data = fetch_covidapi_twitter_accts(
-            url="https://covidtracking.com/api/states/info")
+            url="https://covidtracking.com/api/states/info"
+        )
         tm.collection.drop()
         tm.dump_json_data_to_collection(data, verbose=verbose)
 
@@ -49,13 +50,17 @@ def add_or_update_user(username):
         # print(f"[DEBUG] Fetched Twitter User: {username}")
 
         # 2. Get latest tweet id from MongoDB
-        latest_tweet_id = tm.get_data_by_user(
-            username)["newest_tweets_since_id"]
+        latest_tweet_id = tm.get_data_by_user(username)["newest_tweets_since_id"]
         # print(f"[DEBUG] Latest Tweet id: {latest_tweet_id}")
 
         # 3. Fetch tweets from Twitter API
         tweets = twitter_user.timeline(
-            count=10, exclude_replies=True, include_rts=True, tweet_mode='extended', since_id=latest_tweet_id)
+            count=10,
+            exclude_replies=True,
+            include_rts=True,
+            tweet_mode="extended",
+            since_id=latest_tweet_id,
+        )
         # print(f"[DEBUG] Total tweets fetched: {len(tweets)}")
 
         # 4. Check if new or recent tweets exists, if does, get their recent most tweet id
@@ -65,19 +70,22 @@ def add_or_update_user(username):
             # print(f"[DEBUG] Updating latest_tweet_id: {latest_tweet_id}")
 
         # 5. Loop through newly fetched tweets
-        #tweets_to_update = []
+        # tweets_to_update = []
         for idx, tweet in enumerate(tweets):
             full_text = tweet.full_text
             tweet_id = tweet.id
             created_at = tweet.created_at
-            row = {"tweet_id": tweet_id, "full_text": full_text,
-                   "created_at": created_at}
+            row = {
+                "tweet_id": tweet_id,
+                "full_text": full_text,
+                "created_at": created_at,
+            }
             # print(f"[DEBUG] Adding Tweet #{idx}")
             tm.update_user_tweets(username, row)
             # tweets_to_update.append()
 
         # 7 update tweets
-        #tm.update_user_tweets(username, tweets_to_update)
+        # tm.update_user_tweets(username, tweets_to_update)
         # print("[DEBUG] -------------- Updated ---------------- ")
     except Exception as ex:
         print(ex)

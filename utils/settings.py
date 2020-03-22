@@ -21,21 +21,12 @@ TWITTER_AUTH.set_access_token(
 )
 TWITTER = tweepy.API(TWITTER_AUTH)
 
-# Plotly Dash
-DEFAULT_OPACITY = 0.8
-theme = {
-    "dark": True,
-    "detail": "#007439",
-    "primary": "#00EA64",
-    "secondary": "#6E6E6E",
-}
-
-
 # MapBox Token
 MAPBOX_ACCESS_TOKEN = config("MAPBOX_ACCESS_TOKEN")
 
 # Data API URL
-NEWS_API_URL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=da8e2e705b914f9f86ed2e9692e66012"
+NEWS_API_KEY = config("NEWS_API_KEY")
+NEWS_API_URL = f"https://newsapi.org/v2/top-headlines?country=us&apiKey={NEWS_API_KEY}"
 
 # API Requests for DailyReports
 BASE_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"

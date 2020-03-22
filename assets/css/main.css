@@ -66,20 +66,15 @@
 
 }
 
-/* mobile css*/
+/* MOBILE STYLING */
+
 h2.mobile-map-heading{
-    font-size: 50px;
-    color: #847bf7;
-    text-transform: uppercase;
+    font-size: 2.5rem;
     font-weight: normal;
     line-height: 1;
     margin-left: 6.5rem;
-    padding-top: 0px;   
 }
 
-.modebar {
-    display: none !important;
-}
 
 /* Han: i have no idea how to inherit so copy pasta */
 .mobile-top-bar-card-tested {

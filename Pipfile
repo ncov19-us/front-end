@@ -15,6 +15,7 @@ tweepy = "*"
 requests = "*"
 dash-daq = "*"
 flask-mobility = "*"
+python-dateutil = "*"
 
 [dev-packages]
 pylint = "*"

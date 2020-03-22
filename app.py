@@ -13,15 +13,15 @@ meta_tags = [{"name": "viewport", "content": "width=device-width, initial-scale=
 
 # Initialize app
 server = flask.Flask(__name__)
-app = dash.Dash(__name__,
-                server=server,
-                external_stylesheets=external_stylesheets,
-                meta_tags=meta_tags,
-                )
-                
+app = dash.Dash(
+    __name__,
+    server=server,
+    external_stylesheets=external_stylesheets,
+    meta_tags=meta_tags,
+)
+
 app.config.suppress_callback_exceptions = True
 app.title = "Coronavirus COVID19 US Dashboard"
-server = app.server
 
 # For Google Analytics
 app.index_string = """<!DOCTYPE html>
