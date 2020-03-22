@@ -1,26 +1,20 @@
 # Imports from 3rd party libraries
+import re
 import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
+from flask import request
 
 # Imports from this application
 from app import app, server
-from pages import index
+from pages import index, mobile
+
 
 # Import settings
 from utils.settings import theme
 
-
-# navbar = dbc.NavbarSimple(
-#     brand="Coronavirus COVID-19 US Cases - Dashboard",
-#     brand_href="/",
-#     color="#222222",
-#     dark=theme["dark"],
-#     light=False,
-#     fluid=True,
-# )
 
 search_bar = dbc.Row(
     [
@@ -113,11 +107,18 @@ app.layout = html.Div(
     ]
 )
 
-
+  
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def display_page(pathname):
-    if pathname == "/":
+    agent = request.headers.get('User_Agent')
+    MOBILE = len(re.compile("(?i)android|fennec|iemobile|iphone|opera (?:mini|mobi)|mobile").findall(agent)) > 0
+
+    print(f'{MOBILE}: {agent}')
+
+    if (pathname == "/") and not MOBILE:
         return index.layout
+    elif (pathname == "/") and MOBILE:
+        return mobile.mobile_layout
     else:
         return dcc.Markdown("## Page not found")
 

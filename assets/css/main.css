@@ -65,3 +65,44 @@
     font-size: large;
 
 }
+
+/* mobile css*/
+h2.mobile-map-heading{
+    font-size: 50px;
+    color: #847bf7;
+    text-transform: uppercase;
+    font-weight: normal;
+    line-height: 1;
+    margin-left: 6.5rem;
+    padding-top: 0px;   
+}
+
+.modebar {
+    display: none !important;
+}
+
+/* Han: i have no idea how to inherit so copy pasta */
+.mobile-top-bar-card-tested {
+    color: #fefefe;
+    text-align: center;
+    font-weight: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.mobile-top-bar-card-confirmed {
+    color: #efae4e;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.mobile-top-bar-card-deaths {
+    color: #d9534f;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.mobile-top-bar-card-recovered {
+    color: #5cb85d;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}

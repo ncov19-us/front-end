@@ -87,6 +87,7 @@ def infection_trajectory_chart(state=None) -> dbc.Card:
         template="plotly_dark",
         title="Days since 200 Cases",
         showlegend=True,
+        legend_orientation="h",
     )
 
     card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"})))
