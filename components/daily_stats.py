@@ -64,7 +64,7 @@ def daily_stats() -> List[dbc.Col]:
                                 f"+ {value[1]} in past 24h",
                                 className=f"top-bar-perc-change-{key.lower()}",
                             ),
-                            html.H1(value[0]),
+                            html.H1(value[0], className=f"top-bar-value-{key.lower()}"),
                             html.P(f"{key}", className="card-text"),
                         ]
                     ),
@@ -76,7 +76,12 @@ def daily_stats() -> List[dbc.Col]:
             card = dbc.Col(
                 dbc.Card(
                     dbc.CardBody(
-                        [html.H1(value), html.P(f"{key}", className="card-text")]
+                        [
+                        html.P(" ", className=f"top-bar-perc-change-{key.lower()}"),
+                        html.H1(value, className=f"top-bar-value-{key.lower()}"),
+                        html.P(f"{key}", className="card-text"),
+                        ],
+                        # [html.H1(value), html.P(f"{key}", className="card-text")]
                     ),
                     className=f"top-bar-card-{key.lower()}",
                 ),

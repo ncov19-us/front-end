@@ -32,6 +32,8 @@ def twitter_feed(state=None) -> List[dbc.Card]:
 
     # 2020-03-19 triage. lots of empty list at the end of tweets, filtering them out
     tweets = [*filter(None, tweets)]
+    tweets = sorted(tweets, key = lambda i: i['created_at'], reverse=True)
+    # print(tweets)
     cards += [
         dbc.Card(
             dbc.CardBody(

@@ -66,6 +66,12 @@
 
 }
 
+/* Hide floating toolbar from all charts */
+/* https://community.plot.ly/t/is-it-possible-to-hide-the-floating-toolbar/4911 */
+.modebar{
+    display: none !important;
+}
+
 /* MOBILE STYLING */
 
 h2.mobile-map-heading{
