@@ -35,6 +35,14 @@
     padding: 0px;
 }
 
+
+/* Map and Graph Styling */
+
+.card-body{
+    padding: 0%;
+    margin: 1%;
+}
+
 /* Left Twitter Feed */
 .left-col-twitter-feed-content{
     overflow-y: scroll;
