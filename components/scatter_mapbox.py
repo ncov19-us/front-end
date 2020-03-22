@@ -60,7 +60,7 @@ daily_reports = wrangle(daily_reports)
 
 
 # @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
-def scatter_mapbox() -> dbc.Card:
+def scatter_mapbox():
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
@@ -81,6 +81,10 @@ def scatter_mapbox() -> dbc.Card:
     )
 
     fig.layout.update(
+        # Title still no show after this
+        title="Corona Virus Cases in U.S.",
+        title_x = 0.1,
+        
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         # This takes away the colorbar on the right hand side of the plot
         coloraxis_showscale=False,
@@ -98,5 +102,5 @@ def scatter_mapbox() -> dbc.Card:
 
     card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "54vh"})))
     return card
-
+    # return fig
     

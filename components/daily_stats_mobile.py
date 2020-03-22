@@ -8,7 +8,7 @@ import dash_html_components as html
 
 def get_daily_stats() -> Dict:
     try:
-        data1 = requests.get(url=CVTRACK_URL).json()[0]
+        data1 = requests.get(url=CVTRACK_URL).json()[-1]
         data2 = requests.get(url=TMP_URL).json()
         tested = data1["posNeg"]
         confirmed = data2["cases"]
