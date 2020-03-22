@@ -77,7 +77,7 @@ def daily_stats() -> List[dbc.Col]:
                 dbc.Card(
                     dbc.CardBody(
                         [
-                        html.P(" ", className=f"top-bar-perc-change-{key.lower()}"),
+                        html.P(" x", className=f"top-bar-perc-change-{key.lower()}"),
                         html.H1(value, className=f"top-bar-value-{key.lower()}"),
                         html.P(f"{key}", className="card-text"),
                         ],

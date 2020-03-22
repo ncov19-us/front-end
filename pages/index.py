@@ -28,7 +28,6 @@ layout = [
             dbc.Col(
                 [
                     html.Div(
-                        # build_scatter_mapbox(), className="top-middle-scatter-mapbox"
                         scatter_mapbox(), className="top-middle-scatter-mapbox"
                     ),
                     html.Div(

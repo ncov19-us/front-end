@@ -57,4 +57,6 @@ def twitter_feed(state=None) -> List[dbc.Card]:
         )
         for tweet in tweets
     ]
-    return cards
+    list_group = dbc.ListGroup(cards, flush=True)
+    # return cards
+    return list_group
