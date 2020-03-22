@@ -5,7 +5,8 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 
-def get_daily_stats()->Dict:
+
+def get_daily_stats() -> Dict:
     try:
         data1 = requests.get(url=CVTRACK_URL).json()[0]
         data2 = requests.get(url=TMP_URL).json()
@@ -48,7 +49,7 @@ def daily_stats_mobile() -> List[dbc.Row]:
     """
     # 1. Fetch Stats
     stats = get_daily_stats()
-    print(stats)
+    # print("Mobile Site ---> ", stats)
     # 2. Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays
     # items and values of the stats pulled from the API.
     cards = []
@@ -60,29 +61,24 @@ def daily_stats_mobile() -> List[dbc.Row]:
                         f"+ {value[1]} in past 24h",
                         className=f"mobile-top-bar-perc-change-{key.lower()}",
                     ),
-                    html.H1(value[0],
-                            className=f"mobile-top-bar-value-{key.lower()}"),
-                    html.P(f"{key}",
-                           className="mobile-card-text"),
+                    html.H1(value[0], className=f"mobile-top-bar-value-{key.lower()}"),
+                    html.P(f"{key}", className="mobile-card-text"),
                 ],
                 className=f"mobile-top-bar-card-{key.lower()}",
             )
-                                
+
         else:
             # card = dbc.Row(
             card = dbc.ListGroupItem(
                 [
-                    html.P(" ",
-                           className=f"mobile-top-bar-perc-change-{key.lower()}"),
-                    html.H1(value,
-                            className=f"mobile-top-bar-value-{key.lower()}"),
-                    html.P(f"{key}",
-                           className="mobile-card-text")
+                    html.P(" ", className=f"mobile-top-bar-perc-change-{key.lower()}"),
+                    html.H1(value, className=f"mobile-top-bar-value-{key.lower()}"),
+                    html.P(f"{key}", className="mobile-card-text"),
                 ],
                 className=f"mobile-top-bar-card-{key.lower()}",
             )
 
         cards.append(card)
-    
+
     cards = dbc.ListGroup(cards)
     return cards

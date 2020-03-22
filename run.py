@@ -107,17 +107,26 @@ app.layout = html.Div(
     ]
 )
 
-  
+
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def display_page(pathname):
-    agent = request.headers.get('User_Agent')
-    MOBILE = len(re.compile("(?i)android|fennec|iemobile|iphone|opera (?:mini|mobi)|mobile").findall(agent)) > 0
+    agent = request.headers.get("User_Agent")
+    MOBILE = (
+        len(
+            re.compile(
+                "(?i)android|fennec|iemobile|iphone|opera (?:mini|mobi)|mobile"
+            ).findall(agent)
+        )
+        > 0
+    )
 
-    print(f'{MOBILE}: {agent}')
+    # print(f'[DEBUG] {MOBILE}: {agent}')
 
     if (pathname == "/") and not MOBILE:
+        # print("this is desktop")
         return index.layout
     elif (pathname == "/") and MOBILE:
+        # print("this is mobile")
         return mobile.mobile_layout
     else:
         return dcc.Markdown("## Page not found")

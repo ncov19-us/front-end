@@ -5,9 +5,10 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 
-def get_daily_stats()->Dict:
+
+def get_daily_stats() -> Dict:
     try:
-        data1 = requests.get(url=CVTRACK_URL).json()[0]
+        data1 = requests.get(url=CVTRACK_URL).json()[-1]
         data2 = requests.get(url=TMP_URL).json()
         tested = data1["posNeg"]
         confirmed = data2["cases"]
@@ -48,6 +49,7 @@ def daily_stats() -> List[dbc.Col]:
     """
     # 1. Fetch Stats
     stats = get_daily_stats()
+    # print("Desktop Site Stats ---> ", stats)
     # print(stats)
     # 2. Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays
     # items and values of the stats pulled from the API.
