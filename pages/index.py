@@ -8,11 +8,12 @@ from components import daily_stats
 from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
 from components import scatter_mapbox
+from components import daily_stats_mobile
 
 
 ########################################################################
 #
-# App layout
+# Desktop App layout
 #
 ########################################################################
 layout = [

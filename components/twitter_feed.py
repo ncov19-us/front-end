@@ -19,7 +19,7 @@ def twitter_feed(state=None) -> List[dbc.Card]:
     :rtype: list
     """
     recs = tm.get_all_records()
-    # cards = []
+
     cards = [
         dbc.Card(
             dbc.CardHeader([html.I(className="fab fa-twitter mr-1"), "Twitter Feed"])
@@ -28,7 +28,6 @@ def twitter_feed(state=None) -> List[dbc.Card]:
     
     for doc in recs:
         username = doc["username"]
-        # profile_pic = doc["profile_image_url"]
         full_name = doc["full_name"]
         tweets = doc["tweets"]
 
@@ -38,13 +37,7 @@ def twitter_feed(state=None) -> List[dbc.Card]:
             dbc.Card(
                 dbc.CardBody(
                     [
-                        # html.Div([html.Img(src=profile_pic,
-                        #                    className='img-fluid',
-                        #                    style={"borderRadius": "50%",
-                        #                           "width": "50px",
-                        #                           "height": "50px"})
-                        #           ],
-                        #          ),
+
                         html.A(
                             html.P(
                                 tweet["full_text"][:100] + "...", className="card-text"

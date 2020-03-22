@@ -1,7 +1,6 @@
+import flask
 import dash
 import dash_bootstrap_components as dbc
-import dash_core_components as dcc
-import dash_html_components as html
 
 
 # stylesheet tbd
@@ -13,9 +12,16 @@ external_stylesheets = [
 meta_tags = [{"name": "viewport", "content": "width=device-width, initial-scale=1.0"}]
 
 # Initialize app
-app = dash.Dash(
-    __name__, external_stylesheets=external_stylesheets, meta_tags=meta_tags
-)
+server = flask.Flask(__name__)
+app = dash.Dash(__name__,
+                server=server,
+                external_stylesheets=external_stylesheets,
+                meta_tags=meta_tags,
+                )
+                
+app.config.suppress_callback_exceptions = True
+app.title = "Coronavirus COVID19 US Dashboard"
+server = app.server
 
 # For Google Analytics
 app.index_string = """<!DOCTYPE html>
@@ -44,8 +50,3 @@ app.index_string = """<!DOCTYPE html>
         </footer>
     </body>
 </html>"""
-
-
-app.config.suppress_callback_exceptions = True
-app.title = "Coronavirus COVID19 US Dashboard"  # for browser titlebar
-server = app.server
