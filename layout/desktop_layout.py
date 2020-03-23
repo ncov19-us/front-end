@@ -4,8 +4,7 @@ import dash_html_components as html
 from pages import desktop, navbar, footer
 
 
-build_desktop_layout = dcc.Loading(
-    html.Div(
+build_desktop_layout = html.Div(
         [
             # represents the URL bar, doesn't render anything, will be used for about and resources
             dcc.Location(id="url", refresh=False),
@@ -16,4 +15,3 @@ build_desktop_layout = dcc.Loading(
             footer,
         ]
     )
-)

@@ -259,3 +259,89 @@ h2.mobile-map-heading{
     line-height: 1;
     margin-left: 6.5rem;
 }
+
+.top-bottom-left-chart{
+    margin-right: 0.5rem;
+}
+
+.top-bottom-right-chart{
+    margin-left: 0.5rem;
+}
+
+.tweet-item{
+    text-align: left;
+    margin-bottom: 0.5rem;
+    background-color: #0b1218;
+}
+
+.news-item{
+    text-align: left;
+    margin-bottom: 0.5rem;
+    background-color: #0b1218;
+}
+
+.list-group-item{
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+}
+
+.tweets-txt-by-dt{
+    margin-bottom: 0.1rem;
+}
+
+p.news-txt-by-dt{
+    margin-bottom: 0;
+}
+
+/* Left Sidebar */
+.left-col-twitter-feed-content{
+    overflow-y: scroll;
+    height: 80vh;
+    scroll-behavior: smooth;
+}
+
+.left-col-twitter-feed-content {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.left-col-twitter-feed-content::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+/* get rid of tab padding */
+.card-header {
+    max-width:100%;
+    padding: 0 0 .75rem 0;
+}
+
+p.tweet-dt {
+    margin-bottom: 0;
+}
+
+/* from anisha*/
+.top-bar-us-map-heading-txt{
+    font-size: 24px;
+    color: #ffffff;
+    max-width: 61%;
+}
+
+.card-header-tabs{
+    margin-right:0%;
+}
+
+.col-8 {
+    max-width: 61%;
+}
+
+.middle-styling {
+    flex-wrap: nowrap;
+}
+
+.middle-col-map-content {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.graph-styling {
+    padding: 0px;
+}

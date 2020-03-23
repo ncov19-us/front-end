@@ -4,7 +4,7 @@ import dash_html_components as html
 from app import cache
 from utils.settings import tm
 
-@cache.memoize(timeout=900)
+# @cache.memoize(timeout=900)
 def twitter_feed(state=None) -> List[dbc.Card]:
     """Displays twitter feed on the left hand side of the display.
 
@@ -35,11 +35,12 @@ def twitter_feed(state=None) -> List[dbc.Card]:
     tweets = sorted(tweets, key = lambda i: i['created_at'], reverse=True)
     # print(tweets)
     cards += [
-        dbc.Card(
-            dbc.CardBody(
+        # dbc.Card(
+        #     dbc.CardBody(
+         dbc.ListGroupItem(
                 [
                     html.A(
-                        html.P(tweet["full_text"][:100] + "...", className="card-text"),
+                        html.P(tweet["full_text"][:100] + "...",),
                         href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}",
                         target="_blank",
                     ),
@@ -47,13 +48,15 @@ def twitter_feed(state=None) -> List[dbc.Card]:
                         [
                             html.Strong(f"- {full_name} (@{username})"),
                             html.P(
-                                f"{tweet['created_at'].strftime('%a %d, %Y at %I: %M %p')}"
+                                f"{tweet['created_at'].strftime('%a %d, %Y at %I: %M %p')}",
+                                className="tweet-dt",
                             ),
                         ],
-                        style={"fontWeigth": "0.25rem"},
+                        className="tweets-txt-by-dt",
                     ),
-                ]
-            ),
+                ],
+                className="tweet-item",
+            # ),
         )
         for tweet in tweets
     ]
