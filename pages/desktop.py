@@ -156,39 +156,42 @@ def stats_tab_content(value):
 #
 ########################################################################
 
-us_maps_tabs = [
-    html.Div(
-        [
-            html.Div(html.H1("US Map"), className="top-bar-us-map-heading-txt",),
-            html.Div(
-                dcc.Tabs(
-                    id="middle-map-tabs-styled-with-inline",
-                    value="confirmed-us-map-tab",
-                    children=[
-                        dcc.Tab(
-                            label="Confirmed",
-                            value="confirmed-us-map-tab",
-                            className="confirmed-us-map-tab",
-                            style=tab_style,
-                            selected_style=tab_selected_style,
-                        ),
-                        dcc.Tab(
-                            label="Drive-Thru Testing",
-                            value="testing-us-map-tab",
-                            className="testing-us-map-tab",
-                            style=tab_style,
-                            selected_style=tab_selected_style,
-                        ),
-                    ],
-                    style=tabs_styles,
-                    colors={"border": None, "primary": None, "background": None},
-                )
-            ),
-        ],
-        className="d-flex justify-content-between top-bar-us-map-heading-content",
-    ),
-    html.Div(dcc.Graph(id="us-map", style={"height": "54vh"})),
-]
+us_maps_tabs = dbc.Card(
+    dbc.CardBody([
+        html.Div(
+            [
+                html.Div(html.H1("US Map"), 
+                         className="top-bar-us-map-heading-txt",),
+                html.Div(
+                    dcc.Tabs(
+                        id="middle-map-tabs-styled-with-inline",
+                        value="confirmed-us-map-tab",
+                        children=[
+                            dcc.Tab(
+                                label="Confirmed",
+                                value="confirmed-us-map-tab",
+                                className="confirmed-us-map-tab",
+                                style=tab_style,
+                                selected_style=tab_selected_style,
+                            ),
+                            dcc.Tab(
+                                label="Drive-Thru Testing",
+                                value="testing-us-map-tab",
+                                className="testing-us-map-tab",
+                                style=tab_style,
+                                selected_style=tab_selected_style,
+                            ),
+                        ],
+                        style=tabs_styles,
+                        colors={"border": None, "primary": None, "background": None},
+                    )
+                ),
+            ],
+            className="d-flex justify-content-between top-bar-us-map-heading-content",
+        ),
+        html.Div(dcc.Graph(id="us-map", style={"height": "54vh"})),
+    ]),
+)
 
 
 @app.callback(
@@ -224,12 +227,28 @@ desktop_body = [
                         dbc.Row(
                             [
                                 dbc.Col(
-                                    dcc.Graph(figure=confirmed_cases_chart(),),
+                                    dbc.Card(
+                                        dbc.CardBody([
+                                            html.Div("Confirmed Cases",
+                                                     className="top-bottom-left-chart-title",),
+                                            dcc.Graph(figure=confirmed_cases_chart(),
+                                                      config={'responsive':False},
+                                                      className='top-bottom-left-chart-figure"'),
+                                        ]),
+                                    ),
                                     className="top-bottom-left-chart",
                                     width=6,
                                 ),
                                 dbc.Col(
-                                    dcc.Graph(figure=infection_trajectory_chart()),
+                                    dbc.Card(
+                                        dbc.CardBody([
+                                            html.Div("Infection Trajectory Since 200 Cases",
+                                                     className="top-bottom-right-chart-title"), 
+                                            dcc.Graph(figure=infection_trajectory_chart(),     
+                                                      config={'responsive':False},
+                                                      className="top-bottom-right-chart-figure"),
+                                        ]),
+                                    ),
                                     className="top-bottom-right-chart",
                                     width=6,
                                 ),
