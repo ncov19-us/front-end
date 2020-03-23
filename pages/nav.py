@@ -11,17 +11,20 @@ dropdown_bar = dbc.Row(
 )
 
 about_bar = dbc.Row(
-                dbc.NavbarBrand(
-                    [
-                        html.A("Resources", id="navbar-resources-link", className="navbar-brand-links", 
-                            href="/about"),
-                        html.A("About",  className="navbar-brand-links", 
-                            href="/resources")
-                    ]
-                ),
-                className="ml-auto flex-nowrap mt-3 mt-md-0",
-                align="center"
-            )
+    dbc.NavbarBrand(
+        [
+            html.A(
+                "Resources",
+                id="navbar-resources-link",
+                className="navbar-brand-links",
+                href="/resources",
+            ),
+            html.A("About", className="navbar-brand-links", href="/about"),
+        ]
+    ),
+    className="ml-auto flex-nowrap mt-3 mt-md-0",
+    align="center",
+)
 
 """
 https://community.plot.ly/t/callbacks-with-a-drop-down-with-multi-select/11235/4
@@ -56,15 +59,13 @@ navbar = dbc.Navbar(
                         ]
                     )
                 ),
-
             ],
             align="center",
             no_gutters=True,
         ),
         dbc.NavbarToggler(id="navbar-toggler"),
-        
         dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
-        dbc.NavbarBrand(about_bar)
+        dbc.NavbarBrand(about_bar),
     ],
     color="#010915",
     dark=True,
