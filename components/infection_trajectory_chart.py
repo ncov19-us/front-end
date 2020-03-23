@@ -81,7 +81,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
     fig.update_layout(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         template="plotly_dark",
-        title="Days since 200 Cases",
+        # title="Days since 200 Cases",
         autosize=True,
         showlegend=True,
         legend_orientation="h",

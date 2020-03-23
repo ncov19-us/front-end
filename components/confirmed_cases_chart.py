@@ -29,7 +29,7 @@ def confirmed_cases_chart(state=None) -> go.Figure:
     fig.update_layout(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         template="plotly_dark",
-        title="U.S. Confirmed Cases",
+        # title="U.S. Confirmed Cases",
         autosize=True,
         xaxis_title=None,
         yaxis_title=None,
