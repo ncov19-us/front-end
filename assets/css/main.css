@@ -3,11 +3,16 @@ html {
     font-family: Roboto, sans-serif;
     font-style: normal;
     color: #F3F3F3;
+
 }
 
 .a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
+
+/* .p {
+    text-decoration: none !important;
+} */
 
 /* Body */
 body {
@@ -20,24 +25,37 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.navbar-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none !important;
+}
+
+
 .covid-19-text {
-    margin-left: 10px;
-    color: #F3F3F3;
+    /* color: #F3F3F3; */
+    margin-left: .2rem;
+    margin-bottom: auto;
     font-weight: bold;
     font-size: 2rem;
+
     }
 
 .us-cases-text {
-    color: #F3F3F3;
+    /* color: #F3F3F3; */
+    margin-bottom: auto;
     font-weight: normal;
-    font-size: 36px;
-    line-height: 42px;
+    font-size: 2rem;
     text-shadow: none;
+    margin-left: 5%;
+
 }
 
 .col {
-    margin-top: 15px;
+    margin-top: 0.1rem;
     width: 188px;
+    text-decoration: none;
 }
 
 /* .us-cases-text p:hover{
@@ -53,11 +71,10 @@ body {
 }
 
 .top-bar-value-tested {
-    margin-top: -2vh;
+    margin-top: -0.5rem;
     text-align: center;
     font-weight: 4rem;
-    font-size: 45px;
-    line-height: 53px;
+    font-size: 2.75rem;
     text-shadow: none;
 }
 
@@ -160,14 +177,18 @@ body {
 /* Map and Graph Styling */
 
 .top-bar-us-map-heading-txt{
-font-size: 24px;
-color: #ffffff;
-} 
+    font-size: 24px;
+    color: #ffffff;
+    max-width: 61%;
+}
 
-/* .card-body{
-    padding: 0%;
-    margin: 1%;
-} */
+.card-header-tabs{
+    margin-right:0%;
+}
+
+.col-8 {
+    max-width: 61%;
+}
 
 .middle-styling {
     flex-wrap: nowrap;
@@ -192,6 +213,7 @@ color: #ffffff;
 .left-col-twitter-feed-content{
     overflow-y: scroll;
     height: 80vh;
+
 }
 
 /* Twitter Feed  */

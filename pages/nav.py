@@ -48,11 +48,11 @@ navbar = dbc.Navbar(
             # User row and col to control vertical alignment of logo/brand
             dbc.Row(
                 [
-                    dbc.Col(
-                        html.Img(
-                            src="assets/images/covid19-new-logo.png", height="30px"
-                        )
-                    ),
+                    # dbc.Col(
+                    #     html.Img(
+                    #         src="assets/images/covid19-new-logo.png", height="30px"
+                    #     )
+                    # ),
                     dbc.Col(
                         dbc.NavbarBrand([
                             html.P("COVID-19", className="covid-19-text"),
