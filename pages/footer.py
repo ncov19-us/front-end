@@ -28,7 +28,7 @@ footer = dbc.Container(
                         className="footer-social-icons mr-3",
                     ),
                     html.Span(
-                        "Copyright ncov19.us 2020", className="footer-copyright-text"
+                        "Copyright 2020", className="footer-copyright-text"
                     ),
                 ],
                 className="footer-social-copyright-content",

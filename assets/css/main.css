@@ -3,11 +3,16 @@ html {
     font-family: Roboto, sans-serif;
     font-style: normal;
     color: #F3F3F3;
+
 }
 
 .a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
+
+/* .p {
+    text-decoration: none !important;
+} */
 
 /* Body */
 body {
@@ -17,157 +22,179 @@ body {
 /* Nav Bar */
 .navbar {
     background-color: #010915;
+    border: none;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.covid-19-text {
-    margin-left: 10px;
-    color: #F3F3F3;
-    font-weight: bold;
-    font-size: 2rem;
-    }
-
-.us-cases-text {
-    color: #F3F3F3;
-    font-weight: normal;
-    font-size: 36px;
-    line-height: 42px;
     text-shadow: none;
 }
 
-.col {
-    margin-top: 15px;
-    width: 188px;
+.navbar-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none !important;
 }
 
-/* .us-cases-text p:hover{
-    text-decoration: none !important;
-} */
+
+.covid-19-text {
+    margin-left: .2
+    rem;
+    margin-bottom: auto;
+    font-weight: bold;
+    font-size: 2rem;
+
+    }
+
+.us-cases-text {
+    margin-bottom: auto;
+    font-weight: normal;
+    font-size: 2rem;
+    text-shadow: none;
+    margin-left: 5%;
+
+}
+
+.col {
+    margin-top: 0.1rem;
+    /* width: 100%; */
+    text-decoration: none;
+}
+
+
 
 /* Top Card Section */
+.top-bar-content.row {
+    margin-left: 0.2rem;
+    margin-right: .2rem;
+}
+
+.card-body {
+    background-color: #010915;
+    padding: 1rem;
+    border: none;
+}
+
+.card-text {
+    margin-top: -.6rem;
+    font-weight: normal;
+    text-align: center;
+}
+
 .top-bar-card-tested {
+    background-color: #010915;
     color: #fefefe;
     text-align: center;
-    font-weight: 3rem;
-    background-color: #010915;
+    font-size: .9rem;
+    border: none;
+    border-radius: .3rem;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    padding: .2rem; 
 }
 
 .top-bar-value-tested {
-    margin-top: -2vh;
-    text-align: center;
+    margin-top: -1.1rem;
+    /* margin-bottom: 10rem; */
     font-weight: 4rem;
-    font-size: 45px;
-    line-height: 53px;
+    font-size: 2.75rem;
     text-shadow: none;
 }
 
 .top-bar-card-confirmed {
     color: #FEC400;
     text-align: center;
+    font-size: .9rem;
     background-color: #010915;
+    border: none;
+    border-radius: .3rem;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    padding: .2rem;
 }
 
 .top-bar-value-confirmed {
-    margin-top: -2vh;
-    text-align: center;
+    margin-top: -1.1rem;
     font-weight: 4rem;
-    font-size: 45px;
-    line-height: 53px;
+    font-size: 2.75rem;
     text-shadow: none;
 }
-
 
 .top-bar-card-deaths {
     color: #D92C25;
     text-align: center;
-    font-weight: 3rem;
+    font-size: .9rem;
     background-color: #010915;
+    border: none;
+    border-radius: .3rem;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    padding: .2rem;
 }
 
 .top-bar-value-deaths {
-    margin-top: -2vh;
-    text-align: center;
+    margin-top: -1.1rem;
     font-weight: 4rem;
-    font-size: 45px;
-    line-height: 53px;
+    font-size: 2.75rem;
     text-shadow: none;
 }
 
 .top-bar-card-recovered {
     color: #03DA32;
     text-align: center;
-    font-weight: 3rem;
+    font-size: .9rem;
     background-color: #010915;
+    border: none;
+    border-radius: .3rem;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    padding: .2rem;
 }
 
 .top-bar-value-recovered {
-    margin-top: -2vh;
-    text-align: center;
+    margin-top: -1.1rem;
     font-weight: 4rem;
-    font-size: 45px;
-    line-height: 53px;
+    font-size: 2.75rem;
     text-shadow: none;
-}
-
-.card-text {
-    margin-top: -1vh;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
 }
 
 .top-bar-perc-change-tested {
     color: #010915;
-    margin-top: -1vh;
-    padding: 0px;
-    font-size: 10px;
-    line-height: 12px;
+    margin-top: -.7rem;
+    font-size: .70rem;
 }
 
 .top-bar-perc-change-confirmed {
     color: #BDBDBD;
-    margin-top: -1vh;
-    padding: 0px;
-    font-size: 10px;
-    line-height: 12px;  
+    margin-top: -.7rem;
+    font-size: .7rem;
 }
 
 .top-bar-perc-change-deaths {
     color: #BDBDBD;
-    margin-top: -1vh;
-    padding: 0px;
-    font-size: 10px;
-    line-height: 12px;
+    margin-top: -.7rem;
+    font-size: .7rem;
 }
 
 .top-bar-perc-change-recovered {
     color: #010915;
-    margin-top: -1vh;
-    padding: 0px;
-    font-size: 10px;
-    line-height: 12px;
+    margin-top: -.7rem;
+    font-size: .7rem;
 }
 
-.card-body {
-    padding: 1rem;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-    border-radius: 100px;
-}
+
 
 
 
 /* Map and Graph Styling */
 
 .top-bar-us-map-heading-txt{
-font-size: 24px;
-color: #ffffff;
-} 
+    font-size: 24px;
+    color: #ffffff;
+    max-width: 61%;
+}
 
-/* .card-body{
-    padding: 0%;
-    margin: 1%;
-} */
+.card-header-tabs{
+    margin-right:0%;
+}
+
+.col-8 {
+    max-width: 61%;
+}
 
 .middle-styling {
     flex-wrap: nowrap;
@@ -192,6 +219,7 @@ color: #ffffff;
 .left-col-twitter-feed-content{
     overflow-y: scroll;
     height: 80vh;
+
 }
 
 /* Twitter Feed  */
@@ -208,21 +236,43 @@ color: #ffffff;
 
 /* Footer */
 .footer-content {
-    background-color: #1f1d1e;
+    background-color: #010915;
 }
 
 .footer-disclaimer-content {
     padding-top: 1rem;
+    font-size: 0.65rem;
+    
 }
 
-.footer-social-icons {
-    font-size: 3rem;
+.footer-disclaimer-text {
+    width: 50rem;
+    /* margin-right: 10rem; */
+}
+
+.footer-social-copyright-content.col-2 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    /* margin-left: 3 rem; */
+}
+.footer-social-icons.mr-3 {
+    /* padding-top: 10rem; */
+    size: 10rem;
+}
+
+.fab.fa-github {
+    font-size: 2rem;
+    color: #8B8D91;
 }
 
 .footer-copyright-text {
-    font-size: large;
+    font-size: 1rem;
+    text-align: center;
 
 }
+/* .footer-social-copyright-content.col-2 {
+    margin-bottom: 1.1rem;
+} */
 
 
 
@@ -230,32 +280,162 @@ color: #ffffff;
 /* MOBILE STYLING */
 
 /* Nav Bar */
+.align-items-center .no-gutters .row {
+    padding: 3% 0 3% 5%;
+}
+/* .navbar .navbar-expand-md .navbar-light .navbar-dark {
 
+} */
 
-/* Han: i have no idea how to inherit so copy pasta */
+/* .navbar {
+    /* padding: 3% 0 3% 5%; */
+    /* display: flex;
+    flex-direction: row;
+    align-items: center;
+} */ 
+
+.mobile-covid-19-text {
+    padding: 6% 0 0% 0%;
+    /* margin-bottom: auto; */
+    font-weight: bold;
+    font-size: 1.5rem;
+    width: 7.75rem;
+    }
+
+.mobile-us-cases-text {
+    padding: 7% 0 0% 0%;
+    /* margin-bottom: auto; */
+    font-weight: normal;
+    font-size: 1.5rem;
+    text-shadow: none;
+}
+
+.navbar-toggler-icon {
+    /* margin-top: -30% */
+    margin-left: 10%;
+    margin-bottom: 20%;
+}
+
+.navbar-toggler {
+    padding: 0 0 0 0;
+}
+
+/* Card section */
+
+/* mobile-top-bar-content {
+    padding: 20%;
+} */
+
+.mobile-card-text {
+    margin-top: -.5rem;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 0.2rem;
+    /* padding: 10 10 10 10  */
+}
+
 .mobile-top-bar-card-tested {
     color: #fefefe;
     text-align: center;
-    font-weight: 3rem;
-    margin-bottom: 1.5rem;
+    font-size: .9rem;
+    background-color: #010915;
+    margin-bottom: 1.3rem;
+}
+
+.mobile-top-bar-value-tested {
+    margin-top: -1.2rem;
+    font-weight: 4rem;
+    font-size: 2.75rem;
+    text-shadow: none;
 }
 
 .mobile-top-bar-card-confirmed {
-    color: #efae4e;
+    color: #FEC400;
     text-align: center;
-    margin-bottom: 1.5rem;
+    font-size: .9rem;
+    background-color: #010915;
+    margin-bottom: 1.3rem;
+}
+
+.mobile-top-bar-value-confirmed {
+    margin-top: -1.2rem;
+    font-weight: 4rem;
+    font-size: 2.75rem;
+    text-shadow: none;
+}
+
+.mobile-top-bar-card-deaths {
+    color: #D92C25;
+    text-align: center;
+    font-size: .9rem;
+    background-color: #010915;
+    margin-bottom: 1.3rem;
+}
+
+.mobile-top-bar-value-deaths {
+    margin-top: -1.2rem;
+    font-weight: 4rem;
+    font-size: 2.75rem;
+    text-shadow: none;
 }
 
 .mobile-top-bar-card-recovered {
-    color: #5cb85d;
+    color: #03DA32;
     text-align: center;
-    margin-bottom: 1.5rem;
+    font-size: .9rem;
+    background-color: #010915;
+    margin-bottom: 4.3rem;
 }
 
+.mobile-top-bar-value-recovered {
+    margin-top: -1.2rem;
+    font-weight: 4rem;
+    font-size: 2.75rem;
+    text-shadow: none;
+}
+
+.mobile-top-bar-perc-change-tested {
+    color: #010915;
+    margin-top: -.1rem;
+    font-size: .70rem;
+}
+
+.mobile-top-bar-perc-change-confirmed {
+    color: #BDBDBD;
+    margin-top: -.1rem;
+    font-size: .7rem;
+}
+
+.mobile-top-bar-perc-change-deaths {
+    color: #BDBDBD;
+    margin-top: -.1rem;
+    font-size: .7rem;
+}
+
+.mobile-top-bar-perc-change-recovered {
+    color: #010915;
+    margin-top: -.1rem;
+    font-size: .7rem;
+}
+
+/* .mobile-card-body {
+    padding: 1.2rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 100px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15)
+} */
+
+
+
+/* Mobile Map
+.mobile-top-bar-us-map-heading-content {
+    margin-top 3rem;
+}
 
 h2.mobile-map-heading{
     font-size: 2.5rem;
     font-weight: normal;
     line-height: 1;
     margin-left: 6.5rem;
-}
+} */
+
