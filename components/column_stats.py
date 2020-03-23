@@ -110,8 +110,7 @@ def states_deaths_stats(state=None) -> dbc.ListGroup:
 
 def states_recovered_stats(state=None) -> dbc.ListGroup:
     """    
-    :params state: display news feed for a particular state. If None, display news feed
-        for the whole US
+    :params state: display news feed for a particular state. If None, display news feed for the whole US
 
     :return list_group: A bootstramp ListGroup containing ListGroupItem returns news feeds.
     :rtype: dbc.ListGroup    

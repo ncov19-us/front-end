@@ -6,10 +6,12 @@ from pages import desktop, navbar, footer
 
 def build_desktop_layout():
     return html.Div(
-    [
-        dcc.Location(id="url", refresh=False),
-        navbar,
-        dbc.Container(desktop.desktop_body, id="page-content", className="mt-4", fluid=True),
-        footer,
-    ]
-)
+        [
+            # represents the URL bar, doesn't render anything, will be used for about and resources
+            dcc.Location(id="url", refresh=False),
+            navbar,
+            dbc.Container(desktop.desktop_body, id="page-content",
+                          className="mt-4", fluid=True),
+            footer,
+        ]
+    )

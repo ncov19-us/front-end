@@ -98,21 +98,21 @@ desktop_body= [
                     html.Div([
                         html.Div([
                             html.Div(html.H1("US Map"), className="top-bar-us-map-heading-txt"),
-                            html.Div(
-                                   dbc.Tabs(
-                                            [
-                                                dbc.Tab(label="Confirmed", tab_id="confirmed-us-map-tab", labelClassName="confirmed-us-map-tab"),
-                                                dbc.Tab(label="Drive-Thru Testing", tab_id="testing-us-map-tab", labelClassName="testing-us-map-tab"),
-                                            ],
-                                            id="map-tabs",
-                                            card=True,
-                                            active_tab="confirmed-us-map-tab",
-                                            className="top-bar-us-map-tabs-content"
+                                html.Div(
+                                    dbc.Tabs(
+                                        [
+                                            dbc.Tab(label="Confirmed", tab_id="confirmed-us-map-tab", labelClassName="confirmed-us-map-tab"),
+                                            dbc.Tab(label="Drive-Thru Testing", tab_id="testing-us-map-tab", labelClassName="testing-us-map-tab"),
+                                        ],
+                                        id="map-tabs",
+                                        card=True,
+                                        active_tab="confirmed-us-map-tab",
+                                        className="top-bar-us-map-tabs-content"
                                     )
                                 ), 
                             ],
                             className="d-flex justify-content-between top-bar-us-map-heading-content"),
-                        html.Div(dcc.Graph(figure=scatter_mapbox(), style={"height": "54vh"})),                   
+                            html.Div(dcc.Graph(figure=scatter_mapbox(), style={"height": "54vh"})),                   
                         ],
                             
                     ),
