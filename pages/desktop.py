@@ -156,22 +156,36 @@ desktop_body = [
                     # big map
                     html.Div(us_maps_tabs),
                     # bottom two charts
-                    html.Div(
-                        dbc.Row(
-                            [
-                                dbc.Col(
-                                    dcc.Graph(figure=confirmed_cases_chart(),),
-                                    className="top-bottom-left-chart",
-                                    width=6,
+                    dbc.Row(
+                        [
+                            dbc.Col(
+                                dbc.Card(
+                                    dbc.CardBody([
+                                        html.H2("Confirmed Cases",
+                                                className="top-bottom-left-chart-title",),
+                                        dcc.Graph(figure=confirmed_cases_chart(),
+                                                  config={'responsive':False},
+                                                  className="top-bottom-left-chart-figure"),
+                                    ])
                                 ),
-                                dbc.Col(
-                                    dcc.Graph(figure=infection_trajectory_chart()),
-                                    className="top-bottom-right-chart",
-                                    width=6,
+                                className="top-bottom-left-chart",
+                                width=6,
+                            ),
+                            dbc.Col(
+                                dbc.Card(
+                                    dbc.CardBody([
+                                        html.H2("Infection Trajectory Since 200 Cases",
+                                                className="top-bottom-right-chart-title"),
+                                        dcc.Graph(figure=infection_trajectory_chart(),
+                                                  config={'responsive':False},
+                                                  className="top-bottom-right-chart-figure"),
+                                    ]),
                                 ),
-                            ],
-                            no_gutters=True,
-                        ),
+                                className="top-bottom-right-chart",
+                                width=6,
+                            ),
+                        ],
+                        no_gutters=True,
                         className="top-bottom-charts",
                     ),
                 ],
@@ -184,4 +198,31 @@ desktop_body = [
         no_gutters=True,
         className="middle-map-news-content mt-3",
     ),
+    # dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
+    #     # html.Div(
+    #         # dbc.Row(
+    #             [
+    #                 dbc.Col(
+    #                     dcc.Graph(figure=confirmed_cases_chart(),
+    #                               responsive=True,
+    #                               config={
+                                    
+    #                                 # 'figure.layout.height'="10rem";
+    #                                 'scrollZoom':False,
+    #                                 },
+    #                     ),
+    #                     className="top-bottom-left-chart",
+    #                     width=6,
+    #                 ),
+    #                 dbc.Col(
+    #                     dcc.Graph(figure=infection_trajectory_chart()),
+    #                     className="top-bottom-right-chart",
+    #                     width=6,
+    #                 ),
+    #             ],
+    #             no_gutters=True,
+    #         # ),
+    #         # className="top-bottom-charts",
+    #     # ),
+    # )
 ]

@@ -219,22 +219,22 @@ body {
 /* Bottom Left and Right Charts */
 
 .top-bottom-charts {
-    
+    height: 10%;
 }
 
 .top-bottom-left-chart{
-    height: 20vh;
+    height: 10%;
     padding: 0%;
     margin: 0%;
+    margin-top: 1rem;
 }
 
 .top-bottom-right-chart{
-    height: 20vh;
+    height: 10%;
     padding: 0%;
     margin: 0%;
+    margin-top: 1rem;
 }
-
-
 
 
 /* 👈 Left  Twitter 🐦 News 📰 Feed Sidebar */
@@ -248,9 +248,9 @@ body {
 
 .left-col-twitter-feed-content{
     overflow-y: scroll;
-    height: 80vh;
+    height: 110vh;
     scroll-behavior: smooth;
-
+    margin-bottom: 4rem;
 }
 
 .left-col-twitter-feed-content {
@@ -279,8 +279,9 @@ p.news-txt-by-dt{
 
 .right-col-news-feed-content{
     overflow-y: scroll;
-    height: 80vh;
+    height: 110vh;
     scroll-behavior: smooth;
+    margin-bottom: 4rem;
 }
 
 .right-col-news-feed-content {
