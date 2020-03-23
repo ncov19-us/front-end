@@ -68,11 +68,7 @@ def get_drive_thru_testing_centers():
 
 # @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
 @cache.memoize(timeout=3600)
-<<<<<<< HEAD
 def confirmed_scatter_mapbox():
-=======
-def scatter_mapbox():
->>>>>>> fc3af685488d779165258acba90f04dad6d4bbdf
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
@@ -100,9 +96,7 @@ def scatter_mapbox():
         # This takes away the colorbar on the right hand side of the plot
         coloraxis_showscale=False,
         mapbox_style="dark",
-        mapbox=dict(
-            center=dict(lat=39.8097343, lon=-98.5556199),
-            zoom=2.3),
+        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=2.3),
     )
 
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
@@ -116,6 +110,7 @@ def scatter_mapbox():
     # card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "54vh"})))
     # return card
     return fig
+
 
 @cache.memoize(timeout=3600)
 def drive_thru_scatter_mapbox():
