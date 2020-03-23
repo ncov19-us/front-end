@@ -81,17 +81,10 @@ navbar = dbc.Navbar(
                 no_gutters=True,
             ),
             href="/",
-<<<<<<< HEAD
-        )
-        # dbc.NavbarToggler(id="navbar-toggler"),
-        # dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
-        
-=======
         ),
         dbc.NavbarToggler(id="navbar-toggler"),
         dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
 
->>>>>>> 7117e2d42e063cacbf0b7f19f2a1d269f9bd4eb6
     ],
     color='#010915',
     dark=True,
