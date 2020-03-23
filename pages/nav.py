@@ -19,15 +19,10 @@ import dash_html_components as html
 
 
 dropdown_bar = dbc.Row(
-                dbc.DropdownMenu(
-                    label="Location",
-                    children=[
-                        dbc.DropdownMenuItem("US"),
-                    ]
-                ),
-                no_gutters=True,
-                className="ml-auto flex-nowrap mt-3 mt-md-0",
-                align="center",
+    dbc.DropdownMenu(label="Location", children=[dbc.DropdownMenuItem("US"),]),
+    no_gutters=True,
+    className="ml-auto flex-nowrap mt-3 mt-md-0",
+    align="center",
 )
 
 """
@@ -53,16 +48,18 @@ navbar = dbc.Navbar(
             # User row and col to control vertical alignment of logo/brand
             dbc.Row(
                 [
-                    dbc.Col(
-                        html.Img(
-                            src="assets/images/covid19-new-logo.png", height="30px"
-                        )
-                    ),
-                    dbc.Col(
-                        dbc.NavbarBrand(
-                            "Coronavirus COVID19 US Cases", className="ml-2"
-                        )
-                    ),
+                    # dbc.Col(
+                    #     html.Img(
+                    #         src="assets/images/covid19-new-logo.png", height="30px"
+                    #     )
+                    # ),
+                    # dbc.Col(
+                    #     dbc.NavbarBrand(
+                    #         "COVID-19", className="COVID-19-text",
+                    #     )
+                    # ),
+                    dbc.Col(html.P("COVID-19", className="covid-19-text")),
+                    dbc.Col(html.P("US Cases", className="us-cases-text",)),
                 ],
                 align="center",
                 no_gutters=True,
@@ -71,8 +68,7 @@ navbar = dbc.Navbar(
         ),
         dbc.NavbarToggler(id="navbar-toggler"),
         dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
-
     ],
-    color='#010915',
+    color="#010915",
     dark=True,
 )
