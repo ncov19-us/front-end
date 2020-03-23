@@ -160,24 +160,16 @@ desktop_body = [
                         dbc.Row(
                             [
                                 dbc.Col(
-                                    dbc.Card(
-                                        dbc.CardBody(
-                                            dcc.Graph(
-                                                figure=confirmed_cases_chart(),
-                                                style={"height": "20vh"},
-                                            )
-                                        )
+                                    dcc.Graph(
+                                        figure=confirmed_cases_chart(),
+                                        style={"height": "20vh"},
                                     ),
                                     className="top-bottom-left-chart",
                                 ),
                                 dbc.Col(
-                                    dbc.Card(
-                                        dbc.CardBody(
-                                            dcc.Graph(
-                                                figure=infection_trajectory_chart(),
-                                                style={"height": "20vh"},
-                                            )
-                                        )
+                                    dcc.Graph(
+                                        figure=infection_trajectory_chart(),
+                                        style={"height": "20vh"},
                                     ),
                                     className="top-bottom-right-chart",
                                 ),

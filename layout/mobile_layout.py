@@ -157,8 +157,7 @@ mobile_body = [
 # Mobile layout. DO NOT PUT IT IN A FUCTION. LOADS SLOWER.
 #
 ########################################################################
-build_mobile_layout = dcc.Loading(
-    html.Div(
+build_mobile_layout = html.Div(
         [
             dcc.Location(id="url", refresh=False),
             mobile_navbar,
@@ -168,4 +167,4 @@ build_mobile_layout = dcc.Loading(
             mobile_footer,
         ]
     )
-)
+
