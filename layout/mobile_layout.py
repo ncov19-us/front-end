@@ -56,6 +56,7 @@ def feed_tab_content(active_tab):
     else:
         return news_feed()
 
+
 ########################################################################
 #
 # Confirmed and Testing Center Map Tabs
@@ -90,14 +91,21 @@ mobile_us_maps_tabs = [
         className="d-flex justify-content-between mobile-top-bar-us-map-heading-content",
     ),
     # need to fixate the map.
-    html.Div(dcc.Graph(id="mobile-us-map",
-                    #    config={#'staticPlot': True,
-                    #            'showAxisDragHandles': True,
-                    #            'showAxisRangeEntryBoxes': True,},
-                       style={"height": "54vh"})),
+    html.Div(
+        dcc.Graph(
+            id="mobile-us-map",
+            #    config={#'staticPlot': True,
+            #            'showAxisDragHandles': True,
+            #            'showAxisRangeEntryBoxes': True,},
+            style={"height": "54vh"},
+        )
+    ),
 ]
 
-@app.callback(Output("mobile-us-map", "figure"), [Input("mobile-map-tabs", "active_tab")])
+
+@app.callback(
+    Output("mobile-us-map", "figure"), [Input("mobile-map-tabs", "active_tab")]
+)
 def map_tab_content(active_tab):
     """Callback to change between news and twitter feed
     """
@@ -106,6 +114,7 @@ def map_tab_content(active_tab):
     else:
         return confirmed_scatter_mapbox()
 
+
 ########################################################################
 #
 # Mobile App body layout
@@ -113,15 +122,13 @@ def map_tab_content(active_tab):
 ########################################################################
 mobile_body = [
     html.Div(daily_stats_mobile(), className="mobile-top-bar-content"),
-    html.Div(
-        mobile_us_maps_tabs,
-    ),
+    html.Div(mobile_us_maps_tabs,),
     dbc.Row(
         dbc.Card(
             dbc.CardBody(
                 dcc.Graph(
                     figure=confirmed_cases_chart(),
-                    config={'staticPlot': True},
+                    config={"staticPlot": True},
                     style={"height": "20vh"},
                 )
             )
@@ -134,7 +141,7 @@ mobile_body = [
             dbc.CardBody(
                 dcc.Graph(
                     figure=infection_trajectory_chart(),
-                    config={'staticPlot': True},
+                    config={"staticPlot": True},
                     style={"height": "20vh"},
                 )
             )
@@ -142,10 +149,7 @@ mobile_body = [
         style={"margin-bottom": "1.5rem"},
         className="mobile-chart",
     ),
-    dbc.Row(
-        mobile_feed_tabs,
-        className="mobile-feed-content",
-    ),
+    dbc.Row(mobile_feed_tabs, className="mobile-feed-content",),
 ]
 
 ########################################################################
@@ -153,16 +157,15 @@ mobile_body = [
 # Mobile layout. DO NOT PUT IT IN A FUCTION. LOADS SLOWER.
 #
 ########################################################################
-build_mobile_layout = html.Div(
-    [
-        dcc.Location(id="url", refresh=False),
-        mobile_navbar,
-        dbc.Container(
-            mobile_body,
-            id="page-content",
-            className="mt-4",
-            fluid=True,
-        ),
-        mobile_footer,
-    ]
+build_mobile_layout = dcc.Loading(
+    html.Div(
+        [
+            dcc.Location(id="url", refresh=False),
+            mobile_navbar,
+            dbc.Container(
+                mobile_body, id="page-content", className="mt-4", fluid=True,
+            ),
+            mobile_footer,
+        ]
+    )
 )
