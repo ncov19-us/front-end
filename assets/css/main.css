@@ -373,6 +373,7 @@ p.news-txt-by-dt{
 .navbar-toggler-icon {
     margin-left: 10%;
     margin-bottom: 3%;
+    color: white;
 }
 
 .navbar-toggler {
@@ -576,3 +577,8 @@ h2.mobile-map-heading{
 /* .div.mobile-footer-content.container-fluid.row {
     padding-top: 10rem;
 } */
+
+
+.navbar-toggler{
+    color:white;
+}
