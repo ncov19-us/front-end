@@ -39,9 +39,9 @@ def news_feed(state=None) -> dbc.ListGroup:
     max_rows = 50
     list_group = dbc.ListGroup(
         [
-            dbc.Card(
-                dbc.CardHeader([html.I(className="fas fa-newspaper mr-1"), "News Feed"])
-            )
+            # dbc.Card(
+            #     dbc.CardHeader([html.I(className="fas fa-newspaper mr-1"), "News Feed"])
+            # )
         ]
         + [
             dbc.ListGroupItem(

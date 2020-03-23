@@ -8,7 +8,10 @@ import dash_html_components as html
 
 def get_daily_stats() -> Dict:
     try:
-        data1 = requests.get(url=CVTRACK_URL).json()[-1]
+        data1 = requests.get(url=CVTRACK_URL).json()[0]
+    except:
+        tested = 0
+    try:
         data2 = requests.get(url=TMP_URL).json()
         tested = data1["posNeg"]
         confirmed = data2["cases"]
@@ -20,13 +23,12 @@ def get_daily_stats() -> Dict:
         active = data2["active"]
 
     except:
-        confirmed, todays_confirmed, deaths, todays_deaths, tested, recovered = (
+        confirmed, todays_confirmed, deaths, todays_deaths, recovered = (
             0,
             0,
             0,
             0,
-            0,
-            0,
+            0
         )
 
     stats = {

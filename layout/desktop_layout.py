@@ -1,7 +1,7 @@
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
-from pages import index, navbar, footer
+from pages import desktop, navbar, footer
 
 
 def build_desktop_layout():
@@ -9,7 +9,7 @@ def build_desktop_layout():
     [
         dcc.Location(id="url", refresh=False),
         navbar,
-        dbc.Container(index.layout, id="page-content", className="mt-4", fluid=True),
+        dbc.Container(desktop.desktop_body, id="page-content", className="mt-4", fluid=True),
         footer,
     ]
 )

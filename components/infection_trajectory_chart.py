@@ -12,7 +12,7 @@ import dash_daq as daq
 from utils.settings import TIME_URL
 
 
-def infection_trajectory_chart(state=None) -> dbc.Card:
+def infection_trajectory_chart(state=None) -> go.Figure:
     """Line chart data for the selected state.
 
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
@@ -90,5 +90,6 @@ def infection_trajectory_chart(state=None) -> dbc.Card:
         legend_orientation="h",
     )
 
-    card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"})))
-    return card
+    # card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"})))
+    # return card
+    return fig

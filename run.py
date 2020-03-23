@@ -11,7 +11,7 @@ from flask import request
 from app import app, server
 from layout.desktop_layout import build_desktop_layout
 from layout.mobile_layout import build_mobile_layout
-from pages import index, mobile, footer, mobile_footer
+from pages import desktop, mobile, footer, mobile_footer
 from pages import navbar, mobile_navbar
 
 # Set default layout so Flask can start
@@ -32,7 +32,7 @@ def before_request_func():
         > 0
     )
     
-    print(f'Requests from Mobile? {MOBILE}')
+    print(f'[DEBUG]: Requests from Mobile? {MOBILE}')
     if MOBILE:
         app.layout = build_mobile_layout()
     else:                                # Desktop request

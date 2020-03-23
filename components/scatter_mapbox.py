@@ -57,8 +57,6 @@ daily_reports = wrangle(daily_reports)
 #
 ########################################################################
 
-
-
 # @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
 def scatter_mapbox():
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
@@ -100,7 +98,6 @@ def scatter_mapbox():
         hovertemplate="%{customdata[3]}<br>Confirmed: %{marker.size}<br>Deaths: %{customdata[1]}<br>Recovered: %{customdata[2]}"
     )
 
-    card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "54vh"})))
-    return card
-    # return fig
-    
+    # card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "54vh"})))
+    # return card
+    return fig    
