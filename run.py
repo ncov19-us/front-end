@@ -27,7 +27,7 @@ def before_request_func():
         > 0
     )
     
-    print(f'[DEBUG]: Requests from Mobile? {MOBILE}')
+    # print(f'[DEBUG]: Requests from Mobile? {MOBILE}')
     if MOBILE:
         app.layout = build_mobile_layout
     else:                                # Desktop request

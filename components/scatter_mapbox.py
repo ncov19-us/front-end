@@ -4,6 +4,7 @@ import pandas as pd
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import plotly.graph_objects as go
+from app import cache
 
 from utils.settings import BASE_URL, MAPBOX_ACCESS_TOKEN
 
@@ -54,6 +55,7 @@ daily_reports = wrangle(daily_reports)
 ########################################################################
 
 # @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
+@cache.memoize(timeout=3600)
 def scatter_mapbox():
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
@@ -83,7 +85,9 @@ def scatter_mapbox():
         # This takes away the colorbar on the right hand side of the plot
         coloraxis_showscale=False,
         mapbox_style="dark",
-        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=3),
+        mapbox=dict(
+            center=dict(lat=39.8097343, lon=-98.5556199),
+            zoom=2.3),
     )
 
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2

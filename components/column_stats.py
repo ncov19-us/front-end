@@ -4,6 +4,7 @@ import pandas as pd
 from typing import Dict
 import dash_bootstrap_components as dbc
 import dash_html_components as html
+from app import cache
 
 BASE_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
 
@@ -45,6 +46,7 @@ def wrangle(df) -> pd.DataFrame:
 
 daily_reports = wrangle(daily_reports)
 
+@cache.memoize(timeout=600)
 def states_confirmed_stats(state=None) -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
