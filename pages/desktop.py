@@ -156,24 +156,27 @@ desktop_body = [
                     # big map
                     html.Div(us_maps_tabs),
                     # bottom two charts
-                    html.Div(
+                    # html.Div(
                         dbc.Row(
                             [
                                 dbc.Col(
-                                    dcc.Graph(figure=confirmed_cases_chart(),),
+                                    dcc.Graph(figure=confirmed_cases_chart(),
+                                              config={'responsive':True}),
                                     className="top-bottom-left-chart",
                                     width=6,
                                 ),
                                 dbc.Col(
-                                    dcc.Graph(figure=infection_trajectory_chart()),
+                                    dcc.Graph(figure=infection_trajectory_chart(),
+                                              config={'responsive':True}),
                                     className="top-bottom-right-chart",
                                     width=6,
                                 ),
                             ],
                             no_gutters=True,
+                            className="top-bottom-charts",
                         ),
-                        className="top-bottom-charts",
-                    ),
+                        # className="top-bottom-charts",
+                    # ),
                 ],
                 className="middle-col-map-content",
                 width=8,
@@ -184,4 +187,31 @@ desktop_body = [
         no_gutters=True,
         className="middle-map-news-content mt-3",
     ),
+    # dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
+    #     # html.Div(
+    #         # dbc.Row(
+    #             [
+    #                 dbc.Col(
+    #                     dcc.Graph(figure=confirmed_cases_chart(),
+    #                               responsive=True,
+    #                               config={
+                                    
+    #                                 # 'figure.layout.height'="10rem";
+    #                                 'scrollZoom':False,
+    #                                 },
+    #                     ),
+    #                     className="top-bottom-left-chart",
+    #                     width=6,
+    #                 ),
+    #                 dbc.Col(
+    #                     dcc.Graph(figure=infection_trajectory_chart()),
+    #                     className="top-bottom-right-chart",
+    #                     width=6,
+    #                 ),
+    #             ],
+    #             no_gutters=True,
+    #         # ),
+    #         # className="top-bottom-charts",
+    #     # ),
+    # )
 ]
