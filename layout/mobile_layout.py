@@ -94,9 +94,7 @@ mobile_us_maps_tabs = [
     html.Div(
         dcc.Graph(
             id="mobile-us-map",
-            #    config={#'staticPlot': True,
-            #            'showAxisDragHandles': True,
-            #            'showAxisRangeEntryBoxes': True,},
+            config={'scrollZoom': False},
             style={"height": "54vh"},
         )
     ),
