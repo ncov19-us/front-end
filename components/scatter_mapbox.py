@@ -114,6 +114,7 @@ def confirmed_scatter_mapbox():
     # return card
     return fig
 
+
 @cache.memoize(timeout=3600)
 def drive_thru_scatter_mapbox():
     fig = px.scatter_mapbox(
