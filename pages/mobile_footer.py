@@ -59,7 +59,7 @@ mobile_footer = dbc.Container(
 #                 [
 #                     html.Span(
 #                         html.A(
-#                             html.I(className="fab fa-github mobile-fa-icons"),
+#                             html.I(className="<i class="fas fa-bars"></i>"),
 #                             href="https://github.com/ncov19-us/front-end",
 #                         ),
 #                         className="mobile-footer-social-icons mr-3",
