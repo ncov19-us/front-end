@@ -103,11 +103,6 @@ def scatter_mapbox():
         mapbox=dict(
             center=dict(lat=39.8097343, lon=-98.5556199),
             zoom=2.3),
-<<<<<<< HEAD
-        xaxis=True,
-        yaxis=True,
-=======
->>>>>>> fc3af685488d779165258acba90f04dad6d4bbdf
     )
 
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
