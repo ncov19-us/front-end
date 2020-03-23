@@ -302,6 +302,24 @@ p.news-txt-by-dt{
     color:#F3F3F3;
 }
 
+.states-stats-deaths-list-num {
+    font-weight: 500;
+    color: #FEC400;
+}
+
+.states-stats-deaths-list-state {
+    color:#F3F3F3;
+}
+
+.states-stats-recovered-list-num {
+    font-weight: 500;
+    color: #FEC400;
+}
+
+.states-stats-recovered-list-state {
+    color:#F3F3F3;
+}
+
 
 /* Footer 🦶 */
 .footer-content {
