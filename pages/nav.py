@@ -19,15 +19,10 @@ import dash_html_components as html
 
 
 dropdown_bar = dbc.Row(
-                dbc.DropdownMenu(
-                    label="Location",
-                    children=[
-                        dbc.DropdownMenuItem("US"),
-                    ]
-                ),
-                no_gutters=True,
-                className="ml-auto flex-nowrap mt-3 mt-md-0",
-                align="center",
+    dbc.DropdownMenu(label="Location", children=[dbc.DropdownMenuItem("US"),]),
+    no_gutters=True,
+    className="ml-auto flex-nowrap mt-3 mt-md-0",
+    align="center",
 )
 
 """
@@ -63,19 +58,8 @@ navbar = dbc.Navbar(
                     #         "COVID-19", className="COVID-19-text",
                     #     )
                     # ),
-                    dbc.Col(
-                        html.P(
-                            "COVID-19",
-                            className="covid-19-text"
-                        )
-                    ),
-
-                    dbc.Col(
-                        html.P(
-                            "US Cases",
-                            className="us-cases-text",
-                        )
-                    )
+                    dbc.Col(html.P("COVID-19", className="covid-19-text")),
+                    dbc.Col(html.P("US Cases", className="us-cases-text",)),
                 ],
                 align="center",
                 no_gutters=True,
@@ -84,8 +68,7 @@ navbar = dbc.Navbar(
         ),
         dbc.NavbarToggler(id="navbar-toggler"),
         dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
-
     ],
-    color='#010915',
+    color="#010915",
     dark=True,
 )

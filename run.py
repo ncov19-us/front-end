@@ -1,17 +1,12 @@
 # Imports from 3rd party libraries
 import re
-import dash
-import dash_bootstrap_components as dbc
-import dash_core_components as dcc
-import dash_html_components as html
-from dash.dependencies import Input, Output
 from flask import request
 
 # Imports from this application
 from app import app, server
 from layout.desktop_layout import build_desktop_layout
 from layout.mobile_layout import build_mobile_layout
-from pages import desktop, mobile, footer, mobile_footer
+from pages import desktop, footer, mobile_footer
 from pages import navbar, mobile_navbar
 
 # Set default layout so Flask can start

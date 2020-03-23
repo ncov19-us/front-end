@@ -2,7 +2,6 @@ import requests
 from typing import List, Dict
 from utils.settings import CVTRACK_URL, TMP_URL
 import dash_bootstrap_components as dbc
-import dash_core_components as dcc
 import dash_html_components as html
 
 

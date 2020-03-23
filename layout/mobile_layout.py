@@ -1,14 +1,14 @@
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
+from dash.dependencies import Input, Output
 
 from app import app
-from components import daily_stats
 from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
 from components import scatter_mapbox
 from components import daily_stats_mobile
-from pages import mobile, mobile_navbar, mobile_footer
+from pages import mobile_navbar, mobile_footer
 
 def build_mobile_navbar():
     
@@ -17,6 +17,39 @@ def build_mobile_navbar():
 
 def build_mobile_footer():
     pass
+
+########################################################################
+#
+# News and Twitter Tabs
+#
+########################################################################
+mobile_feed_tabs = dbc.Card(
+    [
+        dbc.CardHeader(
+            dbc.Tabs(
+                [
+                    dbc.Tab(label="Twitter Feed", tab_id="mobile-twitter-tab", labelClassName="mobile-twitter-feed-tab"),
+                    dbc.Tab(label="News Feed", tab_id="mobile-news-tab", labelClassName="mobile-news-feed-tab"),
+                ],
+                id="mobile-feed-tabs",
+                card=True,
+                active_tab="mobile-twitter-tab",
+            )
+        ),
+        dbc.CardBody(html.P(id="mobile-feed-content", className="mobile-card-text")),
+    ]
+)
+
+
+@app.callback(Output("mobile-feed-content", "children"), [Input("mobile-feed-tabs", "active_tab")])
+def feed_tab_content(active_tab):
+    """Callback to change between news and twitter feed
+    """
+    if active_tab == "mobile-twitter-tab":
+        return twitter_feed()
+    else:
+        return news_feed()
+
 
 ########################################################################
 #
@@ -58,16 +91,11 @@ def build_mobile_body():
             className="mobile-chart",
         ),
         dbc.Row(
-            news_feed(),
-            style={"margin-bottom": "1.5rem"},
-            className="mobile-feed-content",
-        ),
-        dbc.Row(
-            twitter_feed(),
-            style={"margin-bottom": "1.5rem"},
-            className="mobile-left-col-twitter-feed-content",
+                mobile_feed_tabs, className="mobile-feed-content"#, width=2
+          #  ),
         ),
     ]
+
 
 def build_mobile_layout():
     return html.Div(
