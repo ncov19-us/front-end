@@ -6,10 +6,15 @@ import dash_html_components as html
 
 
 def get_daily_stats() -> Dict:
+    # initialize the variables so it doesnt crash if both api call failed
+
+    confirmed, todays_confirmed, deaths, todays_deaths, recovered = 0, 0, 0, 0, 0
+    
     try:
         data1 = requests.get(url=CVTRACK_URL).json()[0]
     except:
         tested = 0
+    
     try:
         data2 = requests.get(url=TMP_URL).json()
         tested = data1["posNeg"]
@@ -20,7 +25,6 @@ def get_daily_stats() -> Dict:
         recovered = data2["recovered"]
         critical = data2["critical"]
         active = data2["active"]
-
     except:
         confirmed, todays_confirmed, deaths, todays_deaths, recovered = (
             0,
