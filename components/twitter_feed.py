@@ -21,9 +21,9 @@ def twitter_feed(state=None) -> List[dbc.Card]:
         doc = tm.get_tweet_by_state("US")
 
     cards = [
-        dbc.Card(
-            dbc.CardHeader([html.I(className="fab fa-twitter mr-1"), "Twitter Feed"])
-        )
+        # dbc.Card(
+        #     dbc.CardHeader([html.I(className="fab fa-twitter mr-1"), "Twitter Feed"])
+        # )
     ]
 
     username = doc["username"]
@@ -57,4 +57,6 @@ def twitter_feed(state=None) -> List[dbc.Card]:
         )
         for tweet in tweets
     ]
-    return cards
+    list_group = dbc.ListGroup(cards, flush=True)
+    # return cards
+    return list_group

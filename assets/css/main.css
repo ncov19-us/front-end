@@ -1,37 +1,93 @@
-/* Top Bar */
+/* Fonts */
+html {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+}
+
+/* Nav Bar */
+.navbar {
+    background-color: #010915;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-dark .navbar-brand {
+    color: #F3F3F3;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+    }
+
+/* Body */
+body {
+    background-color: #19202A;
+}
+
+/* Top Card Section */
 .top-bar-card-tested {
     color: #fefefe;
     text-align: center;
     font-weight: 3rem;
+    background-color: #010915;
 }
 
 .top-bar-card-confirmed {
-    color: #efae4e;
+    color: #FEC400;
+    text-align: center;
+    background-color: #010915;
+}
+
+.top-bar-value-confirmed {
+    color: #FEC400;
+    margin-top: -2vh;
+    text-align: center;
+    font-weight: 4rem;
+    font-size: 45px;
+    line-height: 53px;
+    text-shadow: none;
+}
+
+.card-text {
+    /* margin-bottom: 20vh,; */
+    margin-top: -1vh;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
     text-align: center;
 }
 
 .top-bar-card-deaths {
     color: #d9534f;
     text-align: center;
+    font-weight: 3rem;
+    background-color: #010915;
 }
 
 .top-bar-card-recovered {
     color: #5cb85d;
     text-align: center;
+    font-weight: 3rem;
+    background-color: #010915;
+}
+
+.top-bar-perc-change-tested {
+    color: #010915;
+    padding: 0px;
 }
 
 .top-bar-perc-change-confirmed {
-    color: gray;
+    color: #BDBDBD;
     padding: 0px;
 }
 
 .top-bar-perc-change-deaths {
-    color: gray;
+    color: #BDBDBD;
     padding: 0px;
 }
 
 .top-bar-perc-change-recovered {
-    color: gray;
+    color: #010915;
     padding: 0px;
 }
 

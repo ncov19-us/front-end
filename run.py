@@ -9,102 +9,19 @@ from flask import request
 
 # Imports from this application
 from app import app, server
-from pages import index, mobile
+from layout.desktop_layout import build_desktop_layout
+from layout.mobile_layout import build_mobile_layout
+from pages import desktop, mobile, footer, mobile_footer
+from pages import navbar, mobile_navbar
 
+# Set default layout so Flask can start
+app.layout = build_desktop_layout()
 
-search_bar = dbc.Row(
-    [
-        dbc.Col(dbc.Input(type="search", placeholder="Search")),
-        dbc.Col(dbc.Button("Search", color="primary", className="ml-2"), width="auto",),
-    ],
-    no_gutters=True,
-    className="ml-auto flex-nowrap mt-3 mt-md-0",
-    align="center",
-)
-
-
-navbar = dbc.Navbar(
-    [
-        html.A(
-            # User row and col to control vertical alignment of logo/brand
-            dbc.Row(
-                [
-                    dbc.Col(
-                        html.Img(
-                            src="assets/images/covid19-new-logo.png", height="30px"
-                        )
-                    ),
-                    dbc.Col(
-                        dbc.NavbarBrand(
-                            "Coronavirus COVID-19 US Cases", className="ml-2"
-                        )
-                    ),
-                ],
-                align="center",
-                no_gutters=True,
-            ),
-            href="/",
-        ),
-        dbc.NavbarToggler(id="navbar-toggler"),
-        dbc.Collapse(search_bar, id="navbar-collapse", navbar=True),
-    ],
-    color="#1f1d1e",
-    dark=True,
-)
-
-
-footer = dbc.Container(
-    dbc.Row(
-        [
-            dbc.Col(
-                html.P(
-                    """
-                        This Website relies upon publicly available data from various sources, including
-                        and not limited to U.S. Federal, State, and local governments, WHO,
-                        and John Hopkins CSSE. News feeds obtained from Twitter and NewsAPI. The content of
-                        this Website is for information purposes and makes no guarantee to be accurate.""",
-                    className="footer-disclaimer-text",
-                ),
-                className="footer-disclaimer-content",
-                width=10,
-            ),
-            dbc.Col(
-                [
-                    html.Span(
-                        html.A(
-                            html.I(className="fab fa-github"),
-                            href="https://github.com/ncov19-us/front-end",
-                        ),
-                        className="footer-social-icons mr-3",
-                    ),
-                    html.Span(
-                        "Copyright ncov19.us 2020", className="footer-copyright-text"
-                    ),
-                ],
-                className="footer-social-copyright-content",
-                width=2,
-            ),
-        ],
-    ),
-    fluid=True,
-    className="footer-content",
-)
-
-# For more explanation, see:
-# Plotly Dash User Guide, URL Routing and Multiple Apps
-# https://dash.plot.ly/urls
-app.layout = html.Div(
-    [
-        dcc.Location(id="url", refresh=False),
-        navbar,
-        dbc.Container(id="page-content", className="mt-4", fluid=True),
-        footer,
-    ]
-)
-
-
-@app.callback(Output("page-content", "children"), [Input("url", "pathname")])
-def display_page(pathname):
+@server.before_request
+def before_request_func():
+    """Checks if user agent is from mobile to determine which layout to serve before
+    user makes any requests.
+    """
     agent = request.headers.get("User_Agent")
     MOBILE = (
         len(
@@ -114,17 +31,12 @@ def display_page(pathname):
         )
         > 0
     )
-
-    # print(f'[DEBUG] {MOBILE}: {agent}')
-
-    if (pathname == "/") and not MOBILE:
-        # print("this is desktop")
-        return index.layout
-    elif (pathname == "/") and MOBILE:
-        # print("this is mobile")
-        return mobile.mobile_layout
-    else:
-        return dcc.Markdown("## Page not found")
+    
+    print(f'[DEBUG]: Requests from Mobile? {MOBILE}')
+    if MOBILE:
+        app.layout = build_mobile_layout()
+    else:                                # Desktop request
+        app.layout = build_desktop_layout()
 
 
 if __name__ == "__main__":

@@ -38,7 +38,7 @@ TIME_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/css
 WHO_URL = "https://covid.ourworldindata.org/data/total_cases.csv"
 
 # COVID-TRACKING API
-CVTRACK_URL = "https://covidtracking.com/api/us/daily"
+CVTRACK_URL = "https://covidtracking.com/api/us"
 
 # https://github.com/javieraviles/covidAPI
 TMP_URL = "https://coronavirus-19-api.herokuapp.com/countries/US"

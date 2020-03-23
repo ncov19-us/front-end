@@ -13,7 +13,7 @@ from components import daily_stats_mobile
 
 ########################################################################
 #
-# Desktop App layout
+# Mobile App layout
 #
 ########################################################################
 mobile_layout = [
