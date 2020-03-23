@@ -14,7 +14,7 @@ mobile_navbar = dbc.Navbar(
             no_gutters=True,
         ),
         dbc.NavbarToggler(id="mobile-navbar-toggler"),
-        dbc.Collapse(id="mobile-navbar-collapse", navbar=True),
+        dbc.Collapse(id="mobile-navbar-collapse", navbar=False),
     ],
     color="#010915",
     dark=True,

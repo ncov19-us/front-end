@@ -6,7 +6,7 @@ import dash_html_components as html
 mobile_footer = dbc.Container(
     dbc.Row(
         [
-            dbc.Col(
+            dbc.Row(
                 html.P(
                     """
                         This Website relies upon publicly available data from various sources, including
@@ -15,28 +15,65 @@ mobile_footer = dbc.Container(
                         this Website is for information purposes and makes no guarantee to be accurate.""",
                     className="mobile-footer-disclaimer-text",
                 ),
-                className="mobile-footer-disclaimer-content",
-                width=10,
+                className="mobile-footer-disclaimer-content"  
             ),
-            dbc.Col(
+            dbc.Row(
                 [
+                    
+                    html.Span(
+                        "Copyright 2020",
+                        className="mobile-footer-copyright-text",
+                    ),
                     html.Span(
                         html.A(
                             html.I(className="fab fa-github mobile-fa-icons"),
                             href="https://github.com/ncov19-us/front-end",
                         ),
                         className="mobile-footer-social-icons mr-3",
-                    ),
-                    html.Span(
-                        "Copyright ncov19.us 2020",
-                        className="mobile-footer-copyright-text",
-                    ),
+                    )
                 ],
-                className="mobile-footer-social-copyright-content",
-                width=2,
+                className="mobile-footer-social-copyright-content"
             ),
         ],
     ),
     fluid=True,
     className="mobile-footer-content",
 )
+
+# mobile_footer = dbc.Container(
+#     dbc.Row(
+#         [
+#             dbc.Col(
+#                 html.P(
+#                     """
+#                         This Website relies upon publicly available data from various sources, including
+#                         and not limited to U.S. Federal, State, and local governments, WHO,
+#                         and John Hopkins CSSE. News feeds obtained from Twitter and NewsAPI. The content of
+#                         this Website is for information purposes and makes no guarantee to be accurate.""",
+#                     className="mobile-footer-disclaimer-text",
+#                 ),
+#                 className="mobile-footer-disclaimer-content",
+#                 width=10,
+#             ),
+#             dbc.Col(
+#                 [
+#                     html.Span(
+#                         html.A(
+#                             html.I(className="<i class="fas fa-bars"></i>"),
+#                             href="https://github.com/ncov19-us/front-end",
+#                         ),
+#                         className="mobile-footer-social-icons mr-3",
+#                     ),
+#                     html.Span(
+#                         "Copyright ncov19.us 2020",
+#                         className="mobile-footer-copyright-text",
+#                     ),
+#                 ],
+#                 className="mobile-footer-social-copyright-content",
+#                 width=2,
+#             ),
+#         ],
+#     ),
+#     fluid=True,
+#     className="mobile-footer-content",
+# )
