@@ -20,37 +20,60 @@ from components import (
 # News and Twitter Tabs
 #
 ########################################################################
+
+tabs_styles = {}
+tab_style = {
+    "padding": "0.5rem",
+    "color": "white",
+    "backgroundColor": "#010914",
+}
+
+tab_selected_style = {
+    "fontSize": "1rem",
+    "backgroundColor": "#20242d",
+    "color": "white",
+    "padding": "0.5rem",
+}
+
 feed_tabs = dbc.Card(
     [
-        dbc.CardHeader(
-            dbc.Tabs(
-                [
-                    dbc.Tab(
+        html.Div(
+            dcc.Tabs(
+                id="left-tabs-styled-with-inline",
+                value="twitter-tab",
+                children=[
+                    dcc.Tab(
                         label="Twitter Feed",
-                        tab_id="twitter-tab",
-                        labelClassName="twitter-feed-tab",
+                        value="twitter-tab",
+                        className="left-twitter-tab",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
                     ),
-                    dbc.Tab(
+                    dcc.Tab(
                         label="News Feed",
-                        tab_id="news-tab",
-                        labelClassName="news-feed-tab",
+                        value="news-tab",
+                        className="left-news-tab",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
                     ),
                 ],
-                id="feed-tabs",
-                card=True,
-                active_tab="twitter-tab",
-            )
+                style=tabs_styles,
+                colors={"border": None, "primary": None, "background": None},
+            ),
+            className="left-tabs",
         ),
         dbc.CardBody(html.P(id="feed-content", className="card-text")),
     ]
 )
 
 
-@app.callback(Output("feed-content", "children"), [Input("feed-tabs", "active_tab")])
-def feed_tab_content(active_tab):
+@app.callback(
+    Output("feed-content", "children"), [Input("left-tabs-styled-with-inline", "value")]
+)
+def feed_tab_content(value):
     """Callback to change between news and twitter feed
     """
-    if active_tab == "twitter-tab":
+    if value == "twitter-tab":
         return twitter_feed()
     else:
         return news_feed()
@@ -63,30 +86,65 @@ def feed_tab_content(active_tab):
 ########################################################################
 stats_tabs = dbc.Card(
     [
-        dbc.CardHeader(
-            dbc.Tabs(
-                [
-                    dbc.Tab(label="Confirmed", tab_id="confirmed-tab"),
-                    dbc.Tab(label="Deaths", tab_id="deaths-tab"),
-                    dbc.Tab(label="Recovered", tab_id="recovered-tab"),
+        # dbc.CardHeader(
+        #     dbc.Tabs(
+        #         [
+        #             dbc.Tab(label="Confirmed", tab_id="confirmed-tab"),
+        #             dbc.Tab(label="Deaths", tab_id="deaths-tab"),
+        #             dbc.Tab(label="Recovered", tab_id="recovered-tab"),
+        #         ],
+        #         id="stats-tabs",
+        #         card=True,
+        #         active_tab="confirmed-tab",
+        #     )
+        # ),
+        html.Div(
+            dcc.Tabs(
+                id="right-tabs-styled-with-inline",
+                value="confirmed-tab",
+                children=[
+                    dcc.Tab(
+                        label="Confirmed",
+                        value="confirmed-tab",
+                        className="left-twitter-tab",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
+                    ),
+                    dcc.Tab(
+                        label="Deaths",
+                        value="deaths-tab",
+                        className="left-news-tab",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
+                    ),
+                    dcc.Tab(
+                        label="Recovered",
+                        value="recovered-tab",
+                        className="left-news-tab",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
+                    ),
                 ],
-                id="stats-tabs",
-                card=True,
-                active_tab="confirmed-tab",
-            )
+                style=tabs_styles,
+                colors={"border": None, "primary": None, "background": None},
+            ),
+            className="right-tabs",
         ),
         dbc.CardBody(html.P(id="stats-content", className="card-text")),
     ]
 )
 
 
-@app.callback(Output("stats-content", "children"), [Input("stats-tabs", "active_tab")])
-def stats_tab_content(active_tab):
+@app.callback(
+    Output("stats-content", "children"),
+    [Input("right-tabs-styled-with-inline", "value")],
+)
+def stats_tab_content(value):
     """Callback to change between news and twitter feed
     """
-    if active_tab == "deaths-tab":
+    if value == "deaths-tab":
         return states_deaths_stats()
-    elif active_tab == "recovered-tab":
+    elif value == "recovered-tab":
         return states_recovered_stats()
     else:
         return states_confirmed_stats()
@@ -103,23 +161,27 @@ us_maps_tabs = [
         [
             html.Div(html.H1("US Map"), className="top-bar-us-map-heading-txt",),
             html.Div(
-                dbc.Tabs(
-                    [
-                        dbc.Tab(
+                dcc.Tabs(
+                    id="middle-map-tabs-styled-with-inline",
+                    value="confirmed-us-map-tab",
+                    children=[
+                        dcc.Tab(
                             label="Confirmed",
-                            tab_id="confirmed-us-map-tab",
-                            labelClassName="confirmed-us-map-tab",
+                            value="confirmed-us-map-tab",
+                            className="confirmed-us-map-tab",
+                            style=tab_style,
+                            selected_style=tab_selected_style,
                         ),
-                        dbc.Tab(
+                        dcc.Tab(
                             label="Drive-Thru Testing",
-                            tab_id="testing-us-map-tab",
-                            labelClassName="testing-us-map-tab",
+                            value="testing-us-map-tab",
+                            className="testing-us-map-tab",
+                            style=tab_style,
+                            selected_style=tab_selected_style,
                         ),
                     ],
-                    id="map-tabs",
-                    card=True,
-                    active_tab="confirmed-us-map-tab",
-                    className="top-bar-us-map-tabs-content",
+                    style=tabs_styles,
+                    colors={"border": None, "primary": None, "background": None},
                 )
             ),
         ],
@@ -129,11 +191,13 @@ us_maps_tabs = [
 ]
 
 
-@app.callback(Output("us-map", "figure"), [Input("map-tabs", "active_tab")])
-def map_tab_content(active_tab):
+@app.callback(
+    Output("us-map", "figure"), [Input("middle-map-tabs-styled-with-inline", "value")]
+)
+def map_tab_content(value):
     """Callback to change between news and twitter feed
     """
-    if active_tab == "testing-us-map-tab":
+    if value == "testing-us-map-tab":
         return drive_thru_scatter_mapbox()
     else:
         return confirmed_scatter_mapbox()
@@ -156,36 +220,22 @@ desktop_body = [
                     # big map
                     html.Div(us_maps_tabs),
                     # bottom two charts
-                    dbc.Row(
-                        [
-                            dbc.Col(
-                                dbc.Card(
-                                    dbc.CardBody([
-                                        html.H2("Confirmed Cases",
-                                                className="top-bottom-left-chart-title",),
-                                        dcc.Graph(figure=confirmed_cases_chart(),
-                                                  config={'responsive':False},
-                                                  className="top-bottom-left-chart-figure"),
-                                    ])
+                    html.Div(
+                        dbc.Row(
+                            [
+                                dbc.Col(
+                                    dcc.Graph(figure=confirmed_cases_chart(),),
+                                    className="top-bottom-left-chart",
+                                    width=6,
                                 ),
-                                className="top-bottom-left-chart",
-                                width=6,
-                            ),
-                            dbc.Col(
-                                dbc.Card(
-                                    dbc.CardBody([
-                                        html.H2("Infection Trajectory Since 200 Cases",
-                                                className="top-bottom-right-chart-title"),
-                                        dcc.Graph(figure=infection_trajectory_chart(),
-                                                  config={'responsive':False},
-                                                  className="top-bottom-right-chart-figure"),
-                                    ]),
+                                dbc.Col(
+                                    dcc.Graph(figure=infection_trajectory_chart()),
+                                    className="top-bottom-right-chart",
+                                    width=6,
                                 ),
-                                className="top-bottom-right-chart",
-                                width=6,
-                            ),
-                        ],
-                        no_gutters=True,
+                            ],
+                            no_gutters=True,
+                        ),
                         className="top-bottom-charts",
                     ),
                 ],
@@ -198,31 +248,4 @@ desktop_body = [
         no_gutters=True,
         className="middle-map-news-content mt-3",
     ),
-    # dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
-    #     # html.Div(
-    #         # dbc.Row(
-    #             [
-    #                 dbc.Col(
-    #                     dcc.Graph(figure=confirmed_cases_chart(),
-    #                               responsive=True,
-    #                               config={
-                                    
-    #                                 # 'figure.layout.height'="10rem";
-    #                                 'scrollZoom':False,
-    #                                 },
-    #                     ),
-    #                     className="top-bottom-left-chart",
-    #                     width=6,
-    #                 ),
-    #                 dbc.Col(
-    #                     dcc.Graph(figure=infection_trajectory_chart()),
-    #                     className="top-bottom-right-chart",
-    #                     width=6,
-    #                 ),
-    #             ],
-    #             no_gutters=True,
-    #         # ),
-    #         # className="top-bottom-charts",
-    #     # ),
-    # )
 ]

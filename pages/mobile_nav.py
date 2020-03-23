@@ -18,4 +18,5 @@ mobile_navbar = dbc.Navbar(
     ],
     color="#010915",
     dark=True,
+    className="fixed-navbar",
 )
