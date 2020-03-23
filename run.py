@@ -12,6 +12,7 @@ from pages import navbar, mobile_navbar
 # Set default layout so Flask can start
 app.layout = build_desktop_layout
 
+
 @server.before_request
 def before_request_func():
     """Checks if user agent is from mobile to determine which layout to serve before
@@ -26,11 +27,11 @@ def before_request_func():
         )
         > 0
     )
-    
-    print(f'[DEBUG]: Requests from Mobile? {MOBILE}')
+
+    # print(f'[DEBUG]: Requests from Mobile? {MOBILE}')
     if MOBILE:
         app.layout = build_mobile_layout
-    else:                                # Desktop request
+    else:  # Desktop request
         app.layout = build_desktop_layout
 
 

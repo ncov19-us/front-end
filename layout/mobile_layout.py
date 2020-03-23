@@ -6,7 +6,7 @@ from dash.dependencies import Input, Output
 from app import app
 from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
-from components import scatter_mapbox
+from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import daily_stats_mobile
 from pages import mobile_navbar, mobile_footer
 
@@ -21,8 +21,16 @@ mobile_feed_tabs = dbc.Card(
         dbc.CardHeader(
             dbc.Tabs(
                 [
-                    dbc.Tab(label="Twitter Feed", tab_id="mobile-twitter-tab", labelClassName="mobile-twitter-feed-tab"),
-                    dbc.Tab(label="News Feed", tab_id="mobile-news-tab", labelClassName="mobile-news-feed-tab"),
+                    dbc.Tab(
+                        label="Twitter Feed",
+                        tab_id="mobile-twitter-tab",
+                        labelClassName="mobile-twitter-feed-tab",
+                    ),
+                    dbc.Tab(
+                        label="News Feed",
+                        tab_id="mobile-news-tab",
+                        labelClassName="mobile-news-feed-tab",
+                    ),
                 ],
                 id="mobile-feed-tabs",
                 card=True,
@@ -34,7 +42,9 @@ mobile_feed_tabs = dbc.Card(
 )
 
 
-@app.callback(Output("mobile-feed-content", "children"), [Input("mobile-feed-tabs", "active_tab")])
+@app.callback(
+    Output("mobile-feed-content", "children"), [Input("mobile-feed-tabs", "active_tab")]
+)
 def feed_tab_content(active_tab):
     """Callback to change between news and twitter feed
     """
@@ -51,39 +61,63 @@ def feed_tab_content(active_tab):
 ########################################################################
 mobile_body = [
     html.Div(daily_stats_mobile(), className="mobile-top-bar-content"),
-    html.Div([
-        html.Div([
-            html.Div(html.H1("US Map"), className="mobile-top-bar-us-map-heading-txt"),
-                html.Div(
-                    dbc.Tabs(
-                        [
-                            dbc.Tab(label="Confirmed", tab_id="confirmed-us-map-tab", labelClassName="mobile-confirmed-us-map-tab"),
-                            dbc.Tab(label="Drive-Thru Testing", tab_id="testing-us-map-tab", labelClassName="mobile-testing-us-map-tab"),
-                        ],
-                        id="map-tabs",
-                        card=True,
-                        active_tab="confirmed-us-map-tab",
-                        className="mobile-top-bar-us-map-tabs-content"
-                    )
-                ), 
-            ],
-            className="d-flex justify-content-between mobile-top-bar-us-map-heading-content"),
-            html.Div(dcc.Graph(figure=scatter_mapbox(), style={"height": "54vh"})),                   
+    html.Div(
+        [
+            html.Div(
+                [
+                    html.Div(
+                        html.H1("US Map"), className="mobile-top-bar-us-map-heading-txt"
+                    ),
+                    html.Div(
+                        dbc.Tabs(
+                            [
+                                dbc.Tab(
+                                    label="Confirmed",
+                                    tab_id="confirmed-us-map-tab",
+                                    labelClassName="mobile-confirmed-us-map-tab",
+                                ),
+                                dbc.Tab(
+                                    label="Drive-Thru Testing",
+                                    tab_id="testing-us-map-tab",
+                                    labelClassName="mobile-testing-us-map-tab",
+                                ),
+                            ],
+                            id="map-tabs",
+                            card=True,
+                            active_tab="confirmed-us-map-tab",
+                            className="mobile-top-bar-us-map-tabs-content",
+                        )
+                    ),
+                ],
+                className="d-flex justify-content-between mobile-top-bar-us-map-heading-content",
+            ),
+            html.Div(
+                dcc.Graph(figure=confirmed_scatter_mapbox(), style={"height": "54vh"})
+            ),
         ],
     ),
     dbc.Row(
-        dbc.Card(dbc.CardBody(dcc.Graph(figure=confirmed_cases_chart(), style={"height": "20vh"}))),
+        dbc.Card(
+            dbc.CardBody(
+                dcc.Graph(figure=confirmed_cases_chart(), style={"height": "20vh"})
+            )
+        ),
         # confirmed_cases_chart(),
         style={"margin-bottom": "1.5rem"},
         className="mobile-chart",
     ),
     dbc.Row(
-        dbc.Card(dbc.CardBody(dcc.Graph(figure=infection_trajectory_chart(), style={"height": "20vh"}))),
+        dbc.Card(
+            dbc.CardBody(
+                dcc.Graph(figure=infection_trajectory_chart(), style={"height": "20vh"})
+            )
+        ),
         style={"margin-bottom": "1.5rem"},
         className="mobile-chart",
     ),
     dbc.Row(
-            mobile_feed_tabs, className="mobile-feed-content"#, width=2
+        mobile_feed_tabs,
+        className="mobile-feed-content"  # , width=2
         #  ),
     ),
 ]
@@ -96,14 +130,15 @@ mobile_body = [
 ########################################################################
 build_mobile_layout = html.Div(
     [
-        dcc.Location(id="url",
-                     refresh=False),
+        dcc.Location(id="url", refresh=False),
         mobile_navbar,
-        dbc.Container(mobile_body,
-            #build_mobile_body(),
-                      id="page-content",
-                      className="mt-4",
-                      fluid=True),
+        dbc.Container(
+            mobile_body,
+            # build_mobile_body(),
+            id="page-content",
+            className="mt-4",
+            fluid=True,
+        ),
         mobile_footer,
     ]
 )
