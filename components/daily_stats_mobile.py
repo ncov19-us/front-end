@@ -72,7 +72,7 @@ def daily_stats_mobile() -> List[dbc.Row]:
             # card = dbc.Row(
             card = dbc.ListGroupItem(
                 [
-                    html.P(" ", className=f"mobile-top-bar-perc-change-{key.lower()}"),
+                    html.P(" .", className=f"mobile-top-bar-perc-change-{key.lower()}"),
                     html.H1(value, className=f"mobile-top-bar-value-{key.lower()}"),
                     html.P(f"{key}", className="mobile-card-text"),
                 ],
