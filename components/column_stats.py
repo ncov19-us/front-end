@@ -4,6 +4,7 @@ import pandas as pd
 from typing import Dict
 import dash_bootstrap_components as dbc
 import dash_html_components as html
+
 from app import cache
 
 BASE_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
@@ -26,6 +27,7 @@ def wrangle(df) -> pd.DataFrame:
     df = df[df["Country/Region"] == "US"]
     # Remove Cruise Ships
     df = df[~(df["Province/State"].str.endswith("Princess"))]
+    df = df[~(df["Province/State"] == "US")]
     # Re-order columns
     df = df[
         [
@@ -46,6 +48,7 @@ def wrangle(df) -> pd.DataFrame:
 
 daily_reports = wrangle(daily_reports)
 
+
 @cache.memoize(timeout=600)
 def states_confirmed_stats(state=None) -> dbc.ListGroup:
     """    
@@ -56,13 +59,19 @@ def states_confirmed_stats(state=None) -> dbc.ListGroup:
     :rtype: dbc.ListGroup    
     """
     list_group = dbc.ListGroup(
-       [
+        [
             dbc.ListGroupItem(
                 [
-
-                    html.P([
-                        html.Span(f"{daily_reports.iloc[i]['Confirmed']}", className="states-stats-confirmed-list-num"),
-                        html.Span(f"   {daily_reports.iloc[i]['Province/State']}", className="states-stats-confirmed-list-state"),
+                    html.P(
+                        [
+                            html.Span(
+                                f"{daily_reports.iloc[i]['Confirmed']}",
+                                className="states-stats-confirmed-list-num",
+                            ),
+                            html.Span(
+                                f"   {daily_reports.iloc[i]['Province/State']}",
+                                className="states-stats-confirmed-list-state",
+                            ),
                         ],
                         className="states-stats-confirmed-list-txt",
                     ),
@@ -87,13 +96,19 @@ def states_deaths_stats(state=None) -> dbc.ListGroup:
     :rtype: dbc.ListGroup    
     """
     list_group = dbc.ListGroup(
-       [
+        [
             dbc.ListGroupItem(
                 [
-
-                    html.P([
-                        html.Span(f"{daily_reports.iloc[i]['Deaths']}", className="states-stats-deaths-list-num"),
-                        html.Span(f"   {daily_reports.iloc[i]['Province/State']}", className="states-stats-deaths-list-state"),
+                    html.P(
+                        [
+                            html.Span(
+                                f"{daily_reports.iloc[i]['Deaths']}",
+                                className="states-stats-deaths-list-num",
+                            ),
+                            html.Span(
+                                f"   {daily_reports.iloc[i]['Province/State']}",
+                                className="states-stats-deaths-list-state",
+                            ),
                         ],
                         className="states-stats-deaths-list-txt",
                     ),
@@ -105,7 +120,7 @@ def states_deaths_stats(state=None) -> dbc.ListGroup:
         flush=True,
         className="states-stats-death-listgroup",
     )
-    
+
     return list_group
 
 
@@ -117,13 +132,19 @@ def states_recovered_stats(state=None) -> dbc.ListGroup:
     :rtype: dbc.ListGroup    
     """
     list_group = dbc.ListGroup(
-       [
+        [
             dbc.ListGroupItem(
                 [
-
-                    html.P([
-                        html.Span(f"{daily_reports.iloc[i]['Recovered']}", className="states-stats-recovered-list-num"),
-                        html.Span(f"   {daily_reports.iloc[i]['Province/State']}", className="states-stats-recovered-list-state"),
+                    html.P(
+                        [
+                            html.Span(
+                                f"{daily_reports.iloc[i]['Recovered']}",
+                                className="states-stats-recovered-list-num",
+                            ),
+                            html.Span(
+                                f"   {daily_reports.iloc[i]['Province/State']}",
+                                className="states-stats-recovered-list-state",
+                            ),
                         ],
                         className="states-stats-recovered-list-txt",
                     ),
@@ -135,8 +156,9 @@ def states_recovered_stats(state=None) -> dbc.ListGroup:
         flush=True,
         className="states-stats-recovered-listgroup",
     )
-    
+
     return list_group
+
 
 if __name__ == "__main__":
     print(daily_reports)

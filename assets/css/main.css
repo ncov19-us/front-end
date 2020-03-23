@@ -1,3 +1,5 @@
+
+/************************ 💻Common 📱 Styling ************************/
 /* Fonts */
 html {
     font-family: Roboto, sans-serif;
@@ -6,20 +8,26 @@ html {
 
 }
 
-.a {
-    text-decoration: none !important;
-}
-
-/* .p {
-    text-decoration: none !important;
-} */
-
 /* Body */
 body {
     background-color: #19202A;
 }
 
-/* Nav Bar */
+.list-group-item{
+    padding: 0.5rem;
+    border-radius: 1rem;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    background-color: #0b1218;
+    /* box-shadow: 4px 4px 6px rgba(0,0,0,0.75); */
+}
+
+.list-group-item:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
+    transform: translateY(-2px);
+}
+
+/*  Nav Bar */
 .navbar {
     background-color: #010915;
     border: none;
@@ -35,16 +43,15 @@ body {
 }
 
 
-.covid-19-text {
-    margin-left: .2
-    rem;
+.navbar-brand-covid-19-text {
+    margin-left: .2rem;
     margin-bottom: auto;
     font-weight: bold;
     font-size: 2rem;
 
     }
 
-.us-cases-text {
+.navbar-brand-us-cases-text {
     margin-bottom: auto;
     font-weight: normal;
     font-size: 2rem;
@@ -53,20 +60,7 @@ body {
 
 }
 
-.col {
-    margin-top: 0.1rem;
-    /* width: 100%; */
-    text-decoration: none;
-}
-
-
-
-/* Top Card Section */
-.top-bar-content.row {
-    margin-left: 0.2rem;
-    margin-right: .2rem;
-}
-
+/* Applies to all Cards 🎴 */
 .card-body {
     background-color: #010915;
     padding: 1rem;
@@ -77,6 +71,14 @@ body {
     margin-top: -.6rem;
     font-weight: normal;
     text-align: center;
+}
+
+/************************* 💻 Desktop Styling 💻 **************************/
+
+/* Top Card Section */
+.top-bar-content.row {
+    margin-left: 0.2rem;
+    margin-right: .2rem;
 }
 
 .top-bar-card-tested {
@@ -176,12 +178,7 @@ body {
     font-size: .7rem;
 }
 
-
-
-
-
-/* Map and Graph Styling */
-
+/* 🌎 Map and Graph 📊 Styling */
 .top-bar-us-map-heading-txt{
     font-size: 24px;
     color: #ffffff;
@@ -215,26 +212,93 @@ body {
     /* remove plotly toolbar */
 }
 
-/* Left Sidebar */
+/* Bottom Left and Right Charts */
+
+.top-bottom-charts {
+    
+}
+
+.top-bottom-left-chart{
+    height: 20vh;
+    padding: 0%;
+    margin: 0%;
+}
+
+.top-bottom-right-chart{
+    height: 20vh;
+    padding: 0%;
+    margin: 0%;
+}
+
+
+
+
+/* 👈 Left  Twitter 🐦 News 📰 Feed Sidebar */
+
+/* get rid of tab padding */
+.card-header {
+    max-width:100%;
+    padding: 0 0 .75rem 0;
+}
+
+
 .left-col-twitter-feed-content{
     overflow-y: scroll;
     height: 80vh;
+    scroll-behavior: smooth;
 
 }
 
-/* Twitter Feed  */
+.left-col-twitter-feed-content {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.left-col-twitter-feed-content::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
 
-/* News Feed  */
+p.tweet-dt {
+    margin-bottom: 0;
+}
+
+.tweets-txt-by-dt{
+    margin-bottom: 0.1rem;
+}
+
+p.news-txt-by-dt{
+    margin-bottom: 0;
+}
 
 
-/* Right Sidbar */
+
+/* 👉 Right Detailed List Sidebar */
+
 .right-col-news-feed-content{
     overflow-y: scroll;
     height: 80vh;
+    scroll-behavior: smooth;
+}
+
+.right-col-news-feed-content {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.right-col-news-feed-content::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.states-stats-confirmed-list-num {
+    font-weight: 500;
+    color: #FEC400;
+}
+
+.states-stats-confirmed-list-state {
+    color:#F3F3F3;
 }
 
 
-/* Footer */
+/* Footer 🦶 */
 .footer-content {
     background-color: #010915;
 }
@@ -247,17 +311,17 @@ body {
 
 .footer-disclaimer-text {
     width: 50rem;
-    /* margin-right: 10rem; */
+
 }
 
 .footer-social-copyright-content.col-2 {
     margin-top: 1rem;
-    margin-bottom: 1rem;
-    /* margin-left: 3 rem; */
+    margin-bottom: 0.5rem;
+
 }
 .footer-social-icons.mr-3 {
-    /* padding-top: 10rem; */
-    size: 10rem;
+    /* size: 10rem; */
+    margin-top: 1rem;
 }
 
 .fab.fa-github {
@@ -268,18 +332,17 @@ body {
 .footer-copyright-text {
     font-size: 1rem;
     text-align: center;
-
+    color: #8B8D91;
 }
-/* .footer-social-copyright-content.col-2 {
-    margin-bottom: 1.1rem;
-} */
 
 
 
 
-/* MOBILE STYLING */
 
-/* Nav Bar */
+
+/********************* 📱 MOBILE STYLING 📱 **********************/
+
+/* Mobile Nav Bar */
 .align-items-center .no-gutters .row {
     padding: 3% 0 3% 5%;
 }
@@ -320,7 +383,7 @@ body {
     padding: 0 0 0 0;
 }
 
-/* Card section */
+/* Mobile Card 🎴 section */
 
 /* mobile-top-bar-content {
     padding: 20%;
@@ -427,9 +490,10 @@ body {
 
 
 
-/* Mobile Map */
+/* 📱 Mobile Map 🌎*/
+
 .mobile-top-bar-us-map-heading-content {
-    margin-top 3rem;
+    margin-top: 3rem;
 }
 
 h2.mobile-map-heading{
@@ -439,88 +503,30 @@ h2.mobile-map-heading{
     margin-left: 6.5rem;
 }
 
-.top-bottom-left-chart{
-    margin-right: 0.5rem;
+/* 📱 Footer 🦶 */
+.mobile-footer-content {
+    background-color: #010915;
 }
 
-.top-bottom-right-chart{
-    margin-left: 0.5rem;
+.mobile-footer-disclaimer-content {
+    padding-top: 1rem;
+    font-size: 0.65rem;
+    
 }
 
-.tweet-item{
-    text-align: left;
-    margin-bottom: 0.5rem;
-    background-color: #0b1218;
+
+.mobile-footer-social-copyright-content.col-2 {
+    margin-top: 1rem;
 }
 
-.news-item{
-    text-align: left;
-    margin-bottom: 0.5rem;
-    background-color: #0b1218;
+.mobile-fa-icons {
+    font-size: 2rem;
+    color: #8B8D91;
 }
 
-.list-group-item{
-    padding: 0.75rem;
-    border-radius: 0.25rem;
-}
-
-.tweets-txt-by-dt{
-    margin-bottom: 0.1rem;
-}
-
-p.news-txt-by-dt{
-    margin-bottom: 0;
-}
-
-/* Left Sidebar */
-.left-col-twitter-feed-content{
-    overflow-y: scroll;
-    height: 80vh;
-    scroll-behavior: smooth;
-}
-
-.left-col-twitter-feed-content {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-}
-.left-col-twitter-feed-content::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-}
-
-/* get rid of tab padding */
-.card-header {
-    max-width:100%;
-    padding: 0 0 .75rem 0;
-}
-
-p.tweet-dt {
-    margin-bottom: 0;
-}
-
-/* from anisha*/
-.top-bar-us-map-heading-txt{
-    font-size: 24px;
-    color: #ffffff;
-    max-width: 61%;
-}
-
-.card-header-tabs{
-    margin-right:0%;
-}
-
-.col-8 {
-    max-width: 61%;
-}
-
-.middle-styling {
-    flex-wrap: nowrap;
-}
-
-.middle-col-map-content {
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
-.graph-styling {
-    padding: 0px;
+.mobile-footer-copyright-text {
+    margin-top: 1rem;
+    font-size: 0.5rem;
+    display: inline-block;
+    color: #8B8D91;
 }

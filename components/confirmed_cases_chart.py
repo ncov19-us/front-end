@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 from app import cache
 from utils.settings import TIME_URL
 
+
 @cache.memoize(timeout=3600)
 def confirmed_cases_chart(state=None) -> go.Figure:
     """Bar chart data for the selected state.
@@ -23,7 +24,7 @@ def confirmed_cases_chart(state=None) -> go.Figure:
 
     fig = px.line(df, x="Date", y="Confirmed Cases")
     fig.update_layout(
-        margin={"r": 10, "t": 40, "l": 0, "b": 0},
+        margin={"r": 0, "t": 0, "l": 0, "b": 0},
         template="plotly_dark",
         title="U.S. Confirmed Cases",
         xaxis_title=None,
