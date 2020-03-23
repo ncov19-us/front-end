@@ -68,7 +68,11 @@ def get_drive_thru_testing_centers():
 
 # @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
 @cache.memoize(timeout=3600)
+<<<<<<< HEAD
 def confirmed_scatter_mapbox():
+=======
+def scatter_mapbox():
+>>>>>>> fc3af685488d779165258acba90f04dad6d4bbdf
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
@@ -99,8 +103,11 @@ def confirmed_scatter_mapbox():
         mapbox=dict(
             center=dict(lat=39.8097343, lon=-98.5556199),
             zoom=2.3),
+<<<<<<< HEAD
         xaxis=True,
         yaxis=True,
+=======
+>>>>>>> fc3af685488d779165258acba90f04dad6d4bbdf
     )
 
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
