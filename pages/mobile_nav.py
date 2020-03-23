@@ -13,9 +13,10 @@ mobile_navbar = dbc.Navbar(
             align="center",
             no_gutters=True,
         ),
-        dbc.NavbarToggler(id="mobile-navbar-toggler"),
+        dbc.NavbarToggler(id="mobile-navbar-toggler", className="fas fa-bars" ),
         dbc.Collapse(id="mobile-navbar-collapse", navbar=False),
     ],
     color="#010915",
     dark=True,
+    className="fixed-navbar",
 )

@@ -378,11 +378,19 @@ p.news-txt-by-dt{
     padding: 0 0 0 0;
 }
 
+.fixed-navbar {
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 1;
+}
+
 /* Mobile Card 🎴 section */
 
 .mobile-top-bar-content {
     margin-left: 1rem;
     margin-right: 1rem;
+    margin-top: 5rem;
 }
 .mobile-card-text {
     margin-top: -.75rem;

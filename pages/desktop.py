@@ -20,33 +20,75 @@ from components import (
 # News and Twitter Tabs
 #
 ########################################################################
+
+tabs_styles = {"height": "44px"}
+tab_style = {
+    "borderBottom": "1px solid #d6d6d6",
+    "padding": "6px",
+    "fontWeight": "bold",
+}
+
+tab_selected_style = {
+    "borderTop": "1px solid #d6d6d6",
+    "borderBottom": "1px solid #d6d6d6",
+    "backgroundColor": "#119DFF",
+    "color": "white",
+    "padding": "6px",
+}
+
 feed_tabs = dbc.Card(
     [
-        dbc.CardHeader(
-            dbc.Tabs(
-                [
-                    dbc.Tab(
+        # dbc.CardHeader(
+        #     dbc.Tabs(
+        #         [
+        #             dbc.Tab(
+        #                 label="Twitter Feed",
+        #                 tab_id="twitter-tab",
+        #                 labelClassName="twitter-feed-tab",
+        #             ),
+        #             dbc.Tab(
+        #                 label="News Feed",
+        #                 tab_id="news-tab",
+        #                 labelClassName="news-feed-tab",
+        #             ),
+        #         ],
+        #         id="feed-tabs",
+        #         card=True,
+        #         active_tab="twitter-tab",
+        #     )
+        # ),
+        html.Div(
+            dcc.Tabs(
+                id="left-tabs-styled-with-inline",
+                value="twitter-tab",
+                children=[
+                    dcc.Tab(
                         label="Twitter Feed",
-                        tab_id="twitter-tab",
-                        labelClassName="twitter-feed-tab",
+                        value="twitter-tab",
+                        className="left-twitter-tab",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
                     ),
-                    dbc.Tab(
+                    dcc.Tab(
                         label="News Feed",
-                        tab_id="news-tab",
-                        labelClassName="news-feed-tab",
+                        value="news-tab",
+                        className="left-news-tab",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
                     ),
                 ],
-                id="feed-tabs",
-                card=True,
-                active_tab="twitter-tab",
-            )
+                style=tabs_styles,
+            ),
+            className="left-tabs",
         ),
-        dbc.CardBody(html.P(id="feed-content", className="card-text")),
+        html.Div(id="feed-content", className="card-text"),
     ]
 )
 
 
-@app.callback(Output("feed-content", "children"), [Input("feed-tabs", "active_tab")])
+@app.callback(
+    Output("feed-content", "children"), [Input("tabs-styled-with-inline", "value")]
+)
 def feed_tab_content(active_tab):
     """Callback to change between news and twitter feed
     """
