@@ -3,6 +3,7 @@ import pandas as pd
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import plotly.graph_objects as go
+from app import cache
 
 from utils.settings import BASE_URL, MAPBOX_ACCESS_TOKEN
 
@@ -66,7 +67,12 @@ def get_drive_thru_testing_centers():
 ########################################################################
 
 # @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
+@cache.memoize(timeout=3600)
+<<<<<<< HEAD
 def confirmed_scatter_mapbox():
+=======
+def scatter_mapbox():
+>>>>>>> fc3af685488d779165258acba90f04dad6d4bbdf
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
@@ -94,7 +100,14 @@ def confirmed_scatter_mapbox():
         # This takes away the colorbar on the right hand side of the plot
         coloraxis_showscale=False,
         mapbox_style="dark",
-        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=3),
+        mapbox=dict(
+            center=dict(lat=39.8097343, lon=-98.5556199),
+            zoom=2.3),
+<<<<<<< HEAD
+        xaxis=True,
+        yaxis=True,
+=======
+>>>>>>> fc3af685488d779165258acba90f04dad6d4bbdf
     )
 
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
@@ -109,7 +122,7 @@ def confirmed_scatter_mapbox():
     # return card
     return fig
 
-
+@cache.memoize(timeout=3600)
 def drive_thru_scatter_mapbox():
     fig = px.scatter_mapbox(
         get_drive_thru_testing_centers(),
@@ -121,8 +134,14 @@ def drive_thru_scatter_mapbox():
     fig.layout.update(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         mapbox_style="dark",
-        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=3),
+        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=2.3),
+        dragmode=False,
     )
+    # print(fig.layout)
+    # fig.layout.XAxis(fixedrange=True)
+    # fig.layout.YAxis(fixedrange=True)
+    # xaxis=go.layout.XAxis(fixedrange=True),
+    #     yaxis=go.layout.YAxis(fixedrange=True),
     # print(fig.data[0].hovertemplate)
     fig.data[0].update(
         hovertemplate="<b><a href='%{customdata[0]}' style='color:white'>%{hovertext}</a></b>",

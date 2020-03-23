@@ -16,6 +16,7 @@ requests = "*"
 dash-daq = "*"
 flask-mobility = "*"
 python-dateutil = "*"
+flask-caching = "*"
 
 [dev-packages]
 pylint = "*"
