@@ -2,6 +2,12 @@
 html {
     font-family: Roboto, sans-serif;
     font-style: normal;
+    color: #F3F3F3;
+}
+
+/* Body */
+body {
+    background-color: #19202A;
 }
 
 /* Nav Bar */
@@ -11,18 +17,16 @@ html {
 }
 
 .covid-19-text {
-    /* display: inline-block; */
     margin-left: 10px;
     color: #F3F3F3;
     font-weight: bold;
     font-size: 36px;
     line-height: 42px;
     text-shadow: none;
-    /* max-width: 1000px; */
+    
 }
 
 .us-cases-text {
-    
     color: #F3F3F3;
     font-weight: normal;
     font-size: 36px;
@@ -35,11 +39,9 @@ html {
     width: 188px;
 }
 
-
-/* Body */
-body {
-    background-color: #19202A;
-}
+/* .us-cases-text p:hover{
+    text-decoration: none !important;
+} */
 
 /* Top Card Section */
 .top-bar-card-tested {
@@ -49,6 +51,15 @@ body {
     background-color: #010915;
 }
 
+.top-bar-value-tested {
+    margin-top: -2vh;
+    text-align: center;
+    font-weight: 4rem;
+    font-size: 45px;
+    line-height: 53px;
+    text-shadow: none;
+}
+
 .top-bar-card-confirmed {
     color: #FEC400;
     text-align: center;
@@ -56,7 +67,39 @@ body {
 }
 
 .top-bar-value-confirmed {
-    color: #FEC400;
+    margin-top: -2vh;
+    text-align: center;
+    font-weight: 4rem;
+    font-size: 45px;
+    line-height: 53px;
+    text-shadow: none;
+}
+
+
+.top-bar-card-deaths {
+    color: #D92C25;
+    text-align: center;
+    font-weight: 3rem;
+    background-color: #010915;
+}
+
+.top-bar-value-deaths {
+    margin-top: -2vh;
+    text-align: center;
+    font-weight: 4rem;
+    font-size: 45px;
+    line-height: 53px;
+    text-shadow: none;
+}
+
+.top-bar-card-recovered {
+    color: #03DA32;
+    text-align: center;
+    font-weight: 3rem;
+    background-color: #010915;
+}
+
+.top-bar-value-recovered {
     margin-top: -2vh;
     text-align: center;
     font-weight: 4rem;
@@ -66,26 +109,11 @@ body {
 }
 
 .card-text {
-    /* margin-bottom: 20vh,; */
     margin-top: -1vh;
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
     text-align: center;
-}
-
-.top-bar-card-deaths {
-    color: #d9534f;
-    text-align: center;
-    font-weight: 3rem;
-    background-color: #010915;
-}
-
-.top-bar-card-recovered {
-    color: #5cb85d;
-    text-align: center;
-    font-weight: 3rem;
-    background-color: #010915;
 }
 
 .top-bar-perc-change-tested {
@@ -130,6 +158,11 @@ body {
 
 /* Map and Graph Styling */
 
+.top-bar-us-map-heading-txt{
+font-size: 24px;
+color: #ffffff;
+} 
+
 /* .card-body{
     padding: 0%;
     margin: 1%;
@@ -139,17 +172,33 @@ body {
     flex-wrap: nowrap;
 }
 
+.middle-col-map-content {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
 .graph-styling {
     padding: 0px;
 }
 
-/* Left Twitter Feed */
+/* https://community.plot.ly/t/is-it-possible-to-hide-the-floating-toolbar/4911 */
+.modebar{
+    display: none !important; 
+    /* remove plotly toolbar */
+}
+
+/* Left Sidebar */
 .left-col-twitter-feed-content{
     overflow-y: scroll;
     height: 80vh;
 }
 
-/* Right News Feed */
+/* Twitter Feed  */
+
+/* News Feed  */
+
+
+/* Right Sidbar */
 .right-col-news-feed-content{
     overflow-y: scroll;
     height: 80vh;
@@ -174,20 +223,12 @@ body {
 
 }
 
-/* Hide floating toolbar from all charts */
-/* https://community.plot.ly/t/is-it-possible-to-hide-the-floating-toolbar/4911 */
-.modebar{
-    display: none !important;
-}
+
+
 
 /* MOBILE STYLING */
 
-h2.mobile-map-heading{
-    font-size: 2.5rem;
-    font-weight: normal;
-    line-height: 1;
-    margin-left: 6.5rem;
-}
+/* Nav Bar */
 
 
 /* Han: i have no idea how to inherit so copy pasta */
@@ -204,12 +245,16 @@ h2.mobile-map-heading{
     margin-bottom: 1.5rem;
 }
 
-
-
-
-
 .mobile-top-bar-card-recovered {
     color: #5cb85d;
     text-align: center;
     margin-bottom: 1.5rem;
+}
+
+
+h2.mobile-map-heading{
+    font-size: 2.5rem;
+    font-weight: normal;
+    line-height: 1;
+    margin-left: 6.5rem;
 }

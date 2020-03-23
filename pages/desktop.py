@@ -97,7 +97,7 @@ desktop_body= [
                     # big map
                     html.Div([
                         html.Div([
-                            html.Div(html.H1("US Map"), className="top-bar-us-map-heading-txt"),
+                            html.Div(html.P("US Map"), className="top-bar-us-map-heading-txt"),
                             html.Div(
                                    dbc.Tabs(
                                             [
