@@ -5,7 +5,7 @@ import dash_html_components as html
 from app import cache
 from utils.settings import NEWS_API_URL
 
-@cache.memoize(timeout=900)
+# @cache.memoize(timeout=900)
 def news_feed(state=None) -> dbc.ListGroup:
     """Displays news feed on the right hand side of the display. Adjust the NewsAPI time
     time to Eastern Time (w/ DST).
@@ -55,6 +55,7 @@ def news_feed(state=None) -> dbc.ListGroup:
                         className="news-txt-by-dt",
                     ),
                 ],
+                className="news-item",
                 href=df.iloc[i]["url"],
                 target="_blank",
             )

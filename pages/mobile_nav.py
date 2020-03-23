@@ -4,33 +4,18 @@ import dash_html_components as html
 
 mobile_navbar = dbc.Navbar(
     [
-        html.A(
-            # User row and col to control vertical alignment of logo/brand
-            dbc.Row(
-                [
-                    dbc.Col(
-                        html.P(
-                            "COVID-19",
-                            className="mobile-covid-19-text"
-                        )
-                    ),
-
-                    dbc.Col(
-                        html.P(
-                            "US Cases",
-                            className="mobile-us-cases-text",
-                        )
-                    )
-                ],
-                align="center",
-                no_gutters=True,
-            ),
-            href="/",
+        # User row and col to control vertical alignment of logo/brand
+        dbc.Row(
+            [
+                dbc.Col(html.P("COVID-19", className="mobile-covid-19-text")),
+                dbc.Col(html.P("US Cases", className="mobile-us-cases-text",)),
+            ],
+            align="center",
+            no_gutters=True,
         ),
         dbc.NavbarToggler(id="mobile-navbar-toggler"),
         dbc.Collapse(id="mobile-navbar-collapse", navbar=True),
-
     ],
-    color='#010915',
+    color="#010915",
     dark=True,
 )

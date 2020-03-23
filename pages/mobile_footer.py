@@ -3,7 +3,6 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 
-
 mobile_footer = dbc.Container(
     dbc.Row(
         [
@@ -23,13 +22,14 @@ mobile_footer = dbc.Container(
                 [
                     html.Span(
                         html.A(
-                            html.I(className="mobile-fab fa-github"),
+                            html.I(className="fab fa-github mobile-fa-icons"),
                             href="https://github.com/ncov19-us/front-end",
                         ),
                         className="mobile-footer-social-icons mr-3",
                     ),
                     html.Span(
-                        "Copyright ncov19.us 2020", className="mobile-footer-copyright-text"
+                        "Copyright ncov19.us 2020",
+                        className="mobile-footer-copyright-text",
                     ),
                 ],
                 className="mobile-footer-social-copyright-content",

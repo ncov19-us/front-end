@@ -44,28 +44,25 @@ def update_df(town):
 
 navbar = dbc.Navbar(
     [
-        html.A(
-            # User row and col to control vertical alignment of logo/brand
-            dbc.Row(
-                [
-                    # dbc.Col(
-                    #     html.Img(
-                    #         src="assets/images/covid19-new-logo.png", height="30px"
-                    #     )
-                    # ),
-                    dbc.Col(
-                        dbc.NavbarBrand([
-                            html.P("COVID-19", className="covid-19-text"),
-                            html.P("US Cases", className="us-cases-text"),
-                        ])
-                    ),
-                    # dbc.Col(html.P("COVID-19", className="covid-19-text")),
-                    # dbc.Col(html.P("US Cases", className="us-cases-text",)),
-                ],
-                align="center",
-                no_gutters=True,
-            ),
-            href="/",
+        # User row and col to control vertical alignment of logo/brand
+        dbc.Row(
+            [
+                # dbc.Col(
+                #     html.Img(src="assets/images/covid19-new-logo.png", height="30px")
+                # ),
+                dbc.Col(
+                    dbc.NavbarBrand(
+                        [
+                            html.P("COVID-19", className="navbar-brand-covid-19-text"),
+                            html.P("US Cases", className="navbar-brand-us-cases-text"),
+                        ]
+                    )
+                ),
+                # dbc.Col(html.P("COVID-19", className="covid-19-text")),
+                # dbc.Col(html.P("US Cases", className="us-cases-text",)),
+            ],
+            align="center",
+            no_gutters=True,
         ),
         dbc.NavbarToggler(id="navbar-toggler"),
         dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
