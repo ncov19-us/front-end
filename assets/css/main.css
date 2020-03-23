@@ -10,14 +10,31 @@ html {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.navbar-dark .navbar-brand {
+.covid-19-text {
+    /* display: inline-block; */
+    margin-left: 10px;
     color: #F3F3F3;
-    font-family: Roboto;
-    font-style: normal;
     font-weight: bold;
     font-size: 36px;
     line-height: 42px;
-    }
+    text-shadow: none;
+    /* max-width: 1000px; */
+}
+
+.us-cases-text {
+    
+    color: #F3F3F3;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+    text-shadow: none;
+}
+
+.col {
+    margin-top: 15px;
+    width: 188px;
+}
+
 
 /* Body */
 body {
@@ -73,30 +90,51 @@ body {
 
 .top-bar-perc-change-tested {
     color: #010915;
+    margin-top: -1vh;
     padding: 0px;
+    font-size: 10px;
+    line-height: 12px;
 }
 
 .top-bar-perc-change-confirmed {
     color: #BDBDBD;
+    margin-top: -1vh;
     padding: 0px;
+    font-size: 10px;
+    line-height: 12px;  
 }
 
 .top-bar-perc-change-deaths {
     color: #BDBDBD;
+    margin-top: -1vh;
     padding: 0px;
+    font-size: 10px;
+    line-height: 12px;
 }
 
 .top-bar-perc-change-recovered {
     color: #010915;
+    margin-top: -1vh;
     padding: 0px;
+    font-size: 10px;
+    line-height: 12px;
 }
+
 
 
 /* Map and Graph Styling */
 
-.card-body{
+/* .card-body{
     padding: 0%;
     margin: 1%;
+} */
+
+.middle-styling {
+    flex-wrap: nowrap;
+}
+
+.graph-styling {
+    padding: 0px;
 }
 
 /* Left Twitter Feed */
@@ -160,11 +198,9 @@ h2.mobile-map-heading{
     margin-bottom: 1.5rem;
 }
 
-.mobile-top-bar-card-deaths {
-    color: #d9534f;
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
+
+
+
 
 .mobile-top-bar-card-recovered {
     color: #5cb85d;

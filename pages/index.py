@@ -24,6 +24,7 @@ layout = [
             dbc.Col(
                 twitter_feed(), className="left-col-twitter-feed-content", width=2
             ),
+
             # MIDDLE - MAPS COL
             dbc.Col(
                 [
@@ -56,6 +57,6 @@ layout = [
             ),
         ],
         no_gutters=True,
-        className="middle-map-news-content mt-3",
+        className="middle-map-news-content mt-3 middle-styling",
     ),
 ]

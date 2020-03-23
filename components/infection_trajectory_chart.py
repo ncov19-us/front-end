@@ -90,5 +90,7 @@ def infection_trajectory_chart(state=None) -> dbc.Card:
         legend_orientation="h",
     )
 
-    card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"})))
+    # card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"})))
+    card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"}),
+    className="graph-styling"))
     return card

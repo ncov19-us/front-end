@@ -100,7 +100,9 @@ def scatter_mapbox():
         hovertemplate="%{customdata[3]}<br>Confirmed: %{marker.size}<br>Deaths: %{customdata[1]}<br>Recovered: %{customdata[2]}"
     )
 
-    card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "54vh"})))
+    # card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "54vh"})))
+    card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "54vh"}),
+    className="graph-styling"))
     return card
     # return fig
     

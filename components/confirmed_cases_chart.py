@@ -38,5 +38,7 @@ def confirmed_cases_chart(state=None) -> dbc.Card:
         showlegend=False,
     )
 
-    card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"})))
+    # card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"})))
+    card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"}),
+    className="graph-styling"))
     return card
