@@ -1,9 +1,10 @@
 from typing import List
 import dash_bootstrap_components as dbc
 import dash_html_components as html
+from app import cache
 from utils.settings import tm
 
-
+@cache.memoize(timeout=900)
 def twitter_feed(state=None) -> List[dbc.Card]:
     """Displays twitter feed on the left hand side of the display.
 
