@@ -12,7 +12,7 @@ import dash_daq as daq
 from utils.settings import TIME_URL
 
 
-def confirmed_cases_chart(state=None) -> dbc.Card:
+def confirmed_cases_chart(state=None) -> go.Figure:
     """Bar chart data for the selected state.
 
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
@@ -39,6 +39,5 @@ def confirmed_cases_chart(state=None) -> dbc.Card:
     )
 
     # card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"})))
-    card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"}),
-    className="graph-styling"))
-    return card
+    # return card
+    return fig

@@ -120,6 +120,12 @@ body {
     line-height: 12px;
 }
 
+.card-body {
+    padding: 1rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 100px;
+}
+
 
 
 /* Map and Graph Styling */
