@@ -5,7 +5,7 @@ from app import cache
 from utils.settings import TIME_URL
 
 
-@cache.memoize(timeout=3600)
+# @cache.memoize(timeout=3600)
 def infection_trajectory_chart(state=None) -> go.Figure:
     """Line chart data for the selected state.
 
@@ -51,6 +51,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             y=merged["Italy"],
             name="Italy",
             opacity=0.7,
+            line={"color": "#D92C25"},
             mode="lines+markers",
             hovertemplate=template,
         )
@@ -61,6 +62,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             y=merged["South Korea"],
             name="South Korea",
             opacity=0.7,
+            line={"color": "#03DA32"},
             mode="lines+markers",
             hovertemplate=template,
         )
@@ -71,7 +73,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             y=merged["United States"],
             name="United States",
             text="United States",
-            line={"width": 5, "color": "#00BFFF"},
+            line={"width": 5, "color": "#FEC400"},
             mode="lines+markers",
             hovertemplate=template,
         )
@@ -79,7 +81,8 @@ def infection_trajectory_chart(state=None) -> go.Figure:
     fig.update_layout(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         template="plotly_dark",
-        title="Days since 200 Cases",
+        # title="Days since 200 Cases",
+        autosize=True,
         showlegend=True,
         legend_orientation="h",
     )

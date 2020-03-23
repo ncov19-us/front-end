@@ -48,7 +48,7 @@ mobile_feed_tabs = dbc.Card(
 @app.callback(
     Output("mobile-feed-content", "children"), [Input("mobile-feed-tabs", "active_tab")]
 )
-def feed_tab_content(active_tab):
+def mobile_feed_tab_content(active_tab):
     """Callback to change between news and twitter feed
     """
     if active_tab == "mobile-twitter-tab":
@@ -94,9 +94,7 @@ mobile_us_maps_tabs = [
     html.Div(
         dcc.Graph(
             id="mobile-us-map",
-            #    config={#'staticPlot': True,
-            #            'showAxisDragHandles': True,
-            #            'showAxisRangeEntryBoxes': True,},
+            config={'scrollZoom': False},
             style={"height": "54vh"},
         )
     ),
@@ -106,7 +104,7 @@ mobile_us_maps_tabs = [
 @app.callback(
     Output("mobile-us-map", "figure"), [Input("mobile-map-tabs", "active_tab")]
 )
-def map_tab_content(active_tab):
+def mobile_map_tab_content(active_tab):
     """Callback to change between news and twitter feed
     """
     if active_tab == "mobile-testing-us-map-tab":
@@ -128,7 +126,8 @@ mobile_body = [
             dbc.CardBody(
                 dcc.Graph(
                     figure=confirmed_cases_chart(),
-                    config={"staticPlot": True},
+                    config={#"staticPlot": True,
+                            'scrollZoom': False},
                     style={"height": "20vh"},
                 )
             )
@@ -141,8 +140,10 @@ mobile_body = [
             dbc.CardBody(
                 dcc.Graph(
                     figure=infection_trajectory_chart(),
-                    config={"staticPlot": True},
+                    config={#"staticPlot": True,
+                            'scrollZoom': False,},
                     style={"height": "20vh"},
+                    
                 )
             )
         ),

@@ -140,36 +140,67 @@ def stats_tab_content(active_tab):
 #
 ########################################################################
 
-us_maps_tabs = [
-    html.Div(
-        [
-            html.Div(html.H1("US Map"), className="top-bar-us-map-heading-txt",),
-            html.Div(
-                dbc.Tabs(
-                    [
-                        dbc.Tab(
-                            label="Confirmed",
-                            tab_id="confirmed-us-map-tab",
-                            labelClassName="confirmed-us-map-tab",
-                        ),
-                        dbc.Tab(
-                            label="Drive-Thru Testing",
-                            tab_id="testing-us-map-tab",
-                            labelClassName="testing-us-map-tab",
-                        ),
-                    ],
-                    id="map-tabs",
-                    card=True,
-                    active_tab="confirmed-us-map-tab",
-                    className="top-bar-us-map-tabs-content",
-                )
-            ),
-        ],
-        className="d-flex justify-content-between top-bar-us-map-heading-content",
-    ),
-    html.Div(dcc.Graph(id="us-map", style={"height": "54vh"})),
-]
+# us_maps_tabs = [
+#     html.Div(
+#         [
+#             html.Div(html.H1("US Map"), className="top-bar-us-map-heading-txt",),
+#             html.Div(
+#                 dbc.Tabs(
+#                     [
+#                         dbc.Tab(
+#                             label="Confirmed",
+#                             tab_id="confirmed-us-map-tab",
+#                             labelClassName="confirmed-us-map-tab",
+#                         ),
+#                         dbc.Tab(
+#                             label="Drive-Thru Testing",
+#                             tab_id="testing-us-map-tab",
+#                             labelClassName="testing-us-map-tab",
+#                         ),
+#                     ],
+#                     id="map-tabs",
+#                     card=True,
+#                     active_tab="confirmed-us-map-tab",
+#                     className="top-bar-us-map-tabs-content",
+#                 )
+#             ),
+#         ],
+#         className="d-flex justify-content-between top-bar-us-map-heading-content",
+#     ),
+#     html.Div(dcc.Graph(id="us-map", style={"height": "54vh"})),
+# ]
 
+us_maps_tabs = dbc.Card(
+    dbc.CardBody([
+        html.Div(
+            [
+                html.Div("US Map", className="top-bar-us-map-heading-txt",),
+                html.Div(
+                    dbc.Tabs(
+                        [
+                            dbc.Tab(
+                                label="Confirmed",
+                                tab_id="confirmed-us-map-tab",
+                                labelClassName="confirmed-us-map-tab",
+                            ),
+                            dbc.Tab(
+                                label="Drive-Thru Testing",
+                                tab_id="testing-us-map-tab",
+                                labelClassName="testing-us-map-tab",
+                            ),
+                        ],
+                        id="map-tabs",
+                        card=True,
+                        active_tab="confirmed-us-map-tab",
+                        className="top-bar-us-map-tabs-content",
+                    )
+                ),
+            ],
+            className="d-flex justify-content-between top-bar-us-map-heading-content",
+        ),
+        html.Div(dcc.Graph(id="us-map", style={"height": "54vh"})),
+    ]),
+)
 
 @app.callback(Output("us-map", "figure"), [Input("map-tabs", "active_tab")])
 def map_tab_content(active_tab):
@@ -196,24 +227,48 @@ desktop_body = [
             dbc.Col(
                 [
                     # big map
-                    html.Div(us_maps_tabs),
+                    # html.Div(us_maps_tabs),
+                    dbc.Row(
+                        [
+                            dbc.Col(
+                                us_maps_tabs,
+                                className="top-top-map",
+                                width=12,
+                            ),
+                        ],
+                        # no_gutters=True,
+                    ),
                     # bottom two charts
-                    html.Div(
-                        dbc.Row(
-                            [
-                                dbc.Col(
-                                    dcc.Graph(figure=confirmed_cases_chart(),),
-                                    className="top-bottom-left-chart",
-                                    width=6,
+                    dbc.Row(
+                        [
+                            dbc.Col(
+                                dbc.Card(
+                                    dbc.CardBody([
+                                        html.Div("Confirmed Cases",
+                                                className="top-bottom-left-chart-title",),
+                                        dcc.Graph(figure=confirmed_cases_chart(),
+                                                  config={'responsive':False},
+                                                  className="top-bottom-left-chart-figure"),
+                                    ])
                                 ),
-                                dbc.Col(
-                                    dcc.Graph(figure=infection_trajectory_chart()),
-                                    className="top-bottom-right-chart",
-                                    width=6,
+                                className="top-bottom-left-chart",
+                                width=6,
+                            ),
+                            dbc.Col(
+                                dbc.Card(
+                                    dbc.CardBody([
+                                        html.Div("Infection Trajectory Since 200 Cases",
+                                                className="top-bottom-right-chart-title"),
+                                        dcc.Graph(figure=infection_trajectory_chart(),
+                                                  config={'responsive':False},
+                                                  className="top-bottom-right-chart-figure"),
+                                    ]),
                                 ),
-                            ],
-                            no_gutters=True,
-                        ),
+                                className="top-bottom-right-chart",
+                                width=6,
+                            ),
+                        ],
+                        no_gutters=True,
                         className="top-bottom-charts",
                     ),
                 ],
@@ -226,4 +281,31 @@ desktop_body = [
         no_gutters=True,
         className="middle-map-news-content mt-3",
     ),
+    # dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
+    #     # html.Div(
+    #         # dbc.Row(
+    #             [
+    #                 dbc.Col(
+    #                     dcc.Graph(figure=confirmed_cases_chart(),
+    #                               responsive=True,
+    #                               config={
+                                    
+    #                                 # 'figure.layout.height'="10rem";
+    #                                 'scrollZoom':False,
+    #                                 },
+    #                     ),
+    #                     className="top-bottom-left-chart",
+    #                     width=6,
+    #                 ),
+    #                 dbc.Col(
+    #                     dcc.Graph(figure=infection_trajectory_chart()),
+    #                     className="top-bottom-right-chart",
+    #                     width=6,
+    #                 ),
+    #             ],
+    #             no_gutters=True,
+    #         # ),
+    #         # className="top-bottom-charts",
+    #     # ),
+    # )
 ]
