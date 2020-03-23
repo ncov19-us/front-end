@@ -382,8 +382,8 @@ p.news-txt-by-dt{
 /* Mobile Card 🎴 section */
 
 .mobile-top-bar-content {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 0rem;
+    margin-right: 0rem;
 }
 .mobile-card-text {
     margin-top: -.75rem;
@@ -516,16 +516,29 @@ p.news-txt-by-dt{
 /* 📱 Mobile Map 🌎*/
 
 .mobile-top-bar-us-map-heading-content {
-    margin-top: 3rem;
+    margin-top: 0rem;
 }
 
-h2.mobile-map-heading{
-    font-size: 2.5rem;
+.mobile-top-bar-us-map-heading-txt {
+    font-size: 1.25rem;
     font-weight: normal;
-    line-height: 1;
-    margin-left: 6.5rem;
+    color: #ffffff;
+    max-width: 50%;
 }
 
+.mobile-confirmed-us-map-tab, .mobile-testing-us-map-tab {
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+/* 📱 Mobile Chart */
+
+.mobile-top-bottom-left-chart-title, .mobile-top-bottom-right-chart-title {
+    font-size: 1.25rem;
+    font-weight: normal;
+    color: #ffffff;
+    max-width: 100%;
+}
 /* 📱 Footer 🦶 */
 .mobile-footer-content {
     background-color: #010915;
@@ -568,3 +581,9 @@ h2.mobile-map-heading{
 /* .div.mobile-footer-content.container-fluid.row {
     padding-top: 10rem;
 } */
+
+/* mobile twitter and news feed styling */
+.mobile-feed-card-body{
+    height: 75vh;
+    overflow: scroll;
+}
