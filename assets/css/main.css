@@ -3,11 +3,16 @@ html {
     font-family: Roboto, sans-serif;
     font-style: normal;
     color: #F3F3F3;
+
 }
 
 .a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
+
+/* .p {
+    text-decoration: none !important;
+} */
 
 /* Body */
 body {
@@ -18,139 +23,132 @@ body {
 .navbar {
     background-color: #010915;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.covid-19-text {
-    margin-left: 10px;
-    color: #F3F3F3;
-    font-weight: bold;
-    font-size: 2rem;
-    }
-
-.us-cases-text {
-    color: #F3F3F3;
-    font-weight: normal;
-    font-size: 36px;
-    line-height: 42px;
     text-shadow: none;
 }
 
-.col {
-    margin-top: 15px;
-    width: 188px;
+.navbar-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none !important;
 }
 
-/* .us-cases-text p:hover{
-    text-decoration: none !important;
-} */
+
+.covid-19-text {
+    margin-left: .2
+    rem;
+    margin-bottom: auto;
+    font-weight: bold;
+    font-size: 2rem;
+
+    }
+
+.us-cases-text {
+    margin-bottom: auto;
+    font-weight: normal;
+    font-size: 2rem;
+    text-shadow: none;
+    margin-left: 5%;
+
+}
+
+.col {
+    margin-top: 0.1rem;
+    /* width: 100%; */
+    text-decoration: none;
+}
+
+
 
 /* Top Card Section */
+.card-text {
+    margin-top: -.6rem;
+    font-weight: normal;
+    text-align: center;
+}
+
 .top-bar-card-tested {
     color: #fefefe;
     text-align: center;
-    font-weight: 3rem;
+    font-size: .9rem;
     background-color: #010915;
 }
 
 .top-bar-value-tested {
-    margin-top: -2vh;
-    text-align: center;
+    margin-top: -1.2rem;
     font-weight: 4rem;
-    font-size: 45px;
-    line-height: 53px;
+    font-size: 2.75rem;
     text-shadow: none;
 }
 
 .top-bar-card-confirmed {
     color: #FEC400;
     text-align: center;
+    font-size: .9rem;
     background-color: #010915;
 }
 
 .top-bar-value-confirmed {
-    margin-top: -2vh;
-    text-align: center;
+    margin-top: -1.2rem;
     font-weight: 4rem;
-    font-size: 45px;
-    line-height: 53px;
+    font-size: 2.75rem;
     text-shadow: none;
 }
-
 
 .top-bar-card-deaths {
     color: #D92C25;
     text-align: center;
-    font-weight: 3rem;
+    font-size: .9rem;
     background-color: #010915;
 }
 
 .top-bar-value-deaths {
-    margin-top: -2vh;
-    text-align: center;
+    margin-top: -1.2rem;
     font-weight: 4rem;
-    font-size: 45px;
-    line-height: 53px;
+    font-size: 2.75rem;
     text-shadow: none;
 }
 
 .top-bar-card-recovered {
     color: #03DA32;
     text-align: center;
-    font-weight: 3rem;
+    font-size: .9rem;
     background-color: #010915;
 }
 
 .top-bar-value-recovered {
-    margin-top: -2vh;
-    text-align: center;
+    margin-top: -1.2rem;
     font-weight: 4rem;
-    font-size: 45px;
-    line-height: 53px;
+    font-size: 2.75rem;
     text-shadow: none;
-}
-
-.card-text {
-    margin-top: -1vh;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
 }
 
 .top-bar-perc-change-tested {
     color: #010915;
-    margin-top: -1vh;
-    padding: 0px;
-    font-size: 10px;
-    line-height: 12px;
+    margin-top: -.5rem;
+    font-size: .70rem;
 }
 
 .top-bar-perc-change-confirmed {
     color: #BDBDBD;
-    margin-top: -1vh;
-    padding: 0px;
-    font-size: 10px;
-    line-height: 12px;  
+    margin-top: -.5rem;
+    font-size: .7rem;
 }
 
 .top-bar-perc-change-deaths {
     color: #BDBDBD;
-    margin-top: -1vh;
-    padding: 0px;
-    font-size: 10px;
-    line-height: 12px;
+    margin-top: -.5rem;
+    font-size: .7rem;
 }
 
 .top-bar-perc-change-recovered {
     color: #010915;
-    margin-top: -1vh;
-    padding: 0px;
-    font-size: 10px;
-    line-height: 12px;
+    margin-top: -.5rem;
+    font-size: .7rem;
 }
 
 .card-body {
-    padding: 1rem;
+    padding: 1.2rem;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
     border-radius: 100px;
 }
@@ -160,14 +158,18 @@ body {
 /* Map and Graph Styling */
 
 .top-bar-us-map-heading-txt{
-font-size: 24px;
-color: #ffffff;
-} 
+    font-size: 24px;
+    color: #ffffff;
+    max-width: 61%;
+}
 
-/* .card-body{
-    padding: 0%;
-    margin: 1%;
-} */
+.card-header-tabs{
+    margin-right:0%;
+}
+
+.col-8 {
+    max-width: 61%;
+}
 
 .middle-styling {
     flex-wrap: nowrap;
@@ -192,6 +194,7 @@ color: #ffffff;
 .left-col-twitter-feed-content{
     overflow-y: scroll;
     height: 80vh;
+
 }
 
 /* Twitter Feed  */
@@ -230,28 +233,156 @@ color: #ffffff;
 /* MOBILE STYLING */
 
 /* Nav Bar */
+.align-items-center .no-gutters .row {
+    padding: 3% 0 3% 5%;
+}
+/* .navbar .navbar-expand-md .navbar-light .navbar-dark {
 
+} */
 
-/* Han: i have no idea how to inherit so copy pasta */
+/* .navbar {
+    /* padding: 3% 0 3% 5%; */
+    /* display: flex;
+    flex-direction: row;
+    align-items: center;
+} */ 
+
+.mobile-covid-19-text {
+    padding: 6% 0 0% 0%;
+    /* margin-bottom: auto; */
+    font-weight: bold;
+    font-size: 1.5rem;
+    width: 7.75rem;
+    }
+
+.mobile-us-cases-text {
+    padding: 7% 0 0% 0%;
+    /* margin-bottom: auto; */
+    font-weight: normal;
+    font-size: 1.5rem;
+    text-shadow: none;
+}
+
+.navbar-toggler-icon {
+    /* margin-top: -30% */
+    margin-left: 10%;
+    margin-bottom: 20%;
+}
+
+.navbar-toggler {
+    padding: 0 0 0 0;
+}
+
+/* Card section */
+
+/* mobile-top-bar-content {
+    padding: 20%;
+} */
+
+.mobile-card-text {
+    margin-top: -.5rem;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 0.2rem;
+    /* padding: 10 10 10 10  */
+}
+
 .mobile-top-bar-card-tested {
     color: #fefefe;
     text-align: center;
-    font-weight: 3rem;
-    margin-bottom: 1.5rem;
+    font-size: .9rem;
+    background-color: #010915;
+    margin-bottom: 1.3rem;
+}
+
+.mobile-top-bar-value-tested {
+    margin-top: -1.2rem;
+    font-weight: 4rem;
+    font-size: 2.75rem;
+    text-shadow: none;
 }
 
 .mobile-top-bar-card-confirmed {
-    color: #efae4e;
+    color: #FEC400;
     text-align: center;
-    margin-bottom: 1.5rem;
+    font-size: .9rem;
+    background-color: #010915;
+    margin-bottom: 1.3rem;
+}
+
+.mobile-top-bar-value-confirmed {
+    margin-top: -1.2rem;
+    font-weight: 4rem;
+    font-size: 2.75rem;
+    text-shadow: none;
+}
+
+.mobile-top-bar-card-deaths {
+    color: #D92C25;
+    text-align: center;
+    font-size: .9rem;
+    background-color: #010915;
+    margin-bottom: 1.3rem;
+}
+
+.mobile-top-bar-value-deaths {
+    margin-top: -1.2rem;
+    font-weight: 4rem;
+    font-size: 2.75rem;
+    text-shadow: none;
 }
 
 .mobile-top-bar-card-recovered {
-    color: #5cb85d;
+    color: #03DA32;
     text-align: center;
-    margin-bottom: 1.5rem;
+    font-size: .9rem;
+    background-color: #010915;
+    margin-bottom: 4.3rem;
 }
 
+.mobile-top-bar-value-recovered {
+    margin-top: -1.2rem;
+    font-weight: 4rem;
+    font-size: 2.75rem;
+    text-shadow: none;
+}
+
+.mobile-top-bar-perc-change-tested {
+    color: #010915;
+    margin-top: -.1rem;
+    font-size: .70rem;
+}
+
+.mobile-top-bar-perc-change-confirmed {
+    color: #BDBDBD;
+    margin-top: -.1rem;
+    font-size: .7rem;
+}
+
+.mobile-top-bar-perc-change-deaths {
+    color: #BDBDBD;
+    margin-top: -.1rem;
+    font-size: .7rem;
+}
+
+.mobile-top-bar-perc-change-recovered {
+    color: #010915;
+    margin-top: -.1rem;
+    font-size: .7rem;
+}
+
+.mobile-card-body {
+    padding: 1.2rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 100px;
+}
+
+
+
+/* Mobile Map */
+.mobile-top-bar-us-map-heading-content {
+    margin-top 3rem;
+}
 
 h2.mobile-map-heading{
     font-size: 2.5rem;
@@ -259,3 +390,4 @@ h2.mobile-map-heading{
     line-height: 1;
     margin-left: 6.5rem;
 }
+
