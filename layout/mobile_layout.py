@@ -4,12 +4,9 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from app import app
-<<<<<<< HEAD
 from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
-=======
->>>>>>> han: app: freeze mobile maps. app: add memoization
 from components import daily_stats_mobile
 from components import scatter_mapbox
 from components import confirmed_cases_chart, infection_trajectory_chart
@@ -60,51 +57,103 @@ def feed_tab_content(active_tab):
     else:
         return news_feed()
 
+########################################################################
+#
+# Confirmed and Testing Center Map Tabs
+#
+########################################################################
+
+us_maps_tabs = [
+    html.Div(
+        [
+            html.Div(html.H1("US Map"), className="mobile-top-bar-us-map-heading-txt",),
+            html.Div(
+                dbc.Tabs(
+                    [
+                        dbc.Tab(
+                            label="Confirmed",
+                            tab_id="mobile-confirmed-us-map-tab",
+                            labelClassName="mobile-confirmed-us-map-tab",
+                        ),
+                        dbc.Tab(
+                            label="Drive-Thru Testing",
+                            tab_id="mobile-testing-us-map-tab",
+                            labelClassName="mobile-testing-us-map-tab",
+                        ),
+                    ],
+                    id="mobile-map-tabs",
+                    card=True,
+                    active_tab="mobile-confirmed-us-map-tab",
+                    className="mobile-top-bar-us-map-tabs-content",
+                )
+            ),
+        ],
+        className="d-flex justify-content-between mobile-top-bar-us-map-heading-content",
+    ),
+    # need to fixate the map.
+    html.Div(dcc.Graph(id="mobile-us-map",
+                    #    config={#'staticPlot': True,
+                    #            'showAxisDragHandles': True,
+                    #            'showAxisRangeEntryBoxes': True,},
+                       style={"height": "54vh"})),
+]
+
+@app.callback(Output("mobile-us-map", "figure"), [Input("mobile-map-tabs", "active_tab")])
+def map_tab_content(active_tab):
+    """Callback to change between news and twitter feed
+    """
+    if active_tab == "mobile-testing-us-map-tab":
+        return drive_thru_scatter_mapbox()
+    else:
+        return confirmed_scatter_mapbox()
 
 ########################################################################
 #
-# Mobile App layout
+# Mobile App body layout
 #
 ########################################################################
 mobile_body = [
     html.Div(daily_stats_mobile(), className="mobile-top-bar-content"),
     html.Div(
-        [
-            html.Div(
-                [
-                    html.Div(
-                        html.H1("US Map"), className="mobile-top-bar-us-map-heading-txt"
-                    ),
-                    html.Div(
-                        dbc.Tabs(
-                            [
-                                dbc.Tab(
-                                    label="Confirmed",
-                                    tab_id="confirmed-us-map-tab",
-                                    labelClassName="mobile-confirmed-us-map-tab",
-                                ),
-                                dbc.Tab(
-                                    label="Drive-Thru Testing",
-                                    tab_id="testing-us-map-tab",
-                                    labelClassName="mobile-testing-us-map-tab",
-                                ),
-                            ],
-                            id="map-tabs",
-                            card=True,
-                            active_tab="confirmed-us-map-tab",
-                            className="mobile-top-bar-us-map-tabs-content",
-                        )
-                    ),
-                ],
-                className="d-flex justify-content-between mobile-top-bar-us-map-heading-content",
-            ),
-            html.Div(
-                dcc.Graph(figure=confirmed_scatter_mapbox(),
-                          config={'staticPlot': True},
-                          style={"height": "54vh"})
-            ),
-        ],
+        us_maps_tabs,
     ),
+    # html.Div(
+    #     [
+    #         us_maps_tabs()html.Div(
+    #             [
+    #                 html.Div(
+    #                     html.H1("US Map"), className="mobile-top-bar-us-map-heading-txt"
+    #                 ),
+    #                 html.Div(
+    #                     dbc.Tabs(
+    #                         [
+    #                             dbc.Tab(
+    #                                 label="Confirmed",
+    #                                 tab_id="confirmed-us-map-tab",
+    #                                 labelClassName="mobile-confirmed-us-map-tab",
+    #                             ),
+    #                             dbc.Tab(
+    #                                 label="Drive-Thru Testing",
+    #                                 tab_id="testing-us-map-tab",
+    #                                 labelClassName="mobile-testing-us-map-tab",
+    #                             ),
+    #                         ],
+    #                         id="map-tabs",
+    #                         card=True,
+    #                         active_tab="confirmed-us-map-tab",
+    #                         className="mobile-top-bar-us-map-tabs-content",
+    #                     )
+    #                 ),
+    #             ],
+    #             className="d-flex justify-content-between mobile-top-bar-us-map-heading-content",
+    #         ),
+    #         html.Div(
+    #             dcc.Graph(figure=confirmed_scatter_mapbox(),
+    #                       config={'staticPlot': True},
+    #                       style={"height": "54vh"})
+    #         ),
+    #     ],
+    # ),
     dbc.Row(
         dbc.Card(
             dbc.CardBody(

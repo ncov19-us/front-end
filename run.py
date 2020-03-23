@@ -27,11 +27,7 @@ def before_request_func():
         )
         > 0
     )
-<<<<<<< HEAD
-
-=======
     
->>>>>>> han: app: freeze mobile maps. app: add memoization
     # print(f'[DEBUG]: Requests from Mobile? {MOBILE}')
     if MOBILE:
         app.layout = build_mobile_layout

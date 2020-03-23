@@ -99,6 +99,8 @@ def confirmed_scatter_mapbox():
         mapbox=dict(
             center=dict(lat=39.8097343, lon=-98.5556199),
             zoom=2.3),
+        xaxis=True,
+        yaxis=True,
     )
 
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
@@ -113,7 +115,7 @@ def confirmed_scatter_mapbox():
     # return card
     return fig
 
-
+@cache.memoize(timeout=3600)
 def drive_thru_scatter_mapbox():
     fig = px.scatter_mapbox(
         get_drive_thru_testing_centers(),
@@ -125,8 +127,14 @@ def drive_thru_scatter_mapbox():
     fig.layout.update(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         mapbox_style="dark",
-        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=3),
+        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=2.3),
+        dragmode=False,
     )
+    # print(fig.layout)
+    # fig.layout.XAxis(fixedrange=True)
+    # fig.layout.YAxis(fixedrange=True)
+    # xaxis=go.layout.XAxis(fixedrange=True),
+    #     yaxis=go.layout.YAxis(fixedrange=True),
     # print(fig.data[0].hovertemplate)
     fig.data[0].update(
         hovertemplate="<b><a href='%{customdata[0]}' style='color:white'>%{hovertext}</a></b>",
