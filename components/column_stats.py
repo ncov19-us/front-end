@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 import pandas as pd
 from typing import Dict
 import dash_bootstrap_components as dbc
-import dash_core_components as dcc
 import dash_html_components as html
 
 BASE_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"

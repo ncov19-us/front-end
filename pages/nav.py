@@ -60,7 +60,7 @@ navbar = dbc.Navbar(
                     ),
                     dbc.Col(
                         dbc.NavbarBrand(
-                            "COVID-19 US Cases", className="ml-2"
+                            "Coronavirus COVID19 US Cases", className="ml-2"
                         )
                     ),
                 ],
