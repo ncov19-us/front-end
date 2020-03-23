@@ -2,28 +2,26 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 
-# dropdown_bar = dbc.Row(
-#     dcc.Dropdown(
-#         options=[
-#             {'label': 'New York City', 'value': 'NYC'},
-#             {'label': 'Montreal', 'value': 'MTL'},
-#             {'label': 'San Francisco', 'value': 'SF'},
-#         ],
-#         value='MTL',
-#         clearable=False
-#     ),
-#     no_gutters=True,
-#     className="ml-auto flex-nowrap",
-#     align="center",
-# )
-
 
 dropdown_bar = dbc.Row(
     dbc.DropdownMenu(label="Location", children=[dbc.DropdownMenuItem("US"),]),
     no_gutters=True,
-    className="ml-auto flex-nowrap mt-3 mt-md-0",
+    className="dropdown-location-menu ml-auto flex-nowrap mt-3 mt-md-0",
     align="center",
 )
+
+about_bar = dbc.Row(
+                dbc.NavbarBrand(
+                    [
+                        html.A("Resources", id="navbar-resources-link", className="navbar-brand-links", 
+                            href="/about"),
+                        html.A("About",  className="navbar-brand-links", 
+                            href="/resources")
+                    ]
+                ),
+                className="ml-auto flex-nowrap mt-3 mt-md-0",
+                align="center"
+            )
 
 """
 https://community.plot.ly/t/callbacks-with-a-drop-down-with-multi-select/11235/4
@@ -58,14 +56,15 @@ navbar = dbc.Navbar(
                         ]
                     )
                 ),
-                # dbc.Col(html.P("COVID-19", className="covid-19-text")),
-                # dbc.Col(html.P("US Cases", className="us-cases-text",)),
+
             ],
             align="center",
             no_gutters=True,
         ),
         dbc.NavbarToggler(id="navbar-toggler"),
+        
         dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
+        dbc.NavbarBrand(about_bar)
     ],
     color="#010915",
     dark=True,

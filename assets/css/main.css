@@ -3,6 +3,7 @@
 /* Fonts */
 html {
     font-family: Roboto, sans-serif;
+    letter-spacing: 0.01em;
     font-style: normal;
     color: #F3F3F3;
 
@@ -53,7 +54,7 @@ body {
     font-weight: bold;
     font-size: 2rem;
 
-    }
+}
 
 .navbar-brand-us-cases-text {
     margin-bottom: auto;
@@ -62,6 +63,34 @@ body {
     text-shadow: none;
     margin-left: 5%;
 
+}
+
+.dropdown-location-menu .dropdown-toggle {
+    background-color: #262a32;
+    background-image: none;
+    min-width: 150px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.dropdown .btn {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.navbar-brand-links {
+    margin-bottom: auto;
+    font-weight: 300;
+    font-size: 1.15rem;
+    text-shadow: none;
+}
+
+.navbar-brand-links:hover {
+    text-decoration: none;
+}
+
+#navbar-resources-link {
+    margin-right: 1.5rem;
 }
 
 /* Applies to all Cards 🎴 */
