@@ -128,6 +128,7 @@ us_maps_tabs = [
     html.Div(dcc.Graph(id="us-map", style={"height": "54vh"})),
 ]
 
+
 @app.callback(Output("us-map", "figure"), [Input("map-tabs", "active_tab")])
 def map_tab_content(active_tab):
     """Callback to change between news and twitter feed
@@ -136,6 +137,7 @@ def map_tab_content(active_tab):
         return drive_thru_scatter_mapbox()
     else:
         return confirmed_scatter_mapbox()
+
 
 ########################################################################
 #
