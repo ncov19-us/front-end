@@ -62,10 +62,11 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             y=merged["South Korea"],
             name="South Korea",
             opacity=0.7,
-            line={"color": "#03DA32"},
+            line={"color": "#000000"},
             mode="lines+markers",
             hovertemplate=template,
-        )
+        ),
+
     )
     fig.add_trace(
         go.Scatter(
@@ -85,7 +86,14 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         autosize=True,
         showlegend=True,
         legend_orientation="h",
+        # paper_bgcolor='rgba(0,0,0,0)',
+        # plot_bgcolor='rgba(0,0,0,0)',
+        xaxis_showgrid=False,
+        yaxis_showgrid=False
     )
+
+    fig.update_layout(xaxis_showgrid=False, yaxis_showgrid=False)
+
 
     # card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"})))
     # return card
