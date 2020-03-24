@@ -20,11 +20,14 @@ app = dash.Dash(
     external_stylesheets=external_stylesheets,
     meta_tags=meta_tags,
 )
-cache = Cache(app.server,
-                config={
-                'CACHE_TYPE': 'filesystem',
-                'CACHE_DEFAULT_TIMEOUT': 3600,
-                'CACHE_DIR': "cache"})
+cache = Cache(
+    app.server,
+    config={
+        "CACHE_TYPE": "filesystem",
+        "CACHE_DEFAULT_TIMEOUT": 3600,
+        "CACHE_DIR": "cache",
+    },
+)
 
 app.config.suppress_callback_exceptions = True
 app.title = "Coronavirus COVID19 US Dashboard"

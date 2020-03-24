@@ -54,7 +54,13 @@ navbar = dbc.Navbar(
                 dbc.Col(
                     dbc.NavbarBrand(
                         [
-                            html.A(html.P("COVID-19", className="navbar-brand-covid-19-text"), className="page-title-link", href="/"),
+                            html.A(
+                                html.P(
+                                    "COVID-19", className="navbar-brand-covid-19-text"
+                                ),
+                                className="page-title-link",
+                                href="/",
+                            ),
                             html.P("US Cases", className="navbar-brand-us-cases-text"),
                         ]
                     )
@@ -65,7 +71,7 @@ navbar = dbc.Navbar(
         ),
         dbc.NavbarToggler(id="navbar-toggler"),
         dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
-        dbc.NavbarBrand(about_bar),
+        # dbc.NavbarBrand(about_bar),
     ],
     color="#010915",
     dark=True,
