@@ -183,10 +183,16 @@ body {
 }
 
 /* 🌎 Map and Graph 📊 Styling */
-.top-bar-us-map-heading-txt{
-    font-size: 24px;
+.top-bar-us-map-heading-txt {
+    font-size: 2rem;
     color: #ffffff;
     max-width: 61%;
+}
+
+.top-bottom-left-chart-title, .top-bottom-right-chart-title {
+    font-size: 1.5rem;
+    color: #ffffff;
+    max-width: 100%;
 }
 
 .card-header-tabs{
@@ -194,7 +200,7 @@ body {
 }
 
 .col-8 {
-    max-width: 61%;
+    max-width: 65%;
 }
 
 .middle-styling {
@@ -202,8 +208,8 @@ body {
 }
 
 .middle-col-map-content {
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
 }
 
 .graph-styling {
@@ -219,21 +225,26 @@ body {
 /* Bottom Left and Right Charts */
 
 .top-bottom-charts {
-    height: 10%;
+    height: 7%;
 }
 
 .top-bottom-left-chart{
-    height: 10%;
-    padding: 0%;
-    margin: 0%;
-    margin-top: 1rem;
+    height: 7%;
+    padding: 0.5%;
+    /* border-radius: 0.5rem; */
+    /* margin: 0%; */
+    /* margin-top: 0.75rem; */
+    /* margin-right: 0.25rem; 
+    margin-right: 1rem; */
 }
 
 .top-bottom-right-chart{
-    height: 10%;
-    padding: 0%;
-    margin: 0%;
-    margin-top: 1rem;
+    height: 7%;
+    /* border-radius: 0.25rem; */
+    padding: 0.5%;
+    /* margin: 0%; */
+    /* margin-top: 0.75rem; */
+    /* margin-left: 0.25rem; */
 }
 
 
@@ -247,11 +258,22 @@ body {
 
 
 .left-col-twitter-feed-content{
-    overflow-y: scroll;
-    height: 110vh;
-    scroll-behavior: smooth;
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
 }
+
+/* overflow disable scroll bar */
+.left-col-feed-cards-text {
+    overflow-y: scroll;
+    height: 70.2vh;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.left-col-feed-cards-text::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
 
 .left-col-twitter-feed-content {
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
@@ -273,19 +295,28 @@ p.news-txt-by-dt{
     margin-bottom: 0;
 }
 
-
-
 /* 👉 Right Detailed List Sidebar */
 
 .right-col-news-feed-content{
-    overflow-y: scroll;
-    height: 110vh;
-    scroll-behavior: smooth;
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
 }
 
-.right-col-news-feed-content {
+/* overflow disable scroll bar */
+.right-col-feed-cards-text {
+    overflow-y: scroll;
+    height: 70.2vh;
+    scroll-behavior: smooth;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.right-col-feed-cards-text::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+
+.right-col-news-feed-content {
+    -ms-overflow-style: none; 
     scrollbar-width: none;  /* Firefox */
 }
 
