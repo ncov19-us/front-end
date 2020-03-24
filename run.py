@@ -35,7 +35,7 @@ def before_request_func():
     re_mobile = re.compile(mobile_string)
     app_state.is_mobile = len(re_mobile.findall(agent)) > 0
 
-    # print(f'[DEBUG]: Requests from Mobile? {MOBILE}')
+    # print(f'[DEBUG]: Requests from Mobile? {app_state.is_mobile}')
     if app_state.is_mobile:
         app.layout = build_mobile_layout
     else:  # Desktop request
