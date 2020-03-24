@@ -241,38 +241,39 @@ body {
 
 /* 🌎 Map and Graph 📊 Styling */
 
-.middle-col-map-content.col-8 .card{
-    /* width: 90%; */
+.middle-col-map-content.col-8 .card {
     background-color: #010915;
-    /* margin-left: 3.3rem; */
 }
 
-.middle-col-map-content.col-8 .card-body{
-    /* width: 90%; */
+.middle-col-map-content.col-8 .card .card-body{
     background-color: #010915;
+    padding: 0;
 }
 
 .top-bar-us-map-heading-txt {
-    font-size: 1.2rem;
+    padding-top: 0.3rem;
+    padding-left: 1rem;
+    font-size: 0.9rem;
     color: #fefefe;
     max-width: 61%;
-    margin-bottom: 1%;
+    /* margin-bottom: 1%; */
 }
 
-.top-bottom-left-chart-title, .top-bottom-right-chart-title {
-    font-size: 1.4rem;
-    color: #fefefe;
-    max-width: 100%;
-    margin-bottom: 5%;
+.jsx-2597805859{
+    /* shift map emojis right to center */
+    padding-left: 0.2rem;
 }
+
+
 
 .card-header-tabs{
     margin-right:0%;
 }
 
-/* .col-8 {
-    max-width: 65%;
-} */
+.jsx-2597805859.tab.testing-us-map-tab {
+    border-top-right-radius: 0.3rem;
+}
+
 
 .middle-col-map-content.col-8 {
     max-width: 65%;
@@ -293,6 +294,11 @@ body {
     padding: 0px;
 }
 
+dash-graph {
+    border-bottom-left-radius: 0.3rem;
+
+}
+
 /* https://community.plot.ly/t/is-it-possible-to-hide-the-floating-toolbar/4911 */
 .modebar{
     display: none !important; 
@@ -302,14 +308,28 @@ body {
 /* Bottom Left and Right Charts */
 
 .top-bottom-charts {
-    height: 7%;
-    /* width: 98%; */
 }
 
 .top-bottom-charts .card {
     margin-top: .9rem;
     margin-bottom: 3rem;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 1.5rem;
+    background-color: #010915;
 }
+
+.top-bottom-charts .card .card-body {
+    background: none;
+    /* padding: 2rem; */
+
+}
+
+/* .top-bottom-charts .card-body {
+    padding: 1.2rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+} */
 
 .top-bottom-left-chart.col-6 .card {
     margin-top: .9rem;
@@ -321,10 +341,7 @@ body {
     margin-right: 0rem;
 }
 
-.top-bottom-charts .card-body {
-    background: hsl(216, 91%, 4%);
-    padding: 1.2rem;
-}
+
 
 .top-bottom-left-chart{
     height: 7%;
@@ -337,8 +354,15 @@ body {
     padding: 0.5%;
 }
 
+.top-bottom-left-chart-title, .top-bottom-right-chart-title {
+    font-size: 1.0rem;
+    color: #fefefe;
+    max-width: 100%;
+    margin-bottom: 10%;
+}
 
-/* 👈 Left  Twitter 🐦 News 📰 Feed Sidebar */
+
+/* 👈 Left  Twitter 🐦  📰 News Feed Sidebar */
 
 .middle-map-news-content.mt-3.no-gutters.row {
     margin-left: 1.2rem;
@@ -379,13 +403,26 @@ jsx-2597805859 .tab .left-twitter-tab .tab--selected  {
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* .left-col-twitter-feed-content.col-2 {
-    margin-right: 0.1rem;
-} */
-
 .right-col-news-feed-content.col-2 {
     margin-left: 0.3rem;
 }
+
+.left-col-twitter-feed-content.col-2 .card .card-body {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+/* cards inside the sidebar for tweets and news */
+.left-col-feed-cards-text .tweet-item.list-group-item {
+    border-radius: 0.2rem;
+}
+
+.left-col-feed-cards-text .tweet-item.list-group-item p {
+    font-size: .5rem;
+}
+
+/* .tweet-item p */
+
 
 /* overflow disable scroll bar */
 .left-col-feed-cards-text {
@@ -446,31 +483,41 @@ p.news-txt-by-dt{
 
 
 
-/* 👉 Right Detailed List Sidebar */
+/* 👉👉👉👉 Right Detailed List Sidebar */
 
-.right-col-news-feed-content{
+/* .right-col-news-feed-content{
     margin-bottom: 1rem;
-}
+} */
 
-.right-col-feed-cards-text {
+/* .right-col-feed-cards-text {
     background: none;
     background-color: none;
+} */
+
+.right-col-stats-content.col-2 .card .card-body {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
 }
-
-
 
 .states-stats-confirmed-list-item.list-group-item {
-    /* border-bottom: 100px;
-    border-color: #0B1319; */
+    /* border-bottom: 100px; */
+    /* border-color: #0B1319; */
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 1px;
     background-color: none;
     background: none;
+    padding: 0.05rem;
 }
 
+
+
 .states-stats-deaths-list-item.list-group-item {
+    /* border-color: #0B1319; */
     background-color: none;
     background: none;
-    /* border-bottom: 100px;
-    border-color: #0B1319; */
+    padding: 0.05rem;
 }
 
 
@@ -623,7 +670,7 @@ p.news-txt-by-dt{
 }
 
 .mobile-top-bar-card-tested.list-group-item {
-    border-top-left-radius: 0.3rem;
+    /* border-top-left-radius: 0.3rem; */
     border-top-right-radius: 0.3rem;
 }
 
