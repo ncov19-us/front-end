@@ -3,6 +3,7 @@
 /* Fonts */
 html {
     font-family: Roboto, sans-serif;
+    letter-spacing: 0.01em;
     font-style: normal;
     color: #F3F3F3;
 
@@ -46,6 +47,9 @@ body {
     text-decoration: none !important;
 }
 
+.page-title-link:hover {
+    text-decoration: none;
+}
 
 .navbar-brand-covid-19-text {
     margin-left: .2rem;
@@ -53,7 +57,7 @@ body {
     font-weight: bold;
     font-size: 2rem;
 
-    }
+}
 
 .navbar-brand-us-cases-text {
     margin-bottom: auto;
@@ -62,6 +66,44 @@ body {
     text-shadow: none;
     margin-left: 5%;
 
+}
+
+.dropdown-location-menu .dropdown-toggle {
+    background-color: #262a32;
+    background-image: none;
+    min-width: 150px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.dropdown-location-menu .dropdown-toggle {
+    font-size: 1.1rem;
+}
+
+/* This targets the little drop down arrow on the location button */
+.dropdown-location-menu .dropdown-toggle::after {
+    margin-left: 35%;
+}
+
+.dropdown .btn {
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: 45px;
+}
+
+.navbar-brand-links {
+    margin-bottom: auto;
+    font-weight: 300;
+    font-size: 1.15rem;
+    text-shadow: none;
+}
+
+.navbar-brand-links:hover {
+    text-decoration: none;
+}
+
+#navbar-resources-link {
+    margin-right: 1.5rem;
 }
 
 /* Applies to all Cards 🎴 */
