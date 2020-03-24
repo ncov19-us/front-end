@@ -3,8 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 
-mobile_footer = dbc.Container(
-    dbc.Row(
+mobile_footer = dbc.Row(
         [
             dbc.Row(
                 html.P(
@@ -35,8 +34,4 @@ mobile_footer = dbc.Container(
                 className="mobile-footer-social-copyright-content"
             ),
         ],
-    ),
-    fluid=True,
-    className="mobile-footer-content",
-)
-
+    )
