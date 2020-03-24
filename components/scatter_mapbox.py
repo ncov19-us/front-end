@@ -104,7 +104,7 @@ def get_drive_thru_testing_centers():
 ########################################################################
 
 # @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
-# @cache.memoize(timeout=3600)
+@cache.memoize(timeout=3600)
 def confirmed_scatter_mapbox():
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
@@ -147,7 +147,7 @@ def confirmed_scatter_mapbox():
     return fig
 
 
-# @cache.memoize(timeout=3600)
+@cache.memoize(timeout=3600)
 def drive_thru_scatter_mapbox():
     fig = px.scatter_mapbox(
         get_drive_thru_testing_centers(),

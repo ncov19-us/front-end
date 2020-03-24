@@ -4,7 +4,8 @@ import dash_html_components as html
 from app import cache
 from utils.settings import tm
 
-# @cache.memoize(timeout=900)
+
+@cache.memoize(timeout=900)
 def twitter_feed(state=None) -> List[dbc.Card]:
     """Displays twitter feed on the left hand side of the display.
 
@@ -32,30 +33,30 @@ def twitter_feed(state=None) -> List[dbc.Card]:
 
     # 2020-03-19 triage. lots of empty list at the end of tweets, filtering them out
     tweets = [*filter(None, tweets)]
-    tweets = sorted(tweets, key = lambda i: i['created_at'], reverse=True)
+    tweets = sorted(tweets, key=lambda i: i["created_at"], reverse=True)
     # print(tweets)
     cards += [
         # dbc.Card(
         #     dbc.CardBody(
-         dbc.ListGroupItem(
-                [
-                    html.A(
-                        html.P(tweet["full_text"][:100] + "...",),
-                        href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}",
-                        target="_blank",
-                    ),
-                    html.P(
-                        [
-                            html.Strong(f"- {full_name} (@{username})"),
-                            html.P(
-                                f"{tweet['created_at'].strftime('%a %d, %Y at %I: %M %p')}",
-                                className="tweet-dt",
-                            ),
-                        ],
-                        className="tweets-txt-by-dt",
-                    ),
-                ],
-                className="tweet-item",
+        dbc.ListGroupItem(
+            [
+                html.A(
+                    html.P(tweet["full_text"][:100] + "...",),
+                    href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}",
+                    target="_blank",
+                ),
+                html.P(
+                    [
+                        html.Strong(f"- {full_name} (@{username})"),
+                        html.P(
+                            f"{tweet['created_at'].strftime('%a %d, %Y at %I: %M %p')}",
+                            className="tweet-dt",
+                        ),
+                    ],
+                    className="tweets-txt-by-dt",
+                ),
+            ],
+            className="tweet-item",
             # ),
         )
         for tweet in tweets

@@ -5,7 +5,7 @@ from app import cache
 from utils.settings import TIME_URL
 
 
-# @cache.memoize(timeout=3600)
+@cache.memoize(timeout=3600)
 def infection_trajectory_chart(state=None) -> go.Figure:
     """Line chart data for the selected state.
 

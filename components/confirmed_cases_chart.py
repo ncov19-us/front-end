@@ -5,7 +5,7 @@ from app import cache
 from utils.settings import TIME_URL
 
 
-# @cache.memoize(timeout=3600)
+@cache.memoize(timeout=3600)
 def confirmed_cases_chart(state=None) -> go.Figure:
     """Bar chart data for the selected state.
 
@@ -22,10 +22,8 @@ def confirmed_cases_chart(state=None) -> go.Figure:
     df = df.rename(columns={"index": "Date", 0: "Confirmed Cases"})
     df = df[30:]
 
-    fig = px.line(df,
-                  x="Date",
-                  y="Confirmed Cases")
-    fig.update_traces(line_color='#FEC400')
+    fig = px.line(df, x="Date", y="Confirmed Cases")
+    fig.update_traces(line_color="#FEC400")
     fig.update_layout(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         template="plotly_dark",

@@ -5,6 +5,7 @@ import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
 
+
 def get_daily_stats() -> Dict:
     try:
         data1 = requests.get(url=CVTRACK_URL).json()[0]
@@ -22,13 +23,7 @@ def get_daily_stats() -> Dict:
         active = data2["active"]
 
     except:
-        confirmed, todays_confirmed, deaths, todays_deaths, recovered = (
-            0,
-            0,
-            0,
-            0,
-            0
-        )
+        confirmed, todays_confirmed, deaths, todays_deaths, recovered = (0, 0, 0, 0, 0)
 
     stats = {
         "Tested": tested,
@@ -39,7 +34,8 @@ def get_daily_stats() -> Dict:
     # print(data2, stats)
     return stats
 
-# @cache.memoize(timeout=3600)
+
+@cache.memoize(timeout=3600)
 def daily_stats_mobile() -> List[dbc.Row]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
     TODO: move to internal API.
