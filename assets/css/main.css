@@ -47,6 +47,9 @@ body {
     text-decoration: none !important;
 }
 
+.page-title-link:hover {
+    text-decoration: none;
+}
 
 .navbar-brand-covid-19-text {
     margin-left: .2rem;
@@ -73,9 +76,19 @@ body {
     padding-bottom: 0;
 }
 
+.dropdown-location-menu .dropdown-toggle {
+    font-size: 1.1rem;
+}
+
+/* This targets the little drop down arrow on the location button */
+.dropdown-location-menu .dropdown-toggle::after {
+    margin-left: 35%;
+}
+
 .dropdown .btn {
     padding-top: 0;
     padding-bottom: 0;
+    min-height: 45px;
 }
 
 .navbar-brand-links {
