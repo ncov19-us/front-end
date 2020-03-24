@@ -129,6 +129,134 @@ body {
 
 /************************* 💻 Desktop Styling 💻 **************************/
 
+/* 📖 About Page Styling 📖 */
+
+/* Every page is given some padding and margin, but I want the about page to fill the whole page so I need to negate it.
+This isn't perfect so if anyone knows how to disable .page-content padding on the about page only please fix this */
+#about-page {
+    margin-left: -15px;
+    margin-top: -25px;
+}
+
+.about-page-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    padding-left: 4vw;
+    margin-bottom: 50px;
+    margin-top: 0;
+  }
+  
+  #about-page-second-third .about-page-title {
+    padding-left: 9vw;
+    padding-bottom: 50px;
+  }
+  
+  .about-section-title-container {
+    border-left: 7px solid white;
+  }
+  
+  .about-section-text-container {
+      border-left: 1px solid white;
+      margin-left: 3px;
+  }
+  
+  .about-section-title {
+    font-family: 'Roboto', sans-serif;
+    padding-left: 4%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+  
+  .about-section-text {
+    font-family: 'Roboto', sans-serif;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5%;
+  }
+  
+  .about-section-container {
+    display: flex;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 75px;
+  }
+  
+  #about-page-second-third .about-section-container {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+  
+  .about-section-padding {
+    padding-left: 7vw;
+  }
+  
+  #about-page-first-third  {
+    background-color: #262a32;
+    color: white;
+  }
+  
+  #about-page-second-third  {
+    background-color: #010915;
+    color: white;
+    background-position: right top;
+    background-image: url('../images/map_1.svg');
+    background-repeat: no-repeat;
+    background-size: 45%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  
+  #about-page-third-third  {
+    background-color: #D2D2D2;
+    padding-left: 12vw;
+    color: black;
+    padding-bottom: 100px;
+  }
+  
+  .about-page-third {
+    width: 100vw;
+    height: 100%;
+    padding-top: 50px; 
+  }
+  
+  #about-page-contributors {
+
+  }
+  
+  #about-contributors-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  #about-contributors-subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    padding-bottom: 50px;
+    font-weight: 300;
+  }
+  
+  .about-page-contributor {
+    display: flex;
+  }
+  
+  .about-contributor-name {
+    font-family: 'Roboto', sans-serif;
+    padding-right: 5px;
+    font-weight: bold;
+  }
+  
+  .about-contributor-title {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .about-contributor-social-icon {
+    padding-left: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+
 /* Top Card Section */
 .top-bar-content.row {
     margin-left: 0.2rem;
