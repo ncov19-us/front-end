@@ -7,10 +7,9 @@ from dash.dependencies import Input, Output
 
 build_desktop_layout = html.Div(
     [
-        # represents the URL bar, doesn't render anything, will be used for about and resources
         dcc.Location(id="url", refresh=False),
-        navbar,
+        dbc.Navbar(id="navbar-content", color="#010915", dark=True,),
         dbc.Container(id="page-content", className="mt-4", fluid=True),
-        footer,
+        dbc.Container(id="footer-content", className="footer-content", fluid=True)
     ]
 )

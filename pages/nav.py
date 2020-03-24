@@ -43,36 +43,32 @@ def update_df(town):
 	new_df = df1[(df1['region'].isin(town)]
 """
 
-navbar = dbc.Navbar(
-    [
-        # User row and col to control vertical alignment of logo/brand
-        dbc.Row(
-            [
-                # dbc.Col(
-                #     html.Img(src="assets/images/covid19-new-logo.png", height="30px")
-                # ),
-                dbc.Col(
-                    dbc.NavbarBrand(
-                        [
-                            html.A(
-                                html.P(
-                                    "COVID-19", className="navbar-brand-covid-19-text"
-                                ),
-                                className="page-title-link",
-                                href="/",
+# User row and col to control vertical alignment of logo/brand
+navbar =  [
+    dbc.Row(
+        [
+            # dbc.Col(
+            #     html.Img(src="assets/images/covid19-new-logo.png", height="30px")
+            # ),
+            dbc.Col(
+                dbc.NavbarBrand(
+                    [
+                        html.A(
+                            html.P(
+                                "COVID-19", className="navbar-brand-covid-19-text"
                             ),
-                            html.P("US Cases", className="navbar-brand-us-cases-text"),
-                        ]
-                    )
-                ),
-            ],
-            align="center",
-            no_gutters=True,
-        ),
-        dbc.NavbarToggler(id="navbar-toggler"),
-        dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
-        # dbc.NavbarBrand(about_bar),
-    ],
-    color="#010915",
-    dark=True,
-)
+                            className="page-title-link",
+                            href="/",
+                        ),
+                        html.P("US Cases", className="navbar-brand-us-cases-text"),
+                    ]
+                )
+            ),
+        ],
+        align="center",
+        no_gutters=True,
+    ),
+    dbc.NavbarToggler(id="navbar-toggler"),
+    dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
+    # dbc.NavbarBrand(about_bar),
+]
