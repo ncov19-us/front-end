@@ -23,10 +23,11 @@ tab_style = {
     "padding": "0.5rem",
     "color": "white",
     "backgroundColor": "#010914",
+    "fontSize": "0.7rem",
 }
 
 tab_selected_style = {
-    "fontSize": "1rem",
+    "fontSize": "0.7rem",
     "backgroundColor": "#20242d",
     "color": "white",
     "padding": "0.5rem",
@@ -154,7 +155,7 @@ us_maps_tabs = dbc.Card(
             html.Div(
                 [
                     html.Div(
-                        html.H1("US Map"), className="top-bar-us-map-heading-txt",
+                        "US Map", className="top-bar-us-map-heading-txt",
                     ),
                     html.Div(
                         dcc.Tabs(
