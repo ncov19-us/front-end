@@ -121,7 +121,7 @@ def confirmed_scatter_mapbox():
         size="Confirmed",
         size_max=35,
         hover_name="State",
-        hover_data=["Confirmed", "Deaths", "Recovered", "State"],
+        hover_data=["Confirmed", "Deaths", "State"],
         color_continuous_scale=color_scale,
     )
 
@@ -141,7 +141,7 @@ def confirmed_scatter_mapbox():
     # <b>%{hovertext}</b><br><br>Confirmed=%{marker.color}\\
     # <br>Deaths=%{customdata[1]}<br>Recovered=%{customdata[2]}<br>Latitude=%{lat}<br>Longitude=%{lon}
     fig.data[0].update(
-        hovertemplate="%{customdata[3]}<br>Confirmed: %{marker.size}<br>Deaths: %{customdata[1]}<br>Recovered: %{customdata[2]}"
+        hovertemplate="%{customdata[2]}<br>Confirmed: %{marker.size}<br>Deaths: %{customdata[1]}"
     )
 
     return fig

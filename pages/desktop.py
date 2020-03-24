@@ -110,13 +110,13 @@ stats_tabs = dbc.Card(
                         style=tab_style,
                         selected_style=tab_selected_style,
                     ),
-                    dcc.Tab(
-                        label="Recovered",
-                        value="recovered-tab",
-                        className="left-news-tab",
-                        style=tab_style,
-                        selected_style=tab_selected_style,
-                    ),
+                    # dcc.Tab(
+                    #     label="Recovered",
+                    #     value="recovered-tab",
+                    #     className="left-news-tab",
+                    #     style=tab_style,
+                    #     selected_style=tab_selected_style,
+                    # ),
                 ],
                 style=tabs_styles,
                 colors={"border": None, "primary": None, "background": None},
@@ -137,8 +137,8 @@ def stats_tab_content(value):
     """
     if value == "deaths-tab":
         return states_deaths_stats()
-    elif value == "recovered-tab":
-        return states_recovered_stats()
+    # elif value == "recovered-tab":
+    #     return states_recovered_stats()
     else:
         return states_confirmed_stats()
 
