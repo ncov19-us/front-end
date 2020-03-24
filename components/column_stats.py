@@ -9,10 +9,10 @@ from app import cache
 try:
     data = requests.get(CONFIRMED_STATS_URL).json()
 except Exception as ex:
-    print(ex)
+    print(f'[ERROR]: {ex}')
 
 
-@cache.memoize(timeout=600)
+# @cache.memoize(timeout=600)
 def states_confirmed_stats(state=None) -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
