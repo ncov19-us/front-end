@@ -16,7 +16,9 @@ from components import (
 
 ################ TABS STYLING ####################
 
-tabs_styles = {}
+tabs_styles = {
+    "flex-direction": "row",
+}
 tab_style = {
     "padding": "0.5rem",
     "color": "white",
@@ -160,14 +162,14 @@ us_maps_tabs = dbc.Card(
                             value="confirmed-us-map-tab",
                             children=[
                                 dcc.Tab(
-                                    label="Confirmed",
+                                    label="😷",
                                     value="confirmed-us-map-tab",
                                     className="confirmed-us-map-tab",
                                     style=tab_style,
                                     selected_style=tab_selected_style,
                                 ),
                                 dcc.Tab(
-                                    label="Drive-Thru Testing",
+                                    label="🏥",
                                     value="testing-us-map-tab",
                                     className="testing-us-map-tab",
                                     style=tab_style,

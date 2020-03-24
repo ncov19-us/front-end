@@ -16,7 +16,9 @@ from components import (
 
 ################ TABS STYLING ####################
 
-tabs_styles = {}
+tabs_styles = {
+    "flex-direction": "row",
+}
 tab_style = {
     "padding": "0.5rem",
     "color": "white",
@@ -104,14 +106,14 @@ mobile_us_maps_tabs = dbc.Card(
                             className="mobile-top-bar-us-map-tabs-content",
                             children=[
                                 dcc.Tab(
-                                    label="Confirmed",
+                                    label="😷",
                                     value="mobile-confirmed-us-map-tab",
                                     className="mobile-confirmed-us-map-tab",
                                     style=tab_style,
                                     selected_style=tab_selected_style,
                                 ),
                                 dcc.Tab(
-                                    label="Drive-Thru Testing",
+                                    label="🏥",
                                     value="mobile-testing-us-map-tab",
                                     className="mobile-testing-us-map-tab",
                                     style=tab_style,
@@ -125,6 +127,7 @@ mobile_us_maps_tabs = dbc.Card(
                                 "background": None,
                             },
                         ),
+                        className="contains-icons",
                     ),
                 ],
                 className="d-flex justify-content-between mobile-top-bar-us-map-heading-content",
