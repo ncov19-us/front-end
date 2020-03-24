@@ -232,7 +232,7 @@ desktop_body = [
                                         dbc.CardBody(
                                             [
                                                 html.Div(
-                                                    "Confirmed Cases",
+                                                    "US Confirmed Cases",
                                                     className="top-bottom-left-chart-title",
                                                 ),
                                                 dcc.Graph(
@@ -277,7 +277,9 @@ desktop_body = [
                 width=8,
             ),
             # RIGHT - STATS COL
-            dbc.Col(stats_tabs, className="right-col-news-feed-content", width=2,),
+            dbc.Col(stats_tabs, 
+                    className="right-col-stats-content", 
+                    width=2,),
         ],
         no_gutters=True,
         className="middle-map-news-content mt-3",

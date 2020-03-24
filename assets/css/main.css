@@ -240,26 +240,44 @@ body {
 }
 
 /* 🌎 Map and Graph 📊 Styling */
+
+.middle-col-map-content.col-8 .card{
+    /* width: 90%; */
+    background-color: #010915;
+    /* margin-left: 3.3rem; */
+}
+
+.middle-col-map-content.col-8 .card-body{
+    /* width: 90%; */
+    background-color: #010915;
+}
+
 .top-bar-us-map-heading-txt {
-    font-size: 1.5rem;
-    color: #ffffff;
+    font-size: 1.2rem;
+    color: #fefefe;
     max-width: 61%;
     margin-bottom: 1%;
 }
 
 .top-bottom-left-chart-title, .top-bottom-right-chart-title {
-    font-size: 1.5rem;
-    color: #ffffff;
+    font-size: 1.4rem;
+    color: #fefefe;
     max-width: 100%;
-    margin-bottom: 1%;
+    margin-bottom: 5%;
 }
 
 .card-header-tabs{
     margin-right:0%;
 }
 
-.col-8 {
+/* .col-8 {
     max-width: 65%;
+} */
+
+.middle-col-map-content.col-8 {
+    max-width: 65%;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .middle-styling {
@@ -285,12 +303,34 @@ body {
 
 .top-bottom-charts {
     height: 7%;
+    /* width: 98%; */
+}
+
+.top-bottom-charts .card {
+    margin-top: .9rem;
+    margin-bottom: 3rem;
+}
+
+.top-bottom-left-chart.col-6 .card {
+    margin-top: .9rem;
+    margin-bottom: 3rem;
+    margin-right: .9rem;
+}
+
+.top-bottom-right-chart.col-6 .card {
+    margin-right: 0rem;
+}
+
+.top-bottom-charts .card-body {
+    background: hsl(216, 91%, 4%);
+    padding: 1.2rem;
 }
 
 .top-bottom-left-chart{
     height: 7%;
     padding: 0.5%;
 }
+
 
 .top-bottom-right-chart{
     height: 7%;
@@ -314,7 +354,6 @@ body {
 
 .jsx-2597805859.tab.left-news-tab {
     border-top-right-radius: 0.3rem;
-    
 }
 
 .jsx-2597805859.tab.left-twitter-tab.tab-selected {
@@ -338,6 +377,14 @@ jsx-2597805859 .tab .left-twitter-tab .tab--selected  {
     margin-bottom: 1rem;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* .left-col-twitter-feed-content.col-2 {
+    margin-right: 0.1rem;
+} */
+
+.right-col-news-feed-content.col-2 {
+    margin-left: 0.3rem;
 }
 
 /* overflow disable scroll bar */
@@ -392,14 +439,11 @@ p.news-txt-by-dt{
     transform: translateY(-2px);
 }
 
-
-
-.states-stats-confirmed-list-item.list-group-item {
-    border-bottom: 100rem;
-    border-color: #0B1319;
-    background-color: none;
-    background: none
+.jsx-1990498210.tab.left-twitter-tab.tab--selected {
+    border-top-left-radius: 0.3rem;
 }
+
+
 
 
 /* 👉 Right Detailed List Sidebar */
@@ -408,9 +452,27 @@ p.news-txt-by-dt{
     margin-bottom: 1rem;
 }
 
-.jsx-1990498210.tab.left-twitter-tab.tab--selected {
-    border-top-left-radius: 0.3rem;
+.right-col-feed-cards-text {
+    background: none;
+    background-color: none;
 }
+
+
+
+.states-stats-confirmed-list-item.list-group-item {
+    /* border-bottom: 100px;
+    border-color: #0B1319; */
+    background-color: none;
+    background: none;
+}
+
+.states-stats-deaths-list-item.list-group-item {
+    background-color: none;
+    background: none;
+    /* border-bottom: 100px;
+    border-color: #0B1319; */
+}
+
 
 #recovery-tab {
     border-top-right-radius: 0.3rem;

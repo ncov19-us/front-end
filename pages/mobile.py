@@ -172,7 +172,7 @@ mobile_body = [
             dbc.CardBody(
                 [
                     html.Div(
-                        "Confirmed Cases",
+                        "US Confirmed Cases",
                         className="mobile-top-bottom-left-chart-title",
                     ),
                     dcc.Graph(
