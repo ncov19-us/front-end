@@ -13,16 +13,11 @@ from components import news_feed, twitter_feed
 from pages import mobile_navbar, mobile_footer
 
 
-########################################################################
-#
-# Mobile layout. DO NOT PUT IT IN A FUCTION. LOADS SLOWER.
-#
-########################################################################
 build_mobile_layout = html.Div(
     [
         dcc.Location(id="url", refresh=False),
-        mobile_navbar,
-        dbc.Container(id="page-content", className="mt-4", fluid=True,),
-        mobile_footer,
+        dbc.Navbar(id="navbar-content", color="#010915", dark=True, className="fixed-navbar",),
+        dbc.Container(id="page-content", className="mt-4", fluid=True),
+        dbc.Container(id="footer-content", className="footer-content", fluid=True)
     ]
 )
