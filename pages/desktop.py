@@ -62,7 +62,7 @@ feed_tabs = dbc.Card(
             ),
             className="left-tabs",
         ),
-        dbc.CardBody(html.P(id="feed-content", className="card-text")),
+        dbc.CardBody(html.P(id="feed-content", className="left-col-feed-cards-text")),
     ]
 )
 
@@ -130,7 +130,7 @@ stats_tabs = dbc.Card(
             ),
             className="right-tabs",
         ),
-        dbc.CardBody(html.P(id="stats-content", className="card-text")),
+        dbc.CardBody(html.P(id="stats-content", className="right-col-feed-cards-text")),
     ]
 )
 
@@ -156,39 +156,47 @@ def stats_tab_content(value):
 #
 ########################################################################
 
-us_maps_tabs = [
-    html.Div(
-        [
-            html.Div(html.H1("US Map"), className="top-bar-us-map-heading-txt",),
-            html.Div(
-                dcc.Tabs(
-                    id="middle-map-tabs-styled-with-inline",
-                    value="confirmed-us-map-tab",
-                    children=[
-                        dcc.Tab(
-                            label="Confirmed",
-                            value="confirmed-us-map-tab",
-                            className="confirmed-us-map-tab",
-                            style=tab_style,
-                            selected_style=tab_selected_style,
-                        ),
-                        dcc.Tab(
-                            label="Drive-Thru Testing",
-                            value="testing-us-map-tab",
-                            className="testing-us-map-tab",
-                            style=tab_style,
-                            selected_style=tab_selected_style,
-                        ),
-                    ],
-                    style=tabs_styles,
-                    colors={"border": None, "primary": None, "background": None},
-                )
-            ),
-        ],
-        className="d-flex justify-content-between top-bar-us-map-heading-content",
-    ),
-    html.Div(dcc.Graph(id="us-map", style={"height": "54vh"})),
-]
+us_maps_tabs = dbc.Card(
+    dbc.CardBody([
+        html.Div(
+            [
+                html.Div(html.H1("US Map"), 
+                         className="top-bar-us-map-heading-txt",),
+                html.Div(
+                    dcc.Tabs(
+                        id="middle-map-tabs-styled-with-inline",
+                        value="confirmed-us-map-tab",
+                        children=[
+                            dcc.Tab(
+                                label="Confirmed",
+                                value="confirmed-us-map-tab",
+                                className="confirmed-us-map-tab",
+                                style=tab_style,
+                                selected_style=tab_selected_style,
+                            ),
+                            dcc.Tab(
+                                label="Drive-Thru Testing",
+                                value="testing-us-map-tab",
+                                className="testing-us-map-tab",
+                                style=tab_style,
+                                selected_style=tab_selected_style,
+                            ),
+                        ],
+                        style=tabs_styles,
+                        colors={"border": None, "primary": None, "background": None},
+                    )
+                ),
+            ],
+            className="d-flex justify-content-between top-bar-us-map-heading-content",
+        ),
+        html.Div(
+            dcc.Graph(
+                id="us-map", 
+                style={"height": "44vh"},
+            )
+        ),
+    ]),
+)
 
 
 @app.callback(
@@ -213,23 +221,46 @@ desktop_body = [
     dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
         [
             # LEFT - TWITTER & NEWS FEED COL
-            dbc.Col(feed_tabs, className="left-col-twitter-feed-content", width=2),
+            dbc.Col(feed_tabs,
+                    className="left-col-twitter-feed-content",
+                    width=2
+            ),
             # MIDDLE - MAPS COL
             dbc.Col(
                 [
                     # big map
-                    html.Div(us_maps_tabs),
+                    html.Div(
+                        us_maps_tabs
+                    ),
                     # bottom two charts
                     html.Div(
                         dbc.Row(
                             [
                                 dbc.Col(
-                                    dcc.Graph(figure=confirmed_cases_chart(),),
+                                    dbc.Card(
+                                        dbc.CardBody([
+                                            html.Div("Confirmed Cases",
+                                                     className="top-bottom-left-chart-title",),
+                                            dcc.Graph(figure=confirmed_cases_chart(),
+                                                      config={'responsive':False},
+                                                      style={"height": "20vh"},
+                                                      className='top-bottom-left-chart-figure"'),
+                                        ]),
+                                    ),
                                     className="top-bottom-left-chart",
                                     width=6,
                                 ),
                                 dbc.Col(
-                                    dcc.Graph(figure=infection_trajectory_chart()),
+                                    dbc.Card(
+                                        dbc.CardBody([
+                                            html.Div("Infection Trajectory Since 200 Cases",
+                                                     className="top-bottom-right-chart-title"), 
+                                            dcc.Graph(figure=infection_trajectory_chart(),     
+                                                      config={'responsive':False},
+                                                      style={"height": "20vh"},
+                                                      className="top-bottom-right-chart-figure"),
+                                        ]),
+                                    ),
                                     className="top-bottom-right-chart",
                                     width=6,
                                 ),
@@ -243,7 +274,10 @@ desktop_body = [
                 width=8,
             ),
             # RIGHT - STATS COL
-            dbc.Col(stats_tabs, className="right-col-news-feed-content", width=2),
+            dbc.Col(stats_tabs, 
+                    className="right-col-news-feed-content",
+                    width=2,
+            ),
         ],
         no_gutters=True,
         className="middle-map-news-content mt-3",

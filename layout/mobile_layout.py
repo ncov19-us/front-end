@@ -10,7 +10,6 @@ from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import daily_stats_mobile
 from components import scatter_mapbox
 from components import news_feed, twitter_feed
-
 from pages import mobile_navbar, mobile_footer
 
 
@@ -40,10 +39,14 @@ mobile_feed_tabs = dbc.Card(
                 active_tab="mobile-twitter-tab",
             )
         ),
-        dbc.CardBody(html.P(id="mobile-feed-content", className="mobile-card-text")),
+        dbc.CardBody(
+            html.P(id="mobile-feed-content", 
+                   className="mobile-card-text"
+            ),
+            className="mobile-feed-card-body",
+        ),
     ]
 )
-
 
 @app.callback(
     Output("mobile-feed-content", "children"), [Input("mobile-feed-tabs", "active_tab")]
@@ -56,50 +59,51 @@ def mobile_feed_tab_content(active_tab):
     else:
         return news_feed()
 
-
 ########################################################################
 #
 # Confirmed and Testing Center Map Tabs
 #
 ########################################################################
-
-mobile_us_maps_tabs = [
-    html.Div(
+mobile_us_maps_tabs = dbc.Card(
+    dbc.CardBody(
         [
-            html.Div(html.H1("US Map"), className="mobile-top-bar-us-map-heading-txt",),
             html.Div(
-                dbc.Tabs(
-                    [
-                        dbc.Tab(
-                            label="Confirmed",
-                            tab_id="mobile-confirmed-us-map-tab",
-                            labelClassName="mobile-confirmed-us-map-tab",
-                        ),
-                        dbc.Tab(
-                            label="Drive-Thru Testing",
-                            tab_id="mobile-testing-us-map-tab",
-                            labelClassName="mobile-testing-us-map-tab",
-                        ),
-                    ],
-                    id="mobile-map-tabs",
-                    card=True,
-                    active_tab="mobile-confirmed-us-map-tab",
-                    className="mobile-top-bar-us-map-tabs-content",
+                [
+                    html.Div("US Map", className="mobile-top-bar-us-map-heading-txt",),
+                    html.Div(
+                        dbc.Tabs(
+                            [
+                                dbc.Tab(
+                                    label="Confirmed",
+                                    tab_id="mobile-confirmed-us-map-tab",
+                                    labelClassName="mobile-confirmed-us-map-tab",
+                                ),
+                                dbc.Tab(
+                                    label="Drive-Thru Testing",
+                                    tab_id="mobile-testing-us-map-tab",
+                                    labelClassName="mobile-testing-us-map-tab",
+                                ),
+                            ],
+                            id="mobile-map-tabs",
+                            card=True,
+                            active_tab="mobile-confirmed-us-map-tab",
+                            className="mobile-top-bar-us-map-tabs-content",
+                        )
+                    ),
+                ],
+                className="d-flex justify-content-between mobile-top-bar-us-map-heading-content",
+            ),
+            # need to fixate the map.
+            html.Div(
+                dcc.Graph(
+                    id="mobile-us-map",
+                    config={'scrollZoom': False},
+                    style={"height": "54vh"},
                 )
             ),
-        ],
-        className="d-flex justify-content-between mobile-top-bar-us-map-heading-content",
-    ),
-    # need to fixate the map.
-    html.Div(
-        dcc.Graph(
-            id="mobile-us-map",
-            config={'scrollZoom': False},
-            style={"height": "54vh"},
-        )
-    ),
-]
-
+        ]
+    )
+)
 
 @app.callback(
     Output("mobile-us-map", "figure"), [Input("mobile-map-tabs", "active_tab")]
@@ -112,45 +116,60 @@ def mobile_map_tab_content(active_tab):
     else:
         return confirmed_scatter_mapbox()
 
-
 ########################################################################
 #
 # Mobile App body layout
 #
 ########################################################################
 mobile_body = [
-    html.Div(daily_stats_mobile(), className="mobile-top-bar-content"),
-    html.Div(mobile_us_maps_tabs,),
-    dbc.Row(
+    html.Div(
+        daily_stats_mobile(), 
+        className="mobile-top-bar-content"
+    ),
+    html.Div(
+        mobile_us_maps_tabs,
+        className="mobile-us-map-content",
+        style={"margin-bottom": "1.5rem"},
+    ),
+    html.Div(
         dbc.Card(
-            dbc.CardBody(
+            dbc.CardBody([
+                html.Div("Confirmed Cases",
+                        className="mobile-top-bottom-left-chart-title",
+                ),
                 dcc.Graph(
                     figure=confirmed_cases_chart(),
                     config={#"staticPlot": True,
                             'scrollZoom': False},
                     style={"height": "20vh"},
-                )
-            )
+                ),
+            ])
         ),
         style={"margin-bottom": "1.5rem"},
         className="mobile-chart",
     ),
-    dbc.Row(
+    html.Div(
         dbc.Card(
-            dbc.CardBody(
+            dbc.CardBody([
+                html.Div("Infection Trajectory",
+                        className="mobile-top-bottom-right-chart-title",
+                ),
                 dcc.Graph(
                     figure=infection_trajectory_chart(),
-                    config={#"staticPlot": True,
-                            'scrollZoom': False,},
+                    config={'scrollZoom': False,},
                     style={"height": "20vh"},
                     
                 )
-            )
+            ])
         ),
         style={"margin-bottom": "1.5rem"},
         className="mobile-chart",
     ),
-    dbc.Row(mobile_feed_tabs, className="mobile-feed-content",),
+    html.Div(
+        mobile_feed_tabs,
+        style={"margin-bottom": "1.5rem"},
+        className="mobile-feed-content",
+    ),
 ]
 
 ########################################################################
@@ -168,4 +187,3 @@ build_mobile_layout = html.Div(
             mobile_footer,
         ]
     )
-
