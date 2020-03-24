@@ -113,7 +113,8 @@ stats_tabs = dbc.Card(
                     dcc.Tab(
                         label="Recovered",
                         value="recovered-tab",
-                        className="left-news-tab",
+                        className="left-news-tab", 
+                        id="recovery-tab",
                         style=tab_style,
                         selected_style=tab_selected_style,
                     ),

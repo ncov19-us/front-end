@@ -14,19 +14,19 @@ body {
     background-color: #19202A;
 }
 
-.list-group-item{
+.list-group-item {
     padding: 0.5rem;
     border-radius: 1rem;
     text-align: left;
     margin-bottom: 0.5rem;
-    background-color: #0b1218;
+    background-color: none;
+    /* background-color: #0b1218; */
     /* box-shadow: 4px 4px 6px rgba(0,0,0,0.75); */
 }
-
-.list-group-item:hover {
+/* .list-group-item:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
     transform: translateY(-2px);
-}
+} */
 
 /*  Nav Bar */
 #navbar {
@@ -108,9 +108,10 @@ body {
 
 /* Applies to all Cards 🎴 */
 .card-body {
-    background-color: #010915;
+    background-color: #1F242D;
     padding: 1rem;
     border: none;
+    border-radius: .3rem;
 }
 
 .card-text {
@@ -120,6 +121,7 @@ body {
 }
 
 .card {
+    background-color: #1F242D;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -131,6 +133,10 @@ body {
 .top-bar-content.row {
     margin-left: 0.2rem;
     margin-right: .2rem;
+}
+
+.top-bar-card-body .card-body {
+    background-color: #010915;
 }
 
 .top-bar-card-tested {
@@ -197,6 +203,9 @@ body {
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem;
+}
+.top-bar-card-recovered.card {
+    background-color: #010915;
 }
 
 .top-bar-value-recovered {
@@ -281,20 +290,11 @@ body {
 .top-bottom-left-chart{
     height: 7%;
     padding: 0.5%;
-    /* border-radius: 0.5rem; */
-    /* margin: 0%; */
-    /* margin-top: 0.75rem; */
-    /* margin-right: 0.25rem; 
-    margin-right: 1rem; */
 }
 
 .top-bottom-right-chart{
     height: 7%;
-    /* border-radius: 0.25rem; */
     padding: 0.5%;
-    /* margin: 0%; */
-    /* margin-top: 0.75rem; */
-    /* margin-left: 0.25rem; */
 }
 
 
@@ -308,6 +308,7 @@ body {
 
 .jsx-2597805859.tab.left-twitter-tab {
     border-top-left-radius: 0.3rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.2);
     background-color: #010915;
 }
 
@@ -318,9 +319,12 @@ body {
 
 .jsx-2597805859.tab.left-twitter-tab.tab-selected {
     background-color: #010915;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
-.jsx-2597805859.tab.left-twitter-tab.tab--selected {
-    background-color: blue;
+
+jsx-2597805859 .tab .left-twitter-tab .tab--selected  {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* get rid of tab padding */
@@ -370,10 +374,46 @@ p.news-txt-by-dt{
     margin-bottom: 0;
 }
 
+.tweet-item.list-group-item {
+    background-color:#0B1319;
+}
+
+.tweet-item.list-group-item:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
+    transform: translateY(-2px);
+}
+
+.news-item.list-group-item {
+    background-color:#0B1319;
+}
+
+.news-item.list-group-item:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
+    transform: translateY(-2px);
+}
+
+
+
+.states-stats-confirmed-list-item.list-group-item {
+    border-bottom: 100rem;
+    border-color: #0B1319;
+    background-color: none;
+    background: none
+}
+
+
 /* 👉 Right Detailed List Sidebar */
 
 .right-col-news-feed-content{
     margin-bottom: 1rem;
+}
+
+.jsx-1990498210.tab.left-twitter-tab.tab--selected {
+    border-top-left-radius: 0.3rem;
+}
+
+#recovery-tab {
+    border-top-right-radius: 0.3rem;
 }
 
 /* overflow disable scroll bar */
