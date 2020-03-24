@@ -54,7 +54,7 @@ navbar = dbc.Navbar(
                 dbc.Col(
                     dbc.NavbarBrand(
                         [
-                            html.P("COVID-19", className="navbar-brand-covid-19-text"),
+                            html.A(html.P("COVID-19", className="navbar-brand-covid-19-text"), className="page-title-link", href="/"),
                             html.P("US Cases", className="navbar-brand-us-cases-text"),
                         ]
                     )
