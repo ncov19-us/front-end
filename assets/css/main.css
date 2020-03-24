@@ -622,6 +622,34 @@ p.news-txt-by-dt{
     color: #fefefe;
 }
 
+.hidden-menu {
+    width: 100%;
+    /* width: 700px; */
+    height: 2000px;
+    background: #010915;
+
+}
+
+.mobile-nav-header {
+    color: white;
+    font-size: 2rem;
+    width: 100%;
+    margin: 1rem auto;
+}
+
+.hidden-menu-anchor-tag:active {
+    text-decoration: none;
+}
+
+
+.hidden-menu-div {
+    width: 100%;
+    margin-top: 9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .mobile-covid-19-text {
     padding: 6% 0% 0% 0%;
     font-weight: bold;
@@ -646,6 +674,10 @@ p.news-txt-by-dt{
 
 .navbar-toggler {
     padding: 0 0 0 0;
+}
+
+.collapse {
+    width: 100%;
 }
 
 .fixed-navbar {
