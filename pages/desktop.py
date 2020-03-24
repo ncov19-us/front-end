@@ -161,7 +161,7 @@ us_maps_tabs = dbc.Card(
                     html.Div(
                         dcc.Tabs(
                             id="middle-map-tabs-styled-with-inline",
-                            value="confirmed-us-map-tab",
+                            value="testing-us-map-tab", # TODO: put this back to confirmed-us....
                             children=[
                                 dcc.Tab(
                                     label="😷",
@@ -202,9 +202,10 @@ def map_tab_content(value):
     """Callback to change between news and twitter feed
     """
     if value == "testing-us-map-tab":
-        return drive_thru_scatter_mapbox()
+        return drive_thru_scatter_mapbox() 
     else:
-        return confirmed_scatter_mapbox()
+        return drive_thru_scatter_mapbox()
+        ##### TODO: fix this back to confirmed_scatter_mapbox()
 
 
 ########################################################################
