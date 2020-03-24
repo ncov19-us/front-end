@@ -62,7 +62,7 @@ feed_tabs = dbc.Card(
             ),
             className="left-tabs",
         ),
-        dbc.CardBody(html.P(id="feed-content", className="card-text")),
+        dbc.CardBody(html.P(id="feed-content", className="left-col-feed-cards-text")),
     ]
 )
 
@@ -130,7 +130,7 @@ stats_tabs = dbc.Card(
             ),
             className="right-tabs",
         ),
-        dbc.CardBody(html.P(id="stats-content", className="card-text")),
+        dbc.CardBody(html.P(id="stats-content", className="right-col-feed-cards-text")),
     ]
 )
 
@@ -189,7 +189,12 @@ us_maps_tabs = dbc.Card(
             ],
             className="d-flex justify-content-between top-bar-us-map-heading-content",
         ),
-        html.Div(dcc.Graph(id="us-map", style={"height": "54vh"})),
+        html.Div(
+            dcc.Graph(
+                id="us-map", 
+                style={"height": "44vh"},
+            )
+        ),
     ]),
 )
 
@@ -216,12 +221,17 @@ desktop_body = [
     dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
         [
             # LEFT - TWITTER & NEWS FEED COL
-            dbc.Col(feed_tabs, className="left-col-twitter-feed-content", width=2),
+            dbc.Col(feed_tabs,
+                    className="left-col-twitter-feed-content",
+                    width=2
+            ),
             # MIDDLE - MAPS COL
             dbc.Col(
                 [
                     # big map
-                    html.Div(us_maps_tabs),
+                    html.Div(
+                        us_maps_tabs
+                    ),
                     # bottom two charts
                     html.Div(
                         dbc.Row(
@@ -233,6 +243,7 @@ desktop_body = [
                                                      className="top-bottom-left-chart-title",),
                                             dcc.Graph(figure=confirmed_cases_chart(),
                                                       config={'responsive':False},
+                                                      style={"height": "20vh"},
                                                       className='top-bottom-left-chart-figure"'),
                                         ]),
                                     ),
@@ -246,6 +257,7 @@ desktop_body = [
                                                      className="top-bottom-right-chart-title"), 
                                             dcc.Graph(figure=infection_trajectory_chart(),     
                                                       config={'responsive':False},
+                                                      style={"height": "20vh"},
                                                       className="top-bottom-right-chart-figure"),
                                         ]),
                                     ),
@@ -262,7 +274,10 @@ desktop_body = [
                 width=8,
             ),
             # RIGHT - STATS COL
-            dbc.Col(stats_tabs, className="right-col-news-feed-content", width=2),
+            dbc.Col(stats_tabs, 
+                    className="right-col-news-feed-content",
+                    width=2,
+            ),
         ],
         no_gutters=True,
         className="middle-map-news-content mt-3",
