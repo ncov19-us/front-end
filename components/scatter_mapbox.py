@@ -119,7 +119,6 @@ def confirmed_scatter_mapbox():
         mapbox_style=MAPBOX_STYLE,
         mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199),
                                 zoom=flask.session['zoom']),
-                                # zoom=app_state.zoom),
     )
 
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
@@ -147,7 +146,6 @@ def drive_thru_scatter_mapbox():
         mapbox_style=MAPBOX_STYLE,
         mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199),
                     zoom=flask.session['zoom']),
-                    # zoom=app_state.zoom),
         dragmode=False,
     )
 

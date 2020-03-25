@@ -8,7 +8,7 @@ from dash.dependencies import Input, Output
 import dash_core_components as dcc
 
 # Imports from this application
-from app import app, server#, app_state
+from app import app, server
 from layout.desktop_layout import build_desktop_layout
 from layout.mobile_layout import build_mobile_layout
 from pages import desktop, navbar, footer
@@ -31,13 +31,12 @@ def before_request_func():
     re_mobile = re.compile(mobile_string)
     is_mobile = len(re_mobile.findall(agent)) > 0
 
-        # print(f'[DEBUG]: Requests from Mobile? {app_state.is_mobile}')
+    # print(f'[DEBUG]: Requests from Mobile? {is_mobile}')
     if is_mobile:
         app.layout = build_mobile_layout
         flask.session['mobile'] = True#f"{app_state.is_mobile}"
         flask.session['zoom'] = 2
     else:  # Desktop request
-        # app_state.zoom = 3
         app.layout = build_desktop_layout
         flask.session['mobile'] = False#f"{app_state.is_mobile}"
         flask.session['zoom'] = 3
@@ -50,10 +49,6 @@ def before_request_func():
                Output("footer-content", "children")],
               [Input("url", "pathname")])
 def display_page(pathname):
-    # agent = request.headers.get("User_Agent")
-    # mobile_string = "(?i)android|fennec|iemobile|iphone|opera (?:mini|mobi)|mobile"
-    # re_mobile = re.compile(mobile_string)
-    # app_state.is_mobile = len(re_mobile.findall(agent)) > 0
     is_mobile = flask.session['mobile']
     # print(f"[DEBUG]: Session: 'mobile': {flask.session['mobile']}")
 

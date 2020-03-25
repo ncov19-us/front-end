@@ -38,22 +38,6 @@ server.secret_key = b'ceb69b2819fc46ebba007cb598e77319'
 app.config.suppress_callback_exceptions = True
 app.title = "Coronavirus COVID19 US Dashboard"
 
-# class AppState:
-#     """
-#     Dash/Flask App State Global Environment Class, used to share app state
-#     between different components, such as call back, zoom, and location(?)
-
-#     # TODO: THIS IS NOT THREAD SAFE
-#     """
-#     # @cache.memoize(timeout=60)
-#     def __init__(self, mobile=False, zoom=3):
-#         self.is_mobile = mobile
-#         self.zoom = zoom
-    
-#     def __repr__(self):
-#         return f'mobile: {self.is_mobile}, zoom: {self.zoom}'
-
-# app_state = AppState()
 
 ########################################################################
 #
