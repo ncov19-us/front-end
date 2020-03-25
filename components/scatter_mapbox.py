@@ -5,7 +5,7 @@ from dash.dependencies import Input, Output, State
 import plotly.express as px
 import plotly.graph_objects as go
 
-from app import cache#, app_state
+from app import cache
 from utils.settings import MAPBOX_ACCESS_TOKEN, DRIVE_THRU_URL, NCOV19_API, MAPBOX_STYLE
 import requests
 
