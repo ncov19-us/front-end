@@ -32,6 +32,7 @@ tab_selected_style = {
     "color": "white",
     "padding": "0.5rem",
 }
+
 ########################################################
 ########################################################################
 #
@@ -163,14 +164,14 @@ us_maps_tabs = dbc.Card(
                             value="confirmed-us-map-tab", # TODO: put this back to confirmed-us....
                             children=[
                                 dcc.Tab(
-                                    label="😷",
+                                    label="Cases",
                                     value="confirmed-us-map-tab",
                                     className="confirmed-us-map-tab",
                                     style=tab_style,
                                     selected_style=tab_selected_style,
                                 ),
                                 dcc.Tab(
-                                    label="🏥",
+                                    label="Testing",
                                     value="testing-us-map-tab",
                                     className="testing-us-map-tab",
                                     style=tab_style,
