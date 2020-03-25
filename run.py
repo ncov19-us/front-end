@@ -37,6 +37,7 @@ def before_request_func():
     else:  # Desktop request
         app_state.zoom = 3
         app.layout = build_desktop_layout
+        
 
 @app.callback([Output("navbar-content", "children"),
                Output("page-content", "children"),
