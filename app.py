@@ -32,6 +32,14 @@ cache = Cache(
 app.config.suppress_callback_exceptions = True
 app.title = "Coronavirus COVID19 US Dashboard"
 
+
+class AppState:
+    def __init__(self, mobile=False, zoom=3):
+        self.is_mobile = mobile
+        self.zoom = zoom
+
+app_state = AppState()
+
 # For Google Analytics
 app.index_string = """<!DOCTYPE html>
 <html>

@@ -5,7 +5,7 @@ from app import cache
 from utils.settings import TIME_URL
 
 
-@cache.memoize(timeout=3600)
+# @cache.memoize(timeout=3600)
 def infection_trajectory_chart(state=None) -> go.Figure:
     """Line chart data for the selected state.
 
@@ -50,9 +50,9 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             x=merged["Days"],
             y=merged["Italy"],
             name="Italy",
-            opacity=0.7,
+            # opacity=0.7,
             line={"color": "#D92C25"},
-            mode="lines+markers",
+            mode="lines",
             hovertemplate=template,
         )
     )
@@ -61,11 +61,12 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             x=merged["Days"],
             y=merged["South Korea"],
             name="South Korea",
-            opacity=0.7,
+            # opacity=0.7,
             line={"color": "#03DA32"},
-            mode="lines+markers",
+            mode="lines",
             hovertemplate=template,
-        )
+        ),
+
     )
     fig.add_trace(
         go.Scatter(
@@ -74,7 +75,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             name="United States",
             text="United States",
             line={"width": 5, "color": "#FEC400"},
-            mode="lines+markers",
+            mode="lines",
             hovertemplate=template,
         )
     )
@@ -85,7 +86,13 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         autosize=True,
         showlegend=True,
         legend_orientation="h",
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        xaxis_showgrid=False
     )
+
+    fig.update_layout(xaxis_showgrid=False, yaxis_showgrid=False)
+
 
     # card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"})))
     # return card

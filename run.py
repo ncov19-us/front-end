@@ -6,7 +6,7 @@ from dash.dependencies import Input, Output
 import dash_core_components as dcc
 
 # Imports from this application
-from app import app, server
+from app import app, server, app_state
 from layout.desktop_layout import build_desktop_layout
 from layout.mobile_layout import build_mobile_layout
 from pages import desktop, navbar, footer
@@ -18,11 +18,6 @@ from pages import mobile_about_body, mobile_resources_body
 # Set default layout so Flask can start
 app.layout = build_desktop_layout
 
-class AppState:
-    def __init__(self, mobile=False):
-        self.is_mobile = mobile
-
-app_state = AppState()
 
 
 @server.before_request
@@ -37,8 +32,10 @@ def before_request_func():
 
     # print(f'[DEBUG]: Requests from Mobile? {app_state.is_mobile}')
     if app_state.is_mobile:
+        app_state.zoom = 2
         app.layout = build_mobile_layout
     else:  # Desktop request
+        app_state.zoom = 3
         app.layout = build_desktop_layout
 
 @app.callback([Output("navbar-content", "children"),

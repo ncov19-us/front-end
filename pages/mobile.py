@@ -11,7 +11,6 @@ from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import (
     states_confirmed_stats,
     states_deaths_stats,
-    states_recovered_stats,
 )
 
 ################ TABS STYLING ####################
@@ -172,7 +171,7 @@ mobile_body = [
             dbc.CardBody(
                 [
                     html.Div(
-                        "Confirmed Cases",
+                        "US Confirmed Cases",
                         className="mobile-top-bottom-left-chart-title",
                     ),
                     dcc.Graph(

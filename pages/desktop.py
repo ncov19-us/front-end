@@ -11,7 +11,6 @@ from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import (
     states_confirmed_stats,
     states_deaths_stats,
-    states_recovered_stats,
 )
 
 ################ TABS STYLING ####################
@@ -32,6 +31,7 @@ tab_selected_style = {
     "color": "white",
     "padding": "0.5rem",
 }
+
 ########################################################
 ########################################################################
 #
@@ -160,17 +160,17 @@ us_maps_tabs = dbc.Card(
                     html.Div(
                         dcc.Tabs(
                             id="middle-map-tabs-styled-with-inline",
-                            value="confirmed-us-map-tab",
+                            value="confirmed-us-map-tab", # TODO: put this back to confirmed-us....
                             children=[
                                 dcc.Tab(
-                                    label="😷",
+                                    label="Cases",
                                     value="confirmed-us-map-tab",
                                     className="confirmed-us-map-tab",
                                     style=tab_style,
                                     selected_style=tab_selected_style,
                                 ),
                                 dcc.Tab(
-                                    label="🏥",
+                                    label="Testing",
                                     value="testing-us-map-tab",
                                     className="testing-us-map-tab",
                                     style=tab_style,
@@ -201,9 +201,10 @@ def map_tab_content(value):
     """Callback to change between news and twitter feed
     """
     if value == "testing-us-map-tab":
-        return drive_thru_scatter_mapbox()
+        return drive_thru_scatter_mapbox() 
     else:
         return confirmed_scatter_mapbox()
+        ##### TODO: fix this back to confirmed_scatter_mapbox()
 
 
 ########################################################################
@@ -231,7 +232,7 @@ desktop_body = [
                                         dbc.CardBody(
                                             [
                                                 html.Div(
-                                                    "Confirmed Cases",
+                                                    "US Confirmed Cases",
                                                     className="top-bottom-left-chart-title",
                                                 ),
                                                 dcc.Graph(
@@ -276,7 +277,9 @@ desktop_body = [
                 width=8,
             ),
             # RIGHT - STATS COL
-            dbc.Col(stats_tabs, className="right-col-news-feed-content", width=2,),
+            dbc.Col(stats_tabs, 
+                    className="right-col-stats-content", 
+                    width=2,),
         ],
         no_gutters=True,
         className="middle-map-news-content mt-3",

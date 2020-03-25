@@ -14,19 +14,16 @@ body {
     background-color: #19202A;
 }
 
-.list-group-item{
+.list-group-item {
     padding: 0.5rem;
     border-radius: 1rem;
     text-align: left;
     margin-bottom: 0.5rem;
-    background-color: #0b1218;
+    background-color: none;
+    /* background-color: #0b1218; */
     /* box-shadow: 4px 4px 6px rgba(0,0,0,0.75); */
 }
 
-.list-group-item:hover {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
-    transform: translateY(-2px);
-}
 
 /*  Nav Bar */
 #navbar {
@@ -74,6 +71,26 @@ body {
     min-width: 150px;
     padding-top: 0;
     padding-bottom: 0;
+
+}
+
+.dropdown-menu.show {
+    transform: translate3d(-1px, 45px, 0px);
+    max-width: 150px;
+}
+
+.dropdown-menu { 
+    min-width: 150px;
+    background-color: #62686d;
+}
+
+.dropdown-item {
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus, .show>.btn-secondary.dropdown-toggle:focus {
+    box-shadow: none;
 }
 
 .dropdown-location-menu .dropdown-toggle {
@@ -108,9 +125,11 @@ body {
 
 /* Applies to all Cards 🎴 */
 .card-body {
-    background-color: #010915;
+    background-color: #1F242D;
     padding: 1rem;
     border: none;
+    border-radius: .3rem;
+    /* box-shadow: 0px 5px rgba(0, 0, 0, 0.2); */
 }
 
 .card-text {
@@ -120,6 +139,7 @@ body {
 }
 
 .card {
+    background-color: #1F242D;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -127,10 +147,215 @@ body {
 
 /************************* 💻 Desktop Styling 💻 **************************/
 
+/* stats black lines */
+.states-stats-confirmed-list-item.list-group-item, .states-stats-deaths-list-item.list-group-item {
+    border-color: rgba(0, 0, 0, 0.30);
+}
+
+font-size: 0.7rem; background-color: rgb(32, 36, 45); color: white; padding: 0.5rem;
+
+/* 📖 About Page Styling 📖 */
+
+/* Every page is given some padding and margin, but I want the about page to fill the whole page so I need to negate it.
+This isn't perfect so if anyone knows how to disable .page-content padding on the about page only please fix this */
+#about-page {
+    margin-left: -15px;
+    margin-top: -25px;
+}
+
+.about-page-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    padding-left: 4vw;
+    margin-bottom: 50px;
+    margin-top: 0;
+}
+
+#about-page-second-third .about-page-title {
+    padding-left: 9vw;
+    padding-bottom: 50px;
+}
+
+.about-section-title-container {
+    border-left: 7px solid white;
+}
+
+.about-section-text-container {
+    border-left: 1px solid white;
+    margin-left: 3px;
+}
+
+.about-section {
+    width: 40vw;
+}
+
+.about-section-title {
+    font-family: 'Roboto', sans-serif;
+    padding-left: 4%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin: 0;
+}
+
+.about-section-text {
+    font-family: 'Roboto', sans-serif;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5%;
+}
+
+.about-section-container {
+    display: flex;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 75px;
+}
+
+#about-page-second-third .about-section-container {
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+.about-section-padding {
+    padding-left: 7vw;
+    padding-top: 7vw;
+}
+
+#about-page-first-third  {
+    background-color: #262a32;
+    color: white;
+}
+
+#about-page-second-third  {
+    background-color: #010915;
+    color: white;
+    background-position: right top;
+    background-image: url('../images/map_1.svg');
+    background-repeat: no-repeat;
+    background-size: 45%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+#about-page-third-third  {
+    background-color: #D2D2D2;
+    padding-left: 12vw;
+    color: black;
+    padding-bottom: 100px;
+}
+
+.about-page-third {
+    width: 100vw;
+    height: 100%;
+    padding-top: 50px; 
+}
+
+#about-page-contributors {
+
+}
+
+#about-contributors-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-shadow: none;
+}
+
+#about-contributors-subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    padding-bottom: 50px;
+    font-weight: 300;
+    text-shadow: none;
+}
+
+/* need to fix styling on the next two classes on about page */
+.about-page-contributor-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-page-contributor {
+    display: flex;
+    align-items: center;
+}
+
+
+.about-contributor-name {
+    font-family: 'Roboto', sans-serif;
+    padding-right: 5px;
+    font-weight: bold;
+}
+
+.about-contributor-title {
+    font-family: 'Roboto', sans-serif;
+}
+
+.about-contributor-social-icon {
+    margin-left: 15px;
+    width: 23px;
+    height: 23px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.about-contributor-github-icon {
+    background-image: url('../images/Github.svg');
+}
+
+.about-contributor-linkedin-icon {
+    background-image: url('../images/LinkedIN.svg');
+}
+
+.about-contributor-twitter-icon {
+    background-image: url('../images/Twitter.svg');
+}
+
+/* 📖 About Page Mobile-Specific Styling 📖 */
+
+#mobile-about-page {
+    margin-left: -15px;
+    margin-top: -25px;
+}
+
+#mobile-about-page .about-section-container {
+    display: inline-block;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 75px;
+}
+
+#mobile-about-page #about-page-first-third {
+    padding-top: 100px;
+    color: white;
+}
+
+#mobile-about-page #about-page-third-third {
+    background-color: #D2D2D2;
+    padding-left: 20px;
+    color: black;
+    padding-bottom: 100px;
+    font-size: .8rem;
+}
+
+#mobile-about-page .about-section {
+    width: 100%;
+}
+
+/* About Page Styling End */
+
 /* Top Card Section */
 .top-bar-content.row {
     margin-left: 0.2rem;
     margin-right: .2rem;
+}
+
+.top-bar-content.row .card-body {
+    background-color: #010915;
+}
+
+.top-bar-card-body .card-body {
+    background-color: #010915;
 }
 
 .top-bar-card-tested {
@@ -198,6 +423,9 @@ body {
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem;
 }
+.top-bar-card-recovered.card {
+    background-color: #010915;
+}
 
 .top-bar-value-recovered {
     margin-top: -1.1rem;
@@ -231,27 +459,72 @@ body {
 }
 
 /* 🌎 Map and Graph 📊 Styling */
+
+/* .testing-us-map-tab {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url("../images/drive-thru-icon.png");
+    height: 50px;
+    margin: 10px;
+    padding: 0;
+}
+
+.confirmed-us-map-tab {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url("../images/virus.png");
+    height: 50px;
+    margin: 10px;
+    padding: 0;
+} */
+
+.middle-col-map-content.col-8 .card{
+    /* width: 90%; */
+    background-color: #010915;
+    /* margin-left: 3.3rem; */
+}
+
+.middle-col-map-content.col-8 .card .card-body{
+    padding: 0;
+    background-color: #010915;
+}
+
+.jsx-2597805859.tab.confirmed-us-map-tab.tab--selected, .jsx-2597805859.tab.testing-us-map-tab , .jsx-2597805859.tab.confirmed-us-map-tab {
+    min-width: 5rem;
+}
+
+
 .top-bar-us-map-heading-txt {
-    font-size: 1.5rem;
-    color: #ffffff;
-    max-width: 61%;
-    margin-bottom: 1%;
+    font-size: .9rem;
+    color: #fefefe;
+    padding-top: 0.3rem;
+    padding-left: 1rem;
+    /* max-width: 57%; */
+    /* margin-bottom: 1%; */
 }
 
 .top-bottom-left-chart-title, .top-bottom-right-chart-title {
-    font-size: 1.5rem;
-    color: #ffffff;
+    font-size: 1.4rem;
+    color: #fefefe;
     max-width: 100%;
-    margin-bottom: 1%;
+    margin-bottom: 5%;
 }
 
 .card-header-tabs{
     margin-right:0%;
 }
 
-.col-8 {
-    max-width: 65%;
+.jsx-2597805859.tab.testing-us-map-tab {
+    border-top-right-radius: 0.3rem;
 }
+
+.middle-col-map-content.col-8 {
+    max-width: 65%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+} 
 
 .middle-styling {
     flex-wrap: nowrap;
@@ -274,31 +547,61 @@ body {
 
 /* Bottom Left and Right Charts */
 
-.top-bottom-charts {
-    height: 7%;
+.top-bottom-charts .card {
+    margin-top: .9rem;
+    margin-bottom: 3rem;
+}
+
+.top-bottom-left-chart.col-6 .card {
+    margin-top: .9rem;
+    margin-bottom: 3rem;
+    margin-right: .9rem;
+    padding: 1.2rem;
+}
+
+.top-bottom-right-chart.col-6 .card {
+    margin-right: 0rem;
+    padding: 1.2rem;
+}
+
+.top-bottom-charts .card-body {
+    background: hsl(216, 91%, 4%);
+    padding: 1.2rem;
 }
 
 .top-bottom-left-chart{
     height: 7%;
     padding: 0.5%;
-    /* border-radius: 0.5rem; */
-    /* margin: 0%; */
-    /* margin-top: 0.75rem; */
-    /* margin-right: 0.25rem; 
-    margin-right: 1rem; */
 }
+
 
 .top-bottom-right-chart{
     height: 7%;
-    /* border-radius: 0.25rem; */
     padding: 0.5%;
-    /* margin: 0%; */
-    /* margin-top: 0.75rem; */
-    /* margin-left: 0.25rem; */
 }
 
 
 /* 👈 Left  Twitter 🐦 News 📰 Feed Sidebar */
+
+/* Active Tab Blur */
+.tab--selected {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, .4);
+    z-index: 100;
+    position: relative;
+    background-color: #1F242D;
+
+}
+
+.tweet-item.list-group-item p {
+    font-size: 1.1rem;
+}
+
+.tweet-item.list-group-item .tweets-txt-by-dt{
+    font-size: .8rem;
+}
+.tweet-item.list-group-item .tweet-dt {
+    font-size: .8rem;
+}
 
 .middle-map-news-content.mt-3.no-gutters.row {
     margin-left: 1.2rem;
@@ -306,21 +609,14 @@ body {
     border: none;
 }
 
-.jsx-2597805859.tab.left-twitter-tab {
-    border-top-left-radius: 0.3rem;
-    background-color: #010915;
-}
-
 .jsx-2597805859.tab.left-news-tab {
     border-top-right-radius: 0.3rem;
-    
 }
 
 .jsx-2597805859.tab.left-twitter-tab.tab-selected {
     background-color: #010915;
-}
-.jsx-2597805859.tab.left-twitter-tab.tab--selected {
-    background-color: blue;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* get rid of tab padding */
@@ -329,12 +625,49 @@ body {
     padding: 0 0 .75rem 0;
 }
 
-
 .left-col-twitter-feed-content{
     margin-bottom: 1rem;
     border-radius: .3rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    height: 100%;
+    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
 }
+
+.right-col-news-feed-content.col-2 {
+    margin-left: 0.3rem;
+}
+
+.left-col-twitter-feed-content.col-2 .card .card-body {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.left-col-twitter-feed-content.col-2 .list-group-item {
+    background-color: none
+}
+
+/* cards inside the sidebar for tweets and news */
+
+.left-col-feed-cards-text .tweet-item.list-group-item {
+    border-radius: 0.2rem;
+    background-color: none;
+}
+
+.right-col-news-feed-content.col-2 {
+    margin-left: 0.3rem;
+}
+
+.left-col-feed-cards-text .list-group .list-group-flush li {
+    background-color: none
+}
+
+.tweet-item.list-group-item , .news-item.list-group-item{
+    background-color: #010915;
+    border: none;
+}
+
+
+
+/* .tweet-item p */
 
 /* overflow disable scroll bar */
 .left-col-feed-cards-text {
@@ -367,13 +700,59 @@ p.tweet-dt {
 }
 
 p.news-txt-by-dt{
+    font-size: 0.5rem;
     margin-bottom: 0;
 }
 
-/* 👉 Right Detailed List Sidebar */
+
+.tweet-item.list-group-item a:hover, .news-item.list-group-item a:hover {
+    /* transform: translateY(-0.01px); */
+    text-decoration: none;
+    background: rgba(1, 9, 21, 0.83);
+}
+
+
+.jsx-1990498210.tab.left-twitter-tab.tab--selected {
+    border-top-left-radius: 0.3rem;
+}
+
+.left-twitter-tab {
+    border-top-left-radius: 0.3rem;
+} 
+
+/* 👉👉👉👉 Right Detailed List Sidebar */
 
 .right-col-news-feed-content{
     margin-bottom: 1rem;
+}
+
+.right-col-feed-cards-text {
+    background: none;
+    background-color: none;
+}
+
+
+
+.states-stats-confirmed-list-item.list-group-item {
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 1px;
+    background-color: none;
+    background: none; 
+    padding: 0.05rem;
+}
+
+.states-stats-deaths-list-item.list-group-item {
+    background-color: none;
+    background: none;
+    /* border-bottom: 100px;
+    border-color: #0B1319; */
+}
+
+
+#recovery-tab {
+    border-top-right-radius: 0.3rem;
 }
 
 /* overflow disable scroll bar */
@@ -443,15 +822,11 @@ p.news-txt-by-dt{
 }
 
 
+
 .footer-social-copyright-content.col-2 {
     /* margin-right: -5rem; */
     margin-top: 1rem;
     margin-bottom: 0.5rem;
-}
-
-.footer-social-icons.mr-3 {
-    /* size: 10rem; */
-    margin-top: 1rem;
 }
 
 .fab.fa-github {
@@ -463,6 +838,12 @@ p.news-txt-by-dt{
     font-size: 1rem;
     text-align: center;
     color: #8B8D91;
+}
+
+.footer-social-copyright-content {
+    display: flex;
+    align-items: center;
+    padding-bottom: 8px;
 }
 
 /********************* 📱 MOBILE STYLING 📱 **********************/
@@ -714,4 +1095,22 @@ p.news-txt-by-dt{
 .mobile-feed-card-body{
     height: 75vh;
     overflow: scroll;
+}
+
+
+.hidden-menu-div {
+    background-color: #010915;
+    width: 100vw;
+    height: 100vh;
+    padding:0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: -0.65rem;
+    padding-bottom: 8rem;
+}
+
+.hidden-menu-div a {
+    font-size: 2.4rem
 }
