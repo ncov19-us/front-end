@@ -1,10 +1,11 @@
 from datetime import datetime, timedelta
 import pandas as pd
+import flask
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import plotly.graph_objects as go
 
-from app import cache, app_state
+from app import cache
 from utils.settings import MAPBOX_ACCESS_TOKEN, DRIVE_THRU_URL, NCOV19_API, MAPBOX_STYLE
 import requests
 
@@ -116,8 +117,8 @@ def confirmed_scatter_mapbox():
         # This takes away the colorbar on the right hand side of the plot
         coloraxis_showscale=False,
         mapbox_style=MAPBOX_STYLE,
-        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), 
-                                zoom=app_state.zoom),
+        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199),
+                                zoom=flask.session['zoom']),
     )
 
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
@@ -140,16 +141,11 @@ def drive_thru_scatter_mapbox():
         hover_data=["URL"],
     )
 
-    # if app_state.is_mobile:
-    #     zoom=2
-    # else:
-    #     zoom=3
-
     fig.layout.update(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         mapbox_style=MAPBOX_STYLE,
         mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199),
-                    zoom=app_state.zoom),
+                    zoom=flask.session['zoom']),
         dragmode=False,
     )
 

@@ -3,6 +3,7 @@ import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
 from utils.settings import tm
+import requests
 
 
 @cache.memoize(timeout=900)
@@ -21,11 +22,7 @@ def twitter_feed(state=None) -> List[dbc.Card]:
     if state is None:
         doc = tm.get_tweet_by_state("US")
 
-    cards = [
-        # dbc.Card(
-        #     dbc.CardHeader([html.I(className="fab fa-twitter mr-1"), "Twitter Feed"])
-        # )
-    ]
+    cards = []
 
     username = doc["username"]
     full_name = doc["full_name"]
@@ -34,10 +31,8 @@ def twitter_feed(state=None) -> List[dbc.Card]:
     # 2020-03-19 triage. lots of empty list at the end of tweets, filtering them out
     tweets = [*filter(None, tweets)]
     tweets = sorted(tweets, key=lambda i: i["created_at"], reverse=True)
-    # print(tweets)
+    
     cards += [
-        # dbc.Card(
-        #     dbc.CardBody(
         dbc.ListGroupItem(
             [
                 html.A(
@@ -62,5 +57,5 @@ def twitter_feed(state=None) -> List[dbc.Card]:
         for tweet in tweets
     ]
     list_group = dbc.ListGroup(cards, flush=True)
-    # return cards
+    
     return list_group

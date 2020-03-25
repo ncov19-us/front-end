@@ -4,15 +4,6 @@ import dash
 import dash_bootstrap_components as dbc
 
 
-class AppState:
-    """
-    Dash/Flask App State Global Environment Class, used to share app state
-    between different components, such as call back, zoom, and location(?)
-    """
-    def __init__(self, mobile=False, zoom=3):
-        self.is_mobile = mobile
-        self.zoom = zoom
-
 # stylesheet tbd
 external_stylesheets = [
     dbc.themes.SLATE,  # Bootswatch theme
@@ -42,9 +33,11 @@ cache = Cache(
     },
 )
 
+# TODO: BAD PRACTICE, MOVE IT OUT
+server.secret_key = b'ceb69b2819fc46ebba007cb598e77319'
 app.config.suppress_callback_exceptions = True
 app.title = "Coronavirus COVID19 US Dashboard"
-app_state = AppState()
+
 
 ########################################################################
 #
