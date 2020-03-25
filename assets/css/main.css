@@ -350,6 +350,10 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     margin-right: .2rem;
 }
 
+.top-bar-content.row .card-body {
+    background-color: #010915;
+}
+
 .top-bar-card-body .card-body {
     background-color: #010915;
 }

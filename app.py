@@ -34,8 +34,9 @@ app.title = "Coronavirus COVID19 US Dashboard"
 
 
 class AppState:
-    def __init__(self, mobile=False):
+    def __init__(self, mobile=False, zoom=3):
         self.is_mobile = mobile
+        self.zoom = zoom
 
 app_state = AppState()
 

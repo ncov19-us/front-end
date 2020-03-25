@@ -52,6 +52,7 @@ def states_confirmed_stats(state=None) -> dbc.ListGroup:
                         className="states-stats-confirmed-list-txt",
                     ),
                 ],
+                id = f"states-confirmed-{key}",
                 className="states-stats-confirmed-list-item",
             )
             for key, value in confirmed.items()
@@ -89,6 +90,7 @@ def states_deaths_stats(state=None) -> dbc.ListGroup:
                         className="states-stats-deaths-list-txt",
                     ),
                 ],
+                id = f"states-death-{key}",
                 className="states-stats-deaths-list-item",
             )
             for key, value in death.items()

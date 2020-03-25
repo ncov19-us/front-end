@@ -32,8 +32,10 @@ def before_request_func():
 
     # print(f'[DEBUG]: Requests from Mobile? {app_state.is_mobile}')
     if app_state.is_mobile:
+        app_state.zoom = 2
         app.layout = build_mobile_layout
     else:  # Desktop request
+        app_state.zoom = 3
         app.layout = build_desktop_layout
 
 @app.callback([Output("navbar-content", "children"),
