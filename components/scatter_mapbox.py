@@ -158,7 +158,7 @@ def drive_thru_scatter_mapbox():
     )
     fig.layout.update(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
-        mapbox_style="white-bg",
+        mapbox_style="dark",
         mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=2.3),
         dragmode=False,
     )

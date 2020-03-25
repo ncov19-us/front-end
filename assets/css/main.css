@@ -1086,3 +1086,21 @@ p.news-txt-by-dt{
     height: 75vh;
     overflow: scroll;
 }
+
+
+.hidden-menu-div {
+    background-color: #010915;
+    width: 100vw;
+    height: 100vh;
+    padding:0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: -0.65rem;
+    padding-bottom: 8rem;
+}
+
+.hidden-menu-div a {
+    font-size: 2.4rem
+}
