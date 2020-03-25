@@ -137,8 +137,6 @@ def stats_tab_content(value):
     """
     if value == "deaths-tab":
         return states_deaths_stats()
-    # elif value == "recovered-tab":
-    #     return states_recovered_stats()
     else:
         return states_confirmed_stats()
 

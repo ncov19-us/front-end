@@ -5,7 +5,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 from app import cache, app_state
-from utils.settings import MAPBOX_ACCESS_TOKEN, DRIVE_THRU_URL, NCOV19_API
+from utils.settings import MAPBOX_ACCESS_TOKEN, DRIVE_THRU_URL, NCOV19_API, MAPBOX_STYLE
 import requests
 
 
@@ -108,11 +108,6 @@ def confirmed_scatter_mapbox():
         color_continuous_scale=color_scale,
     )
 
-    if app_state.is_mobile:
-        zoom=2
-    else:
-        zoom=3
-    
     fig.layout.update(
         # Title still no show after this
         title="Corona Virus Cases in U.S.",
@@ -120,8 +115,9 @@ def confirmed_scatter_mapbox():
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         # This takes away the colorbar on the right hand side of the plot
         coloraxis_showscale=False,
-        mapbox_style="dark",
-        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=zoom),
+        mapbox_style=MAPBOX_STYLE,
+        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), 
+                                zoom=app_state.zoom),
     )
 
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
@@ -144,15 +140,16 @@ def drive_thru_scatter_mapbox():
         hover_data=["URL"],
     )
 
-    if app_state.is_mobile:
-        zoom=2
-    else:
-        zoom=3
+    # if app_state.is_mobile:
+    #     zoom=2
+    # else:
+    #     zoom=3
 
     fig.layout.update(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
-        mapbox_style="dark",
-        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=zoom),
+        mapbox_style=MAPBOX_STYLE,
+        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199),
+                    zoom=app_state.zoom),
         dragmode=False,
     )
 

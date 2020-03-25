@@ -24,6 +24,9 @@ TWITTER = tweepy.API(TWITTER_AUTH)
 # MapBox Token
 MAPBOX_ACCESS_TOKEN = config("MAPBOX_ACCESS_TOKEN")
 
+# MapBox Style
+MAPBOX_STYLE = "mapbox://styles/hurshd0/ck86zky880ory1ip18f5tw4y6"
+
 # Data API URL
 NEWS_API_KEY = config("NEWS_API_KEY")
 NEWS_API_URL = f"https://newsapi.org/v2/top-headlines?country=us&apiKey={NEWS_API_KEY}"
