@@ -23,10 +23,7 @@ body {
     /* background-color: #0b1218; */
     /* box-shadow: 4px 4px 6px rgba(0,0,0,0.75); */
 }
-/* .list-group-item:hover {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
-    transform: translateY(-2px);
-} */
+
 
 /*  Nav Bar */
 #navbar {
@@ -150,9 +147,11 @@ body {
 /************************* 💻 Desktop Styling 💻 **************************/
 
 /* stats black lines */
-.states-stats-confirmed-list-item.list-group-item {
-    border-color: black;
+.states-stats-confirmed-list-item.list-group-item, .states-stats-deaths-list-item.list-group-item {
+    border-color: rgba(0, 0, 0, 0.30);
 }
+
+font-size: 0.7rem; background-color: rgb(32, 36, 45); color: white; padding: 0.5rem;
 
 /* 📖 About Page Styling 📖 */
 
@@ -635,14 +634,31 @@ jsx-2597805859 .tab .left-twitter-tab .tab--selected  {
     border-top-left-radius: 0;
 }
 
+.left-col-twitter-feed-content.col-2 .list-group-item {
+    background-color: none
+}
+
 /* cards inside the sidebar for tweets and news */
+
 .left-col-feed-cards-text .tweet-item.list-group-item {
     border-radius: 0.2rem;
+    background-color: none;
 }
 
 .left-col-feed-cards-text .tweet-item.list-group-item p {
     font-size: .5rem;
 }
+
+.left-col-feed-cards-text .list-group .list-group-flush li {
+    background-color: none
+}
+
+.tweet-item.list-group-item , .news-item.list-group-item{
+    background-color: #010915;
+    border: none;
+}
+
+
 
 /* .tweet-item p */
 
@@ -678,32 +694,22 @@ p.tweet-dt {
 }
 
 p.news-txt-by-dt{
+    font-size: 0.5rem;
     margin-bottom: 0;
 }
 
-.tweet-item.list-group-item {
-    background-color:#0B1319;
+
+
+.tweet-item.list-group-item a:hover, .news-item.list-group-item a:hover {
+    /* transform: translateY(-0.01px); */
+    text-decoration: none;
+    background: rgba(1, 9, 21, 0.83);
 }
 
-.tweet-item.list-group-item:hover {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
-    transform: translateY(-2px);
-}
-
-.news-item.list-group-item {
-    background-color:#0B1319;
-}
-
-.news-item.list-group-item:hover {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
-    transform: translateY(-2px);
-}
 
 .jsx-1990498210.tab.left-twitter-tab.tab--selected {
     border-top-left-radius: 0.3rem;
 }
-
-
 
 
 /* 👉👉👉👉 Right Detailed List Sidebar */
@@ -723,14 +729,12 @@ p.news-txt-by-dt{
 }
 
 .states-stats-confirmed-list-item.list-group-item {
-    /* border-bottom: 100px; */
-    /* border-color: #0B1319; */
     border-top-width: 0;
     border-left-width: 0;
     border-right-width: 0;
     border-bottom-width: 1px;
     background-color: none;
-    background: none;
+    background: none; 
     padding: 0.05rem;
 }
 
