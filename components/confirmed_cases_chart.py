@@ -18,12 +18,11 @@ def confirmed_cases_chart(state=None) -> go.Figure:
     data = response['message']
     data = pd.read_json(data, orient='records')
     data = data[["US"]]
-    
-
     data = data.rename(columns={"US":"Confirmed Cases"})
     data.index.names = ['Date']
     data = data.reset_index()
-    
+    data = data.tail(60)
+
     fig = px.line(data, x="Date", y="Confirmed Cases")
     fig.update_traces(line_color="#FEC400")
     fig.update_layout(
