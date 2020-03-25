@@ -132,6 +132,7 @@ body {
     padding: 1rem;
     border: none;
     border-radius: .3rem;
+    /* box-shadow: 0px 5px rgba(0, 0, 0, 0.2); */
 }
 
 .card-text {
@@ -448,39 +449,58 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 /* 🌎 Map and Graph 📊 Styling */
 
-.middle-col-map-content.col-8 .card {
-    background-color: #010915;
-}
-
-.middle-col-map-content.col-8 .card .card-body{
-    background-color: #010915;
+/* .testing-us-map-tab {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url("../images/drive-thru-icon.png");
+    height: 50px;
+    margin: 10px;
     padding: 0;
 }
 
+.confirmed-us-map-tab {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url("../images/virus.png");
+    height: 50px;
+    margin: 10px;
+    padding: 0;
+} */
+
+.middle-col-map-content.col-8 .card{
+    /* width: 90%; */
+    background-color: #010915;
+    /* margin-left: 3.3rem; */
+}
+
+.middle-col-map-content.col-8 .card-body{
+    /* width: 90%; */
+    background-color: #010915;
+}
+
 .top-bar-us-map-heading-txt {
-    padding-top: 0.3rem;
-    padding-left: 1rem;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     color: #fefefe;
     max-width: 61%;
-    /* margin-bottom: 1%; */
+    margin-bottom: 1%;
 }
 
-.jsx-2597805859{
-    /* shift map emojis right to center */
-    padding-left: 0.2rem;
+.top-bottom-left-chart-title, .top-bottom-right-chart-title {
+    font-size: 1.4rem;
+    color: #fefefe;
+    max-width: 100%;
+    margin-bottom: 5%;
 }
-
-
 
 .card-header-tabs{
     margin-right:0%;
 }
 
-.jsx-2597805859.tab.testing-us-map-tab {
-    border-top-right-radius: 0.3rem;
-}
-
+/* .col-8 {
+    max-width: 65%;
+} */
 
 .middle-col-map-content.col-8 {
     max-width: 65%;
@@ -501,11 +521,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding: 0px;
 }
 
-dash-graph {
-    border-bottom-left-radius: 0.3rem;
-
-}
-
 /* https://community.plot.ly/t/is-it-possible-to-hide-the-floating-toolbar/4911 */
 .modebar{
     display: none !important; 
@@ -515,28 +530,14 @@ dash-graph {
 /* Bottom Left and Right Charts */
 
 .top-bottom-charts {
+    height: 7%;
+    /* width: 98%; */
 }
 
 .top-bottom-charts .card {
     margin-top: .9rem;
     margin-bottom: 3rem;
-    padding: 1rem;
-    padding-left: 2rem;
-    padding-right: 1.5rem;
-    background-color: #010915;
 }
-
-.top-bottom-charts .card .card-body {
-    background: none;
-    /* padding: 2rem; */
-
-}
-
-/* .top-bottom-charts .card-body {
-    padding: 1.2rem;
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
-} */
 
 .top-bottom-left-chart.col-6 .card {
     margin-top: .9rem;
@@ -548,7 +549,10 @@ dash-graph {
     margin-right: 0rem;
 }
 
-
+.top-bottom-charts .card-body {
+    background: hsl(216, 91%, 4%);
+    padding: 1.2rem;
+}
 
 .top-bottom-left-chart{
     height: 7%;
@@ -561,19 +565,16 @@ dash-graph {
     padding: 0.5%;
 }
 
-.top-bottom-left-chart-title, .top-bottom-right-chart-title {
-    font-size: 1.0rem;
-    color: #fefefe;
-    max-width: 100%;
-    margin-bottom: 10%;
-}
 
+/* 👈 Left  Twitter 🐦 News 📰 Feed Sidebar */
 
-/* 👈 Left  Twitter 🐦  📰 News Feed Sidebar */
-
+/* Active Tab Blur */
 .tab--selected {
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, .4);
     z-index: 100;
+    position: relative;
+    background-color: #1F242D;
+
 }
 
 .tweet-item.list-group-item p {
@@ -593,12 +594,6 @@ dash-graph {
     border: none;
 }
 
-.jsx-2597805859.tab.left-twitter-tab {
-    border-top-left-radius: 0.3rem;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.2);
-    background-color: #010915;
-}
-
 .jsx-2597805859.tab.left-news-tab {
     border-top-right-radius: 0.3rem;
 }
@@ -606,10 +601,6 @@ dash-graph {
 .jsx-2597805859.tab.left-twitter-tab.tab-selected {
     background-color: #010915;
     background-color: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.2);
-}
-
-jsx-2597805859 .tab .left-twitter-tab .tab--selected  {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -623,29 +614,18 @@ jsx-2597805859 .tab .left-twitter-tab .tab--selected  {
 .left-col-twitter-feed-content{
     margin-bottom: 1rem;
     border-radius: .3rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* .left-col-twitter-feed-content.col-2 {
+    margin-right: 0.1rem;
+} */
+.left-col-twitter-feed-content {
+    height: 100%;
 }
 
 .right-col-news-feed-content.col-2 {
     margin-left: 0.3rem;
 }
-
-.left-col-twitter-feed-content.col-2 .card .card-body {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-}
-
-/* cards inside the sidebar for tweets and news */
-.left-col-feed-cards-text .tweet-item.list-group-item {
-    border-radius: 0.2rem;
-}
-
-.left-col-feed-cards-text .tweet-item.list-group-item p {
-    font-size: .5rem;
-}
-
-/* .tweet-item p */
-
 
 /* overflow disable scroll bar */
 .left-col-feed-cards-text {
@@ -703,44 +683,38 @@ p.news-txt-by-dt{
     border-top-left-radius: 0.3rem;
 }
 
+.left-twitter-tab {
+    border-top-left-radius: 0.3rem;
+} 
 
 
 
-/* 👉👉👉👉 Right Detailed List Sidebar */
 
-/* .right-col-news-feed-content{
+/* 👉 Right Detailed List Sidebar */
+
+.right-col-news-feed-content{
     margin-bottom: 1rem;
-} */
+}
 
-/* .right-col-feed-cards-text {
+.right-col-feed-cards-text {
     background: none;
     background-color: none;
-} */
-
-.right-col-stats-content.col-2 .card .card-body {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
 }
+
+
 
 .states-stats-confirmed-list-item.list-group-item {
-    /* border-bottom: 100px; */
-    /* border-color: #0B1319; */
-    border-top-width: 0;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 1px;
+    /* border-bottom: 100px;
+    border-color: #0B1319; */
     background-color: none;
     background: none;
-    padding: 0.05rem;
 }
 
-
-
 .states-stats-deaths-list-item.list-group-item {
-    /* border-color: #0B1319; */
     background-color: none;
     background: none;
-    padding: 0.05rem;
+    /* border-bottom: 100px;
+    border-color: #0B1319; */
 }
 
 
@@ -811,7 +785,7 @@ p.news-txt-by-dt{
 }
 
 .footer-disclaimer-text {
-    width: 80%;
+    width: 50rem;
 }
 
 
@@ -846,34 +820,6 @@ p.news-txt-by-dt{
     color: #fefefe;
 }
 
-.hidden-menu {
-    width: 100%;
-    /* width: 700px; */
-    height: 2000px;
-    background: #010915;
-
-}
-
-.mobile-nav-header {
-    color: white;
-    font-size: 2rem;
-    width: 100%;
-    margin: 1rem auto;
-}
-
-.hidden-menu-anchor-tag:active {
-    text-decoration: none;
-}
-
-
-.hidden-menu-div {
-    width: 100%;
-    margin-top: 9rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .mobile-covid-19-text {
     padding: 6% 0% 0% 0%;
     font-weight: bold;
@@ -900,10 +846,6 @@ p.news-txt-by-dt{
     padding: 0 0 0 0;
 }
 
-.collapse {
-    width: 100%;
-}
-
 .fixed-navbar {
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
@@ -926,7 +868,7 @@ p.news-txt-by-dt{
 }
 
 .mobile-top-bar-card-tested.list-group-item {
-    /* border-top-left-radius: 0.3rem; */
+    border-top-left-radius: 0.3rem;
     border-top-right-radius: 0.3rem;
 }
 
