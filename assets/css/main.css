@@ -23,10 +23,7 @@ body {
     /* background-color: #0b1218; */
     /* box-shadow: 4px 4px 6px rgba(0,0,0,0.75); */
 }
-/* .list-group-item:hover {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
-    transform: translateY(-2px);
-} */
+
 
 /*  Nav Bar */
 #navbar {
@@ -151,9 +148,11 @@ body {
 /************************* 💻 Desktop Styling 💻 **************************/
 
 /* stats black lines */
-.states-stats-confirmed-list-item.list-group-item {
-    border-color: black;
+.states-stats-confirmed-list-item.list-group-item, .states-stats-deaths-list-item.list-group-item {
+    border-color: rgba(0, 0, 0, 0.30);
 }
+
+font-size: 0.7rem; background-color: rgb(32, 36, 45); color: white; padding: 0.5rem;
 
 /* 📖 About Page Styling 📖 */
 
@@ -270,9 +269,17 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     text-shadow: none;
 }
 
+/* need to fix styling on the next two classes on about page */
+.about-page-contributor-title {
+    display: flex;
+    flex-direction: column;
+}
+
 .about-page-contributor {
     display: flex;
+    align-items: center;
 }
+
 
 .about-contributor-name {
     font-family: 'Roboto', sans-serif;
@@ -475,16 +482,19 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     /* margin-left: 3.3rem; */
 }
 
-.middle-col-map-content.col-8 .card-body{
-    /* width: 90%; */
+.middle-col-map-content.col-8 .card .card-body{
+
     background-color: #010915;
 }
 
+
 .top-bar-us-map-heading-txt {
-    font-size: 1.2rem;
+    font-size: .9rem;
     color: #fefefe;
-    max-width: 61%;
-    margin-bottom: 1%;
+    padding-top: 0.3rem;
+    padding-left: 1rem;
+    /* max-width: 57%; */
+    /* margin-bottom: 1%; */
 }
 
 .top-bottom-left-chart-title, .top-bottom-right-chart-title {
@@ -498,15 +508,15 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     margin-right:0%;
 }
 
-/* .col-8 {
-    max-width: 65%;
-} */
+.jsx-2597805859.tab.testing-us-map-tab {
+    border-top-right-radius: 0.3rem;
+}
 
 .middle-col-map-content.col-8 {
     max-width: 65%;
     padding-left: 1rem;
     padding-right: 1rem;
-}
+} 
 
 .middle-styling {
     flex-wrap: nowrap;
@@ -528,11 +538,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 /* Bottom Left and Right Charts */
-
-.top-bottom-charts {
-    height: 7%;
-    /* width: 98%; */
-}
 
 .top-bottom-charts .card {
     margin-top: .9rem;
@@ -610,22 +615,49 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding: 0 0 .75rem 0;
 }
 
-
 .left-col-twitter-feed-content{
     margin-bottom: 1rem;
     border-radius: .3rem;
-}
-
-/* .left-col-twitter-feed-content.col-2 {
-    margin-right: 0.1rem;
-} */
-.left-col-twitter-feed-content {
     height: 100%;
+    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
 }
 
 .right-col-news-feed-content.col-2 {
     margin-left: 0.3rem;
 }
+
+.left-col-twitter-feed-content.col-2 .card .card-body {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.left-col-twitter-feed-content.col-2 .list-group-item {
+    background-color: none
+}
+
+/* cards inside the sidebar for tweets and news */
+
+.left-col-feed-cards-text .tweet-item.list-group-item {
+    border-radius: 0.2rem;
+    background-color: none;
+}
+
+.right-col-news-feed-content.col-2 {
+    margin-left: 0.3rem;
+}
+
+.left-col-feed-cards-text .list-group .list-group-flush li {
+    background-color: none
+}
+
+.tweet-item.list-group-item , .news-item.list-group-item{
+    background-color: #010915;
+    border: none;
+}
+
+
+
+/* .tweet-item p */
 
 /* overflow disable scroll bar */
 .left-col-feed-cards-text {
@@ -658,26 +690,18 @@ p.tweet-dt {
 }
 
 p.news-txt-by-dt{
+    font-size: 0.5rem;
     margin-bottom: 0;
 }
 
-.tweet-item.list-group-item {
-    background-color:#0B1319;
+
+
+.tweet-item.list-group-item a:hover, .news-item.list-group-item a:hover {
+    /* transform: translateY(-0.01px); */
+    text-decoration: none;
+    background: rgba(1, 9, 21, 0.83);
 }
 
-.tweet-item.list-group-item:hover {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
-    transform: translateY(-2px);
-}
-
-.news-item.list-group-item {
-    background-color:#0B1319;
-}
-
-.news-item.list-group-item:hover {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
-    transform: translateY(-2px);
-}
 
 .jsx-1990498210.tab.left-twitter-tab.tab--selected {
     border-top-left-radius: 0.3rem;
@@ -687,10 +711,7 @@ p.news-txt-by-dt{
     border-top-left-radius: 0.3rem;
 } 
 
-
-
-
-/* 👉 Right Detailed List Sidebar */
+/* 👉👉👉👉 Right Detailed List Sidebar */
 
 .right-col-news-feed-content{
     margin-bottom: 1rem;
@@ -704,10 +725,13 @@ p.news-txt-by-dt{
 
 
 .states-stats-confirmed-list-item.list-group-item {
-    /* border-bottom: 100px;
-    border-color: #0B1319; */
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 1px;
     background-color: none;
-    background: none;
+    background: none; 
+    padding: 0.05rem;
 }
 
 .states-stats-deaths-list-item.list-group-item {
@@ -787,6 +811,7 @@ p.news-txt-by-dt{
 .footer-disclaimer-text {
     width: 50rem;
 }
+
 
 
 .footer-social-copyright-content.col-2 {
