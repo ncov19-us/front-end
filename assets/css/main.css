@@ -483,8 +483,12 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .middle-col-map-content.col-8 .card .card-body{
-
+    padding: 0;
     background-color: #010915;
+}
+
+.jsx-2597805859.tab.confirmed-us-map-tab.tab--selected, .jsx-2597805859.tab.testing-us-map-tab , .jsx-2597805859.tab.confirmed-us-map-tab {
+    min-width: 5rem;
 }
 
 
@@ -548,10 +552,12 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     margin-top: .9rem;
     margin-bottom: 3rem;
     margin-right: .9rem;
+    padding: 1.2rem;
 }
 
 .top-bottom-right-chart.col-6 .card {
     margin-right: 0rem;
+    padding: 1.2rem;
 }
 
 .top-bottom-charts .card-body {
