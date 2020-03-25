@@ -268,9 +268,17 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     text-shadow: none;
 }
 
+/* need to fix styling on the next two classes on about page */
+.about-page-contributor-title {
+    display: flex;
+    flex-direction: column;
+}
+
 .about-page-contributor {
     display: flex;
+    align-items: center;
 }
+
 
 .about-contributor-name {
     font-family: 'Roboto', sans-serif;
@@ -451,17 +459,19 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     background-color: #010915;
 }
 
+
 .middle-col-map-content.col-8 .card .card-body{
     background-color: #010915;
     padding: 0;
 }
+
 
 .top-bar-us-map-heading-txt {
     padding-top: 0.3rem;
     padding-left: 1rem;
     font-size: 0.9rem;
     color: #fefefe;
-    max-width: 61%;
+    /* max-width: 57%; */
     /* margin-bottom: 1%; */
 }
 
@@ -480,12 +490,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     border-top-right-radius: 0.3rem;
 }
 
-
 .middle-col-map-content.col-8 {
     max-width: 65%;
     padding-left: 1rem;
     padding-right: 1rem;
-}
+} 
 
 .middle-styling {
     flex-wrap: nowrap;
@@ -512,9 +521,6 @@ dash-graph {
 }
 
 /* Bottom Left and Right Charts */
-
-.top-bottom-charts {
-}
 
 .top-bottom-charts .card {
     margin-top: .9rem;
@@ -570,6 +576,8 @@ dash-graph {
 
 /* 👈 Left  Twitter 🐦  📰 News Feed Sidebar */
 
+
+
 .tab--selected {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     z-index: 100;
@@ -618,11 +626,10 @@ jsx-2597805859 .tab .left-twitter-tab .tab--selected  {
     padding: 0 0 .75rem 0;
 }
 
-
 .left-col-twitter-feed-content{
     margin-bottom: 1rem;
     border-radius: .3rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
 }
 
 .right-col-news-feed-content.col-2 {
@@ -817,6 +824,7 @@ p.news-txt-by-dt{
 .footer-disclaimer-text {
     width: 80%;
 }
+
 
 
 .footer-social-copyright-content.col-2 {
