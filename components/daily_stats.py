@@ -1,31 +1,22 @@
 import requests
 from typing import List, Dict
-from utils.settings import CVTRACK_URL, TMP_URL
+from utils.settings import NCOV19_API# =  "https://covid19-us-api.herokuapp.com/"CVTRACK_URL, TMP_URL
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
 
 
 def get_daily_stats() -> Dict:
-    # initialize the variables so it doesnt crash if both api call failed
+    
+    url=NCOV19_API+"stats"
 
-    confirmed, todays_confirmed, deaths, todays_deaths, recovered = 0, 0, 0, 0, 0
-    
     try:
-        data1 = requests.get(url=CVTRACK_URL).json()[0]
-    except:
-        tested = 0
-    
-    try:
-        data2 = requests.get(url=TMP_URL).json()
-        tested = data1["posNeg"]
-        confirmed = data2["cases"]
-        todays_confirmed = data2["todayCases"]
-        deaths = data2["deaths"]
-        todays_deaths = data2["todayDeaths"]
-        recovered = data2["recovered"]
-        critical = data2["critical"]
-        active = data2["active"]
+        data = requests.get(url=url).json()
+        tested = data["tested"]
+        confirmed = data["confirmed"]
+        todays_confirmed = data["todays_confirmed"]
+        deaths = data["deaths"]
+        todays_deaths = data["todays_deaths"]
     except:
         confirmed, todays_confirmed, deaths, todays_deaths, recovered = (
             0,
@@ -39,12 +30,12 @@ def get_daily_stats() -> Dict:
         "Tested": tested,
         "Confirmed": [confirmed, todays_confirmed],
         "Deaths": [deaths, todays_deaths],
-        "Recovered": recovered,
+        "Recovered": 0,
     }
-    # print(data2, stats)
+
     return stats
 
-@cache.memoize(timeout=3600)
+# @cache.memoize(timeout=3600)
 def daily_stats() -> List[dbc.Col]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
     TODO: move to internal API.
@@ -55,6 +46,7 @@ def daily_stats() -> List[dbc.Col]:
     """
     # 1. Fetch Stats
     stats = get_daily_stats()
+    
     # print("Desktop Site Stats ---> ", stats)
     # print(stats)
     # 2. Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays

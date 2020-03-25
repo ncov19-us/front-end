@@ -9,6 +9,5 @@ from .daily_stats_mobile import daily_stats_mobile
 from .column_stats import (
     states_confirmed_stats,
     states_deaths_stats,
-    states_recovered_stats,
 )
 

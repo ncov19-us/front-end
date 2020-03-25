@@ -49,3 +49,6 @@ DRIVE_THRU_URL = "https://raw.githubusercontent.com/ncov19-us/ds/master/drive_th
 
 # Confirmed Stats URL
 CONFIRMED_STATS_URL = "https://corona.lmao.ninja/states"
+
+# ncov19.us API
+NCOV19_API =  "https://covid19-us-api.herokuapp.com/"

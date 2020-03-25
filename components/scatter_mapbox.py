@@ -4,8 +4,8 @@ from dash.dependencies import Input, Output, State
 import plotly.express as px
 import plotly.graph_objects as go
 
-from app import cache
-from utils.settings import MAPBOX_ACCESS_TOKEN, DRIVE_THRU_URL
+from app import cache, app_state
+from utils.settings import MAPBOX_ACCESS_TOKEN, DRIVE_THRU_URL, NCOV19_API
 import requests
 
 DRIVE_THRU_URL = "https://raw.githubusercontent.com/ncov19-us/ds/master/drive_thru_testing_locations/us-drive-thru-testing-locations.csv"
@@ -65,27 +65,27 @@ states_lat_long = [
 px.set_mapbox_access_token(MAPBOX_ACCESS_TOKEN)
 
 
-def state_data() -> pd.DataFrame:
-    """
-    rows in merged  state  cases  todayCases  deaths  todayDeaths  recovered  active   latitude   longitude
-    """
+# def state_data() -> pd.DataFrame:
+#     """
+#     rows in merged  state  cases  todayCases  deaths  todayDeaths  recovered  active   latitude   longitude
+#     """
 
-    url = "https://corona.lmao.ninja/states"
-    response = requests.get(url).json()
-    state_cases = pd.DataFrame.from_records(response)
-    state_coords = pd.DataFrame.from_records(states_lat_long)
+#     url = "https://corona.lmao.ninja/states"
+#     response = requests.get(url).json()
+#     state_cases = pd.DataFrame.from_records(response)
+#     state_coords = pd.DataFrame.from_records(states_lat_long)
 
-    merged = state_cases.merge(state_coords, how="inner")
-    column_rename = {
-        "state": "State",
-        "cases": "Confirmed",
-        "deaths": "Deaths",
-        "recovered": "Recovered",
-        "latitude": "Latitude",
-        "longitude": "Longitude",
-    }
-    merged = merged.rename(columns=column_rename)
-    return merged
+#     merged = state_cases.merge(state_coords, how="inner")
+#     column_rename = {
+#         "state": "State",
+#         "cases": "Confirmed",
+#         "deaths": "Deaths",
+#         "recovered": "Recovered",
+#         "latitude": "Latitude",
+#         "longitude": "Longitude",
+#     }
+#     merged = merged.rename(columns=column_rename)
+#     return merged
 
 
 # TODO: Make Drive-thru testing center API
@@ -102,9 +102,7 @@ def get_drive_thru_testing_centers():
 # App Callbacks
 #
 ########################################################################
-
-# @app.callback(Output("us-map", "figure"), [Input("map-input", "value")])
-@cache.memoize(timeout=3600)
+# @cache.memoize(timeout=3600)
 def confirmed_scatter_mapbox():
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
@@ -112,19 +110,31 @@ def confirmed_scatter_mapbox():
     :return card: A dash boostrap component Card object with a dash component Graph inside drawn using plotly express scatter_mapbox
     :rtype: dbc.Card
     """
+    URL = NCOV19_API + "county"
+    response = requests.get(URL).json()
+    data = response['message']
+    data = pd.read_json(data, orient='records')
+    data['State Name'] = data['State Name'].str.title()
+    data['County Name'] = data['County Name'].str.title()
+
     color_scale = ["#ffbaba", "#ff7b7b", "#ff5252", "#ff0000", "#a70000"]
     fig = px.scatter_mapbox(
-        state_data(),
+        data,
         lat="Latitude",
         lon="Longitude",
         color="Confirmed",
         size="Confirmed",
-        size_max=35,
-        hover_name="State",
-        hover_data=["Confirmed", "Deaths", "State"],
+        size_max=50,
+        hover_name="County Name",
+        hover_data=["Confirmed", "Death", "State Name", "County Name"],
         color_continuous_scale=color_scale,
     )
 
+    if app_state.is_mobile:
+        zoom=2.3
+    else:
+        zoom=3
+    
     fig.layout.update(
         # Title still no show after this
         title="Corona Virus Cases in U.S.",
@@ -133,15 +143,13 @@ def confirmed_scatter_mapbox():
         # This takes away the colorbar on the right hand side of the plot
         coloraxis_showscale=False,
         mapbox_style="dark",
-        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=2.3),
+        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=zoom),
     )
 
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
     # print(fig.data[0].hovertemplate)
-    # <b>%{hovertext}</b><br><br>Confirmed=%{marker.color}\\
-    # <br>Deaths=%{customdata[1]}<br>Recovered=%{customdata[2]}<br>Latitude=%{lat}<br>Longitude=%{lon}
     fig.data[0].update(
-        hovertemplate="%{customdata[2]}<br>Confirmed: %{marker.size}<br>Deaths: %{customdata[1]}"
+        hovertemplate="%{customdata[3]}, %{customdata[2]}<br>Confirmed: %{marker.size}<br>Deaths: %{customdata[1]}"
     )
 
     return fig
