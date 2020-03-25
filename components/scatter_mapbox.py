@@ -8,6 +8,7 @@ from app import cache, app_state
 from utils.settings import MAPBOX_ACCESS_TOKEN, DRIVE_THRU_URL, NCOV19_API
 import requests
 
+
 DRIVE_THRU_URL = "https://raw.githubusercontent.com/ncov19-us/ds/master/drive_thru_testing_locations/us-drive-thru-testing-locations.csv"
 states_lat_long = [
     {"state": "Alabama", "latitude": 32.806671, "longitude": -86.791130},
@@ -65,29 +66,6 @@ states_lat_long = [
 px.set_mapbox_access_token(MAPBOX_ACCESS_TOKEN)
 
 
-# def state_data() -> pd.DataFrame:
-#     """
-#     rows in merged  state  cases  todayCases  deaths  todayDeaths  recovered  active   latitude   longitude
-#     """
-
-#     url = "https://corona.lmao.ninja/states"
-#     response = requests.get(url).json()
-#     state_cases = pd.DataFrame.from_records(response)
-#     state_coords = pd.DataFrame.from_records(states_lat_long)
-
-#     merged = state_cases.merge(state_coords, how="inner")
-#     column_rename = {
-#         "state": "State",
-#         "cases": "Confirmed",
-#         "deaths": "Deaths",
-#         "recovered": "Recovered",
-#         "latitude": "Latitude",
-#         "longitude": "Longitude",
-#     }
-#     merged = merged.rename(columns=column_rename)
-#     return merged
-
-
 # TODO: Make Drive-thru testing center API
 def get_drive_thru_testing_centers():
     try:
@@ -102,7 +80,7 @@ def get_drive_thru_testing_centers():
 # App Callbacks
 #
 ########################################################################
-# @cache.memoize(timeout=3600)
+
 def confirmed_scatter_mapbox():
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
@@ -131,7 +109,7 @@ def confirmed_scatter_mapbox():
     )
 
     if app_state.is_mobile:
-        zoom=2.3
+        zoom=2
     else:
         zoom=3
     
@@ -155,8 +133,9 @@ def confirmed_scatter_mapbox():
     return fig
 
 
-@cache.memoize(timeout=3600)
 def drive_thru_scatter_mapbox():
+    """DO NOT CACHE. NEED APP_STATE TO CHANGE DYNAMICALLY
+    """
     fig = px.scatter_mapbox(
         get_drive_thru_testing_centers(),
         lat="Latitude",
@@ -164,10 +143,16 @@ def drive_thru_scatter_mapbox():
         hover_name="Name",
         hover_data=["URL"],
     )
+
+    if app_state.is_mobile:
+        zoom=2
+    else:
+        zoom=3
+
     fig.layout.update(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         mapbox_style="dark",
-        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=2.3),
+        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199), zoom=zoom),
         dragmode=False,
     )
 

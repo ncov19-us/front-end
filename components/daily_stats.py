@@ -1,14 +1,19 @@
 import requests
 from typing import List, Dict
-from utils.settings import NCOV19_API# =  "https://covid19-us-api.herokuapp.com/"CVTRACK_URL, TMP_URL
+from utils.settings import NCOV19_API
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
 
 
 def get_daily_stats() -> Dict:
+    """Get daily stats from ncov19.us API, parse and return as a dictionary
+    for the daily stats mobile.
+
+    :return: :Dict: stats
+    """
     
-    url=NCOV19_API+"stats"
+    url = NCOV19_API+"stats"
 
     try:
         data = requests.get(url=url).json()
@@ -18,13 +23,7 @@ def get_daily_stats() -> Dict:
         deaths = data["deaths"]
         todays_deaths = data["todays_deaths"]
     except:
-        confirmed, todays_confirmed, deaths, todays_deaths, recovered = (
-            0,
-            0,
-            0,
-            0,
-            0
-        )
+        confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0
 
     stats = {
         "Tested": tested,
@@ -35,10 +34,10 @@ def get_daily_stats() -> Dict:
 
     return stats
 
-# @cache.memoize(timeout=3600)
+@cache.memoize(timeout=3600)
 def daily_stats() -> List[dbc.Col]:
-    """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
-    TODO: move to internal API.
+    """Returns a top bar as a list of Plotly dash components displaying tested, confirmed ,
+     and death cases for the top row.
 
     :param none: none
     :return cols: A list of plotly dash boostrap components Card objects displaying tested, confirmed, deaths.
