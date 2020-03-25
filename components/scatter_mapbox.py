@@ -157,7 +157,7 @@ def drive_thru_scatter_mapbox():
     )
 
     fig.data[0].update(
-        hovertemplate="<b><a href='%{customdata[0]}' style='color:white'>%{hovertext}</a></b>",
+        hovertemplate="<b><a href='%{customdata[0]}' style='color:black'>%{hovertext}</a></b>",
         marker={"size": 10, "symbol": "marker"},
     )
 

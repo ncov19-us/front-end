@@ -5,7 +5,7 @@ from app import cache
 from utils.settings import TIME_URL
 
 
-@cache.memoize(timeout=3600)
+# @cache.memoize(timeout=3600)
 def confirmed_cases_chart(state=None) -> go.Figure:
     """Bar chart data for the selected state.
 
@@ -29,9 +29,13 @@ def confirmed_cases_chart(state=None) -> go.Figure:
         template="plotly_dark",
         # title="U.S. Confirmed Cases",
         autosize=True,
-        xaxis_title=None,
+        xaxis_title="Confirmed Cases",
         yaxis_title=None,
         showlegend=False,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        xaxis_showgrid=False,
+        yaxis_showgrid=False
     )
     # print(fig)
     # card = dbc.Card(dbc.CardBody(dcc.Graph(figure=fig, style={"height": "20vh"})))
