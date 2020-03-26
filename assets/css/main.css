@@ -339,38 +339,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     background-image: url('../images/Twitter.svg');
 }
 
-/* 📖 About Page Mobile-Specific Styling 📖 */
 
-#mobile-about-page {
-    margin-left: -15px;
-    margin-top: -25px;
-}
-
-#mobile-about-page .about-section-container {
-    display: inline-block;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    padding-bottom: 75px;
-}
-
-#mobile-about-page #about-page-first-third {
-    padding-top: 100px;
-    color: white;
-}
-
-#mobile-about-page #about-page-third-third {
-    background-color: #D2D2D2;
-    padding-left: 20px;
-    color: black;
-    padding-bottom: 100px;
-    font-size: .8rem;
-}
-
-#mobile-about-page .about-section {
-    width: 100%;
-}
-
-/* About Page Styling End */
 
 /* Top Card Section */
 .top-bar-content.row {
@@ -525,7 +494,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 .top-bar-us-map-heading-txt {
-    font-size: .9rem;
+    font-size: 1rem;
     color: #fefefe;
     padding-top: 0.3rem;
     padding-left: 1rem;
@@ -534,7 +503,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bottom-left-chart-title, .top-bottom-right-chart-title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: #fefefe;
     max-width: 100%;
     margin-bottom: 5%;
@@ -854,7 +823,9 @@ li.tweet-item p {
 }
 
 .states-stats-confirmed-list-num {
+    /* changed this font weight...even with deaths list? */
     font-weight: 500;
+    font-size: 0.94rem;
     color: #FEC400;
 }
 
@@ -864,6 +835,7 @@ li.tweet-item p {
 
 .states-stats-deaths-list-num {
     font-weight: 500;
+    font-size: 0.94rem;
     color: #D92C25;
 }
 
@@ -1134,6 +1106,19 @@ li.tweet-item p {
     color: #ffffff;
     max-width: 100%;
 }
+
+
+/* Mobile Stats Conent */
+
+.mobile-right-col-stats-content.col-2 {
+    max-width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-bottom: 2rem;
+    max-height: 30%;
+}
+
+
 /* 📱 Footer 🦶 */
 .mobile-footer-content {
     background-color: #010915;
@@ -1200,3 +1185,37 @@ li.tweet-item p {
 .hidden-menu-div a {
     font-size: 2.4rem
 }
+
+
+/* 📖 About Page Mobile-Specific Styling 📖 */
+
+#mobile-about-page {
+    margin-left: -15px;
+    margin-top: -25px;
+}
+
+#mobile-about-page .about-section-container {
+    display: inline-block;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 75px;
+}
+
+#mobile-about-page #about-page-first-third {
+    padding-top: 100px;
+    color: white;
+}
+
+#mobile-about-page #about-page-third-third {
+    background-color: #D2D2D2;
+    padding-left: 20px;
+    color: black;
+    padding-bottom: 100px;
+    font-size: .8rem;
+}
+
+#mobile-about-page .about-section {
+    width: 100%;
+}
+
+/* About Page Styling End */
