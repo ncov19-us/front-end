@@ -5,6 +5,7 @@ import dash_html_components as html
 from app import cache
 from utils.settings import NEWS_API_URL
 
+
 @cache.memoize(timeout=900)
 def news_feed(state=None) -> dbc.ListGroup:
     """Displays news feed on the right hand side of the display. Adjust the NewsAPI time
@@ -31,6 +32,7 @@ def news_feed(state=None) -> dbc.ListGroup:
     """
     # Format date time way you want to display, https://strftime.org/
     """
+
     def dt_fmt(val):
         return val.strftime("%a %d, %Y, %I: %M %p ET")
 

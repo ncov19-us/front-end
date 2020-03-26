@@ -624,6 +624,14 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     color: rgb(199, 199, 199) !important;
 }
 
+.tweet-text {
+    font-size: .75rem;
+}
+
+.tweet-dt {
+    font-size: .2rem;
+}
+
 .middle-map-news-content.mt-3.no-gutters.row {
     margin-left: 1.2rem;
     margin-right: 1rem;
@@ -763,6 +771,13 @@ li.tweet-item p {
     font-size: 1rem;
 }
 
+.news-txt-headline {
+    font-size: .75rem;
+}
+
+.news-txt-by-dt {
+    font-size: 0.2rem;
+}
 
 .tweet-item.list-group-item a:hover, .news-item.list-group-item a:hover {
     /* transform: translateY(-0.01px); */
