@@ -196,7 +196,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 #about-page-second-third .about-page-title {
-    padding-left: 9vw;
+    padding-left: 125px;
     padding-bottom: 50px;
 }
 
@@ -237,8 +237,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 #about-page-second-third .about-section-container {
-    padding-left: 10vw;
-    padding-right: 10vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
 
 .about-section-padding {
@@ -261,12 +261,12 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     background-repeat: no-repeat;
     background-size: 45%;
     padding-top: 100px;
-    padding-bottom: 100px;
+    /* padding-bottom: 50px; */
 }
 
 #about-page-third-third  {
     background-color: #D2D2D2;
-    padding-left: 12vw;
+    padding-left: 10vw;
     color: black;
     padding-bottom: 100px;
 }
@@ -497,7 +497,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-card-recovered {
-    color: #03DA32;
+    /* color: #03DA32; */
+    color: #03AE2C;
     text-align: center;
     font-size: .9rem;
     background-color: #010915;
@@ -931,7 +932,8 @@ li.tweet-item p {
 
 .states-stats-recovered-list-num {
     font-weight: 500;
-    color: #03DA32;
+    /* color: #03DA32; */
+    color: #03AE2C;
 }
 
 .states-stats-recovered-list-state {
@@ -951,7 +953,7 @@ li.tweet-item p {
 }
 
 .footer-disclaimer-text {
-    width: 50rem;
+    width: 57rem;
 }
 
 
@@ -1116,7 +1118,8 @@ li.tweet-item p {
 
 .mobile-top-bar-card-recovered {
     background-color: #010915;
-    color: #03DA32;
+    /* color: #03DA32; */
+    color: #03AE2C;
     text-align: center;
     font-size: .9rem;
     border: none;
@@ -1194,7 +1197,7 @@ li.tweet-item p {
 }
 
 
-/* Mobile Stats Conent */
+/* Mobile Stats Content */
 
 .mobile-right-col-stats-content.col-2 {
     max-width: 100%;

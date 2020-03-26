@@ -5,7 +5,7 @@ import dash_html_components as html
 about_body = [
     html.Div([
         html.Div([
-            html.H2("Information about the Novel Coronavirus", className="about-page-title"),
+            html.H2("What is the Novel Coronavirus?", className="about-page-title"),
 
             html.Div([
                 html.Div([
@@ -263,22 +263,7 @@ about_body = [
                 ], className="about-page-contributor")
 
 
-            # html.Div([
-            #         html.Div([
 
-            #             html.Div("Daniel Firpo,", className="about-contributor-name"),
-
-            #             html.Div("Web Developer", className="about-contributor-title"),
-            #         ], className="about-page-contributor-title"),
-
-            #         html.A(href="https://github.com/ncov19-us", className="about-contributor-github-icon about-contributor-social-icon"),
-
-            #         html.A(href="https://github.com/ncov19-us", className="about-contributor-linkedin-icon about-contributor-social-icon"),
-
-            #         html.A(href="https://github.com/ncov19-us", className="about-contributor-twitter-icon about-contributor-social-icon")
-
-            #     ], className="about-page-contributor"),
-            # ], id="about-page-contributors")
 
         ], className="about-page-third", id="about-page-third-third")
     ], id="about-page")
