@@ -79,7 +79,13 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         xaxis_showgrid=False,
+        yaxis_showgrid=False,
         hoverlabel={"font": {"color": "black"}},
+        font=dict(
+            family="Roboto, sans-serif",
+            size=10,
+            color="#f4f4f4"
+        )
     )
 
     fig.update_layout(xaxis_showgrid=False, yaxis_showgrid=False)

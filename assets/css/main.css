@@ -20,15 +20,13 @@ body {
     text-align: left;
     margin-bottom: 0.5rem;
     background-color: none;
-    /* background-color: #0b1218; */
-    /* box-shadow: 4px 4px 6px rgba(0,0,0,0.75); */
 }
 
 .mobile-us-map-content .card-body {
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
-    padding-top: 10px;
+    padding-top: 0;
     background-color: #010915;
 }
 
@@ -40,6 +38,28 @@ body {
 .mobile-chart .card-body {
     background-color: #010915;
 } 
+
+#mobile-map-tabs .tab.mobile-confirmed-us-map-tab {
+    padding: 1rem;
+}
+
+.tab.mobile-testing-us-map-tab {
+    padding: 1rem;
+}
+
+/* 
+.tab .mobile-confirmed-us-map-tab {
+    padding: 5rem;
+}
+
+.mobile-testing-us-map-tab {
+    padding: 5rem;
+}
+
+.tab-container .mobile-top-bar-us-map-tabs-content {
+    padding: 5rem;
+} */
+
 /*  Nav Bar */
 #navbar {
     text-decoration: none;
@@ -85,12 +105,16 @@ body {
 
 }
 
+/* /* /* /* /*         Dropdown Location Menu                   */ 
+
 .dropdown-location-menu .dropdown-toggle {
     background-color: #262a32;
     background-image: none;
     min-width: 150px;
     padding-top: 0;
     padding-bottom: 0;
+    font-size: .9rem;
+    letter-spacing: .01rem;
 
 }
 
@@ -105,7 +129,7 @@ body {
 }
 
 .dropdown-item {
-    color: white;
+    color: #fefefe;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 }
 
@@ -113,27 +137,24 @@ body {
     box-shadow: none;
 }
 
-.dropdown-location-menu .dropdown-toggle {
-    font-size: 1.1rem;
-}
-
 /* This targets the little drop down arrow on the location button */
 .dropdown-location-menu .dropdown-toggle::after {
-    margin-left: 35%;
+    margin-left: 43%;
 }
 
 .dropdown .btn {
     padding-top: 0;
     padding-bottom: 0;
-    min-height: 45px;
+    min-height: 35px;
 }
 
 .navbar-brand-links {
     margin-bottom: auto;
     font-weight: 300;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.01rem;
     text-shadow: none;
-    padding-left: 20px;
+    padding-left: 2.1rem;
 }
 
 .navbar-brand-links:hover {
@@ -142,7 +163,7 @@ body {
 
 #navbar-resources-link {
     margin-right: 1.5rem;
-    padding-left: 2rem;
+    padding-left: 2.3rem;
 }
 
 /* Applies to all Cards 🎴 */
@@ -201,11 +222,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .about-section-title-container {
-    border-left: 7px solid white;
+    border-left: 7px solid #fefefe;
 }
 
 .about-section-text-container {
-    border-left: 1px solid white;
+    border-left: 1px solid #fefefe;
     margin-left: 3px;
 }
 
@@ -248,14 +269,14 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 #about-page-first-third  {
     background-color: #262a32;
-    color: white;
+    color: #fefefe;
     margin-right: 0;
     padding-top: 100px;
 }
 
 #about-page-second-third  {
     background-color: #010915;
-    color: white;
+    color: #fefefe;
     background-position: right top;
     background-image: url('../images/map_1.svg');
     background-repeat: no-repeat;
@@ -706,7 +727,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .jsx-2597805859.tab.left-twitter-tab.tab-selected {
     background-color: #010915;
-    background-color: white;
+    background-color: #fefefe;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -969,8 +990,6 @@ p.tweet-dt {
     width: 57rem;
 }
 
-
-
 .footer-social-copyright-content.col-2 {
     /* margin-right: -5rem; */
     margin-top: 1rem;
@@ -997,7 +1016,10 @@ p.tweet-dt {
     padding-right: 45px;
 }
 
+
+/******************************************************************/
 /********************* 📱 MOBILE STYLING 📱 **********************/
+/******************************************************************/
 
 /* Mobile Nav Bar */
 .align-items-center.no-gutters.row {
@@ -1024,7 +1046,7 @@ p.tweet-dt {
 .navbar-toggler-icon {
     margin-left: 10%;
     margin-bottom: 3%;
-    color: white;
+    color: #fefefe;
 }
 
 .navbar-toggler {
@@ -1040,13 +1062,7 @@ p.tweet-dt {
 
 /* Mobile Card 🎴 section */
 
-.mobile-twitter-feed-tab {
-    border-top-left-radius: 0.3rem;
-}
 
-.mobile-news-feed-tab {
-    border-top-right-radius: 0.3rem;
-}
 
 .mobile-top-bar-content {
     margin-left: 0rem;
@@ -1155,6 +1171,7 @@ p.tweet-dt {
     font-size: .70rem;
 }
 
+
 .mobile-top-bar-perc-change-confirmed {
     color: #BDBDBD;
     margin-top: 0.2rem;
@@ -1189,9 +1206,10 @@ p.tweet-dt {
 }
 
 .mobile-top-bar-us-map-heading-txt {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: normal;
     color: #ffffff;
+    padding-top: 0.25rem;
     max-width: 50%;
 }
 
@@ -1207,6 +1225,8 @@ p.tweet-dt {
     font-weight: normal;
     color: #ffffff;
     max-width: 100%;
+    padding-left: .2rem;
+    padding-bottom: 1rem;
 }
 
 
@@ -1219,6 +1239,8 @@ p.tweet-dt {
     margin-bottom: 2rem;
     max-height: 30%;
 }
+
+
 
 
 /* 📱 Footer 🦶 */
@@ -1260,9 +1282,7 @@ p.tweet-dt {
     color: #8B8D91;
 }
 
-/* .div.mobile-footer-content.container-fluid.row {
-    padding-top: 10rem;
-} */
+/* 📱 END Footer 🦶 */
 
 /* mobile twitter and news feed styling */
 .mobile-feed-card-body{
@@ -1293,7 +1313,23 @@ p.tweet-dt {
     margin-left: 23px;
 }
 
+.mobile-twitter-feed-tab {
+    border-top-left-radius: 0.3rem;
+}
 
+.mobile-news-feed-tab {
+    border-top-right-radius: 0.3rem;
+}
+
+.tab.mobile-left-twitter-tab {
+    border-top-left-radius: 0.3rem;
+}
+
+.tab.mobile-left-news-tab {
+    border-top-right-radius: 0.3rem;
+}
+
+/* Hamburger menu overlay */
 .hidden-menu-div {
     background-color: #010915;
     width: 100vw;
@@ -1328,7 +1364,7 @@ p.tweet-dt {
 
 #mobile-about-page #about-page-first-third {
     padding-top: 100px;
-    color: white;
+    color: #fefefe;
 }
 
 #mobile-about-page #about-page-third-third {
@@ -1342,7 +1378,11 @@ p.tweet-dt {
 #mobile-about-page .about-section {
     width: 100%;
 }
+/* About Page Styling End */
 
+
+
+ /* organize this mess back into the right section :(  */
 .news-item:hover {
     color: rgb(199, 199, 199) !important;
     text-decoration: none !important;
@@ -1357,4 +1397,6 @@ p.tweet-dt {
     text-decoration: none !important;
 }
 
-/* About Page Styling End */
+/* end of mess */
+
+
