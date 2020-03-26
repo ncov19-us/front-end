@@ -6,7 +6,7 @@ from utils.settings import NCOV19_API
 import requests
 
 
-# @cache.memoize(timeout=3600)
+@cache.memoize(timeout=3600)
 def confirmed_cases_chart(state=None) -> go.Figure:
     """Bar chart data for the selected state.
 
@@ -15,11 +15,11 @@ def confirmed_cases_chart(state=None) -> go.Figure:
 
     URL = NCOV19_API + "country"
     response = requests.get(URL).json()
-    data = response['message']
-    data = pd.read_json(data, orient='records')
+    data = response["message"]
+    data = pd.read_json(data, orient="records")
     data = data[["US"]]
-    data = data.rename(columns={"US":"Confirmed Cases"})
-    data.index.names = ['Date']
+    data = data.rename(columns={"US": "Confirmed Cases"})
+    data.index.names = ["Date"]
     data = data.reset_index()
     data = data.tail(60)
 
@@ -33,10 +33,10 @@ def confirmed_cases_chart(state=None) -> go.Figure:
         xaxis_title="Confirmed Cases",
         yaxis_title=None,
         showlegend=False,
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         xaxis_showgrid=False,
-        yaxis_showgrid=False
+        yaxis_showgrid=False,
     )
-    
+
     return fig
