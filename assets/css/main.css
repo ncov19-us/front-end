@@ -279,7 +279,10 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-content {
-    padding-top: 1rem;
+    padding-top: 1.4rem;
+    padding-bottom: .5rem;
+    margin-right: 50px;
+    margin-left: 50px;
 }
 
 #about-contributors-title {
@@ -343,8 +346,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 /* Top Card Section */
 .top-bar-content.row {
-    margin-left: 0.2rem;
-    margin-right: .2rem;
+    margin-left: 0.78rem;
+    margin-right: .78rem;
 }
 
 .top-bar-content.row .card-body {
@@ -353,6 +356,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .top-bar-card-body .card-body {
     background-color: #010915;
+}
+
+.top-bar-card-body {
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 .top-bar-card-tested {
@@ -550,14 +558,16 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bottom-left-chart.col-6 .card {
-    margin-top: .9rem;
+    margin-top: 1.2rem;
+    margin-right: .7rem;
     margin-bottom: 3rem;
-    margin-right: .9rem;
     padding: 1.2rem;
 }
 
 .top-bottom-right-chart.col-6 .card {
-    margin-right: 0rem;
+    margin-top: 1.2rem;
+    margin-left: .7rem;
+    margin-bottom: 3rem;
     padding: 1.2rem;
 }
 
@@ -597,10 +607,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     font-size: .75rem;
 }
 
-.tweet-dt {
-    font-size: .2rem;
-}
-
 .middle-map-news-content.mt-3.no-gutters.row {
     margin-left: 1.2rem;
     margin-right: 1rem;
@@ -623,10 +629,15 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding: 0 0 .75rem 0;
 }
 
-.left-col-twitter-feed-content{
+.left-col-twitter-feed-content p {
     margin-bottom: 1rem;
     border-radius: .3rem;
     height: 100%;
+    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
+}
+
+.left-col-twitter-feed-content h6 {
+    /* color: #F4F4F4; */
     /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
 }
 
@@ -689,70 +700,72 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     display: none;  /* Safari and Chrome */
 }
 
-.news-item:hover {
-    text-decoration: none;
-}
-
 .news-item {
     padding: 15px;
     margin-bottom: 1rem;
+    border-radius: .3rem !important;
+    padding-bottom: 0;
 }
 
-/* Tweet/News Article Source */
-.tweets-txt-by-dt .tweet-dt {
-    font-size: 0.6rem;
-    margin-bottom: 0.1rem;
-    color: white;
-}
-
-.tweets-txt-by-dt strong {
-    font-size: 0.6rem;
-    margin-bottom: 0.1rem;
-    color: white;
-}
-
-p.news-txt-by-dt{
-    font-size: 0.6rem;
-    margin-bottom: 0;
-}
-
-p.news-txt-by-dt:hover{
-    font-size: 0.6rem;
-    margin-bottom: 0;
+/* .news-item:hover {
+    color: rgb(0, 0, 0) !important;
     text-decoration: none;
+} */
+/* .news-item:hover {
+    color: rgb(0, 0, 0) !important;
+    text-decoration: none;
+    background-color: rebeccapurple;
+} */
+
+/* .left-col-twitter-feed-content.col-2.list-group-item:hover {
+    color: rgb(0, 0, 0) !important;
+    text-decoration: none;
+    background-color: rebeccapurple;
+} */
+
+.tweet-item {
+    padding: 15px;
+    margin-bottom: 1rem;
+    border-radius: .3rem !important;
+    padding-bottom: 0;
+    line-height: 1.35;
+    color: #fefefe;
 }
 
 p.tweet-dt {
     margin-bottom: 0;
 }
 
-/* Tweet/News Acticle Headline */
-
-.news-txt-headline {
-    font-size: 1rem;
-}
-
-.news-txt-headline:hover {
-    text-decoration: none !important;
-}
-
-li.tweet-item p {
-    font-size: 1rem;
-}
+/* Tweet/News Acticle Headline and source */
 
 .news-txt-headline {
     font-size: .75rem;
+    font-weight: normal;
+    line-height: 1.35;
 }
 
 .news-txt-by-dt {
-    font-size: 0.2rem;
+    font-size: 0.6rem;
 }
 
-.tweet-item.list-group-item a:hover, .news-item.list-group-item a:hover {
-    /* transform: translateY(-0.01px); */
+.tweet-text {
+    font-size: .75rem;
+    font-weight: normal;
+}
+
+.tweet-dt {
+    font-size: 0.6rem;
+    color: #F4F4F4;
+}
+
+#mobile-feed-tabs-styled-with-inline {
+    padding-bottom: 12px;
+}
+
+/* .tweet-item.list-group-item a:hover, .news-item.list-group-item a:hover {
     text-decoration: none;
     background: rgba(1, 9, 21, 0.83);
-}
+} */
 
 
 .jsx-1990498210.tab.left-twitter-tab.tab--selected {
@@ -1168,6 +1181,29 @@ li.tweet-item p {
     overflow: scroll;
 }
 
+.left-col-twitter-feed-content .card-body {
+    height: 75vh !important;
+    overflow: scroll;
+}
+
+.right-col-stats-content .card-body {
+    height: 75vh !important;
+    overflow: scroll;
+}
+
+.mobile-stats-card-body {
+    height: 50vh;
+    overflow: scroll;
+}
+
+.middle-map-news-content {
+    margin-left: 100px;
+}
+
+.middle-map-news-content.mt-3.no-gutters.row {
+    margin-left: 23px;
+}
+
 
 .hidden-menu-div {
     background-color: #010915;
@@ -1216,6 +1252,20 @@ li.tweet-item p {
 
 #mobile-about-page .about-section {
     width: 100%;
+}
+
+.news-item:hover {
+    color: rgb(199, 199, 199) !important;
+    text-decoration: none !important;
+}
+
+.tweet-item:hover {
+    color: rgb(199, 199, 199) !important;
+    text-decoration: none !important;
+}
+
+.tweet-item a:hover {
+    text-decoration: none !important;
 }
 
 /* About Page Styling End */
