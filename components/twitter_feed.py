@@ -19,6 +19,7 @@ def twitter_feed(state=None) -> List[dbc.Card]:
     :return cards: A list of dash boostrap Card components, where each card contains tweets for twitter feed.
     :rtype: list
     """
+
     response = requests.get(NCOV19_API + "twitter").json()
     if response["success"] == True:
         data = response["message"]
