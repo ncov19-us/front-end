@@ -298,14 +298,54 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 /* need to fix styling on the next two classes on about page */
-.about-page-contributor-title {
+.about-page-contributor-han {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    margin-right: 13%;
+}
+
+.about-page-contributor-hursh {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10.8%;
+}
+
+.about-page-contributor-daniel {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10%;
+}
+
+.about-page-contributor-alex {
+    display: flex;
+    flex-direction: row;
+    margin-right: 7.7%;
+    /* margin-bottom: .5% */
+}
+
+.about-page-contributor-michael {
+    display: flex;
+    flex-direction: row;
+    margin-right: 6.6%;
+}
+
+.about-page-contributor-anisha {
+    display: flex;
+    flex-direction: row;
+    margin-right: 6.5%;
+}
+
+.about-page-contributor-liz {
+    display: flex;
+    flex-direction: row;
+    margin-right: 5%;
 }
 
 .about-page-contributor {
     display: flex;
-    align-items: center;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    margin-bottom: 0.8%;
 }
 
 
