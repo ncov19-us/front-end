@@ -603,6 +603,14 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     font-size: .8rem;
 }
 
+.tweet-text {
+    font-size: .75rem;
+}
+
+.tweet-dt {
+    font-size: .2rem;
+}
+
 .middle-map-news-content.mt-3.no-gutters.row {
     margin-left: 1.2rem;
     margin-right: 1rem;
@@ -697,6 +705,7 @@ p.tweet-dt {
 
 .tweets-txt-by-dt{
     margin-bottom: 0.1rem;
+    font-size: .3rem;
 }
 
 p.news-txt-by-dt{
@@ -704,6 +713,13 @@ p.news-txt-by-dt{
     margin-bottom: 0;
 }
 
+.news-txt-headline {
+    font-size: .75rem;
+}
+
+.news-txt-by-dt {
+    font-size: 0.2rem;
+}
 
 .tweet-item.list-group-item a:hover, .news-item.list-group-item a:hover {
     /* transform: translateY(-0.01px); */
