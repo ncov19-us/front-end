@@ -244,13 +244,6 @@ about_body = [
 
                 ], className="about-page-contributor"),
 
-                
-                
-
-            
-            
-          
-
             html.Div([
                     
                     html.Div([

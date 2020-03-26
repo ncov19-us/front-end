@@ -143,63 +143,125 @@ mobile_about_body = [
 
             html.H4("Add something about reaching out or something", id="about-contributors-subtitle"),
 
+                        html.Div([
+                    
+                html.Div([
+                        html.Div("Han Lee", className="about-contributor-name"),
+
+                        html.Div("Data Scientist", className="about-contributor-title"),
+                     ], className="mob-about-page-contributor-han"),
+
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-twitter-icon about-contributor-social-icon")
+
+                ], className="mob-about-page-contributor"),
+
+                html.Div([
+                    
+                    html.Div([
+                        html.Div("Hursh Desai", className="about-contributor-name"),
+
+                        html.Div("Data Scientist", className="about-contributor-title"),
+                     ], className="mob-about-page-contributor-hursh"),
+
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-twitter-icon about-contributor-social-icon")
+
+                ], className="mob-about-page-contributor"),
+
+                html.Div([
+                    
+                    html.Div([
+                        html.Div("Daniel Firpo", className="about-contributor-name"),
+
+                        html.Div("Web Developer", className="about-contributor-title"),
+                     ], className="mob-about-page-contributor-daniel"),
+
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-twitter-icon about-contributor-social-icon")
+
+                ], className="mob-about-page-contributor"),
+
+                html.Div([
+                    
+                    html.Div([
+                        html.Div("Alex Pakalniskis", className="about-contributor-name"),
+
+                        html.Div("Web Developer", className="about-contributor-title"),
+                     ], className="mob-about-page-contributor-alex"),
+ 
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-twitter-icon about-contributor-social-icon")
+
+                ], className="mob-about-page-contributor"),
+
+                html.Div([
+                    
+                    html.Div([
+                        html.Div("Michael Chrupcala", className="about-contributor-name"),
+
+                        html.Div("Web Developer", className="about-contributor-title"),
+                     ], className="mob-about-page-contributor-michael"),
+                
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-twitter-icon about-contributor-social-icon")
+
+                ], className="mob-about-page-contributor"),
+
+                html.Div([
+                    
+                    html.Div([
+                        html.Div("Anisha Sunkerneni", className="about-contributor-name"),
+
+                        html.Div("Web Developer", className="about-contributor-title"),
+                     ], className="mob-about-page-contributor-anisha"),
+                    
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://github.com/ncov19-us", className="about-contributor-twitter-icon about-contributor-social-icon")
+
+                ], className="mob-about-page-contributor"),
+
             html.Div([
-                html.Div([
+                    
+                    html.Div([
+                        html.Div("Elizabeth Ter Sahakyan", className="about-contributor-name"),
 
-                    html.P("Elizabeth Ter Sahakyan,", className="about-contributor-name"),
+                        html.Div("Data Scientist", className="about-contributor-title"),
+                    ], className="mob-about-page-contributor-liz"),
 
-                    html.P("Data Scientist", className="about-contributor-title"),
-
+                
                     html.A(href="https://github.com/ncov19-us", className="about-contributor-github-icon about-contributor-social-icon"),
 
                     html.A(href="https://github.com/ncov19-us", className="about-contributor-linkedin-icon about-contributor-social-icon"),
 
                     html.A(href="https://github.com/ncov19-us", className="about-contributor-twitter-icon about-contributor-social-icon")
+               
 
-                ], className="about-page-contributor"),
-
-                html.Div([
-
-                    html.P("Elizabeth Ter Sahakyan,", className="about-contributor-name"),
-
-                    html.P("Data Scientist", className="about-contributor-title"),
-
-                    html.A(href="https://github.com/ncov19-us", className="about-contributor-github-icon about-contributor-social-icon"),
-
-                    html.A(href="https://github.com/ncov19-us", className="about-contributor-linkedin-icon about-contributor-social-icon"),
-
-                    html.A(href="https://github.com/ncov19-us", className="about-contributor-twitter-icon about-contributor-social-icon")
-
-                ], className="about-page-contributor"),
-
-                html.Div([
-
-                    html.P("Elizabeth Ter Sahakyan,", className="about-contributor-name"),
-
-                    html.P("Data Scientist", className="about-contributor-title"),
-
-                    html.A(href="https://github.com/ncov19-us", className="about-contributor-github-icon about-contributor-social-icon"),
-
-                    html.A(href="https://github.com/ncov19-us", className="about-contributor-linkedin-icon about-contributor-social-icon"),
-
-                    html.A(href="https://github.com/ncov19-us", className="about-contributor-twitter-icon about-contributor-social-icon")
-
-                ], className="about-page-contributor"),
-
-                html.Div([
-
-                    html.P("Elizabeth Ter Sahakyan,", className="about-contributor-name"),
-
-                    html.P("Data Scientist", className="about-contributor-title"),
-
-                    html.A(href="https://github.com/ncov19-us", className="about-contributor-github-icon about-contributor-social-icon"),
-
-                    html.A(href="https://github.com/ncov19-us", className="about-contributor-linkedin-icon about-contributor-social-icon"),
-
-                    html.A(href="https://github.com/ncov19-us", className="about-contributor-twitter-icon about-contributor-social-icon")
-
-                ], className="about-page-contributor")
-            ], id="about-page-contributors")
+                ], className="mob-about-page-contributor")
 
         ], className="about-page-third", id="about-page-third-third")
     ], id="mobile-about-page")

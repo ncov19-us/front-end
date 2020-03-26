@@ -297,42 +297,40 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     text-shadow: none;
 }
 
-/* need to fix styling on the next two classes on about page */
 .about-page-contributor-han {
     display: flex;
     flex-direction: row;
-    margin-right: 13%;
+    margin-right: 19.5%;
 }
 
 .about-page-contributor-hursh {
     display: flex;
     flex-direction: row;
-    margin-right: 10.8%;
+    margin-right: 15.5%;
 }
 
 .about-page-contributor-daniel {
     display: flex;
     flex-direction: row;
-    margin-right: 10%;
+    margin-right: 14.2%;
 }
 
 .about-page-contributor-alex {
     display: flex;
     flex-direction: row;
-    margin-right: 7.7%;
-    /* margin-bottom: .5% */
+    margin-right: 10.1%;
 }
 
 .about-page-contributor-michael {
     display: flex;
     flex-direction: row;
-    margin-right: 6.6%;
+    margin-right: 8%;
 }
 
 .about-page-contributor-anisha {
     display: flex;
     flex-direction: row;
-    margin-right: 6.5%;
+    margin-right: 7.7%;
 }
 
 .about-page-contributor-liz {
@@ -348,7 +346,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     margin-bottom: 0.8%;
 }
 
-
 .about-contributor-name {
     font-family: 'Roboto', sans-serif;
     padding-right: 5px;
@@ -360,9 +357,9 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .about-contributor-social-icon {
-    margin-left: 15px;
-    width: 23px;
-    height: 23px;
+    margin-left: 2.5%;
+    width: 21px;
+    height: 21px;
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -379,7 +376,56 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     background-image: url('../images/Twitter.svg');
 }
 
+/* mobile about page contributor styling */
 
+.mob-about-page-contributor-han {
+    display: flex;
+    flex-direction: row;
+    margin-right: 27%;
+}
+
+.mob-about-page-contributor-hursh {
+    display: flex;
+    flex-direction: row;
+    margin-right: 20.2%;
+}
+
+.mob-about-page-contributor-daniel {
+    display: flex;
+    flex-direction: row;
+    margin-right: 17.9%;
+}
+
+.mob-about-page-contributor-alex {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10.8%;
+}
+
+.mob-about-page-contributor-michael {
+    display: flex;
+    flex-direction: row;
+    margin-right: 7.3%;
+}
+
+.mob-about-page-contributor-anisha {
+    display: flex;
+    flex-direction: row;
+    margin-right: 6.8%;
+}
+
+.mob-about-page-contributor-liz {
+    display: flex;
+    flex-direction: row;
+    margin-right: 2%;
+}
+
+.mob-about-page-contributor {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    margin-bottom: 2.5%;
+}
 
 /* Top Card Section */
 .top-bar-content.row {
