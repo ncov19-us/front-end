@@ -103,7 +103,7 @@ about_body = [
         ], className="about-page-third", id="about-page-first-third"),
 
         html.Div([
-            html.H2("Information about the Novel Coronavirus", className="about-page-title"),
+            html.H2("Where does the data come from?", className="about-page-title"),
 
             html.Div([
                 html.Div([
