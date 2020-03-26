@@ -24,7 +24,22 @@ body {
     /* box-shadow: 4px 4px 6px rgba(0,0,0,0.75); */
 }
 
+.mobile-us-map-content .card-body {
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-top: 10px;
+    background-color: #010915;
+}
 
+.mobile-top-bar-us-map-heading-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.mobile-chart .card-body {
+    background-color: #010915;
+} 
 /*  Nav Bar */
 #navbar {
     text-decoration: none;
@@ -35,6 +50,10 @@ body {
     border: none;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     text-shadow: none;
+    position: fixed;
+    z-index: 10000;
+    width: 100vw;
+    top: 0;
 }
 
 .navbar-brand {
@@ -42,6 +61,7 @@ body {
     flex-direction: row;
     align-items: center;
     text-decoration: none !important;
+    padding-right: 53px;
 }
 
 .page-title-link:hover {
@@ -113,6 +133,7 @@ body {
     font-weight: 300;
     font-size: 1.15rem;
     text-shadow: none;
+    padding-left: 20px;
 }
 
 .navbar-brand-links:hover {
@@ -121,6 +142,7 @@ body {
 
 #navbar-resources-link {
     margin-right: 1.5rem;
+    padding-left: 2rem;
 }
 
 /* Applies to all Cards 🎴 */
@@ -152,21 +174,23 @@ body {
     border-color: rgba(0, 0, 0, 0.30);
 }
 
-font-size: 0.7rem; background-color: rgb(32, 36, 45); color: white; padding: 0.5rem;
-
 /* 📖 About Page Styling 📖 */
 
 /* Every page is given some padding and margin, but I want the about page to fill the whole page so I need to negate it.
 This isn't perfect so if anyone knows how to disable .page-content padding on the about page only please fix this */
 #about-page {
-    margin-left: -15px;
+    margin-left: -50px;
     margin-top: -25px;
+}
+
+#page-content {
+    margin-top: 73px !important;
 }
 
 .about-page-title {
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
-    padding-left: 4vw;
+    padding-left: 125px;
     margin-bottom: 50px;
     margin-top: 0;
 }
@@ -206,6 +230,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .about-section-container {
     display: flex;
+    justify-content: center;
     padding-left: 5vw;
     padding-right: 5vw;
     padding-bottom: 75px;
@@ -224,6 +249,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 #about-page-first-third  {
     background-color: #262a32;
     color: white;
+    margin-right: 0;
+    padding-top: 100px;
 }
 
 #about-page-second-third  {
@@ -245,13 +272,14 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .about-page-third {
-    width: 100vw;
+    width: 103vw;
     height: 100%;
     padding-top: 50px; 
+    margin-right: 0;
 }
 
-#about-page-contributors {
-
+.top-bar-content {
+    padding-top: 1rem;
 }
 
 #about-contributors-title {
@@ -592,15 +620,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 }
 
-.tweet-item.list-group-item p {
-    font-size: 1.1rem;
-}
-
-.tweet-item.list-group-item .tweets-txt-by-dt{
-    font-size: .8rem;
-}
-.tweet-item.list-group-item .tweet-dt {
-    font-size: .8rem;
+.tab:hover {
+    color: rgb(199, 199, 199) !important;
 }
 
 .tweet-text {
@@ -699,18 +720,55 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     display: none;  /* Safari and Chrome */
 }
 
+.news-item:hover {
+    text-decoration: none;
+}
+
+.news-item {
+    padding: 15px;
+    margin-bottom: 1rem;
+}
+
+/* Tweet/News Article Source */
+.tweets-txt-by-dt .tweet-dt {
+    font-size: 0.6rem;
+    margin-bottom: 0.1rem;
+    color: white;
+}
+
+.tweets-txt-by-dt strong {
+    font-size: 0.6rem;
+    margin-bottom: 0.1rem;
+    color: white;
+}
+
+p.news-txt-by-dt{
+    font-size: 0.6rem;
+    margin-bottom: 0;
+}
+
+p.news-txt-by-dt:hover{
+    font-size: 0.6rem;
+    margin-bottom: 0;
+    text-decoration: none;
+}
+
 p.tweet-dt {
     margin-bottom: 0;
 }
 
-.tweets-txt-by-dt{
-    margin-bottom: 0.1rem;
-    font-size: .3rem;
+/* Tweet/News Acticle Headline */
+
+.news-txt-headline {
+    font-size: 1rem;
 }
 
-p.news-txt-by-dt{
-    font-size: 0.5rem;
-    margin-bottom: 0;
+.news-txt-headline:hover {
+    text-decoration: none !important;
+}
+
+li.tweet-item p {
+    font-size: 1rem;
 }
 
 .news-txt-headline {
@@ -762,6 +820,7 @@ p.news-txt-by-dt{
 .states-stats-deaths-list-item.list-group-item {
     background-color: none;
     background: none;
+    padding: 0;
     /* border-bottom: 100px;
     border-color: #0B1319; */
 }
@@ -854,12 +913,15 @@ p.news-txt-by-dt{
     font-size: 1rem;
     text-align: center;
     color: #8B8D91;
+    min-width: 120px;
 }
 
 .footer-social-copyright-content {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     padding-bottom: 8px;
+    padding-right: 45px;
 }
 
 /********************* 📱 MOBILE STYLING 📱 **********************/
@@ -900,10 +962,18 @@ p.news-txt-by-dt{
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
-    z-index: 1;
+    z-index: 10000;
 }
 
 /* Mobile Card 🎴 section */
+
+.mobile-twitter-feed-tab {
+    border-top-left-radius: 0.3rem;
+}
+
+.mobile-news-feed-tab {
+    border-top-right-radius: 0.3rem;
+}
 
 .mobile-top-bar-content {
     margin-left: 0rem;
