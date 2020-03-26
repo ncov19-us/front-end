@@ -25,7 +25,7 @@ except Exception as ex:
     print(f"[ERROR]: {ex}")
 
 
-# @cache.memoize(timeout=600)
+@cache.memoize(timeout=600)
 def states_confirmed_stats(state=None) -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
@@ -63,6 +63,7 @@ def states_confirmed_stats(state=None) -> dbc.ListGroup:
     return list_group
 
 
+@cache.memoize(timeout=600)
 def states_deaths_stats(state=None) -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
