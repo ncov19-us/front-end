@@ -192,7 +192,10 @@ stats_tabs = dbc.Card(
             ),
             className="mobile-right-tabs",
         ),
-        dbc.CardBody(html.P(id="stats-content-mobile", className="mobile-right-col-feed-cards-text")),
+        dbc.CardBody(
+            html.P(id="stats-content-mobile", className="mobile-right-col-feed-cards-text"),
+            className="mobile-stats-card-body",
+            ),
     ]
 )
 
