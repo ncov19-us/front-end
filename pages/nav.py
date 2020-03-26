@@ -51,17 +51,17 @@ navbar =  [
             #     html.Img(src="assets/images/covid19-new-logo.png", height="30px")
             # ),
             dbc.Col(
+                html.A(
                 dbc.NavbarBrand(
                     [
-                        html.A(
                             html.P(
                                 "COVID-19", className="navbar-brand-covid-19-text"
                             ),
-                            className="page-title-link",
-                            href="/",
-                        ),
                         html.P("US Cases", className="navbar-brand-us-cases-text"),
                     ]
+                    ),
+                    className="page-title-link",
+                    href="/",
                 )
             ),
         ],

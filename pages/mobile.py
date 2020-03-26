@@ -25,7 +25,6 @@ tab_style = {
 }
 
 tab_selected_style = {
-    "fontSize": "1rem",
     "backgroundColor": "#20242d",
     "color": "white",
     "padding": "0.5rem",
@@ -105,14 +104,14 @@ mobile_us_maps_tabs = dbc.Card(
                             className="mobile-top-bar-us-map-tabs-content",
                             children=[
                                 dcc.Tab(
-                                    label="😷",
+                                    label="Cases",
                                     value="mobile-confirmed-us-map-tab",
                                     className="mobile-confirmed-us-map-tab",
                                     style=tab_style,
                                     selected_style=tab_selected_style,
                                 ),
                                 dcc.Tab(
-                                    label="🏥",
+                                    label="Testing",
                                     value="mobile-testing-us-map-tab",
                                     className="mobile-testing-us-map-tab",
                                     style=tab_style,

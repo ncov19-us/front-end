@@ -6,14 +6,23 @@ from dash.dependencies import Input, Output, State
 
 mobile_navbar = [
         # User row and col to control vertical alignment of logo/brand
-    dbc.Row(
-        [
-            dbc.Col(html.P("COVID-19", className="mobile-covid-19-text")),
-            dbc.Col(html.P("US Cases", className="mobile-us-cases-text",)),
-        ],
-        align="center",
-        no_gutters=True,
-    ),
+        html.A(
+            dbc.Row(
+                [
+                    dbc.Col(
+                        
+                            html.P("COVID-19", className="mobile-covid-19-text"),
+                    ),
+                    dbc.Col(
+                            html.P("US Cases", className="mobile-us-cases-text"),  
+                    ),
+                ],
+                align="center",
+                no_gutters=True,
+            ),
+            className="page-title-link",
+            href="/",
+        ),
     dbc.NavbarToggler(id="mobile-navbar-toggler"),
     dbc.Collapse(
         dbc.Card(
