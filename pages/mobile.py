@@ -132,12 +132,10 @@ mobile_us_maps_tabs = dbc.Card(
             ),
             # need to fixate the map.
             html.Div(
-                dcc.Loading(
-                    dcc.Graph(
-                        id="mobile-us-map",
-                        config={"scrollZoom": False},
-                        style={"height": "54vh"},
-                    )
+                dcc.Graph(
+                    id="mobile-us-map",
+                    config={"scrollZoom": False},
+                    style={"height": "54vh"},
                 )
             ),
         ]

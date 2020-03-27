@@ -184,11 +184,8 @@ us_maps_tabs = dbc.Card(
                 ],
                 className="d-flex justify-content-between top-bar-us-map-heading-content",
             ),
-            dcc.Loading(
-                html.Div(
-                    dcc.Graph(id="us-map", style={"height": "44vh"},)
-                ),
-                id="map-loading"
+            html.Div(
+                dcc.Graph(id="us-map", style={"height": "44vh"},)
             ),
         ]
     ),
