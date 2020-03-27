@@ -10,4 +10,3 @@ from .column_stats import (
     states_confirmed_stats,
     states_deaths_stats,
 )
-
