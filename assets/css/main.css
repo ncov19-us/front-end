@@ -325,55 +325,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     text-shadow: none;
 }
 
-.about-page-contributor-han {
-    display: flex;
-    flex-direction: row;
-    margin-right: 19.7%;
-}
-
-.about-page-contributor-hursh {
-    display: flex;
-    flex-direction: row;
-    margin-right: 17.4%;
-}
-
-.about-page-contributor-daniel {
-    display: flex;
-    flex-direction: row;
-    margin-right: 16.7%;
-}
-
-.about-page-contributor-alex {
-    display: flex;
-    flex-direction: row;
-    margin-right: 14.3%;
-}
-
-.about-page-contributor-michael {
-    display: flex;
-    flex-direction: row;
-    margin-right: 13.1%;
-}
-
-.about-page-contributor-anisha {
-    display: flex;
-    flex-direction: row;
-    margin-right: 12.9%;
-}
-
-.about-page-contributor-liz {
-    display: flex;
-    flex-direction: row;
-    margin-right: 11.3%;
-}
-
-.about-page-contributor {
-    display: flex;
-    /* justify-content: space-between; */
-    align-items: flex-end;
-    margin-bottom: 0.8%;
-}
-
 .about-contributor-name {
     font-family: 'Roboto', sans-serif;
     padding-right: 5px;
@@ -384,8 +335,20 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     font-family: 'Roboto', sans-serif;
 }
 
+.about-page-contributors {
+    display: flex;
+    flex-direction: row;
+}
+
+.about-page-contributor {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    margin-bottom: 1%;
+}
+
 .about-contributor-social-icon {
-    margin-left: 2.5%;
+    margin-right: 1%;
     width: 21px;
     height: 21px;
     background-size: 100%;
@@ -405,54 +368,25 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 /* mobile about page contributor styling */
-
-.mob-about-page-contributor-han {
+.mob-about-page-contributors {
     display: flex;
     flex-direction: row;
-    margin-right: 27%;
-}
-
-.mob-about-page-contributor-hursh {
-    display: flex;
-    flex-direction: row;
-    margin-right: 20.2%;
-}
-
-.mob-about-page-contributor-daniel {
-    display: flex;
-    flex-direction: row;
-    margin-right: 17.9%;
-}
-
-.mob-about-page-contributor-alex {
-    display: flex;
-    flex-direction: row;
-    margin-right: 10.8%;
-}
-
-.mob-about-page-contributor-michael {
-    display: flex;
-    flex-direction: row;
-    margin-right: 7.3%;
-}
-
-.mob-about-page-contributor-anisha {
-    display: flex;
-    flex-direction: row;
-    margin-right: 6.8%;
-}
-
-.mob-about-page-contributor-liz {
-    display: flex;
-    flex-direction: row;
-    margin-right: 2%;
 }
 
 .mob-about-page-contributor {
     display: flex;
     /* justify-content: space-between; */
     align-items: flex-end;
-    margin-bottom: 2.5%;
+    margin-bottom: 1%;
+}
+
+
+.mob-about-contributor-social-icon {
+    margin-right: 1%;
+    width: 16px;
+    height: 16px;
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 /* Top Card Section */
