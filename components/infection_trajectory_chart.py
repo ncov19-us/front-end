@@ -51,7 +51,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             name="South Korea",
             # opacity=0.7,
             # line={"color": "#03DA32"},
-            line={"color": "#03AE2C"},
+            line={"color": "#1b17df"},
             mode="lines",
             hovertemplate=template,
         ),

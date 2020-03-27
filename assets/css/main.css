@@ -527,7 +527,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .top-bar-card-death {
     /* color: #03DA32; */
-    color: #03AE2C;
+    color: rgb(27, 23, 223);
     text-align: center;
     font-size: .9rem;
     background-color: #010915;
@@ -998,7 +998,7 @@ p.states-stats-deaths-list-txt {
 .states-stats-recovered-list-num {
     font-weight: 700;
     /* color: #03DA32; */
-    color: #03AE2C;
+    color: rgb(27, 23, 223);
 }
 
 .states-stats-recovered-list-state {
@@ -1179,7 +1179,7 @@ p.states-stats-deaths-list-txt {
 .mobile-top-bar-card-death {
     background-color: #010915;
     /* color: #03DA32; */
-    color: #03AE2C;
+    color: rgb(27, 23, 223);
     text-align: center;
     font-size: .9rem;
     border: none;
