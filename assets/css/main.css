@@ -22,6 +22,10 @@ body {
     background-color: none;
 }
 
+.mobile-us-map-content {
+    margin-top: 1rem;
+}
+
 .mobile-us-map-content .card-body {
     padding-right: 0;
     padding-bottom: 0;
@@ -1117,12 +1121,10 @@ p.states-stats-deaths-list-txt {
 
 /* Mobile Card 🎴 section */
 
-
-
 .mobile-top-bar-content {
-    margin-left: 0rem;
-    margin-right: 0rem;
-    margin-top: 4.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 5rem;
 }
 .mobile-card-text {
     margin-top: -.75rem;
@@ -1140,7 +1142,7 @@ p.states-stats-deaths-list-txt {
     background-color: #010915;
     color: #fefefe;
     text-align: center;
-    font-size: .9rem;
+    font-size: .75rem;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -1150,7 +1152,7 @@ p.states-stats-deaths-list-txt {
 
 .mobile-top-bar-value-tested {
     margin-top: -1.7rem;
-    font-weight: 4rem;
+    font-weight: 500;
     font-size: 2.75rem;
     text-shadow: none;
 }
@@ -1159,7 +1161,7 @@ p.states-stats-deaths-list-txt {
     background-color: #010915;
     color: #FEC400;
     text-align: center;
-    font-size: .9rem;
+    font-size: .75rem;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -1169,7 +1171,7 @@ p.states-stats-deaths-list-txt {
 
 .mobile-top-bar-value-confirmed {
     margin-top: -1rem;
-    font-weight: 4rem;
+    font-weight: 500;
     font-size: 2.75rem;
     text-shadow: none;
 }
@@ -1185,7 +1187,7 @@ p.states-stats-deaths-list-txt {
     background-color: #010915;
     color: #D92C25;
     text-align: center;
-    font-size: .9rem;
+    font-size: .75rem;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -1195,7 +1197,7 @@ p.states-stats-deaths-list-txt {
 
 .mobile-top-bar-value-deaths {
     margin-top: -1rem;
-    font-weight: 4rem;
+    font-weight: 500;
     font-size: 2.75rem;
     text-shadow: none;
 }
@@ -1205,7 +1207,7 @@ p.states-stats-deaths-list-txt {
     /* color: #03DA32; */
     color: rgb(27, 23, 223);
     text-align: center;
-    font-size: .9rem;
+    font-size: .75rem;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -1215,7 +1217,7 @@ p.states-stats-deaths-list-txt {
 
 .mobile-top-bar-value-death {
     margin-top: -1rem;
-    font-weight: 4rem;
+    font-weight: 500;
     font-size: 2.75rem;
     text-shadow: none;
 }
@@ -1265,13 +1267,16 @@ p.states-stats-deaths-list-txt {
     font-size: 1rem;
     font-weight: normal;
     color: #ffffff;
-    padding-top: 0.25rem;
+    padding-top: 0.35rem;
     max-width: 50%;
 }
 
 .mobile-confirmed-us-map-tab, .mobile-testing-us-map-tab {
     font-size: 0.75rem;
     text-align: center;
+}
+.tab.mobile-confirmed-us-map-tab {
+    padding: 0.7rem !important;
 }
 
 .tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-testing-us-map-tab {
@@ -1294,12 +1299,17 @@ p.states-stats-deaths-list-txt {
 
 .mobile-right-col-stats-content.col-2 {
     max-width: 100%;
-    padding-right: 0;
-    padding-left: 0;
+    /* padding-right: 0;
+    padding-left: 0; */
+    margin-top: 3rem;
     margin-bottom: 2rem;
     max-height: 30%;
 }
 
+/* Mobile Twitter and News */
+.mobile-feed-content {
+    padding: 1rem;
+}
 
 
 
@@ -1361,7 +1371,7 @@ p.states-stats-deaths-list-txt {
 }
 
 .mobile-stats-card-body {
-    height: 50vh;
+    height: 60vh;
     overflow: scroll;
 }
 
