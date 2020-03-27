@@ -29,7 +29,8 @@ def get_daily_stats() -> Dict:
         "Tested": tested,
         "Confirmed": [confirmed, todays_confirmed],
         "Deaths": [deaths, todays_deaths],
-        "Recovered": 0,
+        "Death Rate": [f'{round(deaths/confirmed * 100,2)}%', f'{round(todays_deaths/todays_confirmed, 2)}%']
+        # "Recovered": 0,
     }
 
     return stats
