@@ -909,6 +909,18 @@ p.tweet-dt {
     border-top-left-radius: 0.3rem;
 } 
 
+
+.left-col-twitter-feed-content .card-body {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.left-col-twitter-feed-content .card-body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+
+
 /* 👉👉👉👉 Right Detailed List Sidebar */
 
 .right-col-news-feed-content{
@@ -920,6 +932,18 @@ p.tweet-dt {
     background-color: none;
 }
 
+.right-col-stats-content .card-body {
+    height: 75vh !important;
+    overflow: scroll;
+}
+
+.right-col-stats-content .card-body {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.right-col-stats-content .card-body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
 
 
 .states-stats-confirmed-list-item.list-group-item {

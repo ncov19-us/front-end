@@ -193,9 +193,11 @@ stats_tabs = dbc.Card(
             className="mobile-right-tabs",
         ),
         dbc.CardBody(
-            html.P(id="stats-content-mobile", className="mobile-right-col-feed-cards-text"),
-            className="mobile-stats-card-body",
+            html.P(
+                id="stats-content-mobile", className="mobile-right-col-feed-cards-text"
             ),
+            className="mobile-stats-card-body",
+        ),
     ]
 )
 
@@ -204,7 +206,6 @@ stats_tabs = dbc.Card(
     Output("stats-content-mobile", "children"),
     [Input("right-tabs-styled-with-inline", "value")],
 )
-
 def stats_tab_content(value):
     """Callback to change between news and twitter feed
     """
@@ -227,11 +228,7 @@ mobile_body = [
         style={"margin-bottom": "1.5rem"},
     ),
     # adding stats content
-    dbc.Col(stats_tabs, 
-                    className="mobile-right-col-stats-content", 
-                    width=2,),
-
-
+    dbc.Col(stats_tabs, className="mobile-right-col-stats-content", width=2,),
 
     html.Div(
         dbc.Card(
