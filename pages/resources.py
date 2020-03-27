@@ -6,7 +6,7 @@ import dash_html_components as html
 resources_body = [
     dcc.Markdown(
     """
-    # This is RESOURCES page Lizz
+    # This is RESOURCES page
     
     
     """

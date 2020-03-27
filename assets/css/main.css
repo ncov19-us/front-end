@@ -525,7 +525,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     text-shadow: none;
 }
 
-.top-bar-card-recovered {
+.top-bar-card-death {
     /* color: #03DA32; */
     color: #03AE2C;
     text-align: center;
@@ -536,11 +536,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem;
 }
-.top-bar-card-recovered.card {
+/* .top-bar-card-death.card {
     background-color: #010915;
-}
+} */
 
-.top-bar-value-recovered {
+.top-bar-value-death {
     margin-top: -1.1rem;
     font-weight: 4rem;
     font-size: 2.75rem;
@@ -565,8 +565,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     font-size: .7rem;
 }
 
-.top-bar-perc-change-recovered {
-    color: #010915;
+.top-bar-perc-change-death {
+    color: #BDBDBD;
     margin-top: -.7rem;
     font-size: .7rem;
 }
@@ -607,6 +607,27 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .jsx-2597805859.tab.confirmed-us-map-tab.tab--selected, .jsx-2597805859.tab.testing-us-map-tab , .jsx-2597805859.tab.confirmed-us-map-tab {
     min-width: 5rem;
 }
+
+.tab-mobile-confirmed-us-map-tab {
+    min-width: 5rem;
+    padding: 0.7rem;
+}
+
+.jsx-2597805859.tab.mobile-confirmed-us-map-tab.tab--selected {
+    padding: 0.7rem !important;
+    text-align: center;
+}
+
+.jsx-2597805859.tab.mobile-testing-us-map-tab {
+    padding: 0.7rem !important;
+    text-align: center;
+}
+
+.tab-mobile-testing-us-map-tab {
+    min-width: 5rem;
+    padding: 0.7rem;
+}
+
 
 
 .top-bar-us-map-heading-txt {
@@ -911,6 +932,7 @@ p.tweet-dt {
     background-color: none;
     background: none;
     padding: 0;
+    padding: 0.05rem;
     /* border-bottom: 100px;
     border-color: #0B1319; */
 }
@@ -945,17 +967,26 @@ p.tweet-dt {
 
 .states-stats-confirmed-list-num {
     /* changed this font weight...even with deaths list? */
-    font-weight: 500;
+    font-weight: 700;
+    /* width: 34%; */
     font-size: 0.94rem;
     color: #FEC400;
 }
+
+p.states-stats-confirmed-list-txt {
+    margin-top: 0.5rem;
+ }
 
 .states-stats-confirmed-list-state {
     color:#F3F3F3;
 }
 
+p.states-stats-deaths-list-txt {
+    margin-top: 0.5rem;
+}
+
 .states-stats-deaths-list-num {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 0.94rem;
     color: #D92C25;
 }
@@ -965,7 +996,7 @@ p.tweet-dt {
 }
 
 .states-stats-recovered-list-num {
-    font-weight: 500;
+    font-weight: 700;
     /* color: #03DA32; */
     color: #03AE2C;
 }
@@ -1119,7 +1150,7 @@ p.tweet-dt {
     text-shadow: none;
 }
 
-.mobile-top-bar-card-recovered.list-group-item {
+.mobile-top-bar-card-death.list-group-item {
     /* border-top-left-radius: 0.3rem;
     border-top-right-radius: 0.3rem; */
     border-bottom-left-radius: 0.3rem;
@@ -1145,7 +1176,7 @@ p.tweet-dt {
     text-shadow: none;
 }
 
-.mobile-top-bar-card-recovered {
+.mobile-top-bar-card-death {
     background-color: #010915;
     /* color: #03DA32; */
     color: #03AE2C;
@@ -1158,8 +1189,8 @@ p.tweet-dt {
     margin-bottom: 1.3rem;
 }
 
-.mobile-top-bar-value-recovered {
-    margin-top: -1.7rem;
+.mobile-top-bar-value-death {
+    margin-top: -1rem;
     font-weight: 4rem;
     font-size: 2.75rem;
     text-shadow: none;
@@ -1184,8 +1215,8 @@ p.tweet-dt {
     font-size: .7rem;
 }
 
-.mobile-top-bar-perc-change-recovered {
-    color: #010915;
+.mobile-top-bar-perc-change-death {
+    color: #BDBDBD;
     margin-top: 0.2rem;
     font-size: .7rem;
 }
@@ -1203,6 +1234,7 @@ p.tweet-dt {
 
 .mobile-top-bar-us-map-heading-content {
     margin-top: 0rem;
+    padding-right: 0 !important;
 }
 
 .mobile-top-bar-us-map-heading-txt {
@@ -1217,6 +1249,10 @@ p.tweet-dt {
     font-size: 0.75rem;
     text-align: center;
 }
+
+.tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-testing-us-map-tab {
+    border-top-right-radius: 0.3rem !important;
+}    
 
 /* 📱 Mobile Chart */
 
@@ -1286,7 +1322,7 @@ p.tweet-dt {
 
 /* mobile twitter and news feed styling */
 .mobile-feed-card-body{
-    height: 75vh;
+    height: 60vh;
     overflow: scroll;
 }
 

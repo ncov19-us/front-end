@@ -6,7 +6,7 @@ import dash_html_components as html
 mobile_resources_body = [
     dcc.Markdown(
     """
-    # This is MOBILE RESOURCES page Lizz
+    # This is MOBILE RESOURCES page
     
     
     """

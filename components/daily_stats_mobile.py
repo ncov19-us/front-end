@@ -4,7 +4,36 @@ from utils.settings import NCOV19_API
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
-from components.daily_stats import get_daily_stats
+
+
+def get_daily_stats() -> Dict:
+    """Get daily stats from ncov19.us API, parse and return as a dictionary
+    for the daily stats mobile.
+
+    :return: :Dict: stats
+    """
+    
+    url = NCOV19_API+"stats"
+
+    try:
+        data = requests.get(url=url).json()
+        tested = data["tested"]
+        confirmed = data["confirmed"]
+        todays_confirmed = data["todays_confirmed"]
+        deaths = data["deaths"]
+        todays_deaths = data["todays_deaths"]
+    except:
+        confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0
+
+    stats = {
+        "Tested": tested,
+        "Confirmed": [confirmed, todays_confirmed],
+        "Deaths": [deaths, todays_deaths],
+        "Death Rate": [f'{round(deaths/confirmed * 100,2)}%', f'{round(todays_deaths/todays_confirmed, 2)}%']
+        # "Recovered": 0,
+    }
+
+    return stats
 
 
 @cache.memoize(timeout=3600)
