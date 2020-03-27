@@ -184,11 +184,15 @@ us_maps_tabs = dbc.Card(
                 ],
                 className="d-flex justify-content-between top-bar-us-map-heading-content",
             ),
-            html.Div(dcc.Loading(dcc.Graph(id="us-map", style={"height": "44vh"},))),
+            dcc.Loading(
+                html.Div(
+                    dcc.Graph(id="us-map", style={"height": "44vh"},)
+                ),
+                id="map-loading"
+            ),
         ]
     ),
 )
-
 
 @app.callback(
     Output("us-map", "figure"), [Input("middle-map-tabs-styled-with-inline", "value")]
