@@ -1,9 +1,10 @@
+import requests
+import json
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from app import cache
 from utils.settings import NCOV19_API
-import requests
 
 
 @cache.memoize(timeout=3600)
@@ -14,13 +15,11 @@ def confirmed_cases_chart(state=None) -> go.Figure:
     """
 
     URL = NCOV19_API + "country"
-    response = requests.get(URL).json()
+    payload = json.dumps({"alpha2Code": "US"})
+    response = requests.post(URL, data=payload).json()
     data = response["message"]
     data = pd.read_json(data, orient="records")
-    data = data[["US"]]
-    data = data.rename(columns={"US": "Confirmed Cases"})
-    data.index.names = ["Date"]
-    data = data.reset_index()
+    data = data.rename(columns={"Confirmed": "Confirmed Cases"})
     data = data.tail(60)
 
     fig = px.line(data, x="Date", y="Confirmed Cases")
@@ -28,7 +27,6 @@ def confirmed_cases_chart(state=None) -> go.Figure:
     fig.update_layout(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         template="plotly_dark",
-        # title="U.S. Confirmed Cases",
         autosize=True,
         xaxis_title="Confirmed Cases",
         yaxis_title=None,
