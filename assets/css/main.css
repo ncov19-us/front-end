@@ -378,9 +378,9 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 .mob-about-contributor-social-icon {
-    margin-right: 1%;
-    width: 16px;
-    height: 16px;
+    margin-right: 2.5%;
+    width: 18px;
+    height: 18px;
     background-size: 100%;
     background-repeat: no-repeat;
 }
