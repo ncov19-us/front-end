@@ -50,7 +50,8 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             y=merged["South Korea"],
             name="South Korea",
             # opacity=0.7,
-            line={"color": "#03DA32"},
+            # line={"color": "#03DA32"},
+            line={"color": "#03AE2C"},
             mode="lines",
             hovertemplate=template,
         ),
@@ -61,7 +62,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             y=merged["US"],
             name="United States",
             text="United States",
-            line={"width": 5, "color": "#FEC400"},
+            line={"color": "#FEC400"},
             mode="lines",
             hovertemplate=template,
         )
@@ -76,7 +77,13 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         xaxis_showgrid=False,
+        yaxis_showgrid=False,
         hoverlabel={"font": {"color": "black"}},
+        font=dict(
+            family="Roboto, sans-serif",
+            size=10,
+            color="#f4f4f4"
+        )
     )
 
     fig.update_layout(xaxis_showgrid=False, yaxis_showgrid=False)

@@ -37,6 +37,11 @@ def confirmed_cases_chart(state=None) -> go.Figure:
         plot_bgcolor="rgba(0,0,0,0)",
         xaxis_showgrid=False,
         yaxis_showgrid=False,
+        font=dict(
+            family="Roboto, sans-serif",
+            size=10,
+            color="#f4f4f4"
+        )
     )
 
     return fig

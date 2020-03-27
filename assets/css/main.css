@@ -20,15 +20,13 @@ body {
     text-align: left;
     margin-bottom: 0.5rem;
     background-color: none;
-    /* background-color: #0b1218; */
-    /* box-shadow: 4px 4px 6px rgba(0,0,0,0.75); */
 }
 
 .mobile-us-map-content .card-body {
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
-    padding-top: 10px;
+    padding-top: 0;
     background-color: #010915;
 }
 
@@ -40,6 +38,28 @@ body {
 .mobile-chart .card-body {
     background-color: #010915;
 } 
+
+#mobile-map-tabs .tab.mobile-confirmed-us-map-tab {
+    padding: 1rem;
+}
+
+.tab.mobile-testing-us-map-tab {
+    padding: 1rem;
+}
+
+/* 
+.tab .mobile-confirmed-us-map-tab {
+    padding: 5rem;
+}
+
+.mobile-testing-us-map-tab {
+    padding: 5rem;
+}
+
+.tab-container .mobile-top-bar-us-map-tabs-content {
+    padding: 5rem;
+} */
+
 /*  Nav Bar */
 #navbar {
     text-decoration: none;
@@ -85,12 +105,16 @@ body {
 
 }
 
+/* /* /* /* /*         Dropdown Location Menu                   */ 
+
 .dropdown-location-menu .dropdown-toggle {
     background-color: #262a32;
     background-image: none;
     min-width: 150px;
     padding-top: 0;
     padding-bottom: 0;
+    font-size: .9rem;
+    letter-spacing: .01rem;
 
 }
 
@@ -105,7 +129,7 @@ body {
 }
 
 .dropdown-item {
-    color: white;
+    color: #fefefe;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 }
 
@@ -113,27 +137,24 @@ body {
     box-shadow: none;
 }
 
-.dropdown-location-menu .dropdown-toggle {
-    font-size: 1.1rem;
-}
-
 /* This targets the little drop down arrow on the location button */
 .dropdown-location-menu .dropdown-toggle::after {
-    margin-left: 35%;
+    margin-left: 43%;
 }
 
 .dropdown .btn {
     padding-top: 0;
     padding-bottom: 0;
-    min-height: 45px;
+    min-height: 35px;
 }
 
 .navbar-brand-links {
     margin-bottom: auto;
     font-weight: 300;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.01rem;
     text-shadow: none;
-    padding-left: 20px;
+    padding-left: 2.1rem;
 }
 
 .navbar-brand-links:hover {
@@ -142,7 +163,7 @@ body {
 
 #navbar-resources-link {
     margin-right: 1.5rem;
-    padding-left: 2rem;
+    padding-left: 2.3rem;
 }
 
 /* Applies to all Cards 🎴 */
@@ -196,16 +217,16 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 #about-page-second-third .about-page-title {
-    padding-left: 9vw;
+    padding-left: 125px;
     padding-bottom: 50px;
 }
 
 .about-section-title-container {
-    border-left: 7px solid white;
+    border-left: 7px solid #fefefe;
 }
 
 .about-section-text-container {
-    border-left: 1px solid white;
+    border-left: 1px solid #fefefe;
     margin-left: 3px;
 }
 
@@ -237,8 +258,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 #about-page-second-third .about-section-container {
-    padding-left: 10vw;
-    padding-right: 10vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
 
 .about-section-padding {
@@ -248,25 +269,25 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 #about-page-first-third  {
     background-color: #262a32;
-    color: white;
+    color: #fefefe;
     margin-right: 0;
     padding-top: 100px;
 }
 
 #about-page-second-third  {
     background-color: #010915;
-    color: white;
+    color: #fefefe;
     background-position: right top;
     background-image: url('../images/map_1.svg');
     background-repeat: no-repeat;
     background-size: 45%;
     padding-top: 100px;
-    padding-bottom: 100px;
+    /* padding-bottom: 50px; */
 }
 
 #about-page-third-third  {
     background-color: #D2D2D2;
-    padding-left: 12vw;
+    padding-left: 10vw;
     color: black;
     padding-bottom: 100px;
 }
@@ -279,7 +300,10 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-content {
-    padding-top: 1rem;
+    padding-top: 1.4rem;
+    padding-bottom: .5rem;
+    margin-right: 50px;
+    margin-left: 50px;
 }
 
 #about-contributors-title {
@@ -297,17 +321,54 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     text-shadow: none;
 }
 
-/* need to fix styling on the next two classes on about page */
-.about-page-contributor-title {
+.about-page-contributor-han {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    margin-right: 19.7%;
+}
+
+.about-page-contributor-hursh {
+    display: flex;
+    flex-direction: row;
+    margin-right: 17.4%;
+}
+
+.about-page-contributor-daniel {
+    display: flex;
+    flex-direction: row;
+    margin-right: 16.7%;
+}
+
+.about-page-contributor-alex {
+    display: flex;
+    flex-direction: row;
+    margin-right: 14.3%;
+}
+
+.about-page-contributor-michael {
+    display: flex;
+    flex-direction: row;
+    margin-right: 13.1%;
+}
+
+.about-page-contributor-anisha {
+    display: flex;
+    flex-direction: row;
+    margin-right: 12.9%;
+}
+
+.about-page-contributor-liz {
+    display: flex;
+    flex-direction: row;
+    margin-right: 11.3%;
 }
 
 .about-page-contributor {
     display: flex;
-    align-items: center;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    margin-bottom: 0.8%;
 }
-
 
 .about-contributor-name {
     font-family: 'Roboto', sans-serif;
@@ -320,9 +381,9 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .about-contributor-social-icon {
-    margin-left: 15px;
-    width: 23px;
-    height: 23px;
+    margin-left: 2.5%;
+    width: 21px;
+    height: 21px;
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -339,43 +400,61 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     background-image: url('../images/Twitter.svg');
 }
 
-/* 📖 About Page Mobile-Specific Styling 📖 */
+/* mobile about page contributor styling */
 
-#mobile-about-page {
-    margin-left: -15px;
-    margin-top: -25px;
+.mob-about-page-contributor-han {
+    display: flex;
+    flex-direction: row;
+    margin-right: 27%;
 }
 
-#mobile-about-page .about-section-container {
-    display: inline-block;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    padding-bottom: 75px;
+.mob-about-page-contributor-hursh {
+    display: flex;
+    flex-direction: row;
+    margin-right: 20.2%;
 }
 
-#mobile-about-page #about-page-first-third {
-    padding-top: 100px;
-    color: white;
+.mob-about-page-contributor-daniel {
+    display: flex;
+    flex-direction: row;
+    margin-right: 17.9%;
 }
 
-#mobile-about-page #about-page-third-third {
-    background-color: #D2D2D2;
-    padding-left: 20px;
-    color: black;
-    padding-bottom: 100px;
-    font-size: .8rem;
+.mob-about-page-contributor-alex {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10.8%;
 }
 
-#mobile-about-page .about-section {
-    width: 100%;
+.mob-about-page-contributor-michael {
+    display: flex;
+    flex-direction: row;
+    margin-right: 7.3%;
 }
 
-/* About Page Styling End */
+.mob-about-page-contributor-anisha {
+    display: flex;
+    flex-direction: row;
+    margin-right: 6.8%;
+}
+
+.mob-about-page-contributor-liz {
+    display: flex;
+    flex-direction: row;
+    margin-right: 2%;
+}
+
+.mob-about-page-contributor {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    margin-bottom: 2.5%;
+}
 
 /* Top Card Section */
 .top-bar-content.row {
-    margin-left: 0.2rem;
-    margin-right: .2rem;
+    margin-left: 0.78rem;
+    margin-right: .78rem;
 }
 
 .top-bar-content.row .card-body {
@@ -384,6 +463,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .top-bar-card-body .card-body {
     background-color: #010915;
+}
+
+.top-bar-card-body {
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 .top-bar-card-tested {
@@ -442,7 +526,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-card-recovered {
-    color: #03DA32;
+    /* color: #03DA32; */
+    color: #03AE2C;
     text-align: center;
     font-size: .9rem;
     background-color: #010915;
@@ -525,7 +610,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 .top-bar-us-map-heading-txt {
-    font-size: .9rem;
+    font-size: 1rem;
     color: #fefefe;
     padding-top: 0.3rem;
     padding-left: 1rem;
@@ -534,7 +619,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bottom-left-chart-title, .top-bottom-right-chart-title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: #fefefe;
     max-width: 100%;
     margin-bottom: 5%;
@@ -581,14 +666,16 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bottom-left-chart.col-6 .card {
-    margin-top: .9rem;
+    margin-top: 1.2rem;
+    margin-right: .7rem;
     margin-bottom: 3rem;
-    margin-right: .9rem;
     padding: 1.2rem;
 }
 
 .top-bottom-right-chart.col-6 .card {
-    margin-right: 0rem;
+    margin-top: 1.2rem;
+    margin-left: .7rem;
+    margin-bottom: 3rem;
     padding: 1.2rem;
 }
 
@@ -628,10 +715,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     font-size: .75rem;
 }
 
-.tweet-dt {
-    font-size: .2rem;
-}
-
 .middle-map-news-content.mt-3.no-gutters.row {
     margin-left: 1.2rem;
     margin-right: 1rem;
@@ -644,7 +727,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .jsx-2597805859.tab.left-twitter-tab.tab-selected {
     background-color: #010915;
-    background-color: white;
+    background-color: #fefefe;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -654,10 +737,15 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding: 0 0 .75rem 0;
 }
 
-.left-col-twitter-feed-content{
+.left-col-twitter-feed-content p {
     margin-bottom: 1rem;
     border-radius: .3rem;
     height: 100%;
+    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
+}
+
+.left-col-twitter-feed-content h6 {
+    /* color: #F4F4F4; */
     /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
 }
 
@@ -720,70 +808,72 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     display: none;  /* Safari and Chrome */
 }
 
-.news-item:hover {
-    text-decoration: none;
-}
-
 .news-item {
     padding: 15px;
     margin-bottom: 1rem;
+    border-radius: .3rem !important;
+    padding-bottom: 0;
 }
 
-/* Tweet/News Article Source */
-.tweets-txt-by-dt .tweet-dt {
-    font-size: 0.6rem;
-    margin-bottom: 0.1rem;
-    color: white;
-}
-
-.tweets-txt-by-dt strong {
-    font-size: 0.6rem;
-    margin-bottom: 0.1rem;
-    color: white;
-}
-
-p.news-txt-by-dt{
-    font-size: 0.6rem;
-    margin-bottom: 0;
-}
-
-p.news-txt-by-dt:hover{
-    font-size: 0.6rem;
-    margin-bottom: 0;
+/* .news-item:hover {
+    color: rgb(0, 0, 0) !important;
     text-decoration: none;
+} */
+/* .news-item:hover {
+    color: rgb(0, 0, 0) !important;
+    text-decoration: none;
+    background-color: rebeccapurple;
+} */
+
+/* .left-col-twitter-feed-content.col-2.list-group-item:hover {
+    color: rgb(0, 0, 0) !important;
+    text-decoration: none;
+    background-color: rebeccapurple;
+} */
+
+.tweet-item {
+    padding: 15px;
+    margin-bottom: 1rem;
+    border-radius: .3rem !important;
+    padding-bottom: 0;
+    line-height: 1.35;
+    color: #fefefe;
 }
 
 p.tweet-dt {
     margin-bottom: 0;
 }
 
-/* Tweet/News Acticle Headline */
-
-.news-txt-headline {
-    font-size: 1rem;
-}
-
-.news-txt-headline:hover {
-    text-decoration: none !important;
-}
-
-li.tweet-item p {
-    font-size: 1rem;
-}
+/* Tweet/News Acticle Headline and source */
 
 .news-txt-headline {
     font-size: .75rem;
+    font-weight: normal;
+    line-height: 1.35;
 }
 
 .news-txt-by-dt {
-    font-size: 0.2rem;
+    font-size: 0.6rem;
 }
 
-.tweet-item.list-group-item a:hover, .news-item.list-group-item a:hover {
-    /* transform: translateY(-0.01px); */
+.tweet-text {
+    font-size: .75rem;
+    font-weight: normal;
+}
+
+.tweet-dt {
+    font-size: 0.6rem;
+    color: #F4F4F4;
+}
+
+#mobile-feed-tabs-styled-with-inline {
+    padding-bottom: 12px;
+}
+
+/* .tweet-item.list-group-item a:hover, .news-item.list-group-item a:hover {
     text-decoration: none;
     background: rgba(1, 9, 21, 0.83);
-}
+} */
 
 
 .jsx-1990498210.tab.left-twitter-tab.tab--selected {
@@ -854,7 +944,9 @@ li.tweet-item p {
 }
 
 .states-stats-confirmed-list-num {
+    /* changed this font weight...even with deaths list? */
     font-weight: 500;
+    font-size: 0.94rem;
     color: #FEC400;
 }
 
@@ -864,6 +956,7 @@ li.tweet-item p {
 
 .states-stats-deaths-list-num {
     font-weight: 500;
+    font-size: 0.94rem;
     color: #D92C25;
 }
 
@@ -873,7 +966,8 @@ li.tweet-item p {
 
 .states-stats-recovered-list-num {
     font-weight: 500;
-    color: #03DA32;
+    /* color: #03DA32; */
+    color: #03AE2C;
 }
 
 .states-stats-recovered-list-state {
@@ -893,10 +987,8 @@ li.tweet-item p {
 }
 
 .footer-disclaimer-text {
-    width: 50rem;
+    width: 57rem;
 }
-
-
 
 .footer-social-copyright-content.col-2 {
     /* margin-right: -5rem; */
@@ -924,7 +1016,10 @@ li.tweet-item p {
     padding-right: 45px;
 }
 
+
+/******************************************************************/
 /********************* 📱 MOBILE STYLING 📱 **********************/
+/******************************************************************/
 
 /* Mobile Nav Bar */
 .align-items-center.no-gutters.row {
@@ -951,7 +1046,7 @@ li.tweet-item p {
 .navbar-toggler-icon {
     margin-left: 10%;
     margin-bottom: 3%;
-    color: white;
+    color: #fefefe;
 }
 
 .navbar-toggler {
@@ -967,13 +1062,7 @@ li.tweet-item p {
 
 /* Mobile Card 🎴 section */
 
-.mobile-twitter-feed-tab {
-    border-top-left-radius: 0.3rem;
-}
 
-.mobile-news-feed-tab {
-    border-top-right-radius: 0.3rem;
-}
 
 .mobile-top-bar-content {
     margin-left: 0rem;
@@ -1058,7 +1147,8 @@ li.tweet-item p {
 
 .mobile-top-bar-card-recovered {
     background-color: #010915;
-    color: #03DA32;
+    /* color: #03DA32; */
+    color: #03AE2C;
     text-align: center;
     font-size: .9rem;
     border: none;
@@ -1080,6 +1170,7 @@ li.tweet-item p {
     margin-top: 0.2rem;
     font-size: .70rem;
 }
+
 
 .mobile-top-bar-perc-change-confirmed {
     color: #BDBDBD;
@@ -1115,9 +1206,10 @@ li.tweet-item p {
 }
 
 .mobile-top-bar-us-map-heading-txt {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: normal;
     color: #ffffff;
+    padding-top: 0.25rem;
     max-width: 50%;
 }
 
@@ -1133,7 +1225,24 @@ li.tweet-item p {
     font-weight: normal;
     color: #ffffff;
     max-width: 100%;
+    padding-left: .2rem;
+    padding-bottom: 1rem;
 }
+
+
+/* Mobile Stats Content */
+
+.mobile-right-col-stats-content.col-2 {
+    max-width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-bottom: 2rem;
+    max-height: 30%;
+}
+
+
+
+
 /* 📱 Footer 🦶 */
 .mobile-footer-content {
     background-color: #010915;
@@ -1173,9 +1282,7 @@ li.tweet-item p {
     color: #8B8D91;
 }
 
-/* .div.mobile-footer-content.container-fluid.row {
-    padding-top: 10rem;
-} */
+/* 📱 END Footer 🦶 */
 
 /* mobile twitter and news feed styling */
 .mobile-feed-card-body{
@@ -1183,7 +1290,46 @@ li.tweet-item p {
     overflow: scroll;
 }
 
+.left-col-twitter-feed-content .card-body {
+    height: 75vh !important;
+    overflow: scroll;
+}
 
+.right-col-stats-content .card-body {
+    height: 75vh !important;
+    overflow: scroll;
+}
+
+.mobile-stats-card-body {
+    height: 50vh;
+    overflow: scroll;
+}
+
+.middle-map-news-content {
+    margin-left: 100px;
+}
+
+.middle-map-news-content.mt-3.no-gutters.row {
+    margin-left: 23px;
+}
+
+.mobile-twitter-feed-tab {
+    border-top-left-radius: 0.3rem;
+}
+
+.mobile-news-feed-tab {
+    border-top-right-radius: 0.3rem;
+}
+
+.tab.mobile-left-twitter-tab {
+    border-top-left-radius: 0.3rem;
+}
+
+.tab.mobile-left-news-tab {
+    border-top-right-radius: 0.3rem;
+}
+
+/* Hamburger menu overlay */
 .hidden-menu-div {
     background-color: #010915;
     width: 100vw;
@@ -1200,3 +1346,57 @@ li.tweet-item p {
 .hidden-menu-div a {
     font-size: 2.4rem
 }
+
+
+/* 📖 About Page Mobile-Specific Styling 📖 */
+
+#mobile-about-page {
+    margin-left: -15px;
+    margin-top: -25px;
+}
+
+#mobile-about-page .about-section-container {
+    display: inline-block;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 75px;
+}
+
+#mobile-about-page #about-page-first-third {
+    padding-top: 100px;
+    color: #fefefe;
+}
+
+#mobile-about-page #about-page-third-third {
+    background-color: #D2D2D2;
+    padding-left: 20px;
+    color: black;
+    padding-bottom: 100px;
+    font-size: .8rem;
+}
+
+#mobile-about-page .about-section {
+    width: 100%;
+}
+/* About Page Styling End */
+
+
+
+ /* organize this mess back into the right section :(  */
+.news-item:hover {
+    color: rgb(199, 199, 199) !important;
+    text-decoration: none !important;
+}
+
+.tweet-item:hover {
+    color: rgb(199, 199, 199) !important;
+    text-decoration: none !important;
+}
+
+.tweet-item a:hover {
+    text-decoration: none !important;
+}
+
+/* end of mess */
+
+

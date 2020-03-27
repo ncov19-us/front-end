@@ -155,6 +155,67 @@ def mobile_map_tab_content(value):
 
 ########################################################################
 #
+# Confirmed/Deaths Tabs
+#
+########################################################################
+stats_tabs = dbc.Card(
+    [
+        html.Div(
+            dcc.Tabs(
+                id="right-tabs-styled-with-inline",
+                value="confirmed-tab",
+                children=[
+                    dcc.Tab(
+                        label="Confirmed",
+                        value="confirmed-tab",
+                        className="mobile-left-twitter-tab",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
+                    ),
+                    dcc.Tab(
+                        label="Deaths",
+                        value="deaths-tab",
+                        className="mobile-left-news-tab",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
+                    ),
+                    # dcc.Tab(
+                    #     label="Recovered",
+                    #     value="recovered-tab",
+                    #     className="left-news-tab",
+                    #     style=tab_style,
+                    #     selected_style=tab_selected_style,
+                    # ),
+                ],
+                style=tabs_styles,
+                colors={"border": None, "primary": None, "background": None},
+            ),
+            className="mobile-right-tabs",
+        ),
+        dbc.CardBody(
+            html.P(id="stats-content-mobile", className="mobile-right-col-feed-cards-text"),
+            className="mobile-stats-card-body",
+            ),
+    ]
+)
+
+
+@app.callback(
+    Output("stats-content-mobile", "children"),
+    [Input("right-tabs-styled-with-inline", "value")],
+)
+
+def stats_tab_content(value):
+    """Callback to change between news and twitter feed
+    """
+    if value == "deaths-tab":
+        return states_deaths_stats()
+    else:
+        return states_confirmed_stats()
+
+
+########################################################################
+#
 # Mobile App body layout
 #
 ########################################################################
@@ -165,6 +226,13 @@ mobile_body = [
         className="mobile-us-map-content",
         style={"margin-bottom": "1.5rem"},
     ),
+    # adding stats content
+    dbc.Col(stats_tabs, 
+                    className="mobile-right-col-stats-content", 
+                    width=2,),
+
+
+
     html.Div(
         dbc.Card(
             dbc.CardBody(
