@@ -4,12 +4,6 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from app import app
-from components import news_feed, twitter_feed
-from components import confirmed_cases_chart, infection_trajectory_chart
-from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
-from components import daily_stats_mobile
-from components import scatter_mapbox
-from components import news_feed, twitter_feed
 from pages import mobile_navbar, mobile_footer
 
 

@@ -7,7 +7,7 @@ from app import cache
 from utils.settings import NCOV19_API
 
 
-@cache.memoize(timeout=3600)
+# @cache.memoize(timeout=3600)
 def infection_trajectory_chart(state=None) -> go.Figure:
     """Line chart data for the selected state.
 
@@ -42,7 +42,8 @@ def infection_trajectory_chart(state=None) -> go.Figure:
 
     fig = go.Figure()
 
-    template = "%{y} confirmed cases %{x} days since 200 cases"
+    # <extra></extra> remove name from the end of the hover over text
+    template = "%{y} confirmed cases %{x} days since 200 cases<extra></extra>"
 
     fig.add_trace(
         go.Scatter(
@@ -72,16 +73,29 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             x=merged["Days"],
             y=merged["US"],
             name="United States",
-            text="United States",
+            # text="United States",
             line={"color": "#FEC400"},
             mode="lines",
             hovertemplate=template,
         )
     )
+    # print(merged["US"].dropna().tail(1).index[0])
+    # print(merged["US"].dropna().tail(1))
+    
+    # annotations = []
+    # annotations.append(dict(xref='paper',
+    #                         x=pd.to_numeric(merged["US"].dropna().tail(1).index[0]),
+    #                         y=merged["US"].dropna().tail(1),
+    #                         xanchor='right', yanchor='middle',
+    #                         text="United States",#label + ' {}%'.format(y_trace[0]),
+    #                         font=dict(family='Arial',
+    #                                  size=12),
+    #                         showarrow=False))
+
     fig.update_layout(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         template="plotly_dark",
-        # title="Days since 200 Cases",
+        # annotations=annotations,
         autosize=True,
         showlegend=True,
         legend_orientation="h",
