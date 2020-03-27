@@ -152,13 +152,11 @@ us_maps_tabs = dbc.Card(
         [
             html.Div(
                 [
-                    html.Div(
-                        "US Map", className="top-bar-us-map-heading-txt",
-                    ),
+                    html.Div("US Map", className="top-bar-us-map-heading-txt",),
                     html.Div(
                         dcc.Tabs(
                             id="middle-map-tabs-styled-with-inline",
-                            value="confirmed-us-map-tab", # TODO: put this back to confirmed-us....
+                            value="confirmed-us-map-tab",  # TODO: put this back to confirmed-us....
                             children=[
                                 dcc.Tab(
                                     label="Cases",
@@ -186,7 +184,7 @@ us_maps_tabs = dbc.Card(
                 ],
                 className="d-flex justify-content-between top-bar-us-map-heading-content",
             ),
-            html.Div(dcc.Graph(id="us-map", style={"height": "44vh"},)),
+            html.Div(dcc.Loading(dcc.Graph(id="us-map", style={"height": "44vh"},))),
         ]
     ),
 )
@@ -199,7 +197,7 @@ def map_tab_content(value):
     """Callback to change between news and twitter feed
     """
     if value == "testing-us-map-tab":
-        return drive_thru_scatter_mapbox() 
+        return drive_thru_scatter_mapbox()
     else:
         return confirmed_scatter_mapbox()
         ##### TODO: fix this back to confirmed_scatter_mapbox()
@@ -275,9 +273,7 @@ desktop_body = [
                 width=8,
             ),
             # RIGHT - STATS COL
-            dbc.Col(stats_tabs, 
-                    className="right-col-stats-content", 
-                    width=2,),
+            dbc.Col(stats_tabs, className="right-col-stats-content", width=2,),
         ],
         no_gutters=True,
         className="middle-map-news-content mt-3",
