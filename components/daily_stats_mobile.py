@@ -12,8 +12,8 @@ def get_daily_stats() -> Dict:
 
     :return: :Dict: stats
     """
-    
-    url = NCOV19_API+"stats"
+
+    url = NCOV19_API + "stats"
 
     try:
         data = requests.get(url=url).json()
@@ -29,14 +29,17 @@ def get_daily_stats() -> Dict:
         "Tested": tested,
         "Confirmed": [confirmed, todays_confirmed],
         "Deaths": [deaths, todays_deaths],
-        "Death Rate": [f'{round(deaths/confirmed * 100,2)}%', f'{round(todays_deaths/todays_confirmed, 2)}%']
+        "Death Rate": [
+            f"{round(deaths/confirmed * 100,2)}%",
+            f"{round(todays_deaths/todays_confirmed, 2)}%",
+        ]
         # "Recovered": 0,
     }
 
     return stats
 
 
-@cache.memoize(timeout=3600)
+@cache.memoize(timeout=600)
 def daily_stats_mobile() -> List[dbc.Row]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
     TODO: move to internal API.
