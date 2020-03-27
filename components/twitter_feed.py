@@ -7,7 +7,7 @@ from utils.settings import NCOV19_API
 from dateutil.parser import parse
 
 
-# cache.memoize(timeout=900)
+@cache.memoize(timeout=900)
 def twitter_feed(state=None) -> List[dbc.Card]:
     """Displays twitter feed on the left hand side of the display.
     
@@ -19,6 +19,7 @@ def twitter_feed(state=None) -> List[dbc.Card]:
     :return cards: A list of dash boostrap Card components, where each card contains tweets for twitter feed.
     :rtype: list
     """
+
     response = requests.get(NCOV19_API + "twitter").json()
     if response["success"] == True:
         data = response["message"]

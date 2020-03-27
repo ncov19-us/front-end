@@ -987,7 +987,6 @@ p.states-stats-deaths-list-txt {
 
 .states-stats-deaths-list-num {
     font-weight: 700;
-    /* width: 28%; */
     font-size: 0.94rem;
     color: #D92C25;
 }
@@ -997,7 +996,7 @@ p.states-stats-deaths-list-txt {
 }
 
 .states-stats-recovered-list-num {
-    font-weight: 500;
+    font-weight: 700;
     /* color: #03DA32; */
     color: #03AE2C;
 }

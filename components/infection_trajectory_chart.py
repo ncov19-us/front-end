@@ -6,8 +6,7 @@ from app import cache
 from utils.settings import NCOV19_API
 
 
-
-# @cache.memoize(timeout=3600)
+@cache.memoize(timeout=3600)
 def infection_trajectory_chart(state=None) -> go.Figure:
     """Line chart data for the selected state.
 
@@ -15,9 +14,9 @@ def infection_trajectory_chart(state=None) -> go.Figure:
     """
     URL = NCOV19_API + "country"
     response = requests.get(URL).json()
-    data = response['message']
-    data = pd.read_json(data, orient='records')
-    
+    data = response["message"]
+    data = pd.read_json(data, orient="records")
+
     us = data["US"].to_frame("US")
     kr = data["South Korea"].to_frame("South Korea")
     it = data["Italy"].to_frame("Italy")
@@ -56,7 +55,6 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             mode="lines",
             hovertemplate=template,
         ),
-
     )
     fig.add_trace(
         go.Scatter(
@@ -76,8 +74,8 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         autosize=True,
         showlegend=True,
         legend_orientation="h",
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         xaxis_showgrid=False,
         yaxis_showgrid=False,
         hoverlabel={"font": {"color": "black"}},
