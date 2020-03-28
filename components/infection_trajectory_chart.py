@@ -14,19 +14,22 @@ def infection_trajectory_chart(state=None) -> go.Figure:
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
     URL = NCOV19_API + "country"
-ç
+
+    # US data
     payload = json.dumps({"alpha2Code": "US"})
     response = requests.post(URL, data=payload).json()
     data = response["message"]
     us = pd.read_json(data, orient="records")
     us = us["Confirmed"].to_frame("US")
 
+    # South Korea data
     payload = json.dumps({"alpha2Code": "KR"})
     response = requests.post(URL, data=payload).json()
     data = response["message"]
     kr = pd.read_json(data, orient="records")
     kr = kr["Confirmed"].to_frame("South Korea")
 
+    # Italy Data
     payload = json.dumps({"alpha2Code": "IT"})
     response = requests.post(URL, data=payload).json()
     data = response["message"]
