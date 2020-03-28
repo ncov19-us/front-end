@@ -166,13 +166,6 @@ stats_tabs = dbc.Card(
                             style=tab_style,
                             selected_style=tab_selected_style,
                         ),
-                        # dcc.Tab(
-                        #     label="Recovered",
-                        #     value="recovered-tab",
-                        #     className="left-news-tab",
-                        #     style=tab_style,
-                        #     selected_style=tab_selected_style,
-                        # ),
                     ],
                     style=tabs_styles,
                     colors={"border": None, "primary": None, "background": None},
@@ -250,35 +243,17 @@ us_maps_tabs = dbc.Card(
     ),
 )
 
-# print(
-#     [
-#         Input(f"states-confirmed-{state['state']}", "n_clicks_timestamp")
-#         for state in states_lat_long
-#     ]
-# )
-# Input(f"states-confirmed-{state['state']}", "n_clicks_timestamp")
-#     for state in states_lat_long
 
-
-# @app.callback(
-#     Output("us-map", "figure"),
-#     [Input("middle-map-tabs-styled-with-inline", "value")]
-#     + [
-#         Input(f"states-confirmed-{state['state']}", "n_clicks")
-#         for state in states_lat_long
-#     ],
-# )
-# def map_tab_content(*value_states):  # value, *n_clicks):
-#     """Callback to change between news and twitter feed
-#     """
-#     print(value_states)
-#     # print(value, n_clicks)
-#     # print([state['state'] for state in states_lat_long])
-#     if value == "testing-us-map-tab":
-#         return drive_thru_scatter_mapbox()
-#     else:
-#         return confirmed_scatter_mapbox("New York")
-#         ##### TODO: fix this back to confirmed_scatter_mapbox()
+@app.callback(
+    Output("us-map", "figure"), [Input("middle-map-tabs-styled-with-inline", "value")]
+)
+def map_tab_content(value):
+    """Callback to change between news and twitter feed
+    """
+    if value == "testing-us-map-tab":
+        return drive_thru_scatter_mapbox()
+    else:
+        return confirmed_scatter_mapbox()
 
 
 ########################################################################
