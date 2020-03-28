@@ -979,12 +979,12 @@ p.tweet-dt {
     background-color: none;
 }
 
-.right-col-stats-content .card-body {
+.right-col-stats-content .col-2 .card .card-body {
     height: calc(64vh + 74px) !important;
     overflow: scroll;
     padding-top: 0;
 }
-.right-col-stats-content .card-body::-webkit-scrollbar { 
+.right-col-stats-content .col-2 .card .card-body::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
 
