@@ -51,7 +51,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             y=merged["Italy"],
             name="Italy",
             # opacity=0.7,
-            line={"color": "#D92C25"},
+            line={"color": "#D8B9B2"},
             mode="lines",
             hovertemplate=template,
         )
@@ -63,7 +63,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             name="South Korea",
             # opacity=0.7,
             # line={"color": "#03DA32"},
-            line={"color": "#1b17df"},
+            line={"color": "#DD1E34"},
             mode="lines",
             hovertemplate=template,
         ),
@@ -74,7 +74,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             y=merged["US"],
             name="United States",
             # text="United States",
-            line={"color": "#FEC400"},
+            line={"color": "#F4B000"},
             mode="lines",
             hovertemplate=template,
         )
@@ -91,7 +91,6 @@ def infection_trajectory_chart(state=None) -> go.Figure:
     #                         font=dict(family='Arial',
     #                                  size=12),
     #                         showarrow=False))
-
     fig.update_layout(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         template="plotly_dark",
@@ -103,6 +102,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         plot_bgcolor="rgba(0,0,0,0)",
         xaxis_showgrid=False,
         yaxis_showgrid=False,
+        yaxis={"linecolor": "rgba(0,0,0,0)"},
         hoverlabel={"font": {"color": "black"}},
         font=dict(
             family="Roboto, sans-serif",

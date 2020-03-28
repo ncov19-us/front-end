@@ -13,12 +13,12 @@ dropdown_bar = dbc.Row(
 about_bar = dbc.Row(
     dbc.NavbarBrand(
         [
-            html.A(
-                "Resources",
-                id="navbar-resources-link",
-                className="navbar-brand-links",
-                href="/resources",
-            ),
+            # html.A(
+            #     "Resources",
+            #     id="navbar-resources-link",
+            #     className="navbar-brand-links",
+            #     href="/resources",
+            # ),
             html.A("About", className="navbar-brand-links", href="/about"),
         ]
     ),
@@ -69,7 +69,7 @@ navbar =  [
         no_gutters=True,
     ),
     dbc.NavbarToggler(id="navbar-toggler"),
-    dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
+    # dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
     about_bar
     # dbc.NavbarBrand(about_bar),
 ]
