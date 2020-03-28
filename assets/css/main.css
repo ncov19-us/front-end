@@ -1058,6 +1058,17 @@ button {
 }
 
 
+<<<<<<< HEAD
+=======
+button {
+    background-color: black;
+    padding: 0;
+    margin: 0;
+    border: solid red;
+}
+
+
+>>>>>>> 8226ae636d6690d6988de38e9a260ab5179bfbf0
 p.states-stats-confirmed-list-txt {
     margin-top: 0.5rem;
  }
