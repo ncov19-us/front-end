@@ -53,13 +53,9 @@ def states_confirmed_stats() -> dbc.ListGroup:
                                 ),
                             ]
                         ),
-                        # href="",
                         n_clicks=0,
-                        # n_clicks_timestamp=0,
                         id=f"states-confirmed-{key}",
-                        # ),
                         className="states-stats-confirmed-list-txt",
-                        # id=f"states-confirmed-{key.strip()}",
                     ),
                 ],
                 className="states-stats-confirmed-list-item",
