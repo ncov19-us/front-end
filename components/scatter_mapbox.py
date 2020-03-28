@@ -132,8 +132,8 @@ def drive_thru_scatter_mapbox(state="US"):
             STATES_COORD[state]["longitude"],
             STATES_COORD[state]["zoom"],
         )
-    print(state)
-    print(lat, lon, zoom)
+    # print(state)
+    # print(lat, lon, zoom)
 
     fig = px.scatter_mapbox(
         get_drive_thru_testing_centers(),

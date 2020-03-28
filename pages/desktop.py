@@ -194,12 +194,9 @@ us_maps_tabs = dbc.Card(
                 ],
                 className="d-flex justify-content-between top-bar-us-map-heading-content",
             ),
-          
             html.Div(
-                dcc.Graph(id="us-map", style={"height": "44vh"}),
-                id="map-container"
-            )
-
+                dcc.Graph(id="us-map", style={"height": "44vh"}), id="map-container"
+            ),
         ]
     ),
 )
@@ -215,8 +212,8 @@ us_maps_tabs = dbc.Card(
 def map_tab_content(value, state):
     """Callback to change between news and twitter feed
     """
-    print(f"callback value: {value}")
-    print(f"callback state: {state}")
+    # print(f"callback value: {value}")
+    # print(f"callback state: {state}")
     if value == "testing-us-map-tab":
         return drive_thru_scatter_mapbox(state=state)
     else:
@@ -261,7 +258,7 @@ desktop_body = [
                                                         style={"height": "20vh"},
                                                         className='top-bottom-left-chart-figure"',
                                                     ),
-                                                    id="chart-container"
+                                                    id="chart-container",
                                                 ),
                                             ]
                                         ),
@@ -278,17 +275,22 @@ desktop_body = [
                                                     className="top-bottom-right-chart-title",
                                                 ),
                                                 html.Div(
-                                                    dcc.Loading( 
+                                                    dcc.Loading(
                                                         dcc.Graph(
                                                             figure=infection_trajectory_chart(),
-                                                            config={"responsive": False},
+                                                            config={
+                                                                "responsive": False
+                                                            },
                                                             style={"height": "20vh"},
                                                             className="top-bottom-right-chart-figure",
                                                         ),
-                                                        style={"padding-top": "8px", "background-color": "red"},
-                                                        color="#19202A"
+                                                        style={
+                                                            "padding-top": "8px",
+                                                            "background-color": "red",
+                                                        },
+                                                        color="#19202A",
                                                     ),
-                                                    id="chart-container"
+                                                    id="chart-container",
                                                 ),
                                             ]
                                         ),
