@@ -475,6 +475,15 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding: .2rem;
 }
 
+.card-text-deaths {
+    font-weight: 700;
+}
+
+.card-text-death-rate {
+    font-weight: 700;
+}
+
+
 .top-bar-value-deaths {
     margin-top: -1.1rem;
     font-weight: 4rem;
@@ -549,6 +558,25 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     margin: 10px;
     padding: 0;
 } */
+
+#map-loading {
+    margin-top: 22vh;
+}
+
+#map-container {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    min-height: 44vh;
+}
+
+#chart-container {
+    min-height: 20vh;
+}
+
+.main-svg {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
 
 .middle-col-map-content.col-8 .card{
     /* width: 90%; */
@@ -876,8 +904,8 @@ p.tweet-dt {
 
 /* 👉👉👉👉 Right Detailed List Sidebar */
 
-#stats-content .states-stats-confirmed-listgroup:first-child {
-    margin-top: -.2rem;
+#stats-content {
+    margin-bottom: 0;
 }
 
 .right-col-news-feed-content{
@@ -1164,6 +1192,14 @@ p.states-stats-deaths-list-txt {
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
     margin-bottom: 1.3rem;
+}
+
+.mobile-card-text-death-rate {
+    font-weight: 700;
+}
+
+.mobile-card-text-deaths {
+    font-weight: 700;
 }
 
 .mobile-top-bar-value-deaths {

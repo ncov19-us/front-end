@@ -97,18 +97,22 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         # annotations=annotations,
         autosize=True,
         showlegend=True,
-        legend_orientation="h",
+        legend_orientation="v",
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         xaxis_showgrid=False,
         yaxis_showgrid=False,
+        xaxis_title="Number of Days",
         yaxis={"linecolor": "rgba(0,0,0,0)"},
         hoverlabel={"font": {"color": "black"}},
         font=dict(
             family="Roboto, sans-serif",
             size=10,
             color="#f4f4f4"
-        )
+        ),
+        # legend=dict(
+        #         title=None, orientation="v", y=-.35, yanchor="bottom", x=.5, xanchor="center"
+        # )
     )
 
     fig.update_layout(xaxis_showgrid=False, yaxis_showgrid=False)
