@@ -94,9 +94,20 @@ def confirmed_scatter_mapbox(state="US"):
     return fig
 
 
-def drive_thru_scatter_mapbox():
+def drive_thru_scatter_mapbox(state="US"):
     """DO NOT CACHE. NEED APP_STATE TO CHANGE DYNAMICALLY
     """
+
+    # set lat/long
+    if state == "US":
+        lat, lon, zoom = 39.8097343, -98.5556199, flask.session["zoom"]
+    else:
+        lat, lon, zoom = (
+            STATES_COORD[state]["latitude"],
+            STATES_COORD[state]["longitude"],
+            STATES_COORD[state]["zoom"],
+        )
+
     fig = px.scatter_mapbox(
         get_drive_thru_testing_centers(),
         lat="Latitude",
@@ -108,9 +119,7 @@ def drive_thru_scatter_mapbox():
     fig.layout.update(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         mapbox_style=MAPBOX_STYLE,
-        mapbox=dict(
-            center=dict(lat=39.8097343, lon=-98.5556199), zoom=flask.session["zoom"]
-        ),
+        mapbox=dict(center=dict(lat=lat, lon=lon), zoom=zoom,),
         dragmode=False,
     )
 
