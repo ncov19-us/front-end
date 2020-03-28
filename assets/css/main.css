@@ -255,6 +255,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     margin-left: 3px;
 }
 
+
 .about-section {
     width: 40vw;
 }
@@ -330,6 +331,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding-bottom: .4rem;
     margin-right: 50px;
     margin-left: 50px;
+}
+
+.about-source {
+    text-align: right;
+    font-size: 0.3rem;
 }
 
 #about-contributors-title {
@@ -1483,6 +1489,16 @@ p.states-stats-deaths-list-txt {
     margin-top: -25px;
 }
 
+.mob-about-section-title-container {
+    border-left: 7px solid #fefefe;
+    margin-left: 5%;
+}
+
+.mob-about-section-text-container {
+    border-left: 1px solid #fefefe;
+    margin-left: 5.7%;
+}
+
 #mobile-about-page .about-section-container {
     display: inline-block;
     padding-left: 5vw;
@@ -1505,7 +1521,7 @@ p.states-stats-deaths-list-txt {
 }
 
 #mobile-about-page .about-section {
-    width: 100%;
+    width: 90%;
 }
 /* About Page Styling End */
 
