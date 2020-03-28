@@ -28,7 +28,7 @@ mobile_navbar = [
         dbc.Card(
         html.Div([
                 html.A(html.P("About", className="mobile-nav-header"), href="/about", className="hidden-menu-anchor-tag"),
-                html.A(html.P("Resources", className="mobile-nav-header"), href="/resources", className="hidden-menu-anchor-tag"),
+                # html.A(html.P("Resources", className="mobile-nav-header"), href="/resources", className="hidden-menu-anchor-tag"),
                 html.A(html.P("Github", className="mobile-nav-header"), href="/#", className="hidden-menu-anchor-tag"),
             ], className="hidden-menu-div"),
             className="hidden-menu"),

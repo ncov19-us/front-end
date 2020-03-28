@@ -147,7 +147,7 @@ def feed_tab_content(value):
 stats_tabs = dbc.Card(
     [
         html.Div(
-            dcc.Tabs(
+[            dcc.Tabs(
                 id="right-tabs-styled-with-inline",
                 value="confirmed-tab",
                 children=[
@@ -176,6 +176,9 @@ stats_tabs = dbc.Card(
                 style=tabs_styles,
                 colors={"border": None, "primary": None, "background": None},
             ),
+            html.P("Last Updated 3/20/2020 16:50", 
+            className="right-tabs-last-updated-text")
+            ],
             className="right-tabs",
         ),
         dbc.CardBody(html.P(id="stats-content", className="right-col-feed-cards-text")),
