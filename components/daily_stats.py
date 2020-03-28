@@ -6,6 +6,10 @@ import dash_html_components as html
 from app import cache
 
 
+def safe_div(x, y):
+    return 0 if y == 0 else x / y
+
+
 def get_daily_stats() -> Dict:
     """Get daily stats from ncov19.us API, parse and return as a dictionary
     for the daily stats mobile.
@@ -19,7 +23,8 @@ def get_daily_stats() -> Dict:
         data = requests.get(url=url).json()
         tested = data["tested"]
         confirmed = data["confirmed"]
-        todays_confirmed = data["todays_confirmed"]
+        # todays_confirmed = data["todays_confirmed"]
+        todays_confirmed = 0
         deaths = data["deaths"]
         todays_deaths = data["todays_deaths"]
     except:
@@ -30,8 +35,8 @@ def get_daily_stats() -> Dict:
         "Confirmed": [confirmed, todays_confirmed],
         "Deaths": [deaths, todays_deaths],
         "Death Rate": [
-            f"{round(deaths/confirmed * 100,2)}%",
-            f"{round(todays_deaths/todays_confirmed, 2)}%",
+            f"{round(safe_div(deaths, confirmed) * 100, 2)}%",
+            f"{round(safe_div(todays_deaths, todays_confirmed) * 100, 2)}%",
         ]
         # "Recovered": 0,
     }
@@ -39,7 +44,7 @@ def get_daily_stats() -> Dict:
     return stats
 
 
-@cache.memoize(timeout=600)
+# @cache.memoize(timeout=600)
 def daily_stats() -> List[dbc.Col]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed ,
      and death cases for the top row.
@@ -63,7 +68,7 @@ def daily_stats() -> List[dbc.Col]:
                     dbc.CardBody(
                         [
                             html.P(
-                                f"+ {value[1]} in past 24h",
+                                f"+ {value[1]} new",
                                 className=f"top-bar-perc-change-{key.lower()}",
                             ),
                             html.H1(value[0], className=f"top-bar-value-{key.lower()}"),
