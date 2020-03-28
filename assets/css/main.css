@@ -93,7 +93,7 @@ body {
 }
 
 .navbar-brand-covid-19-text {
-    margin-left: .2rem;
+    margin-left: .5rem;
     margin-bottom: auto;
     font-weight: bold;
     font-size: 2rem;
@@ -177,7 +177,7 @@ body {
     letter-spacing: 0.01rem;
     text-shadow: none;
     padding-left: 2.1rem;
-    margin-right: 10px;
+    margin-right: 0rem;
 }
 
 .navbar-brand-links:hover {
@@ -477,7 +477,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .top-bar-card-tested {
     background-color: #010915;
-    color: #D8B9B2;
+    color: #f4f4f4;
     text-align: center;
     font-size: .9rem;
     border: none;
@@ -512,6 +512,10 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     text-shadow: none;
 }
 
+.top-bar-card-deaths.card .card-text {
+    font-weight: 550;
+}
+
 .top-bar-card-deaths {
     color: #DD1E34;
     text-align: center;
@@ -523,11 +527,24 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding: .2rem;
 }
 
+.card-text-deaths {
+    font-weight: 700;
+}
+
+.card-text-death-rate {
+    font-weight: 700;
+}
+
+
 .top-bar-value-deaths {
     margin-top: -1.1rem;
     font-weight: 4rem;
     font-size: 2.75rem;
     text-shadow: none;
+}
+
+.top-bar-card-death.rate.card .card-text {
+    font-weight: 600;
 }
 
 .top-bar-card-death {
@@ -597,6 +614,25 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     margin: 10px;
     padding: 0;
 } */
+
+#map-loading {
+    margin-top: 22vh;
+}
+
+#map-container {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    min-height: 44vh;
+}
+
+#chart-container {
+    min-height: 20vh;
+}
+
+.main-svg {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
 
 .middle-col-map-content.col-8 .card{
     /* width: 90%; */
@@ -924,8 +960,8 @@ p.tweet-dt {
 
 /* 👉👉👉👉 Right Detailed List Sidebar */
 
-#stats-content .states-stats-confirmed-listgroup:first-child {
-    margin-top: -.2rem;
+#stats-content {
+    margin-bottom: 0;
 }
 
 .right-col-news-feed-content{
@@ -1012,13 +1048,6 @@ p.tweet-dt {
     margin-bottom: 0;
 }
 
-.states-stats-confirmed-list-item.list-group-item:hover {
-    
-}
-
-.states-stats-deaths-list-item.list-group-item:hover {
-    
-}
 
 p.states-stats-confirmed-list-txt {
     margin-top: 0.5rem;
@@ -1033,7 +1062,7 @@ p.states-stats-deaths-list-txt {
 }
 
 .states-stats-deaths-list-num {
-    font-weight: 700;
+    font-weight: 800;
     font-size: 0.94rem;
     color: #D92C25;
 }
@@ -1143,8 +1172,14 @@ p.states-stats-deaths-list-txt {
 .mobile-top-bar-content {
     margin-left: 1rem;
     margin-right: 1rem;
-    margin-top: 5rem;
+    margin-top: 3.1rem;
 }
+
+.mobile-top-bar-content .list-group {
+    height: 87vh; 
+    justify-content: space-evenly;
+}
+
 .mobile-card-text {
     margin-top: -.75rem;
     font-weight: normal;
@@ -1166,11 +1201,11 @@ p.states-stats-deaths-list-txt {
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
-    margin-bottom: 1.3rem;
+    /* margin-bottom: 1.3rem; */
 }
 
 .mobile-top-bar-value-tested {
-    margin-top: -1.7rem;
+    margin-top: -1rem;
     font-weight: 500;
     font-size: 2.75rem;
     text-shadow: none;
@@ -1185,7 +1220,7 @@ p.states-stats-deaths-list-txt {
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
-    margin-bottom: 1.3rem;
+    /* margin-bottom: 1.3rem; */
 }
 
 .mobile-top-bar-value-confirmed {
@@ -1211,8 +1246,12 @@ p.states-stats-deaths-list-txt {
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
-    margin-bottom: 1.3rem;
+    /* margin-bottom: 1.3rem; */
 }
+.mobile-top-bar-card-deaths .mobile-card-text {
+    font-weight: 650;
+}
+
 
 .mobile-top-bar-value-deaths {
     margin-top: -1rem;
@@ -1231,7 +1270,11 @@ p.states-stats-deaths-list-txt {
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
-    margin-bottom: 1.3rem;
+    /* margin-bottom: 1.3rem; */
+}
+
+.mobile-top-bar-card-death .mobile-card-text {
+    font-weight: 650;
 }
 
 .mobile-top-bar-value-death {
@@ -1449,23 +1492,7 @@ p.states-stats-deaths-list-txt {
 
 #mobile-about-page #about-page-first-third {
     padding-top: 100px;
-<<<<<<< HEAD
-    padding-bottom: 60px;
-    color: #fefefe;
-}
-
-#mobile-about-page-second-third  {
-    background-color: #010915;
-    color: #fefefe;
-    background-position: right top;
-    background-image: url('../images/map_1.svg');
-    background-repeat: no-repeat;
-    background-size: 45%;
-    padding-top: 100px;
-    padding-bottom: 80px;
-=======
     color: #F4F4F4;
->>>>>>> e65dedb60ac139f56e1d38118c9b2d1d1433ee8f
 }
 
 #mobile-about-page #about-page-third-third {

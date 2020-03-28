@@ -238,7 +238,12 @@ us_maps_tabs = dbc.Card(
                 ],
                 className="d-flex justify-content-between top-bar-us-map-heading-content",
             ),
-            html.Div(dcc.Graph(id="us-map", style={"height": "44vh"},)),
+          
+            html.Div(
+                dcc.Graph(id="us-map", style={"height": "44vh"}),
+                id="map-container"
+            )
+
         ]
     ),
 )
@@ -284,11 +289,14 @@ desktop_body = [
                                                     "US Confirmed Cases",
                                                     className="top-bottom-left-chart-title",
                                                 ),
-                                                dcc.Graph(
-                                                    figure=confirmed_cases_chart(),
-                                                    config={"responsive": False},
-                                                    style={"height": "20vh"},
-                                                    className='top-bottom-left-chart-figure"',
+                                                html.Div(
+                                                    dcc.Graph(
+                                                        figure=confirmed_cases_chart(),
+                                                        config={"responsive": False},
+                                                        style={"height": "20vh"},
+                                                        className='top-bottom-left-chart-figure"',
+                                                    ),
+                                                    id="chart-container"
                                                 ),
                                             ]
                                         ),
@@ -304,11 +312,18 @@ desktop_body = [
                                                     "Infection Trajectory Since 200 Cases",
                                                     className="top-bottom-right-chart-title",
                                                 ),
-                                                dcc.Graph(
-                                                    figure=infection_trajectory_chart(),
-                                                    config={"responsive": False},
-                                                    style={"height": "20vh"},
-                                                    className="top-bottom-right-chart-figure",
+                                                html.Div(
+                                                    dcc.Loading( 
+                                                        dcc.Graph(
+                                                            figure=infection_trajectory_chart(),
+                                                            config={"responsive": False},
+                                                            style={"height": "20vh"},
+                                                            className="top-bottom-right-chart-figure",
+                                                        ),
+                                                        style={"padding-top": "8px", "background-color": "red"},
+                                                        color="#19202A"
+                                                    ),
+                                                    id="chart-container"
                                                 ),
                                             ]
                                         ),

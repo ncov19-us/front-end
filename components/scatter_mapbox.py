@@ -97,6 +97,11 @@ def confirmed_scatter_mapbox(state=None):
     data['County Name'] = data['County Name'].str.title()
 
 
+    color_scale = [ '#FA9090', '#F77A7A', '#F56666',
+                    '#F15454', '#ED4343', '#E93535', '#E42828', '#DE1E1E', '#D71515', '#CF0D0D',
+                    '#C70707', '#BD0202', '#B30000', '#A90000', '#9E0000', '#920000', '#870000']
+
+
     # set lat/long
     if not state:
         lat, lon = 39.8097343, -98.5556199
@@ -105,7 +110,6 @@ def confirmed_scatter_mapbox(state=None):
     else:
         lat, lon = 39.8097343, -98.5556199
 
-    color_scale = ["#ffbaba", "#ff7b7b", "#ff5252", "#ff0000", "#a70000"]
     fig = px.scatter_mapbox(
         data,
         lat="Latitude",
