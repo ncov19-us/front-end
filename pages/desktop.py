@@ -260,25 +260,25 @@ us_maps_tabs = dbc.Card(
 #     for state in states_lat_long
 
 
-@app.callback(
-    Output("us-map", "figure"),
-    [Input("middle-map-tabs-styled-with-inline", "value")]
-    + [
-        Input(f"states-confirmed-{state['state']}", "n_clicks")
-        for state in states_lat_long
-    ],
-)
-def map_tab_content(*value_states):  # value, *n_clicks):
-    """Callback to change between news and twitter feed
-    """
-    print(value_states)
-    # print(value, n_clicks)
-    # print([state['state'] for state in states_lat_long])
-    if value == "testing-us-map-tab":
-        return drive_thru_scatter_mapbox()
-    else:
-        return confirmed_scatter_mapbox("New York")
-        ##### TODO: fix this back to confirmed_scatter_mapbox()
+# @app.callback(
+#     Output("us-map", "figure"),
+#     [Input("middle-map-tabs-styled-with-inline", "value")]
+#     + [
+#         Input(f"states-confirmed-{state['state']}", "n_clicks")
+#         for state in states_lat_long
+#     ],
+# )
+# def map_tab_content(*value_states):  # value, *n_clicks):
+#     """Callback to change between news and twitter feed
+#     """
+#     print(value_states)
+#     # print(value, n_clicks)
+#     # print([state['state'] for state in states_lat_long])
+#     if value == "testing-us-map-tab":
+#         return drive_thru_scatter_mapbox()
+#     else:
+#         return confirmed_scatter_mapbox("New York")
+#         ##### TODO: fix this back to confirmed_scatter_mapbox()
 
 
 ########################################################################
