@@ -11,7 +11,7 @@ from utils.settings import (
     DRIVE_THRU_URL,
     NCOV19_API,
     MAPBOX_STYLE,
-    STATES,
+    STATES_COORD,
 )
 import requests
 
@@ -35,7 +35,7 @@ def get_drive_thru_testing_centers():
 ########################################################################
 
 
-def confirmed_scatter_mapbox(state=None):
+def confirmed_scatter_mapbox(state="US"):
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
@@ -55,12 +55,14 @@ def confirmed_scatter_mapbox(state=None):
 
 
     # set lat/long
-    if not state:
-        lat, lon = 39.8097343, -98.5556199
-    elif state == "New York":
-        lat, lon = 43.2994, -74.2179
+    if state == "US":
+        lat, lon, zoom = 39.8097343, -98.5556199, flask.session["zoom"]
     else:
-        lat, lon = 39.8097343, -98.5556199
+        lat, lon, zoom = (
+            STATES_COORD[state]["latitude"],
+            STATES_COORD[state]["longitude"],
+            STATES_COORD[state]["zoom"],
+        )
 
     fig = px.scatter_mapbox(
         data,
@@ -82,7 +84,9 @@ def confirmed_scatter_mapbox(state=None):
         # This takes away the colorbar on the right hand side of the plot
         coloraxis_showscale=False,
         mapbox_style=MAPBOX_STYLE,
-        mapbox=dict(center=dict(lat=lat, lon=lon), zoom=flask.session["zoom"]),
+        mapbox=dict(
+            center=dict(lat=lat, lon=lon), zoom=zoom
+        ),  # flask.session["zoom"]),
     )
 
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
