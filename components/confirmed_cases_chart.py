@@ -22,24 +22,61 @@ def confirmed_cases_chart(state=None) -> go.Figure:
     data = data.rename(columns={"Confirmed": "Confirmed Cases"})
     data = data.tail(60)
 
-    fig = px.line(data, x="Date", y="Confirmed Cases")
-    fig.update_traces(line_color="#F4B000")
+
+
+
+    template_cases = "%{y} confirmed cases on %{x}<extra></extra>"
+    template_deaths = "%{y} confirmed deaths on %{x}<extra></extra>"
+
+    fig = go.Figure()
+
+    fig.add_trace(
+        go.Scatter(
+            x=data["Date"],
+            y=data["Confirmed Cases"],
+            name="Confirmed Cases",
+            line={"color": "#F4B000"},
+            mode="lines",
+            hovertemplate=template_cases,
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=data["Date"],
+            y=data["Deaths"],
+            name="Deaths",
+            line={"color": "#870000"},
+            mode="lines",
+            hovertemplate=template_deaths,
+        ),
+    )
+ 
+
     fig.update_layout(
-        margin={"r": 0, "t": 0, "l": 0, "b": 0},
+        margin={"r": 0, "t": 0, "l": 0, "b": 1},
         template="plotly_dark",
+        # annotations=annotations,
         autosize=True,
-        xaxis_title="Date",
-        yaxis_title=None,
-        showlegend=False,
+        showlegend=True,
+        legend_orientation="h",
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
+        # xaxis_title="Number of Days",
+        yaxis={"linecolor": "rgba(0,0,0,0)"},
+        hoverlabel={"font": {"color": "black"}},
         xaxis_showgrid=False,
         yaxis_showgrid=False,
+        xaxis= {"tickformat": "%m/%y"},
         font=dict(
             family="Roboto, sans-serif",
             size=10,
             color="#f4f4f4"
+        ),
+        legend=dict(
+                title=None, orientation="h", y=-.5, yanchor="bottom", x=0, xanchor="left"
         )
     )
 
     return fig
+
