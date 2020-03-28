@@ -10,7 +10,13 @@ external_stylesheets = [
     "https://use.fontawesome.com/releases/v5.9.0/css/all.css",  # for social media icons
 ]
 
-meta_tags = [{"name": "viewport", "content": "width=device-width, initial-scale=1.0"}]
+meta_tags = [
+    {
+        "name": "description",
+        "content": "Coronavirus SARS-COV2 COVID19 US Dash Dashboard App",
+    },
+    {"name": "viewport", "content": "width=device-width, initial-scale=1.0"},
+]
 
 ########################################################################
 #
@@ -34,7 +40,7 @@ cache = Cache(
 )
 
 # TODO: BAD PRACTICE, MOVE IT OUT
-server.secret_key = b'ceb69b2819fc46ebba007cb598e77319'
+server.secret_key = b"ceb69b2819fc46ebba007cb598e77319"
 app.config.suppress_callback_exceptions = True
 app.title = "Coronavirus COVID19 US Dashboard"
 
@@ -42,7 +48,7 @@ app.title = "Coronavirus COVID19 US Dashboard"
 ########################################################################
 #
 #  For Google Analytics
-# 
+#
 ########################################################################
 app.index_string = """<!DOCTYPE html>
 <html>

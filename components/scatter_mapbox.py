@@ -82,7 +82,7 @@ def get_drive_thru_testing_centers():
 #
 ########################################################################
 
-def confirmed_scatter_mapbox():
+def confirmed_scatter_mapbox(state=None):
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
@@ -96,9 +96,19 @@ def confirmed_scatter_mapbox():
     data['State Name'] = data['State Name'].str.title()
     data['County Name'] = data['County Name'].str.title()
 
+
     color_scale = [ '#FA9090', '#F77A7A', '#F56666',
                     '#F15454', '#ED4343', '#E93535', '#E42828', '#DE1E1E', '#D71515', '#CF0D0D',
                     '#C70707', '#BD0202', '#B30000', '#A90000', '#9E0000', '#920000', '#870000']
+
+
+    # set lat/long
+    if not state:
+        lat, lon = 39.8097343, -98.5556199
+    elif state == "New York":
+        lat, lon = 43.2994, -74.2179
+    else:
+        lat, lon = 39.8097343, -98.5556199
 
     fig = px.scatter_mapbox(
         data,
@@ -120,7 +130,7 @@ def confirmed_scatter_mapbox():
         # This takes away the colorbar on the right hand side of the plot
         coloraxis_showscale=False,
         mapbox_style=MAPBOX_STYLE,
-        mapbox=dict(center=dict(lat=39.8097343, lon=-98.5556199),
+        mapbox=dict(center=dict(lat=lat, lon=lon),
                                 zoom=flask.session['zoom']),
     )
 

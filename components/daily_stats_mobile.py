@@ -6,6 +6,10 @@ import dash_html_components as html
 from app import cache
 
 
+def safe_div(x, y):
+    return 0 if y == 0 else x / y
+
+
 def get_daily_stats() -> Dict:
     """Get daily stats from ncov19.us API, parse and return as a dictionary
     for the daily stats mobile.
@@ -30,8 +34,8 @@ def get_daily_stats() -> Dict:
         "Confirmed": [confirmed, todays_confirmed],
         "Deaths": [deaths, todays_deaths],
         "Death Rate": [
-            f"{round(deaths/confirmed * 100,2)}%",
-            f"{round(todays_deaths/todays_confirmed, 2)}%",
+            f"{round(safe_div(deaths, confirmed) * 100, 2)}%",
+            f"{round(safe_div(todays_deaths, todays_confirmed) * 100, 2)}%",
         ]
         # "Recovered": 0,
     }
