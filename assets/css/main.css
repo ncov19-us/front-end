@@ -1020,6 +1020,15 @@ p.tweet-dt {
     
 }
 
+
+button {
+    background-color: black;
+    padding: 0;
+    margin: 0;
+    border: solid red;
+}
+
+
 p.states-stats-confirmed-list-txt {
     margin-top: 0.5rem;
  }
@@ -1449,23 +1458,7 @@ p.states-stats-deaths-list-txt {
 
 #mobile-about-page #about-page-first-third {
     padding-top: 100px;
-<<<<<<< HEAD
-    padding-bottom: 60px;
-    color: #fefefe;
-}
-
-#mobile-about-page-second-third  {
-    background-color: #010915;
-    color: #fefefe;
-    background-position: right top;
-    background-image: url('../images/map_1.svg');
-    background-repeat: no-repeat;
-    background-size: 45%;
-    padding-top: 100px;
-    padding-bottom: 80px;
-=======
     color: #F4F4F4;
->>>>>>> e65dedb60ac139f56e1d38118c9b2d1d1433ee8f
 }
 
 #mobile-about-page #about-page-third-third {

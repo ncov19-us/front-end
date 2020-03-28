@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import numpy as np
 import pandas as pd
 import flask
 from dash.dependencies import Input, Output, State
@@ -48,7 +49,11 @@ def confirmed_scatter_mapbox(state="US"):
     data = pd.read_json(data, orient="records")
     data["State Name"] = data["State Name"].str.title()
     data["County Name"] = data["County Name"].str.title()
-
+    # data["log_confirmed"] = np.log(data["Confirmed"] + 0.1 ** 10)
+    # data["log_confirmed"] = (data["Confirmed"] - data["Confirmed"].min()) / (
+    #    data["Confirmed"].max() - data["Confirmed"].min()
+    # )
+    # normalized_df=(df-df.min())/(df.max()-df.min())#
     # set lat/long
     if state == "US":
         lat, lon, zoom = 39.8097343, -98.5556199, flask.session["zoom"]
@@ -65,7 +70,7 @@ def confirmed_scatter_mapbox(state="US"):
         lat="Latitude",
         lon="Longitude",
         color="Confirmed",
-        size="Confirmed",
+        size="Confirmed",  # "log_confirmed",
         size_max=50,
         hover_name="County Name",
         hover_data=["Confirmed", "Death", "State Name", "County Name"],
@@ -107,6 +112,8 @@ def drive_thru_scatter_mapbox(state="US"):
             STATES_COORD[state]["longitude"],
             STATES_COORD[state]["zoom"],
         )
+    print(state)
+    print(lat, lon, zoom)
 
     fig = px.scatter_mapbox(
         get_drive_thru_testing_centers(),
@@ -125,7 +132,7 @@ def drive_thru_scatter_mapbox(state="US"):
 
     fig.data[0].update(
         hovertemplate="<b><a href='%{customdata[0]}' style='color:black'>%{hovertext}</a></b>",
-        marker={"size": 10, "symbol": "marker"},
+        marker={"size": 30, "symbol": "marker"},
     )
 
     return fig
