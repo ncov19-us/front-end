@@ -229,7 +229,11 @@ desktop_body = [
     html.Div(
         id="intermediate-value", children="US", style={"display": "none"}
     ),  # Hidden div inside the app that stores the intermediate value
-    dbc.Row(daily_stats(), className="top-bar-content",),  # TOP BAR
+    dbc.Row(  # TOP BAR
+        # daily_stats(),   
+        id="daily-stats",
+        className="top-bar-content",
+    ), 
     dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
         [
             # LEFT - TWITTER & NEWS FEED COL
@@ -315,6 +319,24 @@ desktop_body = [
     ),
 ]
 
+########################################################################
+#
+# Top bar callback
+#
+########################################################################
+@app.callback([Output("daily-stats", "children")], 
+              [Input("intermediate-value", "children")])
+def daily_stats_callback(state):
+    print(state)
+    cards = daily_stats(state) 
+    return [cards]
+
+
+########################################################################
+#
+# State stats column buttons callback
+#
+########################################################################
 
 @app.callback(
     [Output("intermediate-value", "children")],
