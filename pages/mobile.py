@@ -1,3 +1,4 @@
+import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
@@ -8,10 +9,9 @@ from components import daily_stats_mobile
 from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
-from components import (
-    states_confirmed_stats,
-    states_deaths_stats,
-)
+from components import mobile_states_confirmed_stats, mobile_states_deaths_stats
+
+from components.column_stats import STATES
 
 ################ TABS STYLING ####################
 
@@ -144,14 +144,16 @@ mobile_us_maps_tabs = dbc.Card(
 
 
 @app.callback(Output("mobile-us-map", "figure"), 
-              [
+              [                  
                   Input("mobile-map-tabs", "value"),
-                  Input("intermediate-value", "children"),
+                  Input("mobile-intermediate-value", "children"),
               ]
 )
 def mobile_map_tab_content(value, state):
     """Callback to change between news and twitter feed
     """
+    # print(f"callback value: {value}")
+    # print(f"callback state: {state}")
     if value == "mobile-testing-us-map-tab":
         return drive_thru_scatter_mapbox(state=state)
     else:
@@ -212,9 +214,9 @@ def stats_tab_content(value):
     """Callback to change between news and twitter feed
     """
     if value == "deaths-tab":
-        return states_deaths_stats()
+        return mobile_states_deaths_stats()
     else:
-        return states_confirmed_stats()
+        return mobile_states_confirmed_stats()
 
 
 ########################################################################
@@ -279,3 +281,23 @@ mobile_body = [
         className="mobile-feed-content",
     ),
 ]
+
+@app.callback(
+    [Output("mobile-intermediate-value", "children")],
+    [Input(f"mobile-states-confirmed-{state}", "n_clicks") for state in STATES],
+)
+def multi_output(*n_clicks):
+    ctx = dash.callback_context
+    # print(n_clicks)
+    # print(ctx)
+    if ctx.triggered:
+        state = ctx.triggered[0]["prop_id"].split(".")[0].split("-")[-1]
+        if any(n_clicks) > 0:
+            # print(f"You clicked this state ==> {state}")
+            # print(ctx)
+            # print(n_clicks)
+            return [f"{state}"]
+        else:
+            # print(ctx)
+            # print(n_clicks)
+            return ["US"]
