@@ -9,6 +9,17 @@ html {
 
 }
 
+/* Buttons*/
+button {
+    background-color:#1F242D;
+    padding: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    border:#1F242D;
+    width: 100%
+}
+
 /* Body */
 body {
     background-color: #19202A;
@@ -39,9 +50,6 @@ body {
     padding-right: 15px;
 }
 
-.mobile-chart .card-body {
-    background-color: #010915;
-} 
 
 #mobile-map-tabs .tab.mobile-confirmed-us-map-tab {
     padding: 1rem;
@@ -51,18 +59,14 @@ body {
     padding: 1rem;
 }
 
-/* 
-.tab .mobile-confirmed-us-map-tab {
-    padding: 5rem;
+.mobile-chart .card-body {
+    background-color: #010915;
+} 
+
+.mobile-chart {
+    margin-top: 2rem;
 }
 
-.mobile-testing-us-map-tab {
-    padding: 5rem;
-}
-
-.tab-container .mobile-top-bar-us-map-tabs-content {
-    padding: 5rem;
-} */
 
 /*  Nav Bar */
 #navbar {
@@ -970,7 +974,11 @@ p.tweet-dt {
     margin-bottom: 0;
 }
 
-.right-col-news-feed-content{
+.right-col-stats-content.col-2 .card-body {
+    padding-top: 0rem;
+}
+
+.right-col-news-feed-content {
     margin-bottom: 1rem;
 }
 
@@ -1055,16 +1063,7 @@ p.tweet-dt {
 }
 
 
-/* States callback buttons*/
-button {
-    background-color:#1F242D;
-    padding: 0;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    text-align: left;
-    border:#1F242D;
-    width: 100%
-}
+
 
 
 p.states-stats-confirmed-list-txt {
@@ -1170,12 +1169,13 @@ p.states-stats-deaths-list-txt {
 
 .navbar-toggler-icon {
     margin-left: 10%;
-    margin-bottom: 3%;
+    margin-bottom: -0.2rem;
     color: #F4F4F4;
 }
 
 .navbar-toggler {
     padding: 0 0 0 0;
+    width: auto !important;
 }
 
 .fixed-navbar {
@@ -1194,7 +1194,7 @@ p.states-stats-deaths-list-txt {
 }
 
 .mobile-top-bar-content .list-group {
-    height: 87vh; 
+    height: 75vh; 
     justify-content: space-evenly;
 }
 
@@ -1379,8 +1379,6 @@ p.states-stats-deaths-list-txt {
 
 .mobile-right-col-stats-content.col-2 {
     max-width: 100%;
-    /* padding-right: 0;
-    padding-left: 0; */
     margin-top: 3rem;
     margin-bottom: 2rem;
     max-height: 30%;
@@ -1390,8 +1388,6 @@ p.states-stats-deaths-list-txt {
 .mobile-feed-content {
     padding: 1rem;
 }
-
-
 
 /* 📱 Footer 🦶 */
 .mobile-footer-content {
@@ -1436,7 +1432,7 @@ p.states-stats-deaths-list-txt {
 
 /* mobile twitter and news feed styling */
 .mobile-feed-card-body{
-    height: 60vh;
+    height: 57vh;
     overflow: scroll;
 }
 
