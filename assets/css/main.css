@@ -1049,6 +1049,15 @@ p.tweet-dt {
 }
 
 
+
+button {
+    background-color: black;
+    padding: 0;
+    margin: 0;
+    border: solid red;
+}
+
+
 p.states-stats-confirmed-list-txt {
     margin-top: 0.5rem;
  }

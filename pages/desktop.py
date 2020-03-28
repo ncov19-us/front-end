@@ -218,7 +218,7 @@ def map_tab_content(value, state):
     print(f"callback value: {value}")
     print(f"callback state: {state}")
     if value == "testing-us-map-tab":
-        return drive_thru_scatter_mapbox()
+        return drive_thru_scatter_mapbox(state=state)
     else:
         return confirmed_scatter_mapbox(state=state)
 
@@ -314,17 +314,14 @@ desktop_body = [
 ]
 
 
-# print([Input(f"states-confirmed-{state['state']}", "n_clicks") for state in STATES])
-
-
 @app.callback(
     [Output("intermediate-value", "children")],
     [Input(f"states-confirmed-{state}", "n_clicks") for state in STATES],
 )
 def multi_output(*n_clicks):
     ctx = dash.callback_context
-    print(n_clicks)
-    print(ctx)
+    # print(n_clicks)
+    # print(ctx)
     if ctx.triggered:
         state = ctx.triggered[0]["prop_id"].split(".")[0].split("-")[-1]
         if any(n_clicks) > 0:
