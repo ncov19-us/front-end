@@ -84,7 +84,7 @@ def daily_stats() -> List[dbc.Col]:
                                 " x", className=f"top-bar-perc-change-{key.lower()}"
                             ),
                             html.H1(value, className=f"top-bar-value-{key.lower()}"),
-                            html.P(f"{key}", className="card-text"),
+                            html.P(f"{key}", className=f"card-text"),
                         ],
                         # [html.H1(value), html.P(f"{key}", className="card-text")]
                     ),

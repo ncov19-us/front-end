@@ -96,7 +96,10 @@ def confirmed_scatter_mapbox():
     data['State Name'] = data['State Name'].str.title()
     data['County Name'] = data['County Name'].str.title()
 
-    color_scale = ["#ffbaba", "#ff7b7b", "#ff5252", "#ff0000", "#a70000"]
+    color_scale = [ '#FA9090', '#F77A7A', '#F56666',
+                    '#F15454', '#ED4343', '#E93535', '#E42828', '#DE1E1E', '#D71515', '#CF0D0D',
+                    '#C70707', '#BD0202', '#B30000', '#A90000', '#9E0000', '#920000', '#870000']
+
     fig = px.scatter_mapbox(
         data,
         lat="Latitude",
