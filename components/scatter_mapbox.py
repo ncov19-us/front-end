@@ -50,6 +50,13 @@ def confirmed_scatter_mapbox(state="US"):
     data["State Name"] = data["State Name"].str.title()
     data["County Name"] = data["County Name"].str.title()
 
+    # data["log_confirmed"] = np.log(data["Confirmed"] + 0.1 ** 10)
+    # data["log_confirmed"] = (data["Confirmed"] - data["Confirmed"].min()) / (
+    #    data["Confirmed"].max() - data["Confirmed"].min()
+    # )
+    # normalized_df=(df-df.min())/(df.max()-df.min())#
+    # set lat/long
+
     color_scale = [
         "#FA9090",
         "#F77A7A",
@@ -67,15 +74,10 @@ def confirmed_scatter_mapbox(state="US"):
         "#A90000",
         "#9E0000",
         "#920000",
-        "#870000",
+        "#870000"
     ]
 
-    # data["log_confirmed"] = np.log(data["Confirmed"] + 0.1 ** 10)
-    # data["log_confirmed"] = (data["Confirmed"] - data["Confirmed"].min()) / (
-    #    data["Confirmed"].max() - data["Confirmed"].min()
-    # )
-    # normalized_df=(df-df.min())/(df.max()-df.min())#
-    # set lat/long
+
     if state == "US":
         lat, lon, zoom = 39.8097343, -98.5556199, flask.session["zoom"]
     else:
@@ -90,7 +92,7 @@ def confirmed_scatter_mapbox(state="US"):
         lat="Latitude",
         lon="Longitude",
         color="Confirmed",
-        size="Confirmed",  # "log_confirmed",
+        size= "Confirmed",  # "log_confirmed",
         size_max=50,
         hover_name="County Name",
         hover_data=["Confirmed", "Death", "State Name", "County Name"],

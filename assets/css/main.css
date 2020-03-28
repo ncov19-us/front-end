@@ -994,7 +994,7 @@ p.tweet-dt {
 }
 
 .right-col-stats-content .col-2 .card .card-body {
-    height: calc(90vh + 74px) !important;
+    height: calc(74vh + 70px) !important;ç
     overflow: scroll;
     padding-top: 0;
 }
@@ -1030,7 +1030,7 @@ p.tweet-dt {
 /* overflow disable scroll bar */
 .right-col-feed-cards-text {
     overflow-y: scroll;
-    height: 73.5vh;
+    height: 76vh;
     scroll-behavior: smooth;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
@@ -1451,7 +1451,7 @@ p.states-stats-deaths-list-txt {
 }
 
 .left-col-twitter-feed-content .card-body {
-    height: calc(64vh + 74px + 32px) !important;
+    height: calc(74vh + 70px) !important;
     overflow: scroll;
 }   
 
