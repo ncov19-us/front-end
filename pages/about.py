@@ -188,11 +188,11 @@ about_body = [
                 ], className="about-page-contributor"),
 
                 html.Div([
-                    html.A(href="https://github.com/ncov19-us", className="about-contributor-github-icon about-contributor-social-icon"),
+                    html.A(href="https://github.com/alex-pakalniskis", className="about-contributor-github-icon about-contributor-social-icon"),
 
-                    html.A(href="https://github.com/ncov19-us", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+                    html.A(href="https://www.linkedin.com/in/alexpakalniskis3/", className="about-contributor-linkedin-icon about-contributor-social-icon"),
 
-                    html.A(href="https://github.com/ncov19-us", className="about-contributor-twitter-icon about-contributor-social-icon"),
+                    html.A(href="https://twitter.com/AlexPakalniskis", className="about-contributor-twitter-icon about-contributor-social-icon"),
 
                 html.Div([
                         html.Div("Alex Pakalniskis", className="about-contributor-name"),
