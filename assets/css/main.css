@@ -304,8 +304,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-content {
-    padding-top: 1.4rem;
-    padding-bottom: .5rem;
+    padding-top: 1.3rem;
+    padding-bottom: .4rem;
     margin-right: 50px;
     margin-left: 50px;
 }
@@ -569,9 +569,9 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 .top-bar-us-map-heading-txt {
-    font-size: 1rem;
+    font-size: 0.7rem;
     color: #fefefe;
-    padding-top: 0.3rem;
+    padding-top: 0.5rem;
     padding-left: 1rem;
     /* max-width: 57%; */
     /* margin-bottom: 1%; */
