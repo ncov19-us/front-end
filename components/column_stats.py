@@ -35,7 +35,7 @@ def states_confirmed_stats(state=None) -> dbc.ListGroup:
     :rtype: dbc.ListGroup    
     """
     list_group = dbc.ListGroup(
-        [
+        [   
             dbc.ListGroupItem(
                 [
                     html.P(

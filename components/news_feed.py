@@ -36,7 +36,7 @@ def news_feed(state=None) -> dbc.ListGroup:
                             className="news-txt-headline",
                         ),
                         html.P(
-                            f"by {df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['publishedAt']}",
+                            f"{df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['publishedAt']}",
                             className="news-txt-by-dt",
                         ),
                     ],
