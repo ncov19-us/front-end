@@ -19,7 +19,8 @@ def get_daily_stats() -> Dict:
         data = requests.get(url=url).json()
         tested = data["tested"]
         confirmed = data["confirmed"]
-        todays_confirmed = data["todays_confirmed"]
+        # todays_confirmed = data["todays_confirmed"]
+        todays_confirmed = 0
         deaths = data["deaths"]
         todays_deaths = data["todays_deaths"]
     except:
@@ -31,7 +32,7 @@ def get_daily_stats() -> Dict:
         "Deaths": [deaths, todays_deaths],
         "Death Rate": [
             f"{round(deaths/confirmed * 100,2)}%",
-            f"{round(todays_deaths/todays_confirmed, 2)}%",
+            f"{round(todays_deaths/(todays_confirmed+(0.01**10)) * 100, 2)}%",
         ]
         # "Recovered": 0,
     }
@@ -39,7 +40,7 @@ def get_daily_stats() -> Dict:
     return stats
 
 
-@cache.memoize(timeout=600)
+# @cache.memoize(timeout=600)
 def daily_stats() -> List[dbc.Col]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed ,
      and death cases for the top row.
@@ -63,7 +64,7 @@ def daily_stats() -> List[dbc.Col]:
                     dbc.CardBody(
                         [
                             html.P(
-                                f"+ {value[1]} in past 24h",
+                                f"+ {value[1]} new",
                                 className=f"top-bar-perc-change-{key.lower()}",
                             ),
                             html.H1(value[0], className=f"top-bar-value-{key.lower()}"),

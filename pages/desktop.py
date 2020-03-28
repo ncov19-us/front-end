@@ -147,37 +147,40 @@ def feed_tab_content(value):
 stats_tabs = dbc.Card(
     [
         html.Div(
-[            dcc.Tabs(
-                id="right-tabs-styled-with-inline",
-                value="confirmed-tab",
-                children=[
-                    dcc.Tab(
-                        label="Confirmed",
-                        value="confirmed-tab",
-                        className="left-twitter-tab",
-                        style=tab_style,
-                        selected_style=tab_selected_style,
-                    ),
-                    dcc.Tab(
-                        label="Deaths",
-                        value="deaths-tab",
-                        className="left-news-tab",
-                        style=tab_style,
-                        selected_style=tab_selected_style,
-                    ),
-                    # dcc.Tab(
-                    #     label="Recovered",
-                    #     value="recovered-tab",
-                    #     className="left-news-tab",
-                    #     style=tab_style,
-                    #     selected_style=tab_selected_style,
-                    # ),
-                ],
-                style=tabs_styles,
-                colors={"border": None, "primary": None, "background": None},
-            ),
-            html.P("Last Updated 3/20/2020 16:50", 
-            className="right-tabs-last-updated-text")
+            [
+                dcc.Tabs(
+                    id="right-tabs-styled-with-inline",
+                    value="confirmed-tab",
+                    children=[
+                        dcc.Tab(
+                            label="Confirmed",
+                            value="confirmed-tab",
+                            className="left-twitter-tab",
+                            style=tab_style,
+                            selected_style=tab_selected_style,
+                        ),
+                        dcc.Tab(
+                            label="Deaths",
+                            value="deaths-tab",
+                            className="left-news-tab",
+                            style=tab_style,
+                            selected_style=tab_selected_style,
+                        ),
+                        # dcc.Tab(
+                        #     label="Recovered",
+                        #     value="recovered-tab",
+                        #     className="left-news-tab",
+                        #     style=tab_style,
+                        #     selected_style=tab_selected_style,
+                        # ),
+                    ],
+                    style=tabs_styles,
+                    colors={"border": None, "primary": None, "background": None},
+                ),
+                html.P(
+                    "Last Updated 3/20/2020 16:50",
+                    className="right-tabs-last-updated-text",
+                ),
             ],
             className="right-tabs",
         ),
@@ -242,22 +245,34 @@ us_maps_tabs = dbc.Card(
                 ],
                 className="d-flex justify-content-between top-bar-us-map-heading-content",
             ),
-            html.Div(
-                dcc.Graph(id="us-map", style={"height": "44vh"},)
-            ),
+            html.Div(dcc.Graph(id="us-map", style={"height": "44vh"},)),
         ]
     ),
 )
 
+# print(
+#     [
+#         Input(f"states-confirmed-{state['state']}", "n_clicks_timestamp")
+#         for state in states_lat_long
+#     ]
+# )
+# Input(f"states-confirmed-{state['state']}", "n_clicks_timestamp")
+#     for state in states_lat_long
+
+
 @app.callback(
     Output("us-map", "figure"),
-    [Input("middle-map-tabs-styled-with-inline", "value")] + 
-     [Input(f"states-confirmed-{state['state']}", "n_clicks_timestamp") for state in states_lat_long],
+    [Input("middle-map-tabs-styled-with-inline", "value")]
+    + [
+        Input(f"states-confirmed-{state['state']}", "n_clicks")
+        for state in states_lat_long
+    ],
 )
-def map_tab_content(value, **n_clicks_timestamp):
+def map_tab_content(*value_states):  # value, *n_clicks):
     """Callback to change between news and twitter feed
     """
-    print(value, *n_clicks_timestamp)
+    print(value_states)
+    # print(value, n_clicks)
     # print([state['state'] for state in states_lat_long])
     if value == "testing-us-map-tab":
         return drive_thru_scatter_mapbox()

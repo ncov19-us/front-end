@@ -89,7 +89,7 @@ def states_confirmed_stats(state=None) -> dbc.ListGroup:
     :rtype: dbc.ListGroup    
     """
     list_group = dbc.ListGroup(
-        [   
+        [
             dbc.ListGroupItem(
                 [
                     html.P(
@@ -104,8 +104,8 @@ def states_confirmed_stats(state=None) -> dbc.ListGroup:
                             ),
                         ],
                         # href="",
-                        # n_clicks=0,
-                        n_clicks_timestamp=0,
+                        n_clicks=0,
+                        # n_clicks_timestamp=0,
                         id=f"states-confirmed-{key}",
                         # ),
                         className="states-stats-confirmed-list-txt",
