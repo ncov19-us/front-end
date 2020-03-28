@@ -39,7 +39,7 @@ def before_request_func():
     else:  # Desktop request
         app.layout = build_desktop_layout
         flask.session['mobile'] = False#f"{app_state.is_mobile}"
-        flask.session['zoom'] = 3
+        flask.session['zoom'] = 2.5
     
     # print(f"[DEBUG]: Session: 'mobile': {flask.session['mobile']}, 'zoom': {flask.session['zoom']}")
         

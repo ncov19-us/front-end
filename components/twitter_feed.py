@@ -51,7 +51,7 @@ def twitter_feed(state=None) -> List[dbc.Card]:
                     [
                         # html.Strong(f"- {full_name} (@{username})"),
                         html.P(
-                            f"- @{username} {parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}",
+                            f"- {username} (@{full_name}) {parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}",
                             className="tweet-dt",
                         ),
                     ],

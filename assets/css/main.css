@@ -22,6 +22,10 @@ body {
     background-color: none;
 }
 
+.mobile-us-map-content {
+    margin-top: 1rem;
+}
+
 .mobile-us-map-content .card-body {
     padding-right: 0;
     padding-bottom: 0;
@@ -105,6 +109,24 @@ body {
 
 }
 
+.right-tabs-last-updated-text {
+    padding-left: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    margin-bottom: 0;
+    font-size: 11px;
+    color: grey;
+}
+
+.mobile-right-tabs-last-updated-text {
+    padding-left: 1rem;
+    padding-top: .95rem;
+    padding-bottom: .95rem;
+    margin-bottom: 0;
+    font-size: 11px;
+    color: grey;
+}
+
 /* /* /* /* /*         Dropdown Location Menu                   */ 
 
 .dropdown-location-menu .dropdown-toggle {
@@ -129,7 +151,7 @@ body {
 }
 
 .dropdown-item {
-    color: #fefefe;
+    color: #F4F4F4;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 }
 
@@ -155,6 +177,7 @@ body {
     letter-spacing: 0.01rem;
     text-shadow: none;
     padding-left: 2.1rem;
+    margin-right: 10px;
 }
 
 .navbar-brand-links:hover {
@@ -271,14 +294,14 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 #about-page-first-third  {
     background-color: #262a32;
-    color: #fefefe;
+    color: #F4F4F4;
     margin-right: 0;
     padding-top: 100px;
 }
 
 #about-page-second-third  {
     background-color: #010915;
-    color: #fefefe;
+    color: #F4F4F4;
     background-position: right top;
     background-image: url('../images/map_1.svg');
     background-repeat: no-repeat;
@@ -303,8 +326,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-content {
-    padding-top: 1.4rem;
-    padding-bottom: .5rem;
+    padding-top: 1.3rem;
+    padding-bottom: .4rem;
     margin-right: 50px;
     margin-left: 50px;
 }
@@ -454,7 +477,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .top-bar-card-tested {
     background-color: #010915;
-    color: #fefefe;
+    color: #D8B9B2;
     text-align: center;
     font-size: .9rem;
     border: none;
@@ -490,7 +513,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-card-deaths {
-    color: #D92C25;
+    color: #DD1E34;
     text-align: center;
     font-size: .9rem;
     background-color: #010915;
@@ -509,7 +532,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .top-bar-card-death {
     /* color: #03DA32; */
-    color: #03AE2C;
+    color: #B20511;
     text-align: center;
     font-size: .9rem;
     background-color: #010915;
@@ -613,9 +636,9 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 .top-bar-us-map-heading-txt {
-    font-size: 1rem;
-    color: #fefefe;
-    padding-top: 0.3rem;
+    font-size: 0.7rem;
+    color: #F4F4F4;
+    padding-top: 0.5rem;
     padding-left: 1rem;
     /* max-width: 57%; */
     /* margin-bottom: 1%; */
@@ -623,7 +646,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .top-bottom-left-chart-title, .top-bottom-right-chart-title {
     font-size: 1.2rem;
-    color: #fefefe;
+    color: #F4F4F4;
     max-width: 100%;
     margin-bottom: 5%;
 }
@@ -730,7 +753,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .jsx-2597805859.tab.left-twitter-tab.tab-selected {
     background-color: #010915;
-    background-color: #fefefe;
+    background-color: #F4F4F4;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -840,7 +863,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     border-radius: .3rem !important;
     padding-bottom: 0;
     line-height: 1.35;
-    color: #fefefe;
+    color: #F4F4F4;
 }
 
 p.tweet-dt {
@@ -901,6 +924,10 @@ p.tweet-dt {
 
 /* 👉👉👉👉 Right Detailed List Sidebar */
 
+#stats-content .states-stats-confirmed-listgroup:first-child {
+    margin-top: -.2rem;
+}
+
 .right-col-news-feed-content{
     margin-bottom: 1rem;
 }
@@ -911,13 +938,9 @@ p.tweet-dt {
 }
 
 .right-col-stats-content .card-body {
-    height: 75vh !important;
+    height: calc(64vh + 74px) !important;
     overflow: scroll;
-}
-
-.right-col-stats-content .card-body {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    padding-top: 0;
 }
 .right-col-stats-content .card-body::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
@@ -930,7 +953,7 @@ p.tweet-dt {
     border-right-width: 0;
     border-bottom-width: 1px;
     background-color: none;
-    background: none; 
+    background: none;
     padding: 0.05rem;
 }
 
@@ -976,7 +999,25 @@ p.tweet-dt {
     font-weight: 700;
     /* width: 34%; */
     font-size: 0.94rem;
-    color: #FEC400;
+    color: #F4B000;
+}
+
+.states-stats-confirmed-list-item.list-group-item {
+    margin-top: 0.35rem;
+    margin-bottom: 0;
+}
+
+.states-stats-deaths-list-item.list-group-item {
+    margin-top: 0.35rem;
+    margin-bottom: 0;
+}
+
+.states-stats-confirmed-list-item.list-group-item:hover {
+    
+}
+
+.states-stats-deaths-list-item.list-group-item:hover {
+    
 }
 
 p.states-stats-confirmed-list-txt {
@@ -984,7 +1025,7 @@ p.states-stats-confirmed-list-txt {
  }
 
 .states-stats-confirmed-list-state {
-    color:#F3F3F3;
+    color:#F4F4F4;
 }
 
 p.states-stats-deaths-list-txt {
@@ -998,24 +1039,24 @@ p.states-stats-deaths-list-txt {
 }
 
 .states-stats-deaths-list-state {
-    color:#F3F3F3;
+    color:#F4F4F4;
 }
 
 .states-stats-recovered-list-num {
     font-weight: 700;
     /* color: #03DA32; */
-    color: #03AE2C;
+    color: #B20511;
 }
 
 .states-stats-recovered-list-state {
-    color:#F3F3F3;
+    color:#F4F4F4;
 }
 
 
 /* Footer 🦶 */
 .footer-content {
     background-color: #010915;
-    color: #8B8D91;
+    color: #BDBDBD;
 }
 
 .footer-disclaimer-content {
@@ -1035,13 +1076,13 @@ p.states-stats-deaths-list-txt {
 
 .fab.fa-github {
     font-size: 2rem;
-    color: #8B8D91;
+    color: #BDBDBD;
 }
 
 .footer-copyright-text {
     font-size: 1rem;
     text-align: center;
-    color: #8B8D91;
+    color: #BDBDBD;
     min-width: 120px;
 }
 
@@ -1061,7 +1102,7 @@ p.states-stats-deaths-list-txt {
 /* Mobile Nav Bar */
 .align-items-center.no-gutters.row {
     /* padding: 3% 0 3% 5%; */
-    color: #fefefe;
+    color: #F4F4F4;
 }
 
 .mobile-covid-19-text {
@@ -1083,7 +1124,7 @@ p.states-stats-deaths-list-txt {
 .navbar-toggler-icon {
     margin-left: 10%;
     margin-bottom: 3%;
-    color: #fefefe;
+    color: #F4F4F4;
 }
 
 .navbar-toggler {
@@ -1099,12 +1140,10 @@ p.states-stats-deaths-list-txt {
 
 /* Mobile Card 🎴 section */
 
-
-
 .mobile-top-bar-content {
-    margin-left: 0rem;
-    margin-right: 0rem;
-    margin-top: 4.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 5rem;
 }
 .mobile-card-text {
     margin-top: -.75rem;
@@ -1120,9 +1159,9 @@ p.states-stats-deaths-list-txt {
 
 .mobile-top-bar-card-tested {
     background-color: #010915;
-    color: #fefefe;
+    color: #F4F4F4;
     text-align: center;
-    font-size: .9rem;
+    font-size: .75rem;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -1132,7 +1171,7 @@ p.states-stats-deaths-list-txt {
 
 .mobile-top-bar-value-tested {
     margin-top: -1.7rem;
-    font-weight: 4rem;
+    font-weight: 500;
     font-size: 2.75rem;
     text-shadow: none;
 }
@@ -1141,7 +1180,7 @@ p.states-stats-deaths-list-txt {
     background-color: #010915;
     color: #FEC400;
     text-align: center;
-    font-size: .9rem;
+    font-size: .75rem;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -1151,7 +1190,7 @@ p.states-stats-deaths-list-txt {
 
 .mobile-top-bar-value-confirmed {
     margin-top: -1rem;
-    font-weight: 4rem;
+    font-weight: 500;
     font-size: 2.75rem;
     text-shadow: none;
 }
@@ -1167,7 +1206,7 @@ p.states-stats-deaths-list-txt {
     background-color: #010915;
     color: #D92C25;
     text-align: center;
-    font-size: .9rem;
+    font-size: .75rem;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -1177,7 +1216,7 @@ p.states-stats-deaths-list-txt {
 
 .mobile-top-bar-value-deaths {
     margin-top: -1rem;
-    font-weight: 4rem;
+    font-weight: 500;
     font-size: 2.75rem;
     text-shadow: none;
 }
@@ -1185,9 +1224,9 @@ p.states-stats-deaths-list-txt {
 .mobile-top-bar-card-death {
     background-color: #010915;
     /* color: #03DA32; */
-    color: #03AE2C;
+    color: #B20511;
     text-align: center;
-    font-size: .9rem;
+    font-size: .75rem;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -1197,7 +1236,7 @@ p.states-stats-deaths-list-txt {
 
 .mobile-top-bar-value-death {
     margin-top: -1rem;
-    font-weight: 4rem;
+    font-weight: 500;
     font-size: 2.75rem;
     text-shadow: none;
 }
@@ -1246,14 +1285,17 @@ p.states-stats-deaths-list-txt {
 .mobile-top-bar-us-map-heading-txt {
     font-size: 1rem;
     font-weight: normal;
-    color: #ffffff;
-    padding-top: 0.25rem;
+    color: #F4F4F4;
+    padding-top: 0.35rem;
     max-width: 50%;
 }
 
 .mobile-confirmed-us-map-tab, .mobile-testing-us-map-tab {
     font-size: 0.75rem;
     text-align: center;
+}
+.tab.mobile-confirmed-us-map-tab {
+    padding: 0.7rem !important;
 }
 
 .tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-testing-us-map-tab {
@@ -1265,7 +1307,7 @@ p.states-stats-deaths-list-txt {
 .mobile-top-bottom-left-chart-title, .mobile-top-bottom-right-chart-title {
     font-size: 1.25rem;
     font-weight: normal;
-    color: #ffffff;
+    color: #F4F4F4;
     max-width: 100%;
     padding-left: .2rem;
     padding-bottom: 1rem;
@@ -1276,12 +1318,17 @@ p.states-stats-deaths-list-txt {
 
 .mobile-right-col-stats-content.col-2 {
     max-width: 100%;
-    padding-right: 0;
-    padding-left: 0;
+    /* padding-right: 0;
+    padding-left: 0; */
+    margin-top: 3rem;
     margin-bottom: 2rem;
     max-height: 30%;
 }
 
+/* Mobile Twitter and News */
+.mobile-feed-content {
+    padding: 1rem;
+}
 
 
 
@@ -1310,7 +1357,7 @@ p.states-stats-deaths-list-txt {
 
 .mobile-fa-icons {
     font-size: 2rem;
-    color: #8B8D91;
+    color: #BDBDBD;
     padding-left: 1rem;
 }
 
@@ -1321,7 +1368,7 @@ p.states-stats-deaths-list-txt {
     align-self: center;
     /* margin-bottom: 1rem; */
     /* display: inline-block; */
-    color: #8B8D91;
+    color: #BDBDBD;
 }
 
 /* 📱 END Footer 🦶 */
@@ -1333,18 +1380,14 @@ p.states-stats-deaths-list-txt {
 }
 
 .left-col-twitter-feed-content .card-body {
-    height: 75vh !important;
+    height: calc(64vh + 74px + 32px) !important;
     overflow: scroll;
-}
-
-.right-col-stats-content .card-body {
-    height: 75vh !important;
-    overflow: scroll;
-}
+}   
 
 .mobile-stats-card-body {
-    height: 50vh;
+    height: 60vh;
     overflow: scroll;
+    padding-top: 0;
 }
 
 .middle-map-news-content {
@@ -1406,6 +1449,7 @@ p.states-stats-deaths-list-txt {
 
 #mobile-about-page #about-page-first-third {
     padding-top: 100px;
+<<<<<<< HEAD
     padding-bottom: 60px;
     color: #fefefe;
 }
@@ -1419,6 +1463,9 @@ p.states-stats-deaths-list-txt {
     background-size: 45%;
     padding-top: 100px;
     padding-bottom: 80px;
+=======
+    color: #F4F4F4;
+>>>>>>> e65dedb60ac139f56e1d38118c9b2d1d1433ee8f
 }
 
 #mobile-about-page #about-page-third-third {
