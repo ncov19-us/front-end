@@ -2,7 +2,7 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
-
+from dash.exceptions import PreventUpdate
 from app import app
 from components import daily_stats
 from components import news_feed, twitter_feed
@@ -12,6 +12,10 @@ from components import (
     states_confirmed_stats,
     states_deaths_stats,
 )
+
+import dash
+from components.column_stats import STATES
+
 
 ################ TABS STYLING ####################
 
@@ -33,60 +37,6 @@ tab_selected_style = {
 }
 
 ########################################################
-
-states_lat_long = [
-    {"state": "Alabama", "latitude": 32.806671, "longitude": -86.791130},
-    {"state": "Alaska", "latitude": 61.370716, "longitude": -152.404419},
-    {"state": "Arizona", "latitude": 33.729759, "longitude": -111.431221},
-    {"state": "Arkansas", "latitude": 34.969704, "longitude": -92.373123},
-    {"state": "California", "latitude": 36.116203, "longitude": -119.681564},
-    {"state": "Colorado", "latitude": 39.059811, "longitude": -105.311104},
-    {"state": "Connecticut", "latitude": 41.597782, "longitude": -72.755371},
-    {"state": "Delaware", "latitude": 39.318523, "longitude": -75.507141},
-    {"state": "District of Columbia", "latitude": 38.897438, "longitude": -77.026817},
-    {"state": "Florida", "latitude": 27.766279, "longitude": -81.686783},
-    {"state": "Georgia", "latitude": 33.040619, "longitude": -83.643074},
-    {"state": "Hawaii", "latitude": 21.094318, "longitude": -157.498337},
-    {"state": "Idaho", "latitude": 44.240459, "longitude": -114.478828},
-    {"state": "Illinois", "latitude": 40.349457, "longitude": -88.986137},
-    {"state": "Indiana", "latitude": 39.849426, "longitude": -86.258278},
-    {"state": "Iowa", "latitude": 42.011539, "longitude": -93.210526},
-    {"state": "Kansas", "latitude": 38.526600, "longitude": -96.726486},
-    {"state": "Kentucky", "latitude": 37.668140, "longitude": -84.670067},
-    {"state": "Louisiana", "latitude": 31.169546, "longitude": -91.867805},
-    {"state": "Maine", "latitude": 44.693947, "longitude": -69.381927},
-    {"state": "Maryland", "latitude": 39.063946, "longitude": -76.802101},
-    {"state": "Massachusetts", "latitude": 42.230171, "longitude": -71.530106},
-    {"state": "Michigan", "latitude": 43.326618, "longitude": -84.536095},
-    {"state": "Minnesota", "latitude": 45.694454, "longitude": -93.900192},
-    {"state": "Mississippi", "latitude": 32.741646, "longitude": -89.678696},
-    {"state": "Missouri", "latitude": 38.456085, "longitude": -92.288368},
-    {"state": "Montana", "latitude": 46.921925, "longitude": -110.454353},
-    {"state": "Nebraska", "latitude": 41.125370, "longitude": -98.268082},
-    {"state": "Nevada", "latitude": 38.313515, "longitude": -117.055374},
-    {"state": "New Hampshire", "latitude": 43.452492, "longitude": -71.563896},
-    {"state": "New Jersey", "latitude": 40.298904, "longitude": -74.521011},
-    {"state": "New Mexico", "latitude": 34.840515, "longitude": -106.248482},
-    {"state": "New York", "latitude": 42.165726, "longitude": -74.948051},
-    {"state": "North Carolina", "latitude": 35.630066, "longitude": -79.806419},
-    {"state": "North Dakota", "latitude": 47.528912, "longitude": -99.784012},
-    {"state": "Ohio", "latitude": 40.388783, "longitude": -82.764915},
-    {"state": "Oklahoma", "latitude": 35.565342, "longitude": -96.928917},
-    {"state": "Oregon", "latitude": 44.572021, "longitude": -122.070938},
-    {"state": "Pennsylvania", "latitude": 40.590752, "longitude": -77.209755},
-    {"state": "Rhode Island", "latitude": 41.680893, "longitude": -71.511780},
-    {"state": "South Carolina", "latitude": 33.856892, "longitude": -80.945007},
-    {"state": "South Dakota", "latitude": 44.299782, "longitude": -99.438828},
-    {"state": "Tennessee", "latitude": 35.747845, "longitude": -86.692345},
-    {"state": "Texas", "latitude": 31.054487, "longitude": -97.563461},
-    {"state": "Utah", "latitude": 40.150032, "longitude": -111.862434},
-    {"state": "Vermont", "latitude": 44.045876, "longitude": -72.710686},
-    {"state": "Virginia", "latitude": 37.769337, "longitude": -78.169968},
-    {"state": "Washington", "latitude": 47.400902, "longitude": -121.490494},
-    {"state": "West Virginia", "latitude": 38.491226, "longitude": -80.954453},
-    {"state": "Wisconsin", "latitude": 44.268543, "longitude": -89.616508},
-    {"state": "Wyoming", "latitude": 42.755966, "longitude": -107.302490},
-]
 
 ########################################################################
 #
@@ -128,15 +78,21 @@ feed_tabs = dbc.Card(
 
 
 @app.callback(
-    Output("feed-content", "children"), [Input("left-tabs-styled-with-inline", "value")]
+    Output("feed-content", "children"),
+    [
+        Input("left-tabs-styled-with-inline", "value"),
+        Input("intermediate-value", "children"),
+    ],
 )
-def feed_tab_content(value):
+def feed_tab_content(tab_value, state):
     """Callback to change between news and twitter feed
     """
-    if value == "twitter-tab":
-        return twitter_feed()
+    # print(f"feed tab value {tab_value}")
+    # print(f"feed tab state {state}")
+    if tab_value == "twitter-tab":
+        return twitter_feed(state)
     else:
-        return news_feed()
+        return news_feed(state)
 
 
 ########################################################################
@@ -238,27 +194,30 @@ us_maps_tabs = dbc.Card(
                 ],
                 className="d-flex justify-content-between top-bar-us-map-heading-content",
             ),
-          
             html.Div(
-                dcc.Graph(id="us-map", style={"height": "44vh"}),
-                id="map-container"
-            )
-
+                dcc.Graph(id="us-map", style={"height": "44vh"}), id="map-container"
+            ),
         ]
     ),
 )
 
 
 @app.callback(
-    Output("us-map", "figure"), [Input("middle-map-tabs-styled-with-inline", "value")]
+    Output("us-map", "figure"),
+    [
+        Input("middle-map-tabs-styled-with-inline", "value"),
+        Input("intermediate-value", "children"),
+    ],
 )
-def map_tab_content(value):
+def map_tab_content(value, state):
     """Callback to change between news and twitter feed
     """
+    # print(f"callback value: {value}")
+    # print(f"callback state: {state}")
     if value == "testing-us-map-tab":
-        return drive_thru_scatter_mapbox()
+        return drive_thru_scatter_mapbox(state=state)
     else:
-        return confirmed_scatter_mapbox()
+        return confirmed_scatter_mapbox(state=state)
 
 
 ########################################################################
@@ -267,7 +226,10 @@ def map_tab_content(value):
 #
 ########################################################################
 desktop_body = [
-    dbc.Row(daily_stats(), className="top-bar-content"),  # TOP BAR
+    html.Div(
+        id="intermediate-value", children="US", style={"display": "none"}
+    ),  # Hidden div inside the app that stores the intermediate value
+    dbc.Row(daily_stats(), className="top-bar-content",),  # TOP BAR
     dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
         [
             # LEFT - TWITTER & NEWS FEED COL
@@ -296,7 +258,7 @@ desktop_body = [
                                                         style={"height": "20vh"},
                                                         className='top-bottom-left-chart-figure"',
                                                     ),
-                                                    id="chart-container"
+                                                    id="chart-container",
                                                 ),
                                             ]
                                         ),
@@ -313,17 +275,22 @@ desktop_body = [
                                                     className="top-bottom-right-chart-title",
                                                 ),
                                                 html.Div(
-                                                    dcc.Loading( 
+                                                    dcc.Loading(
                                                         dcc.Graph(
                                                             figure=infection_trajectory_chart(),
-                                                            config={"responsive": False},
+                                                            config={
+                                                                "responsive": False
+                                                            },
                                                             style={"height": "20vh"},
                                                             className="top-bottom-right-chart-figure",
                                                         ),
-                                                        style={"padding-top": "8px", "background-color": "red"},
-                                                        color="#19202A"
+                                                        style={
+                                                            "padding-top": "8px",
+                                                            "background-color": "red",
+                                                        },
+                                                        color="#19202A",
                                                     ),
-                                                    id="chart-container"
+                                                    id="chart-container",
                                                 ),
                                             ]
                                         ),
@@ -347,3 +314,24 @@ desktop_body = [
         className="middle-map-news-content mt-3",
     ),
 ]
+
+
+@app.callback(
+    [Output("intermediate-value", "children")],
+    [Input(f"states-confirmed-{state}", "n_clicks") for state in STATES],
+)
+def multi_output(*n_clicks):
+    ctx = dash.callback_context
+    # print(n_clicks)
+    # print(ctx)
+    if ctx.triggered:
+        state = ctx.triggered[0]["prop_id"].split(".")[0].split("-")[-1]
+        if any(n_clicks) > 0:
+            # print(f"You clicked this state ==> {state}")
+            # print(ctx)
+            # print(n_clicks)
+            return [f"{state}"]
+        else:
+            # print(ctx)
+            # print(n_clicks)
+            return ["US"]
