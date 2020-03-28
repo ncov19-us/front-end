@@ -27,7 +27,7 @@ def get_daily_stats() -> Dict:
         deaths = data["deaths"]
         todays_deaths = data["todays_deaths"]
     except:
-        confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0
+        tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
     stats = {
         "Tested": tested,
