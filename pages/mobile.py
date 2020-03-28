@@ -161,36 +161,40 @@ def mobile_map_tab_content(value):
 stats_tabs = dbc.Card(
     [
         html.Div(
-            dcc.Tabs(
-                id="right-tabs-styled-with-inline",
-                value="confirmed-tab",
-                children=[
-                    dcc.Tab(
-                        label="Confirmed",
-                        value="confirmed-tab",
-                        className="mobile-left-twitter-tab",
-                        style=tab_style,
-                        selected_style=tab_selected_style,
-                    ),
-                    dcc.Tab(
-                        label="Deaths",
-                        value="deaths-tab",
-                        className="mobile-left-news-tab",
-                        style=tab_style,
-                        selected_style=tab_selected_style,
-                    ),
-                    # dcc.Tab(
-                    #     label="Recovered",
-                    #     value="recovered-tab",
-                    #     className="left-news-tab",
-                    #     style=tab_style,
-                    #     selected_style=tab_selected_style,
-                    # ),
-                ],
-                style=tabs_styles,
-                colors={"border": None, "primary": None, "background": None},
-            ),
-            className="mobile-right-tabs",
+            [
+                dcc.Tabs(
+                    id="right-tabs-styled-with-inline",
+                    value="confirmed-tab",
+                    children=[
+                        dcc.Tab(
+                            label="Confirmed",
+                            value="confirmed-tab",
+                            className="mobile-left-twitter-tab",
+                            style=tab_style,
+                            selected_style=tab_selected_style,
+                        ),
+                        dcc.Tab(
+                            label="Deaths",
+                            value="deaths-tab",
+                            className="mobile-left-news-tab",
+                            style=tab_style,
+                            selected_style=tab_selected_style,
+                        ),
+                        # dcc.Tab(
+                        #     label="Recovered",
+                        #     value="recovered-tab",
+                        #     className="left-news-tab",
+                        #     style=tab_style,
+                        #     selected_style=tab_selected_style,
+                        # ),
+                    ],
+                    style=tabs_styles,
+                    colors={"border": None, "primary": None, "background": None},
+                ),
+                html.P("Last Updated 3/20/2020 16:50", 
+                className="mobile-right-tabs-last-updated-text")
+            ],
+            className="mobile-right-tabs"
         ),
         dbc.CardBody(
             html.P(

@@ -23,7 +23,7 @@ def confirmed_cases_chart(state=None) -> go.Figure:
     data = data.tail(60)
 
     fig = px.line(data, x="Date", y="Confirmed Cases")
-    fig.update_traces(line_color="#FEC400")
+    fig.update_traces(line_color="#F4B000")
     fig.update_layout(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         template="plotly_dark",
