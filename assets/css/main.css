@@ -1055,26 +1055,18 @@ p.tweet-dt {
 }
 
 
-
+/* States callback buttons*/
 button {
-    background-color: black;
+    background-color:#1F242D;
     padding: 0;
-    margin: 0;
-    border: solid red;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    border:#1F242D;
+    width: 100%
 }
 
 
-<<<<<<< HEAD
-=======
-button {
-    background-color: black;
-    padding: 0;
-    margin: 0;
-    border: solid red;
-}
-
-
->>>>>>> 8226ae636d6690d6988de38e9a260ab5179bfbf0
 p.states-stats-confirmed-list-txt {
     margin-top: 0.5rem;
  }
