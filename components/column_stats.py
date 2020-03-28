@@ -13,20 +13,22 @@ try:
     data = response["message"]
     data = pd.read_json(data, orient="records")
     data["State Name"] = data["State Name"].str.title()
-
     confirmed = data.groupby(["State Name"])["Confirmed"].sum()
     confirmed = confirmed.sort_values(ascending=False).to_dict()
 
     death = data.groupby(["State Name"])["Death"].sum()
     death = death.sort_values(ascending=False).to_dict()
 
-    del response, data
+    # del response, data
 except Exception as ex:
     print(f"[ERROR]: {ex}")
 
 
+STATES = list(set(data["State Name"].to_list()))
+
+
 # @cache.memoize(timeout=600)
-def states_confirmed_stats(state=None) -> dbc.ListGroup:
+def states_confirmed_stats() -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
         for the whole US
@@ -39,16 +41,18 @@ def states_confirmed_stats(state=None) -> dbc.ListGroup:
             dbc.ListGroupItem(
                 [
                     html.Button(
-                        # html.A(
-                        [
-                            html.Span(
-                                f"{value}", className="states-stats-confirmed-list-num",
-                            ),
-                            html.Span(
-                                f"     {key}",
-                                className="states-stats-confirmed-list-state",
-                            ),
-                        ],
+                        html.Div(
+                            [
+                                html.Span(
+                                    f"{value}",
+                                    className="states-stats-confirmed-list-num",
+                                ),
+                                html.Span(
+                                    f"     {key}",
+                                    className="states-stats-confirmed-list-state",
+                                ),
+                            ]
+                        ),
                         # href="",
                         n_clicks=0,
                         # n_clicks_timestamp=0,
@@ -71,8 +75,8 @@ def states_confirmed_stats(state=None) -> dbc.ListGroup:
     return list_group
 
 
-@cache.memoize(timeout=600)
-def states_deaths_stats(state=None) -> dbc.ListGroup:
+# @cache.memoize(timeout=600)
+def states_deaths_stats() -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
         for the whole US

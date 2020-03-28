@@ -12,8 +12,10 @@ from components import (
     states_confirmed_stats,
     states_deaths_stats,
 )
-from utils.settings import STATES
+
 import dash
+from components.column_stats import STATES
+
 
 ################ TABS STYLING ####################
 
@@ -76,15 +78,21 @@ feed_tabs = dbc.Card(
 
 
 @app.callback(
-    Output("feed-content", "children"), [Input("left-tabs-styled-with-inline", "value")]
+    Output("feed-content", "children"),
+    [
+        Input("left-tabs-styled-with-inline", "value"),
+        Input("intermediate-value", "children"),
+    ],
 )
-def feed_tab_content(value):
+def feed_tab_content(tab_value, state):
     """Callback to change between news and twitter feed
     """
-    if value == "twitter-tab":
-        return twitter_feed()
+    print(f"feed tab value {tab_value}")
+    print(f"feed tab state {state}")
+    if tab_value == "twitter-tab":
+        return twitter_feed(state)
     else:
-        return news_feed()
+        return news_feed(state)
 
 
 ########################################################################
@@ -193,15 +201,21 @@ us_maps_tabs = dbc.Card(
 
 
 @app.callback(
-    Output("us-map", "figure"), [Input("middle-map-tabs-styled-with-inline", "value")]
+    Output("us-map", "figure"),
+    [
+        Input("middle-map-tabs-styled-with-inline", "value"),
+        Input("intermediate-value", "children"),
+    ],
 )
-def map_tab_content(value):
+def map_tab_content(value, state):
     """Callback to change between news and twitter feed
     """
+    print(f"callback value: {value}")
+    print(f"callback state: {state}")
     if value == "testing-us-map-tab":
         return drive_thru_scatter_mapbox()
     else:
-        return confirmed_scatter_mapbox()
+        return confirmed_scatter_mapbox(state=state)
 
 
 ########################################################################
@@ -210,7 +224,10 @@ def map_tab_content(value):
 #
 ########################################################################
 desktop_body = [
-    dbc.Row(daily_stats(), className="top-bar-content"),  # TOP BAR
+    html.Div(
+        id="intermediate-value", children="US", style={"display": "none"}
+    ),  # Hidden div inside the app that stores the intermediate value
+    dbc.Row(daily_stats(), className="top-bar-content",),  # TOP BAR
     dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
         [
             # LEFT - TWITTER & NEWS FEED COL
@@ -282,17 +299,25 @@ desktop_body = [
 ]
 
 
+# print([Input(f"states-confirmed-{state['state']}", "n_clicks") for state in STATES])
+
+
 @app.callback(
-    [Output("us-map", "figure")],
-    [
-        Input("states-confirmed-New York", "n_clicks"),
-        Input("states-confirmed-New Jersey", "n_clicks"),
-        Input("states-confirmed-California", "n_clicks"),
-    ],
+    [Output("intermediate-value", "children")],
+    [Input(f"states-confirmed-{state}", "n_clicks") for state in STATES],
 )
-def multi_output(n_clicks):
+def multi_output(*n_clicks):
     ctx = dash.callback_context
     print(n_clicks)
     print(ctx)
     if ctx.triggered:
-        print(ctx.triggered[0]["prop_id"].split(".")[0])
+        state = ctx.triggered[0]["prop_id"].split(".")[0].split("-")[-1]
+        if any(n_clicks) > 0:
+            print(f"You clicked this state ==> {state}")
+            print(ctx)
+            print(n_clicks)
+            return [f"{state}"]
+        else:
+            print(ctx)
+            print(n_clicks)
+            return ["US"]
