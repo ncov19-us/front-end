@@ -1,6 +1,6 @@
 import requests
 from typing import List, Dict
-from utils.settings import NCOV19_API
+from utils.settings import NCOV19_API, STATES_COORD
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
@@ -10,20 +10,43 @@ def safe_div(x, y):
     return 0 if y == 0 else x / y
 
 
-def get_daily_stats() -> Dict:
+def get_daily_stats(state="US") -> Dict:
     """Get daily stats from ncov19.us API, parse and return as a dictionary
     for the daily stats mobile.
 
     :return: :Dict: stats
     """
-
+    
     url = NCOV19_API + "stats"
+    tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
     try:
-        data = requests.get(url=url).json()
+        if state == "US":
+            response = requests.get(url=url)
+        else:
+            payload = json.dumps({"state": state})
+            response = requests.post(url=url, data=payload)
+    except:
+        print("[ERROR] get_daily_stats error accessing ncov19.us API")
+
+    # return all zeros if response statsus code is not 200
+    if response.status_code != 200:
+        print("[ERROR] get_daily_stats unexpected response")
+        stats = {
+            "Tested": 0,
+            "Confirmed": [0, 0],
+            "Deaths": [0, 0],
+            "Death Rate": [0, 0],
+        }
+        return stats
+
+    data = response.json()['message']
+
+    try:
         tested = data["tested"]
         confirmed = data["confirmed"]
-        todays_confirmed = data["todays_confirmed"]
+        # todays_confirmed = data["todays_confirmed"]
+        todays_confirmed = 0
         deaths = data["deaths"]
         todays_deaths = data["todays_deaths"]
     except:
@@ -37,14 +60,15 @@ def get_daily_stats() -> Dict:
             f"{round(safe_div(deaths, confirmed) * 100, 2)}%",
             f"{round(safe_div(todays_deaths, todays_confirmed) * 100, 2)}%",
         ]
-        # "Recovered": 0,
     }
 
+    del data
+    
     return stats
 
 
-@cache.memoize(timeout=600)
-def daily_stats_mobile() -> List[dbc.Row]:
+# @cache.memoize(timeout=600)
+def daily_stats_mobile(state="US") -> List[dbc.Row]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
     TODO: move to internal API.
 
@@ -53,7 +77,9 @@ def daily_stats_mobile() -> List[dbc.Row]:
     :rtype: list of plotly dash bootstrap coomponent Col objects.
     """
     # 1. Fetch Stats
-    stats = get_daily_stats()
+    print(STATES_COORD[state]['stateAbbr'])
+    stats = get_daily_stats(STATES_COORD[state]['stateAbbr'])
+
     # print("Mobile Site ---> ", stats)
     # 2. Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays
     # items and values of the stats pulled from the API.
