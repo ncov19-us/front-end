@@ -62,7 +62,6 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             y=merged["South Korea"],
             name="South Korea",
             # opacity=0.7,
-            # line={"color": "#03DA32"},
             line={"color": "#DD1E34"},
             mode="lines",
             hovertemplate=template,
@@ -73,7 +72,6 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             x=merged["Days"],
             y=merged["US"],
             name="United States",
-            # text="United States",
             line={"color": "#F4B000"},
             mode="lines",
             hovertemplate=template,
@@ -92,7 +90,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
     #                                  size=12),
     #                         showarrow=False))
     fig.update_layout(
-        margin={"r": 0, "t": 0, "l": 0, "b": 0},
+        margin={"r": 0, "t": 0, "l": 0, "b": 1},
         template="plotly_dark",
         # annotations=annotations,
         autosize=True,
@@ -100,17 +98,22 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         legend_orientation="h",
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
-        xaxis_showgrid=False,
-        yaxis_showgrid=False,
+        xaxis_title="Number of Days",
         yaxis={"linecolor": "rgba(0,0,0,0)"},
         hoverlabel={"font": {"color": "black"}},
+        xaxis_showgrid=False,
+        yaxis_showgrid=False,
         font=dict(
             family="Roboto, sans-serif",
             size=10,
             color="#f4f4f4"
-        )
+        ),
+        # legend=dict(
+        #         title=None, orientation="h", y=-2, yanchor="bottom", x=.5, xanchor="center"
+        # )
+        
     )
 
-    fig.update_layout(xaxis_showgrid=False, yaxis_showgrid=False)
+    # fig.update_layout(xaxis_showgrid=False, yaxis_showgrid=False)
 
     return fig
