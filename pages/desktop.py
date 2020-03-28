@@ -87,8 +87,8 @@ feed_tabs = dbc.Card(
 def feed_tab_content(tab_value, state):
     """Callback to change between news and twitter feed
     """
-    print(f"feed tab value {tab_value}")
-    print(f"feed tab state {state}")
+    # print(f"feed tab value {tab_value}")
+    # print(f"feed tab state {state}")
     if tab_value == "twitter-tab":
         return twitter_feed(state)
     else:
@@ -328,11 +328,11 @@ def multi_output(*n_clicks):
     if ctx.triggered:
         state = ctx.triggered[0]["prop_id"].split(".")[0].split("-")[-1]
         if any(n_clicks) > 0:
-            print(f"You clicked this state ==> {state}")
-            print(ctx)
-            print(n_clicks)
+            # print(f"You clicked this state ==> {state}")
+            # print(ctx)
+            # print(n_clicks)
             return [f"{state}"]
         else:
-            print(ctx)
-            print(n_clicks)
+            # print(ctx)
+            # print(n_clicks)
             return ["US"]
