@@ -27,7 +27,7 @@ except Exception as ex:
 STATES = list(set(data["State Name"].to_list()))
 
 
-# @cache.memoize(timeout=600)
+@cache.memoize(timeout=600)
 def states_confirmed_stats() -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
@@ -71,7 +71,7 @@ def states_confirmed_stats() -> dbc.ListGroup:
     return list_group
 
 
-# @cache.memoize(timeout=600)
+@cache.memoize(timeout=600)
 def states_deaths_stats() -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed

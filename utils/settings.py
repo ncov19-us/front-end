@@ -187,7 +187,7 @@ STATES_COORD = {
     "Louisiana": {
         "latitude": 31.169546,
         "longitude": -91.867805,
-        "zoom": 6.5,
+        "zoom": 6,
         "stateAbbr": "LA",
     },
     "Maine": {

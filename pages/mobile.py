@@ -143,14 +143,19 @@ mobile_us_maps_tabs = dbc.Card(
 )
 
 
-@app.callback(Output("mobile-us-map", "figure"), [Input("mobile-map-tabs", "value")])
-def mobile_map_tab_content(value):
+@app.callback(Output("mobile-us-map", "figure"), 
+              [
+                  Input("mobile-map-tabs", "value"),
+                  Input("intermediate-value", "children"),
+              ]
+)
+def mobile_map_tab_content(value, state):
     """Callback to change between news and twitter feed
     """
     if value == "mobile-testing-us-map-tab":
-        return drive_thru_scatter_mapbox()
+        return drive_thru_scatter_mapbox(state=state)
     else:
-        return confirmed_scatter_mapbox()
+        return confirmed_scatter_mapbox(state=state)
 
 
 ########################################################################
@@ -180,13 +185,6 @@ stats_tabs = dbc.Card(
                             style=tab_style,
                             selected_style=tab_selected_style,
                         ),
-                        # dcc.Tab(
-                        #     label="Recovered",
-                        #     value="recovered-tab",
-                        #     className="left-news-tab",
-                        #     style=tab_style,
-                        #     selected_style=tab_selected_style,
-                        # ),
                     ],
                     style=tabs_styles,
                     colors={"border": None, "primary": None, "background": None},
@@ -225,6 +223,9 @@ def stats_tab_content(value):
 #
 ########################################################################
 mobile_body = [
+    html.Div(
+        id="mobile-intermediate-value", children="US", style={"display": "none"}
+    ),  # Hidden div inside the app that stores the intermediate value
     html.Div(daily_stats_mobile(), className="mobile-top-bar-content"),
     html.Div(
         mobile_us_maps_tabs,
