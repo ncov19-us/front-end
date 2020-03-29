@@ -61,7 +61,7 @@
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
     padding-left: 10%;
-    margin-bottom: 50px;
+    margin-bottom: 8%;
     margin-top: 0;
     font-weight: bold;
     width: 90%;
@@ -78,7 +78,7 @@
     display: flex;
     /* justify-content: space-between; */
     align-items: flex-end;
-    margin-bottom: 1%;
+    margin-bottom: 1.8%;
 }
 
 
@@ -88,12 +88,13 @@
     height: 18px;
     background-size: 100%;
     background-repeat: no-repeat;
+    margin-bottom: auto;
 }
 
 #mob-about-contributors-title {
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
-    margin-bottom: 10px;
+    margin-bottom: 8%;
     text-shadow: none;
     font-weight: bold;
 }
@@ -101,7 +102,7 @@
 #mob-about-contributors-subtitle {
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
-    padding-bottom: 10%;
+    padding-bottom: 50px;
     padding-top:2%;
     font-weight: 400;
     text-shadow: none;
@@ -507,11 +508,23 @@
     margin-left: 5.7%;
 }
 
+.mob-about-section-text-container-2 {
+    border-left: 1px solid #fefefe;
+    margin-left: 5.7%;
+}
+
 #mobile-about-page .about-section-container {
     display: inline-block;
     padding-left: 5vw;
     padding-right: 5vw;
     padding-bottom: 7vw;
+}
+
+#mobile-about-page .about-section-container-2 {
+    display: inline-block;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 5vw;
 }
 
 #mobile-about-page #about-page-first-third {
