@@ -18,13 +18,19 @@ button {
     text-align: left;
     border:#1F242D;
     width: 100%;
-    transition: 0.3s
+    cursor: pointer;
+    outline: none;
 }
 
 button:hover{
-    background-color: white;
-    color: white;
+    opacity: 0.5;
+    
 }
+
+button:active{
+    transform: translateY(4px);
+} 
+
 
 /* Body */
 body {
