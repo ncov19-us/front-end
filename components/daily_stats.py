@@ -17,7 +17,7 @@ def get_daily_stats(state="US") -> Dict:
 
     :return: :Dict: stats
     """
-    
+
     url = NCOV19_API + "stats"
     tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
@@ -41,7 +41,7 @@ def get_daily_stats(state="US") -> Dict:
         }
         return stats
 
-    data = response.json()['message']
+    data = response.json()["message"]
     # print(data)
     try:
         tested = data["tested"]
@@ -54,7 +54,9 @@ def get_daily_stats(state="US") -> Dict:
     # print(tested, confirmed, todays_confirmed, deaths, todays_deaths)
 
     todays_death_rate = round(safe_div(deaths, confirmed) * 100, 2)
-    yesterdays_death_rate = round(safe_div(deaths-todays_deaths, confirmed-todays_confirmed) * 100, 2)
+    yesterdays_death_rate = round(
+        safe_div(deaths - todays_deaths, confirmed - todays_confirmed) * 100, 2
+    )
     death_rate_change = todays_death_rate - yesterdays_death_rate
 
     stats = {
@@ -80,7 +82,7 @@ def daily_stats(state="US") -> List[dbc.Col]:
     """
     # 1. Fetch Stats
     # print(STATES_COORD[state]['stateAbbr'])
-    stats = get_daily_stats(STATES_COORD[state]['stateAbbr'])
+    stats = get_daily_stats(STATES_COORD[state]["stateAbbr"])
 
     # print("Desktop Site Stats ---> ", stats)
     # print(stats)
@@ -97,7 +99,7 @@ def daily_stats(state="US") -> List[dbc.Col]:
                                 " x", className=f"top-bar-perc-change-{key.lower()}"
                             ),
                             html.H1(value, className=f"top-bar-value-{key.lower()}"),
-                            html.P(f"{key}", className=f"card-text"),
+                            html.P(f"{key}", className="card-text"),
                         ],
                     ),
                     className=f"top-bar-card-{key.lower()}",
