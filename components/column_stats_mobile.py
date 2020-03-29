@@ -27,8 +27,8 @@ except Exception as ex:
 STATES = list(set(data["State Name"].to_list()))
 
 
-@cache.memoize(timeout=600)
-def states_confirmed_stats() -> dbc.ListGroup:
+# @cache.memoize(timeout=600)
+def mobile_states_confirmed_stats() -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
         for the whole US
@@ -54,7 +54,7 @@ def states_confirmed_stats() -> dbc.ListGroup:
                             ]
                         ),
                         n_clicks=0,
-                        id=f"states-confirmed-{key}",
+                        id=f"mobile-states-confirmed-{key}",
                         className="states-stats-confirmed-list-txt",
                     ),
                 ],
@@ -71,8 +71,8 @@ def states_confirmed_stats() -> dbc.ListGroup:
     return list_group
 
 
-@cache.memoize(timeout=600)
-def states_deaths_stats() -> dbc.ListGroup:
+# @cache.memoize(timeout=600)
+def mobile_states_deaths_stats() -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
         for the whole US
