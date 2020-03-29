@@ -6,7 +6,5 @@ from .scatter_mapbox import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from .twitter_feed import twitter_feed
 from .daily_stats import daily_stats
 from .daily_stats_mobile import daily_stats_mobile
-from .column_stats import (
-    states_confirmed_stats,
-    states_deaths_stats,
-)
+from .column_stats import states_confirmed_stats, states_deaths_stats
+from .column_stats_mobile import mobile_states_confirmed_stats, mobile_states_deaths_stats
