@@ -21,16 +21,13 @@ def get_daily_stats_mobile(state="US") -> Dict:
     
     url = NCOV19_API + "stats"
     tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
-    # print(f"get_daily_stats_mobile state {state}")
-    # print(state)
+
     try:
         if state == "US":
             response = requests.get(url=url)
         else:
-            payload = json.dumps({"state": f"{str(state)}"})
-            # print(payload)
+            payload = json.dumps({"state": state})
             response = requests.post(url=url, data=payload)
-            # print(response)
     except:
         print("[ERROR] get_daily_stats error accessing ncov19.us API")
 
@@ -46,25 +43,24 @@ def get_daily_stats_mobile(state="US") -> Dict:
         return stats
 
     data = response.json()['message']
-
     try:
         tested = data["tested"]
         confirmed = data["confirmed"]
-        # todays_confirmed = data["todays_confirmed"]
-        todays_confirmed = 0
+        todays_confirmed = data["todays_confirmed"]
         deaths = data["deaths"]
         todays_deaths = data["todays_deaths"]
     except:
         tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
+    todays_death_rate = round(safe_div(deaths, confirmed) * 100, 2)
+    yesterdays_death_rate = round(safe_div(deaths-todays_deaths, confirmed-todays_confirmed) * 100, 2)
+    death_rate_change = todays_death_rate - yesterdays_death_rate
+
     stats = {
         "Tested": tested,
         "Confirmed": [confirmed, todays_confirmed],
         "Deaths": [deaths, todays_deaths],
-        "Death Rate": [
-            f"{round(safe_div(deaths, confirmed) * 100, 2)}%",
-            f"{round(safe_div(todays_deaths, todays_confirmed) * 100, 2)}%",
-        ]
+        "Death Rate": [todays_death_rate, death_rate_change],
     }
 
     del data
@@ -90,21 +86,7 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
     # items and values of the stats pulled from the API.
     cards = []
     for key, value in stats.items():
-        if key not in ["Tested", "Recovered"]:
-            card = dbc.ListGroupItem(
-                [
-                    html.P(
-                        f"+ {value[1]} in past 24h",
-                        className=f"mobile-top-bar-perc-change-{key.lower()}",
-                    ),
-                    html.H1(value[0], className=f"mobile-top-bar-value-{key.lower()}"),
-                    html.P(f"{key}", className="mobile-card-text"),
-                ],
-                className=f"mobile-top-bar-card-{key.lower()}",
-            )
-
-        else:
-            # card = dbc.Row(
+        if key == "Tested":
             card = dbc.ListGroupItem(
                 [
                     html.P(" .", className=f"mobile-top-bar-perc-change-{key.lower()}"),
@@ -113,7 +95,31 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
                 ],
                 className=f"mobile-top-bar-card-{key.lower()}",
             )
-
+        elif key == "Death Rate":
+            card = dbc.ListGroupItem(
+                [
+                    html.P(
+                        f" {float(value[1]):+0.2f}% change",
+                        className=f"mobile-top-bar-perc-change-{key.lower()}",
+                    ),
+                    html.H1(value[0], className=f"mobile-top-bar-value-{key.lower()}"),
+                    html.P(f"{key}", className="mobile-card-text"),
+                ],
+                className=f"mobile-top-bar-card-{key.lower()}",
+            )
+        else:
+            card = dbc.ListGroupItem(
+                [
+                    html.P(
+                        f"+ {value[1]} new",
+                        className=f"mobile-top-bar-perc-change-{key.lower()}",
+                    ),
+                    html.H1(value[0], className=f"mobile-top-bar-value-{key.lower()}"),
+                    html.P(f"{key}", className="mobile-card-text"),
+                ],
+                className=f"mobile-top-bar-card-{key.lower()}",
+            )
+            
         cards.append(card)
 
     cards = dbc.ListGroup(cards)
