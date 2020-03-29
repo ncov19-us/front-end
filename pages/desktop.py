@@ -127,7 +127,7 @@ stats_tabs = dbc.Card(
                     colors={"border": None, "primary": None, "background": None},
                 ),
                 html.P(
-                    "Last Updated 3/20/2020 16:50",
+                    "Last Updated 3/28/2020 12:50", # last updated desktop
                     className="right-tabs-last-updated-text",
                 ),
             ],
@@ -252,8 +252,12 @@ desktop_body = [
                                         dbc.CardBody(
                                             [
                                                 html.Div(
-                                                    "US Confirmed Cases",
-                                                    className="top-bottom-left-chart-title",
+                                                    "US COVID-19 Timeline",
+                                                    className="top-bottom-left-chart-h1-title",
+                                                ),
+                                                html.Div(
+                                                    "Confirmed Cases and Deaths",
+                                                    className="top-bottom-left-chart-h2-title",
                                                 ),
                                                 html.Div(
                                                     dcc.Graph(
@@ -275,8 +279,12 @@ desktop_body = [
                                         dbc.CardBody(
                                             [
                                                 html.Div(
-                                                    "Infection Trajectory Since 200 Cases",
-                                                    className="top-bottom-right-chart-title",
+                                                    "Infection Trajectory",
+                                                    className="top-bottom-right-chart-h1-title",
+                                                ),
+                                                html.Div(
+                                                    "Days Since 200 Cases",
+                                                    className="top-bottom-right-chart-h2-title",
                                                 ),
                                                 html.Div(
                                                     dcc.Loading(

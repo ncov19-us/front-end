@@ -50,6 +50,13 @@ def confirmed_scatter_mapbox(state="US"):
     data["State Name"] = data["State Name"].str.title()
     data["County Name"] = data["County Name"].str.title()
 
+    # data["log_confirmed"] = np.log(data["Confirmed"] + 0.1 ** 10)
+    # data["log_confirmed"] = (data["Confirmed"] - data["Confirmed"].min()) / (
+    #    data["Confirmed"].max() - data["Confirmed"].min()
+    # )
+    # normalized_df=(df-df.min())/(df.max()-df.min())#
+    # set lat/long
+
     color_scale = [
         "#FA9090",
         "#F77A7A",
@@ -67,7 +74,7 @@ def confirmed_scatter_mapbox(state="US"):
         "#A90000",
         "#9E0000",
         "#920000",
-        "#870000",
+        "#870000"
     ]
 
     # Scaled the data exponentially to show smaller values.

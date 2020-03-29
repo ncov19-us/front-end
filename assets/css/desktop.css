@@ -200,7 +200,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 #about-page-first-third  {
-    background-color: #262a32;
+    background-color: #19202A;
     color: #F4F4F4;
     margin-right: 0;
     padding-top: 100px;
@@ -495,11 +495,17 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     /* margin-bottom: 1%; */
 }
 
-.top-bottom-left-chart-title, .top-bottom-right-chart-title {
+.top-bottom-left-chart-h1-title, .top-bottom-right-chart-h1-title {
     font-size: 1.2rem;
     color: #F4F4F4;
     max-width: 100%;
-    margin-bottom: 5%;
+}
+
+.top-bottom-left-chart-h2-title, .top-bottom-right-chart-h2-title {
+    font-size: .75rem;
+    color: #F4F4F4;
+    max-width: 100%;
+    margin-bottom: 8%;
 }
 
 .card-header-tabs{
@@ -620,6 +626,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     height: 100%;
     /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
 }
+ 
 
 
 .right-col-news-feed-content.col-2 {
@@ -634,6 +641,13 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .left-col-twitter-feed-content.col-2 .list-group-item {
     background-color: none
 }
+
+
+.left-col-twitter-feed-content .card-body {
+    height: calc(68vh + 74px + 32px) !important;
+    overflow: scroll;
+    padding-bottom: 0;
+}  
 
 /* cards inside the sidebar for tweets and news */
 
@@ -700,13 +714,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 
-
-/* .left-col-twitter-feed-content.col-2.list-group-item:hover {
-    color: rgb(0, 0, 0) !important;
-    text-decoration: none;
-    background-color: rebeccapurple;
-} */
-
 .tweet-item {
     padding: 15px;
     margin-bottom: 1rem;
@@ -746,11 +753,6 @@ p.tweet-dt {
     padding-bottom: 12px;
 }
 
-/* .tweet-item.list-group-item a:hover, .news-item.list-group-item a:hover {
-    text-decoration: none;
-    background: rgba(1, 9, 21, 0.83);
-} */
-
 
 .jsx-1990498210.tab.left-twitter-tab.tab--selected {
     border-top-left-radius: 0.3rem;
@@ -771,7 +773,6 @@ p.tweet-dt {
 }
 
 
-
 /* 👉👉👉👉 Right Detailed List Sidebar */
 
 #stats-content {
@@ -779,7 +780,9 @@ p.tweet-dt {
 }
 
 .right-col-stats-content.col-2 .card-body {
+    height: calc(68vh + 74px) !important;
     padding-top: 0rem;
+    padding-bottom:0;
 }
 
 .right-col-news-feed-content {
@@ -792,10 +795,10 @@ p.tweet-dt {
 }
 
 .right-col-stats-content .col-2 .card .card-body {
-    /* height: calc(64vh + 74px) !important; */
-    height: calc(60vh) !important;
+    /* height: calc(60vh) !important; */
     overflow: scroll;
     padding-top: 0;
+    
 }
 .right-col-stats-content .col-2 .card .card-body::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
@@ -827,7 +830,7 @@ p.tweet-dt {
 /* overflow disable scroll bar */
 .right-col-feed-cards-text {
     overflow-y: scroll;
-    height: 73.5vh;
+    height: 76vh;
     scroll-behavior: smooth;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */

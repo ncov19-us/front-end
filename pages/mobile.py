@@ -191,7 +191,7 @@ stats_tabs = dbc.Card(
                     style=tabs_styles,
                     colors={"border": None, "primary": None, "background": None},
                 ),
-                html.P("Last Updated 3/20/2020 16:50", 
+                html.P("Last Updated 3/28/2020 12:50", # last updated mobile
                 className="mobile-right-tabs-last-updated-text")
             ],
             className="mobile-right-tabs"
@@ -246,8 +246,12 @@ mobile_body = [
             dbc.CardBody(
                 [
                     html.Div(
-                        "US Confirmed Cases",
-                        className="mobile-top-bottom-left-chart-title",
+                        "US COVID-19 Timeline",
+                        className="mobile-top-bottom-left-chart-h1-title",
+                    ),
+                    html.Div(
+                        "Confirmed Cases and Deaths",
+                        className="mobile-top-bottom-left-chart-h2-title",
                     ),
                     dcc.Graph(
                         figure=confirmed_cases_chart(),
@@ -266,8 +270,13 @@ mobile_body = [
                 [
                     html.Div(
                         "Infection Trajectory",
-                        className="mobile-top-bottom-right-chart-title",
+                        className="mobile-top-bottom-right-chart-h1-title",
                     ),
+                    html.Div(
+                        "Days Since 200 Cases",
+                        className="mobile-top-bottom-right-chart-h2-title",
+                    ),
+                    
                     dcc.Graph(
                         figure=infection_trajectory_chart(),
                         config={"scrollZoom": False,},
