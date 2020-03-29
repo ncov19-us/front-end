@@ -792,7 +792,8 @@ p.tweet-dt {
 }
 
 .right-col-stats-content .col-2 .card .card-body {
-    height: calc(64vh + 74px) !important;
+    /* height: calc(64vh + 74px) !important; */
+    height: calc(60vh) !important;
     overflow: scroll;
     padding-top: 0;
 }
