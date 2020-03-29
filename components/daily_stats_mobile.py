@@ -102,7 +102,7 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
                         f" {float(value[1]):+0.2f}% change",
                         className=f"mobile-top-bar-perc-change-{key.lower()}",
                     ),
-                    html.H1(value[0], className=f"mobile-top-bar-value-{key.lower()}"),
+                    html.H1(f"{value[0]}%", className=f"mobile-top-bar-value-{key.lower()}"),
                     html.P(f"{key}", className="mobile-card-text"),
                 ],
                 className=f"mobile-top-bar-card-{key.lower()}",
