@@ -626,6 +626,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     height: 100%;
     /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
 }
+ 
 
 
 .right-col-news-feed-content.col-2 {
@@ -640,6 +641,13 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .left-col-twitter-feed-content.col-2 .list-group-item {
     background-color: none
 }
+
+
+.left-col-twitter-feed-content .card-body {
+    height: calc(68vh + 74px + 32px) !important;
+    overflow: scroll;
+    padding-bottom: 0;
+}  
 
 /* cards inside the sidebar for tweets and news */
 
@@ -706,13 +714,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 
-
-/* .left-col-twitter-feed-content.col-2.list-group-item:hover {
-    color: rgb(0, 0, 0) !important;
-    text-decoration: none;
-    background-color: rebeccapurple;
-} */
-
 .tweet-item {
     padding: 15px;
     margin-bottom: 1rem;
@@ -778,13 +779,10 @@ p.tweet-dt {
     margin-bottom: 0;
 }
 
-/* #button:hover {
-    background-color: "#FFFFFF";
-    z-index: 29485204895934759374;
-} */
-
 .right-col-stats-content.col-2 .card-body {
+    height: calc(68vh + 74px) !important;
     padding-top: 0rem;
+    padding-bottom:0;
 }
 
 .right-col-news-feed-content {
@@ -797,10 +795,10 @@ p.tweet-dt {
 }
 
 .right-col-stats-content .col-2 .card .card-body {
-    /* height: calc(64vh + 74px) !important; */
-    height: calc(60vh) !important;
+    /* height: calc(60vh) !important; */
     overflow: scroll;
     padding-top: 0;
+    
 }
 .right-col-stats-content .col-2 .card .card-body::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */

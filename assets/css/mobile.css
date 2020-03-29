@@ -6,13 +6,12 @@
 
 .mobile-us-map-content {
     margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
-.mobile-us-map-content .card-body {
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-top: 0;
+.mobile-us-map-content .card .card-body {
+    padding: 0;
     background-color: #010915;
 }
 
@@ -30,13 +29,21 @@
     padding: 1rem;
 }
 
-.mobile-chart .card-body {
-    background-color: #010915;
-} 
-
 .mobile-chart {
     margin-top: 2rem;
 }
+
+.mobile-chart .card-body {
+    background-color: #010915;
+    margin-left: 1rem;
+    margin-right: 1rem;
+} 
+
+.mobile-chart .card {
+    background-color: #010915;
+    margin-left: 1rem;
+    margin-right: 1rem;
+} 
 
 
 .mobile-right-tabs-last-updated-text {
@@ -180,7 +187,7 @@
 .mobile-top-bar-content {
     margin-left: 1rem;
     margin-right: 1rem;
-    margin-top: 3.1rem;
+    margin-top: 2.9rem;
 }
 
 .mobile-top-bar-content .list-group {
@@ -355,12 +362,18 @@
 
 /* 📱 Mobile Chart */
 
-.mobile-top-bottom-left-chart-title, .mobile-top-bottom-right-chart-title {
+.mobile-top-bottom-left-chart-h1-title, .mobile-top-bottom-right-chart-h1-title {
     font-size: 1.25rem;
     font-weight: normal;
     color: #F4F4F4;
     max-width: 100%;
     padding-left: .2rem;
+
+}
+
+.mobile-top-bottom-left-chart-h2-title, .mobile-top-bottom-right-chart-h2-title {
+    font-size: 0.75rem;
+    padding-left: .35rem;
     padding-bottom: 1rem;
 }
 
@@ -426,10 +439,7 @@
     overflow: scroll;
 }
 
-.left-col-twitter-feed-content .card-body {
-    height: calc(64vh + 74px + 32px) !important;
-    overflow: scroll;
-}   
+
 
 .mobile-stats-card-body {
     height: 60vh;
