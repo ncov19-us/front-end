@@ -21,14 +21,14 @@ def get_daily_stats(state="US") -> Dict:
     url = NCOV19_API + "stats"
     tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
-    # try:
-    if state == "US":
-        response = requests.get(url=url)
-    else:
-        payload = json.dumps({"state": state})
-        response = requests.post(url=url, data=payload)
-    # except:
-    #     print("[ERROR] get_daily_stats error accessing ncov19.us API")
+    try:
+        if state == "US":
+            response = requests.get(url=url)
+        else:
+            payload = json.dumps({"state": state})
+            response = requests.post(url=url, data=payload)
+    except:
+        print("[ERROR] get_daily_stats error accessing ncov19.us API")
 
     # return all zeros if response statsus code is not 200
     if response.status_code != 200:
@@ -42,16 +42,16 @@ def get_daily_stats(state="US") -> Dict:
         return stats
 
     data = response.json()['message']
-
+    # print(data)
     try:
         tested = data["tested"]
         confirmed = data["confirmed"]
-        # todays_confirmed = data["todays_confirmed"]
-        todays_confirmed = 0
+        todays_confirmed = data["todays_confirmed"]
         deaths = data["deaths"]
         todays_deaths = data["todays_deaths"]
     except:
         tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
+    # print(tested, confirmed, todays_confirmed, deaths, todays_deaths)
 
     stats = {
         "Tested": tested,
@@ -68,7 +68,7 @@ def get_daily_stats(state="US") -> Dict:
     return stats
 
 
-@cache.memoize(timeout=600)
+# @cache.memoize(timeout=600)
 def daily_stats(state="US") -> List[dbc.Col]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed ,
      and death cases for the top row.
@@ -87,13 +87,30 @@ def daily_stats(state="US") -> List[dbc.Col]:
     # items and values of the stats pulled from the API.
     cards = []
     for key, value in stats.items():
-        if key not in ["Tested", "Recovered"]:
+        if key == "Tested":
             card = dbc.Col(
                 dbc.Card(
                     dbc.CardBody(
                         [
                             html.P(
-                                f"+ {value[1]} new",
+                                " x", className=f"top-bar-perc-change-{key.lower()}"
+                            ),
+                            html.H1(value, className=f"top-bar-value-{key.lower()}"),
+                            html.P(f"{key}", className=f"card-text"),
+                        ],
+                    ),
+                    className=f"top-bar-card-{key.lower()}",
+                ),
+                className="top-bar-card-body",
+                width=3,
+            )
+        elif key == "Death Rate":
+            card = dbc.Col(
+                dbc.Card(
+                    dbc.CardBody(
+                        [
+                            html.P(
+                                f"+ {value[1]}% change",
                                 className=f"top-bar-perc-change-{key.lower()}",
                             ),
                             html.H1(value[0], className=f"top-bar-value-{key.lower()}"),
@@ -111,17 +128,17 @@ def daily_stats(state="US") -> List[dbc.Col]:
                     dbc.CardBody(
                         [
                             html.P(
-                                " x", className=f"top-bar-perc-change-{key.lower()}"
+                                f"+ {value[1]} new",
+                                className=f"top-bar-perc-change-{key.lower()}",
                             ),
-                            html.H1(value, className=f"top-bar-value-{key.lower()}"),
-                            html.P(f"{key}", className=f"card-text"),
-                        ],
-                        # [html.H1(value), html.P(f"{key}", className="card-text")]
+                            html.H1(value[0], className=f"top-bar-value-{key.lower()}"),
+                            html.P(f"{key}", className="card-text"),
+                        ]
                     ),
                     className=f"top-bar-card-{key.lower()}",
                 ),
-                className="top-bar-card-body",
                 width=3,
+                className="top-bar-card-body",
             )
 
         cards.append(card)
