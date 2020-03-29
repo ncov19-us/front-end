@@ -11,6 +11,7 @@ from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import (
     states_confirmed_stats,
     states_deaths_stats,
+    last_updated
 )
 
 import dash
@@ -127,7 +128,7 @@ stats_tabs = dbc.Card(
                     colors={"border": None, "primary": None, "background": None},
                 ),
                 html.P(
-                    "Last Updated 3/28/2020 12:50", # last updated desktop
+                    f"Last Updated {last_updated.upper()}", # last updated desktop
                     className="right-tabs-last-updated-text",
                 ),
             ],

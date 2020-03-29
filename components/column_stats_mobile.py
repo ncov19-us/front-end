@@ -18,6 +18,7 @@ try:
 
     death = data.groupby(["State Name"])["Death"].sum()
     death = death.sort_values(ascending=False).to_dict()
+    mobile_last_updated = data['Last Update'][0]
 
 except Exception as ex:
     print(f"[ERROR]: {ex}")
