@@ -140,7 +140,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .about-page-title {
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
-    padding-left: 125px;
+    padding-left: 10%;
     margin-bottom: 50px;
     margin-top: 0;
     font-weight: bold;
@@ -186,10 +186,23 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     justify-content: center;
     padding-left: 5vw;
     padding-right: 5vw;
-    padding-bottom: 75px;
+    padding-bottom: 100px;
+}
+
+.about-section-container-2 {
+    display: flex;
+    justify-content: center;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 90px;
 }
 
 #about-page-second-third .about-section-container {
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+#about-page-second-third .about-section-container-2 {
     padding-left: 5vw;
     padding-right: 5vw;
 }
@@ -203,7 +216,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     background-color: #19202A;
     color: #F4F4F4;
     margin-right: 0;
-    padding-top: 100px;
+    padding-top: 120px;
 }
 
 #about-page-second-third  {
@@ -242,12 +255,37 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .about-source {
     text-align: right;
     font-size: 0.3rem;
+    color: #F4F4F4;
+}
+
+.web-about-source {
+    text-align: right;
+    font-size: 0.3rem;
+    color: #F4F4F4;
+}
+
+.about-sources {
+    padding-left: 7vw;
+    padding-top: 10%;
+}
+
+.web-about-sources {
+    padding-left: 7vw;
+    margin-bottom: 1%;
+    /* padding-top: %; */
+}
+
+.about-source-2 {
+    text-align: right;
+    font-size: 0.3rem;
+    color: #F4F4F4;
+    margin-bottom: 3.5%
 }
 
 #about-contributors-title {
     font-family: 'Roboto', sans-serif;
     font-size: 2.1rem;
-    margin-bottom: 10px;
+    margin-bottom: 3%;
     text-shadow: none;
     font-weight: bold;
 }
@@ -291,6 +329,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     height: 21px;
     background-size: 100%;
     background-repeat: no-repeat;
+    margin-bottom: auto;
 }
 
 .about-contributor-github-icon {

@@ -18,7 +18,7 @@ about_body = [
                         html.P(
                             "Coronavirus disease (COVID-19) is a respiratory illness which spreads from person to person by droplets from sneezes and coughs. Symptoms can range in severity and they often include a cough, fever, and/or shortness of breath. COVID-19 is caused by a new type of coronavirus that was first identified in 2019 in Wuhan, China."
                         , className="about-section-text"),
-                        html.Div("Source: Center for Disease Control", className="about-source",),
+                        # html.Div("Source: Center for Disease Control", className="about-source",),
                     ], className="about-section-text-container")
                 ], className="about-section"),
 
@@ -34,7 +34,7 @@ about_body = [
                         html.P(
                             "While there is currently no vaccine or cure for coronavirus disease, proper hygiene is a proven way to avoid catching or spreading COVID-19. Social distancing - avoiding crowds and staying 6+ feet from others in public - has been used to reduce the spread of the disease. Wash your hands with soap and water for at least 20 seconds, especially when in public, and avoid touching your face when your hands aren’t clean."
                         , className="about-section-text"),
-                        html.Div("Source: Johns Hopkins Medicine", className="about-source",),
+                        # html.Div("Source: Johns Hopkins Medicine", className="about-source",),
                     ], className="about-section-text-container")
                 ], className="about-section"),
 
@@ -51,7 +51,7 @@ about_body = [
                         html.P(
                             "While anyone can be diagnosed with coronavirus disease, some people tend to be more at-risk than others. Individuals in the following groups are recommended to take extra precaution to avoid contact with COVID-19: aged 65 years or older, people with weakened immune systems (immunocompromised), living in a nursing home/care facility, other high-risk conditions such as:\n smokers, severe asthma, or chronic lung diseases, heart conditions and/or heart conditions, severe obesity (body mass index or BMI > 40), pregnancy has not shown to increase risk, but pregnant women are, known to be at risk for viral illness and should be monitored"
                         , className="about-section-text"),
-                        html.Div("Source: NC Department of Health and Human Services", className="about-source",),
+                        # html.Div("Source: NC Department of Health and Human Services", className="about-source",),
                     ], className="about-section-text-container")
                 ], className="about-section"),
 
@@ -67,7 +67,7 @@ about_body = [
                         html.P(
                             "Human-to-human spread is the most common way that people catch COVID-19. The virus is transmitted by droplets from coughs & sneezes that collect on public surfaces and can last up 72 hours. For this reason, the virus is frequently spread when people touch their hands to their face, and proper hygiene & social distancing measures are encouraged to decrease the risk of spreading the virus further."
                         , className="about-section-text"),
-                        html.Div("Source: Center for Disease Control", className="about-source",),
+                        # html.Div("Source: Center for Disease Control", className="about-source",),
                     ], className="about-section-text-container")
                 ], className="about-section"),
 
@@ -84,7 +84,7 @@ about_body = [
                         html.P(
                             "Coronavirus disease can look differently for different people. The most common symptoms are fever, a ‘dry’ cough, and shortness of breath, however some cases of COVID-19 have developed without any obvious symptoms at first. Be sure to get immediate medical assistance if you show any of these emergency symptoms: trouble breathing, persistent pain/pressure in the chest, or bluish lips/face."
                         , className="about-section-text"),
-                        html.Div("Source: Center for Disease Control", className="about-source",),
+                        # html.Div("Source: Center for Disease Control", className="about-source",),
                     ], className="about-section-text-container")
                 ], className="about-section"),
 
@@ -101,14 +101,18 @@ about_body = [
                             "Social distancing is highly encouraged for anyone suffering from coronavirus disease. This means staying home for the duration of your illness (but visit a clinic/hospital if you’re experiencing a medical emergency). You can receive medical advice and “telecare” over the phone or via video conferencing software (Skype, Zoom, etc). Be sure to wear mask if you do go out in public, and frequently wash your hands with soap & water while in/after leaving public places."
                         , className="about-section-text"),
                        
-                        html.Div("Source: Johns Hopkins Medicine", className="about-source",),
+                        # html.Div("Source: Johns Hopkins Medicine", className="about-source",),
                         
                     ], className="about-section-text-container")
                 ], className="about-section"),
 
-            ], className="about-section-container")
+            ], className="about-section-container-2")
 
         ], className="about-page-third", id="about-page-first-third"),
+
+        html.Div([
+            html.Div("Sources: Center for Disease Control, Johns Hopkins Medicine, NC Department of Health and Human Services", className="web-about-source",),
+        ], className="web-about-sources"),
 
         # html.Div([
         #     html.H2("Where does the data come from?", className="about-page-title"),
@@ -148,7 +152,7 @@ about_body = [
         html.Div([
             html.H3("Contributors", id="about-contributors-title"),
 
-            html.H4("Add something about reaching out or something", id="about-contributors-subtitle"),
+            # html.H4("Add something about reaching out or something", id="about-contributors-subtitle"),
 
             html.Div([
                     html.A(href="https://github.com/leehanchung", className="about-contributor-github-icon about-contributor-social-icon"),
