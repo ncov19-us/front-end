@@ -17,7 +17,8 @@ button {
     margin-bottom: 1rem;
     text-align: left;
     border:#1F242D;
-    width: 100%
+    width: 100%;
+    transition: 0.3s
 }
 
 button:hover{
