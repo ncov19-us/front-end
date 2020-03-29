@@ -9,7 +9,7 @@ from components import daily_stats_mobile
 from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
-from components import mobile_states_confirmed_stats, mobile_states_deaths_stats
+from components import mobile_states_confirmed_stats, mobile_states_deaths_stats, mobile_last_updated
 
 from components.column_stats import STATES
 
@@ -191,7 +191,7 @@ stats_tabs = dbc.Card(
                     style=tabs_styles,
                     colors={"border": None, "primary": None, "background": None},
                 ),
-                html.P("Last Updated 3/28/2020 12:50", # last updated mobile
+                html.P(f"Last Updated {mobile_last_updated.upper()}", # last updated mobile
                 className="mobile-right-tabs-last-updated-text")
             ],
             className="mobile-right-tabs"

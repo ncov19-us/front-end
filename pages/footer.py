@@ -10,8 +10,9 @@ footer =dbc.Row(
                 """
                     This Website relies upon publicly available data from various sources, including
                     and not limited to U.S. Federal, State, and local governments, WHO,
-                    and John Hopkins CSSE. News feeds obtained from Twitter and NewsAPI. The content of
-                    this Website is for information purposes and makes no guarantee to be accurate.""",
+                    and John Hopkins CSSE. News feeds obtained from Twitter and NewsAPI. The contents of
+                    this Website are for information purposes only and are not guaranteed to be accurate.  
+                    Reliance on this Website for medical guidance is strictly prohibited.""",
                 className="footer-disclaimer-text",
             ),
             className="footer-disclaimer-content",

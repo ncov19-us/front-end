@@ -668,6 +668,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
  
 
 
+
 .right-col-news-feed-content.col-2 {
     margin-left: 0.3rem;
 }
@@ -954,7 +955,7 @@ p.states-stats-deaths-list-txt {
 }
 
 .footer-disclaimer-text {
-    width: 57rem;
+    width: 90%;
 }
 
 .footer-social-copyright-content.col-2 {
@@ -981,4 +982,19 @@ p.states-stats-deaths-list-txt {
     justify-content: flex-end;
     padding-bottom: 8px;
     padding-right: 45px;
+}
+
+
+.news-item:hover {
+    color: rgb(199, 199, 199) !important;
+    text-decoration: none !important;
+}
+
+.tweet-item:hover {
+    color: rgb(199, 199, 199) !important;
+    text-decoration: none !important;
+}
+
+.tweet-item a:hover {
+    text-decoration: none !important;
 }
