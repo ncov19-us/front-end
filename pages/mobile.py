@@ -228,7 +228,11 @@ mobile_body = [
     html.Div(
         id="mobile-intermediate-value", children="US", style={"display": "none"}
     ),  # Hidden div inside the app that stores the intermediate value
-    html.Div(daily_stats_mobile(), className="mobile-top-bar-content"),
+    html.Div(
+        # daily_stats_mobile()
+        id="mobile-daily-stats",
+        className="mobile-top-bar-content"
+    ),
     html.Div(
         mobile_us_maps_tabs,
         className="mobile-us-map-content",
@@ -281,6 +285,24 @@ mobile_body = [
         className="mobile-feed-content",
     ),
 ]
+
+########################################################################
+#
+# Top bar callback
+#
+########################################################################
+@app.callback([Output("mobile-daily-stats", "children")], 
+              [Input("mobile-intermediate-value", "children")])
+def daily_stats_mobile_callback(state):
+    # print(f'\n\nDaily_stats_mobile_callback for {state}')
+    cards = daily_stats_mobile(state) 
+    return [cards]
+
+########################################################################
+#
+# State stats column buttons callback
+#
+########################################################################
 
 @app.callback(
     [Output("mobile-intermediate-value", "children")],

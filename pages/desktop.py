@@ -327,7 +327,6 @@ desktop_body = [
 @app.callback([Output("daily-stats", "children")], 
               [Input("intermediate-value", "children")])
 def daily_stats_callback(state):
-    print(state)
     cards = daily_stats(state) 
     return [cards]
 

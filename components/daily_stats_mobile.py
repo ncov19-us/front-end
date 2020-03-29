@@ -1,16 +1,18 @@
+import json
 import requests
 from typing import List, Dict
-from utils.settings import NCOV19_API, STATES_COORD
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
+
+from utils.settings import NCOV19_API, STATES_COORD
 
 
 def safe_div(x, y):
     return 0 if y == 0 else x / y
 
 
-def get_daily_stats(state="US") -> Dict:
+def get_daily_stats_mobile(state="US") -> Dict:
     """Get daily stats from ncov19.us API, parse and return as a dictionary
     for the daily stats mobile.
 
@@ -19,13 +21,16 @@ def get_daily_stats(state="US") -> Dict:
     
     url = NCOV19_API + "stats"
     tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
-
+    # print(f"get_daily_stats_mobile state {state}")
+    # print(state)
     try:
         if state == "US":
             response = requests.get(url=url)
         else:
-            payload = json.dumps({"state": state})
+            payload = json.dumps({"state": f"{str(state)}"})
+            # print(payload)
             response = requests.post(url=url, data=payload)
+            # print(response)
     except:
         print("[ERROR] get_daily_stats error accessing ncov19.us API")
 
@@ -63,7 +68,7 @@ def get_daily_stats(state="US") -> Dict:
     }
 
     del data
-    
+
     return stats
 
 
@@ -77,8 +82,8 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
     :rtype: list of plotly dash bootstrap coomponent Col objects.
     """
     # 1. Fetch Stats
-    print(STATES_COORD[state]['stateAbbr'])
-    stats = get_daily_stats(STATES_COORD[state]['stateAbbr'])
+    # print(f"daily_stats_mobile for state {STATES_COORD[state]['stateAbbr']}")
+    stats = get_daily_stats_mobile(STATES_COORD[state]['stateAbbr'])
 
     # print("Mobile Site ---> ", stats)
     # 2. Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays

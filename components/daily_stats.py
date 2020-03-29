@@ -21,14 +21,14 @@ def get_daily_stats(state="US") -> Dict:
     url = NCOV19_API + "stats"
     tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
-    try:
-        if state == "US":
-            response = requests.get(url=url)
-        else:
-            payload = json.dumps({"state": state})
-            response = requests.post(url=url, data=payload)
-    except:
-        print("[ERROR] get_daily_stats error accessing ncov19.us API")
+    # try:
+    if state == "US":
+        response = requests.get(url=url)
+    else:
+        payload = json.dumps({"state": state})
+        response = requests.post(url=url, data=payload)
+    # except:
+    #     print("[ERROR] get_daily_stats error accessing ncov19.us API")
 
     # return all zeros if response statsus code is not 200
     if response.status_code != 200:
