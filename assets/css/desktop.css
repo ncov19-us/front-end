@@ -252,21 +252,12 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     margin-left: 50px;
 }
 
-.about-source {
-    text-align: right;
-    font-size: 0.3rem;
-    color: #F4F4F4;
-}
+
 
 .web-about-source {
     text-align: right;
-    font-size: 0.3rem;
+    font-size: .75rem;
     color: #F4F4F4;
-}
-
-.about-sources {
-    padding-left: 7vw;
-    padding-top: 10%;
 }
 
 .web-about-sources {
@@ -275,12 +266,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     /* padding-top: %; */
 }
 
-.about-source-2 {
-    text-align: right;
-    font-size: 0.3rem;
-    color: #F4F4F4;
-    margin-bottom: 3.5%
-}
 
 #about-contributors-title {
     font-family: 'Roboto', sans-serif;

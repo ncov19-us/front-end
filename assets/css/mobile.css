@@ -269,6 +269,25 @@
 }
 
 
+.about-sources {
+    padding-left: 7vw;
+    padding-top: 10%;
+}
+
+.about-source-2 {
+    text-align: right;
+    font-size: 0.75rem;
+    color: #F4F4F4;
+    margin-bottom: 3.5%
+}
+
+.about-source {
+    text-align: right;
+    font-size: 0.75rem;
+    color: #F4F4F4;
+}
+
+
 .mobile-top-bar-value-deaths {
     margin-top: -1rem;
     font-weight: 500;
