@@ -7,7 +7,7 @@ from app import cache
 from utils.settings import NCOV19_API
 
 
-# @cache.memoize(timeout=3600)
+@cache.memoize(timeout=3600)
 def infection_trajectory_chart(state=None) -> go.Figure:
     """Line chart data for the selected state.
 
@@ -43,6 +43,8 @@ def infection_trajectory_chart(state=None) -> go.Figure:
     merged = pd.concat([kr["South Korea"], it["Italy"], us["US"]], axis=1)
     merged = merged.reset_index()
     merged = merged.rename(columns={"index": "Days"})
+
+    del response, data, us, kr, it
 
     fig = go.Figure()
 
@@ -81,8 +83,6 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             hovertemplate=template,
         )
     )
-    # print(merged["US"].dropna().tail(1).index[0])
-    # print(merged["US"].dropna().tail(1))
     
     # annotations = []
     # annotations.append(dict(xref='paper',

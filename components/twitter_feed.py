@@ -8,6 +8,7 @@ from dateutil.parser import parse
 import json
 from utils.settings import STATES_COORD
 
+
 @cache.memoize(timeout=900)
 def twitter_feed(state="US") -> List[dbc.Card]:
     """Displays twitter feed on the left hand side of the display.
@@ -43,6 +44,8 @@ def twitter_feed(state="US") -> List[dbc.Card]:
                 "created_at": "2020-03-25T22:05:24",
             }
         ]
+
+    del response
 
     # 2020-03-19 triage. lots of empty list at the end of tweets, filtering them out
     # tweet["full_text"][:100]

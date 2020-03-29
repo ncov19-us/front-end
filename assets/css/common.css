@@ -1,0 +1,72 @@
+/************************ 💻Common 📱 Styling ************************/
+/*
+* ⚠️ ONLY PUT STYLING THAT APPLIED TO BOTH DESKTOP AND MOBILE SITE ⚠️
+*/
+
+
+/* Fonts */
+html {
+    font-family: Roboto, sans-serif;
+    letter-spacing: 0.01em;
+    font-style: normal;
+    color: #F3F3F3;
+
+}
+
+/* Buttons*/
+button {
+    background-color:#1F242D;
+    padding: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    border:#1F242D;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover{
+    opacity: 0.5;
+    
+}
+
+button:active{
+    transform: translateY(4px);
+} 
+
+
+/* Body */
+body {
+    background-color: #19202A;
+}
+
+.list-group-item {
+    padding: 0.5rem;
+    border-radius: 1rem;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    background-color: none;
+}
+
+/* Applies to all Cards 🎴 */
+.card-body {
+    background-color: #1F242D;
+    padding: 1rem;
+    border: none;
+    border-radius: .3rem;
+    /* box-shadow: 0px 5px rgba(0, 0, 0, 0.2); */
+}
+
+.card-text {
+    margin-top: -.6rem;
+    font-weight: normal;
+    text-align: center;
+}
+
+.card {
+    background-color: #1F242D;
+    border: none;
+    border-radius: .3rem;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+}
