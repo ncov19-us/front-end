@@ -22,9 +22,6 @@ def confirmed_cases_chart(state=None) -> go.Figure:
     data = data.rename(columns={"Confirmed": "Confirmed Cases"})
     data = data.tail(60)
 
-
-
-
     template_cases = "%{y} confirmed cases on %{x}<extra></extra>"
     template_deaths = "%{y} confirmed deaths on %{x}<extra></extra>"
 

@@ -13,6 +13,7 @@ try:
     data = response["message"]
     data = pd.read_json(data, orient="records")
     data["State Name"] = data["State Name"].str.title()
+    # print(data.dtypes)
     confirmed = data.groupby(["State Name"])["Confirmed"].sum()
     confirmed = confirmed.sort_values(ascending=False).to_dict()
 
