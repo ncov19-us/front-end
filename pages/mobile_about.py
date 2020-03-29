@@ -155,11 +155,11 @@ mobile_about_body = [
             # html.H4("Add something about reaching out or something", id="mob-about-contributors-subtitle"),
 
             html.Div([
-                    html.A(href="https://github.com/leehanchung", className="about-contributor-github-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://github.com/leehanchung", target="_blank", className="about-contributor-github-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://www.linkedin.com/in/hanchunglee/", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://www.linkedin.com/in/hanchunglee/", target="_blank", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://twitter.com/hanchunglee", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://twitter.com/hanchunglee", target="_blank", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
 
                 html.Div([
                         html.Div("Han Lee", className="mob-about-contributor-name"),
@@ -170,11 +170,11 @@ mobile_about_body = [
                 ], className="mob-about-page-contributor"),
 
                 html.Div([
-                    html.A(href="https://github.com/hurshd0", className="about-contributor-github-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://github.com/hurshd0", target="_blank", className="about-contributor-github-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://www.linkedin.com/in/hurshd/", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://www.linkedin.com/in/hurshd/", target="_blank", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://twitter.com/hurshd0", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://twitter.com/hurshd0", target="_blank", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
 
                 html.Div([
                         html.Div("Hursh Desai", className="mob-about-contributor-name"),
@@ -185,11 +185,11 @@ mobile_about_body = [
                 ], className="mob-about-page-contributor"),
 
                 html.Div([
-                    html.A(href="https://github.com/Turtled", className="about-contributor-github-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://github.com/Turtled", target="_blank", className="about-contributor-github-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://www.linkedin.com/in/daniel-firpo/", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://www.linkedin.com/in/daniel-firpo/", target="_blank", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://twitter.com/danielfirpo2", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://twitter.com/danielfirpo2", target="_blank", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
 
                 html.Div([
                         html.Div("Daniel Firpo", className="mob-about-contributor-name"),
@@ -200,11 +200,11 @@ mobile_about_body = [
                 ], className="mob-about-page-contributor"),
 
                 html.Div([
-                    html.A(href="https://github.com/alex-pakalniskis", className="about-contributor-github-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://github.com/alex-pakalniskis", target="_blank", className="about-contributor-github-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://www.linkedin.com/in/alexpakalniskis3/", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://www.linkedin.com/in/alexpakalniskis3/", target="_blank", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://twitter.com/AlexPakalniskis", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://twitter.com/AlexPakalniskis", target="_blank", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
 
                 html.Div([
                         html.Div("Alex Pakalniskis", className="mob-about-contributor-name"),
@@ -215,11 +215,11 @@ mobile_about_body = [
                 ], className="mob-about-page-contributor"),
 
                 html.Div([
-                    html.A(href="https://github.com/mchrupcala", className="about-contributor-github-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://github.com/mchrupcala", target="_blank", className="about-contributor-github-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://www.linkedin.com/in/michaelchrupcala/", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://www.linkedin.com/in/michaelchrupcala/", target="_blank", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://twitter.com/mikespellch                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     eck", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://twitter.com/mikespellcheck", target="_blank", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
 
                 html.Div([
                         html.Div("Michael Chrupcala", className="mob-about-contributor-name"),
@@ -230,11 +230,11 @@ mobile_about_body = [
                 ], className="mob-about-page-contributor"),
 
                 html.Div([
-                    html.A(href="https://github.com/ars394", className="about-contributor-github-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://github.com/ars394", target="_blank", className="about-contributor-github-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://www.linkedin.com/in/anishasunkerneni/", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://www.linkedin.com/in/anishasunkerneni/", target="_blank", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://twitter.com/youfoundanisha", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://twitter.com/youfoundanisha", target="_blank", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
 
                 html.Div([
                         html.Div("Anisha Sunkerneni", className="mob-about-contributor-name"),
@@ -245,11 +245,11 @@ mobile_about_body = [
                 ], className="mob-about-page-contributor"),
 
                 html.Div([
-                    html.A(href="https://github.com/elizabethts", className="about-contributor-github-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://github.com/elizabethts", target="_blank", className="about-contributor-github-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://www.linkedin.com/in/elizabethts/", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://www.linkedin.com/in/elizabethts/", target="_blank", className="about-contributor-linkedin-icon mob-about-contributor-social-icon"),
 
-                    html.A(href="https://twitter.com/elizabethts", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
+                    html.A(href="https://twitter.com/elizabethets", target="_blank", className="about-contributor-twitter-icon mob-about-contributor-social-icon"),
 
                 html.Div([
                         html.Div("Elizabeth Ter Sahakyan", className="mob-about-contributor-name"),
