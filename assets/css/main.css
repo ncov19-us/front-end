@@ -35,6 +35,8 @@ body {
 
 .mobile-us-map-content {
     margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .mobile-us-map-content .card-body {
@@ -65,6 +67,8 @@ body {
 
 .mobile-chart {
     margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 
@@ -948,11 +952,6 @@ p.tweet-dt {
     padding-bottom: 12px;
 }
 
-/* .tweet-item.list-group-item a:hover, .news-item.list-group-item a:hover {
-    text-decoration: none;
-    background: rgba(1, 9, 21, 0.83);
-} */
-
 
 .jsx-1990498210.tab.left-twitter-tab.tab--selected {
     border-top-left-radius: 0.3rem;
@@ -973,12 +972,16 @@ p.tweet-dt {
 }
 
 
-
 /* 👉👉👉👉 Right Detailed List Sidebar */
 
 #stats-content {
     margin-bottom: 0;
 }
+
+/* #button:hover {
+    background-color: "#FFFFFF";
+    z-index: 29485204895934759374;
+} */
 
 .right-col-stats-content.col-2 .card-body {
     padding-top: 0rem;
