@@ -9,8 +9,7 @@ from utils.settings import NCOV19_API, STATES_COORD
 
 
 def safe_div(x, y):
-    return 0 if y == 0 else x / y
-
+    return 0 if int(y) == 0 else int(x) / int(y)
 
 def get_daily_stats_mobile(state="US") -> Dict:
     """Get daily stats from ncov19.us API, parse and return as a dictionary
@@ -18,7 +17,7 @@ def get_daily_stats_mobile(state="US") -> Dict:
 
     :return: :Dict: stats
     """
-    
+
     url = NCOV19_API + "stats"
     tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
@@ -42,7 +41,8 @@ def get_daily_stats_mobile(state="US") -> Dict:
         }
         return stats
 
-    data = response.json()['message']
+    data = response.json()["message"]
+    
     try:
         tested = data["tested"]
         confirmed = data["confirmed"]
@@ -51,9 +51,13 @@ def get_daily_stats_mobile(state="US") -> Dict:
         todays_deaths = data["todays_deaths"]
     except:
         tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
+    # print(tested, confirmed, todays_confirmed, deaths, todays_deaths)
 
     todays_death_rate = round(safe_div(deaths, confirmed) * 100, 2)
-    yesterdays_death_rate = round(safe_div(deaths-todays_deaths, confirmed-todays_confirmed) * 100, 2)
+    yesterdays_death_rate = round(
+        safe_div(int(deaths) - int(todays_deaths), 
+                int(confirmed) - int(todays_confirmed)) * 100, 2
+    )
     death_rate_change = todays_death_rate - yesterdays_death_rate
 
     stats = {
@@ -66,7 +70,6 @@ def get_daily_stats_mobile(state="US") -> Dict:
     del data
 
     return stats
-
 
 @cache.memoize(timeout=600)
 def daily_stats_mobile(state="US") -> List[dbc.Row]:

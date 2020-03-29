@@ -8,7 +8,7 @@ from app import cache
 
 
 def safe_div(x, y):
-    return 0 if y == 0 else x / y
+    return 0 if int(y) == 0 else int(x) / int(y)
 
 
 def get_daily_stats(state="US") -> Dict:
@@ -55,7 +55,8 @@ def get_daily_stats(state="US") -> Dict:
 
     todays_death_rate = round(safe_div(deaths, confirmed) * 100, 2)
     yesterdays_death_rate = round(
-        safe_div(deaths - todays_deaths, confirmed - todays_confirmed) * 100, 2
+        safe_div(int(deaths) - int(todays_deaths), 
+                int(confirmed) - int(todays_confirmed)) * 100, 2
     )
     death_rate_change = todays_death_rate - yesterdays_death_rate
 
