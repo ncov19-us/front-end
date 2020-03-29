@@ -19,15 +19,15 @@ try:
     death = data.groupby(["State Name"])["Death"].sum()
     death = death.sort_values(ascending=False).to_dict()
 
-    # del response, data
 except Exception as ex:
     print(f"[ERROR]: {ex}")
 
 
 STATES = list(set(data["State Name"].to_list()))
 
+del response, data
 
-# @cache.memoize(timeout=600)
+@cache.memoize(timeout=600)
 def mobile_states_confirmed_stats() -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
@@ -71,7 +71,7 @@ def mobile_states_confirmed_stats() -> dbc.ListGroup:
     return list_group
 
 
-# @cache.memoize(timeout=600)
+@cache.memoize(timeout=600)
 def mobile_states_deaths_stats() -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
