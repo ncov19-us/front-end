@@ -20,6 +20,11 @@ button {
     width: 100%
 }
 
+button:hover{
+    background-color: white;
+    color: white;
+}
+
 /* Body */
 body {
     background-color: #19202A;
