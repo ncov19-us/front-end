@@ -253,33 +253,6 @@ desktop_body = [
                                         dbc.CardBody(
                                             [
                                                 html.Div(
-                                                    "US COVID-19 Timeline",
-                                                    className="top-bottom-left-chart-h1-title",
-                                                ),
-                                                html.Div(
-                                                    "Confirmed Cases and Deaths",
-                                                    className="top-bottom-left-chart-h2-title",
-                                                ),
-                                                html.Div(
-                                                    dcc.Graph(
-                                                        figure=confirmed_cases_chart(),
-                                                        config={"responsive": False},
-                                                        style={"height": "20vh"},
-                                                        className='top-bottom-left-chart-figure"',
-                                                    ),
-                                                    id="chart-container",
-                                                ),
-                                            ]
-                                        ),
-                                    ),
-                                    className="top-bottom-left-chart",
-                                    width=6,
-                                ),
-                                dbc.Col(
-                                    dbc.Card(
-                                        dbc.CardBody(
-                                            [
-                                                html.Div(
                                                     "Infection Trajectory",
                                                     className="top-bottom-right-chart-h1-title",
                                                 ),
@@ -311,6 +284,34 @@ desktop_body = [
                                     className="top-bottom-right-chart",
                                     width=6,
                                 ),
+                                dbc.Col(
+                                    dbc.Card(
+                                        dbc.CardBody(
+                                            [
+                                                html.Div(
+                                                    "US COVID-19 Timeline",
+                                                    className="top-bottom-left-chart-h1-title",
+                                                ),
+                                                html.Div(
+                                                    "Confirmed Cases and Deaths",
+                                                    className="top-bottom-left-chart-h2-title",
+                                                ),
+                                                html.Div(
+                                                    dcc.Graph(
+                                                        figure=confirmed_cases_chart(),
+                                                        config={"responsive": False},
+                                                        style={"height": "20vh"},
+                                                        className='top-bottom-left-chart-figure"',
+                                                    ),
+                                                    id="chart-container",
+                                                ),
+                                            ]
+                                        ),
+                                    ),
+                                    className="top-bottom-left-chart",
+                                    width=6,
+                                ),
+                                
                             ],
                             no_gutters=True,
                         ),
