@@ -16,6 +16,7 @@ Visualizing COVID19 pandemic in the U.S. by states and by the whole country, wit
 - For US and State [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19)
 - For County comes from State & Local Govs. County Sites
 - For Tested Data: [COVIDTRACKING](https://covidtracking.com/api/)
+- Drive-Thru COVID-19 Testing Centers, hand labelled from News Articles
 - Twitter API
 - News API
 - Google News API
