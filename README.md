@@ -13,10 +13,12 @@ Visualizing COVID19 pandemic in the U.S. by states and by the whole country, wit
 
 # Data Sources
 
-- [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19)
-- State & Local Govs.
+- For US and State [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19)
+- For County comes from State & Local Govs. County Sites
+- For Tested Data: [COVIDTRACKING](https://covidtracking.com/api/)
 - Twitter API
 - News API
+- Google News API
 
 ## Contributors
 
