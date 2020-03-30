@@ -1,15 +1,23 @@
 # <img src="assets/images/covid19-logo.png" width="50px" height="50px">[COVID19 US Specific Dashboard](https://ncov19.us/)
 
-## About this app
+## Project Overview
+
+### About this app
 Visualizing COVID19 pandemic in the U.S. by states and by the whole country, with newsfeeds from major news channels and twitter feeds from public officials and institutions. The app can be [found here](https://ncov19.us/).
 
-## Tech Stack
-- Plotly Dash
-- Flask
+## 1️⃣ Tech Stack
 
-## Architecture
+- Plotly Dash for its interactive and easy to create dashboard 
+```
+Dash uses React under the hood to render the user interface you see when you load a web page created with Dash. Because React allows you to write your user interface in encapsulated components that manage their own state, it is easy to split up parts of code for Dash too. At the end of this tutorial, you will see that Dash components and React components map one to one!
 
-![](assets/images/covid19-dash.png)
+For now, the important thing to know is that Dash components are mostly simple wrappers around existing React components. This means the entire React ecosystem is potentially usable in a Dash application!
+```
+
+- Flask lightweight framework that is integrated with Plotly Dash
+
+
+👉 [Plotly Dash Tutorial](https://dash.plotly.com/layout)
 
 # Data Sources
 
@@ -18,7 +26,9 @@ Visualizing COVID19 pandemic in the U.S. by states and by the whole country, wit
 - Twitter API
 - News API
 
-## Contributors
+---
+
+## 4️⃣ Contributors
 
 | [Harsh Desai](https://github.com/hurshd0)     | [Elizabeth Ter Sahakyan](https://github.com/elizabethts) | [Han Lee](https://github.com/leehanchung) |[Anisha Sunkerneni](https://github.com/ars394) | [Michael Chrupcala](https://github.com/mchrupcala) | [Daniel Firpo](https://github.com/Turtled) |
 | :--------------------: | :--------------------: | :--------------------: | :--------------------: | :--------------------: | :--------------------: | 
