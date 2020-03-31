@@ -28,7 +28,8 @@ def news_feed(state="US") -> dbc.ListGroup:
         json_data = requests.post(NCOV19_API + "news", data=payload).json()
     if json_data["success"] == True:
         json_data = json_data["message"]
-        df = pd.read_json(json_data)
+        # df = pd.read_json(json_data)
+        df = pd.DataFrame.from_records(json_data)
         df = pd.DataFrame(df[["title", "url", "published"]])
 
         max_rows = 50
