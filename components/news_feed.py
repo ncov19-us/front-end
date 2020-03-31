@@ -7,7 +7,7 @@ from utils.settings import NCOV19_API, STATES_COORD
 import json
 
 
-@cache.memoize(timeout=900)
+# @cache.memoize(timeout=900)
 def news_feed(state="US") -> dbc.ListGroup:
     """Displays news feed on the right hand side of the display. Adjust the NewsAPI time
     time to Eastern Time (w/ DST).
@@ -28,7 +28,8 @@ def news_feed(state="US") -> dbc.ListGroup:
         json_data = requests.post(NCOV19_API + "news", data=payload).json()
     if json_data["success"] == True:
         json_data = json_data["message"]
-        df = pd.read_json(json_data)
+        # df = pd.read_json(json_data)
+        df = pd.DataFrame.from_records(json_data)
         df = pd.DataFrame(df[["title", "url", "published"]])
 
         max_rows = 50
