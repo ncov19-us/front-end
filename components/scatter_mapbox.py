@@ -46,9 +46,13 @@ def confirmed_scatter_mapbox(state="US"):
     URL = NCOV19_API + "county"
     response = requests.get(URL).json()
     data = response["message"]
-    data = pd.read_json(data, orient="records")
-    data["State Name"] = data["State Name"].str.title()
-    data["County Name"] = data["County Name"].str.title()
+    # data = pd.read_json(data, orient="records")
+    data = pd.DataFrame.from_records(data)
+    # data["State Name"] = data["State Name"].str.title()
+    # data["County Name"] = data["County Name"].str.title()
+
+    # data["State Name"] = data["State Name"].str.title()
+    # data["County Name"] = data["county_name"].str.title()
 
     # data["log_confirmed"] = np.log(data["Confirmed"] + 0.1 ** 10)
     # data["log_confirmed"] = (data["Confirmed"] - data["Confirmed"].min()) / (
@@ -78,7 +82,7 @@ def confirmed_scatter_mapbox(state="US"):
     ]
 
     # Scaled the data exponentially to show smaller values.
-    data['Scaled'] = data["Confirmed"] ** 0.77
+    data['scaled'] = data["confirmed"] ** 0.77
     
     # set lat/long
     if state == "US":
@@ -92,13 +96,13 @@ def confirmed_scatter_mapbox(state="US"):
 
     fig = px.scatter_mapbox(
         data,
-        lat="Latitude",
-        lon="Longitude",
-        color="Confirmed",
-        size="Scaled",
+        lat="latitude",
+        lon="longitude",
+        color="confirmed",
+        size="scaled",
         size_max=50,
-        hover_name="County Name",
-        hover_data=["Confirmed", "Death", "State Name", "County Name"],
+        hover_name="county_name",
+        hover_data=["confirmed", "death", "state_name", "county_name"],
         color_continuous_scale=color_scale,
     )
 

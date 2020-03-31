@@ -7,26 +7,33 @@ import pandas as pd
 
 
 # TODO: Remove logic from here and put it to AWS Lambda
-try:
-    URL = NCOV19_API + "county"
-    response = requests.get(URL).json()
-    data = response["message"]
-    data = pd.read_json(data, orient="records")
-    data["State Name"] = data["State Name"].str.title()
-    # print(data.dtypes)
-    confirmed = data.groupby(["State Name"])["Confirmed"].sum()
-    confirmed = confirmed.sort_values(ascending=False).to_dict()
+# try:
+URL = NCOV19_API + "county"
+response = requests.get(URL).json()
+data = response["message"]
 
-    death = data.groupby(["State Name"])["Death"].sum()
-    death = death.sort_values(ascending=False).to_dict()
-    last_updated = data['Last Update'][0]
+# data = pd.read_json(data, orient="records")
+data = pd.DataFrame.from_records(data)
+# data["State Name"] = data["State Name"].str.title()
+data["state_name"] = data["state_name"].str.title()
+# print(data.dtypes)
+confirmed = data.groupby(["state_name"])["confirmed"].sum()
+# confirmed = data.groupby(["State Name"])["Confirmed"].sum()
+confirmed = confirmed.sort_values(ascending=False).to_dict()
+
+# death = data.groupby(["State Name"])["Death"].sum()
+death = data.groupby(["state_name"])["death"].sum()
+death = death.sort_values(ascending=False).to_dict()
+last_updated = data['last_update'][0]
+# last_updated = data['Last Update'][0]
 
     # del response, data
-except Exception as ex:
-    print(f"[ERROR]: {ex}")
+# except Exception as ex:
+#     print(f"[ERROR]: {ex}")
 
 
-STATES = list(set(data["State Name"].to_list()))
+STATES = list(set(data["state_name"].to_list()))
+# STATES = list(set(data["State Name"].to_list()))
 
 
 @cache.memoize(timeout=600)
