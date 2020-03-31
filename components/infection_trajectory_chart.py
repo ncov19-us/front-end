@@ -18,22 +18,25 @@ def infection_trajectory_chart(state=None) -> go.Figure:
     # US data
     payload = json.dumps({"alpha2Code": "US"})
     response = requests.post(URL, data=payload).json()
-    data = response["message"]
-    us = pd.read_json(data, orient="records")
+    data = response["message"]    
+    # us = pd.read_json(data, orient="records")
+    us = pd.DataFrame.from_records(data)
     us = us["Confirmed"].to_frame("US")
 
     # South Korea data
     payload = json.dumps({"alpha2Code": "KR"})
     response = requests.post(URL, data=payload).json()
     data = response["message"]
-    kr = pd.read_json(data, orient="records")
+    # kr = pd.read_json(data, orient="records")
+    kr = pd.DataFrame.from_records(data)
     kr = kr["Confirmed"].to_frame("South Korea")
 
     # Italy Data
     payload = json.dumps({"alpha2Code": "IT"})
     response = requests.post(URL, data=payload).json()
     data = response["message"]
-    it = pd.read_json(data, orient="records")
+    # it = pd.read_json(data, orient="records")
+    it = pd.DataFrame.from_records(data)
     it = it["Confirmed"].to_frame("Italy")
 
     us = us[us["US"] > 200].reset_index(drop=True)

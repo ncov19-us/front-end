@@ -18,7 +18,8 @@ def confirmed_cases_chart(state=None) -> go.Figure:
     payload = json.dumps({"alpha2Code": "US"})
     response = requests.post(URL, data=payload).json()
     data = response["message"]
-    data = pd.read_json(data, orient="records")
+    # data = pd.read_json(data, orient="records")
+    data = pd.DataFrame.from_records(data)
     data = data.rename(columns={"Confirmed": "Confirmed Cases"})
     data = data.tail(60)
 
