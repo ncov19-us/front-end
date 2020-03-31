@@ -20,6 +20,8 @@ about_bar = dbc.Row(
             #     href="/resources",
             # ),
             html.A("About", className="navbar-brand-links", href="/about"),
+            html.A("CDC Resources", className="navbar-brand-links", href="https://www.cdc.gov/coronavirus/2019-ncov/index.html"),
+            html.A("WHO Resources", className="navbar-brand-links", href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019")
         ]
     ),
     className="ml-auto flex-nowrap mt-3 mt-md-0",
