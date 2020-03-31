@@ -7,7 +7,7 @@ from utils.settings import NCOV19_API, STATES_COORD
 import json
 
 
-# @cache.memoize(timeout=900)
+@cache.memoize(timeout=900)
 def news_feed(state="US") -> dbc.ListGroup:
     """Displays news feed on the right hand side of the display. Adjust the NewsAPI time
     time to Eastern Time (w/ DST).
