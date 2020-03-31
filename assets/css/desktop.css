@@ -7,7 +7,6 @@
 /* #navbar {
     text-decoration: none;
 } */
-
 .navbar {
     background-color: #010915;
     border: none;
@@ -330,29 +329,56 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 /* Top Card Section */
+
+.states-dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 0;
+    font-size: 1.5rem;
+}
+
+#states-dropdown {
+    width: 100%;
+}
+
+.states-dropdown .Select-control {
+    background-color: transparent;
+    border-color: transparent;
+}
+.states-dropdown .Select-control .Select-value-label {
+    color: white !important;
+}
+.states-dropdown .Select-arrow {
+    border-color: white transparent transparent;
+    border-width: 10px 5px 2.5px;
+}
 .top-bar-content.row {
-    margin-left: 0.78rem;
+    margin-left: 0rem;
     margin-right: .78rem;
 }
 
 .top-bar-content.row .card-body {
-    background-color: #010915;
+    background-color: #19202A;
 }
 
 .top-bar-card-body .card-body {
-    background-color: #010915;
+    background-color: #19202A;
+
 }
 
 .top-bar-card-body {
     padding-left: 12px;
     padding-right: 12px;
+    box-shadow: none;
 }
 
 .top-bar-card-tested {
-    background-color: #010915;
     color: #f4f4f4;
     text-align: center;
     font-size: .9rem;
+    background-color: transparent;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -371,7 +397,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     color: #FEC400;
     text-align: center;
     font-size: .9rem;
-    background-color: #010915;
+    background-color: transparent;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -390,7 +416,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     color: #DD1E34;
     text-align: center;
     font-size: .9rem;
-    background-color: #010915;
+    background-color: transparent;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -413,7 +439,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     color: #B20511;
     text-align: center;
     font-size: .9rem;
-    background-color: #010915;
+    background-color: transparent;
     border: none;
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
@@ -484,7 +510,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     /* display: flex;
     justify-content: center;
     align-items: center; */
-    min-height: 44vh;
+    min-height: 60vh;
 }
 
 #chart-container {
@@ -493,6 +519,10 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .main-svg {
     background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.dash-graph {
+    min-height: 60vh;
 }
 
 .middle-col-map-content.col-8 .card{
@@ -565,11 +595,20 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     /* remove plotly toolbar */
 }
 
-/* Bottom Left and Right Charts */
+/* Bottom Three Charts */
+
+.plot-container.plotly .svg-container {
+    /* height: 25vh !important; */
+}
+
+.bottom-chart-row .col {
+    /* height: 25vh !important; */
+} 
 
 .top-bottom-charts .card {
     margin-top: .9rem;
     margin-bottom: 3rem;
+    /* height: 25vh !important; */
 }
 
 .top-bottom-left-chart.col-6 .card {
@@ -591,14 +630,14 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding: 1.2rem;
 }
 
-.top-bottom-left-chart{
-    height: 7%;
+.top-bottom-left-chart {
+    /* height: 7%; */
     padding: 0.5%;
 }
 
 
-.top-bottom-right-chart{
-    height: 7%;
+.top-bottom-right-chart {
+    /* height: 7%; */
     padding: 0.5%;
 }
 
@@ -611,7 +650,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     z-index: 100;
     position: relative;
     background-color: #1F242D;
-
 }
 
 .tab:hover {
@@ -669,7 +707,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 .left-col-twitter-feed-content .card-body {
-    height: calc(68vh + 74px + 32px) !important;
+    height: 60vh;
     overflow: scroll;
     padding-bottom: 0;
 }  
@@ -805,7 +843,7 @@ p.tweet-dt {
 }
 
 .right-col-stats-content.col-2 .card-body {
-    height: calc(68vh + 74px) !important;
+    height: 60vh;
     padding-top: 0rem;
     padding-bottom:0;
 }
@@ -814,10 +852,7 @@ p.tweet-dt {
     margin-bottom: 1rem;
 }
 
-.right-col-feed-cards-text {
-    background: none;
-    background-color: none;
-}
+
 
 .right-col-stats-content .col-2 .card .card-body {
     /* height: calc(60vh) !important; */
@@ -855,10 +890,12 @@ p.tweet-dt {
 /* overflow disable scroll bar */
 .right-col-feed-cards-text {
     overflow-y: scroll;
-    height: 76vh;
+    height: 60vh;
     scroll-behavior: smooth;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
+    background: none;
+    background-color: none;
 }
 
 .right-col-feed-cards-text::-webkit-scrollbar { 
@@ -983,3 +1020,8 @@ p.states-stats-deaths-list-txt {
 .tweet-item a:hover {
     text-decoration: none !important;
 }
+
+/* 
+.top-bottom-left-chart-figure {
+    height: 10vh !important;
+} */

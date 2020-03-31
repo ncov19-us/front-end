@@ -71,7 +71,7 @@ def get_daily_stats_mobile(state="US") -> Dict:
 
     return stats
 
-@cache.memoize(timeout=600)
+# @cache.memoize(timeout=600)
 def daily_stats_mobile(state="US") -> List[dbc.Row]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
     TODO: move to internal API.
