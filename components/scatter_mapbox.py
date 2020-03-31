@@ -46,20 +46,7 @@ def confirmed_scatter_mapbox(state="US"):
     URL = NCOV19_API + "county"
     response = requests.get(URL).json()
     data = response["message"]
-    # data = pd.read_json(data, orient="records")
     data = pd.DataFrame.from_records(data)
-    # data["State Name"] = data["State Name"].str.title()
-    # data["County Name"] = data["County Name"].str.title()
-
-    # data["State Name"] = data["State Name"].str.title()
-    # data["County Name"] = data["county_name"].str.title()
-
-    # data["log_confirmed"] = np.log(data["Confirmed"] + 0.1 ** 10)
-    # data["log_confirmed"] = (data["Confirmed"] - data["Confirmed"].min()) / (
-    #    data["Confirmed"].max() - data["Confirmed"].min()
-    # )
-    # normalized_df=(df-df.min())/(df.max()-df.min())#
-    # set lat/long
 
     color_scale = [
         "#FA9090",
