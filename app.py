@@ -66,6 +66,15 @@ app.index_string = """<!DOCTYPE html>
         <title>{%title%}</title>
         {%favicon%}
         {%css%}
+
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="COVID-19 US Dashboard">
+        <meta property="og:site_name" content="ncov19.us">
+        <meta property="og:url" content="ncov19.us">
+        <meta property="og:image" content="https://pbs.twimg.com/media/EUT8vyGUMAAyCID?format=jpg&name=4096x4096">
+        <meta property="article:published_time" content="2020-03-30">
+        <meta property="article:author" content="https://twitter.com/ncov19us?s=20">
+
     </head>
     <body>
         {%app_entry%}
