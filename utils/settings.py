@@ -391,3 +391,8 @@ STATES_COORD = {
         "stateAbbr": "WY",
     },
 }
+
+
+REVERSE_STATES_MAP = {}
+for k, v in STATES_COORD.items():
+    REVERSE_STATES_MAP[v["stateAbbr"]] = k
