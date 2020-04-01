@@ -83,6 +83,7 @@ def daily_stats(state="US") -> List[dbc.Col]:
     """
     # 1. Fetch Stats
     # print(STATES_COORD[state]['stateAbbr'])
+    
     stats = get_daily_stats(STATES_COORD[state]["stateAbbr"])
 
     # print("Desktop Site Stats ---> ", stats)
