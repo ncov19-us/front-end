@@ -82,7 +82,7 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
     """
     # 1. Fetch Stats
     # print(f"daily_stats_mobile for state {STATES_COORD[state]['stateAbbr']}")
-    stats = get_daily_stats_mobile(STATES_COORD[state]['stateAbbr'])
+    stats = get_daily_stats_mobile(state)
 
     # print("Mobile Site ---> ", stats)
     # 2. Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays
