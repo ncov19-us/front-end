@@ -73,7 +73,7 @@ def get_daily_stats(state="US") -> Dict:
 
 
 # @cache.memoize(timeout=600)
-def daily_stats(state="US") -> List[dbc.Col]:
+def daily_stats(state="United States") -> List[dbc.Col]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed ,
      and death cases for the top row.
 
@@ -100,7 +100,7 @@ def daily_stats(state="US") -> List[dbc.Col]:
                             html.P(
                                 " x", className=f"top-bar-perc-change-{key.lower()}"
                             ),
-                            html.H1(value, className=f"top-bar-value-{key.lower()}"),
+                            html.H1(f"{value:,d}", className=f"top-bar-value-{key.lower()}"),
                             html.P(f"{key}", className="card-text"),
                         ],
                     ),
@@ -133,10 +133,10 @@ def daily_stats(state="US") -> List[dbc.Col]:
                     dbc.CardBody(
                         [
                             html.P(
-                                f"+ {value[1]} new",
+                                f"+ {value[1]: ,d} new",
                                 className=f"top-bar-perc-change-{key.lower()}",
                             ),
-                            html.H1(value[0], className=f"top-bar-value-{key.lower()}"),
+                            html.H1(f"{value[0]:,d}", className=f"top-bar-value-{key.lower()}"),
                             html.P(f"{key}", className="card-text"),
                         ]
                     ),
