@@ -11,7 +11,7 @@ def safe_div(x, y):
     return 0 if int(y) == 0 else int(x) / int(y)
 
 
-def get_daily_stats(state="US") -> Dict:
+def get_daily_stats(state="United States") -> Dict:
     """Get daily stats from ncov19.us API, parse and return as a dictionary
     for the daily stats mobile.
 
@@ -22,7 +22,7 @@ def get_daily_stats(state="US") -> Dict:
     tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
     try:
-        if state == "US":
+        if state in ["US", "United_States"]:
             response = requests.get(url=url)
         else:
             payload = json.dumps({"state": state})
@@ -72,7 +72,7 @@ def get_daily_stats(state="US") -> Dict:
     return stats
 
 
-@cache.memoize(timeout=600)
+# @cache.memoize(timeout=600)
 def daily_stats(state="US") -> List[dbc.Col]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed ,
      and death cases for the top row.
@@ -83,7 +83,8 @@ def daily_stats(state="US") -> List[dbc.Col]:
     """
     # 1. Fetch Stats
     # print(STATES_COORD[state]['stateAbbr'])
-    stats = get_daily_stats(STATES_COORD[state]["stateAbbr"])
+    
+    stats = get_daily_stats(state)
 
     # print("Desktop Site Stats ---> ", stats)
     # print(stats)
@@ -99,7 +100,7 @@ def daily_stats(state="US") -> List[dbc.Col]:
                             html.P(
                                 " x", className=f"top-bar-perc-change-{key.lower()}"
                             ),
-                            html.H1(value, className=f"top-bar-value-{key.lower()}"),
+                            html.H1(f"{value:,d}", className=f"top-bar-value-{key.lower()}"),
                             html.P(f"{key}", className="card-text"),
                         ],
                     ),
@@ -132,10 +133,10 @@ def daily_stats(state="US") -> List[dbc.Col]:
                     dbc.CardBody(
                         [
                             html.P(
-                                f"+ {value[1]} new",
+                                f"+ {value[1]:,d} new",
                                 className=f"top-bar-perc-change-{key.lower()}",
                             ),
-                            html.H1(value[0], className=f"top-bar-value-{key.lower()}"),
+                            html.H1(f"{value[0]:,d}", className=f"top-bar-value-{key.lower()}"),
                             html.P(f"{key}", className="card-text"),
                         ]
                     ),
