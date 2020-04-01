@@ -31,18 +31,18 @@
 }
 
 .navbar-brand-covid-19-text {
+    font-weight: 600;
+    font-size: 1.9rem;
     margin-left: .5rem;
     margin-bottom: auto;
-    font-weight: bold;
-    font-size: 2rem;
 
 }
 
 .navbar-brand-us-cases-text {
-    margin-bottom: auto;
-    font-weight: normal;
-    font-size: 2rem;
+    font-weight: 350;
+    font-size: 1.9rem;
     text-shadow: none;
+    margin-bottom: auto;
     margin-left: 5%;
 
 }
@@ -102,11 +102,11 @@
 
 .navbar-brand-links {
     margin-bottom: auto;
-    font-weight: 300;
+    font-weight: 425;
     font-size: 1.05rem;
     letter-spacing: 0.01rem;
     text-shadow: none;
-    padding-left: 2.1rem;
+    padding-left: 2.3rem;
     margin-right: 0rem;
 }
 
