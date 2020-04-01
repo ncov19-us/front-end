@@ -1,6 +1,7 @@
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_table
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 from app import app
@@ -9,7 +10,10 @@ from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import states_confirmed_stats, states_deaths_stats, last_updated
-from utils.settings import STATES_COORD, REVERSE_STATES_MAP
+# from components import stats_table
+from utils.settings import STATES_COORD, REVERSE_STATES_MAP, NCOV19_API
+import requests
+import pandas as pd
 import dash
 from components.column_stats import STATES
 
@@ -151,31 +155,61 @@ def feed_tab_content(tab_value, state):
 #                       Confirmed/Deaths Tabs
 #
 ########################################################################
+def stats_table(state="US"):
+    """Callback to change between news and twitter feed
+    """
+    state = REVERSE_STATES_MAP[state]
+
+    # try:
+    URL = NCOV19_API + "county"
+    response = requests.get(URL).json()
+    data = response["message"]
+
+    data = pd.DataFrame.from_records(data)
+    # data["state_name"] = data["state_name"].str.title()
+    print(data.columns)
+
+    if state in ["US", "United States"]:
+        # print('if state', state)
+        confirmed = data.groupby(["state_name"])["confirmed", "death"].sum()
+        # deaths = data.groupby(["state_name"])["confirmed"].sum()
+        confirmed = confirmed.sort_values(by=['confirmed'], ascending=False)#.to_dict()
+        # print(f'US Confirmed {confirmed}')
+    else:
+        print(f'else state {state}')
+        confirmed = data[data['state_name'] == state]
+        # print(1)
+        confirmed = confirmed[["county_name", "confirmed"]]
+        confirmed = confirmed.sort_values(by=['confirmed'], ascending=False)#.to_dict()
+        # confirmed = dict(confirmed.sort_values(by="confirmed", ascending=False).to_records(index=False))
+        # print(2)
+    del response, data
+    # except:
+        # print(f"[ERROR] states_confirmed_stats({state}) error accessing ncov19.us API")
+
+    print(confirmed.head())
+    # df = confirmed.reset_index().to_dict('records')
+    df = confirmed.reset_index()#.to_dict()
+    # print(df)
+    return df
+
+df = stats_table()
+
 stats_tabs = dbc.Card(
     [
         html.Div(
             [
-                dcc.Tabs(
-                    id="right-tabs-styled-with-inline",
-                    value="confirmed-tab",
-                    children=[
-                        dcc.Tab(
-                            label="Confirmed",
-                            value="confirmed-tab",
-                            className="left-stats-tab",
-                            style=tab_style,
-                            selected_style=tab_selected_style,
-                        ),
-                        # dcc.Tab(
-                        #     label="Deaths",
-                        #     value="deaths-tab",
-                        #     className="left-news-tab",
-                        #     style=tab_style,
-                        #     selected_style=tab_selected_style,
-                        # ),
+                dash_table.DataTable(
+                    id="stats-tablet",
+                    # value="confirmed-tab",
+                    columns=[
+                        # {"state_name":i, "confirmed": i, "deaths": i} for i in df.columns
+                        {"name":i, "id": i} for i in df.columns
                     ],
-                    style=tabs_styles,
-                    colors={"border": None, "primary": None, "background": None},
+                    data=df.to_dict('recors'),
+                    editable=False,
+                    # style=tabs_styles,
+                    # colors={"border": None, "primary": None, "background": None},
                 ),
                 html.P(
                     f"Last Updated {last_updated.upper()}",  # last updated desktop
@@ -187,6 +221,44 @@ stats_tabs = dbc.Card(
         dbc.CardBody(html.P(id="stats-content", className="right-col-feed-cards-text")),
     ]
 )
+
+# stats_tabs = dbc.Card(
+#     [
+#         html.Div(
+#             [
+#                 dcc.Tabs(
+#                     id="right-tabs-styled-with-inline",
+#                     value="confirmed-tab",
+#                     children=[
+#                         dcc.Tab(
+#                             label="Confirmed",
+#                             value="confirmed-tab",
+#                             className="left-stats-tab",
+#                             style=tab_style,
+#                             selected_style=tab_selected_style,
+#                         ),
+#                         # dcc.Tab(
+#                         #     label="Deaths",
+#                         #     value="deaths-tab",
+#                         #     className="left-news-tab",
+#                         #     style=tab_style,
+#                         #     selected_style=tab_selected_style,
+#                         # ),
+#                     ],
+#                     style=tabs_styles,
+#                     colors={"border": None, "primary": None, "background": None},
+#                 ),
+#                 html.P(
+#                     f"Last Updated {last_updated.upper()}",  # last updated desktop
+#                     className="right-tabs-last-updated-text",
+#                 ),
+#             ],
+#             className="right-tabs",
+#         ),
+#         dbc.CardBody(html.P(id="stats-content", className="right-col-feed-cards-text")),
+#     ]
+# )
+
 
 # ORIGINAL STATS TABS CALLBACKS
 # @app.callback(
@@ -202,20 +274,51 @@ stats_tabs = dbc.Card(
 #         return states_confirmed_stats()
 
 
-@app.callback(
-    Output("stats-content", "children"),
-    [
-        Input("right-tabs-styled-with-inline", "value"),
-        Input("intermediate-value", "children"),
-    ],
-)
-def stats_tab_content(value, state):
-    """Callback to change between news and twitter feed
-    """
-    if value == "deaths-tab":
-        return states_deaths_stats()
-    else:
-        return states_confirmed_stats(state)
+# @app.callback(
+#     Output("stats-table", "style_data_conditional"),
+#     [
+#         # Input("right-tabs-styled-with-inline", "value"),
+#         Input("intermediate-value", "children"),
+#     ],
+# )
+# def stats_tab_content(value, state):
+#     """Callback to change between news and twitter feed
+#     """
+#     state = REVERSE_STATES_MAP[state]
+
+#     try:
+#         URL = NCOV19_API + "county"
+#         response = requests.get(URL).json()
+#         data = response["message"]
+
+#         data = pd.DataFrame.from_records(data)
+#         # data["state_name"] = data["state_name"].str.title()
+#         print(data.columns)
+
+#         if state in ["US", "United States"]:
+#             # print('if state', state)
+#             confirmed = data.groupby(["state_name"])["confirmed", "deaths"].sum()
+#             # deaths = data.groupby(["state_name"])["confirmed"].sum()
+#             confirmed = confirmed.sort_values(ascending=False).to_dict()
+#             # print(f'US Confirmed {confirmed}')
+#         else:
+#             print(f'else state {state}')
+#             confirmed = data[data['state_name'] == state]
+#             # print(1)
+#             confirmed = confirmed[["county_name", "confirmed"]]
+#             confirmed = dict(confirmed.sort_values(by="confirmed", ascending=False).to_records(index=False))
+#             # print(2)
+#         del response, data
+#     except:
+#         print(f"[ERROR] states_confirmed_stats({state}) error accessing ncov19.us API")
+
+#     print(confirmed.head())
+#     df = confirmed.to_dict()
+#     return df
+    # if value == "deaths-tab":
+    #     return states_deaths_stats()
+    # else:
+    #     return states_confirmed_stats(state)
 
 
 # @app.callback(
