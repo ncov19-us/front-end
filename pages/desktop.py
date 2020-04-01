@@ -184,18 +184,23 @@ def stats_tab_content(state):
                 sort_action="native",
                 sort_mode="multi",
                 column_selectable="single",
+                style_as_list_view=True,
+                style_header={'backgroundColor': '#010915',
+                              'fontWeight': 'bold',
+                },
+                style_cell={
+                    'backgroundColor': '#010915',
+                    'color': '#FFFFFF',
+                    'overflow': 'hidden',
+                    'textOverflow': 'ellipsis',
+                    'maxWidth': 0,
+                }, 
                 style_cell_conditional=[
                     {
                         'if': {'column_id': c},
                         'textAlign': 'left'
                     } for c in ['State', 'County']
-                ],
-                style_as_list_view=True,
-                style_cell={
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                    'maxWidth': 0,
-                }
+                ],                
     )
     return table
 
