@@ -39,6 +39,59 @@ tab_selected_style = {
 
 ########################################################
 
+state_labels = [
+            {'label': 'United States', 'value': 'US'},
+            {'label': 'Alabama', 'value': 'AL'},
+            {'label': 'Alaska', 'value': 'AK'},
+            {'label': 'Arizona', 'value': 'AZ'},
+            {'label': 'Arkansas', 'value': 'AR'},
+            {'label': 'California', 'value': 'CA'},
+            {'label': 'Connecticut', 'value': 'CT'},
+            {'label': 'Delaware', 'value': 'DE'},
+            {'label': 'Florida', 'value': 'FL'},
+            {'label': 'Georgia', 'value': 'GA'},
+            {'label': 'Hawaii', 'value': 'HI'},
+            {'label': 'Idaho', 'value': 'ID'},
+            {'label': 'Illinois', 'value': 'IL'},
+            {'label': 'Indiana', 'value': 'IN'},
+            {'label': 'Iowa', 'value': 'IA'},
+            {'label': 'Kansas', 'value': 'KS'},
+            {'label': 'Kentucky', 'value': 'KY'},
+            {'label': 'Louisiana', 'value': 'LA'},
+            {'label': 'Maine', 'value': 'ME'},
+            {'label': 'Maryland', 'value': 'MD'},
+            {'label': 'Massachusetts', 'value': 'MA'},
+            {'label': 'Michigan', 'value': 'MI'},
+            {'label': 'Minnesota', 'value': 'MN'},
+            {'label': 'Mississippi', 'value': 'MS'},
+            {'label': 'Missouri', 'value': 'MO'},
+            {'label': 'Montana', 'value': 'MT'},
+            {'label': 'Nebraska', 'value': 'NE'},
+            {'label': 'Nevada', 'value': 'NV'},
+            {'label': 'New Hampshire', 'value': 'NH'},
+            {'label': 'New Jersey', 'value': 'NJ'},
+            {'label': 'New Mexico', 'value': 'NM'},
+            {'label': 'New York', 'value': 'NY'},
+            {'label': 'North Carolina', 'value': 'NC'},
+            {'label': 'North Dakota', 'value': 'ND'},
+            {'label': 'Ohio', 'value': 'OH'},
+            {'label': 'Oklahoma', 'value': 'OK'},
+            {'label': 'Oregon', 'value': 'OR'},
+            {'label': 'Pennsylvania', 'value': 'PA'},
+            {'label': 'Rhode Island', 'value': 'RI'},
+            {'label': 'South Carolina', 'value': 'SC'},
+            {'label': 'South Dakota', 'value': 'SD'},
+            {'label': 'Tennessee', 'value': 'TN'},
+            {'label': 'Texas', 'value': 'TX'},
+            {'label': 'Utah', 'value': 'UT'},
+            {'label': 'Vermont', 'value': 'VT'},
+            {'label': 'Virginia', 'value': 'VA'},
+            {'label': 'Washington', 'value': 'WA'},
+            {'label': 'West Virginia', 'value': 'WV'},
+            {'label': 'Wisconsin', 'value': 'WI'},
+            {'label': 'Wyoming', 'value': 'WY'}
+ ]
+
 ########################################################################
 #
 # News and Twitter Tabs
@@ -196,7 +249,7 @@ us_maps_tabs = dbc.Card(
                 className="d-flex justify-content-between top-bar-us-map-heading-content",
             ),
             html.Div(
-                dcc.Graph(id="us-map", style={"height": "44vh"}), id="map-container"
+                dcc.Graph(id="us-map", style={"height": "60vh"}), id="map-container"
             ),
         ]
     ),
@@ -231,20 +284,118 @@ desktop_body = [
         id="intermediate-value", children="US", style={"display": "none"}
     ),  # Hidden div inside the app that stores the intermediate value
     dbc.Row(  # TOP BAR
-        # daily_stats(),   
-        id="daily-stats",
-        className="top-bar-content",
+        # daily_stats(),
+        [
+        dbc.Col(dcc.Dropdown(
+        id='states-dropdown',
+        options=state_labels,
+        value='US',
+        clearable=False,
+        searchable=False,
+        className="states-dropdown"
+    ), 
+    className="states-dropdown-container",
+    width=2),
+        dbc.Col(
+            dbc.Row(id="daily-stats",
+        className="top-bar-content"),
+        width=10)
+        ]
     ), 
     dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
-        [
-            # LEFT - TWITTER & NEWS FEED COL
-            dbc.Col(feed_tabs, className="left-col-twitter-feed-content", width=2),
+        [   # RIGHT - STATS COL
+            dbc.Col(stats_tabs, className="right-col-stats-content", width=2,),
+            
             # MIDDLE - MAPS COL
             dbc.Col(
-                [
+                # [
                     # big map
                     html.Div(us_maps_tabs),
-                    # bottom two charts
+                    # # bottom two charts
+                    # html.Div(
+                    #     dbc.Row(
+                    #         [
+                    #             dbc.Col(
+                    #                 dbc.Card(
+                    #                     dbc.CardBody(
+                    #                         [
+                    #                             html.Div(
+                    #                                 "US COVID-19 Timeline",
+                    #                                 className="top-bottom-left-chart-h1-title",
+                    #                             ),
+                    #                             html.Div(
+                    #                                 "Confirmed Cases and Deaths",
+                    #                                 className="top-bottom-left-chart-h2-title",
+                    #                             ),
+                    #                             html.Div(
+                    #                                 dcc.Graph(
+                    #                                     figure=confirmed_cases_chart(),
+                    #                                     config={"responsive": False},
+                    #                                     style={"height": "20vh"},
+                    #                                     className='top-bottom-left-chart-figure"',
+                    #                                 ),
+                    #                                 id="chart-container",
+                    #                             ),
+                    #                         ]
+                    #                     ),
+                    #                 ),
+                    #                 className="top-bottom-left-chart",
+                    #                 width=6,
+                    #             ),
+                    #             dbc.Col(
+                    #                 dbc.Card(
+                    #                     dbc.CardBody(
+                    #                         [
+                    #                             html.Div(
+                    #                                 "Infection Trajectory",
+                    #                                 className="top-bottom-right-chart-h1-title",
+                    #                             ),
+                    #                             html.Div(
+                    #                                 "Days Since 200 Cases",
+                    #                                 className="top-bottom-right-chart-h2-title",
+                    #                             ),
+                    #                             html.Div(
+                    #                                 dcc.Loading(
+                    #                                     dcc.Graph(
+                    #                                         figure=infection_trajectory_chart(),
+                    #                                         config={
+                    #                                             "responsive": False
+                    #                                         },
+                    #                                         style={"height": "20vh"},
+                    #                                         className="top-bottom-right-chart-figure",
+                    #                                     ),
+                    #                                     style={
+                    #                                         "padding-top": "8px",
+                    #                                         "background-color": "red",
+                    #                                     },
+                    #                                     color="#19202A",
+                    #                                 ),
+                    #                                 id="chart-container",
+                    #                             ),
+                    #                         ]
+                    #                     ),
+                    #                 ),
+                    #                 className="top-bottom-right-chart",
+                    #                 width=6,
+                    #             ),
+                    #         ],
+                    #         no_gutters=True,
+                    #     ),
+                    #     className="top-bottom-charts",
+                    # ),
+                # ],
+                className="middle-col-map-content",
+                width=8,
+            ),
+            # LEFT - TWITTER & NEWS FEED COL
+            dbc.Col(feed_tabs, className="left-col-twitter-feed-content", width=2),
+        ],
+        no_gutters=True,
+        className="middle-map-news-content mt-3",
+    ),
+    dbc.Row( [
+        dbc.Col(  
+            # bottom three charts
                     html.Div(
                         dbc.Row(
                             [
@@ -273,7 +424,7 @@ desktop_body = [
                                         ),
                                     ),
                                     className="top-bottom-left-chart",
-                                    width=6,
+                                    width=4,
                                 ),
                                 dbc.Col(
                                     dbc.Card(
@@ -309,23 +460,53 @@ desktop_body = [
                                         ),
                                     ),
                                     className="top-bottom-right-chart",
-                                    width=6,
+                                    width=4,
+                                ),
+                                dbc.Col(
+                                    dbc.Card(
+                                        dbc.CardBody(
+                                            [
+                                                html.Div(
+                                                    "Infection Trajectory",
+                                                    className="top-bottom-right-chart-h1-title",
+                                                ),
+                                                html.Div(
+                                                    "Days Since 200 Cases",
+                                                    className="top-bottom-right-chart-h2-title",
+                                                ),
+                                                html.Div(
+                                                    dcc.Loading(
+                                                        dcc.Graph(
+                                                            figure=infection_trajectory_chart(),
+                                                            config={
+                                                                "responsive": False
+                                                            },
+                                                            style={"height": "20vh"},
+                                                            className="top-bottom-right-chart-figure",
+                                                        ),
+                                                        style={
+                                                            "padding-top": "8px",
+                                                            "background-color": "red",
+                                                        },
+                                                        color="#19202A",
+                                                    ),
+                                                    id="chart-container",
+                                                ),
+                                            ]
+                                        ),
+                                    ),
+                                    className="top-bottom-right-chart",
+                                    width=4,
                                 ),
                             ],
                             no_gutters=True,
                         ),
                         className="top-bottom-charts",
                     ),
-                ],
-                className="middle-col-map-content",
-                width=8,
-            ),
-            # RIGHT - STATS COL
-            dbc.Col(stats_tabs, className="right-col-stats-content", width=2,),
-        ],
-        no_gutters=True,
-        className="middle-map-news-content mt-3",
-    ),
+                    className="bottom-chart-row"
+            )
+        ]
+    )
 ]
 
 ########################################################################
