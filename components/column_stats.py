@@ -46,7 +46,7 @@ def states_confirmed_stats() -> dbc.ListGroup:
                         html.Div(
                             [
                                 html.Span(
-                                    f"{value}",
+                                    f"{value:,d}",
                                     className="states-stats-confirmed-list-num",
                                 ),
                                 html.Span(
@@ -89,7 +89,7 @@ def states_deaths_stats() -> dbc.ListGroup:
                     html.P(
                         [
                             html.Span(
-                                f"{value}", className="states-stats-deaths-list-num",
+                                f"{value:,d}", className="states-stats-deaths-list-num",
                             ),
                             html.Span(
                                 f"   {key}", className="states-stats-deaths-list-state",
