@@ -36,7 +36,7 @@ def get_drive_thru_testing_centers():
 ########################################################################
 
 
-def confirmed_scatter_mapbox(state="US"):
+def confirmed_scatter_mapbox(state="United States"):
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
@@ -67,7 +67,7 @@ def confirmed_scatter_mapbox(state="US"):
     data['scaled'] = data["confirmed"] ** 0.77
     
     # set lat/long
-    if state in ["US", "United States"]:
+    if state == "United States":
         lat, lon, zoom = 39.8097343, -98.5556199, flask.session["zoom"]
     else:
         lat, lon, zoom = (
@@ -108,12 +108,12 @@ def confirmed_scatter_mapbox(state="US"):
     return fig
 
 
-def drive_thru_scatter_mapbox(state="US"):
+def drive_thru_scatter_mapbox(state="United States"):
     """DO NOT CACHE. NEED APP_STATE TO CHANGE DYNAMICALLY
     """
 
     # set lat/long
-    if state in ["US", "United States"]:
+    if state == "United States":
         lat, lon, zoom = 39.8097343, -98.5556199, flask.session["zoom"]
     else:
         lat, lon, zoom = (

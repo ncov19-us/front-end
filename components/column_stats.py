@@ -1,7 +1,7 @@
 import requests
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-from utils.settings import NCOV19_API
+from utils.settings import NCOV19_API, REVERSE_STATES_MAP
 from app import cache
 import pandas as pd
 
@@ -41,8 +41,8 @@ def states_confirmed_stats(state='United States') -> dbc.ListGroup:
     :rtype: dbc.ListGroup    
     """
 
-    # tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
-    
+    state = REVERSE_STATES_MAP[state]
+
     try:
         URL = NCOV19_API + "county"
         response = requests.get(URL).json()
@@ -53,16 +53,20 @@ def states_confirmed_stats(state='United States') -> dbc.ListGroup:
         
 
         if state in ["US", "United States"]:
+            print('if state', state)
             confirmed = data.groupby(["state_name"])["confirmed"].sum()
             confirmed = confirmed.sort_values(ascending=False).to_dict()
+            print(confirmed)
         else:
+            print('else state', state)
             confirmed = data[data['state_name'] == state]
-            confirmed = confirmed[["county_name","confirmed"]]
-            confirmed = confirmed.sort_values(ascending=False).to_dict()
-        
+            print(1)
+            confirmed = confirmed[["county_name", "confirmed"]]
+            confirmed = dict(confirmed.sort_values(by="confirmed", ascending=False).to_records(index=False))
+            print(2)
         del response, data
     except:
-        print("[ERROR] states_confirmed_stats({state}) error accessing ncov19.us API")
+        print(f"[ERROR] states_confirmed_stats({state}) error accessing ncov19.us API")
 
 
     list_group = dbc.ListGroup(
@@ -123,7 +127,9 @@ def states_deaths_stats(state='US') -> dbc.ListGroup:
             deaths = confirmed.sort_values(ascending=False).to_dict()
         else:
             deaths = data[data['state_name'] == state]
-            deaths = deaths.sort_values(ascending=False).to_dict()
+            confirmed = df[["County Name", "Confirmed"]]
+            confirmed = dict(confirmed.sort_values(by="Confirmed", ascending=False).to_records(index=False))
+
         del response, data
     except:
         print("[ERROR] states_confirmed_stats error accessing ncov19.us API")
