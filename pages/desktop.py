@@ -286,7 +286,7 @@ desktop_body = [
                 dcc.Dropdown(
                     id="states-dropdown",
                     options=state_labels,
-                    value="US",
+                    value="United States",
                     clearable=False,
                     searchable=False,
                     className="states-dropdown",
@@ -467,10 +467,12 @@ def daily_stats_callback(state):
 #             # print(n_clicks)
 #             return ["US"]
 
-
+# callback for dropdown menu
 @app.callback(
-    [Output("intermediate-value", "children")], [Input("states-dropdown", "value")]
+    [Output("intermediate-value", "children")], 
+    [Input("states-dropdown", "value")]
 )
+
 def update_output(value):
     print(value)
     return [value]

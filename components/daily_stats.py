@@ -11,7 +11,7 @@ def safe_div(x, y):
     return 0 if int(y) == 0 else int(x) / int(y)
 
 
-def get_daily_stats(state="US") -> Dict:
+def get_daily_stats(state="United States") -> Dict:
     """Get daily stats from ncov19.us API, parse and return as a dictionary
     for the daily stats mobile.
 
@@ -22,7 +22,7 @@ def get_daily_stats(state="US") -> Dict:
     tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
     try:
-        if state == "US":
+        if state in ["US", "United_States"]:
             response = requests.get(url=url)
         else:
             payload = json.dumps({"state": state})
@@ -73,7 +73,7 @@ def get_daily_stats(state="US") -> Dict:
 
 
 # @cache.memoize(timeout=600)
-def daily_stats(state="US") -> List[dbc.Col]:
+def daily_stats(state="United States") -> List[dbc.Col]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed ,
      and death cases for the top row.
 

@@ -71,7 +71,7 @@ STATES_LAT_LONG = [
 ]
 
 STATES_COORD = {
-    "US": {
+    "United States": {
         "latitude": 39.8097343,
         "longitude": -98.5556199,
         "zoom": 2,

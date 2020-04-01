@@ -67,7 +67,7 @@ def confirmed_scatter_mapbox(state="US"):
     data['scaled'] = data["confirmed"] ** 0.77
     
     # set lat/long
-    if state == "US":
+    if state in ["US", "United States"]:
         lat, lon, zoom = 39.8097343, -98.5556199, flask.session["zoom"]
     else:
         lat, lon, zoom = (
@@ -113,7 +113,7 @@ def drive_thru_scatter_mapbox(state="US"):
     """
 
     # set lat/long
-    if state == "US":
+    if state in ["US", "United States"]:
         lat, lon, zoom = 39.8097343, -98.5556199, flask.session["zoom"]
     else:
         lat, lon, zoom = (
