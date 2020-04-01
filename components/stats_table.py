@@ -11,36 +11,35 @@ def stats_table(state="US"):
     """Callback to change between news and twitter feed
     """
     state = REVERSE_STATES_MAP[state]
-
-    # try:
+    # print(f'stats_table state is {state}')
     URL = NCOV19_API + "county"
-    response = requests.get(URL).json()
-    data = response["message"]
-
-    data = pd.DataFrame.from_records(data)
-    # data["state_name"] = data["state_name"].str.title()
-    print(data.columns)
-
-    if state in ["US", "United States"]:
-        # print('if state', state)
-        confirmed = data.groupby(["state_name"])["confirmed", "death"].sum()
-        # deaths = data.groupby(["state_name"])["confirmed"].sum()
-        confirmed = confirmed.sort_values(by=['confirmed'], ascending=False)#.to_dict()
-        # print(f'US Confirmed {confirmed}')
+    try:
+        response = requests.get(URL)
+    except:
+        data = {"state_name": "john", "county_name": "cena", "confirmed":0, "death":0}
+    
+    if response.status_code == 200:        
+        data = response.json()["message"]
+        data = pd.DataFrame.from_records(data)
     else:
-        print(f'else state {state}')
-        confirmed = data[data['state_name'] == state]
-        # print(1)
-        confirmed = confirmed[["county_name", "confirmed"]]
-        confirmed = confirmed.sort_values(by=['confirmed'], ascending=False)#.to_dict()
-        # confirmed = dict(confirmed.sort_values(by="confirmed", ascending=False).to_records(index=False))
-        # print(2)
-    del response, data
-    # except:
-        # print(f"[ERROR] states_confirmed_stats({state}) error accessing ncov19.us API")
+        data = {"state_name": "john", "county_name": "cena", "confirmed":0, "death":0}
+    
+    if state in ["US", "United States"]:
+        data = data.groupby(["state_name"])["confirmed", "death"].sum()
+        
+        data = data.sort_values(by=['confirmed'], ascending=False)
+        data = data.reset_index()
+        data = data.rename(columns={"state_name": "State", 
+                                    "confirmed": "Confirmed",
+                                    "death": "Death"})
+    else:
+        data = data[data['state_name'] == state]
+        data = data[["county_name", "confirmed", "death"]]
+        data = data.sort_values(by=['confirmed'], ascending=False)
+        data = data.rename(columns={"county_name": "County", 
+                                    "confirmed": "Confirmed",
+                                    "death": "Death"})                
 
-    print(confirmed.head())
-    # df = confirmed.reset_index().to_dict('records')
-    df = confirmed.reset_index()#.to_dict()
-    # print(df)
-    return df
+    del response
+
+    return data
