@@ -9,6 +9,7 @@ from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import states_confirmed_stats, states_deaths_stats, last_updated
+from components import cases_chart, deaths_chart
 from utils.settings import STATES_COORD, REVERSE_STATES_MAP
 import dash
 from components.column_stats import STATES
@@ -337,6 +338,7 @@ desktop_body = [
         no_gutters=True,
         className="middle-map-news-content mt-3",
     ),
+    # STARTING CHART SECTION
     dbc.Row(
         [
             dbc.Col(
@@ -344,21 +346,22 @@ desktop_body = [
                 html.Div(
                     dbc.Row(
                         [
+                            # CHART 1:
                             dbc.Col(
                                 dbc.Card(
                                     dbc.CardBody(
                                         [
                                             html.Div(
-                                                "US COVID-19 Timeline",
-                                                className="top-bottom-left-chart-h1-title",
+                                                "Confirmed Cases Timeline",
+                                                className="bottom-chart-h1-title",
                                             ),
                                             html.Div(
-                                                "Confirmed Cases and Deaths",
-                                                className="top-bottom-left-chart-h2-title",
+                                                "With new daily cases",
+                                                className="bottom-chart-h2-title",
                                             ),
                                             html.Div(
                                                 dcc.Graph(
-                                                    figure=confirmed_cases_chart(),
+                                                    figure=cases_chart(),
                                                     config={"responsive": False},
                                                     style={"height": "20vh"},
                                                     className='top-bottom-left-chart-figure"',
@@ -371,22 +374,23 @@ desktop_body = [
                                 className="top-bottom-left-chart",
                                 width=4,
                             ),
+                            # CHART 2
                             dbc.Col(
                                 dbc.Card(
                                     dbc.CardBody(
                                         [
                                             html.Div(
-                                                "Infection Trajectory",
-                                                className="top-bottom-right-chart-h1-title",
+                                                "Death Trajectory",
+                                                className="bottom-chart-h1-title",
                                             ),
                                             html.Div(
-                                                "Days Since 200 Cases",
-                                                className="top-bottom-right-chart-h2-title",
+                                                "Last 30 days",
+                                                className="bottom-chart-h2-title",
                                             ),
                                             html.Div(
                                                 dcc.Loading(
                                                     dcc.Graph(
-                                                        figure=infection_trajectory_chart(),
+                                                        figure=deaths_chart(),
                                                         config={"responsive": False},
                                                         style={"height": "20vh"},
                                                         className="top-bottom-right-chart-figure",
@@ -405,6 +409,7 @@ desktop_body = [
                                 className="top-bottom-right-chart",
                                 width=4,
                             ),
+                            # CHART 3:
                             dbc.Col(
                                 dbc.Card(
                                     dbc.CardBody(

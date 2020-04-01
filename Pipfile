@@ -18,6 +18,7 @@ flask-mobility = "*"
 python-dateutil = "*"
 flask-caching = "*"
 flask = "*"
+all = "*"
 
 [dev-packages]
 pylint = "*"
