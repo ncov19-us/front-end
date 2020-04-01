@@ -581,13 +581,13 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     /* margin-bottom: 1%; */
 }
 
-.top-bottom-left-chart-h1-title, .top-bottom-right-chart-h1-title {
+.top-bottom-left-chart-h1-title, .bottom-chart-h1-title {
     font-size: 1.2rem;
     color: #F4F4F4;
     max-width: 100%;
 }
 
-.top-bottom-left-chart-h2-title, .top-bottom-right-chart-h2-title {
+.top-bottom-left-chart-h2-title, .bottom-chart-h2-title {
     font-size: .75rem;
     color: #F4F4F4;
     max-width: 100%;

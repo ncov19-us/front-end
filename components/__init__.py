@@ -8,3 +8,4 @@ from .daily_stats import daily_stats
 from .daily_stats_mobile import daily_stats_mobile
 from .column_stats import states_confirmed_stats, states_deaths_stats, last_updated
 from .column_stats_mobile import mobile_states_confirmed_stats, mobile_states_deaths_stats, mobile_last_updated
+from .deaths_chart import deaths_chart
