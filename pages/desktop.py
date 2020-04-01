@@ -277,7 +277,7 @@ def map_tab_content(value, state):
 ########################################################################
 desktop_body = [
     html.Div(
-        id="intermediate-value", children="US", style={"display": "none"}
+        id="intermediate-value", children="United States", style={"display": "none"}
     ),  # Hidden div inside the app that stores the intermediate value
     dbc.Row(  # TOP BAR
         # daily_stats(),
@@ -286,7 +286,7 @@ desktop_body = [
                 dcc.Dropdown(
                     id="states-dropdown",
                     options=state_labels,
-                    value="US",
+                    value="United States",
                     clearable=False,
                     searchable=False,
                     className="states-dropdown",
