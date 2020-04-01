@@ -25,7 +25,7 @@ def twitter_feed(state="US") -> List[dbc.Card]:
     if state == "US":
         response = requests.get(NCOV19_API + "twitter").json()
     else:
-        payload = {"state": STATES_COORD[state]["stateAbbr"]}
+        payload = {"state": state}
         payload = json.dumps(payload)
         response = requests.post(NCOV19_API + "twitter", data=payload).json()
 

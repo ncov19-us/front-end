@@ -675,10 +675,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 /* Active Tab Blur */
 .tab--selected {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, .4);
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, .4); */
     z-index: 100;
     position: relative;
-    background-color: #1F242D;
+    /* background-color: #1F242D; */
+    border-bottom: 1px solid white !important;
 }
 
 .tab:hover {

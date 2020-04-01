@@ -9,7 +9,7 @@ from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import states_confirmed_stats, states_deaths_stats, last_updated
-
+from utils.settings import STATES_COORD, REVERSE_STATES_MAP
 import dash
 from components.column_stats import STATES
 
@@ -21,16 +21,17 @@ tabs_styles = {
 }
 tab_style = {
     "padding": "0.5rem",
-    "color": "white",
+    "color": "gray",
     "backgroundColor": "#010914",
     "fontSize": "0.7rem",
 }
 
 tab_selected_style = {
     "fontSize": "0.7rem",
-    "backgroundColor": "#20242d",
+    # "backgroundColor": "#20242d",
     "color": "white",
     "padding": "0.5rem",
+    "backgroundColor": "#010914",
 }
 
 ########################################################
@@ -212,7 +213,6 @@ us_maps_tabs = dbc.Card(
         [
             html.Div(
                 [
-                    html.Div("US Map", className="top-bar-us-map-heading-txt",),
                     html.Div(
                         dcc.Tabs(
                             id="middle-map-tabs-styled-with-inline",
@@ -265,9 +265,9 @@ def map_tab_content(value, state):
     # print(f"callback value: {value}")
     # print(f"callback state: {state}")
     if value == "testing-us-map-tab":
-        return drive_thru_scatter_mapbox(state=state)
+        return drive_thru_scatter_mapbox(state=REVERSE_STATES_MAP[state])
     else:
-        return confirmed_scatter_mapbox(state=state)
+        return confirmed_scatter_mapbox(state=REVERSE_STATES_MAP[state])
 
 
 ########################################################################
@@ -277,7 +277,7 @@ def map_tab_content(value, state):
 ########################################################################
 desktop_body = [
     html.Div(
-        id="intermediate-value", children="United States", style={"display": "none"}
+        id="intermediate-value", children="US", style={"display": "none"}
     ),  # Hidden div inside the app that stores the intermediate value
     dbc.Row(  # TOP BAR
         # daily_stats(),
@@ -471,6 +471,7 @@ def daily_stats_callback(state):
 @app.callback(
     [Output("intermediate-value", "children")], [Input("states-dropdown", "value")]
 )
-def update_output(value):
-    print(value)
-    return [value]
+def update_output(state):
+    #print(state)
+    state = STATES_COORD[state]["stateAbbr"]
+    return [state]
