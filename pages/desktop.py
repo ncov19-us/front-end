@@ -191,6 +191,11 @@ def stats_tab_content(state):
                     } for c in ['State', 'County']
                 ],
                 style_as_list_view=True,
+                style_cell={
+                    'overflow': 'hidden',
+                    'textOverflow': 'ellipsis',
+                    'maxWidth': 0,
+                }
     )
     return table
 
