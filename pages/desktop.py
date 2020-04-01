@@ -33,7 +33,7 @@ tab_selected_style = {
     "padding": "0.5rem",
 }
 
-########################################################
+################### STATE LABELS ########################
 
 state_labels = [
     {"label": "United States", "value": "United States"},
@@ -90,7 +90,7 @@ state_labels = [
 
 ########################################################################
 #
-# News and Twitter Tabs
+#                       News and Twitter Tabs
 #
 ########################################################################
 
@@ -126,7 +126,7 @@ feed_tabs = dbc.Card(
     ]
 )
 
-
+#################### FEED CALLBACKS ###########################
 @app.callback(
     Output("feed-content", "children"),
     [
@@ -147,7 +147,7 @@ def feed_tab_content(tab_value, state):
 
 ########################################################################
 #
-# Confirmed/Deaths Tabs
+#                       Confirmed/Deaths Tabs
 #
 ########################################################################
 stats_tabs = dbc.Card(
@@ -161,17 +161,17 @@ stats_tabs = dbc.Card(
                         dcc.Tab(
                             label="Confirmed",
                             value="confirmed-tab",
-                            className="left-twitter-tab",
+                            className="left-stats-tab",
                             style=tab_style,
                             selected_style=tab_selected_style,
                         ),
-                        dcc.Tab(
-                            label="Deaths",
-                            value="deaths-tab",
-                            className="left-news-tab",
-                            style=tab_style,
-                            selected_style=tab_selected_style,
-                        ),
+                        # dcc.Tab(
+                        #     label="Deaths",
+                        #     value="deaths-tab",
+                        #     className="left-news-tab",
+                        #     style=tab_style,
+                        #     selected_style=tab_selected_style,
+                        # ),
                     ],
                     style=tabs_styles,
                     colors={"border": None, "primary": None, "background": None},
@@ -187,23 +187,47 @@ stats_tabs = dbc.Card(
     ]
 )
 
+# ORIGINAL STATS TABS CALLBACKS
+# @app.callback(
+#     Output("stats-content", "children"),
+#     [Input("right-tabs-styled-with-inline", "value")],
+# )
+# def stats_tab_content(value):
+#     """Callback to change between news and twitter feed
+#     """
+#     if value == "deaths-tab":
+#         return states_deaths_stats()
+#     else:
+#         return states_confirmed_stats()
+
 
 @app.callback(
     Output("stats-content", "children"),
-    [Input("right-tabs-styled-with-inline", "value")],
+    [
+        Input("right-tabs-styled-with-inline", "value"),
+        Input("intermediate-value", "children"),
+    ],
 )
-def stats_tab_content(value):
+def stats_tab_content(value, state):
     """Callback to change between news and twitter feed
     """
     if value == "deaths-tab":
         return states_deaths_stats()
     else:
-        return states_confirmed_stats()
+        return [states_confirmed_stats(state)]
+
+
+# @app.callback(
+#     [Output("daily-stats", "children")], [Input("intermediate-value", "children")]
+# )
+# def column_stats_callback(tab_value, state):
+#     stats = states_confirmed_stats(state)
+#     return [stats]
 
 
 ########################################################################
 #
-# Us Map Confirmed / Drive-Thru testing Map
+#           Us Map Confirmed / Drive-Thru testing Map
 #
 ########################################################################
 
@@ -272,7 +296,7 @@ def map_tab_content(value, state):
 
 ########################################################################
 #
-# Desktop App Body
+#                       Desktop App Body
 #
 ########################################################################
 desktop_body = [
@@ -302,7 +326,6 @@ desktop_body = [
             dbc.Col(stats_tabs, className="right-col-stats-content", width=2,),
             # MIDDLE - MAPS COL
             dbc.Col(
-                # [
                 # big map
                 html.Div(us_maps_tabs),
                 className="middle-col-map-content",
@@ -429,7 +452,7 @@ desktop_body = [
 
 ########################################################################
 #
-# Top bar callback
+#                           Top bar callback
 #
 ########################################################################
 @app.callback(
@@ -442,9 +465,19 @@ def daily_stats_callback(state):
 
 ########################################################################
 #
-# State stats column buttons callback
+#                   State Dropdown Menu Callback
 #
 ########################################################################
+
+# callback for dropdown menu
+@app.callback(
+    [Output("intermediate-value", "children")], 
+    [Input("states-dropdown", "value")]
+)
+
+def update_output(value):
+    print(value)
+    return [value]
 
 
 # @app.callback(
@@ -466,13 +499,3 @@ def daily_stats_callback(state):
 #             # print(ctx)
 #             # print(n_clicks)
 #             return ["US"]
-
-# callback for dropdown menu
-@app.callback(
-    [Output("intermediate-value", "children")], 
-    [Input("states-dropdown", "value")]
-)
-
-def update_output(value):
-    print(value)
-    return [value]

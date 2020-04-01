@@ -32,7 +32,7 @@ STATES = list(set(data["state_name"].to_list()))
 del response, data
 
 @cache.memoize(timeout=600)
-def states_confirmed_stats(state='US') -> dbc.ListGroup:
+def states_confirmed_stats(state='United States') -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
         for the whole US
@@ -52,16 +52,17 @@ def states_confirmed_stats(state='US') -> dbc.ListGroup:
         data["state_name"] = data["state_name"].str.title()
         
 
-        if state == "US":
+        if state in ["US", "United States"]:
             confirmed = data.groupby(["state_name"])["confirmed"].sum()
             confirmed = confirmed.sort_values(ascending=False).to_dict()
         else:
             confirmed = data[data['state_name'] == state]
+            confirmed = confirmed[["county_name","confirmed"]]
             confirmed = confirmed.sort_values(ascending=False).to_dict()
         
         del response, data
     except:
-        print("[ERROR] states_confirmed_stats error accessing ncov19.us API")
+        print("[ERROR] states_confirmed_stats({state}) error accessing ncov19.us API")
 
 
     list_group = dbc.ListGroup(
