@@ -53,17 +53,17 @@ def states_confirmed_stats(state='United States') -> dbc.ListGroup:
         
 
         if state in ["US", "United States"]:
-            print('if state', state)
+            # print('if state', state)
             confirmed = data.groupby(["state_name"])["confirmed"].sum()
             confirmed = confirmed.sort_values(ascending=False).to_dict()
-            print(confirmed)
+            # print(confirmed)
         else:
-            print('else state', state)
+            # print('else state', state)
             confirmed = data[data['state_name'] == state]
-            print(1)
+            # print(1)
             confirmed = confirmed[["county_name", "confirmed"]]
             confirmed = dict(confirmed.sort_values(by="confirmed", ascending=False).to_records(index=False))
-            print(2)
+            # print(2)
         del response, data
     except:
         print(f"[ERROR] states_confirmed_stats({state}) error accessing ncov19.us API")
