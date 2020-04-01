@@ -7,8 +7,29 @@
 /* #navbar {
     text-decoration: none;
 } */
+
+
+/*******COLOR VARIABLES*******/
+:root{
+    /* Nav Colors */
+    --nav-bg-color:#010915;
+    --nav-font-color:#FEFEFE;
+
+    /* Daily Stats Colors */
+    --daily-stats-font-color-tested:#AEAEAE;
+    --daily-stats-font-color-confirmed:#F4B000;
+    --daily-stats-font-color-deaths:#E55465;
+    --daily-stats-font-color-deathrate:#DD1E34;
+
+    /* Card Colors */
+    --card-bg-color:#010915;
+    --card-font-color:#F4F4F4;
+
+
+}
+
 .navbar {
-    background-color: #010915;
+    background-color: var(--nav-bg-color);
     border: none;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     text-shadow: none;
@@ -16,6 +37,10 @@
     z-index: 10000;
     width: 100vw;
     top: 0;
+}
+
+.navbar-toggler-1 {
+    display: none;
 }
 
 .navbar-brand {
@@ -370,6 +395,14 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     border-color: white transparent transparent;
     border-width: 10px 5px 2.5px;
 }
+
+#states-dropdown .is-open .Select-arrow {
+    border-color: white transparent transparent;
+    border-width: 10px 5px 2.5px;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+
 .top-bar-content.row {
     margin-left: 0rem;
     margin-right: .78rem;
@@ -378,6 +411,10 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .top-bar-content.row .card-body {
     background-color: #19202A;
     box-shadow: none;
+}
+
+.card-body {
+    background-color: var(--card-bg-color);
 }
 
 .top-bar-card-body .card-body {
@@ -392,7 +429,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-card-tested {
-    color: #AEAEAE;
+    color: var(--daily-stats-font-color-tested);
     text-align: center;
     font-size: .9rem;
     background-color: transparent;
@@ -416,7 +453,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-card-confirmed {
-    color: #F4B000;
+    color: var(--daily-stats-font-color-confirmed);
     text-align: center;
     font-size: .9rem;
     background-color: transparent;
@@ -439,7 +476,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 .top-bar-card-deaths {
-    color: #E55465;
+    color: var(--daily-stats-font-color-deaths);
     text-align: center;
     font-size: .9rem;
     background-color: transparent;
@@ -466,7 +503,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .top-bar-card-death {
     /* color: #03DA32; */
-    color: #DD1E34;
+    color: var(--daily-stats-font-color-deathrate);
     text-align: center;
     font-size: .9rem;
     background-color: transparent;
@@ -753,7 +790,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .left-col-feed-cards-text .tweet-item.list-group-item {
     border-radius: 0.2rem;
-    background-color: none;
+    background-color: var(--card-bg-color);
 }
 
 .right-col-news-feed-content.col-2 {
@@ -765,7 +802,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .tweet-item.list-group-item , .news-item.list-group-item{
-    background-color: #010915;
+    background-color: none;
     border: none;
 }
 

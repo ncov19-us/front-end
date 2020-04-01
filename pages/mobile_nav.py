@@ -23,23 +23,15 @@ mobile_navbar = [
         dbc.Card(
             html.Div(
                 [
-                    html.A(
-                        html.P("About", className="mobile-nav-header"),
-                        href="/about",
-                        className="hidden-menu-anchor-tag",
-                    ),
-                    html.A(
-                        html.P("CDC Resources",
-                        className="mobile-nav-header"),
-                        href="https://www.cdc.gov/coronavirus/2019-ncov/index.html",
-                        className="hidden-menu-anchor-tag",
-                    ),
-                    html.A(
-                        html.P("WHO Resources",
-                        className="mobile-nav-header"),
-                        href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
-                        className="hidden-menu-anchor-tag",
-                    )
+                html.A(html.P("Get Mobile Updates", className="mobile-nav-header"), 
+                className="hidden-menu-anchor-tag", 
+                href="/"),
+                html.A(html.P("Vaccine Tracker", className="mobile-nav-header"), 
+                className="hidden-menu-anchor-tag", 
+                href="/"),
+                html.A(html.P("About", className="mobile-nav-header"), 
+                className="hidden-menu-anchor-tag", 
+                href="/about")
                     # html.A(html.P("Resources", className="mobile-nav-header"), href="/resources", className="hidden-menu-anchor-tag"),
                     # html.A(html.P("Github", className="mobile-nav-header"), href="/#", className="hidden-menu-anchor-tag"),
                 ],
