@@ -8,11 +8,7 @@ from components import daily_stats
 from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
-from components import (
-    states_confirmed_stats,
-    states_deaths_stats,
-    last_updated
-)
+from components import states_confirmed_stats, states_deaths_stats, last_updated
 
 import dash
 from components.column_stats import STATES
@@ -40,57 +36,57 @@ tab_selected_style = {
 ########################################################
 
 state_labels = [
-            {'label': 'United States', 'value': 'US'},
-            {'label': 'Alabama', 'value': 'AL'},
-            {'label': 'Alaska', 'value': 'AK'},
-            {'label': 'Arizona', 'value': 'AZ'},
-            {'label': 'Arkansas', 'value': 'AR'},
-            {'label': 'California', 'value': 'CA'},
-            {'label': 'Connecticut', 'value': 'CT'},
-            {'label': 'Delaware', 'value': 'DE'},
-            {'label': 'Florida', 'value': 'FL'},
-            {'label': 'Georgia', 'value': 'GA'},
-            {'label': 'Hawaii', 'value': 'HI'},
-            {'label': 'Idaho', 'value': 'ID'},
-            {'label': 'Illinois', 'value': 'IL'},
-            {'label': 'Indiana', 'value': 'IN'},
-            {'label': 'Iowa', 'value': 'IA'},
-            {'label': 'Kansas', 'value': 'KS'},
-            {'label': 'Kentucky', 'value': 'KY'},
-            {'label': 'Louisiana', 'value': 'LA'},
-            {'label': 'Maine', 'value': 'ME'},
-            {'label': 'Maryland', 'value': 'MD'},
-            {'label': 'Massachusetts', 'value': 'MA'},
-            {'label': 'Michigan', 'value': 'MI'},
-            {'label': 'Minnesota', 'value': 'MN'},
-            {'label': 'Mississippi', 'value': 'MS'},
-            {'label': 'Missouri', 'value': 'MO'},
-            {'label': 'Montana', 'value': 'MT'},
-            {'label': 'Nebraska', 'value': 'NE'},
-            {'label': 'Nevada', 'value': 'NV'},
-            {'label': 'New Hampshire', 'value': 'NH'},
-            {'label': 'New Jersey', 'value': 'NJ'},
-            {'label': 'New Mexico', 'value': 'NM'},
-            {'label': 'New York', 'value': 'NY'},
-            {'label': 'North Carolina', 'value': 'NC'},
-            {'label': 'North Dakota', 'value': 'ND'},
-            {'label': 'Ohio', 'value': 'OH'},
-            {'label': 'Oklahoma', 'value': 'OK'},
-            {'label': 'Oregon', 'value': 'OR'},
-            {'label': 'Pennsylvania', 'value': 'PA'},
-            {'label': 'Rhode Island', 'value': 'RI'},
-            {'label': 'South Carolina', 'value': 'SC'},
-            {'label': 'South Dakota', 'value': 'SD'},
-            {'label': 'Tennessee', 'value': 'TN'},
-            {'label': 'Texas', 'value': 'TX'},
-            {'label': 'Utah', 'value': 'UT'},
-            {'label': 'Vermont', 'value': 'VT'},
-            {'label': 'Virginia', 'value': 'VA'},
-            {'label': 'Washington', 'value': 'WA'},
-            {'label': 'West Virginia', 'value': 'WV'},
-            {'label': 'Wisconsin', 'value': 'WI'},
-            {'label': 'Wyoming', 'value': 'WY'}
- ]
+    {"label": "United States", "value": "United States"},
+    {"label": "Alabama", "value": "Alabama"},
+    {"label": "Alaska", "value": "Alaska"},
+    {"label": "Arizona", "value": "Arizona"},
+    {"label": "Arkansas", "value": "Arkansas"},
+    {"label": "California", "value": "California"},
+    {"label": "Connecticut", "value": "Connecticut"},
+    {"label": "Delaware", "value": "Delaware"},
+    {"label": "Florida", "value": "Florida"},
+    {"label": "Georgia", "value": "Georgia"},
+    {"label": "Hawaii", "value": "Hawaii"},
+    {"label": "Idaho", "value": "Idaho"},
+    {"label": "Illinois", "value": "Illinois"},
+    {"label": "Indiana", "value": "Indiana"},
+    {"label": "Iowa", "value": "Iowa"},
+    {"label": "Kansas", "value": "Kansas"},
+    {"label": "Kentucky", "value": "Kentucky"},
+    {"label": "Louisiana", "value": "Louisiana"},
+    {"label": "Maine", "value": "Maine"},
+    {"label": "Maryland", "value": "Maryland"},
+    {"label": "Massachusetts", "value": "Massachusetts"},
+    {"label": "Michigan", "value": "Michigan"},
+    {"label": "Minnesota", "value": "Minnesota"},
+    {"label": "Mississippi", "value": "Mississippi"},
+    {"label": "Missouri", "value": "Missouri"},
+    {"label": "Montana", "value": "Montana"},
+    {"label": "Nebraska", "value": "Nebraska"},
+    {"label": "Nevada", "value": "Nevada"},
+    {"label": "New Hampshire", "value": "New Hampshire"},
+    {"label": "New Jersey", "value": "New Jersey"},
+    {"label": "New Mexico", "value": "New Mexico"},
+    {"label": "New York", "value": "New York"},
+    {"label": "North Carolina", "value": "North Carolina"},
+    {"label": "North Dakota", "value": "North Dakota"},
+    {"label": "Ohio", "value": "Ohio"},
+    {"label": "Oklahoma", "value": "Oklahoma"},
+    {"label": "Oregon", "value": "Oregon"},
+    {"label": "Pennsylvania", "value": "Pennsylvania"},
+    {"label": "Rhode Island", "value": "Rhode Island"},
+    {"label": "South Carolina", "value": "South Carolina"},
+    {"label": "South Dakota", "value": "South Dakota"},
+    {"label": "Tennessee", "value": "Tennessee"},
+    {"label": "Texas", "value": "Texas"},
+    {"label": "Utah", "value": "Utah"},
+    {"label": "Vermont", "value": "Vermont"},
+    {"label": "Virginia", "value": "Virginia"},
+    {"label": "Washington", "value": "Washington"},
+    {"label": "West Virginia", "value": "West Virginia"},
+    {"label": "Wisconsin", "value": "Wisconsin"},
+    {"label": "Wyoming", "value": "Wyoming"},
+]
 
 ########################################################################
 #
@@ -181,7 +177,7 @@ stats_tabs = dbc.Card(
                     colors={"border": None, "primary": None, "background": None},
                 ),
                 html.P(
-                    f"Last Updated {last_updated.upper()}", # last updated desktop
+                    f"Last Updated {last_updated.upper()}",  # last updated desktop
                     className="right-tabs-last-updated-text",
                 ),
             ],
@@ -286,104 +282,29 @@ desktop_body = [
     dbc.Row(  # TOP BAR
         # daily_stats(),
         [
-        dbc.Col(dcc.Dropdown(
-        id='states-dropdown',
-        options=state_labels,
-        value='US',
-        clearable=False,
-        searchable=False,
-        className="states-dropdown"
-    ), 
-    className="states-dropdown-container",
-    width=2),
-        dbc.Col(
-            dbc.Row(id="daily-stats",
-        className="top-bar-content"),
-        width=10)
+            dbc.Col(
+                dcc.Dropdown(
+                    id="states-dropdown",
+                    options=state_labels,
+                    value="US",
+                    clearable=False,
+                    searchable=False,
+                    className="states-dropdown",
+                ),
+                className="states-dropdown-container",
+                width=2,
+            ),
+            dbc.Col(dbc.Row(id="daily-stats", className="top-bar-content"), width=10),
         ]
-    ), 
+    ),
     dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
-        [   # RIGHT - STATS COL
+        [  # RIGHT - STATS COL
             dbc.Col(stats_tabs, className="right-col-stats-content", width=2,),
-            
             # MIDDLE - MAPS COL
             dbc.Col(
                 # [
-                    # big map
-                    html.Div(us_maps_tabs),
-                    # # bottom two charts
-                    # html.Div(
-                    #     dbc.Row(
-                    #         [
-                    #             dbc.Col(
-                    #                 dbc.Card(
-                    #                     dbc.CardBody(
-                    #                         [
-                    #                             html.Div(
-                    #                                 "US COVID-19 Timeline",
-                    #                                 className="top-bottom-left-chart-h1-title",
-                    #                             ),
-                    #                             html.Div(
-                    #                                 "Confirmed Cases and Deaths",
-                    #                                 className="top-bottom-left-chart-h2-title",
-                    #                             ),
-                    #                             html.Div(
-                    #                                 dcc.Graph(
-                    #                                     figure=confirmed_cases_chart(),
-                    #                                     config={"responsive": False},
-                    #                                     style={"height": "20vh"},
-                    #                                     className='top-bottom-left-chart-figure"',
-                    #                                 ),
-                    #                                 id="chart-container",
-                    #                             ),
-                    #                         ]
-                    #                     ),
-                    #                 ),
-                    #                 className="top-bottom-left-chart",
-                    #                 width=6,
-                    #             ),
-                    #             dbc.Col(
-                    #                 dbc.Card(
-                    #                     dbc.CardBody(
-                    #                         [
-                    #                             html.Div(
-                    #                                 "Infection Trajectory",
-                    #                                 className="top-bottom-right-chart-h1-title",
-                    #                             ),
-                    #                             html.Div(
-                    #                                 "Days Since 200 Cases",
-                    #                                 className="top-bottom-right-chart-h2-title",
-                    #                             ),
-                    #                             html.Div(
-                    #                                 dcc.Loading(
-                    #                                     dcc.Graph(
-                    #                                         figure=infection_trajectory_chart(),
-                    #                                         config={
-                    #                                             "responsive": False
-                    #                                         },
-                    #                                         style={"height": "20vh"},
-                    #                                         className="top-bottom-right-chart-figure",
-                    #                                     ),
-                    #                                     style={
-                    #                                         "padding-top": "8px",
-                    #                                         "background-color": "red",
-                    #                                     },
-                    #                                     color="#19202A",
-                    #                                 ),
-                    #                                 id="chart-container",
-                    #                             ),
-                    #                         ]
-                    #                     ),
-                    #                 ),
-                    #                 className="top-bottom-right-chart",
-                    #                 width=6,
-                    #             ),
-                    #         ],
-                    #         no_gutters=True,
-                    #     ),
-                    #     className="top-bottom-charts",
-                    # ),
-                # ],
+                # big map
+                html.Div(us_maps_tabs),
                 className="middle-col-map-content",
                 width=8,
             ),
@@ -393,120 +314,117 @@ desktop_body = [
         no_gutters=True,
         className="middle-map-news-content mt-3",
     ),
-    dbc.Row( [
-        dbc.Col(  
-            # bottom three charts
-                    html.Div(
-                        dbc.Row(
-                            [
-                                dbc.Col(
-                                    dbc.Card(
-                                        dbc.CardBody(
-                                            [
-                                                html.Div(
-                                                    "US COVID-19 Timeline",
-                                                    className="top-bottom-left-chart-h1-title",
+    dbc.Row(
+        [
+            dbc.Col(
+                # bottom three charts
+                html.Div(
+                    dbc.Row(
+                        [
+                            dbc.Col(
+                                dbc.Card(
+                                    dbc.CardBody(
+                                        [
+                                            html.Div(
+                                                "US COVID-19 Timeline",
+                                                className="top-bottom-left-chart-h1-title",
+                                            ),
+                                            html.Div(
+                                                "Confirmed Cases and Deaths",
+                                                className="top-bottom-left-chart-h2-title",
+                                            ),
+                                            html.Div(
+                                                dcc.Graph(
+                                                    figure=confirmed_cases_chart(),
+                                                    config={"responsive": False},
+                                                    style={"height": "20vh"},
+                                                    className='top-bottom-left-chart-figure"',
                                                 ),
-                                                html.Div(
-                                                    "Confirmed Cases and Deaths",
-                                                    className="top-bottom-left-chart-h2-title",
-                                                ),
-                                                html.Div(
+                                                id="chart-container",
+                                            ),
+                                        ]
+                                    ),
+                                ),
+                                className="top-bottom-left-chart",
+                                width=4,
+                            ),
+                            dbc.Col(
+                                dbc.Card(
+                                    dbc.CardBody(
+                                        [
+                                            html.Div(
+                                                "Infection Trajectory",
+                                                className="top-bottom-right-chart-h1-title",
+                                            ),
+                                            html.Div(
+                                                "Days Since 200 Cases",
+                                                className="top-bottom-right-chart-h2-title",
+                                            ),
+                                            html.Div(
+                                                dcc.Loading(
                                                     dcc.Graph(
-                                                        figure=confirmed_cases_chart(),
+                                                        figure=infection_trajectory_chart(),
                                                         config={"responsive": False},
                                                         style={"height": "20vh"},
-                                                        className='top-bottom-left-chart-figure"',
+                                                        className="top-bottom-right-chart-figure",
                                                     ),
-                                                    id="chart-container",
+                                                    style={
+                                                        "padding-top": "8px",
+                                                        "background-color": "red",
+                                                    },
+                                                    color="#19202A",
                                                 ),
-                                            ]
-                                        ),
+                                                id="chart-container",
+                                            ),
+                                        ]
                                     ),
-                                    className="top-bottom-left-chart",
-                                    width=4,
                                 ),
-                                dbc.Col(
-                                    dbc.Card(
-                                        dbc.CardBody(
-                                            [
-                                                html.Div(
-                                                    "Infection Trajectory",
-                                                    className="top-bottom-right-chart-h1-title",
-                                                ),
-                                                html.Div(
-                                                    "Days Since 200 Cases",
-                                                    className="top-bottom-right-chart-h2-title",
-                                                ),
-                                                html.Div(
-                                                    dcc.Loading(
-                                                        dcc.Graph(
-                                                            figure=infection_trajectory_chart(),
-                                                            config={
-                                                                "responsive": False
-                                                            },
-                                                            style={"height": "20vh"},
-                                                            className="top-bottom-right-chart-figure",
-                                                        ),
-                                                        style={
-                                                            "padding-top": "8px",
-                                                            "background-color": "red",
-                                                        },
-                                                        color="#19202A",
+                                className="top-bottom-right-chart",
+                                width=4,
+                            ),
+                            dbc.Col(
+                                dbc.Card(
+                                    dbc.CardBody(
+                                        [
+                                            html.Div(
+                                                "Infection Trajectory",
+                                                className="top-bottom-right-chart-h1-title",
+                                            ),
+                                            html.Div(
+                                                "Days Since 200 Cases",
+                                                className="top-bottom-right-chart-h2-title",
+                                            ),
+                                            html.Div(
+                                                dcc.Loading(
+                                                    dcc.Graph(
+                                                        figure=infection_trajectory_chart(),
+                                                        config={"responsive": False},
+                                                        style={"height": "20vh"},
+                                                        className="top-bottom-right-chart-figure",
                                                     ),
-                                                    id="chart-container",
+                                                    style={
+                                                        "padding-top": "8px",
+                                                        "background-color": "red",
+                                                    },
+                                                    color="#19202A",
                                                 ),
-                                            ]
-                                        ),
+                                                id="chart-container",
+                                            ),
+                                        ]
                                     ),
-                                    className="top-bottom-right-chart",
-                                    width=4,
                                 ),
-                                dbc.Col(
-                                    dbc.Card(
-                                        dbc.CardBody(
-                                            [
-                                                html.Div(
-                                                    "Infection Trajectory",
-                                                    className="top-bottom-right-chart-h1-title",
-                                                ),
-                                                html.Div(
-                                                    "Days Since 200 Cases",
-                                                    className="top-bottom-right-chart-h2-title",
-                                                ),
-                                                html.Div(
-                                                    dcc.Loading(
-                                                        dcc.Graph(
-                                                            figure=infection_trajectory_chart(),
-                                                            config={
-                                                                "responsive": False
-                                                            },
-                                                            style={"height": "20vh"},
-                                                            className="top-bottom-right-chart-figure",
-                                                        ),
-                                                        style={
-                                                            "padding-top": "8px",
-                                                            "background-color": "red",
-                                                        },
-                                                        color="#19202A",
-                                                    ),
-                                                    id="chart-container",
-                                                ),
-                                            ]
-                                        ),
-                                    ),
-                                    className="top-bottom-right-chart",
-                                    width=4,
-                                ),
-                            ],
-                            no_gutters=True,
-                        ),
-                        className="top-bottom-charts",
+                                className="top-bottom-right-chart",
+                                width=4,
+                            ),
+                        ],
+                        no_gutters=True,
                     ),
-                    className="bottom-chart-row"
+                    className="top-bottom-charts",
+                ),
+                className="bottom-chart-row",
             )
         ]
-    )
+    ),
 ]
 
 ########################################################################
@@ -514,10 +432,11 @@ desktop_body = [
 # Top bar callback
 #
 ########################################################################
-@app.callback([Output("daily-stats", "children")], 
-              [Input("intermediate-value", "children")])
+@app.callback(
+    [Output("daily-stats", "children")], [Input("intermediate-value", "children")]
+)
 def daily_stats_callback(state):
-    cards = daily_stats(state) 
+    cards = daily_stats(state)
     return [cards]
 
 
@@ -527,22 +446,31 @@ def daily_stats_callback(state):
 #
 ########################################################################
 
+
+# @app.callback(
+#     [Output("intermediate-value", "children")],
+#     [Input(f"states-confirmed-{state}", "n_clicks") for state in STATES],
+# )
+# def multi_output(*n_clicks):
+#     ctx = dash.callback_context
+#     # print(n_clicks)
+#     # print(ctx)
+#     if ctx.triggered:
+#         state = ctx.triggered[0]["prop_id"].split(".")[0].split("-")[-1]
+#         if any(n_clicks) > 0:
+#             # print(f"You clicked this state ==> {state}")
+#             # print(ctx)
+#             # print(n_clicks)
+#             return [f"{state}"]
+#         else:
+#             # print(ctx)
+#             # print(n_clicks)
+#             return ["US"]
+
+
 @app.callback(
-    [Output("intermediate-value", "children")],
-    [Input(f"states-confirmed-{state}", "n_clicks") for state in STATES],
+    [Output("intermediate-value", "children")], [Input("states-dropdown", "value")]
 )
-def multi_output(*n_clicks):
-    ctx = dash.callback_context
-    # print(n_clicks)
-    # print(ctx)
-    if ctx.triggered:
-        state = ctx.triggered[0]["prop_id"].split(".")[0].split("-")[-1]
-        if any(n_clicks) > 0:
-            # print(f"You clicked this state ==> {state}")
-            # print(ctx)
-            # print(n_clicks)
-            return [f"{state}"]
-        else:
-            # print(ctx)
-            # print(n_clicks)
-            return ["US"]
+def update_output(value):
+    print(value)
+    return [value]
