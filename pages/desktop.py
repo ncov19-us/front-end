@@ -9,7 +9,7 @@ from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import states_confirmed_stats, states_deaths_stats, last_updated
-from components import deaths_chart
+from components import cases_chart, deaths_chart
 from utils.settings import STATES_COORD, REVERSE_STATES_MAP
 import dash
 from components.column_stats import STATES
@@ -352,16 +352,16 @@ desktop_body = [
                                     dbc.CardBody(
                                         [
                                             html.Div(
-                                                "US COVID-19 Timeline",
-                                                className="top-bottom-left-chart-h1-title",
+                                                "Confirmed Cases Timeline",
+                                                className="bottom-chart-h1-title",
                                             ),
                                             html.Div(
-                                                "Confirmed Cases and Deaths",
-                                                className="top-bottom-left-chart-h2-title",
+                                                "With new daily cases",
+                                                className="bottom-chart-h2-title",
                                             ),
                                             html.Div(
                                                 dcc.Graph(
-                                                    figure=confirmed_cases_chart(),
+                                                    figure=cases_chart(),
                                                     config={"responsive": False},
                                                     style={"height": "20vh"},
                                                     className='top-bottom-left-chart-figure"',

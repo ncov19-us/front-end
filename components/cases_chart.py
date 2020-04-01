@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 
 
 # @cache.memoize(timeout=3600)
-def deaths_chart(state='US') -> go.Figure:
+def cases_chart(state='US') -> go.Figure:
     """Bar chart data for the selected state.
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
@@ -66,15 +66,15 @@ def deaths_chart(state='US') -> go.Figure:
     # Limit data to 1% of current maximum number of cases
     #     data = data[data['Confirmed Cases'] > data['Confirmed Cases'].max() * 0.01]
 
-    template_new = "%{y} confirmed new deaths on %{x}<extra></extra>"
-    template_total = "%{y} confirmed total deaths on %{x}<extra></extra>"
+    template_new = "%{y} confirmed new cases on %{x}<extra></extra>"
+    template_total = "%{y} confirmed total cases on %{x}<extra></extra>"
     fig = go.Figure()
     fig.add_trace(
         go.Bar(
             x=data["Date"],
-            y=data["New Deaths"],
-            name="New Deaths",
-            marker={"color": "#870000"},
+            y=data["New Confirmed Cases"],
+            name="New Cases Added",
+            marker={"color": "#F4B000"},
             hovertemplate=template_new,
         )
     )
@@ -82,9 +82,9 @@ def deaths_chart(state='US') -> go.Figure:
     fig.add_trace(
         go.Scatter(
             x=data["Date"],
-            y=data["Deaths"],
-            name="Total Deaths",
-            line={"color": "#870000"},
+            y=data["Confirmed Cases"],
+            name="Total Confirmed Cases",
+            line={"color": "#F4B000"},
             mode="lines",
             hovertemplate=template_total,
         )
@@ -112,7 +112,7 @@ def deaths_chart(state='US') -> go.Figure:
             size=10,
             color="#f4f4f4"
         ),
-        yaxis_title="Number of deaths",
+        yaxis_title="Number of cases",
         # xaxis_title="Date"
         #         legend=dict(
         #                 title=None, orientation="h", y=-.5, yanchor="bottom", x=0, xanchor="left"
