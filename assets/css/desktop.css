@@ -15,6 +15,7 @@
     position: fixed;
     z-index: 10000;
     width: 100vw;
+    height: 58px;
     top: 0;
 }
 
@@ -32,7 +33,7 @@
 
 .navbar-brand-covid-19-text {
     font-weight: 600;
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     margin-left: .5rem;
     margin-bottom: auto;
 
@@ -40,10 +41,10 @@
 
 .navbar-brand-us-cases-text {
     font-weight: 350;
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     text-shadow: none;
     margin-bottom: auto;
-    margin-left: 5%;
+    margin-left: .5rem;
 
 }
 
@@ -336,7 +337,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     align-items: center;
     padding-left: 2rem;
     padding-right: 0;
-    font-size: 1.5rem;
+    font-size: 2.75rem;
 }
 
 #states-dropdown {
