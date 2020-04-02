@@ -29,14 +29,14 @@ def stats_table(state="US"):
         
         data = data.sort_values(by=['confirmed'], ascending=False)
         data = data.reset_index()
-        data = data.rename(columns={"state_name": "State", 
+        data = data.rename(columns={"state_name": "State/County", 
                                     "confirmed": "Confirmed",
                                     "death": "Deaths"})
     else:
         data = data[data['state_name'] == state]
         data = data[["county_name", "confirmed", "death"]]
         data = data.sort_values(by=['confirmed'], ascending=False)
-        data = data.rename(columns={"county_name": "County", 
+        data = data.rename(columns={"county_name": "State/County", 
                                     "confirmed": "Confirmed",
                                     "death": "Deaths"})                
 
