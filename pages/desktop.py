@@ -3,6 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_table
 import dash
+from dash_table.Format import Format
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 
@@ -162,9 +163,9 @@ def feed_tab_content(tab_value, state):
 stats_tabs = dbc.Card(
     [
         dbc.CardBody(id="stats-table",
-                className="stats-table-col",
+                     className="stats-table-col",
         ),
-        html.P(
+        dbc.CardFooter(#html.P(
             f"Last Updated {last_updated.upper()}",
             className="right-tabs-last-updated-text",
         ),
@@ -198,52 +199,62 @@ def stats_tab_content(state):
                 column_selectable="single",
                 style_as_list_view=True,
                 fixed_rows={'headers': True},
+                fill_width=False,
                 style_table={
-                    # 'overflowX': 'scroll',
-                    'minWidth': '0',
+                    # # 'overflowX': 'scroll',
+                    # 'minWidth': '0',
                     'width': '100%',
                 },
                 style_header={
                     'font-size': '0.65rem',
                     'backgroundColor': '#010915',
-                    'border': '0.01rem solid #313841',
+                    'border': '#010915',
                     'fontWeight': 'bold',
                     'font': 'Lato, sans-serif',
-                    # # 'width': '100%',
-                    # # 'margin-left': '0.1rem',
-                    # # 'margin': '0.5rem',
-                    'maxWidth': '0rem',
-                    'minWidth': '3rem', 'width': '3rem', 'maxWidth': '3rem',
                 },
                 style_cell={
                     'font-size': '0.65rem',
                     'font-family': 'Roboto, sans-serif',
-                    'border': '0.01rem solid #313841',
+                    'border-bottom': '0.01rem solid #313841',
                     'backgroundColor': '#010915',
                     'color': '#FFFFFF',
-                    # 'textAlign': 'left',
-                    # 'width': '100%',
-                    # # 'minWidth': '0px', 'maxWidth': '3rem',
-                    # # 'margin': '0.5rem',
+                    'height': '2.5rem',
+                    'format': Format(groups=[3], group=','),
                 },
                 style_cell_conditional=[
+                    {
+                        'if': {
+                            'column_id': 'State/County',
+                        },
+                        'minWidth': '6.8rem', 'width': '6.8rem', 'maxWidth': '6.8rem',
+                    },
                     {
                         'if': {
                             'column_id': 'Confirmed',
                         },
                         'color': '#F4B000',
-                        # 'width': '30%',
+                        'minWidth': '4.2rem', 'width': '4.2rem', 'maxWidth': '4.2rem',
+                        'type': 'numeric',
+                        'format': Format(groups=[3], group=','),
                     },
                     {
                         'if': {
                             'column_id': 'Deaths',
                         },
                         'color': '#E55465',
-                        # 'width': '30%',
+                        'minWidth': '4.2rem', 'width': '4.2rem', 'maxWidth': '4.2rem',
+                        'type': 'numeric',
+                        'format': Format(groups=[3], group=','),
                     },
                 ],
     )
     return table
+    # Tried to add thousands separater w/ this following week, but cant get it to work.
+    # https://community.plotly.com/t/dash-datatable-thousands-separator/6713/10
+    # TypeError: ('grouping is not a format method. Expected one of',
+    #  "['align', 'decimal_delimiter', 'fill', 'group', 'group_delimiter',
+    #  'groups', 'nully', 'padding', 'padding_width', 'precision', 
+    # 'scheme', 'si_prefix', 'sign', 'symbol', 'symbol_prefix', 'symbol_suffix', 'trim']")
 
 ########################################################################
 #

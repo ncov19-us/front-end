@@ -80,14 +80,7 @@
 
 }
 
-.right-tabs-last-updated-text {
-    padding-left: 1rem;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    margin-bottom: 0;
-    font-size: 11px;
-    color: grey;
-}
+
 
 
 /*         Dropdown Location Menu                   */ 
@@ -176,7 +169,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     margin-bottom: 50px;
     margin-top: 0;
     font-weight: bold;
-
 }
 
 #about-page-second-third .about-page-title {
@@ -556,12 +548,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 /* 🌎 Map Styling 🌎*/
-.left-stats-tab {
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;
-}
-
-
 #map-loading {
     margin-top: 22vh;
 }
@@ -707,6 +693,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     color: rgb(199, 199, 199) !important;
 }
 
+/* RIGHT SIDEBAR FEED STYLING */
+
 .tweet-text {
     font-size: .75rem;
 }
@@ -735,7 +723,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .left-col-twitter-feed-content p {
     margin-bottom: 1rem;
-    border-radius: .3rem;
     height: 100%;
     /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
 }
@@ -748,9 +735,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 
-.right-col-news-feed-content.col-2 {
-    margin-left: 0.3rem;
-}
 
 .left-col-twitter-feed-content.col-2 .card .card-body {
     border-top-right-radius: 0;
@@ -771,12 +755,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 /* cards inside the sidebar for tweets and news */
 
 .left-col-feed-cards-text .tweet-item.list-group-item {
-    border-radius: 0.2rem;
     background-color: var(--card-bg-color);
-}
-
-.right-col-news-feed-content.col-2 {
-    margin-left: 0.3rem;
 }
 
 .left-col-feed-cards-text .list-group .list-group-flush li {
@@ -817,7 +796,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .news-item {
     padding: 15px;
     margin-bottom: 1rem;
-    border-radius: .3rem !important;
     padding-bottom: 0;
 }
 
@@ -836,7 +814,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .tweet-item {
     padding: 15px;
     margin-bottom: 1rem;
-    border-radius: .3rem !important;
     padding-bottom: 0;
     line-height: 1.35;
     color: #F4F4F4;
@@ -891,41 +868,6 @@ p.tweet-dt {
     display: none;  /* Safari and Chrome */
 }
 
-
-/* 👉👉👉👉 Right Detailed List Sidebar */
-
-#stats-content {
-    margin-bottom: 0;
-}
-
-.right-col-stats-content.col-2 .card-body {
-    padding-top: 0rem;
-    padding-bottom:0;
-}
-
-.right-col-news-feed-content {
-    margin-bottom: 1rem;
-}
-
-.stats-table-div .card-body{
-    overflow-y: scroll;
-    overflow-x: hidden;
-    
-    scroll-behavior: smooth;
-    -ms-overflow-style: none; 
-    scrollbar-width: none;
-
-    height: 63.5vh;
-}
-
-.stats-table-div td{
-    text-align: right !important;
-}
-/* disable scroll bar */
-.stats-table-div .card-body::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-}
-
 .left-col-twitter-feed-content {
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
@@ -934,37 +876,84 @@ p.tweet-dt {
     display: none;  /* Safari and Chrome */
 }
 
-.right-col-stats-content .col-2 .card .card-body {
-    /* height: calc(60vh) !important; */
-    overflow: scroll;
-    padding-top: 0;
-    
-}
-.right-col-stats-content .col-2 .card .card-body::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+/* 👉👉👉👉LEFT SIDEBAR STATS TABLE STYLING */
+
+
+#stats-content {
+    margin-bottom: 0;
 }
 
-.states-stats-confirmed-list-item.list-group-item {
-    border-top-width: 0;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 1px;
-    background-color: none;
-    background: none;
-    padding: 0.05rem;
-    border-color: rgba(0, 0, 0, 0.30);
+.stats-table-col.card-body {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0.3rem;
 }
 
-.states-stats-deaths-list-item.list-group-item {
-    background-color: none;
-    background: none;
-    padding: 0;
-    padding: 0.05rem;
-    border-color: rgba(0, 0, 0, 0.30);
-    /* border-bottom: 100px;
-    border-color: #0B1319; */
+.right-col-news-feed-content.col-2 {
+    margin-left: 0.3rem;
 }
 
+.right-col-news-feed-content {
+    margin-bottom: 1rem;
+}
+
+.right-col-stats-content.col-2 .card-body {
+    padding-top: 0rem;
+    padding-bottom:0;
+}
+
+
+.stats-table-div .card{
+    height: 68.5vh;
+}
+
+
+.column-header-name {
+    font-family: lato, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    /* padding-left: 1rem; */
+    /* padding: 1rem; */
+    color: white;
+}
+
+
+.dash-cell.column-0 {
+    padding-left: 2rem;
+}
+
+
+
+.dash-table-container td {
+    background-clip: padding-box;
+    padding: 1rem;
+    overflow-x: visible;
+    white-space: nowrap;
+    height: 30px;
+    text-align: left;
+}
+
+.dash-cell.column-0 .stats-table-div td {
+    /* text-align: left !important; */
+    /* padding-left: 0.2rem; */
+}
+
+.right-tabs-last-updated-text {
+    padding 1rem 0 1rem 0;
+    margin: 0;
+    font-size: .4rem;
+    background: #010915;
+}
+
+.right-tabs-last-updated-text.card-footer {
+    text-align: right;
+    padding-right: 0.5rem;
+    padding-top: 1rem;
+}
+
+.card-footer:last-child {
+    border-radius: 0 0 .4rem 0.4rem;
+}
 
 
 /* overflow disable scroll bar */
@@ -983,6 +972,9 @@ p.tweet-dt {
     display: none;  /* Safari and Chrome */
 }
 
+.right-col-stats-content .col-2 .card .card-body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
 
 .right-col-news-feed-content {
     -ms-overflow-style: none; 
@@ -993,15 +985,37 @@ p.tweet-dt {
     display: none;  /* Safari and Chrome */
 }
 
-.states-stats-confirmed-list-num {
-    /* changed this font weight...even with deaths list? */
-    font-weight: 700;
-    /* width: 34%; */
-    font-size: 0.94rem;
-    color: #F4B000;
+.stats-table-div .card-body{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+    scroll-behavior: smooth;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+
+    height: 59vh;
 }
 
-.states-stats-confirmed-list-item.list-group-item {
+/* disable scroll bar */
+.stats-table-div .card-body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+
+.right-col-stats-content .col-2 .card .card-body {
+    /* height: calc(60vh) !important; */
+    overflow: scroll;
+    padding-top: 0;
+    
+}
+
+/* .states-stats-confirmed-list-num {
+    font-weight: 700;
+    font-size: 0.94rem;
+    color: #F4B000;
+} */
+
+/* .states-stats-confirmed-list-item.list-group-item {
     margin-top: 0.35rem;
     margin-bottom: 0;
 }
@@ -1011,17 +1025,15 @@ p.tweet-dt {
     margin-bottom: 0;
 }
 
-
-
 p.states-stats-confirmed-list-txt {
     margin-top: 0.5rem;
  }
 
 .states-stats-confirmed-list-state {
     color:#F4F4F4;
-}
+} */
 
-p.states-stats-deaths-list-txt {
+/* p.states-stats-deaths-list-txt {
     margin-top: 0.5rem;
 }
 
@@ -1037,13 +1049,12 @@ p.states-stats-deaths-list-txt {
 
 .states-stats-recovered-list-num {
     font-weight: 700;
-    /* color: #03DA32; */
     color: #B20511;
 }
 
 .states-stats-recovered-list-state {
     color:#F4F4F4;
-}
+} */
 
 
 /* Footer 🦶 */
@@ -1102,7 +1113,4 @@ p.states-stats-deaths-list-txt {
     text-decoration: none !important;
 }
 
-/* 
-.top-bottom-left-chart-figure {
-    height: 10vh !important;
-} */
+
