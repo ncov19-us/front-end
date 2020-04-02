@@ -1,5 +1,3 @@
-# front-end/components/new_deaths_chart.py
-
 import requests
 import pandas as pd
 import json
@@ -104,7 +102,7 @@ def deaths_chart(state='US') -> go.Figure:
         hoverlabel={"font": {"color": "black"}},
         xaxis_showgrid=False,
         yaxis_showgrid=False,
-        xaxis={"tickformat": "%m/%y"},
+        xaxis={"tickformat": "%m/%d"},
         font=dict(
             family="Roboto, sans-serif",
             size=10,
@@ -116,4 +114,5 @@ def deaths_chart(state='US') -> go.Figure:
         #                 title=None, orientation="h", y=-.5, yanchor="bottom", x=0, xanchor="left"
         #         )
     )
+
     return fig
