@@ -9,7 +9,7 @@ import json
 from utils.settings import STATES_COORD
 
 
-@cache.memoize(timeout=900)
+# @cache.memoize(timeout=900)
 def twitter_feed(state="US") -> List[dbc.Card]:
     """Displays twitter feed on the left hand side of the display.
     

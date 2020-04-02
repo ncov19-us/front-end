@@ -10,3 +10,4 @@ from .column_stats import states_confirmed_stats, states_deaths_stats, last_upda
 from .column_stats_mobile import mobile_states_confirmed_stats, mobile_states_deaths_stats, mobile_last_updated
 from .deaths_chart import deaths_chart
 from .cases_chart import cases_chart
+from .stats_table import stats_table

@@ -11,7 +11,7 @@ from utils.settings import NCOV19_API, STATES_COORD
 def safe_div(x, y):
     return 0 if int(y) == 0 else int(x) / int(y)
 
-def get_daily_stats_mobile(state="US") -> Dict:
+def get_daily_stats_mobile(state="United States") -> Dict:
     """Get daily stats from ncov19.us API, parse and return as a dictionary
     for the daily stats mobile.
 
@@ -22,13 +22,13 @@ def get_daily_stats_mobile(state="US") -> Dict:
     tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
     try:
-        if state == "US":
+        if state in ["US", "United States"]:
             response = requests.get(url=url)
         else:
             payload = json.dumps({"state": state})
             response = requests.post(url=url, data=payload)
     except:
-        print("[ERROR] get_daily_stats error accessing ncov19.us API")
+        print("[ERROR] get_daily_stats_mobile error accessing ncov19.us API")
 
     # return all zeros if response statsus code is not 200
     if response.status_code != 200:

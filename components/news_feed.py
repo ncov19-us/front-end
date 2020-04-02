@@ -22,42 +22,43 @@ def news_feed(state="US") -> dbc.ListGroup:
     """
 
     if state == "US":
-        json_data = requests.get(NCOV19_API + "news").json()
+        response = requests.get(NCOV19_API + "news")
     else:
         payload = {"state": state, "topic": "coronavirus"}
         payload = json.dumps(payload)
         response = requests.post(NCOV19_API + "news", data=payload)
+        
+    if response.status_code == 200:
         json_data = response.json()
-        if response.status_code == 200:
-            json_data = json_data["message"]
-            # df = pd.read_json(json_data)
-            df = pd.DataFrame.from_records(json_data)
-            df = pd.DataFrame(df[["title", "url", "published"]])
+        json_data = json_data["message"]
+        # df = pd.read_json(json_data)
+        df = pd.DataFrame.from_records(json_data)
+        df = pd.DataFrame(df[["title", "url", "published"]])
 
-            max_rows = 50
-            list_group = dbc.ListGroup(
-                [
-                    dbc.ListGroupItem(
-                        [
-                            html.H6(
-                                f"{df.iloc[i]['title'].split(' - ')[0]}.",
-                                className="news-txt-headline",
-                            ),
-                            html.P(
-                                f"{df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['published']}",
-                                className="news-txt-by-dt",
-                            ),
-                        ],
-                        className="news-item",
-                        href=df.iloc[i]["url"],
-                        target="_blank",
-                    )
-                    for i in range(min(len(df), max_rows))
-                ],
-                flush=True,
-            )
+        max_rows = 50
+        list_group = dbc.ListGroup(
+            [
+                dbc.ListGroupItem(
+                    [
+                        html.H6(
+                            f"{df.iloc[i]['title'].split(' - ')[0]}.",
+                            className="news-txt-headline",
+                        ),
+                        html.P(
+                            f"{df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['published']}",
+                            className="news-txt-by-dt",
+                        ),
+                    ],
+                    className="news-item",
+                    href=df.iloc[i]["url"],
+                    target="_blank",
+                )
+                for i in range(min(len(df), max_rows))
+            ],
+            flush=True,
+        )
 
-        else:
-            list_group = []
+    else:
+        list_group = []
 
     return list_group

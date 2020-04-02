@@ -1,18 +1,25 @@
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_table
+import dash
+from dash_table.Format import Format
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
+
 from app import app
+from utils.settings import STATES_COORD, REVERSE_STATES_MAP, NCOV19_API
+
 from components import daily_stats
 from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import states_confirmed_stats, states_deaths_stats, last_updated
 from components import cases_chart, deaths_chart
-from utils.settings import STATES_COORD, REVERSE_STATES_MAP
-import dash
+from components import stats_table
 from components.column_stats import STATES
+
+
 
 
 ################ TABS STYLING ####################
@@ -149,83 +156,105 @@ def feed_tab_content(tab_value, state):
 
 ########################################################################
 #
-#                       Confirmed/Deaths Tabs
+#                       Confirm/Death Table
 #
 ########################################################################
+
 stats_tabs = dbc.Card(
     [
-        html.Div(
-            [
-                dcc.Tabs(
-                    id="right-tabs-styled-with-inline",
-                    value="confirmed-tab",
-                    children=[
-                        dcc.Tab(
-                            label="Confirmed",
-                            value="confirmed-tab",
-                            className="left-stats-tab",
-                            style=tab_style,
-                            selected_style=tab_selected_style,
-                        ),
-                        # dcc.Tab(
-                        #     label="Deaths",
-                        #     value="deaths-tab",
-                        #     className="left-news-tab",
-                        #     style=tab_style,
-                        #     selected_style=tab_selected_style,
-                        # ),
-                    ],
-                    style=tabs_styles,
-                    colors={"border": None, "primary": None, "background": None},
-                ),
-                html.P(
-                    f"Last Updated {last_updated.upper()}",  # last updated desktop
-                    className="right-tabs-last-updated-text",
-                ),
-            ],
-            className="right-tabs",
+        dbc.CardBody(id="stats-table",
+                     className="stats-table-col",
         ),
-        dbc.CardBody(html.P(id="stats-content", className="right-col-feed-cards-text")),
-    ]
+        dbc.CardFooter(#html.P(
+            f"Last Updated {last_updated.upper()}",
+            className="right-tabs-last-updated-text",
+        ),
+    ],
+    className="stats-table-div",
 )
-
-# ORIGINAL STATS TABS CALLBACKS
-# @app.callback(
-#     Output("stats-content", "children"),
-#     [Input("right-tabs-styled-with-inline", "value")],
-# )
-# def stats_tab_content(value):
-#     """Callback to change between news and twitter feed
-#     """
-#     if value == "deaths-tab":
-#         return states_deaths_stats()
-#     else:
-#         return states_confirmed_stats()
-
 
 @app.callback(
-    Output("stats-content", "children"),
-    [
-        Input("right-tabs-styled-with-inline", "value"),
-        Input("intermediate-value", "children"),
-    ],
+    Output("stats-table", "children"),
+    [Input("intermediate-value", "children"),],
 )
-def stats_tab_content(value, state):
-    """Callback to change between news and twitter feed
-    """
-    if value == "deaths-tab":
-        return states_deaths_stats()
-    else:
-        return states_confirmed_stats(state)
-
-
-# @app.callback(
-#     [Output("daily-stats", "children")], [Input("intermediate-value", "children")]
-# )
-# def column_stats_callback(tab_value, state):
-#     stats = states_confirmed_stats(state)
-#     return [stats]
-
+def stats_tab_content(state):
+    df = stats_table(state)
+    # table = dbc.Table.from_dataframe(
+    #                         df,
+    #                         className="stats-actual-table",
+    #                         # striped=True,
+    #                         # bordered=False,
+    #                         # responsive=True,
+    #                         # hover=True,
+    #                         )
+    # print(df.head())
+    table = dash_table.DataTable(
+                data=df.to_dict('records'),
+                columns=[
+                    {"name":i, "id": i} for i in df.columns
+                ],
+                editable=False,
+                sort_action="native",
+                sort_mode="multi",
+                column_selectable="single",
+                style_as_list_view=True,
+                fixed_rows={'headers': True},
+                fill_width=False,
+                style_table={
+                    # # 'overflowX': 'scroll',
+                    # 'minWidth': '0',
+                    'width': '100%',
+                },
+                style_header={
+                    'font-size': '0.65rem',
+                    'backgroundColor': '#010915',
+                    'border': '#010915',
+                    'fontWeight': 'bold',
+                    'font': 'Lato, sans-serif',
+                },
+                style_cell={
+                    'font-size': '0.65rem',
+                    'font-family': 'Roboto, sans-serif',
+                    'border-bottom': '0.01rem solid #313841',
+                    'backgroundColor': '#010915',
+                    'color': '#FFFFFF',
+                    'height': '2.5rem',
+                    'format': Format(groups=[3], group=','),
+                },
+                style_cell_conditional=[
+                    {
+                        'if': {
+                            'column_id': 'State/County',
+                        },
+                        'minWidth': '6.8rem', 'width': '6.8rem', 'maxWidth': '6.8rem',
+                    },
+                    {
+                        'if': {
+                            'column_id': 'Confirmed',
+                        },
+                        'color': '#F4B000',
+                        'minWidth': '4.2rem', 'width': '4.2rem', 'maxWidth': '4.2rem',
+                        'type': 'numeric',
+                        'format': Format(groups=[3], group=','),
+                    },
+                    {
+                        'if': {
+                            'column_id': 'Deaths',
+                        },
+                        'color': '#E55465',
+                        'minWidth': '4.2rem', 'width': '4.2rem', 'maxWidth': '4.2rem',
+                        'type': 'numeric',
+                        'format': Format(groups=[3], group=','),
+                    },
+                ],
+    )
+    return table
+    # Tried to add thousands separater w/ this following week, but cant get it to work.
+    # https://community.plotly.com/t/dash-datatable-thousands-separator/6713/10
+    # TypeError: ('grouping is not a format method. Expected one of',
+    #  "['align', 'decimal_delimiter', 'fill', 'group', 'group_delimiter',
+    #  'groups', 'nully', 'padding', 'padding_width', 'precision', 
+    # 'scheme', 'si_prefix', 'sign', 'symbol', 'symbol_prefix', 'symbol_suffix', 'trim']")
 
 ########################################################################
 #
@@ -241,7 +270,7 @@ us_maps_tabs = dbc.Card(
                     html.Div(
                         dcc.Tabs(
                             id="middle-map-tabs-styled-with-inline",
-                            value="confirmed-us-map-tab",  # TODO: put this back to confirmed-us....
+                            value="confirmed-us-map-tab",
                             children=[
                                 dcc.Tab(
                                     label="Cases",
@@ -393,11 +422,10 @@ desktop_body = [
                                                         figure=deaths_chart(),
                                                         config={"responsive": False},
                                                         style={"height": "20vh"},
-                                                        className="top-bottom-right-chart-figure",
+                                                        className="top-bottom-mid-chart-figure",
                                                     ),
                                                     style={
                                                         "padding-top": "8px",
-                                                        "background-color": "red",
                                                     },
                                                     color="#19202A",
                                                 ),
@@ -406,7 +434,7 @@ desktop_body = [
                                         ]
                                     ),
                                 ),
-                                className="top-bottom-right-chart",
+                                className="top-bottom-mid-chart",
                                 width=4,
                             ),
                             # CHART 3:
@@ -416,11 +444,11 @@ desktop_body = [
                                         [
                                             html.Div(
                                                 "Infection Trajectory",
-                                                className="top-bottom-right-chart-h1-title",
+                                                className="bottom-chart-h1-title",
                                             ),
                                             html.Div(
                                                 "Days Since 200 Cases",
-                                                className="top-bottom-right-chart-h2-title",
+                                                className="bottom-chart-h2-title",
                                             ),
                                             html.Div(
                                                 dcc.Loading(
@@ -432,7 +460,6 @@ desktop_body = [
                                                     ),
                                                     style={
                                                         "padding-top": "8px",
-                                                        "background-color": "red",
                                                     },
                                                     color="#19202A",
                                                 ),
