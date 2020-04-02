@@ -121,7 +121,7 @@ mobile_feed_tabs = dbc.Card(
             className="mobile-feed-tabs",
         ),
         dbc.CardBody(
-            html.P(id="mobile-feed-content", className="mobile-card-text"),
+            html.P(id="mobile-feed-content-id", className="mobile-card-text"),
             className="mobile-feed-card-body",
         ),
     ]
@@ -129,12 +129,16 @@ mobile_feed_tabs = dbc.Card(
 
 
 @app.callback(
-    Output("mobile-feed-content", "children"),
-    [Input("mobile-feed-tabs-styled-with-inline", "value")],
+    Output("mobile-feed-content-id", "children"),
+        [
+        Input("mobile-feed-tabs-styled-with-inline", "value"),
+        Input("mobile-intermediate-value", "children"),
+    ],
 )
 def mobile_feed_tab_content(tab_value, state):
     """Callback to change between news and twitter feed
     """
+    print(tab_value)
     if tab_value == "mobile-twitter-tab":
         return twitter_feed(state)
     else:
@@ -497,7 +501,8 @@ def daily_stats_mobile_callback(state):
 ########################################################################
 
 @app.callback(
-    [Output("mobile-intermediate-value", "children")], [Input("mobile-states-dropdown", "value")]
+    [Output("mobile-intermediate-value", "children")], 
+    [Input("mobile-states-dropdown", "value")]
 )
 def update_output(state):
     state = STATES_COORD[state]["stateAbbr"]
