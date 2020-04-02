@@ -382,18 +382,19 @@
 
 /* 📱 Mobile Chart */
 
-.mobile-top-bottom-left-chart-h1-title, .mobile-top-bottom-right-chart-h1-title {
+.mobile-chart-h1-title, .mobile-top-bottom-right-chart-h1-title {
     font-size: 1.25rem;
     font-weight: normal;
     color: #F4F4F4;
     max-width: 100%;
-    padding-left: .2rem;
+    padding-left: .1rem;
 
 }
 
-.mobile-top-bottom-left-chart-h2-title, .mobile-top-bottom-right-chart-h2-title {
+.mobile-chart-h2-title, .mobile-top-bottom-right-chart-h2-title {
     font-size: 0.75rem;
-    padding-left: .35rem;
+    color: #F4F4F4;
+    padding-left: .1rem;
     padding-bottom: 1rem;
 }
 

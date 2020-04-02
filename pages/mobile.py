@@ -6,15 +6,18 @@ import dash_table
 from dash.dependencies import Input, Output, State
 
 from app import app
+from utils.settings import STATES_COORD, REVERSE_STATES_MAP, NCOV19_API
+
 from components import daily_stats_mobile
 from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import mobile_states_confirmed_stats, mobile_states_deaths_stats, mobile_last_updated
-
 from components.column_stats import STATES
+from components import cases_chart, deaths_chart
 from components import stats_table
-from utils.settings import STATES_COORD, REVERSE_STATES_MAP, NCOV19_API
+
+
 
 
 ################ TABS STYLING ####################
@@ -33,8 +36,8 @@ tab_selected_style = {
     "color": "white",
     "padding": "0.5rem",
 }
-########################################################
 
+########################################################
 state_labels = [
     {"label": "United States", "value": "United States"},
     {"label": "Alabama", "value": "Alabama"},
@@ -90,7 +93,7 @@ state_labels = [
 
 ########################################################################
 #
-# News and Twitter Tabs
+#                       News and Twitter Tabs
 #
 ########################################################################
 mobile_feed_tabs = dbc.Card(
@@ -127,7 +130,6 @@ mobile_feed_tabs = dbc.Card(
     ]
 )
 
-
 @app.callback(
     Output("mobile-feed-content-id", "children"),
         [
@@ -138,7 +140,6 @@ mobile_feed_tabs = dbc.Card(
 def mobile_feed_tab_content(tab_value, state):
     """Callback to change between news and twitter feed
     """
-    print(tab_value)
     if tab_value == "mobile-twitter-tab":
         return twitter_feed(state)
     else:
@@ -147,7 +148,7 @@ def mobile_feed_tab_content(tab_value, state):
 
 ########################################################################
 #
-# Confirmed and Testing Center Map Tabs
+#              Confirmed and Testing Center Map Tabs
 #
 ########################################################################
 
@@ -223,7 +224,7 @@ def mobile_map_tab_content(value, state):
 
 ########################################################################
 #
-# Confirmed/Deaths Tabs
+#                       Confirmed/Deaths Tabs
 #
 ########################################################################
 stats_tabs = dbc.Card(
@@ -313,63 +314,9 @@ def stats_tab_content(state):
     return table
 
 
-# stats_tabs = dbc.Card(
-#     [
-#         html.Div(
-#             [
-#                 dcc.Tabs(
-#                     id="right-tabs-styled-with-inline",
-#                     value="confirmed-tab",
-#                     children=[
-#                         dcc.Tab(
-#                             label="Confirmed",
-#                             value="confirmed-tab",
-#                             className="mobile-left-twitter-tab",
-#                             style=tab_style,
-#                             selected_style=tab_selected_style,
-#                         ),
-#                         dcc.Tab(
-#                             label="Deaths",
-#                             value="deaths-tab",
-#                             className="mobile-left-news-tab",
-#                             style=tab_style,
-#                             selected_style=tab_selected_style,
-#                         ),
-#                     ],
-#                     style=tabs_styles,
-#                     colors={"border": None, "primary": None, "background": None},
-#                 ),
-#                 html.P(f"Last Updated {mobile_last_updated.upper()}", # last updated mobile
-#                 className="mobile-right-tabs-last-updated-text")
-#             ],
-#             className="mobile-right-tabs"
-#         ),
-#         dbc.CardBody(
-#             html.P(
-#                 id="stats-content-mobile", className="mobile-right-col-feed-cards-text"
-#             ),
-#             className="mobile-stats-card-body",
-#         ),
-#     ]
-# )
-
-
-# @app.callback(
-#     Output("stats-content-mobile", "children"),
-#     [Input("right-tabs-styled-with-inline", "value")],
-# )
-# def stats_tab_content(value):
-#     """Callback to change between news and twitter feed
-#     """
-#     if value == "deaths-tab":
-#         return mobile_states_deaths_stats()
-#     else:
-#         return mobile_states_confirmed_stats()
-
-
 ########################################################################
 #
-# Mobile App body layout
+#                   Mobile App body layout
 #
 ########################################################################
 mobile_body = [
@@ -401,49 +348,100 @@ mobile_body = [
     # adding stats content
     dbc.Col(stats_tabs, className="mobile-right-col-stats-content", width=2,),
 
+    ##### MOBILE CHARTS #####
+
+    # CHART 1
     html.Div(
         dbc.Card(
             dbc.CardBody(
                 [
                     html.Div(
-                        "US COVID-19 Timeline",
-                        className="mobile-top-bottom-left-chart-h1-title",
+                        "Confirmed Cases Timeline",
+                        className="mobile-chart-h1-title",
                     ),
                     html.Div(
-                        "Confirmed Cases and Deaths",
-                        className="mobile-top-bottom-left-chart-h2-title",
+                        "With new daily cases",
+                        className="mobile-chart-h2-title",
                     ),
-                    dcc.Graph(
-                        figure=confirmed_cases_chart(),
-                        config={"scrollZoom": False},  # "staticPlot": True,
-                        style={"height": "20vh"},
+                    html.Div(
+                        dcc.Graph(
+                            figure=cases_chart(),
+                            config={"scrollZoom": False},
+                            style={"height": "20vh"},
+                        ),
                     ),
-                ]
-            )
+                ],
+            ),
         ),
         style={"margin-bottom": "1.5rem"},
         className="mobile-chart",
     ),
+    # CHART 2
     html.Div(
         dbc.Card(
             dbc.CardBody(
                 [
                     html.Div(
-                        "Infection Trajectory",
-                        className="mobile-top-bottom-right-chart-h1-title",
+                        "Death Trajectory",
+                        className="mobile-chart-h1-title",
                     ),
                     html.Div(
-                        "Days Since 200 Cases",
-                        className="mobile-top-bottom-right-chart-h2-title",
+                        "Last 30 days",
+                        className="mobile-chart-h2-title",
                     ),
+                    html.Div(
+                        dcc.Loading(
+                            dcc.Graph(
+                                figure=deaths_chart(),
+                                config={"scrollZoom": False},
+                                style={"height": "20vh"},
+                            ),
+                        ),
+                    ),
+                ],
+                # [
+                #     html.Div(
+                #         "Infection Trajectory",
+                #         className="mobile-top-bottom-right-chart-h1-title",
+                #     ),
+                #     html.Div(
+                #         "Days Since 200 Cases",
+                #         className="mobile-top-bottom-right-chart-h2-title",
+                #     ),
                     
-                    dcc.Graph(
-                        figure=infection_trajectory_chart(),
-                        config={"scrollZoom": False,},
-                        style={"height": "20vh"},
+                #     dcc.Graph(
+                #         figure=infection_trajectory_chart(),
+                #         config={"scrollZoom": False,},
+                #         style={"height": "20vh"},
+                #     ),
+                # ]
+            ),
+        ),
+        style={"margin-bottom": "1.5rem"},
+        className="mobile-chart",
+    ),
+    # CHART 3
+     html.Div(
+        dbc.Card(
+            dbc.CardBody(
+                [
+                    html.Div(
+                        "Placeholder",
+                        className="mobile-chart-h1-title",
                     ),
-                ]
-            )
+                    html.Div(
+                        "placeholder for h2 text",
+                        className="mobile-chart-h2-title",
+                    ),
+                    html.Div(
+                        dcc.Graph(
+                            figure=deaths_chart(),
+                            config={"scrollZoom": False},
+                            style={"height": "20vh"},
+                        ),
+                    ),
+                ],
+            ),
         ),
         style={"margin-bottom": "1.5rem"},
         className="mobile-chart",
@@ -457,7 +455,7 @@ mobile_body = [
 
 ########################################################################
 #
-# Top bar callback
+#                          Top bar callback
 #
 ########################################################################
 @app.callback([Output("mobile-daily-stats", "children")], 
@@ -466,32 +464,6 @@ def daily_stats_mobile_callback(state):
     # print(f'\n\nDaily_stats_mobile_callback for {state}')
     cards = daily_stats_mobile(state) 
     return [cards]
-
-########################################################################
-#
-# State stats column buttons callback
-#
-########################################################################
-
-# @app.callback(
-#     [Output("mobile-intermediate-value", "children")],
-#     [Input(f"mobile-states-confirmed-{state}", "n_clicks") for state in STATES],
-# )
-# def multi_output(*n_clicks):
-#     ctx = dash.callback_context
-#     # print(n_clicks)
-#     # print(ctx)
-#     if ctx.triggered:
-#         state = ctx.triggered[0]["prop_id"].split(".")[0].split("-")[-1]
-#         if any(n_clicks) > 0:
-#             # print(f"You clicked this state ==> {state}")
-#             # print(ctx)
-#             # print(n_clicks)
-#             return [f"{state}"]
-#         else:
-#             # print(ctx)
-#             # print(n_clicks)
-#             return ["US"]
 
 
 ########################################################################

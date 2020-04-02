@@ -5,7 +5,10 @@ import dash_table
 import dash
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
+
 from app import app
+from utils.settings import STATES_COORD, REVERSE_STATES_MAP, NCOV19_API
+
 from components import daily_stats
 from components import news_feed, twitter_feed
 from components import confirmed_cases_chart, infection_trajectory_chart
@@ -13,8 +16,9 @@ from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import states_confirmed_stats, states_deaths_stats, last_updated
 from components import cases_chart, deaths_chart
 from components import stats_table
-from utils.settings import STATES_COORD, REVERSE_STATES_MAP, NCOV19_API
 from components.column_stats import STATES
+
+
 
 
 ################ TABS STYLING ####################
@@ -255,7 +259,7 @@ us_maps_tabs = dbc.Card(
                     html.Div(
                         dcc.Tabs(
                             id="middle-map-tabs-styled-with-inline",
-                            value="confirmed-us-map-tab",  # TODO: put this back to confirmed-us....
+                            value="confirmed-us-map-tab",
                             children=[
                                 dcc.Tab(
                                     label="Cases",
@@ -411,7 +415,6 @@ desktop_body = [
                                                     ),
                                                     style={
                                                         "padding-top": "8px",
-                                                        "background-color": "red",
                                                     },
                                                     color="#19202A",
                                                 ),
@@ -446,7 +449,6 @@ desktop_body = [
                                                     ),
                                                     style={
                                                         "padding-top": "8px",
-                                                        "background-color": "red",
                                                     },
                                                     color="#19202A",
                                                 ),
