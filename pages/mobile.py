@@ -288,7 +288,7 @@ def stats_tab_content(state):
                     'font-family': 'Roboto, sans-serif',
                     'border': '0.01rem solid #313841',
                     'backgroundColor': '#010915',
-                    'color': '#FFFFFF',
+                    'color': '#FEFEFE',
                     # 'textAlign': 'left',
                     # 'width': '100%',
                     # # 'minWidth': '0px', 'maxWidth': '3rem',

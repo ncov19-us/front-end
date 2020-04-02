@@ -45,7 +45,7 @@ body {
     padding: 0.5rem;
     text-align: left;
     margin-bottom: 0.5rem;
-    background-color: none;
+    background-color: none !important;
 }
 
 /* Applies to all Cards 🎴 */
