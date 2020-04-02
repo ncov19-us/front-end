@@ -216,9 +216,9 @@ def stats_tab_content(state):
                     'backgroundColor': '#010915',
                     'color': '#FFFFFF',
                     # 'textAlign': 'left',
-                    'width': '100%',
-                    # 'minWidth': '0px', 'maxWidth': '3rem',
-                    # 'margin': '0.5rem',
+                    # 'width': '100%',
+                    # # 'minWidth': '0px', 'maxWidth': '3rem',
+                    # # 'margin': '0.5rem',
                 },
                 style_cell_conditional=[
                     {
