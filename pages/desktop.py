@@ -393,7 +393,7 @@ desktop_body = [
                                                         figure=deaths_chart(),
                                                         config={"responsive": False},
                                                         style={"height": "20vh"},
-                                                        className="top-bottom-right-chart-figure",
+                                                        className="top-bottom-mid-chart-figure",
                                                     ),
                                                     style={
                                                         "padding-top": "8px",
@@ -406,7 +406,7 @@ desktop_body = [
                                         ]
                                     ),
                                 ),
-                                className="top-bottom-right-chart",
+                                className="top-bottom-mid-chart",
                                 width=4,
                             ),
                             # CHART 3:
@@ -416,11 +416,11 @@ desktop_body = [
                                         [
                                             html.Div(
                                                 "Infection Trajectory",
-                                                className="top-bottom-right-chart-h1-title",
+                                                className="bottom-chart-h1-title",
                                             ),
                                             html.Div(
                                                 "Days Since 200 Cases",
-                                                className="top-bottom-right-chart-h2-title",
+                                                className="bottom-chart-h2-title",
                                             ),
                                             html.Div(
                                                 dcc.Loading(
