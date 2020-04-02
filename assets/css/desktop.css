@@ -81,6 +81,15 @@
 }
 
 
+.right-tabs-last-updated-text {
+    padding-left: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    margin-bottom: 0;
+    font-size: 11px;
+    color: grey;
+}
+
 
 
 /*         Dropdown Location Menu                   */ 
@@ -361,20 +370,22 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     align-items: center;
     padding-left: 2rem;
     padding-right: 0;
-    font-size: 2.75rem;
+    font-size: 2.75vw;
+    max-width: 25%;
+    flex: 0 0 25%
 }
 
 #states-dropdown {
     width: 100%;
+    line-height: .7;
 }
 
-#states-dropdown:focus {
-    box-shadow: none;
-    background-color: red;
+#states-dropdown .Select-input {
+    background-color: transparent !important;
 }
 
 .states-dropdown .Select-control {
-    background-color: transparent;
+    background-color: transparent !important;
     border-color: transparent;
     overflow: auto;
     box-shadow: none !important;
@@ -395,12 +406,20 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     border-color: white transparent transparent;
     border-width: 10px 5px 2.5px;
 }
+#states-dropdown .is-open .Select-control {
+    background-color: transparent;
+}
 
 #states-dropdown .is-open .Select-arrow {
     border-color: white transparent transparent;
     border-width: 10px 5px 2.5px;
     transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
+}
+
+.top-bar-content-col {
+    margin-left: auto;
+    max-width: 75%;
 }
 
 .top-bar-content.row {
@@ -430,7 +449,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-card-tested {
-    color: var(--daily-stats-font-color-tested);
+    color: var(--font-color-tested);
     text-align: center;
     font-size: .9rem;
     background-color: transparent;
@@ -454,7 +473,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-card-confirmed {
-    color: var(--daily-stats-font-color-confirmed);
+    color: var(--font-color-confirmed);
     text-align: center;
     font-size: .9rem;
     background-color: transparent;
@@ -477,7 +496,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 .top-bar-card-deaths {
-    color: var(--daily-stats-font-color-deaths);
+    color: var(--font-color-deaths);
     text-align: center;
     font-size: .9rem;
     background-color: transparent;
@@ -501,7 +520,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .top-bar-card-death {
     /* color: #03DA32; */
-    color: var(--daily-stats-font-color-deathrate);
+    color: var(--font-color-deathrate);
     text-align: center;
     font-size: .9rem;
     background-color: transparent;
@@ -733,9 +752,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 
-
-
-
 .left-col-twitter-feed-content.col-2 .card .card-body {
     border-top-right-radius: 0;
     border-top-left-radius: 0;
@@ -763,10 +779,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .tweet-item.list-group-item , .news-item.list-group-item{
-    background-color: none;
+    background-color: transparent;
     border: none;
+    padding-left: 30px;
+    padding-right: 30px;
 }
-
 
 
 /* .tweet-item p */
@@ -794,9 +811,19 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .news-item {
+    border-bottom: 1px solid rgb(83, 83, 83) !important;
+    padding: 0;
+    margin: 0;
+}
+
+.news-item-container {
     padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
     margin-bottom: 1rem;
     padding-bottom: 0;
+    line-height: 1.35;
+    color: #F4F4F4;
 }
 
 .news-item:hover {
@@ -812,7 +839,15 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 .tweet-item {
+    border-bottom: 1px solid rgb(83, 83, 83) !important;
+    padding: 0;
+    margin: 0;
+}
+
+.tweet-item-container {
     padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
     margin-bottom: 1rem;
     padding-bottom: 0;
     line-height: 1.35;
@@ -862,6 +897,8 @@ p.tweet-dt {
 .left-col-twitter-feed-content .card-body {
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .left-col-twitter-feed-content .card-body::-webkit-scrollbar { 
@@ -897,6 +934,23 @@ p.tweet-dt {
     margin-bottom: 1rem;
 }
 
+
+.stats-table {
+    /* margin-right: 1rem; */
+    overflow-y: scroll;
+    height: 62vh;
+     
+    /* Disable scroll bar */
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* disable scroll bar */
+.stats-table::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
 .right-col-stats-content.col-2 .card-body {
     padding-top: 0rem;
     padding-bottom:0;
@@ -906,7 +960,6 @@ p.tweet-dt {
 .stats-table-div .card{
     height: 68.5vh;
 }
-
 
 .column-header-name {
     font-family: lato, sans-serif;
@@ -1112,5 +1165,3 @@ p.states-stats-confirmed-list-txt {
 .tweet-item a:hover {
     text-decoration: none !important;
 }
-
-

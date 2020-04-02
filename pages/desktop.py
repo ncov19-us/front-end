@@ -348,7 +348,7 @@ desktop_body = [
                 className="states-dropdown-container",
                 width=2,
             ),
-            dbc.Col(dbc.Row(id="daily-stats", className="top-bar-content"), width=10),
+            dbc.Col(dbc.Row(id="daily-stats", className="top-bar-content"), width=10, className="top-bar-content-col"),
         ]
     ),
     dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT

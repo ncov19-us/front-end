@@ -1,4 +1,3 @@
-# front-end/components/cases_chart.py
 import requests
 import pandas as pd
 import json
@@ -124,4 +123,5 @@ def cases_chart(state='US') -> go.Figure:
         #                 title=None, orientation="h", y=-.5, yanchor="bottom", x=0, xanchor="left"
         #         )
     )
+    
     return fig
