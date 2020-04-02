@@ -52,21 +52,23 @@ def twitter_feed(state="US") -> List[dbc.Card]:
     cards = [
         dbc.ListGroupItem(
             [
-                html.A(
-                    html.P(tweet["full_text"][:100] + "...", className="tweet-text",),
-                    href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}",
-                    target="_blank",
-                ),
-                html.P(
-                    [
-                        # html.Strong(f"- {full_name} (@{username})"),
-                        html.P(
-                            f"- {username} (@{full_name}) {parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}",
-                            className="tweet-dt",
-                        ),
-                    ],
-                    className="tweets-txt-by-dt",
-                ),
+                html.Div([
+                    html.A(
+                        html.P(tweet["full_text"][:100] + "...", className="tweet-text",),
+                        href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}",
+                        target="_blank",
+                    ),
+                    html.P(
+                        [
+                            # html.Strong(f"- {full_name} (@{username})"),
+                            html.P(
+                                f"- {username} (@{full_name}) {parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}",
+                                className="tweet-dt",
+                            ),
+                        ],
+                        className="tweets-txt-by-dt",
+                    ),
+                ], className="tweet-item-container")
             ],
             className="tweet-item",
         )
