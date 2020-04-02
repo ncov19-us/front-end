@@ -1,6 +1,8 @@
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_table
+import dash
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 from app import app
@@ -10,8 +12,8 @@ from components import confirmed_cases_chart, infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import states_confirmed_stats, states_deaths_stats, last_updated
 from components import cases_chart, deaths_chart
-from utils.settings import STATES_COORD, REVERSE_STATES_MAP
-import dash
+from components import stats_table
+from utils.settings import STATES_COORD, REVERSE_STATES_MAP, NCOV19_API
 from components.column_stats import STATES
 
 
@@ -149,83 +151,95 @@ def feed_tab_content(tab_value, state):
 
 ########################################################################
 #
-#                       Confirmed/Deaths Tabs
+#                       Confirm/Death Table
 #
 ########################################################################
+
 stats_tabs = dbc.Card(
     [
-        html.Div(
-            [
-                dcc.Tabs(
-                    id="right-tabs-styled-with-inline",
-                    value="confirmed-tab",
-                    children=[
-                        dcc.Tab(
-                            label="Confirmed",
-                            value="confirmed-tab",
-                            className="left-stats-tab",
-                            style=tab_style,
-                            selected_style=tab_selected_style,
-                        ),
-                        # dcc.Tab(
-                        #     label="Deaths",
-                        #     value="deaths-tab",
-                        #     className="left-news-tab",
-                        #     style=tab_style,
-                        #     selected_style=tab_selected_style,
-                        # ),
-                    ],
-                    style=tabs_styles,
-                    colors={"border": None, "primary": None, "background": None},
-                ),
-                html.P(
-                    f"Last Updated {last_updated.upper()}",  # last updated desktop
-                    className="right-tabs-last-updated-text",
-                ),
-            ],
-            className="right-tabs",
+        dbc.CardBody(id="stats-table",
+                className="stats-table-col",
         ),
-        dbc.CardBody(html.P(id="stats-content", className="right-col-feed-cards-text")),
-    ]
+        html.P(
+            f"Last Updated {last_updated.upper()}",
+            className="right-tabs-last-updated-text",
+        ),
+    ],
+    className="stats-table-div",
 )
-
-# ORIGINAL STATS TABS CALLBACKS
-# @app.callback(
-#     Output("stats-content", "children"),
-#     [Input("right-tabs-styled-with-inline", "value")],
-# )
-# def stats_tab_content(value):
-#     """Callback to change between news and twitter feed
-#     """
-#     if value == "deaths-tab":
-#         return states_deaths_stats()
-#     else:
-#         return states_confirmed_stats()
-
 
 @app.callback(
-    Output("stats-content", "children"),
-    [
-        Input("right-tabs-styled-with-inline", "value"),
-        Input("intermediate-value", "children"),
-    ],
+    Output("stats-table", "children"),
+    [Input("intermediate-value", "children"),],
 )
-def stats_tab_content(value, state):
-    """Callback to change between news and twitter feed
-    """
-    if value == "deaths-tab":
-        return states_deaths_stats()
-    else:
-        return states_confirmed_stats(state)
-
-
-# @app.callback(
-#     [Output("daily-stats", "children")], [Input("intermediate-value", "children")]
-# )
-# def column_stats_callback(tab_value, state):
-#     stats = states_confirmed_stats(state)
-#     return [stats]
-
+def stats_tab_content(state):
+    df = stats_table(state)
+    # table = dbc.Table.from_dataframe(
+    #                         df,
+    #                         className="stats-actual-table",
+    #                         # striped=True,
+    #                         # bordered=False,
+    #                         # responsive=True,
+    #                         # hover=True,
+    #                         )
+    # print(df.head())
+    table = dash_table.DataTable(
+                data=df.to_dict('records'),
+                columns=[
+                    {"name":i, "id": i} for i in df.columns
+                ],
+                editable=False,
+                sort_action="native",
+                sort_mode="multi",
+                column_selectable="single",
+                style_as_list_view=True,
+                fixed_rows={'headers': True},
+                style_table={
+                    # 'overflowX': 'scroll',
+                    'minWidth': '0',
+                    'width': '100%',
+                },
+                style_header={
+                    'font-size': '0.65rem',
+                    'backgroundColor': '#010915',
+                    'border': '0.01rem solid #313841',
+                    'fontWeight': 'bold',
+                    'font': 'Lato, sans-serif',
+                    # # 'width': '100%',
+                    # # 'margin-left': '0.1rem',
+                    # # 'margin': '0.5rem',
+                    'maxWidth': '0rem',
+                    'minWidth': '3rem', 'width': '3rem', 'maxWidth': '3rem',
+                },
+                style_cell={
+                    'font-size': '0.65rem',
+                    'font-family': 'Roboto, sans-serif',
+                    'border': '0.01rem solid #313841',
+                    'backgroundColor': '#010915',
+                    'color': '#FFFFFF',
+                    # 'textAlign': 'left',
+                    # 'width': '100%',
+                    # # 'minWidth': '0px', 'maxWidth': '3rem',
+                    # # 'margin': '0.5rem',
+                },
+                style_cell_conditional=[
+                    {
+                        'if': {
+                            'column_id': 'Confirmed',
+                        },
+                        'color': '#F4B000',
+                        # 'width': '30%',
+                    },
+                    {
+                        'if': {
+                            'column_id': 'Deaths',
+                        },
+                        'color': '#E55465',
+                        # 'width': '30%',
+                    },
+                ],
+    )
+    return table
 
 ########################################################################
 #

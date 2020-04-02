@@ -74,7 +74,7 @@ navbar =  [
         align="center",
         no_gutters=True,
     ),
-    dbc.NavbarToggler(id="navbar-toggler"),
+    dbc.NavbarToggler(id="navbar-toggler", className="navbar-toggler-1"),
     # dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
     about_bar
     # dbc.NavbarBrand(about_bar),
