@@ -185,22 +185,57 @@ def stats_tab_content(state):
                 sort_mode="multi",
                 column_selectable="single",
                 style_as_list_view=True,
-                style_header={'backgroundColor': '#010915',
-                              'fontWeight': 'bold',
+                style_table={
+                    # 'overflowX': 'scroll',
+                    'width': '100%',
+                },
+                style_header={
+                    'font-size': '0.65rem',
+                    'backgroundColor': '#010915',
+                    'border': '0.01rem solid #313841',
+                    'fontWeight': 'bold',
+                    'font': 'Lato, sans-serif',
+                    # 'width': '100%',
+                    # 'margin-left': '0.1rem',
+                    # 'margin': '0.5rem',
+                    'maxWidth': '0rem',
+                    'minWidth': '3rem', 'width': '3rem', 'maxWidth': '3rem',
                 },
                 style_cell={
+                    # 'width': '100%',
+                    # 'minWidth': '0px', 'maxWidth': '3rem',
+                    'font-size': '0.65rem',
+                    'font-family': 'Roboto, sans-serif',
+                    'margin': '0.5rem',
+                    'border': '0.01rem solid #313841',
+                    'height': 'auto',
                     'backgroundColor': '#010915',
                     'color': '#FFFFFF',
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                    'maxWidth': 0,
-                }, 
+                    # 'overflow': 'hidden',
+                    # 'textOverflow': 'ellipsis',
+                },
                 style_cell_conditional=[
                     {
-                        'if': {'column_id': c},
-                        'textAlign': 'left'
-                    } for c in ['State', 'County']
-                ],                
+                        'if': {
+                            'column_id': 'Confirmed',
+                        },
+                        'color': '#F4B000',
+                        'width': '30%',
+                    },
+                    {
+                        'if': {
+                            'column_id': 'Deaths',
+                        },
+                        'color': '#E55465',
+                        'width': '30%',
+                    },
+                ],
+                css=[
+                    {
+                        'selector': 'table',
+                        'rule': 'width: 100%;'
+                    }
+                ],
     )
     return table
 

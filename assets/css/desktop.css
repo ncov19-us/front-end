@@ -933,9 +933,9 @@ p.tweet-dt {
 }
 
 .stats-table {
-    /* margin-right: 1rem; */
     overflow-y: scroll;
-    height: 62vh;
+    height: 63.5vh;
+    
      
     /* Disable scroll bar */
     scroll-behavior: smooth;
@@ -943,6 +943,9 @@ p.tweet-dt {
     scrollbar-width: none;  /* Firefox */
 }
 
+.stats-table td{
+    text-align: right !important;
+}
 /* disable scroll bar */
 .stats-table::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
