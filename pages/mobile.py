@@ -403,7 +403,7 @@ mobile_body = [
                                 id="mobile-deaths-timeline",
                                 # figure=deaths_chart(),
                                 config={"scrollZoom": False},
-                                style={"height": "22vh"},
+                                style={"height": "20vh"},
                             ),
                         ),
                     ),
