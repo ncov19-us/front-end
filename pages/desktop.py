@@ -190,7 +190,7 @@ def stats_tab_content(state):
                 editable=False,
                 sort_action="native",
                 sort_mode="multi",
-                # column_selectable="single",
+                column_selectable="single",
                 style_as_list_view=True,
                 fixed_rows={'headers': True},
                 fill_width=False,
@@ -243,6 +243,8 @@ def stats_tab_content(state):
                 ],
     )
     return table
+    # Tried to add thousands separater w/ this following week, but cant get it to work.
+    # https://community.plotly.com/t/dash-datatable-thousands-separator/6713/10
     # TypeError: ('grouping is not a format method. Expected one of',
     #  "['align', 'decimal_delimiter', 'fill', 'group', 'group_delimiter',
     #  'groups', 'nully', 'padding', 'padding_width', 'precision', 

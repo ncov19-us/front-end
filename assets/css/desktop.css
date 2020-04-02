@@ -1136,3 +1136,8 @@ p.states-stats-deaths-list-txt {
 .top-bottom-left-chart-figure {
     height: 10vh !important;
 } */
+
+.dash-cell.column-0 .stats-table-div td {
+    text-align: left !important;
+    /* padding-left: 0.2rem; */
+}
