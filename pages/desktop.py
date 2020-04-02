@@ -390,7 +390,8 @@ desktop_body = [
                                             ),
                                             html.Div(
                                                 dcc.Graph(
-                                                    figure=cases_chart(),
+                                                    id="cofirmed-cases-timeline",
+                                                    # figure=cases_chart(),
                                                     config={"responsive": False},
                                                     style={"height": "20vh"},
                                                     className='top-bottom-left-chart-figure"',
@@ -481,6 +482,18 @@ desktop_body = [
         ]
     ),
 ]
+########################################################################
+#
+#                           Confirm cases callback
+#
+########################################################################
+@app.callback(
+    [Output("cofirmed-cases-timeline", "figure")], [Input("intermediate-value", "children")]
+)
+def confirmed_cases_callback(state):
+    fig = cases_chart(state)
+    return fig
+
 
 ########################################################################
 #
