@@ -1,9 +1,9 @@
 # front-end/components/cases_chart.py
-
 import requests
 import pandas as pd
 import json
 import plotly.graph_objects as go
+from utils.settings import REVERSE_STATES_MAP
 
 
 # @cache.memoize(timeout=3600)
@@ -12,6 +12,8 @@ def cases_chart(state='US') -> go.Figure:
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
     root = 'https://covid19-us-api-staging.herokuapp.com/'  # TODO change for production
+
+    # print(f'[DEBUG] cases_chart.py input state is {state}')
     if state == 'US':
         URL = root + 'country'
         payload = json.dumps({"alpha2Code": "US"})
@@ -40,6 +42,10 @@ def cases_chart(state='US') -> go.Figure:
         deaths = pd.read_csv(
             'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv')
 
+        # print(f'[DEBUG] cases_chart.py when state is not US {state}')
+        # print(f'[DEBUG] cases_chart.py state reversed {REVERSE_STATES_MAP[state]}')
+
+        state = REVERSE_STATES_MAP[state]
         # get confirmed cases df
         data = cases[cases["Province_State"] == state]
         data = pd.DataFrame(data.aggregate('sum')[11:], columns=['Confirmed Cases'])

@@ -4,6 +4,7 @@ import requests
 import pandas as pd
 import json
 import plotly.graph_objects as go
+from utils.settings import REVERSE_STATES_MAP
 
 
 # @cache.memoize(timeout=3600)
@@ -40,6 +41,7 @@ def deaths_chart(state='US') -> go.Figure:
         deaths = pd.read_csv(
             'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv')
 
+        state = REVERSE_STATES_MAP[state]
         # get confirmed cases df
         data = cases[cases["Province_State"] == state]
         data = pd.DataFrame(data.aggregate('sum')[11:], columns=['Confirmed Cases'])

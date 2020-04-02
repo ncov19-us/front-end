@@ -381,16 +381,17 @@ desktop_body = [
                                     dbc.CardBody(
                                         [
                                             html.Div(
-                                                "Confirmed Cases Timeline",
+                                                id="confirmed-cases-chart-title",
+                                                # children="US Confirmed Cases",
                                                 className="bottom-chart-h1-title",
                                             ),
                                             html.Div(
-                                                "With new daily cases",
+                                                "Last 30 days",
                                                 className="bottom-chart-h2-title",
                                             ),
                                             html.Div(
                                                 dcc.Graph(
-                                                    id="cofirmed-cases-timeline",
+                                                    id="confirmed-cases-timeline",
                                                     # figure=cases_chart(),
                                                     config={"responsive": False},
                                                     style={"height": "20vh"},
@@ -410,7 +411,8 @@ desktop_body = [
                                     dbc.CardBody(
                                         [
                                             html.Div(
-                                                "Death Trajectory",
+                                                id='death-chart-title',
+                                                # "Death Trajectory",
                                                 className="bottom-chart-h1-title",
                                             ),
                                             html.Div(
@@ -420,7 +422,8 @@ desktop_body = [
                                             html.Div(
                                                 dcc.Loading(
                                                     dcc.Graph(
-                                                        figure=deaths_chart(),
+                                                        id="deaths-timeline",
+                                                        # figure=deaths_chart(),
                                                         config={"responsive": False},
                                                         style={"height": "20vh"},
                                                         className="top-bottom-mid-chart-figure",
@@ -488,11 +491,43 @@ desktop_body = [
 #
 ########################################################################
 @app.callback(
-    [Output("cofirmed-cases-timeline", "figure")], [Input("intermediate-value", "children")]
+    [Output("confirmed-cases-timeline", "figure")], [Input("intermediate-value", "children")]
 )
 def confirmed_cases_callback(state):
     fig = cases_chart(state)
-    return fig
+    return [fig]
+
+@app.callback(
+    [Output("confirmed-cases-chart-title", "children")], [Input("intermediate-value", "children")]
+)
+def confirmed_cases_callback(state="US"):
+    if state == "US":
+        return ["U.S. Confirmed Cases"]
+    else:
+        return [f"{REVERSE_STATES_MAP[state]} Confirmed Cases"]
+
+
+@app.callback(
+    [Output("death-chart-title", "children")], [Input("intermediate-value", "children")]
+)
+def death_callback(state="US"):
+    if state == "US":
+        return ["U.S. Deaths"]
+    else:
+        return [f"{REVERSE_STATES_MAP[state]} Deaths"]
+
+
+########################################################################
+#
+#                           Deaths callback
+#
+########################################################################
+@app.callback(
+    [Output("deaths-timeline", "figure")], [Input("intermediate-value", "children")]
+)
+def confirmed_cases_callback(state):
+    fig = deaths_chart(state)
+    return [fig]
 
 
 ########################################################################
