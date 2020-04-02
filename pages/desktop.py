@@ -507,6 +507,12 @@ def confirmed_cases_callback(state="US"):
         return [f"{REVERSE_STATES_MAP[state]} Confirmed Cases"]
 
 
+
+########################################################################
+#
+#                           Deaths callback
+#
+########################################################################
 @app.callback(
     [Output("death-chart-title", "children")], [Input("intermediate-value", "children")]
 )
@@ -516,12 +522,6 @@ def death_callback(state="US"):
     else:
         return [f"{REVERSE_STATES_MAP[state]} Deaths"]
 
-
-########################################################################
-#
-#                           Deaths callback
-#
-########################################################################
 @app.callback(
     [Output("deaths-timeline", "figure")], [Input("intermediate-value", "children")]
 )
