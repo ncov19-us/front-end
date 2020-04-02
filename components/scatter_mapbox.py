@@ -36,52 +36,38 @@ def get_drive_thru_testing_centers():
 ########################################################################
 
 
-def confirmed_scatter_mapbox(state="US"):
+def confirmed_scatter_mapbox(state="United States"):
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
     TODO: For individual states,the map will be divided by county lines. Add callbacks
 
     :return card: A dash boostrap component Card object with a dash component Graph inside drawn using plotly express scatter_mapbox
     :rtype: dbc.Card
     """
+
     URL = NCOV19_API + "county"
     response = requests.get(URL).json()
     data = response["message"]
-    data = pd.read_json(data, orient="records")
-    data["State Name"] = data["State Name"].str.title()
-    data["County Name"] = data["County Name"].str.title()
+    data = pd.DataFrame.from_records(data)
 
-    # data["log_confirmed"] = np.log(data["Confirmed"] + 0.1 ** 10)
-    # data["log_confirmed"] = (data["Confirmed"] - data["Confirmed"].min()) / (
-    #    data["Confirmed"].max() - data["Confirmed"].min()
-    # )
-    # normalized_df=(df-df.min())/(df.max()-df.min())#
-    # set lat/long
+    # color_scale = ['#fce9b8', '#fbe6ad','#fbe3a3','#fbdf99',
+    #                 '#fadc8f','#fad985','#f9d67a',
+    #                 '#f9d370','#f8d066','#f8cc5c','#f8c952',
+    #                 '#f7c647','#f7c33d','#f6c033',
+    #                 '#f6bd29','#f5b91f','#f5b614','#f4b30a',
+    #                 '#F4B000','#efac00','#eaa900','#e5a500','#e0a200','#dc9e00']
 
-    color_scale = [
-        "#FA9090",
-        "#F77A7A",
-        "#F56666",
-        "#F15454",
-        "#ED4343",
-        "#E93535",
-        "#E42828",
-        "#DE1E1E",
-        "#D71515",
-        "#CF0D0D",
-        "#C70707",
-        "#BD0202",
-        "#B30000",
-        "#A90000",
-        "#9E0000",
-        "#920000",
-        "#870000"
-    ]
+
+    color_scale = ['#fadc8f','#f9d67a',
+                    '#f8d066','#f8c952',
+                   '#f7c33d',
+                    '#f6bd29','#f5b614',
+                    '#F4B000','#eaa900','#e0a200','#dc9e00']
 
     # Scaled the data exponentially to show smaller values.
-    data['Scaled'] = data["Confirmed"] ** 0.77
+    data['scaled'] = data["confirmed"] ** 0.77
     
     # set lat/long
-    if state == "US":
+    if state == "United States":
         lat, lon, zoom = 39.8097343, -98.5556199, flask.session["zoom"]
     else:
         lat, lon, zoom = (
@@ -92,13 +78,13 @@ def confirmed_scatter_mapbox(state="US"):
 
     fig = px.scatter_mapbox(
         data,
-        lat="Latitude",
-        lon="Longitude",
-        color="Confirmed",
-        size="Scaled",
+        lat="latitude",
+        lon="longitude",
+        color="confirmed",
+        size="scaled",
         size_max=50,
-        hover_name="County Name",
-        hover_data=["Confirmed", "Death", "State Name", "County Name"],
+        hover_name="county_name",
+        hover_data=["confirmed", "death", "state_name", "county_name"],
         color_continuous_scale=color_scale,
     )
 
@@ -122,12 +108,12 @@ def confirmed_scatter_mapbox(state="US"):
     return fig
 
 
-def drive_thru_scatter_mapbox(state="US"):
+def drive_thru_scatter_mapbox(state="United States"):
     """DO NOT CACHE. NEED APP_STATE TO CHANGE DYNAMICALLY
     """
 
     # set lat/long
-    if state == "US":
+    if state == "United States":
         lat, lon, zoom = 39.8097343, -98.5556199, flask.session["zoom"]
     else:
         lat, lon, zoom = (

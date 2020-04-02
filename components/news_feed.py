@@ -20,15 +20,19 @@ def news_feed(state="US") -> dbc.ListGroup:
     :return list_group: A bootstramp ListGroup containing ListGroupItem returns news feeds.
     :rtype: dbc.ListGroup    
     """
+
     if state == "US":
-        json_data = requests.get(NCOV19_API + "news").json()
+        response = requests.get(NCOV19_API + "news")
     else:
-        payload = {"state": STATES_COORD[state]["stateAbbr"], "topic": "coronavirus"}
+        payload = {"state": state, "topic": "coronavirus"}
         payload = json.dumps(payload)
-        json_data = requests.post(NCOV19_API + "news", data=payload).json()
-    if json_data["success"] == True:
+        response = requests.post(NCOV19_API + "news", data=payload)
+        
+    if response.status_code == 200:
+        json_data = response.json()
         json_data = json_data["message"]
-        df = pd.read_json(json_data)
+        # df = pd.read_json(json_data)
+        df = pd.DataFrame.from_records(json_data)
         df = pd.DataFrame(df[["title", "url", "published"]])
 
         max_rows = 50

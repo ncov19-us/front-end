@@ -19,9 +19,13 @@ about_bar = dbc.Row(
             #     className="navbar-brand-links",
             #     href="/resources",
             # ),
-            html.A("About", className="navbar-brand-links", href="/about"),
-            html.A("CDC Resources", className="navbar-brand-links", href="https://www.cdc.gov/coronavirus/2019-ncov/index.html"),
-            html.A("WHO Resources", className="navbar-brand-links", href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019")
+            html.A("Get Mobile Updates", 
+            className="navbar-brand-links", 
+            href="/"),
+            html.A("Vaccine Tracker", className="navbar-brand-links", 
+            href="/"),
+            html.A("About", className="navbar-brand-links", 
+            href="/about")
         ]
     ),
     className="ml-auto flex-nowrap mt-3 mt-md-0",
@@ -59,7 +63,7 @@ navbar =  [
                             html.P(
                                 "COVID-19", className="navbar-brand-covid-19-text"
                             ),
-                        html.P("US Cases", className="navbar-brand-us-cases-text"),
+                        html.P("Tracker", className="navbar-brand-us-cases-text"),
                     ]
                     ),
                     className="page-title-link",
@@ -70,7 +74,7 @@ navbar =  [
         align="center",
         no_gutters=True,
     ),
-    dbc.NavbarToggler(id="navbar-toggler"),
+    dbc.NavbarToggler(id="navbar-toggler", className="navbar-toggler-1"),
     # dbc.Collapse(dropdown_bar, id="navbar-collapse", navbar=True),
     about_bar
     # dbc.NavbarBrand(about_bar),
