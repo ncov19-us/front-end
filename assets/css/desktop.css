@@ -85,7 +85,8 @@
     padding-bottom: .5rem;
     margin-bottom: 0;
     font-size: 11px;
-    color: grey;
+    background: #010915;
+    /* color: grey; */
 }
 
 
@@ -932,6 +933,10 @@ p.tweet-dt {
     margin-bottom: 1rem;
 }
 
+.stats-table-div .card{
+    height: 67.5vh;
+}
+
 .stats-table-div .card-body{
     overflow-y: scroll;
     overflow-x: hidden;
@@ -940,7 +945,7 @@ p.tweet-dt {
     -ms-overflow-style: none; 
     scrollbar-width: none;
 
-    height: 63.5vh;
+    height: 60vh;
 }
 
 .stats-table-div td{
