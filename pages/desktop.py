@@ -214,7 +214,7 @@ def stats_tab_content(state):
                 },
                 style_cell={
                     'font-size': '0.65rem',
-                    'font-family': 'Roboto, sans-serif',
+                    'font-family': 'Lato, sans-serif',
                     'border-bottom': '0.01rem solid #313841',
                     'backgroundColor': '#010915',
                     'color': '#FFFFFF',
@@ -226,7 +226,10 @@ def stats_tab_content(state):
                         'if': {
                             'column_id': 'State/County',
                         },
-                        'minWidth': '6.8rem', 'width': '6.8rem', 'maxWidth': '6.8rem',
+                        'minWidth': '6.8rem', 
+                        'width': '6.8rem',
+                        'maxWidth': '6.8rem',
+                        'textAlign': 'left'
                     },
                     {
                         'if': {

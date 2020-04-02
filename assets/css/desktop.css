@@ -33,6 +33,10 @@
     --about-bg-color-light:#D2D2D2;
 
 
+    /* Daily Stats */
+    --daily-stats-fonts: Lato, sans-serif;
+
+
 }
 
 .navbar {
@@ -369,6 +373,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding-left: 2rem;
     padding-right: 0;
     font-size: 1.5rem;
+    font-family: var(--daily-stats-fonts);
 }
 
 #states-dropdown {
@@ -444,6 +449,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     border-radius: .3rem;
     /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
     padding: .2rem; 
+    font-family: var(--daily-stats-fonts);
 }
 
 .top-bar-card-tested.card{
@@ -468,6 +474,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     border-radius: .3rem;
     /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
     padding: .2rem;
+    font-family: var(--daily-stats-fonts);
 }
 
 .top-bar-card-confirmed.card{
@@ -491,6 +498,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     border-radius: .3rem;
     /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
     padding: .2rem;
+    font-family: var(--daily-stats-fonts);
 }
 
 .top-bar-card-deaths.card{
@@ -518,6 +526,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     border-radius: .3rem;
     /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
     padding: .2rem;
+    font-family: var(--daily-stats-fonts);
 }
 
 .top-bar-card-death.card {

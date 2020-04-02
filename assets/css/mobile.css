@@ -4,6 +4,36 @@
 * ⚠️ ONLY APPLIES TO MOBILE DON'T PUT COMMON STYLING OR DESKTOP STYLING HERE ⚠️
 */
 
+:root{
+    /* Nav Colors */
+    --nav-bg-color:#010915;
+    --nav-font-color:#FEFEFE;
+
+    /* Font Colors */
+    --font-color-tested:#AEAEAE;
+    --font-color-confirmed:#F4B000;
+    --font-color-deaths:#E55465;
+    --font-color-deathrate:#DD1E34;
+
+    /* Card Colors */
+    --card-bg-color:#010915;
+    --card-font-color:#F4F4F4;
+
+    /* About Colors */
+    --about-font-color:#fefefe;
+    --about-font-color-black:black;
+    --about-border-color:#fefefe;
+    --about-bg-color:#19202A;
+    --about-bg-color-light:#D2D2D2;
+
+
+    /* Daily Stats */
+    --daily-stats-fonts: Lato, sans-serif;
+
+
+}
+
+
 .mobile-us-map-content {
     margin-top: 1rem;
     margin-left: 1rem;
@@ -218,6 +248,7 @@
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
     /* margin-bottom: 1.3rem; */
+    font-family: var(--daily-stats-fonts);
 }
 
 .mobile-top-bar-value-tested {
@@ -237,6 +268,7 @@
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
     /* margin-bottom: 1.3rem; */
+    font-family: var(--daily-stats-fonts);
 }
 
 .mobile-top-bar-value-confirmed {
@@ -262,6 +294,7 @@
     border-radius: .3rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
+    font-family: var(--daily-stats-fonts);
     /* margin-bottom: 1.3rem; */
 }
 .mobile-top-bar-card-deaths .mobile-card-text {
@@ -306,6 +339,7 @@
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
     /* margin-bottom: 1.3rem; */
+    font-family: var(--daily-stats-fonts);
 }
 
 .mobile-top-bar-card-death .mobile-card-text {
