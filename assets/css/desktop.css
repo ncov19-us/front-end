@@ -81,6 +81,15 @@
 }
 
 
+.right-tabs-last-updated-text {
+    padding-left: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    margin-bottom: 0;
+    font-size: 11px;
+    color: grey;
+}
+
 
 
 /*         Dropdown Location Menu                   */ 
@@ -440,7 +449,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-card-tested {
-    color: var(--daily-stats-font-color-tested);
+    color: var(--font-color-tested);
     text-align: center;
     font-size: .9rem;
     background-color: transparent;
@@ -464,7 +473,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-card-confirmed {
-    color: var(--daily-stats-font-color-confirmed);
+    color: var(--font-color-confirmed);
     text-align: center;
     font-size: .9rem;
     background-color: transparent;
@@ -487,7 +496,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 .top-bar-card-deaths {
-    color: var(--daily-stats-font-color-deaths);
+    color: var(--font-color-deaths);
     text-align: center;
     font-size: .9rem;
     background-color: transparent;
@@ -511,7 +520,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .top-bar-card-death {
     /* color: #03DA32; */
-    color: var(--daily-stats-font-color-deathrate);
+    color: var(--font-color-deathrate);
     text-align: center;
     font-size: .9rem;
     background-color: transparent;
@@ -743,9 +752,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 
-
-
-
 .left-col-twitter-feed-content.col-2 .card .card-body {
     border-top-right-radius: 0;
     border-top-left-radius: 0;
@@ -776,7 +782,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     background-color: transparent;
     border: none;
 }
-
 
 
 /* .tweet-item p */
@@ -927,6 +932,23 @@ p.tweet-dt {
     margin-bottom: 1rem;
 }
 
+
+.stats-table {
+    /* margin-right: 1rem; */
+    overflow-y: scroll;
+    height: 62vh;
+     
+    /* Disable scroll bar */
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* disable scroll bar */
+.stats-table::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
 .right-col-stats-content.col-2 .card-body {
     padding-top: 0rem;
     padding-bottom:0;
@@ -936,7 +958,6 @@ p.tweet-dt {
 .stats-table-div .card{
     height: 68.5vh;
 }
-
 
 .column-header-name {
     font-family: lato, sans-serif;
@@ -1142,5 +1163,3 @@ p.states-stats-confirmed-list-txt {
 .tweet-item a:hover {
     text-decoration: none !important;
 }
-
-

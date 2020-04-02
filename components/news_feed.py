@@ -40,6 +40,15 @@ def news_feed(state="US") -> dbc.ListGroup:
             [
                 dbc.ListGroupItem(
                     [
+                        html.H6(
+                            f"{df.iloc[i]['title'].split(' - ')[0]}.",
+                            className="news-txt-headline",
+                        ),
+                        html.P(
+                            f"{df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['published']}",
+                            className="news-txt-by-dt",
+                        ),
+
                         html.Div([
                             html.H6(
                                 f"{df.iloc[i]['title'].split(' - ')[0]}.",
