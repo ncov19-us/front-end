@@ -8,15 +8,13 @@ from utils.settings import NCOV19_API
 
 
 # @cache.memoize(timeout=3600)
-def infection_trajectory_chart(state=None) -> go.Figure:
+def infection_trajectory_chart(state='US') -> go.Figure:
     """Line chart data for the selected state.
 
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
 
     if state == 'US':
-
-        # TODO adjust for population
 
         URL = NCOV19_API + "country"
 
@@ -41,14 +39,15 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         it = pd.read_json(data, orient="records")
         it = it["Confirmed"].to_frame("Italy")
 
-        us = us[us["US"] > 200].reset_index(drop=True)
-        kr = kr[kr["South Korea"] > 200].reset_index(drop=True)
-        it = it[it["Italy"] > 200].reset_index(drop=True)
+        us = us[us["US"] > 100].reset_index(drop=True)
+        kr = kr[kr["South Korea"] > 100].reset_index(drop=True)
+        it = it[it["Italy"] > 100].reset_index(drop=True)
 
         merged = pd.concat([kr["South Korea"], it["Italy"], us["US"]], axis=1)
         merged = merged.reset_index()
         merged = merged.rename(columns={"index": "Days"})
 
+        # scale per 100000 people
         US_POP = 329450000
         ITALY_POP = 60500000
         SK_POP = 51200000
@@ -57,14 +56,12 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         merged['US'] = merged['US']/(US_POP/100000)
         merged['Italy'] = merged['Italy']/(ITALY_POP/100000)
 
-        # TODO scale for population
-
         del response, data, us, kr, it
 
         fig = go.Figure()
 
         # <extra></extra> remove name from the end of the hover over text
-        template = "%{y} confirmed cases per 100,000 people %{x} days since 200 cases<extra></extra>"
+        template = "%{y:.} confirmed cases per 100,000 people %{x} days since 100 cases<extra></extra>"
 
         fig.add_trace(
             go.Scatter(
@@ -133,37 +130,41 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         )
 
     else:
-        # codes = pd.read_csv('state-codes.csv')
+        # TODO uncomment
         cases = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
-
-
-
-        # temp #TODO REMOVE
-        # FAKE_DATA = [1,2,3,4,5,150,160,170]
-
-        # FAKE_DATES = []
-        # for i in range(len(FAKE_DATA)):
-        #     FAKE_DATES.append(f'3/{i+1}/19')
-
-        # FAKE_CASES = pd.DataFrame({'Date': FAKE_DATES, 'Cases':FAKE_DATA})
-
-
-
-
-        # get confirmed cases df
-        state_data = cases[cases.Province_State == state]
-        data = pd.DataFrame(state_data.aggregate('sum')[11:],columns=[state])
         
-        # filter to only see past 120 confirmed cases
-        data = data[data[state]>=120]
+        # TODO remove
+        # inputting data without github API
+        # cases = pd.read_csv('time_series_covid19_confirmed_US.csv')
 
-        comparison_states = ['New York', 'Washington']
+        states = set(['New York', 'Washington', 'California'])
 
-        for comp_state in comparison_states:
+        if state not in states:
+            states.remove('Washington')
+            states.add(state)
+
+        series = dict()
+
+        for i, comp_state in enumerate(states):
             temp = cases[cases.Province_State == comp_state]
             temp_data = pd.DataFrame(temp.aggregate('sum')[11:],columns=[comp_state])
-            temp_data = temp_data[temp_data[comp_state]>=120]
-            data[comp_state] = temp_data[comp_state]
+            series[i] = temp_data[temp_data[comp_state]>100].reset_index(drop=True)
+        
+        series0 = series[0][series[0].columns[0]]
+        series1 = series[1][series[1].columns[0]]
+        series2 = series[2][series[2].columns[0]]
+
+        merged = pd.concat([series0, series1, series2], axis=1)
+        merged = merged.reset_index()
+        merged = merged.rename(columns={"index": "Days"})
+
+        # getting populations
+
+        populations = {
+            'New York':19453561,
+            'Washington':7614893,
+            'California':39512223
+        }
 
         state_populations = pd.read_csv('state-population-est2019.csv')
         state_populations = state_populations[['Region', '2019']]
@@ -171,33 +172,23 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         state_populations['2019'] = state_populations['2019'].fillna(0)
         state_populations['2019'] = state_populations['2019'].astype(int)
     
-        # df.iloc[:,:].str.replace(',', '').astype(float)
         state_populations = state_populations[state_populations['Region']==f'.{state}']
-        state_population = state_populations['2019'].iloc[0]
-        NY_POP = 19453561
-        WA_POP = 7614893
+        populations[state] = state_populations['2019'].iloc[0]
+
 
         # Get cases per 100,000 people
-
-        data[state] = data[state]/(state_population/100000)
-        if state != 'New York':
-            data['New York'] = data['New York']/(NY_POP/100000)
-        if state != 'Washington':
-            data['Washington'] = data['Washington']/(WA_POP/100000)
-
-        data['Date'] = data.index
-
-        merged = data.iloc[39:]
+        for s in states:
+            merged[s] = merged[s]/(populations[s]/100000)
 
         fig = go.Figure()
 
         # <extra></extra> remove name from the end of the hover over text
-        template = "%{y} confirmed cases per 100,000 people %{x} days after 120 confirmed cases in "
+        template = "%{y:.0f} confirmed cases per 100,000 people<br>in "
         end_template = "<extra></extra>"
 
         fig.add_trace(
             go.Scatter(
-                x=merged["Date"],
+                x=merged["Days"],
                 y=merged["New York"],
                 name="New York",
                 # opacity=0.7,
@@ -208,19 +199,19 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         )
         fig.add_trace(
             go.Scatter(
-                x=merged["Date"],
-                y=merged["Washington"],
-                name="Washington",
-                # opacity=0.7,
-                line={"color": "#DD1E34"},
+                x=merged["Days"],
+                y=merged['California'],
+                name='California',
+                line={"color": "#F4B000"},
                 mode="lines",
-                hovertemplate=template+'Washington'+end_template
-            ),
+                hovertemplate=template+'California'+end_template,
+            )
         )
-        if state not in comparison_states:
+        
+        if 'Washington' not in states:
             fig.add_trace(
                 go.Scatter(
-                    x=merged["Date"],
+                    x=merged["Days"],
                     y=merged[state],
                     name=state,
                     line={"color": "#F4B000"},
@@ -228,7 +219,19 @@ def infection_trajectory_chart(state=None) -> go.Figure:
                     hovertemplate=template+state+end_template,
                 )
             )
-        
+        else:
+            fig.add_trace(
+                go.Scatter(
+                    x=merged["Days"],
+                    y=merged["Washington"],
+                    name="Washington",
+                    # opacity=0.7,
+                    line={"color": "#DD1E34"},
+                    mode="lines",
+                    hovertemplate=template+'Washington'+end_template
+                ),
+            )
+
         # annotations = []
         # annotations.append(dict(xref='paper',
         #                         x=pd.to_numeric(merged["US"].dropna().tail(1).index[0]),
