@@ -1,4 +1,4 @@
-# front-end/components/new_deaths_chart.py
+# front-end/components/cases_chart.py
 
 import requests
 import pandas as pd
@@ -106,7 +106,7 @@ def cases_chart(state='US') -> go.Figure:
         hoverlabel={"font": {"color": "black"}},
         xaxis_showgrid=False,
         yaxis_showgrid=False,
-        xaxis={"tickformat": "%m/%y"},
+        xaxis={"tickformat": "%m/%d"},
         font=dict(
             family="Roboto, sans-serif",
             size=10,
