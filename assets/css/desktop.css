@@ -928,6 +928,7 @@ p.tweet-dt {
 
 #stats-content {
     margin-bottom: 0;
+
 }
 
 .stats-table-col.card-body {
@@ -944,12 +945,19 @@ p.tweet-dt {
     margin-bottom: 1rem;
 }
 
+.dash-table-container .row{
+    margin: 0 auto;
+}
+
+.dash-table-container .row::-webkit-scrollbar {
+    display: none;
+}
 
 .stats-table {
     /* margin-right: 1rem; */
     overflow-y: scroll;
     height: 62vh;
-     
+    
     /* Disable scroll bar */
     scroll-behavior: smooth;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */

@@ -4,6 +4,7 @@ import dash_html_components as html
 import dash_table
 import dash
 from dash_table.Format import Format
+import dash_table.FormatTemplate as FormatTemplate
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 
@@ -219,7 +220,8 @@ def stats_tab_content(state):
                     'backgroundColor': '#010915',
                     'color': '#FFFFFF',
                     'height': '2.5rem',
-                    'format': Format(groups=[3], group=','),
+                    # 'format': Format(groups=[3], group=','),
+                    'specifier': '.2f'
                 },
                 style_cell_conditional=[
                     {
