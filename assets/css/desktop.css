@@ -948,7 +948,15 @@ p.tweet-dt {
 }
 
 .dash-table-container .row{
-    margin: 0 auto;
+    margin: 0 auto; 
+}
+
+.dash-spreadsheet-container table {
+    /* Change the default color of hover and Selected objects on chart */
+    --accent: none !important;
+    --hover: none !important;
+    --selected-background: none !important;
+    --selected-color: none !important;
 }
 
 .dash-table-container .row::-webkit-scrollbar {
