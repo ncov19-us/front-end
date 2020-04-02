@@ -136,15 +136,34 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         # codes = pd.read_csv('state-codes.csv')
         cases = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
 
+
+
+        # temp #TODO REMOVE
+        # FAKE_DATA = [1,2,3,4,5,150,160,170]
+
+        # FAKE_DATES = []
+        # for i in range(len(FAKE_DATA)):
+        #     FAKE_DATES.append(f'3/{i+1}/19')
+
+        # FAKE_CASES = pd.DataFrame({'Date': FAKE_DATES, 'Cases':FAKE_DATA})
+
+
+
+
         # get confirmed cases df
         state_data = cases[cases.Province_State == state]
         data = pd.DataFrame(state_data.aggregate('sum')[11:],columns=[state])
+        
+        # filter to only see past 120 confirmed cases
+        data = data[data[state]>=120]
 
         comparison_states = ['New York', 'Washington']
 
         for comp_state in comparison_states:
             temp = cases[cases.Province_State == comp_state]
-            data[comp_state] = temp.aggregate('sum')[11:]
+            temp_data = pd.DataFrame(temp.aggregate('sum')[11:],columns=[comp_state])
+            temp_data = temp_data[temp_data[comp_state]>=120]
+            data[comp_state] = temp_data[comp_state]
 
         state_populations = pd.read_csv('state-population-est2019.csv')
         state_populations = state_populations[['Region', '2019']]
@@ -173,7 +192,8 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         fig = go.Figure()
 
         # <extra></extra> remove name from the end of the hover over text
-        template = "%{y} confirmed cases per 100,000 people on %{x} <extra></extra>"
+        template = "%{y} confirmed cases per 100,000 people %{x} days after 120 confirmed cases in "
+        end_template = "<extra></extra>"
 
         fig.add_trace(
             go.Scatter(
@@ -183,7 +203,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
                 # opacity=0.7,
                 line={"color": "#D8B9B2"},
                 mode="lines",
-                hovertemplate=template,
+                hovertemplate=template+'New York'+end_template
             )
         )
         fig.add_trace(
@@ -194,7 +214,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
                 # opacity=0.7,
                 line={"color": "#DD1E34"},
                 mode="lines",
-                hovertemplate=template,
+                hovertemplate=template+'Washington'+end_template
             ),
         )
         if state not in comparison_states:
@@ -205,7 +225,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
                     name=state,
                     line={"color": "#F4B000"},
                     mode="lines",
-                    hovertemplate=template,
+                    hovertemplate=template+state+end_template,
                 )
             )
         
