@@ -1,11 +1,11 @@
-import requests
 import json
+import requests
 from typing import List, Dict
-from utils.settings import NCOV19_API, STATES_COORD
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
 
+from utils.settings import NCOV19_API, STATES_COORD
 
 def safe_div(x, y):
     return 0 if int(y) == 0 else int(x) / int(y)

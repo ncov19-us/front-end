@@ -12,6 +12,8 @@ from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import mobile_states_confirmed_stats, mobile_states_deaths_stats, mobile_last_updated
 
 from components.column_stats import STATES
+from utils.settings import STATES_COORD, REVERSE_STATES_MAP, NCOV19_API
+
 
 ################ TABS STYLING ####################
 
@@ -20,7 +22,7 @@ tabs_styles = {
 }
 tab_style = {
     "padding": "0.5rem",
-    "color": "white",
+    "color": "#010915",
     "backgroundColor": "#010914",
 }
 
@@ -30,6 +32,59 @@ tab_selected_style = {
     "padding": "0.5rem",
 }
 ########################################################
+
+state_labels = [
+    {"label": "United States", "value": "United States"},
+    {"label": "Alabama", "value": "Alabama"},
+    {"label": "Alaska", "value": "Alaska"},
+    {"label": "Arizona", "value": "Arizona"},
+    {"label": "Arkansas", "value": "Arkansas"},
+    {"label": "California", "value": "California"},
+    {"label": "Connecticut", "value": "Connecticut"},
+    {"label": "Delaware", "value": "Delaware"},
+    {"label": "Florida", "value": "Florida"},
+    {"label": "Georgia", "value": "Georgia"},
+    {"label": "Hawaii", "value": "Hawaii"},
+    {"label": "Idaho", "value": "Idaho"},
+    {"label": "Illinois", "value": "Illinois"},
+    {"label": "Indiana", "value": "Indiana"},
+    {"label": "Iowa", "value": "Iowa"},
+    {"label": "Kansas", "value": "Kansas"},
+    {"label": "Kentucky", "value": "Kentucky"},
+    {"label": "Louisiana", "value": "Louisiana"},
+    {"label": "Maine", "value": "Maine"},
+    {"label": "Maryland", "value": "Maryland"},
+    {"label": "Massachusetts", "value": "Massachusetts"},
+    {"label": "Michigan", "value": "Michigan"},
+    {"label": "Minnesota", "value": "Minnesota"},
+    {"label": "Mississippi", "value": "Mississippi"},
+    {"label": "Missouri", "value": "Missouri"},
+    {"label": "Montana", "value": "Montana"},
+    {"label": "Nebraska", "value": "Nebraska"},
+    {"label": "Nevada", "value": "Nevada"},
+    {"label": "New Hampshire", "value": "New Hampshire"},
+    {"label": "New Jersey", "value": "New Jersey"},
+    {"label": "New Mexico", "value": "New Mexico"},
+    {"label": "New York", "value": "New York"},
+    {"label": "North Carolina", "value": "North Carolina"},
+    {"label": "North Dakota", "value": "North Dakota"},
+    {"label": "Ohio", "value": "Ohio"},
+    {"label": "Oklahoma", "value": "Oklahoma"},
+    {"label": "Oregon", "value": "Oregon"},
+    {"label": "Pennsylvania", "value": "Pennsylvania"},
+    {"label": "Rhode Island", "value": "Rhode Island"},
+    {"label": "South Carolina", "value": "South Carolina"},
+    {"label": "South Dakota", "value": "South Dakota"},
+    {"label": "Tennessee", "value": "Tennessee"},
+    {"label": "Texas", "value": "Texas"},
+    {"label": "Utah", "value": "Utah"},
+    {"label": "Vermont", "value": "Vermont"},
+    {"label": "Virginia", "value": "Virginia"},
+    {"label": "Washington", "value": "Washington"},
+    {"label": "West Virginia", "value": "West Virginia"},
+    {"label": "Wisconsin", "value": "Wisconsin"},
+    {"label": "Wyoming", "value": "Wyoming"},
+]
 
 ########################################################################
 #
@@ -155,9 +210,9 @@ def mobile_map_tab_content(value, state):
     # print(f"callback value: {value}")
     # print(f"callback state: {state}")
     if value == "mobile-testing-us-map-tab":
-        return drive_thru_scatter_mapbox(state=state)
+        return drive_thru_scatter_mapbox(state=REVERSE_STATES_MAP[state])
     else:
-        return confirmed_scatter_mapbox(state=state)
+        return confirmed_scatter_mapbox(state=REVERSE_STATES_MAP[state])
 
 
 ########################################################################
@@ -228,6 +283,18 @@ mobile_body = [
     html.Div(
         id="mobile-intermediate-value", children="US", style={"display": "none"}
     ),  # Hidden div inside the app that stores the intermediate value
+    html.Div(
+        dcc.Dropdown(
+            id="mobile-states-dropdown",
+            options=state_labels,
+            value="United States",
+            clearable=False,
+            searchable=False,
+            className="mobile-states-dropdown",
+        ),
+        className="mobile-states-dropdown-container",
+        # width=2,  
+    ),
     html.Div(
         # daily_stats_mobile()
         id="mobile-daily-stats",
