@@ -932,22 +932,22 @@ p.tweet-dt {
     margin-bottom: 1rem;
 }
 
-.stats-table {
+.stats-table-div .card-body{
     overflow-y: scroll;
-    height: 63.5vh;
+    overflow-x: hidden;
     
-     
-    /* Disable scroll bar */
     scroll-behavior: smooth;
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+
+    height: 63.5vh;
 }
 
-.stats-table td{
+.stats-table-div td{
     text-align: right !important;
 }
 /* disable scroll bar */
-.stats-table::-webkit-scrollbar { 
+.stats-table-div .card-body::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
 

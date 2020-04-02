@@ -153,17 +153,15 @@ def feed_tab_content(tab_value, state):
 #
 ########################################################################
 
-stats_tabs = html.Div(#dbc.Card(
+stats_tabs = dbc.Card(
     [
-        html.Div(id="stats-table",
-                 className="stats-table",
+        dbc.CardBody(id="stats-table",
+                className="stats-table-col",
         ),
         html.P(
             f"Last Updated {last_updated.upper()}",
             className="right-tabs-last-updated-text",
         ),
-        # html.P(id="stats-content", className="right-col-feed-cards-text")
-        # dbc.CardBody(html.P(id="stats-content", className="right-col-feed-cards-text")),
     ],
     className="stats-table-div",
 )
@@ -174,6 +172,14 @@ stats_tabs = html.Div(#dbc.Card(
 )
 def stats_tab_content(state):
     df = stats_table(state)
+    # table = dbc.Table.from_dataframe(
+    #                         df,
+    #                         className="stats-actual-table",
+    #                         # striped=True,
+    #                         # bordered=False,
+    #                         # responsive=True,
+    #                         # hover=True,
+    #                         )
     # print(df.head())
     table = dash_table.DataTable(
                 data=df.to_dict('records'),
@@ -185,8 +191,10 @@ def stats_tab_content(state):
                 sort_mode="multi",
                 column_selectable="single",
                 style_as_list_view=True,
+                fixed_rows={'headers': True},
                 style_table={
                     # 'overflowX': 'scroll',
+                    'minWidth': '0',
                     'width': '100%',
                 },
                 style_header={
@@ -195,24 +203,22 @@ def stats_tab_content(state):
                     'border': '0.01rem solid #313841',
                     'fontWeight': 'bold',
                     'font': 'Lato, sans-serif',
-                    # 'width': '100%',
-                    # 'margin-left': '0.1rem',
-                    # 'margin': '0.5rem',
+                    # # 'width': '100%',
+                    # # 'margin-left': '0.1rem',
+                    # # 'margin': '0.5rem',
                     'maxWidth': '0rem',
                     'minWidth': '3rem', 'width': '3rem', 'maxWidth': '3rem',
                 },
                 style_cell={
-                    # 'width': '100%',
-                    # 'minWidth': '0px', 'maxWidth': '3rem',
                     'font-size': '0.65rem',
                     'font-family': 'Roboto, sans-serif',
-                    'margin': '0.5rem',
                     'border': '0.01rem solid #313841',
-                    'height': 'auto',
                     'backgroundColor': '#010915',
                     'color': '#FFFFFF',
-                    # 'overflow': 'hidden',
-                    # 'textOverflow': 'ellipsis',
+                    # 'textAlign': 'left',
+                    'width': '100%',
+                    # 'minWidth': '0px', 'maxWidth': '3rem',
+                    # 'margin': '0.5rem',
                 },
                 style_cell_conditional=[
                     {
@@ -220,21 +226,15 @@ def stats_tab_content(state):
                             'column_id': 'Confirmed',
                         },
                         'color': '#F4B000',
-                        'width': '30%',
+                        # 'width': '30%',
                     },
                     {
                         'if': {
                             'column_id': 'Deaths',
                         },
                         'color': '#E55465',
-                        'width': '30%',
+                        # 'width': '30%',
                     },
-                ],
-                css=[
-                    {
-                        'selector': 'table',
-                        'rule': 'width: 100%;'
-                    }
                 ],
     )
     return table
