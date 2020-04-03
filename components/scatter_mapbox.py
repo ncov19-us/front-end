@@ -38,8 +38,7 @@ def get_drive_thru_testing_centers():
 
 def confirmed_scatter_mapbox(state="United States"):
     """Displays choroplepth map for the data. For the whole US, the map is divided by state.
-    TODO: For individual states,the map will be divided by county lines. Add callbacks
-
+    
     :return card: A dash boostrap component Card object with a dash component Graph inside drawn using plotly express scatter_mapbox
     :rtype: dbc.Card
     """
@@ -55,7 +54,6 @@ def confirmed_scatter_mapbox(state="United States"):
     #                 '#f7c647','#f7c33d','#f6c033',
     #                 '#f6bd29','#f5b91f','#f5b614','#f4b30a',
     #                 '#F4B000','#efac00','#eaa900','#e5a500','#e0a200','#dc9e00']
-
 
     color_scale = ['#fadc8f','#f9d67a',
                     '#f8d066','#f8c952',

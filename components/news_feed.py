@@ -12,10 +12,8 @@ def news_feed(state="US") -> dbc.ListGroup:
     """Displays news feed on the right hand side of the display. Adjust the NewsAPI time
     time to Eastern Time (w/ DST).
     
-    TODO: Add callbacks to fetch local state news, if none get entire US news
-    
     :params state: display news feed for a particular state. If None, display news feed
-        for the whole US
+                    for the whole US
 
     :return list_group: A bootstramp ListGroup containing ListGroupItem returns news feeds.
     :rtype: dbc.ListGroup    
@@ -31,7 +29,6 @@ def news_feed(state="US") -> dbc.ListGroup:
     if response.status_code == 200:
         json_data = response.json()
         json_data = json_data["message"]
-        # df = pd.read_json(json_data)
         df = pd.DataFrame.from_records(json_data)
         df = pd.DataFrame(df[["title", "url", "published"]])
 
