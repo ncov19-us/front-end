@@ -5,14 +5,16 @@ import plotly.express as px
 import plotly.graph_objects as go
 from app import cache
 from utils.settings import NCOV19_API
-
+from utils.settings import REVERSE_STATES_MAP
 
 # @cache.memoize(timeout=3600)
-def infection_trajectory_chart(state='US') -> go.Figure:
+def new_infection_trajectory_chart(state='US') -> go.Figure:
     """Line chart data for the selected state.
 
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
+
+    # NCOV19_API = 'https://covid19-us-api-staging.herokuapp.com/'
 
     if state == 'US':
 
@@ -22,21 +24,28 @@ def infection_trajectory_chart(state='US') -> go.Figure:
         payload = json.dumps({"alpha2Code": "US"})
         response = requests.post(URL, data=payload).json()
         data = response["message"]
-        us = pd.read_json(data, orient="records")
+
+        # us = pd.read_json(data, orient="records")
+        us = pd.DataFrame.from_records(data)
+        # us = pd.DataFrame(ast.literal_eval(data))
         us = us["Confirmed"].to_frame("US")
 
         # South Korea data
         payload = json.dumps({"alpha2Code": "KR"})
         response = requests.post(URL, data=payload).json()
         data = response["message"]
-        kr = pd.read_json(data, orient="records")
+        kr = pd.DataFrame.from_records(data)
+        # kr = pd.read_json(data, orient="records")
+        # kr = pd.DataFrame(ast.literal_eval(data))
         kr = kr["Confirmed"].to_frame("South Korea")
 
         # Italy Data
         payload = json.dumps({"alpha2Code": "IT"})
         response = requests.post(URL, data=payload).json()
         data = response["message"]
-        it = pd.read_json(data, orient="records")
+        it = pd.DataFrame.from_records(data)
+        # it = pd.read_json(data, orient="records")
+        # it = pd.DataFrame(ast.literal_eval(data))
         it = it["Confirmed"].to_frame("Italy")
 
         us = us[us["US"] > 100].reset_index(drop=True)
@@ -130,12 +139,9 @@ def infection_trajectory_chart(state='US') -> go.Figure:
         )
 
     else:
-        # TODO uncomment
+        state = REVERSE_STATES_MAP[state]
+
         cases = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
-        
-        # TODO remove
-        # inputting data without github API
-        # cases = pd.read_csv('time_series_covid19_confirmed_US.csv')
 
         states = set(['New York', 'Washington', 'California'])
 

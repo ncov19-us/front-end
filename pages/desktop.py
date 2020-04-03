@@ -12,14 +12,12 @@ from utils.settings import STATES_COORD, REVERSE_STATES_MAP, NCOV19_API
 
 from components import daily_stats
 from components import news_feed, twitter_feed
-from components import confirmed_cases_chart, infection_trajectory_chart
+from components import confirmed_cases_chart, infection_trajectory_chart, new_infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import states_confirmed_stats, states_deaths_stats, last_updated
 from components import cases_chart, deaths_chart
 from components import stats_table
 from components.column_stats import STATES
-
-
 
 
 ################ TABS STYLING ####################
@@ -447,17 +445,19 @@ desktop_body = [
                                     dbc.CardBody(
                                         [
                                             html.Div(
-                                                "Infection Trajectory",
+                                                id = 'infection-trajectory-title',
+                                                # "Infection Trajectory",
                                                 className="bottom-chart-h1-title",
                                             ),
                                             html.Div(
-                                                "Days Since 200 Cases",
+                                                "Days Since 100 Cases",
                                                 className="bottom-chart-h2-title",
                                             ),
                                             html.Div(
                                                 dcc.Loading(
                                                     dcc.Graph(
-                                                        figure=infection_trajectory_chart(),
+                                                        id = 'infection-trajectory-chart',
+                                                        # figure=new_infection_trajectory_chart(),
                                                         config={"responsive": False},
                                                         style={"height": "20vh"},
                                                         className="top-bottom-right-chart-figure",
@@ -528,6 +528,29 @@ def death_callback(state="US"):
 def confirmed_cases_callback(state):
     fig = deaths_chart(state)
     return [fig]
+
+########################################################################
+#
+#                           Trajectory callback
+#
+######################################################################## 
+
+@app.callback(
+    [Output("infection-trajectory-title", "children")], [Input("intermediate-value", "children")]
+)
+def trajectory_title_callback(state="US"):
+    if state == "US":
+        return ["U.S. Trajectory"]
+    else:
+        return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
+
+@app.callback(
+    [Output("infection-trajectory-chart", "figure")], [Input("intermediate-value", "children")]
+)
+def trajectory_chart_callback(state):
+    fig = new_infection_trajectory_chart(state)
+    return [fig]
+
 
 
 ########################################################################
