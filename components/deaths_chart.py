@@ -68,11 +68,9 @@ def deaths_chart(state='US') -> go.Figure:
 
     # Calculate annotation placements
     plot_tail = data.iloc[-1].to_list()
-    print(plot_tail)
-    annotation_x = plot_tail[0]
-    annotation_y1 = plot_tail[2]
-    # annotation_y2 = plot_tail[4]
-    annotation_y2 = data['New Deaths'].max()
+    annotation_x = plot_tail[0]  # LAST TIMESTAMP
+    annotation_y1 = plot_tail[2]  # LAST DEATHS COUNT
+    annotation_y2 = data['New Deaths'].max()  # HIGHEST BAR ON BAR CHART
 
     template_new = "%{y} confirmed new deaths on %{x}<extra></extra>"
     template_total = "%{y} confirmed total deaths on %{x}<extra></extra>"
@@ -104,7 +102,7 @@ def deaths_chart(state='US') -> go.Figure:
         y=annotation_y1,
         text="Total COVID-19 Deaths",
         font={"size": 10},
-        xshift=-55,  # Annotation x displacement!
+        xshift=-65,  # Annotation x displacement!
         showarrow=False
     )
 

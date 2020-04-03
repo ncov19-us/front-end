@@ -73,10 +73,9 @@ def cases_chart(state='US') -> go.Figure:
 
     # Calculate annotation placements
     plot_tail = data.iloc[-1].to_list()
-    annotation_x = plot_tail[0]
-    annotation_y1 = plot_tail[1]
-    # annotation_y2 = plot_tail[3]
-    annotation_y2 = data['New Confirmed Cases'].max()
+    annotation_x = plot_tail[0]  # LAST TIMESTAMP
+    annotation_y1 = plot_tail[1]  # LAST CONFIRMED CASES COUNT
+    annotation_y2 = data['New Confirmed Cases'].max()  # HIGHEST BAR ON BAR CHART
 
     template_new = "%{y} confirmed new cases on %{x}<extra></extra>"
     template_total = "%{y} confirmed total cases on %{x}<extra></extra>"
@@ -108,7 +107,7 @@ def cases_chart(state='US') -> go.Figure:
         y=annotation_y1,
         text="Total COVID-19 Cases",
         font={"size": 10},
-        xshift=-55,  # Annotation x displacement!
+        xshift=-65,  # Annotation x displacement!
         showarrow=False
     )
 
