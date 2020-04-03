@@ -36,9 +36,9 @@
 
 
     /* Daily Stats */
-    --daily-stats-font-family: Lato, sans-serif;
-    --daily-stats-font-weight: bold;
-
+    --daily-stats-font-family: 'Roboto', sans-serif; 
+    --daily-stats-font-weight: 500;
+    /* not using lato for now bc font weight is weird */
 
 }
 
@@ -72,7 +72,7 @@
 
 .navbar-brand-covid-19-text {
     font-weight: 600;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-left: .5rem;
     margin-bottom: auto;
 
@@ -80,7 +80,7 @@
 
 .navbar-brand-us-cases-text {
     font-weight: 350;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     text-shadow: none;
     margin-bottom: auto;
     margin-left: .5rem;
@@ -411,17 +411,38 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .states-dropdown .Select-control .Select-value-label {
     color: white !important;
     cursor: pointer;
+    font-weight: 600;
 }
 
-.states-dropdown .Select-control:hover {
+#states-dropdown:hover .Select-value-label, #states-dropdown:hover .Select-arrow {
     color: gray !important;
+    /* border-color: gray !important; */
 }
+
+
+/* .parent:hover .child, .parent.hover .child */
+
+/* #states-dropdown:hover {
+    color: gray !important;
+} */
+
+/* .states-dropdown:hover {
+    color: gray !important;
+} */
 
 .states-dropdown .Select-arrow {
     border-color: white transparent transparent;
     border-width: 10px 5px 2.5px;
 }
 #states-dropdown .is-open .Select-control {
+    background-color: transparent;
+}
+
+#states-dropdown .is-open .Select-value-label {
+    color: white;
+}
+
+#states-dropdown .is-open .Select-value-label {
     background-color: transparent;
 }
 
@@ -666,13 +687,16 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     font-size: 1.2rem;
     color: #F4F4F4;
     max-width: 100%;
+    padding-left: 2%;
 }
 
 .bottom-chart-h2-title {
-    font-size: .75rem;
+    font-size: .65rem;
     color: #F4F4F4;
     max-width: 100%;
+    margin-top: 1%;
     margin-bottom: 8%;
+    padding-left: 2%;
 }
 
 .top-bottom-charts {
@@ -794,8 +818,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .tweet-item.list-group-item , .news-item.list-group-item{
     background-color: transparent;
     border: none;
-    padding-left: 30px;
-    padding-right: 30px;
 }
 
 
@@ -991,7 +1013,7 @@ p.tweet-dt {
 }
 
 .column-header-name {
-    font-family: lato, sans-serif;
+    font-family: Roboto, sans-serif;
     font-size: 0.7rem;
     font-weight: 500;
     /* padding-left: 1rem; */
