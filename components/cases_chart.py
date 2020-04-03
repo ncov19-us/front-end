@@ -2,19 +2,24 @@ import requests
 import pandas as pd
 import json
 import plotly.graph_objects as go
-from app import cache
-from utils.settings import REVERSE_STATES_MAP, NCOV19_API
+from utils.settings import REVERSE_STATES_MAP
 
 
-@cache.memoize(timeout=3600)
+# @cache.memoize(timeout=3600)
 def cases_chart(state='US') -> go.Figure:
     """Bar chart data for the selected state.
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
-    
+    root = 'https://covid19-us-api-staging.herokuapp.com/'  # TODO change for production
+
+    # print(f'[DEBUG] cases_chart.py input state is {state}')
     if state == 'US':
-        URL = NCOV19_API + 'country'
+        URL = root + 'country'
         payload = json.dumps({"alpha2Code": "US"})
+        # staging API
+        URL = 'https://covid19-us-api-staging.herokuapp.com/' + "country"
+        # production API
+        # URL = "https://covid19-us-api.herokuapp.com/" + "country"
         response = requests.post(URL, data=payload).json()
         data = response["message"]
         data = pd.DataFrame(data)  # TODO remove for production
@@ -23,19 +28,34 @@ def cases_chart(state='US') -> go.Figure:
         data = data.fillna(0)
 
     else:
-        URL = NCOV19_API + 'state'
-        payload = json.dumps({"stateAbbr": state})
-        response = requests.post(URL, data=payload)
+        # TODO need to get from db when data is available
+        # URL = root + 'stats'
+        # payload = json.dumps({'state': state})
+        # TODO add error handling, try except
+        ##########################################
+        # Section for reading data from csv file #
+        ##########################################
+        # Read CSV data from JHU github repo:
+        cases = pd.read_csv(
+            'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
+        deaths = pd.read_csv(
+            'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv')
 
-        if response.status_code == 200:
-            data = response.json()["message"]
-            data = pd.DataFrame(data)  
-        else:
-            backup = [{'Date': '1/1/20', 'Confirmed': 0, 'Deaths': 0},
-                      {'Date': '3/1/20', 'Confirmed': 0, 'Deaths': 0}]
-            data = pd.DataFrame(backup)
+        # print(f'[DEBUG] cases_chart.py when state is not US {state}')
+        # print(f'[DEBUG] cases_chart.py state reversed {REVERSE_STATES_MAP[state]}')
 
-        data = data.rename(columns={"Confirmed": "Confirmed Cases"})
+        state = REVERSE_STATES_MAP[state]
+        # get confirmed cases df
+        data = cases[cases["Province_State"] == state]
+        data = pd.DataFrame(data.aggregate('sum')[11:], columns=['Confirmed Cases'])
+        # get death data
+        deaths = deaths[deaths.Province_State == state]
+        deaths = deaths.aggregate('sum')[12:]
+        # combine
+        data['Deaths'] = deaths
+        data = data.reset_index()
+        data.columns = ['Date', 'Confirmed Cases', 'Deaths']
+        data = data.fillna(0)
         ###########################################
         #               end section               #
         ###########################################
