@@ -6,7 +6,15 @@ from app import cache
 from utils.settings import REVERSE_STATES_MAP, NCOV19_API
 
 
-@cache.memoize(timeout=3600)
+def human_format(num):
+    num = float('{:.3g}'.format(num))
+    magnitude = 0
+    while abs(num) >= 1000:
+        magnitude += 1
+        num /= 1000.0
+    return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
+
+# @cache.memoize(timeout=3600)
 def cases_chart(state='US') -> go.Figure:
     """Bar chart data for the selected state.
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.

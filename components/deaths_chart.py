@@ -6,7 +6,7 @@ from app import cache
 from utils.settings import REVERSE_STATES_MAP, NCOV19_API
 
 
-@cache.memoize(timeout=3600)
+# @cache.memoize(timeout=3600)
 def deaths_chart(state='US') -> go.Figure:
     """Bar chart data for the selected state.
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
@@ -56,7 +56,7 @@ def deaths_chart(state='US') -> go.Figure:
             x=data["Date"],
             y=data["New Deaths"],
             name="New Deaths",
-            marker={"color": "#870000"},
+            marker={"color": "#dd1e34"},
             hovertemplate=template_new,
         )
     )
@@ -66,7 +66,7 @@ def deaths_chart(state='US') -> go.Figure:
             x=data["Date"],
             y=data["Deaths"],
             name="Total Deaths",
-            line={"color": "#870000"},
+            line={"color": "#dd1e34"},
             mode="lines",
             hovertemplate=template_total,
         )
