@@ -285,7 +285,7 @@ us_maps_tabs = dbc.Card(
                                     selected_style=tab_selected_style,
                                 ),
                                 dcc.Tab(
-                                    label="Testing",
+                                    label="Testing Centers",
                                     value="testing-us-map-tab",
                                     className="testing-us-map-tab",
                                     style=tab_style,

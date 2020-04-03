@@ -66,6 +66,18 @@
     padding-right: 53px;
 }
 
+#get-mobile-updates {
+    border-radius: .3rem;
+    border: 1px solid white;
+    padding: .3rem 1rem;
+    margin-right: -1rem;
+}
+
+#get-mobile-updates:hover {
+    border-color: var(--font-color-confirmed);
+    color: var(--font-color-confirmed);
+}
+
 .page-title-link:hover {
     text-decoration: none;
 }
@@ -143,7 +155,6 @@
 } */
 
 .navbar-brand-links {
-    margin-bottom: auto;
     font-weight: 425;
     font-size: 1.05rem;
     letter-spacing: 0.01rem;
@@ -154,6 +165,7 @@
 
 .navbar-brand-links:hover {
     text-decoration: none;
+    color: #aaaaaa;
 }
 
 /* #navbar-resources-link {
@@ -399,6 +411,26 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     overflow: auto;
     box-shadow: none !important;
     border-color: transparent !important;
+    display: inline !important;
+}
+
+.states-dropdown .Select-multi-value-wrapper {
+    display: inline !important;
+}
+
+.states-dropdown .Select-multi-value-wrapper .Select-value {
+    display: inline !important;
+    position: unset !important;
+}
+
+
+.states-dropdown .Select-value-label {
+    display: inline !important;
+    position: unset !important;
+}
+
+.states-dropdown .Select-input {
+    display: inline !important;
 }
 
 .states-dropdown .Select-menu-outer {
@@ -639,11 +671,13 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 /* this is needed for map tabs formatting - i checked */
-.jsx-2597805859.tab.confirmed-us-map-tab.tab--selected, .jsx-2597805859.tab.testing-us-map-tab , .jsx-2597805859.tab.confirmed-us-map-tab {
-    min-width: 5rem;
+.tab.confirmed-us-map-tab.tab--selected, .tab.testing-us-map-tab , .tab.confirmed-us-map-tab {
+    min-width: fit-content;
     border-top-left-radius:  0.3rem;
-    
+    padding: 0.5rem 1rem !important;
 }
+
+/* .tab.confirmed-us-map-tab.tab--selected  */
 
 .card-header-tabs{
     margin-right:0%;
@@ -651,6 +685,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .jsx-2597805859.tab.testing-us-map-tab {
     border-top-right-radius: 0.3rem;
+    padding: 0.5rem 1rem;
 }
 
 .middle-col-map-content.col-8 {

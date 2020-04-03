@@ -46,7 +46,7 @@
 }
 
 .mobile-top-bar-us-map-heading-content {
-    padding-left: 15px;
+    padding-left: 0px;
     padding-right: 15px;
 }
 
@@ -61,7 +61,6 @@
 }
 
 .tab.mobile-confirmed-us-map-tab.tab--selected, .tab.mobile-testing-us-map-tab.tab--selected {
-    background-color: #010915 !important;
     color: #FEFEFE !important;
 }
 
@@ -128,6 +127,10 @@ p.right-tabs-last-updated-text {
     font-size: 1.8rem;
 }
 
+.hidden-menu-anchor-tag:hover {
+    text-decoration: none;
+}
+
 .align-items-center.no-gutters.row {
     /* padding: 3% 0 3% 5%; */
     color: #F4F4F4;
@@ -170,14 +173,23 @@ p.right-tabs-last-updated-text {
 /* Mobile Card 🎴 section */
 
 .mobile-states-dropdown-container {
-    width: 92%;
-    margin:0 auto;
+    width: 100%;
     position: fixed;
-    z-index: 10000;
+    z-index: 9999;
     font-family: var(--daily-stats-font-family);
     font-weight: var(--daily-stats-font-weight);
 
 }
+
+/* .mobile-states-dropdown-container {
+    display: flex;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-right: 0;
+    font-family: var(--daily-stats-font-family);
+    font-size: 2.75vw;
+    font-weight: var(--daily-stats-font-weight);
+} */
 
 #mobile-states-dropdown {
     width: 100%;
@@ -188,10 +200,71 @@ p.right-tabs-last-updated-text {
     background-color: transparent !important;
 }
 
+.mobile-states-dropdown .Select-control {
+    background-color: transparent !important;
+    border-color: transparent;
+    overflow: auto;
+    box-shadow: none !important;
+    border-color: transparent !important;
+    padding-right: 35px;
+}
+
+.mobile-states-dropdown .Select-menu-outer {
+    background-color: #1F242D;
+    border-color: transparent;
+    font-size: 3vw;
+    z-index: 1000000;
+}
+
+.mobile-states-dropdown .Select-control .Select-value-label {
+    color: white !important;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#mobile-states-dropdown:hover .Select-value-label, #mobile-states-dropdown:hover .Select-arrow {
+    color: gray !important;
+    /* border-color: gray !important; */
+}
+
+
+/* .parent:hover .child, .parent.hover .child */
+
+/* #states-dropdown:hover {
+    color: gray !important;
+} */
+
+/* .states-dropdown:hover {
+    color: gray !important;
+} */
+
+.mobile-states-dropdown .Select-arrow {
+    border-color: white transparent transparent;
+    border-width: 10px 5px 2.5px;
+}
+#mobile-states-dropdown .is-open .Select-control {
+    background-color: transparent;
+}
+
+#mobile-states-dropdown .is-open .Select-value-label {
+    color: white;
+}
+
+#mobile-states-dropdown .is-open .Select-value-label {
+    background-color: transparent;
+}
+
+#mobile-states-dropdown .is-open .Select-arrow {
+    border-color: white transparent transparent;
+    border-width: 10px 5px 2.5px;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+
 .mobile-top-bar-content {
     margin-left: 1rem;
     margin-right: 1rem;
-    margin-top: 2.9rem;
+    margin-top: 3rem;
 }
 
 .mobile-top-bar-content.list-group-item li {
@@ -236,6 +309,7 @@ p.right-tabs-last-updated-text {
     padding: .2rem; 
     font-family: var(--daily-stats-fonts);
     color: var(--font-color-tested);
+    margin-top: 2rem;
 }
 
 .mobile-top-bar-value-tested {
@@ -548,13 +622,9 @@ th.dash-header.column-0 {
     border-top-right-radius: 0.3rem;
 }
 
-
-
 .tab.mobile-twitter-feed-tab.tab--selected, .tab.mobile-news-feed-tab.tab--selected {
     background-color: var(--card-bg-color) !important;
 }
-
-
 
 /* Hamburger menu overlay */
 .hidden-menu-div {

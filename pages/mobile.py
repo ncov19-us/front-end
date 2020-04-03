@@ -28,12 +28,12 @@ tabs_styles = {
 }
 tab_style = {
     "padding": "0.5rem",
-    "color": "#F4F4F4",
+    "color": "transparent",
     "backgroundColor": "#010914",
 }
 
 tab_selected_style = {
-    "backgroundColor": "#20242d",
+    "backgroundColor": "transparent",
     "color": "white",
     "padding": "0.5rem",
 }
@@ -159,7 +159,7 @@ mobile_us_maps_tabs = dbc.Card(
         [
             html.Div(
                 [
-                    html.Div("US Map", className="mobile-top-bar-us-map-heading-txt",),
+                    # html.Div("US Map", className="mobile-top-bar-us-map-heading-txt",),
                     html.Div(
                         dcc.Tabs(
                             id="mobile-map-tabs",
