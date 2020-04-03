@@ -109,7 +109,7 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
         states = [state]
         
         for s in comparison_states:
-            if len(states)<3:
+            if len(states)<3 and s not in states:
                 states.append(s)
 
         # Ingestion
