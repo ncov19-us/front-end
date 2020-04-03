@@ -11,7 +11,7 @@ from utils.settings import STATES_COORD, REVERSE_STATES_MAP, NCOV19_API
 
 from components import daily_stats_mobile
 from components import news_feed, twitter_feed
-from components import confirmed_cases_chart, infection_trajectory_chart
+from components import confirmed_cases_chart, infection_trajectory_chart, new_infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import mobile_states_confirmed_stats, mobile_states_deaths_stats, mobile_last_updated
 from components.column_stats import STATES
@@ -435,16 +435,18 @@ mobile_body = [
             dbc.CardBody(
                 [
                     html.Div(
-                        "Placeholder",
+                        id = 'mobile-trajectory-title',
+                        # "Placeholder",
                         className="mobile-chart-h1-title",
                     ),
                     html.Div(
-                        "placeholder for h2 text",
+                        "Days Since 100 Cases",
                         className="mobile-chart-h2-title",
                     ),
                     html.Div(
                         dcc.Graph(
-                            figure=deaths_chart(),
+                            id = 'mobile-trajectory-chart',
+                            # figure=deaths_chart(),
                             config={"scrollZoom": False},
                             style={"height": "20vh"},
                         ),
@@ -507,7 +509,29 @@ def mobile_death_callback(state="US"):
 def mobile_confirmed_cases_callback(state):
     fig = deaths_chart(state)
     return [fig]
-        
+
+########################################################################
+#
+#                           Trajectory callback
+#
+######################################################################## 
+
+@app.callback(
+    [Output("mobile-trajectory-title", "children")], [Input("mobile-intermediate-value", "children")]
+)
+def mobile_trajectory_title_callback(state="US"):
+    if state == "US":
+        return ["U.S. Trajectory"]
+    else:
+        return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
+
+@app.callback(
+    [Output("mobile-trajectory-chart", "figure")], [Input("mobile-intermediate-value", "children")]
+)
+def mobile_trajectory_chart_callback(state):
+    fig = new_infection_trajectory_chart(state)
+    return [fig]
+
 
 ########################################################################
 #
