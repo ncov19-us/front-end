@@ -49,9 +49,9 @@ def before_request_func():
 @server.route("/sitemap.xml")
 def sitemap():
     """
-        Route to dynamically generate a sitemap of your website/application.
-        lastmod and priority tags omitted on static pages.
-        lastmod included on dynamic content such as blog posts.
+    https://www.brizzle.dev/post/how-to-generate-a-dynamic-sitemap-for-seo-using-python-flask
+    Route to dynamically generate a sitemap of your website/application. lastmod and priority tags
+    omitted on static pages. lastmod included on dynamic content such as blog posts.
     """
     from flask import make_response, request, render_template
     import datetime
@@ -72,7 +72,7 @@ def sitemap():
 
     static_urls.append({"loc": f"{host_base}/about"})
     static_urls.append({"loc": f"{host_base}/resources"})
-    print(static_urls)
+    # print(static_urls)
     # # Dynamic routes with dynamic content
     # dynamic_urls = list()
     # blog_posts = Post.objects(published=True)
