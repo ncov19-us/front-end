@@ -7,6 +7,10 @@ from utils.settings import REVERSE_STATES_MAP, NCOV19_API
 
 
 def human_format(num):
+    """
+    Formats a number and returns a human-readable version of it in string form. Ex: 300,000 -> 300k
+    :params num: number to be converted to a formatted string
+    """
     num = float('{:.3g}'.format(num))
     magnitude = 0
     while abs(num) >= 1000:
@@ -14,12 +18,13 @@ def human_format(num):
         num /= 1000.0
     return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
+
 # @cache.memoize(timeout=3600)
 def cases_chart(state='US') -> go.Figure:
     """Bar chart data for the selected state.
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
-    
+
     if state == 'US':
         URL = NCOV19_API + 'country'
         payload = json.dumps({"alpha2Code": "US"})
@@ -37,7 +42,7 @@ def cases_chart(state='US') -> go.Figure:
 
         if response.status_code == 200:
             data = response.json()["message"]
-            data = pd.DataFrame(data)  
+            data = pd.DataFrame(data)
         else:
             backup = [{'Date': '1/1/20', 'Confirmed': 0, 'Deaths': 0},
                       {'Date': '3/1/20', 'Confirmed': 0, 'Deaths': 0}]
@@ -65,8 +70,8 @@ def cases_chart(state='US') -> go.Figure:
     annotation_y1 = plot_tail[1]  # LAST CONFIRMED CASES COUNT
     annotation_y2 = data['New Confirmed Cases'].max()  # HIGHEST BAR ON BAR CHART
 
-    template_new = "%{y} confirmed new cases on %{x}<extra></extra>"
-    template_total = "%{y} confirmed total cases on %{x}<extra></extra>"
+    template_new = "%{customdata} confirmed new cases on %{x}<extra></extra>"
+    template_total = "%{customdata} confirmed total cases on %{x}<extra></extra>"
     fig = go.Figure()
     fig.add_trace(
         go.Bar(
@@ -74,6 +79,7 @@ def cases_chart(state='US') -> go.Figure:
             y=data["New Confirmed Cases"],
             name="New Cases Added",
             marker={"color": "#F4B000"},
+            customdata=[human_format(x) for x in data["New Confirmed Cases"].to_list()],
             hovertemplate=template_new,
         )
     )
@@ -85,6 +91,7 @@ def cases_chart(state='US') -> go.Figure:
             name="Total Confirmed Cases",
             line={"color": "#F4B000"},
             mode="lines",
+            customdata=[human_format(x) for x in data["Confirmed Cases"].to_list()],
             hovertemplate=template_total,
         )
     )
@@ -138,5 +145,5 @@ def cases_chart(state='US') -> go.Figure:
         #                 title=None, orientation="h", y=-.5, yanchor="bottom", x=0, xanchor="left"
         #         )
     )
-    
+
     return fig
