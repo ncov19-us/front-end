@@ -66,6 +66,18 @@
     padding-right: 53px;
 }
 
+#get-mobile-updates {
+    border-radius: .3rem;
+    border: 1px solid white;
+    padding: .3rem 1rem;
+    margin-right: -1rem;
+}
+
+#get-mobile-updates:hover {
+    border-color: var(--font-color-confirmed);
+    color: var(--font-color-confirmed);
+}
+
 .page-title-link:hover {
     text-decoration: none;
 }
@@ -143,7 +155,6 @@
 } */
 
 .navbar-brand-links {
-    margin-bottom: auto;
     font-weight: 425;
     font-size: 1.05rem;
     letter-spacing: 0.01rem;
