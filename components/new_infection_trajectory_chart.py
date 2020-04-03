@@ -4,8 +4,7 @@ import json
 import plotly.express as px
 import plotly.graph_objects as go
 from app import cache
-from utils.settings import NCOV19_API
-from utils.settings import REVERSE_STATES_MAP
+from utils.settings import NCOV19_API, REVERSE_STATES_MAP
 
 
 @cache.memoize(timeout=3600)
@@ -70,7 +69,6 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                 x=merged["Days"],
                 y=merged["Italy"],
                 name="Italy",
-                # opacity=0.7,
                 line={"color": "#D8B9B2"},
                 mode="lines",
                 hovertemplate=template,
@@ -81,7 +79,6 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                 x=merged["Days"],
                 y=merged["South Korea"],
                 name="South Korea",
-                # opacity=0.7,
                 line={"color": "#DD1E34"},
                 mode="lines",
                 hovertemplate=template,
@@ -98,25 +95,14 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
             )
         )
         
-        # annotations = []
-        # annotations.append(dict(xref='paper',
-        #                         x=pd.to_numeric(merged["US"].dropna().tail(1).index[0]),
-        #                         y=merged["US"].dropna().tail(1),
-        #                         xanchor='right', yanchor='middle',
-        #                         text="United States",#label + ' {}%'.format(y_trace[0]),
-        #                         font=dict(family='Arial',
-        #                                  size=12),
-        #                         showarrow=False))
         fig.update_layout(
             margin={"r": 0, "t": 0, "l": 0, "b": 1},
             template="plotly_dark",
-            # annotations=annotations,
             autosize=True,
             showlegend=True,
             legend_orientation="h",
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
-            # xaxis_title="Number of Days",
             yaxis={"linecolor": "rgba(0,0,0,0)"},
             hoverlabel={"font": {"color": "black"}},
             xaxis_showgrid=False,
@@ -126,39 +112,40 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                 size=10,
                 color="#f4f4f4"
             ),
-            # legend=dict(
-            #         title=None, orientation="v", y=-.35, yanchor="bottom", x=.5, xanchor="center"
-            # )
         )
 
     else:
-        state = REVERSE_STATES_MAP[state]
+        URL = NCOV19_API + "state"
 
-        cases = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
-
-        states = set(['New York', 'Washington', 'California'])
-
+        # State selection for comparisons
+        states = set(['NY', 'WA', 'CA'])
         if state not in states:
-            states.remove('Washington')
+            states.remove('WA')
             states.add(state)
 
+        # Ingestion
         series = dict()
-
         for i, comp_state in enumerate(states):
-            temp = cases[cases.Province_State == comp_state]
-            temp_data = pd.DataFrame(temp.aggregate('sum')[11:],columns=[comp_state])
-            series[i] = temp_data[temp_data[comp_state]>100].reset_index(drop=True)
-        
-        series0 = series[0][series[0].columns[0]]
-        series1 = series[1][series[1].columns[0]]
-        series2 = series[2][series[2].columns[0]]
+            payload = json.dumps({"stateAbbr": comp_state})
+            response = requests.post(URL, data=payload)
 
-        merged = pd.concat([series0, series1, series2], axis=1)
+            if response.status_code == 200:
+                data = response.json()["message"]
+                data = pd.DataFrame(data)  
+            else:
+                backup = [{'Date': '1/1/20', 'Confirmed': 1337},
+                          {'Date': '3/1/20', 'Confirmed': 1338}]
+                data = pd.DataFrame(backup)
+        
+            temp_data = data['Confirmed'].to_frame(REVERSE_STATES_MAP[comp_state])
+            temp_data = temp_data[temp_data[REVERSE_STATES_MAP[comp_state]] > 100].reset_index(drop=True)
+            series[i] = temp_data
+
+        merged = pd.concat([series[0], series[1], series[2]], axis=1)
         merged = merged.reset_index()
         merged = merged.rename(columns={"index": "Days"})
 
-        # getting populations
-
+        # Population logic
         populations = {
             'New York':19453561,
             'Washington':7614893,
@@ -171,17 +158,16 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
         state_populations['2019'] = state_populations['2019'].fillna(0)
         state_populations['2019'] = state_populations['2019'].astype(int)
     
-        state_populations = state_populations[state_populations['Region']==f'.{state}']
-        populations[state] = state_populations['2019'].iloc[0]
-
+        state_populations = state_populations[state_populations['Region']==f'.{REVERSE_STATES_MAP[state]}']
+        populations[REVERSE_STATES_MAP[state]] = state_populations['2019'].iloc[0]
 
         # Get cases per 100,000 people
         for s in states:
-            merged[s] = merged[s]/(populations[s]/100000)
+            merged[REVERSE_STATES_MAP[s]] = merged[REVERSE_STATES_MAP[s]]/(populations[REVERSE_STATES_MAP[s]]/100000)
 
+        # Plotting
         fig = go.Figure()
 
-        # <extra></extra> remove name from the end of the hover over text
         template = "%{y:.0f} confirmed cases per 100,000 people<br>in "
         end_template = "<extra></extra>"
 
@@ -190,7 +176,6 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                 x=merged["Days"],
                 y=merged["New York"],
                 name="New York",
-                # opacity=0.7,
                 line={"color": "#D8B9B2"},
                 mode="lines",
                 hovertemplate=template+'New York'+end_template
@@ -207,15 +192,15 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
             )
         )
         
-        if 'Washington' not in states:
+        if 'WA' not in states:
             fig.add_trace(
                 go.Scatter(
                     x=merged["Days"],
-                    y=merged[state],
-                    name=state,
+                    y=merged[REVERSE_STATES_MAP[state]],
+                    name=REVERSE_STATES_MAP[state],
                     line={"color": "#F4B000"},
                     mode="lines",
-                    hovertemplate=template+state+end_template,
+                    hovertemplate=template+REVERSE_STATES_MAP[state]+end_template,
                 )
             )
         else:
