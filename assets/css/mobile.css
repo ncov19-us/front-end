@@ -29,6 +29,12 @@
     padding: 1rem;
 }
 
+.tab.mobile-confirmed-us-map-tab.tab--selected {
+    background-color: none;
+}
+
+/* MOBILE CHART STYLING */
+
 .mobile-chart {
     margin-top: 2rem;
 }
@@ -142,6 +148,7 @@
 /* END ABOUT SECTION */
 
 
+/* US MAP STYLING */
 .tab-mobile-confirmed-us-map-tab {
     min-width: 5rem;
     padding: 0.7rem;
