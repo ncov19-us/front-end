@@ -154,6 +154,8 @@
 
 .navbar-brand-links:hover {
     text-decoration: none;
+    color: #aaaaaa;
+    font-size: 1.1rem;
 }
 
 /* #navbar-resources-link {
@@ -399,6 +401,26 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     overflow: auto;
     box-shadow: none !important;
     border-color: transparent !important;
+    display: inline !important;
+}
+
+.states-dropdown .Select-multi-value-wrapper {
+    display: inline !important;
+}
+
+.states-dropdown .Select-multi-value-wrapper .Select-value {
+    display: inline !important;
+    position: unset !important;
+}
+
+
+.states-dropdown .Select-value-label {
+    display: inline !important;
+    position: unset !important;
+}
+
+.states-dropdown .Select-input {
+    display: inline !important;
 }
 
 .states-dropdown .Select-menu-outer {
@@ -640,9 +662,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 /* this is needed for map tabs formatting - i checked */
 .jsx-2597805859.tab.confirmed-us-map-tab.tab--selected, .jsx-2597805859.tab.testing-us-map-tab , .jsx-2597805859.tab.confirmed-us-map-tab {
-    min-width: 5rem;
+    min-width: fit-content;
     border-top-left-radius:  0.3rem;
-    
 }
 
 .card-header-tabs{

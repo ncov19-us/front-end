@@ -548,13 +548,9 @@ th.dash-header.column-0 {
     border-top-right-radius: 0.3rem;
 }
 
-
-
 .tab.mobile-twitter-feed-tab.tab--selected, .tab.mobile-news-feed-tab.tab--selected {
     background-color: var(--card-bg-color) !important;
 }
-
-
 
 /* Hamburger menu overlay */
 .hidden-menu-div {
