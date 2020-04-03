@@ -521,9 +521,9 @@ def mobile_confirmed_cases_callback(state):
 )
 def mobile_trajectory_title_callback(state="US"):
     if state == "US":
-        return ["U.S. Trajectory"]
+        return ["U.S. Trajectory Comparison"]
     else:
-        return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
+        return [f"{REVERSE_STATES_MAP[state]} Trajectory Comparison"]
 
 @app.callback(
     [Output("mobile-trajectory-chart", "figure")], [Input("mobile-intermediate-value", "children")]

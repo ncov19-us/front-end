@@ -548,9 +548,9 @@ def death_callback(state="US"):
 )
 def trajectory_title_callback(state="US"):
     if state == "US":
-        return ["U.S. Trajectory"]
+        return ["U.S. Trajectory Comparison"]
     else:
-        return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
+        return [f"{REVERSE_STATES_MAP[state]} Trajectory Comparison"]
 
 @app.callback(
     [Output("infection-trajectory-chart", "figure")], [Input("intermediate-value", "children")]
