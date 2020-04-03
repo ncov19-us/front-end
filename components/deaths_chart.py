@@ -92,7 +92,7 @@ def deaths_chart(state='US') -> go.Figure:
     fig.add_annotation(
         x=annotation_x,
         y=annotation_y2,
-        text="New Daily Deaths",
+        text="Daily New Deaths",
         font={"size": 10},
         xshift=-40,  # Annotation x displacement!
         yshift=10,  # Annotation y displacement!

@@ -95,7 +95,7 @@ def cases_chart(state='US') -> go.Figure:
     fig.add_annotation(
         x=annotation_x,
         y=annotation_y2,
-        text="New Daily Cases",
+        text="Daily New Cases",
         font={"size": 10},
         xshift=-40,  # Annotation x displacement!
         yshift=10,  # Annotation y displacement!
