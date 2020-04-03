@@ -7,14 +7,13 @@ from app import cache
 from utils.settings import NCOV19_API
 from utils.settings import REVERSE_STATES_MAP
 
-# @cache.memoize(timeout=3600)
+
+@cache.memoize(timeout=3600)
 def new_infection_trajectory_chart(state='US') -> go.Figure:
     """Line chart data for the selected state.
 
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
-
-    # NCOV19_API = 'https://covid19-us-api-staging.herokuapp.com/'
 
     if state == 'US':
 
@@ -25,9 +24,7 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
         response = requests.post(URL, data=payload).json()
         data = response["message"]
 
-        # us = pd.read_json(data, orient="records")
         us = pd.DataFrame.from_records(data)
-        # us = pd.DataFrame(ast.literal_eval(data))
         us = us["Confirmed"].to_frame("US")
 
         # South Korea data
@@ -35,8 +32,6 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
         response = requests.post(URL, data=payload).json()
         data = response["message"]
         kr = pd.DataFrame.from_records(data)
-        # kr = pd.read_json(data, orient="records")
-        # kr = pd.DataFrame(ast.literal_eval(data))
         kr = kr["Confirmed"].to_frame("South Korea")
 
         # Italy Data
@@ -44,8 +39,6 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
         response = requests.post(URL, data=payload).json()
         data = response["message"]
         it = pd.DataFrame.from_records(data)
-        # it = pd.read_json(data, orient="records")
-        # it = pd.DataFrame(ast.literal_eval(data))
         it = it["Confirmed"].to_frame("Italy")
 
         us = us[us["US"] > 100].reset_index(drop=True)
@@ -231,32 +224,20 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                     x=merged["Days"],
                     y=merged["Washington"],
                     name="Washington",
-                    # opacity=0.7,
                     line={"color": "#DD1E34"},
                     mode="lines",
                     hovertemplate=template+'Washington'+end_template
                 ),
             )
 
-        # annotations = []
-        # annotations.append(dict(xref='paper',
-        #                         x=pd.to_numeric(merged["US"].dropna().tail(1).index[0]),
-        #                         y=merged["US"].dropna().tail(1),
-        #                         xanchor='right', yanchor='middle',
-        #                         text="United States",#label + ' {}%'.format(y_trace[0]),
-        #                         font=dict(family='Arial',
-        #                                  size=12),
-        #                         showarrow=False))
         fig.update_layout(
             margin={"r": 0, "t": 0, "l": 0, "b": 1},
             template="plotly_dark",
-            # annotations=annotations,
             autosize=True,
             showlegend=True,
             legend_orientation="h",
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
-            # xaxis_title="Number of Days",
             yaxis={"linecolor": "rgba(0,0,0,0)"},
             hoverlabel={"font": {"color": "black"}},
             xaxis_showgrid=False,
@@ -266,9 +247,6 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                 size=10,
                 color="#f4f4f4"
             ),
-            # legend=dict(
-            #         title=None, orientation="v", y=-.35, yanchor="bottom", x=.5, xanchor="center"
-            # )
         )
 
     return fig
