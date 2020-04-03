@@ -166,7 +166,6 @@
 .navbar-brand-links:hover {
     text-decoration: none;
     color: #aaaaaa;
-    font-size: 1.1rem;
 }
 
 /* #navbar-resources-link {
@@ -672,10 +671,13 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 /* this is needed for map tabs formatting - i checked */
-.jsx-2597805859.tab.confirmed-us-map-tab.tab--selected, .jsx-2597805859.tab.testing-us-map-tab , .jsx-2597805859.tab.confirmed-us-map-tab {
+.tab.confirmed-us-map-tab.tab--selected, .tab.testing-us-map-tab , .tab.confirmed-us-map-tab {
     min-width: fit-content;
     border-top-left-radius:  0.3rem;
+    padding: 0.5rem 1rem !important;
 }
+
+/* .tab.confirmed-us-map-tab.tab--selected  */
 
 .card-header-tabs{
     margin-right:0%;
@@ -683,6 +685,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .jsx-2597805859.tab.testing-us-map-tab {
     border-top-right-radius: 0.3rem;
+    padding: 0.5rem 1rem;
 }
 
 .middle-col-map-content.col-8 {
