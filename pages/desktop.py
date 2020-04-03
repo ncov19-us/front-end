@@ -285,7 +285,7 @@ us_maps_tabs = dbc.Card(
                                     selected_style=tab_selected_style,
                                 ),
                                 dcc.Tab(
-                                    label="Testing",
+                                    label="Testing Centers",
                                     value="testing-us-map-tab",
                                     className="testing-us-map-tab",
                                     style=tab_style,
@@ -548,9 +548,9 @@ def death_callback(state="US"):
 )
 def trajectory_title_callback(state="US"):
     if state == "US":
-        return ["U.S. Trajectory"]
+        return ["U.S. Trajectory Comparison"]
     else:
-        return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
+        return [f"{REVERSE_STATES_MAP[state]} Trajectory Comparison"]
 
 @app.callback(
     [Output("infection-trajectory-chart", "figure")], [Input("intermediate-value", "children")]

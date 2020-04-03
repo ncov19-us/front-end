@@ -51,6 +51,12 @@ def cases_chart(state='US') -> go.Figure:
     # Limit data to 1% of current maximum number of cases
     #     data = data[data['Confirmed Cases'] > data['Confirmed Cases'].max() * 0.01]
 
+    # Calculate annotation placements
+    plot_tail = data.iloc[-1].to_list()
+    annotation_x = plot_tail[0]  # LAST TIMESTAMP
+    annotation_y1 = plot_tail[1]  # LAST CONFIRMED CASES COUNT
+    annotation_y2 = data['New Confirmed Cases'].max()  # HIGHEST BAR ON BAR CHART
+
     template_new = "%{y} confirmed new cases on %{x}<extra></extra>"
     template_total = "%{y} confirmed total cases on %{x}<extra></extra>"
     fig = go.Figure()
@@ -75,12 +81,33 @@ def cases_chart(state='US') -> go.Figure:
         )
     )
 
+    # LINE CHART ANNOTATION
+    fig.add_annotation(
+        x=annotation_x,
+        y=annotation_y1,
+        text="Total COVID-19 Cases",
+        font={"size": 10},
+        xshift=-65,  # Annotation x displacement!
+        showarrow=False
+    )
+
+    # BAR CHART ANNOTATION
+    fig.add_annotation(
+        x=annotation_x,
+        y=annotation_y2,
+        text="Daily New Cases",
+        font={"size": 10},
+        xshift=-40,  # Annotation x displacement!
+        yshift=10,  # Annotation y displacement!
+        showarrow=False
+    )
+
     fig.update_layout(
         margin={"r": 0, "t": 0, "l": 0, "b": 1},
         template="plotly_dark",
         # annotations=annotations,
         autosize=True,
-        showlegend=True,
+        showlegend=False,
         legend_orientation="h",
         paper_bgcolor="rgba(0,0,0,0)",
         #         paper_bgcolor="black",
