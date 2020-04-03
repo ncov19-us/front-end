@@ -485,9 +485,60 @@
 }
 
 
-th.dash-header.column-0 {
-    text-align: left;
+
+
+
+
+/* State/County Stats Table */
+/*********************/
+
+
+td.dash-cell.column-0 {
+    text-align: left !important;
 }
+
+span.column-header-name {
+    padding-left: 5px;
+}
+.dash-spreadsheet-container.dash-spreadsheet.dash-freeze-top.dash-list-view.dash-no-filter {
+    width: 100%;
+}
+
+.row.row-1 {
+    margin: 0;
+    padding: 0 10px;
+}
+
+.cell.cell-1-1.dash-fixed-content {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+/* th.dash-header.column-0 > div,
+ th.dash-header.column-1 > div
+ th.dash-header.column-2 > div 
+ {
+    padding-right: 20px !important;
+} */
+td.dash-cell.column-1, td.dash-cell.column-2, th.dash-header.column-1,  th.dash-header.column-2.cell--right-last{
+    text-align: center !important;
+    margin: 0 1px;
+}
+
+th.dash-header.column-0 {
+    text-align: left !important;
+    margin: 0 1px;
+}
+
+p.right-tabs-last-updated-text {
+    text-align: right !important;
+    padding-right: 5px;
+}
+
+
 
 
 /* Mobile Stats Content */
