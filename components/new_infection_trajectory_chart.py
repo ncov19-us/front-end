@@ -67,7 +67,11 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
         countries = ['Italy', 'South Korea', 'US']
         colors = ["#009d00", "#009fe2", "#F4B000"]
 
-        for i, country in enumerate(countries):   
+        for i, country in enumerate(countries):
+            # CALCULATE ANNOTATION POSITION:
+            annotation_x = merged[["Days", country]].dropna()['Days'].max()  # FIND LAST DAY ON LINE
+            annotation_y = merged[["Days", country]].dropna()[country].max()  # FIND HIGHEST POINT ON LINE
+
             fig.add_trace(
                 go.Scatter(
                     x=merged["Days"],
@@ -75,16 +79,30 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                     name=country,
                     line={"color": colors[i]},
                     mode="lines",
-                    text = [country]*len(merged[country]),
+                    text=[country]*len(merged[country]),
                     hovertemplate=template,
                 )
+
+            )
+
+            # LINE CHART ANNOTATION
+            fig.add_annotation(
+                x=annotation_x,
+                y=annotation_y,
+                text=country,
+                font={"size": 10},
+                xshift=-2,  # Annotation x displacement!
+                yshift=10,  # Annotation y displacement!
+                showarrow=False,
+                align="right",
+                xanchor="right"
             )
         
         fig.update_layout(
             margin={"r": 0, "t": 0, "l": 0, "b": 1},
             template="plotly_dark",
             autosize=True,
-            showlegend=True,
+            showlegend=False,
             legend_orientation="h",
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
@@ -97,6 +115,7 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                 size=10,
                 color="#f4f4f4"
             ),
+            yaxis_title="Cases per 100k People"
         )
 
     else:
@@ -163,8 +182,11 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
 
         template = "%{y:.0f} confirmed cases per 100,000 people<br>in %{text} <extra></extra>"
 
-
         for i,name in enumerate(state_names):
+            # CALCULATE ANNOTATION POSITION:
+            annotation_x = merged[["Days", name]].dropna()['Days'].max()  # FIND LAST DAY ON LINE
+            annotation_y = merged[["Days", name]].dropna()[name].max()  # FIND HIGHEST POINT ON LINE
+
             fig.add_trace(
                 go.Scatter(
                     x=merged["Days"],
@@ -177,11 +199,23 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                 )
             )
 
+            fig.add_annotation(
+                x=annotation_x,
+                y=annotation_y,
+                text=name,
+                font={"size": 10},
+                xshift=-2,  # Annotation x displacement!
+                yshift=10,  # Annotation y displacement!
+                showarrow=False,
+                align="right",
+                xanchor="right"
+            )
+
         fig.update_layout(
             margin={"r": 0, "t": 0, "l": 0, "b": 1},
             template="plotly_dark",
             autosize=True,
-            showlegend=True,
+            showlegend=False,
             legend_orientation="h",
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
@@ -194,6 +228,7 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                 size=10,
                 color="#f4f4f4"
             ),
+            yaxis_title="Cases per 100k People"
         )
 
     return fig
