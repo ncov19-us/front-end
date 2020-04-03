@@ -4,38 +4,6 @@
 * ⚠️ ONLY APPLIES TO MOBILE DON'T PUT COMMON STYLING OR DESKTOP STYLING HERE ⚠️
 */
 
-:root{
-    /* Nav Colors */
-    --nav-bg-color:#010915;
-    --nav-font-color:#FEFEFE;
-
-    /* Font Colors */
-    --font-color-tested:#AEAEAE;
-    --font-color-confirmed:#F4B000;
-    --font-color-deaths:#E55465;
-    --font-color-deathrate:#DD1E34;
-
-    /* Card Colors */
-    --card-bg-color:#010915;
-    --card-font-color:#F4F4F4;
-
-    /* About Page Variables */
-    --about-font-color:#fefefe;
-    --about-font-color-black:black;
-    --about-border-color:#fefefe;
-    --about-bg-color:#19202A;
-    --about-bg-color-light:#D2D2D2;
-
-    --about-font-family:'Roboto', sans-serif ;
-
-
-    /* Daily Stats */
-    --daily-stats-font-family: Lato, sans-serif;
-    --daily-stats-font-weight: bold;
-
-
-}
-
 
 .mobile-us-map-content {
     margin-top: 1rem;

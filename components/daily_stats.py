@@ -99,7 +99,7 @@ def daily_stats(state="US") -> List[dbc.Col]:
                         [
                             html.P(
                                 # f"--% (24hr change)",
-                                "", 
+                                "x", 
                                 className=f"top-bar-perc-change-{key.lower()}"
                             ),
                             html.H1(f"{value:,d}", className=f"top-bar-value-{key.lower()}"),
