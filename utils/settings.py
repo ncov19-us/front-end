@@ -9,7 +9,7 @@ MAPBOX_STYLE = "mapbox://styles/hurshd0/ck86zky880ory1ip18f5tw4y6"
 
 # ncov19.us API
 # NCOV19_API = "https://covid19-us-api.herokuapp.com/"
-#NCOV19_API = "https://8d9aa1ed.ngrok.io/"
+# NCOV19_API = "https://44f38618.ngrok.io/"
 NCOV19_API = "https://covid19-us-api-staging.herokuapp.com/"
 
 # Drive Thru Facilities

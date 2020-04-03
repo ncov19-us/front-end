@@ -28,7 +28,7 @@ tabs_styles = {
 }
 tab_style = {
     "padding": "0.5rem",
-    "color": "#010915",
+    "color": "#F4F4F4",
     "backgroundColor": "#010914",
 }
 
@@ -174,7 +174,7 @@ mobile_us_maps_tabs = dbc.Card(
                                     selected_style=tab_selected_style,
                                 ),
                                 dcc.Tab(
-                                    label="Testing",
+                                    label="Testing Centers",
                                     value="mobile-testing-us-map-tab",
                                     className="mobile-testing-us-map-tab",
                                     style=tab_style,

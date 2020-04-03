@@ -2,22 +2,19 @@ import requests
 import pandas as pd
 import json
 import plotly.graph_objects as go
-from utils.settings import REVERSE_STATES_MAP
+from app import cache
+from utils.settings import REVERSE_STATES_MAP, NCOV19_API
 
 
-# @cache.memoize(timeout=3600)
+@cache.memoize(timeout=3600)
 def deaths_chart(state='US') -> go.Figure:
     """Bar chart data for the selected state.
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
-    root = 'https://covid19-us-api-staging.herokuapp.com/'  # TODO change for production
+    
     if state == 'US':
-        URL = root + 'country'
+        URL = NCOV19_API + 'country'
         payload = json.dumps({"alpha2Code": "US"})
-        # staging API
-        URL = 'https://covid19-us-api-staging.herokuapp.com/' + "country"
-        # production API
-        # URL = "https://covid19-us-api.herokuapp.com/" + "country"
         response = requests.post(URL, data=payload).json()
         data = response["message"]
         data = pd.DataFrame(data)  # TODO remove for production
@@ -26,35 +23,20 @@ def deaths_chart(state='US') -> go.Figure:
         data = data.fillna(0)
 
     else:
-        # TODO need to get from db when data is available
-        # URL = root + 'stats'
-        # payload = json.dumps({'state': state})
-        # TODO add error handling, try except
-        ##########################################
-        # Section for reading data from csv file #
-        ##########################################
-        # Read CSV data from JHU github repo:
-        cases = pd.read_csv(
-            'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv')
-        deaths = pd.read_csv(
-            'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv')
+        URL = NCOV19_API + 'state'
+        payload = json.dumps({"stateAbbr": state})
+        response = requests.post(URL, data=payload)
 
-        state = REVERSE_STATES_MAP[state]
-        # get confirmed cases df
-        data = cases[cases["Province_State"] == state]
-        data = pd.DataFrame(data.aggregate('sum')[11:], columns=['Confirmed Cases'])
-        # get death data
-        deaths = deaths[deaths.Province_State == state]
-        deaths = deaths.aggregate('sum')[12:]
-        # combine
-        data['Deaths'] = deaths
-        data = data.reset_index()
-        data.columns = ['Date', 'Confirmed Cases', 'Deaths']
-        data = data.fillna(0)
-        ###########################################
-        #               end section               #
-        ###########################################
+        if response.status_code == 200:
+            data = response.json()["message"]
+            data = pd.DataFrame(data)  
+        else:
+            backup = [{'Date': '1/1/20', 'Confirmed': 0, 'Deaths': 0},
+                      {'Date': '3/1/20', 'Confirmed': 0, 'Deaths': 0}]
+            data = pd.DataFrame(backup)
 
+        data = data.rename(columns={"Confirmed": "Confirmed Cases"})
+        
     # Calculate new cases and death for each day
     data["New Confirmed Cases"] = data["Confirmed Cases"].diff()
     data["New Deaths"] = data["Deaths"].diff()
