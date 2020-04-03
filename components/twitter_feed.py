@@ -7,6 +7,7 @@ from utils.settings import NCOV19_API
 from dateutil.parser import parse
 import json
 from utils.settings import STATES_COORD
+from html.parser import HTMLParser
 
 
 @cache.memoize(timeout=900)
@@ -28,10 +29,14 @@ def twitter_feed(state="US") -> List[dbc.Card]:
         response = requests.post(NCOV19_API + "twitter", data=payload).json()
 
     if response["success"] == True:
+
         data = response["message"]
         username = data["username"]
         full_name = data["full_name"]
         tweets = data["tweets"]
+        h = HTMLParser()
+        for tweet in tweets:
+            tweet['full_text'] = h.unescape(tweet['full_text'])
     else:
         username = "JohnCena"
         full_name = "John Cena"
