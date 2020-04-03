@@ -10,7 +10,7 @@ mobile_navbar = [
         dbc.Row(
             [
                 dbc.Col(html.P("COVID-19", className="mobile-covid-19-text"),),
-                dbc.Col(html.P("US Cases", className="mobile-us-cases-text"),),
+                dbc.Col(html.P("Tracker", className="mobile-us-cases-text"),),
             ],
             align="center",
             no_gutters=True,

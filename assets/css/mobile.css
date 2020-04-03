@@ -335,14 +335,6 @@ p.right-tabs-last-updated-text {
     font-size: .7rem;
 }
 
-/* .mobile-card-body {
-    padding: 1.2rem;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-    border-radius: 100px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15)
-} */
-
-
 
 /* 📱 Mobile Map 🌎*/
 
@@ -362,31 +354,31 @@ p.right-tabs-last-updated-text {
 .mobile-confirmed-us-map-tab, .mobile-testing-us-map-tab {
     font-size: 0.75rem;
     text-align: center;
-    background-color: none !important;
+    /* background-color: none !important; */
 }
 .tab.mobile-confirmed-us-map-tab {
     padding: 0.7rem !important;
-    background-color: none !important;
+    /* background-color: none !important; */
 }
 
 .tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-testing-us-map-tab {
     border-top-right-radius: 1rem !important;
-    background-color: none !important;
+    /* background-color: none !important; */
 }    
 
 .jsx-2597805859.tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-confirmed-us-map-tab {
     color: var(--font-color-tested) !important;
-    background-color: none !important;
+    /* background-color: none !important; */
 }
 
 .jsx-2597805859.tab.mobile-testing-us-map-tab:active, .jsx-2597805859.tab.mobile-testing-us-map-tab:hover, .jsx-2597805859.tab.mobile-confirmed-us-map-tab:active, .jsx-2597805859.tab.mobile-confirmed-us-map-tab:hover {
     color: white !important;
-    background-color: none !important;
+    /* background-color: none !important; */
 }
 
 
-/* 📱 Mobile Chart */
 
+/* 📱 Mobile Chart */
 .mobile-chart-h1-title, .mobile-top-bottom-right-chart-h1-title {
     font-size: 1.25rem;
     font-weight: normal;
@@ -442,9 +434,6 @@ th.dash-header.column-0 {
 
 
 
-
-
-
 /* Mobile Stats Content */
 
 .mobile-right-col-stats-content.col-2 {
@@ -454,10 +443,41 @@ th.dash-header.column-0 {
     max-height: 30%;
 }
 
+.mobile-stats-card-body {
+    height: 60vh;
+    overflow: scroll;
+    padding-top: 0;
+}
+
+
+
 /* Mobile Twitter and News */
 .mobile-feed-content {
     padding: 1rem;
 }
+
+.mobile-feed-card-body {
+    height: 57vh;
+    overflow: scroll;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.mobile-feed-card-body.card-body {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.mobile-twitter-feed-tab {
+    border-top-left-radius: 0.3rem;
+}
+
+#mobile-feed-tabs-styled-with-inline {
+    background-color: var(--card-bg-color);
+    border-top-right-radius: .3rem;
+    border-top-left-radius: .3rem;
+}
+
 
 /* 📱 Footer 🦶 */
 .mobile-footer-content {
@@ -467,6 +487,7 @@ th.dash-header.column-0 {
 .mobile-footer-disclaimer-content {
     font-size: 0.65rem;
 }
+
 .mobile-footer-disclaimer-text {
     padding-top: 2rem;
 }
@@ -498,35 +519,9 @@ th.dash-header.column-0 {
     color: #BDBDBD;
 }
 
+
 /* 📱 END Footer 🦶 */
 
-/* mobile twitter and news feed styling */
-.mobile-feed-card-body{
-    height: 57vh;
-    overflow: scroll;
-    padding-left: 0;
-    padding-right: 0;
-}
-
-
-
-.mobile-stats-card-body {
-    height: 60vh;
-    overflow: scroll;
-    padding-top: 0;
-}
-
-.middle-map-news-content {
-    margin-left: 100px;
-}
-
-.middle-map-news-content.mt-3.no-gutters.row {
-    margin-left: 23px;
-}
-
-.mobile-twitter-feed-tab {
-    border-top-left-radius: 0.3rem;
-}
 
 .jsx-2597805859.tab.mobile-news-feed-tab, .jsx-2597805859.tab.mobile-twitter-feed-tab {
    color: var(--font-color-tested) !important;
@@ -553,6 +548,14 @@ th.dash-header.column-0 {
     border-top-right-radius: 0.3rem;
 }
 
+
+
+.tab.mobile-twitter-feed-tab.tab--selected, .tab.mobile-news-feed-tab.tab--selected {
+    background-color: var(--card-bg-color) !important;
+}
+
+
+
 /* Hamburger menu overlay */
 .hidden-menu-div {
     background-color: #010915;
@@ -574,7 +577,57 @@ th.dash-header.column-0 {
 
 /* 📖 About Page Mobile-Specific Styling 📖 */
 
-/* START ABOUT SECTION */
+#mobile-about-page {
+    margin-left: -15px;
+    margin-top: -25px;
+}
+
+.mob-about-section-title-container {
+    border-left: 7px solid #fefefe;
+    margin-left: 5%;
+}
+
+.mob-about-section-text-container {
+    border-left: 1px solid #fefefe;
+    margin-left: 5.7%;
+}
+
+.mob-about-section-text-container-2 {
+    border-left: 1px solid #fefefe;
+    margin-left: 5.7%;
+}
+
+#mobile-about-page .about-section-container {
+    display: inline-block;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 7vw;
+}
+
+#mobile-about-page .about-section-container-2 {
+    display: inline-block;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 5vw;
+}
+
+#mobile-about-page #about-page-first-third {
+    padding-top: 100px;
+    color: #F4F4F4;
+}
+
+#mobile-about-page #about-page-third-third {
+    background-color: #D2D2D2;
+    padding-left: 20px;
+    color: black;
+    padding-bottom: 100px;
+    padding-top: 100px;
+    font-size: .8rem;
+}
+
+#mobile-about-page .about-section {
+    width: 90%;
+}
 
 .mob-about-page-title {
     display: flex;
@@ -600,6 +653,7 @@ th.dash-header.column-0 {
     align-items: flex-end;
     margin-bottom: 1.8%;
 }
+
 
 .mob-about-contributor-social-icon {
     margin-right: 2.5%;
@@ -658,56 +712,3 @@ th.dash-header.column-0 {
 }
 
 /* END ABOUT SECTION */
-
-#mobile-about-page {
-    margin-left: -15px;
-    margin-top: -25px;
-}
-
-.mob-about-section-title-container {
-    border-left: 7px solid #fefefe;
-    margin-left: 5%;
-}
-
-.mob-about-section-text-container {
-    border-left: 1px solid #fefefe;
-    margin-left: 5.7%;
-}
-
-.mob-about-section-text-container-2 {
-    border-left: 1px solid #fefefe;
-    margin-left: 5.7%;
-}
-
-#mobile-about-page .about-section-container {
-    display: inline-block;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    padding-bottom: 7vw;
-}
-
-#mobile-about-page .about-section-container-2 {
-    display: inline-block;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    padding-bottom: 5vw;
-}
-
-#mobile-about-page #about-page-first-third {
-    padding-top: 100px;
-    color: #F4F4F4;
-}
-
-#mobile-about-page #about-page-third-third {
-    background-color: #D2D2D2;
-    padding-left: 20px;
-    color: black;
-    padding-bottom: 100px;
-    padding-top: 100px;
-    font-size: .8rem;
-}
-
-#mobile-about-page .about-section {
-    width: 90%;
-}
-/* About Page Styling End */
