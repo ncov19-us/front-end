@@ -401,7 +401,13 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .states-dropdown .Select-control .Select-value-label {
     color: white !important;
+    cursor: pointer;
 }
+
+.states-dropdown .Select-control:hover {
+    color: gray !important;
+}
+
 .states-dropdown .Select-arrow {
     border-color: white transparent transparent;
     border-width: 10px 5px 2.5px;
@@ -725,14 +731,9 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .jsx-2597805859.tab.left-news-tab {
-    border-top-right-radius: 0.3rem;
+    border-top-right-radius: 0.4rem;
 }
 
-.jsx-2597805859.tab.left-twitter-tab.tab-selected {
-    background-color: #010915;
-    background-color: #F4F4F4;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.2);
-}
 
 /* get rid of tab padding */
 .card-header {
@@ -886,11 +887,11 @@ p.tweet-dt {
 
 
 .jsx-1990498210.tab.left-twitter-tab.tab--selected {
-    border-top-left-radius: 0.3rem;
+    border-top-left-radius: 0.4rem;
 }
 
 .left-twitter-tab {
-    border-top-left-radius: 0.3rem;
+    border-top-left-radius: 0.4rem;
 } 
 
 

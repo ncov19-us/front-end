@@ -390,7 +390,7 @@ desktop_body = [
                                             html.Div(
                                                 dcc.Graph(
                                                     id="confirmed-cases-timeline",
-                                                    # figure=cases_chart(),
+                                                    figure=cases_chart(),
                                                     config={"responsive": False},
                                                     style={"height": "20vh"},
                                                     className='top-bottom-left-chart-figure"',
@@ -421,7 +421,7 @@ desktop_body = [
                                                 dcc.Loading(
                                                     dcc.Graph(
                                                         id="deaths-timeline",
-                                                        # figure=deaths_chart(),
+                                                        figure=deaths_chart(),
                                                         config={"responsive": False},
                                                         style={"height": "20vh"},
                                                         className="top-bottom-mid-chart-figure",
@@ -514,6 +514,13 @@ def confirmed_cases_callback(state="US"):
 #
 ########################################################################
 @app.callback(
+    [Output("deaths-timeline", "figure")], [Input("intermediate-value", "children")]
+)
+def confirmed_cases_callback(state):
+    fig = deaths_chart(state)
+    return [fig]
+
+@app.callback(
     [Output("death-chart-title", "children")], [Input("intermediate-value", "children")]
 )
 def death_callback(state="US"):
@@ -522,12 +529,6 @@ def death_callback(state="US"):
     else:
         return [f"{REVERSE_STATES_MAP[state]} Deaths"]
 
-@app.callback(
-    [Output("deaths-timeline", "figure")], [Input("intermediate-value", "children")]
-)
-def confirmed_cases_callback(state):
-    fig = deaths_chart(state)
-    return [fig]
 
 ########################################################################
 #
@@ -571,38 +572,6 @@ def daily_stats_callback(state):
 #                   State Dropdown Menu Callback
 #
 ########################################################################
-
-# # callback for dropdown menu
-# @app.callback(
-#     [Output("intermediate-value", "children")], 
-#     [Input("states-dropdown", "value")]
-# )
-
-# def update_output(value):
-#     print(value)
-#     return [value]
-
-
-# @app.callback(
-#     [Output("intermediate-value", "children")],
-#     [Input(f"states-confirmed-{state}", "n_clicks") for state in STATES],
-# )
-# def multi_output(*n_clicks):
-#     ctx = dash.callback_context
-#     # print(n_clicks)
-#     # print(ctx)
-#     if ctx.triggered:
-#         state = ctx.triggered[0]["prop_id"].split(".")[0].split("-")[-1]
-#         if any(n_clicks) > 0:
-#             # print(f"You clicked this state ==> {state}")
-#             # print(ctx)
-#             # print(n_clicks)
-#             return [f"{state}"]
-#         else:
-#             # print(ctx)
-#             # print(n_clicks)
-#             return ["US"]
-
 
 @app.callback(
     [Output("intermediate-value", "children")], [Input("states-dropdown", "value")]

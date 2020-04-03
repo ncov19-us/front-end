@@ -372,7 +372,7 @@ mobile_body = [
                     html.Div(
                         dcc.Graph(
                             id="mobile-confirmed-cases-timeline",
-                            # figure=cases_chart(),
+                            figure=cases_chart(),
                             config={"scrollZoom": False},
                             style={"height": "20vh"},
                         ),
