@@ -3,7 +3,8 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_table
 import dash
-from dash_table.Format import Format
+from dash_table.Format import Format, Scheme
+import dash_table.FormatTemplate as FormatTemplate
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 
@@ -212,19 +213,21 @@ def stats_tab_content(state):
                 },
                 style_cell={
                     'font-size': '0.65rem',
-                    'font-family': 'Roboto, sans-serif',
+                    'font-family': 'Lato, sans-serif',
                     'border-bottom': '0.01rem solid #313841',
                     'backgroundColor': '#010915',
                     'color': '#FFFFFF',
                     'height': '2.5rem',
-                    'format': Format(groups=[3], group=','),
                 },
                 style_cell_conditional=[
                     {
                         'if': {
                             'column_id': 'State/County',
                         },
-                        'minWidth': '6.8rem', 'width': '6.8rem', 'maxWidth': '6.8rem',
+                        'minWidth': '6.8rem', 
+                        'width': '6.8rem',
+                        'maxWidth': '6.8rem',
+                        'textAlign': 'left',
                     },
                     {
                         'if': {
@@ -232,8 +235,12 @@ def stats_tab_content(state):
                         },
                         'color': '#F4B000',
                         'minWidth': '4.2rem', 'width': '4.2rem', 'maxWidth': '4.2rem',
+                        'textAlign':'center',
                         'type': 'numeric',
-                        'format': Format(groups=[3], group=','),
+                        'format': Format(
+                            # precision = 2,
+                            # Scheme = Scheme.fixed
+                        ),
                     },
                     {
                         'if': {
@@ -241,8 +248,8 @@ def stats_tab_content(state):
                         },
                         'color': '#E55465',
                         'minWidth': '4.2rem', 'width': '4.2rem', 'maxWidth': '4.2rem',
+                        'textAlign':'center',
                         'type': 'numeric',
-                        'format': Format(groups=[3], group=','),
                     },
                 ],
     )
