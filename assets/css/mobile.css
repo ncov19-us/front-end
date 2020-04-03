@@ -556,6 +556,8 @@ th.dash-header.column-0 {
 .mobile-feed-card-body{
     height: 57vh;
     overflow: scroll;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 

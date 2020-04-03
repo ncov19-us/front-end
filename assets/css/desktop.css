@@ -794,8 +794,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .tweet-item.list-group-item , .news-item.list-group-item{
     background-color: transparent;
     border: none;
-    padding-left: 30px;
-    padding-right: 30px;
 }
 
 
