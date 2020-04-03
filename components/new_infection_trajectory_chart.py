@@ -152,7 +152,7 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
             'California':39512223
         }
 
-        state_populations = pd.read_csv('state-population-est2019.csv')
+        state_populations = pd.read_csv('components/state-population-est2019.csv')
         state_populations = state_populations[['Region', '2019']]
         state_populations['2019'] = state_populations['2019'].str.replace(',', '')
         state_populations['2019'] = state_populations['2019'].fillna(0)
