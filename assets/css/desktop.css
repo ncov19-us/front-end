@@ -985,6 +985,11 @@ p.tweet-dt {
 .dash-table-container .row::-webkit-scrollbar {
     display: none;
 }
+/* .dash-freeze-top .dash-list-view .dash-no-filter  */
+.dash-spreadsheet-inner.dash-spreadsheet.dash-freeze-top.dash-list-view.dash-no-filter  {
+    /* Expan */
+    min-height: 99vh !important;
+}
 
 .stats-table {
     /* margin-right: 1rem; */
@@ -1000,7 +1005,7 @@ p.tweet-dt {
 /* disable scroll bar */
 .stats-table::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
-}
+}`
 
 .right-col-stats-content.col-2 .card-body {
     padding-top: 0rem;
