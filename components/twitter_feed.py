@@ -13,8 +13,6 @@ from utils.settings import STATES_COORD
 def twitter_feed(state="US") -> List[dbc.Card]:
     """Displays twitter feed on the left hand side of the display.
     
-    TODO: Add callbacks based on state
-
     :params state: display twitter feed for a particular state. If None, display twitter feed
         for the whole US.
 
@@ -25,7 +23,7 @@ def twitter_feed(state="US") -> List[dbc.Card]:
     if state == "US":
         response = requests.get(NCOV19_API + "twitter").json()
     else:
-        payload = {"state": STATES_COORD[state]["stateAbbr"]}
+        payload = {"state": state}
         payload = json.dumps(payload)
         response = requests.post(NCOV19_API + "twitter", data=payload).json()
 
@@ -47,26 +45,26 @@ def twitter_feed(state="US") -> List[dbc.Card]:
 
     del response
 
-    # 2020-03-19 triage. lots of empty list at the end of tweets, filtering them out
-    # tweet["full_text"][:100]
     cards = [
         dbc.ListGroupItem(
             [
-                html.A(
-                    html.P(tweet["full_text"][:100] + "...", className="tweet-text",),
-                    href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}",
-                    target="_blank",
-                ),
-                html.P(
-                    [
-                        # html.Strong(f"- {full_name} (@{username})"),
-                        html.P(
-                            f"- {username} (@{full_name}) {parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}",
-                            className="tweet-dt",
-                        ),
-                    ],
-                    className="tweets-txt-by-dt",
-                ),
+                html.Div([
+                    html.A(
+                        html.P(tweet["full_text"][:100] + "...", className="tweet-text",),
+                        href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}",
+                        target="_blank",
+                    ),
+                    html.P(
+                        [
+                            # html.Strong(f"- {full_name} (@{username})"),
+                            html.P(
+                                f"- {username} (@{full_name}) {parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}",
+                                className="tweet-dt",
+                            ),
+                        ],
+                        className="tweets-txt-by-dt",
+                    ),
+                ], className="tweet-item-container")
             ],
             className="tweet-item",
         )

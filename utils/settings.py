@@ -8,8 +8,8 @@ MAPBOX_ACCESS_TOKEN = config("MAPBOX_ACCESS_TOKEN")
 MAPBOX_STYLE = "mapbox://styles/hurshd0/ck86zky880ory1ip18f5tw4y6"
 
 # ncov19.us API
-#NCOV19_API = "https://covid19-us-api.herokuapp.com/"
-#NCOV19_API = "https://8d9aa1ed.ngrok.io/"
+# NCOV19_API = "https://covid19-us-api.herokuapp.com/"
+# NCOV19_API = "https://44f38618.ngrok.io/"
 NCOV19_API = "https://covid19-us-api-staging.herokuapp.com/"
 
 # Drive Thru Facilities
@@ -71,7 +71,7 @@ STATES_LAT_LONG = [
 ]
 
 STATES_COORD = {
-    "US": {
+    "United States": {
         "latitude": 39.8097343,
         "longitude": -98.5556199,
         "zoom": 2,
@@ -391,3 +391,8 @@ STATES_COORD = {
         "stateAbbr": "WY",
     },
 }
+
+
+REVERSE_STATES_MAP = {}
+for k, v in STATES_COORD.items():
+    REVERSE_STATES_MAP[v["stateAbbr"]] = k

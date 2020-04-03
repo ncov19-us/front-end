@@ -11,7 +11,7 @@ from utils.settings import NCOV19_API, STATES_COORD
 def safe_div(x, y):
     return 0 if int(y) == 0 else int(x) / int(y)
 
-def get_daily_stats_mobile(state="US") -> Dict:
+def get_daily_stats_mobile(state="United States") -> Dict:
     """Get daily stats from ncov19.us API, parse and return as a dictionary
     for the daily stats mobile.
 
@@ -22,13 +22,13 @@ def get_daily_stats_mobile(state="US") -> Dict:
     tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
     try:
-        if state == "US":
+        if state in ["US", "United States"]:
             response = requests.get(url=url)
         else:
             payload = json.dumps({"state": state})
             response = requests.post(url=url, data=payload)
     except:
-        print("[ERROR] get_daily_stats error accessing ncov19.us API")
+        print("[ERROR] get_daily_stats_mobile error accessing ncov19.us API")
 
     # return all zeros if response statsus code is not 200
     if response.status_code != 200:
@@ -71,7 +71,7 @@ def get_daily_stats_mobile(state="US") -> Dict:
 
     return stats
 
-@cache.memoize(timeout=600)
+# @cache.memoize(timeout=600)
 def daily_stats_mobile(state="US") -> List[dbc.Row]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
     TODO: move to internal API.
@@ -82,7 +82,7 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
     """
     # 1. Fetch Stats
     # print(f"daily_stats_mobile for state {STATES_COORD[state]['stateAbbr']}")
-    stats = get_daily_stats_mobile(STATES_COORD[state]['stateAbbr'])
+    stats = get_daily_stats_mobile(state)
 
     # print("Mobile Site ---> ", stats)
     # 2. Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays

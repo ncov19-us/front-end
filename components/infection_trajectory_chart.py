@@ -10,7 +10,6 @@ from utils.settings import NCOV19_API
 @cache.memoize(timeout=3600)
 def infection_trajectory_chart(state=None) -> go.Figure:
     """Line chart data for the selected state.
-
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
     URL = NCOV19_API + "country"
