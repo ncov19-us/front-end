@@ -117,7 +117,7 @@ def daily_stats(state="US") -> List[dbc.Col]:
                     dbc.CardBody(
                         [
                             html.P(
-                                f"{float(value[1]):+0.2f}% (24hr change)",
+                                f"{float(value[1]):+0.2f}% change",
                                 className=f"top-bar-perc-change-{key.lower()}",
                             ),
                             html.H1(f"{value[0]}%", className=f"top-bar-value-{key.lower()}"),
@@ -135,7 +135,7 @@ def daily_stats(state="US") -> List[dbc.Col]:
                     dbc.CardBody(
                         [
                             html.P(
-                                f"+ {value[1]:,d} (24hr change)",
+                                f"+ {value[1]:,d} new",
                                 className=f"top-bar-perc-change-{key.lower()}",
                             ),
                             html.H1(f"{value[0]:,d}", className=f"top-bar-value-{key.lower()}"),

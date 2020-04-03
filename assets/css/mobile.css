@@ -3,7 +3,37 @@
 /*
 * ⚠️ ONLY APPLIES TO MOBILE DON'T PUT COMMON STYLING OR DESKTOP STYLING HERE ⚠️
 */
+:root{
+    /* Nav Colors */
+    --nav-bg-color:#010915;
+    --nav-font-color:#FEFEFE;
 
+    /* Font Colors */
+    --font-color-tested:#AEAEAE;
+    --font-color-confirmed:#F4B000;
+    --font-color-deaths:#E55465;
+    --font-color-deathrate:#DD1E34;
+
+    /* Card Colors */
+    --card-bg-color:#010915;
+    --card-font-color:#F4F4F4;
+
+    /* About Page Variables */
+    --about-font-color:#fefefe;
+    --about-font-color-black:black;
+    --about-border-color:#fefefe;
+    --about-bg-color:#19202A;
+    --about-bg-color-light:#D2D2D2;
+
+    --about-font-family:'Roboto', sans-serif ;
+
+
+    /* Daily Stats */
+    --daily-stats-font-family: 'Roboto', sans-serif; 
+    --daily-stats-font-weight: 500;
+    /* not using lato for now bc font weight is weird */
+
+}
 
 .mobile-us-map-content {
     margin-top: 1rem;
@@ -13,7 +43,6 @@
 
 .mobile-us-map-content .card .card-body {
     padding: 0;
-    background-color: #010915;
 }
 
 .mobile-top-bar-us-map-heading-content {
@@ -28,10 +57,12 @@
 
 .tab.mobile-testing-us-map-tab {
     padding: 1rem;
+    min-width: fit-content
 }
 
-.tab.mobile-confirmed-us-map-tab.tab--selected {
-    background-color: none;
+.tab.mobile-confirmed-us-map-tab.tab--selected, .tab.mobile-testing-us-map-tab.tab--selected {
+    background-color: #010915 !important;
+    color: #FEFEFE !important;
 }
 
 /* MOBILE CHART STYLING */
@@ -52,101 +83,20 @@
     margin-right: 1rem;
 } 
 
+p.right-tabs-last-updated-text {
+    text-align: right !important;
+}
 
-.mobile-right-tabs-last-updated-text {
-    padding-left: 1rem;
-    padding-top: .95rem;
-    padding-bottom: .95rem;
-    margin-bottom: 0;
-    font-size: 11px;
+.mobile-right-col-stats-content.col-2 .right-tabs-last-updated-text {
+    font-size: 0.7rem;
     color: grey;
-}
-
-/* START ABOUT SECTION */
-
-.mob-about-page-title {
-    display: flex;
-    font-family: 'Roboto', sans-serif;
-    font-size: 2rem;
-    padding-left: 10%;
-    margin-bottom: 8%;
-    margin-top: 0;
-    font-weight: bold;
-    width: 90%;
-    align-items: left;
-}
-
-.mob-about-page-contributors {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: .5%;
-}
-
-.mob-about-page-contributor {
-    display: flex;
-    /* justify-content: space-between; */
-    align-items: flex-end;
-    margin-bottom: 1.8%;
+    padding-right: 0.5rem;
+    border-bottom-left-radius: .3rem;
+    border-bottom-right-radius: .3rem;
 }
 
 
-.mob-about-contributor-social-icon {
-    margin-right: 2.5%;
-    width: 18px;
-    height: 18px;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    margin-bottom: auto;
-}
 
-#mob-about-contributors-title {
-    font-family: 'Roboto', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 8%;
-    text-shadow: none;
-    font-weight: bold;
-}
-
-#mob-about-contributors-subtitle {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    padding-bottom: 50px;
-    padding-top:2%;
-    font-weight: 400;
-    text-shadow: none;
-}
-
-.mob-about-contributor-name {
-    font-family: 'Roboto', sans-serif;
-    padding-right: 5px;
-    font-weight: bold;
-    font-size: .9rem;
-}
-
-.mob-about-contributor-title {
-    font-family: 'Roboto', sans-serif;
-    font-size: .9rem;
-}
-
-.about-sources {
-    padding-left: 7vw;
-    padding-top: 10%;
-}
-
-.about-source-2 {
-    text-align: right;
-    font-size: 0.75rem;
-    color: #F4F4F4;
-    margin-bottom: 3.5%
-}
-
-.about-source {
-    text-align: right;
-    font-size: 0.75rem;
-    color: #F4F4F4;
-}
-
-/* END ABOUT SECTION */
 
 
 /* US MAP STYLING */
@@ -254,57 +204,12 @@
     background-color: none !important;
 }
 
-.mobile-card-text {
-    margin-top: -.75rem;
-    font-weight: normal;
-    text-align: center;
-    margin-bottom: .95rem;
-}
+
 
 .mobile-top-bar-card-tested .list-group-item {
     border-top-left-radius: 0.3rem;
     border-top-right-radius: 0.3rem;
     background-color: none !important;
-}
-
-.mobile-top-bar-card-tested {
-    /* background-color: red; */
-    color: #F4F4F4;
-    text-align: center;
-    font-size: .75rem;
-    border: none;
-    border-radius: .3rem;
-    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
-    padding: .2rem; 
-    /* margin-bottom: 1.3rem; */
-    font-family: var(--daily-stats-fonts);
-}
-
-.mobile-top-bar-value-tested {
-    margin-top: -1rem;
-    font-weight: 500;
-    font-size: 2.75rem;
-    text-shadow: none;
-}
-
-.mobile-top-bar-card-confirmed {
-    background-color: none;
-    color: #FEC400;
-    text-align: center;
-    font-size: .75rem;
-    border: none;
-    border-radius: .3rem;
-    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
-    padding: .2rem; 
-    /* margin-bottom: 1.3rem; */
-    font-family: var(--daily-stats-fonts);
-}
-
-.mobile-top-bar-value-confirmed {
-    margin-top: -1rem;
-    font-weight: 500;
-    font-size: 2.75rem;
-    text-shadow: none;
 }
 
 .mobile-top-bar-card-death.list-group-item {
@@ -316,17 +221,58 @@
     background: transparent;
 }
 
-.mobile-top-bar-card-deaths {
-    background-color: none;
-    color: #DD1E34;
+.mobile-card-text {
+    margin-top: -.75rem;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: .95rem;
+}
+
+.mobile-top-bar-card-tested {
     text-align: center;
     font-size: .75rem;
     border: none;
     border-radius: .3rem;
-    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
     padding: .2rem; 
     font-family: var(--daily-stats-fonts);
-    /* margin-bottom: 1.3rem; */
+    color: var(--font-color-tested);
+}
+
+.mobile-top-bar-value-tested {
+    margin-top: -1rem;
+    font-weight: 500;
+    font-size: 2.75rem;
+    text-shadow: none;
+    color: var(--font-color-tested);
+}
+
+.mobile-top-bar-card-confirmed {
+    background-color: none;
+    text-align: center;
+    font-size: .75rem;
+    border: none;
+    border-radius: .3rem;
+    padding: .2rem; 
+    color: var(--font-color-confirmed);
+    font-family: var(--daily-stats-fonts);
+}
+
+.mobile-top-bar-value-confirmed {
+    margin-top: -1rem;
+    font-weight: 500;
+    font-size: 2.75rem;
+    text-shadow: none;
+}
+
+.mobile-top-bar-card-deaths {
+    background-color: none;
+    text-align: center;
+    font-size: .75rem;
+    border: none;
+    border-radius: .3rem;
+    padding: .2rem; 
+    color: var(--font-color-deaths);
+    font-family: var(--daily-stats-fonts);
 }
 .mobile-top-bar-card-deaths .mobile-card-text {
     font-weight: 650;
@@ -336,9 +282,6 @@
     background: transparent !important;
 }
 
-
-
-
 .mobile-top-bar-value-deaths {
     margin-top: -1rem;
     font-weight: 500;
@@ -347,16 +290,12 @@
 }
 
 .mobile-top-bar-card-death {
-    background-color: #010915;
-    /* color: #03DA32; */
-    color: #B20511;
     text-align: center;
     font-size: .75rem;
     border: none;
     border-radius: .3rem;
-    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
     padding: .2rem; 
-    /* margin-bottom: 1.3rem; */
+    color: var(--font-color-deathrate);
     font-family: var(--daily-stats-fonts);
 }
 
@@ -423,21 +362,26 @@
 .mobile-confirmed-us-map-tab, .mobile-testing-us-map-tab {
     font-size: 0.75rem;
     text-align: center;
+    background-color: none !important;
 }
 .tab.mobile-confirmed-us-map-tab {
     padding: 0.7rem !important;
+    background-color: none !important;
 }
 
 .tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-testing-us-map-tab {
-    border-top-right-radius: 0.3rem !important;
+    border-top-right-radius: 1rem !important;
+    background-color: none !important;
 }    
 
 .jsx-2597805859.tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-confirmed-us-map-tab {
     color: var(--font-color-tested) !important;
+    background-color: none !important;
 }
 
 .jsx-2597805859.tab.mobile-testing-us-map-tab:active, .jsx-2597805859.tab.mobile-testing-us-map-tab:hover, .jsx-2597805859.tab.mobile-confirmed-us-map-tab:active, .jsx-2597805859.tab.mobile-confirmed-us-map-tab:hover {
     color: white !important;
+    background-color: none !important;
 }
 
 
@@ -449,7 +393,6 @@
     color: #F4F4F4;
     max-width: 100%;
     padding-left: .1rem;
-
 }
 
 .mobile-chart-h2-title, .mobile-top-bottom-right-chart-h2-title {
@@ -460,13 +403,8 @@
 }
 
 
-
-
-
-
 /* State/County Stats Table */
 /*********************/
-
 
 td.dash-cell.column-0 {
     text-align: left !important;
@@ -492,12 +430,6 @@ table {
     width: 100%;
 }
 
-/* th.dash-header.column-0 > div,
- th.dash-header.column-1 > div
- th.dash-header.column-2 > div 
- {
-    padding-right: 20px !important;
-} */
 td.dash-cell.column-1, td.dash-cell.column-2, th.dash-header.column-1,  th.dash-header.column-2.cell--right-last{
     text-align: center !important;
     margin: 0 1px;
@@ -508,10 +440,7 @@ th.dash-header.column-0 {
     margin: 0 1px;
 }
 
-p.right-tabs-last-updated-text {
-    text-align: right !important;
-    padding-right: 5px;
-}
+
 
 
 
@@ -645,6 +574,91 @@ p.right-tabs-last-updated-text {
 
 /* 📖 About Page Mobile-Specific Styling 📖 */
 
+/* START ABOUT SECTION */
+
+.mob-about-page-title {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    padding-left: 10%;
+    margin-bottom: 8%;
+    margin-top: 0;
+    font-weight: bold;
+    width: 90%;
+    align-items: left;
+}
+
+.mob-about-page-contributors {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: .5%;
+}
+
+.mob-about-page-contributor {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    margin-bottom: 1.8%;
+}
+
+.mob-about-contributor-social-icon {
+    margin-right: 2.5%;
+    width: 18px;
+    height: 18px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-bottom: auto;
+}
+
+#mob-about-contributors-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 8%;
+    text-shadow: none;
+    font-weight: bold;
+}
+
+#mob-about-contributors-subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    padding-bottom: 50px;
+    padding-top:2%;
+    font-weight: 400;
+    text-shadow: none;
+}
+
+.mob-about-contributor-name {
+    font-family: 'Roboto', sans-serif;
+    padding-right: 5px;
+    font-weight: bold;
+    font-size: .9rem;
+}
+
+.mob-about-contributor-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: .9rem;
+}
+
+.about-sources {
+    padding-left: 7vw;
+    padding-top: 10%;
+}
+
+.about-source-2 {
+    text-align: right;
+    font-size: 0.75rem;
+    color: #F4F4F4;
+    margin-bottom: 3.5%
+}
+
+.about-source {
+    text-align: right;
+    font-size: 0.75rem;
+    color: #F4F4F4;
+}
+
+/* END ABOUT SECTION */
+
 #mobile-about-page {
     margin-left: -15px;
     margin-top: -25px;
@@ -697,12 +711,3 @@ p.right-tabs-last-updated-text {
     width: 90%;
 }
 /* About Page Styling End */
-
-
-
-/* .list-group-item {
-    padding: 0.5rem;
-    text-align: left;
-    margin-bottom: 0.5rem;
-    background-color: none !important;
-} */
