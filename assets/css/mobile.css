@@ -19,16 +19,19 @@
     --card-bg-color:#010915;
     --card-font-color:#F4F4F4;
 
-    /* About Colors */
+    /* About Page Variables */
     --about-font-color:#fefefe;
     --about-font-color-black:black;
     --about-border-color:#fefefe;
     --about-bg-color:#19202A;
     --about-bg-color-light:#D2D2D2;
 
+    --about-font-family:'Roboto', sans-serif ;
+
 
     /* Daily Stats */
-    --daily-stats-fonts: Lato, sans-serif;
+    --daily-stats-font-family: Lato, sans-serif;
+    --daily-stats-font-weight: bold;
 
 
 }
@@ -241,6 +244,25 @@
 
 /* Mobile Card 🎴 section */
 
+.mobile-states-dropdown-container {
+    width: 92%;
+    margin:0 auto;
+    position: fixed;
+    z-index: 10000;
+    font-family: var(--daily-stats-font-family);
+    font-weight: var(--daily-stats-font-weight);
+
+}
+
+#mobile-states-dropdown {
+    width: 100%;
+    line-height: .7;
+}
+
+#mobile-states-dropdown .Select-input {
+    background-color: transparent !important;
+}
+
 .mobile-top-bar-content {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -315,6 +337,10 @@
     border-bottom-right-radius: 0.3rem;
 }
 
+.list-group-item, .list-group-item:hover, .list-group-item:active {
+    background: transparent;
+}
+
 .mobile-top-bar-card-deaths {
     background-color: none;
     color: #DD1E34;
@@ -329,6 +355,10 @@
 }
 .mobile-top-bar-card-deaths .mobile-card-text {
     font-weight: 650;
+}
+
+.mobile-top-bar-card-death {
+    background: transparent !important;
 }
 
 
@@ -349,7 +379,7 @@
     font-size: .75rem;
     border: none;
     border-radius: .3rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
     padding: .2rem; 
     /* margin-bottom: 1.3rem; */
     font-family: var(--daily-stats-fonts);
@@ -427,6 +457,15 @@
     border-top-right-radius: 0.3rem !important;
 }    
 
+.jsx-2597805859.tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-confirmed-us-map-tab {
+    color: var(--font-color-tested) !important;
+}
+
+.jsx-2597805859.tab.mobile-testing-us-map-tab:active, .jsx-2597805859.tab.mobile-testing-us-map-tab:hover, .jsx-2597805859.tab.mobile-confirmed-us-map-tab:active, .jsx-2597805859.tab.mobile-confirmed-us-map-tab:hover {
+    color: white !important;
+}
+
+
 /* 📱 Mobile Chart */
 
 .mobile-chart-h1-title, .mobile-top-bottom-right-chart-h1-title {
@@ -443,6 +482,11 @@
     color: #F4F4F4;
     padding-left: .1rem;
     padding-bottom: 1rem;
+}
+
+
+th.dash-header.column-0 {
+    text-align: left;
 }
 
 
@@ -525,6 +569,19 @@
 
 .mobile-twitter-feed-tab {
     border-top-left-radius: 0.3rem;
+}
+
+.jsx-2597805859.tab.mobile-news-feed-tab, .jsx-2597805859.tab.mobile-twitter-feed-tab {
+   color: var(--font-color-tested) !important;
+}
+
+.jsx-2597805859.tab.mobile-news-feed-tab:active, .jsx-2597805859.tab.mobile-twitter-feed-tab:active, 
+.jsx-2597805859.tab.mobile-news-feed-tab:hover,
+.jsx-2597805859.tab.mobile-twitter-feed-tab:target, 
+.jsx-2597805859.tab.mobile-news-feed-tab:target,
+.jsx-2597805859.tab.mobile-twitter-feed-tab:focus, 
+.jsx-2597805859.tab.mobile-news-feed-tab:focus, .jsx-2597805859.tab.mobile-twitter-feed-tab:hover {
+    color: white !important;
 }
 
 .mobile-news-feed-tab {
