@@ -13,7 +13,7 @@
 :root{
 
     /* At what screen size do we no longer want to squish the site more? */
-    --minimum-screen-size: 860px;
+    /* --minimum-screen-size: 860px; */
 
     /* Nav Colors */
     --nav-bg-color:#010915;
