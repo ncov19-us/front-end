@@ -6,7 +6,7 @@ import dash_html_components as html
 dropdown_bar = dbc.Row(
     dbc.DropdownMenu(label="Location", children=[dbc.DropdownMenuItem("US"),]),
     no_gutters=True,
-    className="dropdown-location-menu ml-auto flex-nowrap mt-3 mt-md-0",
+    className="dropdown-location-menu flex-nowrap mt-md-0",
     align="center",
 )
 
@@ -29,7 +29,7 @@ about_bar = dbc.Row(
             href="/about")
         ]
     ),
-    className="ml-auto flex-nowrap mt-3 mt-md-0",
+    className="flex-nowrap mt-md-0",
     align="center",
 )
 
