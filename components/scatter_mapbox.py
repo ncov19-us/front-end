@@ -22,15 +22,15 @@ px.set_mapbox_access_token(MAPBOX_ACCESS_TOKEN)
 
 # TODO: Make Drive-thru testing center API
 def get_drive_thru_testing_centers():
-    correct_url = "https://raw.githubusercontent.com/ncov19-us/ds/master/drive_thru_testing_locations/locations-with-addresses.csv"
+    correct_url = "https://raw.githubusercontent.com/ncov19-us/ds/staging/drive_thru_testing_locations/locations-with-addresses.csv"
     try:
         drive_thru_df = pd.read_csv(correct_url)
-        drive_thru_df["Addresses"] = drive_thru_df["Addresses"].str.replace(", United States of America","")
+        """drive_thru_df["Addresses"] = drive_thru_df["Addresses"].str.replace(", United States of America","")
         #drive_thru_df["ZIP"] = drive_thru_df["Addresses"].str.split(",").str[-1]
         drive_thru_df["State"] = drive_thru_df["Addresses"].str.split(",").str[-2]
         drive_thru_df["City"] = drive_thru_df["Addresses"].str.split(",").str[-4]
         drive_thru_df["Full Address"] = drive_thru_df["Addresses"].replace(","," ")
-        #drive_thru_df["Address"] = drive_thru_df["Addresses"].str.split(",").str[:-4]
+        """#drive_thru_df["Address"] = drive_thru_df["Addresses"].str.split(",").str[:-4]
     except Exception as ex:
         print(ex)
     return drive_thru_df
@@ -132,14 +132,12 @@ def drive_thru_scatter_mapbox(state="United States"):
         lat="Latitude",
         lon="Longitude",
         hover_name="Name",
-        #hovertext=["Addresses"],
-        hover_data=["URL", "City","State"],
+        hover_data=["URL", "City","State", "Street Address"],
     )
 
     fig.layout.update(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
-        mapbox_style="mapbox://styles/hurshd0/ck86zky880ory1ip18f5tw4y6/draft",
-        #mapbox_style="satellite",
+        mapbox_style=MAPBOX_STYLE, 
         mapbox=dict(center=dict(lat=lat, lon=lon), zoom=zoom,),
         dragmode=False,
         hoverlabel={
@@ -151,9 +149,9 @@ def drive_thru_scatter_mapbox(state="United States"):
     fig.data[0].update(
         #hovertemplate="<b><a href='%{customdata[0]}' style='color:#F4F4F4'>%{hovertext}</a></b>",
         #<br>Source %{customdata[0]} 
-        hovertemplate="<b><a href='%{customdata[0]}' style='color:#F4F4F4'>%{hovertext}</a></b><br>%{customdata[1]},%{customdata[2]}",
-        #  
-        marker={"size": 15, "symbol": "marker"},
+        hovertemplate="<b><a href='%{customdata[0]}' style='color:#F4F4F4'>%{hovertext}</a></b><br> %{customdata[3]}<br>%{customdata[1]},%{customdata[2]}",
+        #  "size": 15, "color":"white"
+        marker={"symbol": "marker", "color":"white"},
     )
 
     return fig
