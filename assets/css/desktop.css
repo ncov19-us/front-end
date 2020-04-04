@@ -1030,6 +1030,9 @@ p.tweet-dt {
 
 }
 
+.stats-table-col .card-body{
+    overflow: hidden;
+}
 .dash-spreadsheet-container table {
     /* Change the default color of hover and Selected objects on chart */
     --accent: none !important;
