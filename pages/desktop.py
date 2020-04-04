@@ -28,7 +28,7 @@ tabs_styles = {
 }
 tab_style = {
     "padding": "0.5rem",
-    "color": "gray",
+    "color": "#AEAEAE",
     "backgroundColor": "#010914",
     "fontSize": "0.7rem",
 }

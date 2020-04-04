@@ -29,8 +29,8 @@
 
 
     /* Daily Stats */
-    --daily-stats-font-family: 'Roboto', sans-serif; 
-    --daily-stats-font-weight: 500;
+    --daily-stats-font-family: 'Lato', sans-serif; 
+    --daily-stats-font-weight: 700;
     /* not using lato for now bc font weight is weird */
 
 }
@@ -64,37 +64,45 @@
     color: #FEFEFE !important;
 }
 
-/* MOBILE CHART STYLING */
+/* 📱 Mobile Chart */
 
 .mobile-chart {
     margin-top: 2rem;
 }
 
-.mobile-chart .card-body {
-    background-color: #010915;
-    margin-left: 1rem;
-    margin-right: 1rem;
-} 
-
 .mobile-chart .card {
     background-color: #010915;
     margin-left: 1rem;
     margin-right: 1rem;
+    height: 35vh;
 } 
+
+.mobile-chart .card-body {
+    background-color: #010915;
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+} 
+
+.mobile-chart-h1-title, .mobile-top-bottom-right-chart-h1-title {
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #F4F4F4;
+    max-width: 100%;
+    padding-top: .4rem;
+    padding-left: .1rem;
+}
+
+.mobile-chart-h2-title, .mobile-top-bottom-right-chart-h2-title {
+    font-size: 0.75rem;
+    color: #F4F4F4;
+    padding-left: .1rem;
+    padding-bottom: 1.5rem;
+}
+
 
 p.right-tabs-last-updated-text {
     text-align: right !important;
 }
-
-.mobile-right-col-stats-content.col-2 .right-tabs-last-updated-text {
-    font-size: 0.7rem;
-    color: grey;
-    padding-right: 0.5rem;
-    border-bottom-left-radius: .3rem;
-    border-bottom-right-radius: .3rem;
-}
-
-
 
 
 
@@ -219,13 +227,13 @@ p.right-tabs-last-updated-text {
 .mobile-states-dropdown .Select-control .Select-value-label {
     color: white !important;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
 }
 
-#mobile-states-dropdown:hover .Select-value-label, #mobile-states-dropdown:hover .Select-arrow {
-    color: gray !important;
+/* #mobile-states-dropdown:hover .Select-value-label, #mobile-states-dropdown:hover .Select-arrow {
+    color: gray !important; */
     /* border-color: gray !important; */
-}
+/* } */
 
 
 /* .parent:hover .child, .parent.hover .child */
@@ -441,7 +449,7 @@ p.right-tabs-last-updated-text {
 }    
 
 .jsx-2597805859.tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-confirmed-us-map-tab {
-    color: var(--font-color-tested) !important;
+    /* color: var(--font-color-tested) !important; */
     /* background-color: none !important; */
 }
 
@@ -452,21 +460,7 @@ p.right-tabs-last-updated-text {
 
 
 
-/* 📱 Mobile Chart */
-.mobile-chart-h1-title, .mobile-top-bottom-right-chart-h1-title {
-    font-size: 1.25rem;
-    font-weight: normal;
-    color: #F4F4F4;
-    max-width: 100%;
-    padding-left: .1rem;
-}
 
-.mobile-chart-h2-title, .mobile-top-bottom-right-chart-h2-title {
-    font-size: 0.75rem;
-    color: #F4F4F4;
-    padding-left: .1rem;
-    padding-bottom: 1rem;
-}
 
 
 /* State/County Stats Table */
