@@ -29,7 +29,7 @@ about_bar = dbc.Row(
             href="/about")
         ]
     ),
-    className="flex-nowrap mt-md-0",
+    className="ml-auto flex-nowrap mt-md-0",
     align="center",
 )
 

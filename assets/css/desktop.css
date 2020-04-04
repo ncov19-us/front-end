@@ -57,6 +57,7 @@
     height: 58px;
     top: 0;
     min-width: var(--minimum-screen-size);
+    flex-flow: nowrap;
 }
 
 .navbar-toggler-1 {
@@ -396,7 +397,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding-left: 2rem;
     padding-right: 0;
     font-family: var(--daily-stats-font-family);
-    font-size: 2.3vw;
+    font-size: 2.1vw;
     max-width: 25%;
     flex: 0 0 25%;
     font-weight: var(--daily-stats-font-weight);
