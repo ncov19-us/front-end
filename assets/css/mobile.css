@@ -29,7 +29,7 @@
 
 
     /* Daily Stats */
-    --daily-stats-font-family: 'Lato', sans-serif; 
+    --daily-stats-font-mobile: 'Lato', sans-serif; 
     --daily-stats-font-weight: 700;
     /* not using lato for now bc font weight is weird */
 
@@ -315,7 +315,7 @@ p.right-tabs-last-updated-text {
     border: none;
     border-radius: .3rem;
     padding: .2rem; 
-    font-family: var(--daily-stats-fonts);
+    font-family: var(--daily-stats-font-mobile);
     color: var(--font-color-tested);
     margin-top: 2rem;
 }
@@ -336,7 +336,7 @@ p.right-tabs-last-updated-text {
     border-radius: .3rem;
     padding: .2rem; 
     color: var(--font-color-confirmed);
-    font-family: var(--daily-stats-fonts);
+    font-family: var(--daily-stats-font-mobile);
 }
 
 .mobile-top-bar-value-confirmed {
@@ -354,7 +354,7 @@ p.right-tabs-last-updated-text {
     border-radius: .3rem;
     padding: .2rem; 
     color: var(--font-color-deaths);
-    font-family: var(--daily-stats-fonts);
+    font-family: var(--daily-stats-font-mobile);
 }
 .mobile-top-bar-card-deaths .mobile-card-text {
     font-weight: 650;
@@ -378,7 +378,7 @@ p.right-tabs-last-updated-text {
     border-radius: .3rem;
     padding: .2rem; 
     color: var(--font-color-deathrate);
-    font-family: var(--daily-stats-fonts);
+    font-family: var(--daily-stats-font-mobile);
 }
 
 .mobile-top-bar-card-death .mobile-card-text {
