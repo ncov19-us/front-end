@@ -203,6 +203,7 @@ def stats_tab_content(state):
                     # # 'overflowX': 'scroll',
                     # 'minWidth': '0',
                     'width': '100%',
+                    'height' : '100vh'
                 },
                 style_header={
                     'font-size': '0.65rem',

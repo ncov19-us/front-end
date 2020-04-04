@@ -1015,6 +1015,11 @@ p.tweet-dt {
     margin: 0 auto; 
 }
 
+.column-header--sort{
+    float: none !important;
+
+}
+
 .dash-spreadsheet-container table {
     /* Change the default color of hover and Selected objects on chart */
     --accent: none !important;
@@ -1026,6 +1031,11 @@ p.tweet-dt {
 .dash-table-container .row::-webkit-scrollbar {
     display: none;
 }
+/* .dash-freeze-top .dash-list-view .dash-no-filter  */
+.dash-spreadsheet-inner.dash-spreadsheet.dash-freeze-top.dash-list-view.dash-no-filter  {
+    min-height: 99vh !important;
+}
+
 
 .stats-table {
     /* margin-right: 1rem; */
