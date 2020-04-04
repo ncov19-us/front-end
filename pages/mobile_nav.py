@@ -10,7 +10,7 @@ mobile_navbar = [
         dbc.Row(
             [
                 dbc.Col(html.P("COVID-19", className="mobile-covid-19-text"),),
-                dbc.Col(html.P("US Cases", className="mobile-us-cases-text"),),
+                dbc.Col(html.P("Tracker", className="mobile-us-cases-text"),),
             ],
             align="center",
             no_gutters=True,
@@ -23,11 +23,15 @@ mobile_navbar = [
         dbc.Card(
             html.Div(
                 [
-                    html.A(
-                        html.P("About", className="mobile-nav-header"),
-                        href="/about",
-                        className="hidden-menu-anchor-tag",
-                    ),
+                html.A(html.P("Get Mobile Updates", className="mobile-nav-header"), 
+                className="hidden-menu-anchor-tag", 
+                href="/"),
+                html.A(html.P("Vaccine Tracker", className="mobile-nav-header"), 
+                className="hidden-menu-anchor-tag", 
+                href="/"),
+                html.A(html.P("About", className="mobile-nav-header"), 
+                className="hidden-menu-anchor-tag", 
+                href="/about")
                     # html.A(html.P("Resources", className="mobile-nav-header"), href="/resources", className="hidden-menu-anchor-tag"),
                     # html.A(html.P("Github", className="mobile-nav-header"), href="/#", className="hidden-menu-anchor-tag"),
                 ],

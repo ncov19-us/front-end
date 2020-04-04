@@ -8,15 +8,87 @@
     text-decoration: none;
 } */
 
+
+/*******COLOR VARIABLES*******/
+:root{
+
+    /* At what screen size do we no longer want to squish the site more? */
+    /* MAKES HAMBURGER MENU DISAPPEAR */
+    /* --minimum-screen-size: 860px; */
+
+    /* Nav Colors */
+    --nav-bg-color:#010915;
+    --nav-font-color:#FEFEFE;
+
+    /* Font Colors */
+    --font-color-tested:#AEAEAE;
+    --font-color-confirmed:#F4B000;
+    --font-color-deaths:#E55465;
+    --font-color-deathrate:#DD1E34;
+
+    /* Card Colors */
+    --card-bg-color:#010915;
+    --card-font-color:#F4F4F4;
+
+    /* About Page Variables */
+    --about-font-color:#fefefe;
+    --about-font-color-black:black;
+    --about-border-color:#fefefe;
+    --about-bg-color:#19202A;
+    --about-bg-color-light:#D2D2D2;
+
+    --about-font-family:'Roboto', sans-serif ;
+
+
+    /* Daily Stats */
+    --daily-stats-font-family: 'Roboto', sans-serif; 
+    --daily-stats-font-weight: 700;
+    /* not using lato for now bc font weight is weird */
+
+}
+
+/* Custom Scroll bar */
+
+/* ::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 5px;
+  } */
+  
+  /* Track */
+  /* ::-webkit-scrollbar-track {
+    background: transparent;
+  } */
+  
+  /* Handle */
+  /* ::-webkit-scrollbar-thumb {
+    background: var(--card-bg-color);
+    border-radius: 10px;
+  } */
+  
+  /* Handle on hover */
+  /* ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  } */
+
+
+/* Start
+ */
 .navbar {
-    background-color: #010915;
+    background-color: var(--nav-bg-color);
     border: none;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     text-shadow: none;
     position: fixed;
     z-index: 10000;
     width: 100vw;
+    height: 58px;
     top: 0;
+    min-width: var(--minimum-screen-size);
+    flex-flow: nowrap;
+}
+
+.navbar-toggler-1 {
+    display: none;
 }
 
 .navbar-brand {
@@ -27,34 +99,37 @@
     padding-right: 53px;
 }
 
+#get-mobile-updates {
+    border-radius: .3rem;
+    border: 1px solid white;
+    padding: .3rem 1rem;
+    margin-right: -1rem;
+}
+
+#get-mobile-updates:hover {
+    border-color: var(--font-color-confirmed);
+    color: var(--font-color-confirmed);
+}
+
 .page-title-link:hover {
     text-decoration: none;
 }
 
 .navbar-brand-covid-19-text {
+    font-weight: 600;
+    font-size: 1.6rem;
     margin-left: .5rem;
     margin-bottom: auto;
-    font-weight: bold;
-    font-size: 2rem;
 
 }
 
 .navbar-brand-us-cases-text {
-    margin-bottom: auto;
-    font-weight: normal;
-    font-size: 2rem;
+    font-weight: 350;
+    font-size: 1.6rem;
     text-shadow: none;
-    margin-left: 5%;
+    margin-bottom: auto;
+    margin-left: .5rem;
 
-}
-
-.right-tabs-last-updated-text {
-    padding-left: 1rem;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    margin-bottom: 0;
-    font-size: 11px;
-    color: grey;
 }
 
 
@@ -102,17 +177,17 @@
 } */
 
 .navbar-brand-links {
-    margin-bottom: auto;
-    font-weight: 300;
+    font-weight: 425;
     font-size: 1.05rem;
     letter-spacing: 0.01rem;
     text-shadow: none;
-    padding-left: 2.1rem;
+    padding-left: 5rem;
     margin-right: 0rem;
 }
 
 .navbar-brand-links:hover {
     text-decoration: none;
+    color: #aaaaaa;
 }
 
 /* #navbar-resources-link {
@@ -137,14 +212,17 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     margin-top: 73px !important;
 }
 
+.desktop {
+    min-width: var(--minimum-screen-size);
+}
+
 .about-page-title {
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--about-font-family);
     font-size: 2rem;
     padding-left: 7.5%;
     margin-bottom: 50px;
     margin-top: 0;
     font-weight: bold;
-
 }
 
 #about-page-second-third .about-page-title {
@@ -153,11 +231,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .about-section-title-container {
-    border-left: 7px solid #fefefe;
+    border-left: 7px solid var(--about-border-color);
 }
 
 .about-section-text-container {
-    border-left: 1px solid #fefefe;
+    border-left: 1px solid var(--about-border-color);
     margin-left: 3px;
 }
 
@@ -167,7 +245,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .about-section-title {
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--about-font-family);
     padding-left: 4%;
     padding-bottom: 5px;
     padding-top: 5px;
@@ -175,7 +253,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .about-section-text {
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--about-font-family);
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 5%;
@@ -213,15 +291,15 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 #about-page-first-third  {
-    background-color: #19202A;
-    color: #F4F4F4;
+    background-color: var(--about-bg-color);
+    color: var(--about-font-color);
     margin-right: 0;
     padding-top: 120px;
 }
 
 #about-page-second-third  {
     background-color: #010915;
-    color: #F4F4F4;
+    color: var(--about-font-color);
     background-position: right top;
     background-image: url('../images/map_1.svg');
     background-repeat: no-repeat;
@@ -231,9 +309,9 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 #about-page-third-third  {
-    background-color: #D2D2D2;
+    background-color: var(--about-bg-color-light);
     padding-left: 10vw;
-    color: black;
+    color: var(--about-font-color-black);
     padding-bottom: 100px;
     padding-top: 100px;
 }
@@ -257,7 +335,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .web-about-source {
     text-align: right;
     font-size: .75rem;
-    color: #F4F4F4;
+    color: var(--about-font-color);
 }
 
 .web-about-sources {
@@ -268,7 +346,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 #about-contributors-title {
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--about-font-family);
     font-size: 2.1rem;
     margin-bottom: 3%;
     text-shadow: none;
@@ -276,7 +354,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 #about-contributors-subtitle {
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--about-font-family);
     font-size: 1.2rem;
     padding-bottom: 3%;
     padding-top:.5%;
@@ -285,14 +363,14 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .about-contributor-name {
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--about-font-family);
     padding-right: 5px;
     font-weight: bold;
     font-size: 1.1rem;
 }
 
 .about-contributor-title {
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--about-font-family);
     font-size: 1.1rem;
 }
 
@@ -330,110 +408,247 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 /* Top Card Section */
+
+.states-dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 0;
+    font-family: var(--daily-stats-font-family);
+    font-size: 2.1vw;
+    max-width: 25%;
+    flex: 0 0 25%;
+    font-weight: var(--daily-stats-font-weight);
+}
+
+#states-dropdown {
+    width: 100%;
+    line-height: .7;
+}
+
+#states-dropdown .Select-input {
+    background-color: transparent !important;
+}
+
+.states-dropdown .Select-control {
+    background-color: transparent !important;
+    border-color: transparent;
+    overflow: auto;
+    box-shadow: none !important;
+    border-color: transparent !important;
+    display: inline !important;
+}
+
+.states-dropdown .Select-multi-value-wrapper {
+    display: inline !important;
+}
+
+.states-dropdown .Select-multi-value-wrapper .Select-value {
+    display: inline !important;
+    position: unset !important;
+}
+
+
+.states-dropdown .Select-value-label {
+    display: inline !important;
+    position: unset !important;
+}
+
+.states-dropdown .Select-input {
+    display: inline !important;
+}
+
+.states-dropdown .Select-menu-outer {
+    background-color: #1F242D;
+    border-color: transparent;
+    font-size: 1rem;
+    z-index: 1000000;
+}
+
+.states-dropdown .Select-control .Select-value-label {
+    color: white !important;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.states-dropdown .Select-arrow-zone {
+    text-align: unset;
+}
+
+/* #states-dropdown:hover .Select-value-label, #states-dropdown:hover .Select-arrow {
+    color: gray !important; */
+    /* border-color: gray !important; */
+/* } */
+
+
+
+
+/* .parent:hover .child, .parent.hover .child */
+
+/* #states-dropdown:hover {
+    color: gray !important;
+} */
+
+/* .states-dropdown:hover {
+    color: gray !important;
+} */
+
+.states-dropdown .Select-arrow {
+    border-color: white transparent transparent;
+    border-width: 10px 5px 2.5px;
+}
+#states-dropdown .is-open .Select-control {
+    background-color: transparent;
+}
+
+#states-dropdown .is-open .Select-value-label {
+    color: white;
+}
+
+#states-dropdown .is-open .Select-value-label {
+    background-color: transparent;
+}
+
+#states-dropdown .is-open .Select-arrow {
+    border-color: white transparent transparent;
+    border-width: 10px 5px 2.5px;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+
+.top-bar-content-col {
+    margin-left: auto;
+    max-width: 75%;
+}
+
 .top-bar-content.row {
-    margin-left: 0.78rem;
+    margin-left: 0rem;
     margin-right: .78rem;
 }
 
 .top-bar-content.row .card-body {
-    background-color: #010915;
+    background-color: #19202A;
+    box-shadow: none;
+}
+
+.card-body {
+    background-color: var(--card-bg-color);
 }
 
 .top-bar-card-body .card-body {
-    background-color: #010915;
+    background-color: #19202A;
+    padding: 0;
+
 }
 
 .top-bar-card-body {
     padding-left: 12px;
     padding-right: 12px;
+    box-shadow: none;
 }
 
 .top-bar-card-tested {
-    background-color: #010915;
-    color: #f4f4f4;
+    color: var(--font-color-tested);
     text-align: center;
     font-size: .9rem;
+    background-color: transparent;
     border: none;
     border-radius: .3rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
     padding: .2rem; 
+    font-family: var(--daily-stats-font-family);
 }
+
+.top-bar-card-tested.card{
+    box-shadow: none;
+}
+
 
 .top-bar-value-tested {
     margin-top: -1.1rem;
-    /* margin-bottom: 10rem; */
-    font-weight: 4rem;
-    font-size: 2.75rem;
+    font-weight: var(--daily-stats-font-weight);
+    font-size: 2.75vw;
     text-shadow: none;
 }
 
 .top-bar-card-confirmed {
-    color: #FEC400;
+    color: var(--font-color-confirmed);
     text-align: center;
     font-size: .9rem;
-    background-color: #010915;
+    background-color: transparent;
     border: none;
     border-radius: .3rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
     padding: .2rem;
+    font-family: var(--daily-stats-font-family);
+}
+
+.top-bar-card-confirmed.card{
+    box-shadow: none;
 }
 
 .top-bar-value-confirmed {
     margin-top: -1.1rem;
-    font-weight: 4rem;
-    font-size: 2.75rem;
+    font-weight: var(--daily-stats-font-weight);
+    font-size: 2.75vw;
     text-shadow: none;
 }
 
 
 .top-bar-card-deaths {
-    color: #DD1E34;
+    color: var(--font-color-deaths);
     text-align: center;
     font-size: .9rem;
-    background-color: #010915;
+    background-color: transparent;
     border: none;
     border-radius: .3rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
     padding: .2rem;
+    font-family: var(--daily-stats-font-family);
 }
 
-
-
+.top-bar-card-deaths.card{
+    box-shadow: none;
+}
 
 .top-bar-value-deaths {
     margin-top: -1.1rem;
-    font-weight: 4rem;
-    font-size: 2.75rem;
+    font-weight: var(--daily-stats-font-weight);
+    font-size: 2.75vw;
     text-shadow: none;
 }
 
 
 .top-bar-card-death {
     /* color: #03DA32; */
-    color: #B20511;
+    color: var(--font-color-deathrate);
     text-align: center;
     font-size: .9rem;
-    background-color: #010915;
+    background-color: transparent;
     border: none;
     border-radius: .3rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
     padding: .2rem;
+    font-family: var(--daily-stats-font-family);
 }
-/* .top-bar-card-death.card {
-    background-color: #010915;
-} */
+
+.top-bar-card-death.card {
+    box-shadow: none;
+
+}
 
 .top-bar-value-death {
     margin-top: -1.1rem;
-    font-weight: 4rem;
-    font-size: 2.75rem;
+    font-weight: var(--daily-stats-font-weight);
+    font-size: 2.75vw;
     text-shadow: none;
 }
 
 .top-bar-perc-change-tested {
-    color: #010915;
+    color: #19202A;
     margin-top: -.7rem;
-    font-size: .70rem;
+    font-size: .7rem;
 }
 
 .top-bar-perc-change-confirmed {
@@ -454,28 +669,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     font-size: .7rem;
 }
 
-/* 🌎 Map and Graph 📊 Styling */
-
-/* .testing-us-map-tab {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-image: url("../images/drive-thru-icon.png");
-    height: 50px;
-    margin: 10px;
-    padding: 0;
-}
-
-.confirmed-us-map-tab {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-image: url("../images/virus.png");
-    height: 50px;
-    margin: 10px;
-    padding: 0;
-} */
-
+/* 🌎 Map Styling 🌎*/
 #map-loading {
     margin-top: 22vh;
 }
@@ -484,7 +678,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     /* display: flex;
     justify-content: center;
     align-items: center; */
-    min-height: 44vh;
+    min-height: 60vh;
 }
 
 #chart-container {
@@ -495,10 +689,12 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     background-color: rgba(0, 0, 0, 0) !important;
 }
 
+.dash-graph {
+    min-height: 20vh;
+}
+
 .middle-col-map-content.col-8 .card{
-    /* width: 90%; */
     background-color: #010915;
-    /* margin-left: 3.3rem; */
 }
 
 .middle-col-map-content.col-8 .card .card-body{
@@ -506,31 +702,14 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     background-color: #010915;
 }
 
-.jsx-2597805859.tab.confirmed-us-map-tab.tab--selected, .jsx-2597805859.tab.testing-us-map-tab , .jsx-2597805859.tab.confirmed-us-map-tab {
-    min-width: 5rem;
+/* this is needed for map tabs formatting - i checked */
+.tab.confirmed-us-map-tab.tab--selected, .tab.testing-us-map-tab , .tab.confirmed-us-map-tab {
+    min-width: max-content;
+    border-top-left-radius:  0.3rem;
+    padding: 0.5rem 1rem !important;
 }
 
-.top-bar-us-map-heading-txt {
-    font-size: 0.7rem;
-    color: #F4F4F4;
-    padding-top: 0.5rem;
-    padding-left: 1rem;
-    /* max-width: 57%; */
-    /* margin-bottom: 1%; */
-}
-
-.top-bottom-left-chart-h1-title, .top-bottom-right-chart-h1-title {
-    font-size: 1.2rem;
-    color: #F4F4F4;
-    max-width: 100%;
-}
-
-.top-bottom-left-chart-h2-title, .top-bottom-right-chart-h2-title {
-    font-size: .75rem;
-    color: #F4F4F4;
-    max-width: 100%;
-    margin-bottom: 8%;
-}
+/* .tab.confirmed-us-map-tab.tab--selected  */
 
 .card-header-tabs{
     margin-right:0%;
@@ -538,10 +717,12 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .jsx-2597805859.tab.testing-us-map-tab {
     border-top-right-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    min-width: max-content;
 }
 
 .middle-col-map-content.col-8 {
-    max-width: 65%;
+    max-width: 59%;
     padding-left: 1rem;
     padding-right: 1rem;
 } 
@@ -559,47 +740,70 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding: 0px;
 }
 
-/* https://community.plot.ly/t/is-it-possible-to-hide-the-floating-toolbar/4911 */
-.modebar{
-    display: none !important; 
-    /* remove plotly toolbar */
+.top-bar-us-map-heading-txt {
+    font-size: 0.7rem;
+    color: #F4F4F4;
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+    /* max-width: 57%; */
+    /* margin-bottom: 1%; */
 }
 
-/* Bottom Left and Right Charts */
+/* Chart Styling */
+
+.bottom-chart-h1-title {
+    font-size: 1.2rem;
+    color: #F4F4F4;
+    max-width: 100%;
+    padding-left: 2%;
+}
+
+.bottom-chart-h2-title {
+    font-size: .65rem;
+    color: #F4F4F4;
+    max-width: 100%;
+    margin-top: 1%;
+    margin-bottom: 8%;
+    padding-left: 2%;
+}
+
+.top-bottom-charts {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+}
 
 .top-bottom-charts .card {
-    margin-top: .9rem;
-    margin-bottom: 3rem;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
-.top-bottom-left-chart.col-6 .card {
+.top-bottom-left-chart , .top-bottom-mid-chart, .top-bottom-right-chart{
+    padding: 0.5%;
+}
+
+.top-bottom-left-chart.col-6 .card , .top-bottom-mid-chart.col-6 .card, .top-bottom-right-chart.col-6 .card {
     margin-top: 1.2rem;
     margin-right: .7rem;
     margin-bottom: 3rem;
     padding: 1.2rem;
 }
 
-.top-bottom-right-chart.col-6 .card {
-    margin-top: 1.2rem;
-    margin-left: .7rem;
-    margin-bottom: 3rem;
-    padding: 1.2rem;
-}
+
 
 .top-bottom-charts .card-body {
     background: hsl(216, 91%, 4%);
     padding: 1.2rem;
 }
 
-.top-bottom-left-chart{
-    height: 7%;
-    padding: 0.5%;
-}
 
 
-.top-bottom-right-chart{
-    height: 7%;
-    padding: 0.5%;
+
+/* https://community.plot.ly/t/is-it-possible-to-hide-the-floating-toolbar/4911 */
+.modebar{
+    display: none !important; 
+    /* remove plotly toolbar */
 }
 
 
@@ -607,16 +811,18 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 /* Active Tab Blur */
 .tab--selected {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, .4);
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, .4); */
     z-index: 100;
     position: relative;
-    background-color: #1F242D;
-
+    /* background-color: #1F242D; */
+    border-bottom: 1px solid white !important;
 }
 
 .tab:hover {
     color: rgb(199, 199, 199) !important;
 }
+
+/* RIGHT SIDEBAR FEED STYLING */
 
 .tweet-text {
     font-size: .75rem;
@@ -629,14 +835,9 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .jsx-2597805859.tab.left-news-tab {
-    border-top-right-radius: 0.3rem;
+    border-top-right-radius: 0.4rem;
 }
 
-.jsx-2597805859.tab.left-twitter-tab.tab-selected {
-    background-color: #010915;
-    background-color: #F4F4F4;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07), 0px 4px 4px rgba(0, 0, 0, 0.2);
-}
 
 /* get rid of tab padding */
 .card-header {
@@ -646,17 +847,15 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .left-col-twitter-feed-content p {
     margin-bottom: 1rem;
-    border-radius: .3rem;
     height: 100%;
     /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
 }
  
-
-
-
-.right-col-news-feed-content.col-2 {
-    margin-left: 0.3rem;
+.left-col-twitter-feed-content.col-2, .right-col-stats-content.col-2{
+    flex: 0 0 19.666667%;
+    max-width: 19.666667%;
 }
+
 
 .left-col-twitter-feed-content.col-2 .card .card-body {
     border-top-right-radius: 0;
@@ -669,7 +868,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 .left-col-twitter-feed-content .card-body {
-    height: calc(68vh + 74px + 32px) !important;
+    height: 60vh;
     overflow: scroll;
     padding-bottom: 0;
 }  
@@ -677,12 +876,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 /* cards inside the sidebar for tweets and news */
 
 .left-col-feed-cards-text .tweet-item.list-group-item {
-    border-radius: 0.2rem;
-    background-color: none;
-}
-
-.right-col-news-feed-content.col-2 {
-    margin-left: 0.3rem;
+    background-color: var(--card-bg-color);
 }
 
 .left-col-feed-cards-text .list-group .list-group-flush li {
@@ -690,10 +884,9 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .tweet-item.list-group-item , .news-item.list-group-item{
-    background-color: #010915;
+    background-color: transparent;
     border: none;
 }
-
 
 
 /* .tweet-item p */
@@ -721,10 +914,19 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .news-item {
+    border-bottom: 1px solid rgb(83, 83, 83) !important;
+    padding: 0;
+    margin: 0;
+}
+
+.news-item-container {
     padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
     margin-bottom: 1rem;
-    border-radius: .3rem !important;
     padding-bottom: 0;
+    line-height: 1.35;
+    color: #F4F4F4;
 }
 
 .news-item:hover {
@@ -740,9 +942,16 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 .tweet-item {
+    border-bottom: 1px solid rgb(83, 83, 83) !important;
+    padding: 0;
+    margin: 0;
+}
+
+.tweet-item-container {
     padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
     margin-bottom: 1rem;
-    border-radius: .3rem !important;
     padding-bottom: 0;
     line-height: 1.35;
     color: #F4F4F4;
@@ -761,7 +970,7 @@ p.tweet-dt {
 }
 
 .news-txt-by-dt {
-    font-size: 0.6rem;
+    font-size: 0.53rem;
 }
 
 .tweet-text {
@@ -770,7 +979,7 @@ p.tweet-dt {
 }
 
 .tweet-dt {
-    font-size: 0.6rem;
+    font-size: 0.53rem;
     color: #F4F4F4;
 }
 
@@ -780,91 +989,177 @@ p.tweet-dt {
 
 
 .jsx-1990498210.tab.left-twitter-tab.tab--selected {
-    border-top-left-radius: 0.3rem;
+    border-top-left-radius: 0.4rem;
 }
 
 .left-twitter-tab {
-    border-top-left-radius: 0.3rem;
+    border-top-left-radius: 0.4rem;
 } 
 
 
 .left-col-twitter-feed-content .card-body {
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .left-col-twitter-feed-content .card-body::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
 
+.left-col-twitter-feed-content {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.left-col-twitter-feed-content::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
 
-/* 👉👉👉👉 Right Detailed List Sidebar */
+/* 👉👉👉👉LEFT SIDEBAR STATS TABLE STYLING */
+
 
 #stats-content {
     margin-bottom: 0;
+
 }
 
-.right-col-stats-content.col-2 .card-body {
-    height: calc(68vh + 74px) !important;
-    padding-top: 0rem;
-    padding-bottom:0;
+.stats-table-col.card-body {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0.3rem;
+}
+
+.right-col-news-feed-content.col-2 {
+    margin-left: 0.3rem;
 }
 
 .right-col-news-feed-content {
     margin-bottom: 1rem;
 }
 
-.right-col-feed-cards-text {
-    background: none;
-    background-color: none;
+.dash-table-container .row{
+    margin: 0 auto; 
 }
 
-.right-col-stats-content .col-2 .card .card-body {
-    /* height: calc(60vh) !important; */
-    overflow: scroll;
-    padding-top: 0;
-    
+.column-header--sort{
+    float: none !important;
+
 }
-.right-col-stats-content .col-2 .card .card-body::-webkit-scrollbar { 
+
+.stats-table-col .card-body{
+    overflow: hidden;
+}
+.dash-spreadsheet-container table {
+    /* Change the default color of hover and Selected objects on chart */
+    --accent: none !important;
+    --hover: none !important;
+    --selected-background: none !important;
+    --selected-color: none !important;
+}
+
+.dash-table-container .row::-webkit-scrollbar {
+    display: none;
+}
+/* .dash-freeze-top .dash-list-view .dash-no-filter  */
+.dash-spreadsheet-inner.dash-spreadsheet.dash-freeze-top.dash-list-view.dash-no-filter  {
+    min-height: 99vh !important;
+}
+
+
+.stats-table {
+    /* margin-right: 1rem; */
+    overflow-y: scroll;
+    height: 62vh;
+    
+    /* Disable scroll bar */
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* disable scroll bar */
+.stats-table::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
 
-.states-stats-confirmed-list-item.list-group-item {
-    border-top-width: 0;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 1px;
-    background-color: none;
-    background: none;
-    padding: 0.05rem;
-    border-color: rgba(0, 0, 0, 0.30);
+.right-col-stats-content.col-2 .card-body {
+    padding-top: 0rem;
+    padding-bottom:0;
 }
 
-.states-stats-deaths-list-item.list-group-item {
-    background-color: none;
-    background: none;
-    padding: 0;
-    padding: 0.05rem;
-    border-color: rgba(0, 0, 0, 0.30);
-    /* border-bottom: 100px;
-    border-color: #0B1319; */
+
+.stats-table-div .card{
+    height: 68.5vh;
 }
 
+.column-header-name {
+    font-family: Roboto, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    /* padding-left: 1rem; */
+    /* padding: 1rem; */
+    color: white;
+}
+
+
+.dash-cell.column-0 {
+    padding-left: 2rem;
+}
+
+
+
+.dash-table-container td {
+    background-clip: padding-box;
+    padding: 1rem;
+    overflow-x: visible;
+    white-space: nowrap;
+    height: 30px;
+    text-align: left;
+}
+
+.dash-cell.column-0 .stats-table-div td {
+    /* text-align: left !important; */
+    /* padding-left: 0.2rem; */
+}
+
+.right-tabs-last-updated-text {
+    padding 1rem 0 1rem 0;
+    margin: 0;
+    font-size: .6rem;
+    background: #010915;
+}
+
+.right-tabs-last-updated-text.card-footer {
+    text-align: right;
+    padding-right: 0.5rem;
+    padding-top: 1rem;
+}
+
+.card-footer:last-child {
+    border-radius: 0 0 .4rem 0.4rem;
+}
 
 
 /* overflow disable scroll bar */
 .right-col-feed-cards-text {
     overflow-y: scroll;
-    height: 76vh;
+    /* Match the height except minus the height of the "last updated" text */
+    height: calc(60vh - 1rem - 16px);
     scroll-behavior: smooth;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
+    background: none;
+    background-color: none;
 }
 
 .right-col-feed-cards-text::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
 
+.right-col-stats-content .col-2 .card .card-body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
 
 .right-col-news-feed-content {
     -ms-overflow-style: none; 
@@ -875,15 +1170,37 @@ p.tweet-dt {
     display: none;  /* Safari and Chrome */
 }
 
-.states-stats-confirmed-list-num {
-    /* changed this font weight...even with deaths list? */
-    font-weight: 700;
-    /* width: 34%; */
-    font-size: 0.94rem;
-    color: #F4B000;
+.stats-table-div .card-body{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+    scroll-behavior: smooth;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+
+    height: 59vh;
 }
 
-.states-stats-confirmed-list-item.list-group-item {
+/* disable scroll bar */
+.stats-table-div .card-body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+
+.right-col-stats-content .col-2 .card .card-body {
+    /* height: calc(60vh) !important; */
+    overflow: scroll;
+    padding-top: 0;
+    
+}
+
+/* .states-stats-confirmed-list-num {
+    font-weight: 700;
+    font-size: 0.94rem;
+    color: #F4B000;
+} */
+
+/* .states-stats-confirmed-list-item.list-group-item {
     margin-top: 0.35rem;
     margin-bottom: 0;
 }
@@ -893,17 +1210,15 @@ p.tweet-dt {
     margin-bottom: 0;
 }
 
-
-
 p.states-stats-confirmed-list-txt {
     margin-top: 0.5rem;
  }
 
 .states-stats-confirmed-list-state {
     color:#F4F4F4;
-}
+} */
 
-p.states-stats-deaths-list-txt {
+/* p.states-stats-deaths-list-txt {
     margin-top: 0.5rem;
 }
 
@@ -919,13 +1234,12 @@ p.states-stats-deaths-list-txt {
 
 .states-stats-recovered-list-num {
     font-weight: 700;
-    /* color: #03DA32; */
     color: #B20511;
 }
 
 .states-stats-recovered-list-state {
     color:#F4F4F4;
-}
+} */
 
 
 /* Footer 🦶 */

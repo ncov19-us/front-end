@@ -3,6 +3,37 @@
 /*
 * ⚠️ ONLY APPLIES TO MOBILE DON'T PUT COMMON STYLING OR DESKTOP STYLING HERE ⚠️
 */
+:root{
+    /* Nav Colors */
+    --nav-bg-color:#010915;
+    --nav-font-color:#FEFEFE;
+
+    /* Font Colors */
+    --font-color-tested:#AEAEAE;
+    --font-color-confirmed:#F4B000;
+    --font-color-deaths:#E55465;
+    --font-color-deathrate:#DD1E34;
+
+    /* Card Colors */
+    --card-bg-color:#010915;
+    --card-font-color:#F4F4F4;
+
+    /* About Page Variables */
+    --about-font-color:#fefefe;
+    --about-font-color-black:black;
+    --about-border-color:#fefefe;
+    --about-bg-color:#19202A;
+    --about-bg-color-light:#D2D2D2;
+
+    --about-font-family:'Roboto', sans-serif ;
+
+
+    /* Daily Stats */
+    --daily-stats-font-mobile: 'Lato', sans-serif; 
+    --daily-stats-font-weight: 700;
+    /* not using lato for now bc font weight is weird */
+
+}
 
 .mobile-us-map-content {
     margin-top: 1rem;
@@ -12,11 +43,10 @@
 
 .mobile-us-map-content .card .card-body {
     padding: 0;
-    background-color: #010915;
 }
 
 .mobile-top-bar-us-map-heading-content {
-    padding-left: 15px;
+    padding-left: 0px;
     padding-right: 15px;
 }
 
@@ -27,100 +57,54 @@
 
 .tab.mobile-testing-us-map-tab {
     padding: 1rem;
+    min-width: fit-content
 }
+
+.tab.mobile-confirmed-us-map-tab.tab--selected, .tab.mobile-testing-us-map-tab.tab--selected {
+    color: #FEFEFE !important;
+}
+
+/* 📱 Mobile Chart */
 
 .mobile-chart {
     margin-top: 2rem;
 }
 
-.mobile-chart .card-body {
-    background-color: #010915;
-    margin-left: 1rem;
-    margin-right: 1rem;
-} 
-
 .mobile-chart .card {
     background-color: #010915;
     margin-left: 1rem;
     margin-right: 1rem;
+    height: 35vh;
 } 
 
+.mobile-chart .card-body {
+    background-color: #010915;
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+} 
 
-.mobile-right-tabs-last-updated-text {
-    padding-left: 1rem;
-    padding-top: .95rem;
-    padding-bottom: .95rem;
-    margin-bottom: 0;
-    font-size: 11px;
-    color: grey;
+.mobile-chart-h1-title, .mobile-top-bottom-right-chart-h1-title {
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #F4F4F4;
+    max-width: 100%;
+    padding-top: .4rem;
+    padding-left: .1rem;
+}
+
+.mobile-chart-h2-title, .mobile-top-bottom-right-chart-h2-title {
+    font-size: 0.75rem;
+    color: #F4F4F4;
+    padding-left: .1rem;
+    padding-bottom: 1.5rem;
 }
 
 
-.mob-about-page-title {
-    display: flex;
-    font-family: 'Roboto', sans-serif;
-    font-size: 2rem;
-    padding-left: 10%;
-    margin-bottom: 8%;
-    margin-top: 0;
-    font-weight: bold;
-    width: 90%;
-    align-items: left;
-}
-
-.mob-about-page-contributors {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: .5%;
-}
-
-.mob-about-page-contributor {
-    display: flex;
-    /* justify-content: space-between; */
-    align-items: flex-end;
-    margin-bottom: 1.8%;
-}
 
 
-.mob-about-contributor-social-icon {
-    margin-right: 2.5%;
-    width: 18px;
-    height: 18px;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    margin-bottom: auto;
-}
-
-#mob-about-contributors-title {
-    font-family: 'Roboto', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 8%;
-    text-shadow: none;
-    font-weight: bold;
-}
-
-#mob-about-contributors-subtitle {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    padding-bottom: 50px;
-    padding-top:2%;
-    font-weight: 400;
-    text-shadow: none;
-}
-
-.mob-about-contributor-name {
-    font-family: 'Roboto', sans-serif;
-    padding-right: 5px;
-    font-weight: bold;
-    font-size: .9rem;
-}
-
-.mob-about-contributor-title {
-    font-family: 'Roboto', sans-serif;
-    font-size: .9rem;
-}
 
 
+/* US MAP STYLING */
 .tab-mobile-confirmed-us-map-tab {
     min-width: 5rem;
     padding: 0.7rem;
@@ -144,6 +128,15 @@
 
 
 /* Mobile Nav Bar */
+
+.mobile-nav-header {
+    font-size: 1.8rem;
+}
+
+.hidden-menu-anchor-tag:hover {
+    text-decoration: none;
+}
+
 .align-items-center.no-gutters.row {
     /* padding: 3% 0 3% 5%; */
     color: #F4F4F4;
@@ -181,43 +174,169 @@
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
     z-index: 10000;
+    margin: 0px !important;
+    margin-bottom: 0rem;
 }
 
 /* Mobile Card 🎴 section */
 
+.mt-4 {
+    margin: 0rem;
+    /* margin-top: 0rem !important; */
+}
+
+.mobile-states-dropdown-container {
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+    font-family: var(--daily-stats-font-family);
+    font-weight: var(--daily-stats-font-weight);
+    background-color: #010915;
+    padding-left: 1rem;
+    margin-top: -1.5rem;
+    padding-top: 0.8rem;
+    padding-bottom: 1.3rem;
+    /* top: 0.1; */
+    /* margin-top: 0rem; */
+}
+
+.Select-arrow-zone{
+    padding-left: -10rem;
+    font-size: 1rem;
+}
+
+
+/* .mobile-states-dropdown-container {
+    display: flex;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-right: 0;
+    font-family: var(--daily-stats-font-family);
+    font-size: 2.75vw;
+    font-weight: var(--daily-stats-font-weight);
+} */
+
+#mobile-states-dropdown {
+    width: 72%;
+    line-height: .7;
+    background-color: #19202A;
+    border-radius: .3rem;
+}
+
+#mobile-states-dropdown .Select-input {
+    background-color: transparent !important;
+}
+
+.mobile-states-dropdown .Select-control {
+    background-color: transparent !important;
+    border-color: transparent;
+    overflow: auto;
+    box-shadow: none !important;
+    border-color: transparent !important;
+    /* padding-right: 35px; */
+}
+
+.mobile-states-dropdown .Select-menu-outer {
+    background-color: #1F242D;
+    border-color: transparent;
+    font-size: 3vw;
+    z-index: 1000000;
+}
+
+.mobile-states-dropdown .Select-control .Select-value-label {
+    color: white !important;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* #mobile-states-dropdown:hover .Select-value-label, #mobile-states-dropdown:hover .Select-arrow {
+    color: gray !important; */
+    /* border-color: gray !important; */
+/* } */
+
+
+/* .parent:hover .child, .parent.hover .child */
+
+/* #states-dropdown:hover {
+    color: gray !important;
+} */
+
+/* .states-dropdown:hover {
+    color: gray !important;
+} */
+
+.mobile-states-dropdown .Select-arrow {
+    border-color: white transparent transparent;
+    /* border-width: 10px 5px 2.5px; */
+}
+#mobile-states-dropdown .is-open .Select-control {
+    background-color: transparent;
+}
+
+#mobile-states-dropdown .is-open .Select-value-label {
+    color: white;
+}
+
+#mobile-states-dropdown .is-open .Select-value-label {
+    background-color: transparent;
+}
+
+#mobile-states-dropdown .is-open .Select-arrow {
+    border-color: white transparent transparent;
+    border-width: 10px 5px 2.5px;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+
 .mobile-top-bar-content {
     margin-left: 1rem;
     margin-right: 1rem;
-    margin-top: 2.9rem;
+    margin-top: 3rem;
+}
+
+.mobile-top-bar-content.list-group-item li {
+    background-color: none !important;
 }
 
 .mobile-top-bar-content .list-group {
     height: 75vh; 
     justify-content: space-evenly;
+    background-color: none !important;
+}
+
+
+
+.mobile-top-bar-card-tested .list-group-item {
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    background-color: none !important;
+}
+
+.mobile-top-bar-card-death.list-group-item {
+    border-bottom-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+}
+
+.list-group-item, .list-group-item:hover, .list-group-item:active {
+    background: transparent;
 }
 
 .mobile-card-text {
-    margin-top: -.75rem;
+    margin-top: -.65rem;
     font-weight: normal;
     text-align: center;
     margin-bottom: .95rem;
 }
 
-.mobile-top-bar-card-tested.list-group-item {
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;
-}
-
 .mobile-top-bar-card-tested {
-    background-color: #010915;
-    color: #F4F4F4;
     text-align: center;
     font-size: .75rem;
     border: none;
     border-radius: .3rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
-    /* margin-bottom: 1.3rem; */
+    font-family: var(--daily-stats-font-mobile);
+    color: var(--font-color-tested);
+    margin-top: 2rem;
 }
 
 .mobile-top-bar-value-tested {
@@ -225,18 +344,18 @@
     font-weight: 500;
     font-size: 2.75rem;
     text-shadow: none;
+    color: var(--font-color-tested);
 }
 
 .mobile-top-bar-card-confirmed {
-    background-color: #010915;
-    color: #FEC400;
+    background-color: none;
     text-align: center;
     font-size: .75rem;
     border: none;
     border-radius: .3rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
-    /* margin-bottom: 1.3rem; */
+    color: var(--font-color-confirmed);
+    font-family: var(--daily-stats-font-mobile);
 }
 
 .mobile-top-bar-value-confirmed {
@@ -246,47 +365,23 @@
     text-shadow: none;
 }
 
-.mobile-top-bar-card-death.list-group-item {
-    /* border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem; */
-    border-bottom-left-radius: 0.3rem;
-    border-bottom-right-radius: 0.3rem;
-}
-
 .mobile-top-bar-card-deaths {
-    background-color: #010915;
-    color: #DD1E34;
+    background-color: none;
     text-align: center;
     font-size: .75rem;
     border: none;
     border-radius: .3rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
-    /* margin-bottom: 1.3rem; */
+    color: var(--font-color-deaths);
+    font-family: var(--daily-stats-font-mobile);
 }
 .mobile-top-bar-card-deaths .mobile-card-text {
     font-weight: 650;
 }
 
-
-.about-sources {
-    padding-left: 7vw;
-    padding-top: 10%;
+.mobile-top-bar-card-death {
+    background: transparent !important;
 }
-
-.about-source-2 {
-    text-align: right;
-    font-size: 0.75rem;
-    color: #F4F4F4;
-    margin-bottom: 3.5%
-}
-
-.about-source {
-    text-align: right;
-    font-size: 0.75rem;
-    color: #F4F4F4;
-}
-
 
 .mobile-top-bar-value-deaths {
     margin-top: -1rem;
@@ -296,16 +391,13 @@
 }
 
 .mobile-top-bar-card-death {
-    background-color: #010915;
-    /* color: #03DA32; */
-    color: #B20511;
     text-align: center;
     font-size: .75rem;
     border: none;
     border-radius: .3rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
     padding: .2rem; 
-    /* margin-bottom: 1.3rem; */
+    color: var(--font-color-deathrate);
+    font-family: var(--daily-stats-font-mobile);
 }
 
 .mobile-top-bar-card-death .mobile-card-text {
@@ -344,14 +436,6 @@
     font-size: .7rem;
 }
 
-/* .mobile-card-body {
-    padding: 1.2rem;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-    border-radius: 100px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15)
-} */
-
-
 
 /* 📱 Mobile Map 🌎*/
 
@@ -371,31 +455,73 @@
 .mobile-confirmed-us-map-tab, .mobile-testing-us-map-tab {
     font-size: 0.75rem;
     text-align: center;
+    min-width: max-content;
+    /* background-color: none !important; */
 }
+
 .tab.mobile-confirmed-us-map-tab {
     padding: 0.7rem !important;
+    /* background-color: none !important; */
 }
 
 .tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-testing-us-map-tab {
-    border-top-right-radius: 0.3rem !important;
+    border-top-right-radius: 1rem !important;
+
+    /* background-color: none !important; */
 }    
 
-/* 📱 Mobile Chart */
-
-.mobile-top-bottom-left-chart-h1-title, .mobile-top-bottom-right-chart-h1-title {
-    font-size: 1.25rem;
-    font-weight: normal;
-    color: #F4F4F4;
-    max-width: 100%;
-    padding-left: .2rem;
-
+.jsx-2597805859.tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-confirmed-us-map-tab {
+    /* color: var(--font-color-tested) !important; */
+    /* background-color: none !important; */
 }
 
-.mobile-top-bottom-left-chart-h2-title, .mobile-top-bottom-right-chart-h2-title {
-    font-size: 0.75rem;
-    padding-left: .35rem;
-    padding-bottom: 1rem;
+.jsx-2597805859.tab.mobile-testing-us-map-tab:active, .jsx-2597805859.tab.mobile-testing-us-map-tab:hover, .jsx-2597805859.tab.mobile-confirmed-us-map-tab:active, .jsx-2597805859.tab.mobile-confirmed-us-map-tab:hover {
+    color: white !important;
+    /* background-color: none !important; */
 }
+
+
+
+
+
+
+/* State/County Stats Table */
+/*********************/
+
+td.dash-cell.column-0 {
+    text-align: left !important;
+}
+
+span.column-header-name {
+    padding-left: 5px;
+}
+.dash-spreadsheet-container.dash-spreadsheet.dash-freeze-top.dash-list-view.dash-no-filter {
+    width: 100%;
+}
+
+.row.row-1 {
+    margin: 0;
+    padding: 0 10px;
+}
+
+.cell.cell-1-1.dash-fixed-content {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+td.dash-cell.column-1, td.dash-cell.column-2, th.dash-header.column-1,  th.dash-header.column-2.cell--right-last{
+    text-align: center !important;
+    margin: 0 1px;
+}
+
+th.dash-header.column-0 {
+    text-align: left !important;
+    margin: 0 1px;
+}
+
 
 
 /* Mobile Stats Content */
@@ -407,10 +533,50 @@
     max-height: 30%;
 }
 
+.mobile-stats-card-body {
+    height: 60vh;
+    overflow: scroll;
+    padding-top: 0;
+}
+
+p.right-tabs-last-updated-text {
+    text-align: right !important;
+}
+
+.mobile-right-col-stats-content.col-2 .right-tabs-last-updated-text {
+    font-size: 2.5vw;
+    border-bottom-right-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+    padding: 0.5rem 1rem;
+}
+
 /* Mobile Twitter and News */
 .mobile-feed-content {
     padding: 1rem;
 }
+
+.mobile-feed-card-body {
+    height: 57vh;
+    overflow: scroll;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.mobile-feed-card-body.card-body {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.mobile-twitter-feed-tab {
+    border-top-left-radius: 0.3rem;
+}
+
+#mobile-feed-tabs-styled-with-inline {
+    background-color: var(--card-bg-color);
+    border-top-right-radius: .3rem;
+    border-top-left-radius: .3rem;
+}
+
 
 /* 📱 Footer 🦶 */
 .mobile-footer-content {
@@ -420,6 +586,7 @@
 .mobile-footer-disclaimer-content {
     font-size: 0.65rem;
 }
+
 .mobile-footer-disclaimer-text {
     padding-top: 2rem;
 }
@@ -451,32 +618,21 @@
     color: #BDBDBD;
 }
 
+
 /* 📱 END Footer 🦶 */
 
-/* mobile twitter and news feed styling */
-.mobile-feed-card-body{
-    height: 57vh;
-    overflow: scroll;
-}
+/* 
+.jsx-2597805859.tab.mobile-news-feed-tab, .jsx-2597805859.tab.mobile-twitter-feed-tab {
+   color: var(--font-color-tested) !important;
+} */
 
-
-
-.mobile-stats-card-body {
-    height: 60vh;
-    overflow: scroll;
-    padding-top: 0;
-}
-
-.middle-map-news-content {
-    margin-left: 100px;
-}
-
-.middle-map-news-content.mt-3.no-gutters.row {
-    margin-left: 23px;
-}
-
-.mobile-twitter-feed-tab {
-    border-top-left-radius: 0.3rem;
+.jsx-2597805859.tab.mobile-news-feed-tab:active, .jsx-2597805859.tab.mobile-twitter-feed-tab:active, 
+.jsx-2597805859.tab.mobile-news-feed-tab:hover,
+.jsx-2597805859.tab.mobile-twitter-feed-tab:target, 
+.jsx-2597805859.tab.mobile-news-feed-tab:target,
+.jsx-2597805859.tab.mobile-twitter-feed-tab:focus, 
+.jsx-2597805859.tab.mobile-news-feed-tab:focus, .jsx-2597805859.tab.mobile-twitter-feed-tab:hover {
+    color: white !important;
 }
 
 .mobile-news-feed-tab {
@@ -489,6 +645,10 @@
 
 .tab.mobile-left-news-tab {
     border-top-right-radius: 0.3rem;
+}
+
+.tab.mobile-twitter-feed-tab.tab--selected, .tab.mobile-news-feed-tab.tab--selected {
+    background-color: var(--card-bg-color) !important;
 }
 
 /* Hamburger menu overlay */
@@ -563,5 +723,87 @@
 #mobile-about-page .about-section {
     width: 90%;
 }
-/* About Page Styling End */
 
+.mob-about-page-title {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    padding-left: 10%;
+    margin-bottom: 8%;
+    margin-top: 0;
+    font-weight: bold;
+    width: 90%;
+    align-items: left;
+}
+
+.mob-about-page-contributors {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: .5%;
+}
+
+.mob-about-page-contributor {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    margin-bottom: 1.8%;
+}
+
+
+.mob-about-contributor-social-icon {
+    margin-right: 2.5%;
+    width: 18px;
+    height: 18px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-bottom: auto;
+}
+
+#mob-about-contributors-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 8%;
+    text-shadow: none;
+    font-weight: bold;
+}
+
+#mob-about-contributors-subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    padding-bottom: 50px;
+    padding-top:2%;
+    font-weight: 400;
+    text-shadow: none;
+}
+
+.mob-about-contributor-name {
+    font-family: 'Roboto', sans-serif;
+    padding-right: 5px;
+    font-weight: bold;
+    font-size: .9rem;
+}
+
+.mob-about-contributor-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: .9rem;
+}
+
+.about-sources {
+    padding-left: 7vw;
+    padding-top: 10%;
+}
+
+.about-source-2 {
+    text-align: right;
+    font-size: 0.75rem;
+    color: #F4F4F4;
+    margin-bottom: 3.5%
+}
+
+.about-source {
+    text-align: right;
+    font-size: 0.75rem;
+    color: #F4F4F4;
+}
+
+/* END ABOUT SECTION */

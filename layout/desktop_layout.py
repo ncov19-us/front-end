@@ -9,7 +9,7 @@ build_desktop_layout = html.Div(
     [
         dcc.Location(id="url", refresh=False),
         dbc.Navbar(id="navbar-content", color="#010915", dark=True,),
-        dbc.Container(id="page-content", className="mt-4", fluid=True),
+        dbc.Container(id="page-content", className="mt-4 desktop", fluid=True),
         dbc.Container(id="footer-content", className="footer-content", fluid=True)
     ]
 )
