@@ -168,9 +168,16 @@ p.right-tabs-last-updated-text {
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
     z-index: 10000;
+    margin: 0px !important;
+    margin-bottom: 0rem;
 }
 
 /* Mobile Card 🎴 section */
+
+.mt-4 {
+    margin: 0rem;
+    /* margin-top: 0rem !important; */
+}
 
 .mobile-states-dropdown-container {
     width: 100%;
@@ -178,8 +185,20 @@ p.right-tabs-last-updated-text {
     z-index: 9999;
     font-family: var(--daily-stats-font-family);
     font-weight: var(--daily-stats-font-weight);
-
+    background-color: #010915;
+    padding-left: 1rem;
+    margin-top: -1.5rem;
+    padding-top: 0.8rem;
+    padding-bottom: 1.3rem;
+    /* top: 0.1; */
+    /* margin-top: 0rem; */
 }
+
+.Select-arrow-zone{
+    padding-left: -10rem;
+    font-size: 1rem;
+}
+
 
 /* .mobile-states-dropdown-container {
     display: flex;
@@ -192,8 +211,10 @@ p.right-tabs-last-updated-text {
 } */
 
 #mobile-states-dropdown {
-    width: 100%;
+    width: 72%;
     line-height: .7;
+    background-color: #19202A;
+    border-radius: .3rem;
 }
 
 #mobile-states-dropdown .Select-input {
@@ -206,7 +227,7 @@ p.right-tabs-last-updated-text {
     overflow: auto;
     box-shadow: none !important;
     border-color: transparent !important;
-    padding-right: 35px;
+    /* padding-right: 35px; */
 }
 
 .mobile-states-dropdown .Select-menu-outer {
@@ -240,7 +261,7 @@ p.right-tabs-last-updated-text {
 
 .mobile-states-dropdown .Select-arrow {
     border-color: white transparent transparent;
-    border-width: 10px 5px 2.5px;
+    /* border-width: 10px 5px 2.5px; */
 }
 #mobile-states-dropdown .is-open .Select-control {
     background-color: transparent;
