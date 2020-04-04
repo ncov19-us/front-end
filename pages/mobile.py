@@ -328,7 +328,7 @@ mobile_body = [
     html.Div(
         id="mobile-intermediate-value", children="US", style={"display": "none"}
     ),  # Hidden div inside the app that stores the intermediate value
-    html.Div(
+    dbc.Row(
         dcc.Dropdown(
             id="mobile-states-dropdown",
             options=state_labels,
@@ -338,6 +338,8 @@ mobile_body = [
             className="mobile-states-dropdown",
         ),
         className="mobile-states-dropdown-container",
+        # justify='center',
+        # no_gutter=True,
         # width=2,  
     ),
     html.Div(

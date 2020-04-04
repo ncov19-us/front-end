@@ -29,7 +29,7 @@
 
 
     /* Daily Stats */
-    --daily-stats-font-family: 'Lato', sans-serif; 
+    --daily-stats-font-mobile: 'Lato', sans-serif; 
     --daily-stats-font-weight: 700;
     /* not using lato for now bc font weight is weird */
 
@@ -176,9 +176,16 @@ p.right-tabs-last-updated-text {
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
     z-index: 10000;
+    margin: 0px !important;
+    margin-bottom: 0rem;
 }
 
 /* Mobile Card 🎴 section */
+
+.mt-4 {
+    margin: 0rem;
+    /* margin-top: 0rem !important; */
+}
 
 .mobile-states-dropdown-container {
     width: 100%;
@@ -186,8 +193,20 @@ p.right-tabs-last-updated-text {
     z-index: 9999;
     font-family: var(--daily-stats-font-family);
     font-weight: var(--daily-stats-font-weight);
-
+    background-color: #010915;
+    padding-left: 1rem;
+    margin-top: -1.5rem;
+    padding-top: 0.8rem;
+    padding-bottom: 1.3rem;
+    /* top: 0.1; */
+    /* margin-top: 0rem; */
 }
+
+.Select-arrow-zone{
+    padding-left: -10rem;
+    font-size: 1rem;
+}
+
 
 /* .mobile-states-dropdown-container {
     display: flex;
@@ -200,8 +219,10 @@ p.right-tabs-last-updated-text {
 } */
 
 #mobile-states-dropdown {
-    width: 100%;
+    width: 72%;
     line-height: .7;
+    background-color: #19202A;
+    border-radius: .3rem;
 }
 
 #mobile-states-dropdown .Select-input {
@@ -214,7 +235,7 @@ p.right-tabs-last-updated-text {
     overflow: auto;
     box-shadow: none !important;
     border-color: transparent !important;
-    padding-right: 35px;
+    /* padding-right: 35px; */
 }
 
 .mobile-states-dropdown .Select-menu-outer {
@@ -248,7 +269,7 @@ p.right-tabs-last-updated-text {
 
 .mobile-states-dropdown .Select-arrow {
     border-color: white transparent transparent;
-    border-width: 10px 5px 2.5px;
+    /* border-width: 10px 5px 2.5px; */
 }
 #mobile-states-dropdown .is-open .Select-control {
     background-color: transparent;
@@ -303,7 +324,7 @@ p.right-tabs-last-updated-text {
 }
 
 .mobile-card-text {
-    margin-top: -.75rem;
+    margin-top: -.65rem;
     font-weight: normal;
     text-align: center;
     margin-bottom: .95rem;
@@ -315,7 +336,7 @@ p.right-tabs-last-updated-text {
     border: none;
     border-radius: .3rem;
     padding: .2rem; 
-    font-family: var(--daily-stats-fonts);
+    font-family: var(--daily-stats-font-mobile);
     color: var(--font-color-tested);
     margin-top: 2rem;
 }
@@ -336,7 +357,7 @@ p.right-tabs-last-updated-text {
     border-radius: .3rem;
     padding: .2rem; 
     color: var(--font-color-confirmed);
-    font-family: var(--daily-stats-fonts);
+    font-family: var(--daily-stats-font-mobile);
 }
 
 .mobile-top-bar-value-confirmed {
@@ -354,7 +375,7 @@ p.right-tabs-last-updated-text {
     border-radius: .3rem;
     padding: .2rem; 
     color: var(--font-color-deaths);
-    font-family: var(--daily-stats-fonts);
+    font-family: var(--daily-stats-font-mobile);
 }
 .mobile-top-bar-card-deaths .mobile-card-text {
     font-weight: 650;
@@ -378,7 +399,7 @@ p.right-tabs-last-updated-text {
     border-radius: .3rem;
     padding: .2rem; 
     color: var(--font-color-deathrate);
-    font-family: var(--daily-stats-fonts);
+    font-family: var(--daily-stats-font-mobile);
 }
 
 .mobile-top-bar-card-death .mobile-card-text {
@@ -436,8 +457,10 @@ p.right-tabs-last-updated-text {
 .mobile-confirmed-us-map-tab, .mobile-testing-us-map-tab {
     font-size: 0.75rem;
     text-align: center;
+    min-width: max-content;
     /* background-color: none !important; */
 }
+
 .tab.mobile-confirmed-us-map-tab {
     padding: 0.7rem !important;
     /* background-color: none !important; */
@@ -445,6 +468,7 @@ p.right-tabs-last-updated-text {
 
 .tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-testing-us-map-tab {
     border-top-right-radius: 1rem !important;
+
     /* background-color: none !important; */
 }    
 
@@ -517,7 +541,11 @@ th.dash-header.column-0 {
     padding-top: 0;
 }
 
-
+.mobile-right-col-stats-content.col-2 .right-tabs-last-updated-text {
+    border-bottom-right-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+    padding: 0.5rem 1rem;
+}
 
 /* Mobile Twitter and News */
 .mobile-feed-content {
@@ -590,10 +618,10 @@ th.dash-header.column-0 {
 
 /* 📱 END Footer 🦶 */
 
-
+/* 
 .jsx-2597805859.tab.mobile-news-feed-tab, .jsx-2597805859.tab.mobile-twitter-feed-tab {
    color: var(--font-color-tested) !important;
-}
+} */
 
 .jsx-2597805859.tab.mobile-news-feed-tab:active, .jsx-2597805859.tab.mobile-twitter-feed-tab:active, 
 .jsx-2597805859.tab.mobile-news-feed-tab:hover,

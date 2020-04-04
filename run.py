@@ -42,7 +42,52 @@ def before_request_func():
         flask.session['zoom'] = 2.8
     
     # print(f"[DEBUG]: Session: 'mobile': {flask.session['mobile']}, 'zoom': {flask.session['zoom']}")
-        
+
+
+@server.route("/sitemap")
+@server.route("/sitemap/")
+@server.route("/sitemap.xml")
+def sitemap():
+    """
+    https://www.brizzle.dev/post/how-to-generate-a-dynamic-sitemap-for-seo-using-python-flask
+    Route to dynamically generate a sitemap of your website/application. lastmod and priority tags
+    omitted on static pages. lastmod included on dynamic content such as blog posts.
+    """
+    from flask import make_response, request, render_template
+    import datetime
+    from urllib.parse import urlparse
+
+    host_components = urlparse(request.host_url)
+    host_base = host_components.scheme + "://" + host_components.netloc
+
+    # Static routes with static content
+    static_urls = list()
+    for rule in server.url_map.iter_rules():
+        if not str(rule).startswith("/admin") and not str(rule).startswith("/user"):
+            if "GET" in rule.methods and len(rule.arguments) == 0:
+                url = {
+                    "loc": f"{host_base}{str(rule)}"
+                }
+                static_urls.append(url)
+
+    static_urls.append({"loc": f"{host_base}/about"})
+    static_urls.append({"loc": f"{host_base}/resources"})
+    # print(static_urls)
+    # # Dynamic routes with dynamic content
+    # dynamic_urls = list()
+    # blog_posts = Post.objects(published=True)
+    # for post in blog_posts:
+    #     url = {
+    #         "loc": f"{host_base}/blog/{post.category.name}/{post.url}",
+    #         "lastmod": post.date_published.strftime("%Y-%m-%dT%H:%M:%SZ")
+    #         }
+    #     dynamic_urls.append(url)
+
+    xml_sitemap = render_template("sitemap.xml", static_urls=static_urls, host_base=host_base) #, dynamic_urls=dynamic_urls, 
+    response = make_response(xml_sitemap)
+    response.headers["Content-Type"] = "application/xml"
+
+    return response
 
 @app.callback([Output("navbar-content", "children"),
                Output("page-content", "children"),
