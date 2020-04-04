@@ -1,3 +1,4 @@
+import gc
 from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
@@ -47,6 +48,9 @@ def confirmed_scatter_mapbox(state="United States"):
     response = requests.get(URL).json()
     data = response["message"]
     data = pd.DataFrame.from_records(data)
+
+    del response
+    gc.collect()
 
     # color_scale = ['#fce9b8', '#fbe6ad','#fbe3a3','#fbdf99',
     #                 '#fadc8f','#fad985','#f9d67a',

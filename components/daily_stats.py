@@ -72,7 +72,7 @@ def get_daily_stats(state="United States") -> Dict:
     return stats
 
 
-# @cache.memoize(timeout=600)
+@cache.memoize(timeout=600)
 def daily_stats(state="US") -> List[dbc.Col]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed ,
      and death cases for the top row.

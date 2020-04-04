@@ -1,13 +1,14 @@
-import pandas as pd
-import requests
+import gc
 import json
+import requests
+import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from app import cache
 from utils.settings import NCOV19_API, REVERSE_STATES_MAP
 
 
-# @cache.memoize(timeout=3600)
+@cache.memoize(timeout=3600)
 def new_infection_trajectory_chart(state='US') -> go.Figure:
     """Line chart data for the selected state.
 
@@ -58,6 +59,7 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
         merged['Italy'] = merged['Italy']/(ITALY_POP/100000)
 
         del response, data, us, kr, it
+        gc.collect()
 
         fig = go.Figure()
 
@@ -152,6 +154,9 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
         merged = pd.concat([series[0], series[1], series[2]], axis=1)
         merged = merged.reset_index()
         merged = merged.rename(columns={"index": "Days"})
+
+        del series, response
+        gc.collect()
 
         # Population logic
         populations = {

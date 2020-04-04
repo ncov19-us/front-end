@@ -714,7 +714,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 /* this is needed for map tabs formatting - i checked */
 .tab.confirmed-us-map-tab.tab--selected, .tab.testing-us-map-tab , .tab.confirmed-us-map-tab {
-    min-width: fit-content;
+    min-width: max-content;
     border-top-left-radius:  0.3rem;
     padding: 0.5rem 1rem !important;
 }
@@ -728,6 +728,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .jsx-2597805859.tab.testing-us-map-tab {
     border-top-right-radius: 0.3rem;
     padding: 0.5rem 1rem;
+    min-width: max-content;
 }
 
 .middle-col-map-content.col-8 {

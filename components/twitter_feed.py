@@ -1,13 +1,15 @@
+import gc
+import json
 from typing import List
+from html.parser import HTMLParser
+from dateutil.parser import parse
+import requests
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
-import requests
 from utils.settings import NCOV19_API
-from dateutil.parser import parse
-import json
 from utils.settings import STATES_COORD
-from html.parser import HTMLParser
+
 
 
 @cache.memoize(timeout=900)
@@ -49,6 +51,7 @@ def twitter_feed(state="US") -> List[dbc.Card]:
         ]
 
     del response
+    gc.collect()
 
     cards = [
         dbc.ListGroupItem(

@@ -178,19 +178,26 @@ stats_tabs = dbc.Card(
 )
 def stats_tab_content(state):
     df = stats_table(state)
-    # table = dbc.Table.from_dataframe(
-    #                         df,
-    #                         className="stats-actual-table",
-    #                         # striped=True,
-    #                         # bordered=False,
-    #                         # responsive=True,
-    #                         # hover=True,
-    #                         )
-    # print(df.head())
+
     table = dash_table.DataTable(
                 data=df.to_dict('records'),
                 columns=[
-                    {"name":i, "id": i} for i in df.columns
+                    {
+                        'name': 'State/County',
+                        'id': 'State/County',
+                    },
+                    {
+                        'name': 'Confirmed',
+                        'id': 'Confirmed',
+                        'type': 'numeric',
+                        'format': Format(group=','),
+                    },
+                    {
+                        'name': 'Deaths',
+                        'id': 'Deaths',
+                        'type': 'numeric',
+                        'format': Format(group=','),
+                    },
                 ],
                 editable=False,
                 sort_action="native",
@@ -228,7 +235,6 @@ def stats_tab_content(state):
                         'minWidth': '6.8rem', 
                         'width': '6.8rem',
                         'maxWidth': '6.8rem',
-                        'textAlign': 'left',
                     },
                     {
                         'if': {
@@ -236,12 +242,6 @@ def stats_tab_content(state):
                         },
                         'color': '#F4B000',
                         'minWidth': '4.2rem', 'width': '4.2rem', 'maxWidth': '4.2rem',
-                        'textAlign':'center',
-                        'type': 'numeric',
-                        'format': Format(
-                            # precision = 2,
-                            # Scheme = Scheme.fixed
-                        ),
                     },
                     {
                         'if': {
@@ -249,8 +249,6 @@ def stats_tab_content(state):
                         },
                         'color': '#E55465',
                         'minWidth': '4.2rem', 'width': '4.2rem', 'maxWidth': '4.2rem',
-                        'textAlign':'center',
-                        'type': 'numeric',
                     },
                 ],
     )

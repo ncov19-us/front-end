@@ -1,6 +1,7 @@
+import gc
+import json
 import pandas as pd
 import requests
-import json
 import plotly.express as px
 import plotly.graph_objects as go
 from app import cache
@@ -47,6 +48,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
     merged = merged.rename(columns={"index": "Days"})
 
     del response, data, us, kr, it
+    gc.collect()
 
     fig = go.Figure()
 
