@@ -230,10 +230,10 @@ p.right-tabs-last-updated-text {
     font-weight: 500;
 }
 
-#mobile-states-dropdown:hover .Select-value-label, #mobile-states-dropdown:hover .Select-arrow {
-    color: gray !important;
+/* #mobile-states-dropdown:hover .Select-value-label, #mobile-states-dropdown:hover .Select-arrow {
+    color: gray !important; */
     /* border-color: gray !important; */
-}
+/* } */
 
 
 /* .parent:hover .child, .parent.hover .child */
@@ -449,7 +449,7 @@ p.right-tabs-last-updated-text {
 }    
 
 .jsx-2597805859.tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-confirmed-us-map-tab {
-    color: var(--font-color-tested) !important;
+    /* color: var(--font-color-tested) !important; */
     /* background-color: none !important; */
 }
 

@@ -194,6 +194,9 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 #page-content {
     margin-top: 73px !important;
+}
+
+.desktop {
     min-width: var(--minimum-screen-size);
 }
 
@@ -457,10 +460,10 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     text-align: unset;
 }
 
-#states-dropdown:hover .Select-value-label, #states-dropdown:hover .Select-arrow {
-    color: gray !important;
+/* #states-dropdown:hover .Select-value-label, #states-dropdown:hover .Select-arrow {
+    color: gray !important; */
     /* border-color: gray !important; */
-}
+/* } */
 
 
 
@@ -950,7 +953,7 @@ p.tweet-dt {
 }
 
 .news-txt-by-dt {
-    font-size: 0.6rem;
+    font-size: 0.53rem;
 }
 
 .tweet-text {
@@ -959,7 +962,7 @@ p.tweet-dt {
 }
 
 .tweet-dt {
-    font-size: 0.6rem;
+    font-size: 0.53rem;
     color: #F4F4F4;
 }
 
