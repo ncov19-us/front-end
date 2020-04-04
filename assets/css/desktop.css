@@ -11,6 +11,10 @@
 
 /*******COLOR VARIABLES*******/
 :root{
+
+    /* At what screen size do we no longer want to squish the site more? */
+    --minimum-screen-size: 860px;
+
     /* Nav Colors */
     --nav-bg-color:#010915;
     --nav-font-color:#FEFEFE;
@@ -52,6 +56,8 @@
     width: 100vw;
     height: 58px;
     top: 0;
+    min-width: var(--minimum-screen-size);
+    flex-flow: nowrap;
 }
 
 .navbar-toggler-1 {
@@ -188,6 +194,10 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 #page-content {
     margin-top: 73px !important;
+}
+
+.desktop {
+    min-width: var(--minimum-screen-size);
 }
 
 .about-page-title {
@@ -390,7 +400,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding-left: 2rem;
     padding-right: 0;
     font-family: var(--daily-stats-font-family);
-    font-size: 2.3vw;
+    font-size: 2.1vw;
     max-width: 25%;
     flex: 0 0 25%;
     font-weight: var(--daily-stats-font-weight);
@@ -450,10 +460,10 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     text-align: unset;
 }
 
-#states-dropdown:hover .Select-value-label, #states-dropdown:hover .Select-arrow {
-    color: gray !important;
+/* #states-dropdown:hover .Select-value-label, #states-dropdown:hover .Select-arrow {
+    color: gray !important; */
     /* border-color: gray !important; */
-}
+/* } */
 
 
 
@@ -943,7 +953,7 @@ p.tweet-dt {
 }
 
 .news-txt-by-dt {
-    font-size: 0.6rem;
+    font-size: 0.53rem;
 }
 
 .tweet-text {
@@ -952,7 +962,7 @@ p.tweet-dt {
 }
 
 .tweet-dt {
-    font-size: 0.6rem;
+    font-size: 0.53rem;
     color: #F4F4F4;
 }
 
