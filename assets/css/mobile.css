@@ -100,9 +100,7 @@
 }
 
 
-p.right-tabs-last-updated-text {
-    text-align: right !important;
-}
+
 
 
 
@@ -541,7 +539,12 @@ th.dash-header.column-0 {
     padding-top: 0;
 }
 
+p.right-tabs-last-updated-text {
+    text-align: right !important;
+}
+
 .mobile-right-col-stats-content.col-2 .right-tabs-last-updated-text {
+    font-size: 2.5vw;
     border-bottom-right-radius: .3rem;
     border-bottom-left-radius: .3rem;
     padding: 0.5rem 1rem;

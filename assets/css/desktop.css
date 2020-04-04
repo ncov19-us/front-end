@@ -13,7 +13,8 @@
 :root{
 
     /* At what screen size do we no longer want to squish the site more? */
-    --minimum-screen-size: 860px;
+    /* MAKES HAMBURGER MENU DISAPPEAR */
+    /* --minimum-screen-size: 860px; */
 
     /* Nav Colors */
     --nav-bg-color:#010915;
@@ -48,26 +49,26 @@
 
 /* Custom Scroll bar */
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 10px;
     border-radius: 5px;
-  }
+  } */
   
   /* Track */
-  ::-webkit-scrollbar-track {
+  /* ::-webkit-scrollbar-track {
     background: transparent;
-  }
+  } */
   
   /* Handle */
-  ::-webkit-scrollbar-thumb {
+  /* ::-webkit-scrollbar-thumb {
     background: var(--card-bg-color);
     border-radius: 10px;
-  }
+  } */
   
   /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+  /* ::-webkit-scrollbar-thumb:hover {
     background: #555;
-  }
+  } */
 
 
 /* Start
@@ -130,17 +131,6 @@
     margin-left: .5rem;
 
 }
-
-
-.right-tabs-last-updated-text {
-    padding-left: 1rem;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    margin-bottom: 0;
-    font-size: 11px;
-    color: grey;
-}
-
 
 
 /*         Dropdown Location Menu                   */ 
@@ -1136,7 +1126,7 @@ p.tweet-dt {
 .right-tabs-last-updated-text {
     padding 1rem 0 1rem 0;
     margin: 0;
-    font-size: .4rem;
+    font-size: .6rem;
     background: #010915;
 }
 
