@@ -25,6 +25,7 @@ px.set_mapbox_access_token(MAPBOX_ACCESS_TOKEN)
 def get_drive_thru_testing_centers():
     try:
         drive_thru_df = pd.read_csv(DRIVE_THRU_URL)
+        drive_thru_df["Street Address"] = drive_thru_df["Street Address"].fillna("")
     except Exception as ex:
         print(ex)
     return drive_thru_df
@@ -59,15 +60,23 @@ def confirmed_scatter_mapbox(state="United States"):
     #                 '#f6bd29','#f5b91f','#f5b614','#f4b30a',
     #                 '#F4B000','#efac00','#eaa900','#e5a500','#e0a200','#dc9e00']
 
-    color_scale = ['#fadc8f','#f9d67a',
-                    '#f8d066','#f8c952',
-                   '#f7c33d',
-                    '#f6bd29','#f5b614',
-                    '#F4B000','#eaa900','#e0a200','#dc9e00']
+    color_scale = [
+        "#fadc8f",
+        "#f9d67a",
+        "#f8d066",
+        "#f8c952",
+        "#f7c33d",
+        "#f6bd29",
+        "#f5b614",
+        "#F4B000",
+        "#eaa900",
+        "#e0a200",
+        "#dc9e00",
+    ]
 
     # Scaled the data exponentially to show smaller values.
-    data['scaled'] = data["confirmed"] ** 0.77
-    
+    data["scaled"] = data["confirmed"] ** 0.77
+
     # set lat/long
     if state == "United States":
         lat, lon, zoom = 39.8097343, -98.5556199, flask.session["zoom"]
@@ -95,10 +104,7 @@ def confirmed_scatter_mapbox(state="United States"):
         # This takes away the colorbar on the right hand side of the plot
         coloraxis_showscale=False,
         mapbox_style=MAPBOX_STYLE,
-        mapbox=dict(
-            center=dict(lat=lat, lon=lon), 
-            zoom=zoom,
-        ),
+        mapbox=dict(center=dict(lat=lat, lon=lon), zoom=zoom,),
     )
 
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
@@ -129,7 +135,7 @@ def drive_thru_scatter_mapbox(state="United States"):
         lat="Latitude",
         lon="Longitude",
         hover_name="Name",
-        hover_data=["URL"],
+        hover_data=["URL", "City", "State", "Street Address"],
     )
 
     fig.layout.update(
@@ -137,15 +143,12 @@ def drive_thru_scatter_mapbox(state="United States"):
         mapbox_style=MAPBOX_STYLE,
         mapbox=dict(center=dict(lat=lat, lon=lon), zoom=zoom,),
         dragmode=False,
-        hoverlabel={
-                "bgcolor": '#900714',
-                "font": {"color": 'white'},
-            }
+        hoverlabel={"bgcolor": "#900714", "font": {"color": "white"},},
     )
 
     fig.data[0].update(
-        hovertemplate="<b><a href='%{customdata[0]}' style='color:#F4F4F4'>%{hovertext}</a></b>",
-        marker={"size": 15, "symbol": "car"},
+        hovertemplate="<b><a href='%{customdata[0]}' style='color:#F4F4F4'>%{hovertext}</a></b><br> %{customdata[3]}<br>%{customdata[1]},%{customdata[2]}",
+        marker={"symbol": "hospital", "color": "white"},
     )
 
     return fig

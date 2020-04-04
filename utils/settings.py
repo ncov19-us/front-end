@@ -13,7 +13,7 @@ MAPBOX_STYLE = "mapbox://styles/hurshd0/ck86zky880ory1ip18f5tw4y6"
 NCOV19_API = "https://covid19-us-api-staging.herokuapp.com/"
 
 # Drive Thru Facilities
-DRIVE_THRU_URL = "https://raw.githubusercontent.com/ncov19-us/ds/master/drive_thru_testing_locations/us-drive-thru-testing-locations.csv"
+DRIVE_THRU_URL = "https://raw.githubusercontent.com/ncov19-us/ds/master/drive_thru_testing_locations/locations-with-addresses.csv"
 
 
 STATES_LAT_LONG = [
