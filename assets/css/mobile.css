@@ -517,7 +517,11 @@ th.dash-header.column-0 {
     padding-top: 0;
 }
 
-
+.mobile-right-col-stats-content.col-2 .right-tabs-last-updated-text {
+    border-bottom-right-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+    padding: 0.5rem 1rem;
+}
 
 /* Mobile Twitter and News */
 .mobile-feed-content {
