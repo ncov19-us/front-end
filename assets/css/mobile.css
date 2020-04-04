@@ -449,8 +449,10 @@ p.right-tabs-last-updated-text {
 .mobile-confirmed-us-map-tab, .mobile-testing-us-map-tab {
     font-size: 0.75rem;
     text-align: center;
+    min-width: max-content;
     /* background-color: none !important; */
 }
+
 .tab.mobile-confirmed-us-map-tab {
     padding: 0.7rem !important;
     /* background-color: none !important; */
@@ -458,6 +460,7 @@ p.right-tabs-last-updated-text {
 
 .tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-testing-us-map-tab {
     border-top-right-radius: 1rem !important;
+
     /* background-color: none !important; */
 }    
 
