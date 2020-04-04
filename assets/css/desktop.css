@@ -1008,7 +1008,7 @@ p.tweet-dt {
 /* disable scroll bar */
 .stats-table::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
-}`
+}
 
 .right-col-stats-content.col-2 .card-body {
     padding-top: 0rem;
