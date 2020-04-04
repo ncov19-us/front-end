@@ -7,7 +7,7 @@ from app import cache
 from utils.settings import NCOV19_API, REVERSE_STATES_MAP
 
 
-@cache.memoize(timeout=3600)
+# @cache.memoize(timeout=3600)
 def new_infection_trajectory_chart(state='US') -> go.Figure:
     """Line chart data for the selected state.
 
@@ -62,44 +62,47 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
         fig = go.Figure()
 
         # <extra></extra> remove name from the end of the hover over text
-        template = "%{y:.} confirmed cases per 100,000 people %{x} days since 100 cases<extra></extra>"
+        template = "%{y:.0f} confirmed cases per 100,000 people<br>in %{text} <extra></extra>"
 
-        fig.add_trace(
-            go.Scatter(
-                x=merged["Days"],
-                y=merged["Italy"],
-                name="Italy",
-                line={"color": "#D8B9B2"},
-                mode="lines",
-                hovertemplate=template,
+        countries = ['Italy', 'South Korea', 'US']
+        colors = ["#009d00", "#009fe2", "#F4B000"]
+
+        for i, country in enumerate(countries):
+            # CALCULATE ANNOTATION POSITION:
+            annotation_x = merged[["Days", country]].dropna()['Days'].max()  # FIND LAST DAY ON LINE
+            annotation_y = merged[["Days", country]].dropna()[country].max()  # FIND HIGHEST POINT ON LINE
+
+            fig.add_trace(
+                go.Scatter(
+                    x=merged["Days"],
+                    y=merged[country],
+                    name=country,
+                    line={"color": colors[i]},
+                    mode="lines",
+                    text=[country]*len(merged[country]),
+                    hovertemplate=template,
+                )
+
             )
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=merged["Days"],
-                y=merged["South Korea"],
-                name="South Korea",
-                line={"color": "#DD1E34"},
-                mode="lines",
-                hovertemplate=template,
-            ),
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=merged["Days"],
-                y=merged["US"],
-                name="United States",
-                line={"color": "#F4B000"},
-                mode="lines",
-                hovertemplate=template,
+
+            # LINE CHART ANNOTATION
+            fig.add_annotation(
+                x=annotation_x,
+                y=annotation_y,
+                text=country,
+                font={"size": 10},
+                xshift=-2,  # Annotation x displacement!
+                yshift=10,  # Annotation y displacement!
+                showarrow=False,
+                align="right",
+                xanchor="right"
             )
-        )
         
         fig.update_layout(
             margin={"r": 0, "t": 0, "l": 0, "b": 1},
             template="plotly_dark",
             autosize=True,
-            showlegend=True,
+            showlegend=False,
             legend_orientation="h",
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
@@ -112,16 +115,21 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                 size=10,
                 color="#f4f4f4"
             ),
+            yaxis_title="Cases per 100k People"
         )
 
     else:
         URL = NCOV19_API + "state"
 
         # State selection for comparisons
-        states = set(['NY', 'WA', 'CA'])
-        if state not in states:
-            states.remove('WA')
-            states.add(state)
+
+        comparison_states = ['NY', 'CA', 'WA']
+
+        states = [state]
+        
+        for s in comparison_states:
+            if len(states)<3 and s not in states:
+                states.append(s)
 
         # Ingestion
         series = dict()
@@ -161,65 +169,53 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
         state_populations = state_populations[state_populations['Region']==f'.{REVERSE_STATES_MAP[state]}']
         populations[REVERSE_STATES_MAP[state]] = state_populations['2019'].iloc[0]
 
-        # Get cases per 100,000 people
+        # Get cases per 100,000 people and create state_names list
+        state_names = []
         for s in states:
-            merged[REVERSE_STATES_MAP[s]] = merged[REVERSE_STATES_MAP[s]]/(populations[REVERSE_STATES_MAP[s]]/100000)
+            name = REVERSE_STATES_MAP[s]
+            state_names.append(name)
+            merged[name] = merged[name]/(populations[name]/100000)
 
         # Plotting
+        colors = ["#F4B000", "#009d00", "#009fe2"]
         fig = go.Figure()
 
-        template = "%{y:.0f} confirmed cases per 100,000 people<br>in "
-        end_template = "<extra></extra>"
+        template = "%{y:.0f} confirmed cases per 100,000 people<br>in %{text} <extra></extra>"
 
-        fig.add_trace(
-            go.Scatter(
-                x=merged["Days"],
-                y=merged["New York"],
-                name="New York",
-                line={"color": "#D8B9B2"},
-                mode="lines",
-                hovertemplate=template+'New York'+end_template
-            )
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=merged["Days"],
-                y=merged['California'],
-                name='California',
-                line={"color": "#F4B000"},
-                mode="lines",
-                hovertemplate=template+'California'+end_template,
-            )
-        )
-        
-        if 'WA' not in states:
+        for i,name in enumerate(state_names):
+            # CALCULATE ANNOTATION POSITION:
+            annotation_x = merged[["Days", name]].dropna()['Days'].max()  # FIND LAST DAY ON LINE
+            annotation_y = merged[["Days", name]].dropna()[name].max()  # FIND HIGHEST POINT ON LINE
+
             fig.add_trace(
                 go.Scatter(
                     x=merged["Days"],
-                    y=merged[REVERSE_STATES_MAP[state]],
-                    name=REVERSE_STATES_MAP[state],
-                    line={"color": "#F4B000"},
+                    y=merged[name],
+                    name=name,
+                    line={"color": colors[i]},
                     mode="lines",
-                    hovertemplate=template+REVERSE_STATES_MAP[state]+end_template,
+                    text = [name]*len(merged[name]),
+                    hovertemplate=template
                 )
             )
-        else:
-            fig.add_trace(
-                go.Scatter(
-                    x=merged["Days"],
-                    y=merged["Washington"],
-                    name="Washington",
-                    line={"color": "#DD1E34"},
-                    mode="lines",
-                    hovertemplate=template+'Washington'+end_template
-                ),
+
+            fig.add_annotation(
+                x=annotation_x,
+                y=annotation_y,
+                text=name,
+                font={"size": 10},
+                xshift=-2,  # Annotation x displacement!
+                yshift=10,  # Annotation y displacement!
+                showarrow=False,
+                align="right",
+                xanchor="right"
             )
 
         fig.update_layout(
             margin={"r": 0, "t": 0, "l": 0, "b": 1},
             template="plotly_dark",
             autosize=True,
-            showlegend=True,
+            showlegend=False,
             legend_orientation="h",
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
@@ -232,6 +228,7 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                 size=10,
                 color="#f4f4f4"
             ),
+            yaxis_title="Cases per 100k People"
         )
 
     return fig

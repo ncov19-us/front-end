@@ -28,12 +28,12 @@ tabs_styles = {
 }
 tab_style = {
     "padding": "0.5rem",
-    "color": "#F4F4F4",
+    "color": "transparent",
     "backgroundColor": "#010914",
 }
 
 tab_selected_style = {
-    "backgroundColor": "#20242d",
+    "backgroundColor": "transparent",
     "color": "white",
     "padding": "0.5rem",
 }
@@ -159,7 +159,7 @@ mobile_us_maps_tabs = dbc.Card(
         [
             html.Div(
                 [
-                    html.Div("US Map", className="mobile-top-bar-us-map-heading-txt",),
+                    # html.Div("US Map", className="mobile-top-bar-us-map-heading-txt",),
                     html.Div(
                         dcc.Tabs(
                             id="mobile-map-tabs",
@@ -521,9 +521,9 @@ def mobile_confirmed_cases_callback(state):
 )
 def mobile_trajectory_title_callback(state="US"):
     if state == "US":
-        return ["U.S. Trajectory"]
+        return ["U.S. Trajectory Comparison"]
     else:
-        return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
+        return [f"{REVERSE_STATES_MAP[state]} Trajectory Comparison"]
 
 @app.callback(
     [Output("mobile-trajectory-chart", "figure")], [Input("mobile-intermediate-value", "children")]
