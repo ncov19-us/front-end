@@ -987,8 +987,11 @@ p.tweet-dt {
 }
 /* .dash-freeze-top .dash-list-view .dash-no-filter  */
 .dash-spreadsheet-inner.dash-spreadsheet.dash-freeze-top.dash-list-view.dash-no-filter  {
-    /* Expan */
     min-height: 99vh !important;
+}
+
+.column-header--sort {
+    /* border: 1px solid green; */
 }
 
 .stats-table {
