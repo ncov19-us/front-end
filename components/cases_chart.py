@@ -1,6 +1,7 @@
+import gc
+import json
 import requests
 import pandas as pd
-import json
 import plotly.graph_objects as go
 from app import cache
 from utils.settings import REVERSE_STATES_MAP, NCOV19_API
@@ -19,7 +20,7 @@ def human_format(num):
     return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
 
-# @cache.memoize(timeout=3600)
+@cache.memoize(timeout=3600)
 def cases_chart(state='US') -> go.Figure:
     """Bar chart data for the selected state.
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
@@ -30,8 +31,7 @@ def cases_chart(state='US') -> go.Figure:
         payload = json.dumps({"alpha2Code": "US"})
         response = requests.post(URL, data=payload).json()
         data = response["message"]
-        data = pd.DataFrame(data)  # TODO remove for production
-        # data = pd.read_json(data, orient="records") # TODO uncomment for production
+        data = pd.DataFrame(data)  
         data = data.rename(columns={"Confirmed": "Confirmed Cases"})
         data = data.fillna(0)
 
@@ -49,9 +49,9 @@ def cases_chart(state='US') -> go.Figure:
             data = pd.DataFrame(backup)
 
         data = data.rename(columns={"Confirmed": "Confirmed Cases"})
-        ###########################################
-        #               end section               #
-        ###########################################
+        
+    del payload, response
+    gc.collect()
 
     # Calculate new cases and death for each day
     data["New Confirmed Cases"] = data["Confirmed Cases"].diff()
