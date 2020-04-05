@@ -397,11 +397,14 @@
     padding-bottom: 3.5vh;
 }
 
-
-/* US MAP STYLING */
+/* 📱 Mobile US Map 🌎*/
 
 .mobile-us-map-content {
     margin: var(--mobile-body-margin) var(--mobile-body-margin);
+}
+
+#mobile-us-map {
+    height: 75vh;
 }
 
 .tab-mobile-confirmed-us-map-tab {
@@ -446,9 +449,6 @@
     color: #FEFEFE !important;
 }
 
-
-
-/* 📱 Mobile Map 🌎*/
 
 .mobile-top-bar-us-map-heading-content {
     margin-top: 0rem;
@@ -549,8 +549,8 @@ th.dash-header.column-0 {
 
 .mobile-right-col-stats-content.col-2 .right-tabs-last-updated-text {
     font-size: var(--mobile-font-size-h4);
-    border-bottom-right-radius: .3rem;
-    border-bottom-left-radius: .3rem;
+    border-bottom-right-radius: .4rem;
+    border-bottom-left-radius: .4em;
     padding: 2vh 4vw;
     text-align: right !important;
 }
