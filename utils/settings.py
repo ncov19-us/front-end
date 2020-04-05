@@ -107,7 +107,7 @@ STATES_COORD = {
         "zoom": 6.5,
         "stateAbbr": "DE",
     },
-    "District Of Columbia": {
+    "District of Columbia": {
         "latitude": 38.897438,
         "longitude": -77.026817,
         "zoom": 8,

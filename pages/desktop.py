@@ -57,8 +57,13 @@ state_labels = [
     {"label": "Arizona", "value": "Arizona"},
     {"label": "Arkansas", "value": "Arkansas"},
     {"label": "California", "value": "California"},
+    {"label": "Colorado", "value": "Colorado"},
     {"label": "Connecticut", "value": "Connecticut"},
     {"label": "Delaware", "value": "Delaware"},
+    {
+        "label": "District of Columbia",
+        "value": "District of Columbia",
+    },  # NOTE: of is lowercase not titlecase -> `Of`
     {"label": "Florida", "value": "Florida"},
     {"label": "Georgia", "value": "Georgia"},
     {"label": "Hawaii", "value": "Hawaii"},

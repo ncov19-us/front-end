@@ -13,7 +13,7 @@ external_stylesheets = [
 meta_tags = [
     {
         "name": "description",
-        "content": "Live coronavirus news, statistics, and visualizations tracking the number of cases and death toll due to COVID-19, with up-to-date testing center information by US states and counties. Also provides current SARS-COV-2 vaccine progress and treatment research across different countries. Sign up for SMS updates."
+        "content": "Live coronavirus news, statistics, and visualizations tracking the number of cases and death toll due to COVID-19, with up-to-date testing center information by US states and counties. Also provides current SARS-COV-2 vaccine progress and treatment research across different countries. Sign up for SMS updates.",
     },
     {"name": "viewport", "content": "width=device-width, initial-scale=1.0"},
 ]
@@ -67,12 +67,12 @@ app.index_string = """<!DOCTYPE html>
         {%css%}
 
         <meta property="og:type" content="article">
-        <meta property="og:title" content="COVID-19 US Dashboard">
+        <meta property="og:title" content="ncov19 | Coronavirus COVID-19 Tracker with Testing Centers, SARS-COV-2 Vaccine Information, and SMS notification.">
         <meta property="og:site_name" content="ncov19.us">
         <meta property="og:url" content="ncov19.us">
         <meta property="og:image" content="https://pbs.twimg.com/media/EUT8vyGUMAAyCID?format=jpg&name=4096x4096">
         <meta property="article:published_time" content="2020-03-30">
-        <meta property="article:author" content="https://twitter.com/ncov19us?s=20">
+        <meta property="article:author" content="https://twitter.com/ncov19us">
 
     </head>
     <body>

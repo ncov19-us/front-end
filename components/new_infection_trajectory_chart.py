@@ -183,6 +183,7 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         state_populations = state_populations[
             state_populations["Region"] == f".{REVERSE_STATES_MAP[state]}"
         ]
+
         populations[REVERSE_STATES_MAP[state]] = state_populations["2019"].iloc[0]
 
         # Get cases per 100,000 people and create state_names list
