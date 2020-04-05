@@ -529,6 +529,17 @@ th.dash-header.column-0 {
     border-top-left-radius: 0;
 }
 
+.mobile-card-text .tweet-item-container , .mobile-card-text .news-item-container {
+    padding: 0 5vw;
+    margin: 5vw 0;
+    line-height: 1.35;
+    color: var(--nav-font-color);
+}
+
+.mobile-card-text .tweet-text , .mobile-card-text .news-txt-headline {
+    padding-bottom: 1vh;
+}
+
 .mobile-feed-card-body .tweet-text, .mobile-feed-card-body .news-txt-headline {
     font-size: var(--mobile-font-size-feed-body)
 }
