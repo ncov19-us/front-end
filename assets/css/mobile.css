@@ -638,17 +638,20 @@ p.right-tabs-last-updated-text {
 /* Hamburger menu overlay */
 .hidden-menu-div {
     background-color: #010915;
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw; */
+    width: 110vw;
+    /* height: 100vh; */
+    height: 150vh;
     padding:0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-left: -10.5rem;
-    margin-top: 37.5rem;
+    /* margin-top: 37.5rem; */
+    margin-top: 110vh;
     padding-bottom: 8rem;
-    position: fixed;
+    /* position: fixed; */
 }
 
 .hidden-menu-div a {
