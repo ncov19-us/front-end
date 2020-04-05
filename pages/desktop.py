@@ -232,7 +232,7 @@ def stats_tab_content(state):
             "border-bottom": "0.01rem solid #313841",
             "backgroundColor": "#010915",
             "color": "#FEFEFE",
-            "height": "2.5rem",
+            "height": "2.75vw",
         },
         style_cell_conditional=[
             {
