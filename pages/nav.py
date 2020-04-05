@@ -14,35 +14,31 @@ about_bar = dbc.Row(
     dbc.NavbarBrand(
         [
             html.A(
-                "CDC.gov",
+                "CDC",
                 id="navbar-resources-link",
                 className="navbar-brand-links",
                 href="https://www.cdc.gov/coronavirus/2019-ncov/index.html",
-                target='_blank',
+                target="_blank",
             ),
             html.A(
                 "World Health Organization",
                 id="navbar-resources-link",
                 className="navbar-brand-links",
                 href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
-                target='_blank',
+                target="_blank",
             ),
             # html.A(
-            #     "Get Mobile Updates", 
-            #     className="navbar-brand-links", 
+            #     "Get Mobile Updates",
+            #     className="navbar-brand-links",
             #     href="/",
             #     id="get-mobile-updates"
             # ),
             # html.A(
             #     "Vaccine Tracker",
-            #     className="navbar-brand-links", 
+            #     className="navbar-brand-links",
             #     href="/"
             # ),
-            html.A(
-                "About",
-                className="navbar-brand-links", 
-                href="/about"
-            )
+            html.A("About", className="navbar-brand-links", href="/about"),
         ]
     ),
     className="ml-auto flex-nowrap mt-md-0",
@@ -50,7 +46,7 @@ about_bar = dbc.Row(
 )
 
 # User row and col to control vertical alignment of logo/brand
-navbar =  [
+navbar = [
     dbc.Row(
         [
             # dbc.Col(
@@ -58,13 +54,11 @@ navbar =  [
             # ),
             dbc.Col(
                 html.A(
-                dbc.NavbarBrand(
-                    [
-                            html.P(
-                                "COVID-19", className="navbar-brand-covid-19-text"
-                            ),
-                        html.P("Tracker", className="navbar-brand-us-cases-text"),
-                    ]
+                    dbc.NavbarBrand(
+                        [
+                            html.P("COVID-19", className="navbar-brand-covid-19-text"),
+                            html.P("Tracker", className="navbar-brand-us-cases-text"),
+                        ]
                     ),
                     className="page-title-link",
                     href="/",
