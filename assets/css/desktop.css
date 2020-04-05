@@ -113,6 +113,7 @@
 
 .page-title-link:hover {
     text-decoration: none;
+    color: var(--font-color-confirmed);
 }
 
 .navbar-brand-covid-19-text {
