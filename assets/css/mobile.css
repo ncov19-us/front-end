@@ -25,7 +25,7 @@
     --mobile-font-size-card-value: 6.5vh;
     --mobile-font-size-card-category: 1.6vh;
     --mobile-font-size-card-perc-change: 1.5vh;
-    --mobile-font-size-table-heading: 1.5vh;
+    --mobile-font-size-table-heading: 2vh;
     --mobile-font-size-feed-body: 1.6vh;
     --mobile-font-size-feed-author: 1.3vh;
 
@@ -559,6 +559,9 @@ th.dash-header.column-0 {
     padding-bottom: 0;
 }
 
+.mobile-twitter-feed-tab, .mobile-news-feed-tab {
+    font-size: var(--mobile-font-size-table-heading);
+}
 
 /* 📱 Footer 🦶 */
 /* #footer-content {
@@ -575,7 +578,7 @@ th.dash-header.column-0 {
 
 .mobile-footer-disclaimer-content.row {
     margin-right: 3rem;
-    margin-left: 2vh;
+    margin-left: 5vh;
 }
 
 .mobile-footer-disclaimer-text {
@@ -584,7 +587,7 @@ th.dash-header.column-0 {
 
 .mobile-footer-social-copyright-content.row {
     padding-bottom: 1.1rem;
-    margin-left: 2vh;
+    margin-left: 5vh;
 }
 
 .mobile-fa-icons {
