@@ -27,7 +27,6 @@ from components import cases_chart, deaths_chart
 from components import stats_table
 
 
-
 ################ TABS STYLING ####################
 
 tabs_styles = {
@@ -383,12 +382,14 @@ mobile_body = [
                     ),
                     html.Div("Last 30 days", className="mobile-chart-h2-title",),
                     html.Div(
-                        dcc.Graph(
-                            id="mobile-confirmed-cases-timeline",
-                            figure=cases_chart(),
-                            config={"scrollZoom": False},
-                            style={"height": "20vh"},
-                        ),
+                        dcc.Loading(
+                            dcc.Graph(
+                                id="mobile-confirmed-cases-timeline",
+                                figure=cases_chart(),
+                                config={"scrollZoom": False},
+                                style={"height": "20vh"},
+                            ),
+                        )
                     ),
                 ],
             ),
@@ -452,12 +453,14 @@ mobile_body = [
                         "Days Since 100 Cases", className="mobile-chart-h2-title",
                     ),
                     html.Div(
-                        dcc.Graph(
-                            id="mobile-trajectory-chart",
-                            # figure=deaths_chart(),
-                            config={"scrollZoom": False},
-                            style={"height": "20vh"},
-                        ),
+                        dcc.Loading(
+                            dcc.Graph(
+                                id="mobile-trajectory-chart",
+                                # figure=deaths_chart(),
+                                config={"scrollZoom": False},
+                                style={"height": "20vh"},
+                            ),
+                        )
                     ),
                 ],
             ),
