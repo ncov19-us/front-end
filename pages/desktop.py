@@ -29,7 +29,7 @@ from components.column_stats import STATES
 
 ################ TABS STYLING ####################
 
-font_size = '0.8vw'
+font_size = "0.8vw"
 tabs_styles = {
     "flex-direction": "row",
 }
@@ -184,15 +184,12 @@ stats_tabs = dbc.Card(
 def stats_tab_content(state):
     df = stats_table(state)
 
-    font_size_heading = '1vw'
-    font_size_body = '0.8vw'
+    font_size_heading = "1vw"
+    font_size_body = "0.8vw"
     table = dash_table.DataTable(
         data=df.to_dict("records"),
         columns=[
-            {
-                "name": "State/County", 
-                "id": "State/County",
-            },
+            {"name": "State/County", "id": "State/County",},
             {
                 "name": "Confirmed",
                 "id": "Confirmed",
@@ -413,12 +410,14 @@ desktop_body = [
                                                 className="bottom-chart-h2-title",
                                             ),
                                             html.Div(
-                                                dcc.Graph(
-                                                    id="confirmed-cases-timeline",
-                                                    figure=cases_chart(),
-                                                    config={"responsive": False},
-                                                    style={"height": "20vh"},
-                                                    className='top-bottom-left-chart-figure"',
+                                                dcc.Loading(
+                                                    dcc.Graph(
+                                                        id="confirmed-cases-timeline",
+                                                        figure=cases_chart(),
+                                                        config={"responsive": False},
+                                                        style={"height": "20vh"},
+                                                        className='top-bottom-left-chart-figure"',
+                                                    ),
                                                 ),
                                                 id="chart-container",
                                             ),
