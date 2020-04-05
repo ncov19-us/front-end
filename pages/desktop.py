@@ -9,11 +9,17 @@ from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 
 from app import app
-from utils.settings import STATES_COORD, REVERSE_STATES_MAP, NCOV19_API
+from utils.settings import STATES_COORD, REVERSE_STATES_MAP
+
 
 from components import daily_stats
 from components import news_feed, twitter_feed
-from components import confirmed_cases_chart, infection_trajectory_chart, new_infection_trajectory_chart
+from components import (
+    confirmed_cases_chart,
+    infection_trajectory_chart,
+    new_infection_trajectory_chart,
+)
+
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
 from components import states_confirmed_stats, states_deaths_stats, last_updated
 from components import cases_chart, deaths_chart
@@ -161,10 +167,8 @@ def feed_tab_content(tab_value, state):
 
 stats_tabs = dbc.Card(
     [
-        dbc.CardBody(id="stats-table",
-                     className="stats-table-col",
-        ),
-        dbc.CardFooter(#html.P(
+        dbc.CardBody(id="stats-table", className="stats-table-col",),
+        dbc.CardFooter(  # html.P(
             f"Last Updated {last_updated.upper()}",
             className="right-tabs-last-updated-text",
         ),
@@ -172,93 +176,89 @@ stats_tabs = dbc.Card(
     className="stats-table-div",
 )
 
+
 @app.callback(
-    Output("stats-table", "children"),
-    [Input("intermediate-value", "children"),],
+    Output("stats-table", "children"), [Input("intermediate-value", "children"),],
 )
 def stats_tab_content(state):
     df = stats_table(state)
 
     table = dash_table.DataTable(
-                data=df.to_dict('records'),
-                columns=[
-                    {
-                        'name': 'State/County',
-                        'id': 'State/County',
-                    },
-                    {
-                        'name': 'Confirmed',
-                        'id': 'Confirmed',
-                        'type': 'numeric',
-                        'format': Format(group=','),
-                    },
-                    {
-                        'name': 'Deaths',
-                        'id': 'Deaths',
-                        'type': 'numeric',
-                        'format': Format(group=','),
-                    },
-                ],
-                editable=False,
-                sort_action="native",
-                sort_mode="multi",
-                column_selectable="single",
-                style_as_list_view=True,
-                fixed_rows={'headers': True},
-                fill_width=False,
-                style_table={
-                    # # 'overflowX': 'scroll',
-                    # 'minWidth': '0',
-                    'width': '100%',
-                    'height' : '100vh'
-                },
-                style_header={
-                    'font-size': '0.65rem',
-                    'backgroundColor': '#010915',
-                    'border': '#010915',
-                    'fontWeight': 'bold',
-                    'font': 'Lato, sans-serif',
-                },
-                style_cell={
-                    'font-size': '0.65rem',
-                    'font-family': 'Lato, sans-serif',
-                    'border-bottom': '0.01rem solid #313841',
-                    'backgroundColor': '#010915',
-                    'color': '#FFFFFF',
-                    'height': '2.5rem',
-                },
-                style_cell_conditional=[
-                    {
-                        'if': {
-                            'column_id': 'State/County',
-                        },
-                        'minWidth': '6.8rem', 
-                        'width': '6.8rem',
-                        'maxWidth': '6.8rem',
-                    },
-                    {
-                        'if': {
-                            'column_id': 'Confirmed',
-                        },
-                        'color': '#F4B000',
-                        'minWidth': '4.2rem', 'width': '4.2rem', 'maxWidth': '4.2rem',
-                    },
-                    {
-                        'if': {
-                            'column_id': 'Deaths',
-                        },
-                        'color': '#E55465',
-                        'minWidth': '4.2rem', 'width': '4.2rem', 'maxWidth': '4.2rem',
-                    },
-                ],
+        data=df.to_dict("records"),
+        columns=[
+            {"name": "State/County", "id": "State/County",},
+            {
+                "name": "Confirmed",
+                "id": "Confirmed",
+                "type": "numeric",
+                "format": Format(group=","),
+            },
+            {
+                "name": "Deaths",
+                "id": "Deaths",
+                "type": "numeric",
+                "format": Format(group=","),
+            },
+        ],
+        editable=False,
+        sort_action="native",
+        sort_mode="multi",
+        column_selectable="single",
+        style_as_list_view=True,
+        fixed_rows={"headers": True},
+        fill_width=False,
+        style_table={
+            # # 'overflowX': 'scroll',
+            # 'minWidth': '0',
+            "width": "100%",
+            "height": "100vh",
+        },
+        style_header={
+            "font-size": "0.65rem",
+            "backgroundColor": "#010915",
+            "border": "#010915",
+            "fontWeight": "bold",
+            "font": "Lato, sans-serif",
+        },
+        style_cell={
+            "font-size": "0.65rem",
+            "font-family": "Lato, sans-serif",
+            "border-bottom": "0.01rem solid #313841",
+            "backgroundColor": "#010915",
+            "color": "#FFFFFF",
+            "height": "2.5rem",
+        },
+        style_cell_conditional=[
+            {
+                "if": {"column_id": "State/County",},
+                "minWidth": "6.8rem",
+                "width": "6.8rem",
+                "maxWidth": "6.8rem",
+            },
+            {
+                "if": {"column_id": "Confirmed",},
+                "color": "#F4B000",
+                "minWidth": "4.2rem",
+                "width": "4.2rem",
+                "maxWidth": "4.2rem",
+            },
+            {
+                "if": {"column_id": "Deaths",},
+                "color": "#E55465",
+                "minWidth": "4.2rem",
+                "width": "4.2rem",
+                "maxWidth": "4.2rem",
+            },
+        ],
     )
     return table
     # Tried to add thousands separater w/ this following week, but cant get it to work.
     # https://community.plotly.com/t/dash-datatable-thousands-separator/6713/10
     # TypeError: ('grouping is not a format method. Expected one of',
     #  "['align', 'decimal_delimiter', 'fill', 'group', 'group_delimiter',
-    #  'groups', 'nully', 'padding', 'padding_width', 'precision', 
+    #  'groups', 'nully', 'padding', 'padding_width', 'precision',
     # 'scheme', 'si_prefix', 'sign', 'symbol', 'symbol_prefix', 'symbol_suffix', 'trim']")
+
 
 ########################################################################
 #
@@ -352,7 +352,11 @@ desktop_body = [
                 className="states-dropdown-container",
                 width=2,
             ),
-            dbc.Col(dbc.Row(id="daily-stats", className="top-bar-content"), width=10, className="top-bar-content-col"),
+            dbc.Col(
+                dbc.Row(id="daily-stats", className="top-bar-content"),
+                width=10,
+                className="top-bar-content-col",
+            ),
         ]
     ),
     dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
@@ -415,7 +419,7 @@ desktop_body = [
                                     dbc.CardBody(
                                         [
                                             html.Div(
-                                                id='death-chart-title',
+                                                id="death-chart-title",
                                                 # "Death Trajectory",
                                                 className="bottom-chart-h1-title",
                                             ),
@@ -432,9 +436,7 @@ desktop_body = [
                                                         style={"height": "20vh"},
                                                         className="top-bottom-mid-chart-figure",
                                                     ),
-                                                    style={
-                                                        "padding-top": "8px",
-                                                    },
+                                                    style={"padding-top": "8px",},
                                                     color="#19202A",
                                                 ),
                                                 id="chart-container",
@@ -451,7 +453,7 @@ desktop_body = [
                                     dbc.CardBody(
                                         [
                                             html.Div(
-                                                id = 'infection-trajectory-title',
+                                                id="infection-trajectory-title",
                                                 # "Infection Trajectory",
                                                 className="bottom-chart-h1-title",
                                             ),
@@ -462,15 +464,13 @@ desktop_body = [
                                             html.Div(
                                                 dcc.Loading(
                                                     dcc.Graph(
-                                                        id = 'infection-trajectory-chart',
+                                                        id="infection-trajectory-chart",
                                                         # figure=new_infection_trajectory_chart(),
                                                         config={"responsive": False},
                                                         style={"height": "20vh"},
                                                         className="top-bottom-right-chart-figure",
                                                     ),
-                                                    style={
-                                                        "padding-top": "8px",
-                                                    },
+                                                    style={"padding-top": "8px",},
                                                     color="#19202A",
                                                 ),
                                                 id="chart-container",
@@ -497,21 +497,23 @@ desktop_body = [
 #
 ########################################################################
 @app.callback(
-    [Output("confirmed-cases-timeline", "figure")], [Input("intermediate-value", "children")]
+    [Output("confirmed-cases-timeline", "figure")],
+    [Input("intermediate-value", "children")],
 )
 def confirmed_cases_callback(state):
     fig = cases_chart(state)
     return [fig]
 
+
 @app.callback(
-    [Output("confirmed-cases-chart-title", "children")], [Input("intermediate-value", "children")]
+    [Output("confirmed-cases-chart-title", "children")],
+    [Input("intermediate-value", "children")],
 )
 def confirmed_cases_callback(state="US"):
     if state == "US":
         return ["U.S. Confirmed Cases"]
     else:
         return [f"{REVERSE_STATES_MAP[state]} Confirmed Cases"]
-
 
 
 ########################################################################
@@ -525,6 +527,7 @@ def confirmed_cases_callback(state="US"):
 def confirmed_cases_callback(state):
     fig = deaths_chart(state)
     return [fig]
+
 
 @app.callback(
     [Output("death-chart-title", "children")], [Input("intermediate-value", "children")]
@@ -540,10 +543,12 @@ def death_callback(state="US"):
 #
 #                           Trajectory callback
 #
-######################################################################## 
+########################################################################
+
 
 @app.callback(
-    [Output("infection-trajectory-title", "children")], [Input("intermediate-value", "children")]
+    [Output("infection-trajectory-title", "children")],
+    [Input("intermediate-value", "children")],
 )
 def trajectory_title_callback(state="US"):
     if state == "US":
@@ -551,13 +556,14 @@ def trajectory_title_callback(state="US"):
     else:
         return [f"{REVERSE_STATES_MAP[state]} Trajectory Comparison"]
 
+
 @app.callback(
-    [Output("infection-trajectory-chart", "figure")], [Input("intermediate-value", "children")]
+    [Output("infection-trajectory-chart", "figure")],
+    [Input("intermediate-value", "children")],
 )
 def trajectory_chart_callback(state):
     fig = new_infection_trajectory_chart(state)
     return [fig]
-
 
 
 ########################################################################
@@ -579,10 +585,11 @@ def daily_stats_callback(state):
 #
 ########################################################################
 
+
 @app.callback(
     [Output("intermediate-value", "children")], [Input("states-dropdown", "value")]
 )
 def update_output(state):
-    #print(state)
+    # print(state)
     state = STATES_COORD[state]["stateAbbr"]
     return [state]

@@ -8,23 +8,18 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 from app import cache
-from utils.settings import (
-    MAPBOX_ACCESS_TOKEN,
-    DRIVE_THRU_URL,
-    NCOV19_API,
-    MAPBOX_STYLE,
-    STATES_COORD,
-)
+from utils import STATES_COORD
+from utils import config
 import requests
 
 
-px.set_mapbox_access_token(MAPBOX_ACCESS_TOKEN)
+px.set_mapbox_access_token(config.MAPBOX_ACCESS_TOKEN)
 
 
 # TODO: Make Drive-thru testing center API
 def get_drive_thru_testing_centers():
     try:
-        drive_thru_df = pd.read_csv(DRIVE_THRU_URL)
+        drive_thru_df = pd.read_csv(config.DRIVE_THRU_URL)
         drive_thru_df["Street Address"] = drive_thru_df["Street Address"].fillna("")
     except Exception as ex:
         print(ex)
@@ -45,7 +40,7 @@ def confirmed_scatter_mapbox(state="United States"):
     :rtype: dbc.Card
     """
 
-    URL = NCOV19_API + "county"
+    URL = config.NCOV19_API + config.COUNTY
     response = requests.get(URL).json()
     data = response["message"]
     data = pd.DataFrame.from_records(data)
@@ -103,7 +98,7 @@ def confirmed_scatter_mapbox(state="United States"):
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
         # This takes away the colorbar on the right hand side of the plot
         coloraxis_showscale=False,
-        mapbox_style=MAPBOX_STYLE,
+        mapbox_style=config.MAPBOX_STYLE,
         mapbox=dict(center=dict(lat=lat, lon=lon), zoom=zoom,),
     )
 
@@ -140,7 +135,7 @@ def drive_thru_scatter_mapbox(state="United States"):
 
     fig.layout.update(
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
-        mapbox_style=MAPBOX_STYLE,
+        mapbox_style=config.MAPBOX_STYLE,
         mapbox=dict(center=dict(lat=lat, lon=lon), zoom=zoom,),
         dragmode=False,
         hoverlabel={"bgcolor": "#900714", "font": {"color": "white"},},

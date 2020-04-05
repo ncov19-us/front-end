@@ -7,9 +7,8 @@ import requests
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
-from utils.settings import NCOV19_API
-from utils.settings import STATES_COORD
-
+from utils import config
+from utils import STATES_COORD
 
 
 @cache.memoize(timeout=900)
@@ -24,11 +23,13 @@ def twitter_feed(state="US") -> List[dbc.Card]:
     """
 
     if state == "US":
-        response = requests.get(NCOV19_API + "twitter").json()
+        response = requests.get(config.NCOV19_API + config.TWITTER).json()
     else:
         payload = {"state": state}
         payload = json.dumps(payload)
-        response = requests.post(NCOV19_API + "twitter", data=payload).json()
+        response = requests.post(
+            config.NCOV19_API + config.TWITTER, data=payload
+        ).json()
 
     if response["success"] == True:
 
@@ -38,7 +39,7 @@ def twitter_feed(state="US") -> List[dbc.Card]:
         tweets = data["tweets"]
         h = HTMLParser()
         for tweet in tweets:
-            tweet['full_text'] = h.unescape(tweet['full_text'])
+            tweet["full_text"] = h.unescape(tweet["full_text"])
     else:
         username = "JohnCena"
         full_name = "John Cena"
@@ -56,23 +57,29 @@ def twitter_feed(state="US") -> List[dbc.Card]:
     cards = [
         dbc.ListGroupItem(
             [
-                html.Div([
-                    html.A(
-                        html.P(tweet["full_text"][:100] + "...", className="tweet-text",),
-                        href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}",
-                        target="_blank",
-                    ),
-                    html.P(
-                        [
-                            # html.Strong(f"- {full_name} (@{username})"),
+                html.Div(
+                    [
+                        html.A(
                             html.P(
-                                f"- {username} (@{full_name}) {parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}",
-                                className="tweet-dt",
+                                tweet["full_text"][:100] + "...",
+                                className="tweet-text",
                             ),
-                        ],
-                        className="tweets-txt-by-dt",
-                    ),
-                ], className="tweet-item-container")
+                            href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}",
+                            target="_blank",
+                        ),
+                        html.P(
+                            [
+                                # html.Strong(f"- {full_name} (@{username})"),
+                                html.P(
+                                    f"- {username} (@{full_name}) {parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}",
+                                    className="tweet-dt",
+                                ),
+                            ],
+                            className="tweets-txt-by-dt",
+                        ),
+                    ],
+                    className="tweet-item-container",
+                )
             ],
             className="tweet-item",
         )

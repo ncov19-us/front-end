@@ -1,7 +1,8 @@
 import requests
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-from utils.settings import NCOV19_API, REVERSE_STATES_MAP
+from utils import REVERSE_STATES_MAP
+from utils import config
 from app import cache
 import pandas as pd
 
@@ -10,7 +11,7 @@ import pandas as pd
 
 # worked when i moved this into the try/except in the states_confirmed_stats function
 try:
-    URL = NCOV19_API + "county"
+    URL = config.NCOV19_API + config.COUNTY
     response = requests.get(URL).json()
     data = response["message"]
 
@@ -21,7 +22,7 @@ try:
 
     # death = data.groupby(["state_name"])["death"].sum()
     # death = death.sort_values(ascending=False).to_dict()
-    last_updated = data['last_update'][0]
+    last_updated = data["last_update"][0]
 
 except Exception as ex:
     print(f"[ERROR]: {ex}")
@@ -31,8 +32,9 @@ STATES = list(set(data["state_name"].to_list()))
 
 del response, data
 
+
 @cache.memoize(timeout=600)
-def states_confirmed_stats(state='United States') -> dbc.ListGroup:
+def states_confirmed_stats(state="United States") -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
         for the whole US
@@ -44,13 +46,12 @@ def states_confirmed_stats(state='United States') -> dbc.ListGroup:
     state = REVERSE_STATES_MAP[state]
 
     try:
-        URL = NCOV19_API + "county"
+        URL = config.NCOV19_API + config.COUNTY
         response = requests.get(URL).json()
         data = response["message"]
 
         data = pd.DataFrame.from_records(data)
         data["state_name"] = data["state_name"].str.title()
-        
 
         if state in ["US", "United States"]:
             # print('if state', state)
@@ -59,15 +60,18 @@ def states_confirmed_stats(state='United States') -> dbc.ListGroup:
             # print(confirmed)
         else:
             # print('else state', state)
-            confirmed = data[data['state_name'] == state]
+            confirmed = data[data["state_name"] == state]
             # print(1)
             confirmed = confirmed[["county_name", "confirmed"]]
-            confirmed = dict(confirmed.sort_values(by="confirmed", ascending=False).to_records(index=False))
-            # print(2)
+            confirmed = dict(
+                confirmed.sort_values(by="confirmed", ascending=False).to_records(
+                    index=False
+                )
+            )
+
         del response, data
     except:
         print(f"[ERROR] states_confirmed_stats({state}) error accessing ncov19.us API")
-
 
     list_group = dbc.ListGroup(
         [
@@ -99,13 +103,11 @@ def states_confirmed_stats(state='United States') -> dbc.ListGroup:
         className="states-stats-confirmed-listgroup",
     )
 
-    # print(confirmed.items().key)
-
     return list_group
 
 
 @cache.memoize(timeout=600)
-def states_deaths_stats(state='US') -> dbc.ListGroup:
+def states_deaths_stats(state="US") -> dbc.ListGroup:
     """    
     :params state: display news feed for a particular state. If None, display news feed
         for the whole US
@@ -115,7 +117,7 @@ def states_deaths_stats(state='US') -> dbc.ListGroup:
     """
 
     try:
-        URL = NCOV19_API + "county"
+        URL = config.NCOV19_API + config.COUNTY
         response = requests.get(URL).json()
         data = response["message"]
 
@@ -126,9 +128,13 @@ def states_deaths_stats(state='US') -> dbc.ListGroup:
             deaths = data.groupby(["state_name"])["deaths"].sum()
             deaths = confirmed.sort_values(ascending=False).to_dict()
         else:
-            deaths = data[data['state_name'] == state]
+            deaths = data[data["state_name"] == state]
             confirmed = df[["County Name", "Confirmed"]]
-            confirmed = dict(confirmed.sort_values(by="Confirmed", ascending=False).to_records(index=False))
+            confirmed = dict(
+                confirmed.sort_values(by="Confirmed", ascending=False).to_records(
+                    index=False
+                )
+            )
 
         del response, data
     except:

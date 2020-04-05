@@ -5,7 +5,7 @@ import requests
 import plotly.express as px
 import plotly.graph_objects as go
 from app import cache
-from utils.settings import NCOV19_API
+from utils import config
 
 
 @cache.memoize(timeout=3600)
@@ -13,12 +13,12 @@ def infection_trajectory_chart(state=None) -> go.Figure:
     """Line chart data for the selected state.
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
-    URL = NCOV19_API + "country"
+    URL = config.NCOV19_API + config.COUNTRY
 
     # US data
     payload = json.dumps({"alpha2Code": "US"})
     response = requests.post(URL, data=payload).json()
-    data = response["message"]    
+    data = response["message"]
     # us = pd.read_json(data, orient="records")
     us = pd.DataFrame.from_records(data)
     us = us["Confirmed"].to_frame("US")
@@ -87,7 +87,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
             hovertemplate=template,
         )
     )
-    
+
     # annotations = []
     # annotations.append(dict(xref='paper',
     #                         x=pd.to_numeric(merged["US"].dropna().tail(1).index[0]),
@@ -111,11 +111,7 @@ def infection_trajectory_chart(state=None) -> go.Figure:
         hoverlabel={"font": {"color": "black"}},
         xaxis_showgrid=False,
         yaxis_showgrid=False,
-        font=dict(
-            family="Roboto, sans-serif",
-            size=10,
-            color="#f4f4f4"
-        ),
+        font=dict(family="Roboto, sans-serif", size=10, color="#f4f4f4"),
         # legend=dict(
         #         title=None, orientation="v", y=-.35, yanchor="bottom", x=.5, xanchor="center"
         # )
