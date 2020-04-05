@@ -29,6 +29,7 @@ from components.column_stats import STATES
 
 ################ TABS STYLING ####################
 
+font_size = '0.8vw'
 tabs_styles = {
     "flex-direction": "row",
 }
@@ -36,11 +37,11 @@ tab_style = {
     "padding": "0.5rem",
     "color": "#AEAEAE",
     "backgroundColor": "#010914",
-    "fontSize": "0.7rem",
+    "fontSize": font_size,
 }
 
 tab_selected_style = {
-    "fontSize": "0.7rem",
+    "fontSize": font_size,
     # "backgroundColor": "#20242d",
     "color": "white",
     "padding": "0.5rem",
@@ -183,10 +184,15 @@ stats_tabs = dbc.Card(
 def stats_tab_content(state):
     df = stats_table(state)
 
+    font_size_heading = '1vw'
+    font_size_body = '0.8vw'
     table = dash_table.DataTable(
         data=df.to_dict("records"),
         columns=[
-            {"name": "State/County", "id": "State/County",},
+            {
+                "name": "State/County", 
+                "id": "State/County",
+            },
             {
                 "name": "Confirmed",
                 "id": "Confirmed",
@@ -214,18 +220,18 @@ def stats_tab_content(state):
             "height": "100vh",
         },
         style_header={
-            "font-size": "0.65rem",
+            # "font-size": font_size_heading,
             "backgroundColor": "#010915",
             "border": "#010915",
             "fontWeight": "bold",
             "font": "Lato, sans-serif",
         },
         style_cell={
-            "font-size": "0.65rem",
+            "font-size": font_size_body,
             "font-family": "Lato, sans-serif",
             "border-bottom": "0.01rem solid #313841",
             "backgroundColor": "#010915",
-            "color": "#FFFFFF",
+            "color": "#FEFEFE",
             "height": "2.5rem",
         },
         style_cell_conditional=[

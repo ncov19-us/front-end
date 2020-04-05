@@ -21,10 +21,13 @@
     /* Font Sizes */
     --mobile-font-size-h1: 2.5vh;
     --mobile-font-size-h2: 1.5vh;
-    --mobile-font-size-card-value: 7vh;
-    --mobile-font-size-card-category: 2vh;
-    --mobile-font-size-card-perc-change: 2vh;
-
+    --mobile-font-size-h4: 1.3vh;
+    --mobile-font-size-card-value: 6.5vh;
+    --mobile-font-size-card-category: 1.6vh;
+    --mobile-font-size-card-perc-change: 1.5vh;
+    --mobile-font-size-table-heading: 1.5vh;
+    --mobile-font-size-feed-body: 1.6vh;
+    --mobile-font-size-feed-author: 1.3vh;
 
     /* Mobile Body Padding */
     --mobile-body-margin: 3.2vw;
@@ -452,16 +455,16 @@
     padding-right: 0 !important;
 }
 
-.mobile-top-bar-us-map-heading-txt {
+/* .mobile-top-bar-us-map-heading-txt {
     font-size: 1rem;
     font-weight: normal;
     color: #F4F4F4;
     padding-top: 0.35rem;
     max-width: 50%;
-}
+} */
 
 .mobile-confirmed-us-map-tab, .mobile-testing-us-map-tab {
-    font-size: 0.75rem;
+    font-size: var(--mobile-font-size-table-heading);
     text-align: center;
     min-width: max-content;
     /* background-color: none !important; */
@@ -485,6 +488,20 @@
 /* State/County Stats Table */
 /*********************/
 
+.stats-table-div .row.row-0, .stats-table-div .row.row-1 {
+    margin: 0;
+    padding: 0 2vw;
+}
+
+.stats-table-div .column-header-name {
+    font-family: Lato, sans-serif;
+    font-size: var(--mobile-font-size-table-heading);
+    font-weight: 500;
+    /* padding-left: 1rem; */
+    /* padding: 1rem; */
+    color: var(--nav-font-color);
+}
+
 td.dash-cell.column-0 {
     text-align: left !important;
 }
@@ -496,18 +513,11 @@ span.column-header-name {
     width: 100%;
 }
 
-.row.row-1 {
-    margin: 0;
-    padding: 0 2vw;
-}
 
 .cell.cell-1-1.dash-fixed-content {
     width: 100%;
 }
 
-table {
-    width: 100%;
-}
 
 td.dash-cell.column-1, td.dash-cell.column-2, th.dash-header.column-1,  th.dash-header.column-2.cell--right-last{
     text-align: center !important;
@@ -519,9 +529,6 @@ th.dash-header.column-0 {
     margin: 0 1px;
 }
 
-
-
-/* Mobile Stats Content */
 
 .mobile-right-col-stats-content.col-2 {
     max-width: 100%;
@@ -536,16 +543,18 @@ th.dash-header.column-0 {
     padding-top: 0;
 }
 
-p.right-tabs-last-updated-text {
+/* p.right-tabs-last-updated-text {
     text-align: right !important;
-}
+} */
 
 .mobile-right-col-stats-content.col-2 .right-tabs-last-updated-text {
-    font-size: 2.5vw;
+    font-size: var(--mobile-font-size-h4);
     border-bottom-right-radius: .3rem;
     border-bottom-left-radius: .3rem;
     padding: 2vh 4vw;
+    text-align: right !important;
 }
+
 
 /* Mobile Twitter and News */
 .mobile-feed-content {
@@ -562,6 +571,14 @@ p.right-tabs-last-updated-text {
 .mobile-feed-card-body.card-body {
     border-top-right-radius: 0;
     border-top-left-radius: 0;
+}
+
+.mobile-feed-card-body .tweet-text, .mobile-feed-card-body .news-txt-headline {
+    font-size: var(--mobile-font-size-feed-body)
+}
+
+.mobile-feed-card-body .tweet-dt, .mobile-feed-card-body .news-txt-by-dt {
+    font-size: var(--mobile-font-size-feed-author)
 }
 
 .mobile-twitter-feed-tab {
@@ -581,18 +598,17 @@ p.right-tabs-last-updated-text {
 }
 
 .mobile-footer-disclaimer-content {
-    font-size: 0.65rem;
+    font-size: var(--mobile-font-size-h4);
+}
+
+.mobile-footer-disclaimer-content.row {
+    /* font-size: 0.65rem; */
+    margin-left: 1rem;
+    margin-right: 3rem;
 }
 
 .mobile-footer-disclaimer-text {
     padding-top: 2rem;
-}
-
-.mobile-footer-disclaimer-content.row {
-    /* padding-top: 1rem; */
-    font-size: 0.65rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
 }
 
 .mobile-footer-social-copyright-content.row {
