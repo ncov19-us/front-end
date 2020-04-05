@@ -498,7 +498,7 @@ span.column-header-name {
 
 .row.row-1 {
     margin: 0;
-    padding: 0 10px;
+    padding: 0 2vw;
 }
 
 .cell.cell-1-1.dash-fixed-content {
@@ -544,7 +544,7 @@ p.right-tabs-last-updated-text {
     font-size: 2.5vw;
     border-bottom-right-radius: .3rem;
     border-bottom-left-radius: .3rem;
-    padding: 0.5rem 1rem;
+    padding: 2vh 4vw;
 }
 
 /* Mobile Twitter and News */
