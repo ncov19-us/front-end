@@ -25,7 +25,7 @@
     --mobile-font-size-card-value: 6.5vh;
     --mobile-font-size-card-category: 1.6vh;
     --mobile-font-size-card-perc-change: 1.5vh;
-    --mobile-font-size-table-heading: 1.5vh;
+    --mobile-font-size-table-heading: 2vh;
     --mobile-font-size-feed-body: 1.6vh;
     --mobile-font-size-feed-author: 1.3vh;
 
@@ -216,7 +216,7 @@
 /* Mobile Card 🎴 section */
 
 .mobile-top-bar-content {
-    margin: 7vh var(--mobile-body-margin);
+    margin: 6vh var(--mobile-body-margin);
 }
 
 #mobile-daily-stats {
@@ -403,46 +403,27 @@
     margin: var(--mobile-body-margin) var(--mobile-body-margin);
 }
 
-#mobile-us-map {
-    height: 75vh;
-}
-
-.tab-mobile-confirmed-us-map-tab {
-    min-width: 5rem;
-    padding: 0.7rem;
-}
-
-.jsx-2597805859.tab.mobile-confirmed-us-map-tab.tab--selected {
-    padding: 0.7rem !important;
-    text-align: center;
-}
-
-.jsx-2597805859.tab.mobile-testing-us-map-tab {
-    padding: 0.7rem !important;
-    text-align: center;
-}
-
-.tab-mobile-testing-us-map-tab {
-    min-width: 5rem;
-    padding: 0.7rem;
-}
 
 .mobile-us-map-content .card .card-body {
     padding: 0;
 }
 
-.mobile-top-bar-us-map-heading-content {
-    padding-left: 0px;
-    padding-right: 15px;
+#mobile-us-map {
+    height: 75vh;
 }
 
-#mobile-map-tabs .tab.mobile-confirmed-us-map-tab {
-    padding: 1rem;
+#mobile-map-tabs {
+    border-top-left-radius: 0.4rem !important;
+
 }
 
-.tab.mobile-testing-us-map-tab {
-    padding: 1rem;
-    min-width: fit-content
+.tab.mobile-confirmed-us-map-tab.tab--selected, .tab.mobile-testing-us-map-tab.tab--selected, .tab.mobile-confirmed-us-map-tab, .tab.mobile-testing-us-map-tab {
+    padding: 0.7rem 1.4rem !important;
+    text-align: center;
+    min-width: max-content;
+    border-top-left-radius: 0.4rem !important;
+    font-size: var(--mobile-font-size-table-heading);
+    
 }
 
 .tab.mobile-confirmed-us-map-tab.tab--selected, .tab.mobile-testing-us-map-tab.tab--selected {
@@ -450,38 +431,13 @@
 }
 
 
-.mobile-top-bar-us-map-heading-content {
-    margin-top: 0rem;
-    padding-right: 0 !important;
-}
-
-/* .mobile-top-bar-us-map-heading-txt {
-    font-size: 1rem;
-    font-weight: normal;
-    color: #F4F4F4;
-    padding-top: 0.35rem;
-    max-width: 50%;
-} */
-
-.mobile-confirmed-us-map-tab, .mobile-testing-us-map-tab {
-    font-size: var(--mobile-font-size-table-heading);
-    text-align: center;
-    min-width: max-content;
-    /* background-color: none !important; */
-}
-
-.tab.mobile-confirmed-us-map-tab {
-    padding: 0.7rem !important;
-    /* background-color: none !important; */
-}
-
-.tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-testing-us-map-tab {
+.tab.mobile-testing-us-map-tab, .tab.mobile-testing-us-map-tab {
     border-top-right-radius: 1rem !important;
 }    
 
 
-.jsx-2597805859.tab.mobile-testing-us-map-tab:active, .jsx-2597805859.tab.mobile-testing-us-map-tab:hover, .jsx-2597805859.tab.mobile-confirmed-us-map-tab:active, .jsx-2597805859.tab.mobile-confirmed-us-map-tab:hover {
-    color: white !important;
+.tab.mobile-testing-us-map-tab:active, .tab.mobile-testing-us-map-tab:hover, .tab.mobile-confirmed-us-map-tab:active, .tab.mobile-confirmed-us-map-tab:hover {
+    color: var(--nav-font-color) !important;
 }
 
 
@@ -573,6 +529,17 @@ th.dash-header.column-0 {
     border-top-left-radius: 0;
 }
 
+.mobile-card-text .tweet-item-container , .mobile-card-text .news-item-container {
+    padding: 0 5vw;
+    margin: 5vw 0;
+    line-height: 1.35;
+    color: var(--nav-font-color);
+}
+
+.mobile-card-text .tweet-text , .mobile-card-text .news-txt-headline {
+    padding-bottom: 1vh;
+}
+
 .mobile-feed-card-body .tweet-text, .mobile-feed-card-body .news-txt-headline {
     font-size: var(--mobile-font-size-feed-body)
 }
@@ -589,10 +556,18 @@ th.dash-header.column-0 {
     background-color: var(--card-bg-color);
     border-top-right-radius: .3rem;
     border-top-left-radius: .3rem;
+    padding-bottom: 0;
 }
 
+.mobile-twitter-feed-tab, .mobile-news-feed-tab {
+    font-size: var(--mobile-font-size-table-heading);
+}
 
 /* 📱 Footer 🦶 */
+/* #footer-content {
+    padding: 1vh 2vh 1vh 8vh;
+} */
+
 .mobile-footer-content {
     background-color: #010915;
 }
@@ -602,9 +577,8 @@ th.dash-header.column-0 {
 }
 
 .mobile-footer-disclaimer-content.row {
-    /* font-size: 0.65rem; */
-    margin-left: 1rem;
     margin-right: 3rem;
+    margin-left: 5vh;
 }
 
 .mobile-footer-disclaimer-text {
@@ -613,6 +587,7 @@ th.dash-header.column-0 {
 
 .mobile-footer-social-copyright-content.row {
     padding-bottom: 1.1rem;
+    margin-left: 5vh;
 }
 
 .mobile-fa-icons {
@@ -623,7 +598,6 @@ th.dash-header.column-0 {
 
 .mobile-footer-copyright-text {
     font-size: 1rem;
-    margin-left: 2rem;
     align-self: center;
     color: #BDBDBD;
 }
@@ -637,7 +611,7 @@ th.dash-header.column-0 {
 .jsx-2597805859.tab.mobile-news-feed-tab:target,
 .jsx-2597805859.tab.mobile-twitter-feed-tab:focus, 
 .jsx-2597805859.tab.mobile-news-feed-tab:focus, .jsx-2597805859.tab.mobile-twitter-feed-tab:hover {
-    color: white !important;
+    color: var(--nav-font-color) !important;
 }
 
 .mobile-news-feed-tab {
