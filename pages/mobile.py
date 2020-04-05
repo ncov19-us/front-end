@@ -7,17 +7,24 @@ from dash_table.Format import Format
 from dash.dependencies import Input, Output, State
 
 from app import app
-from utils.settings import STATES_COORD, REVERSE_STATES_MAP, NCOV19_API
+from utils.settings import STATES_COORD, REVERSE_STATES_MAP
 
 from components import daily_stats_mobile
 from components import news_feed, twitter_feed
-from components import confirmed_cases_chart, infection_trajectory_chart, new_infection_trajectory_chart
+from components import (
+    confirmed_cases_chart,
+    infection_trajectory_chart,
+    new_infection_trajectory_chart,
+)
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
-from components import mobile_states_confirmed_stats, mobile_states_deaths_stats, mobile_last_updated
+from components import (
+    mobile_states_confirmed_stats,
+    mobile_states_deaths_stats,
+    mobile_last_updated,
+)
 from components.column_stats import STATES
 from components import cases_chart, deaths_chart
 from components import stats_table
-
 
 
 
@@ -131,9 +138,10 @@ mobile_feed_tabs = dbc.Card(
     ]
 )
 
+
 @app.callback(
     Output("mobile-feed-content-id", "children"),
-        [
+    [
         Input("mobile-feed-tabs-styled-with-inline", "value"),
         Input("mobile-intermediate-value", "children"),
     ],
@@ -206,11 +214,12 @@ mobile_us_maps_tabs = dbc.Card(
 )
 
 
-@app.callback(Output("mobile-us-map", "figure"), 
-              [                  
-                  Input("mobile-map-tabs", "value"),
-                  Input("mobile-intermediate-value", "children"),
-              ]
+@app.callback(
+    Output("mobile-us-map", "figure"),
+    [
+        Input("mobile-map-tabs", "value"),
+        Input("mobile-intermediate-value", "children"),
+    ],
 )
 def mobile_map_tab_content(value, state):
     """Callback to change between news and twitter feed
@@ -230,9 +239,7 @@ def mobile_map_tab_content(value, state):
 ########################################################################
 stats_tabs = dbc.Card(
     [
-        dbc.CardBody(id="mobile-stats-table",
-                className="stats-table-col",
-        ),
+        dbc.CardBody(id="mobile-stats-table", className="stats-table-col",),
         html.P(
             f"Last Updated {mobile_last_updated.upper()}",
             className="right-tabs-last-updated-text",
@@ -240,6 +247,7 @@ stats_tabs = dbc.Card(
     ],
     className="stats-table-div",
 )
+
 
 @app.callback(
     Output("mobile-stats-table", "children"),
@@ -249,74 +257,71 @@ def mobile_stats_tab_content(state):
     df = stats_table(state)
 
     table = dash_table.DataTable(
-                data=df.to_dict('records'),
-                columns=[
-                    {
-                        'name': 'State/County',
-                        'id': 'State/County',
-                    },
-                    {
-                        'name': 'Confirmed',
-                        'id': 'Confirmed',
-                        'type': 'numeric',
-                        'format': Format(group=','),
-                    },
-                    {
-                        'name': 'Deaths',
-                        'id': 'Deaths',
-                        'type': 'numeric',
-                        'format': Format(group=','),
-                    },
-                ],
-                editable=False,
-                sort_action="native",
-                sort_mode="multi",
-                column_selectable="single",
-                style_as_list_view=True,
-                fixed_rows={'headers': True},
-                fill_width=False,
-                style_table={
-                    # # 'overflowX': 'scroll',
-                    # 'minWidth': '0',
-                    'width': '100%',
-                },
-                style_header={
-                    'font-size': '0.65rem',
-                    'backgroundColor': '#010915',
-                    'border': '#010915',
-                    'fontWeight': 'bold',
-                    'font': 'Lato, sans-serif',
-                },
-                style_cell={
-                    'font-size': '0.65rem',
-                    'font-family': 'Roboto, sans-serif',
-                    'border-bottom': '0.01rem solid #313841',
-                    'backgroundColor': '#010915',
-                    'color': '#FFFFFF',
-                    'height': '2.5rem',
-                },
-                style_cell_conditional=[
-                    {
-                        'if': {
-                            'column_id': 'State/County',
-                        },
-                        'minWidth': '6.8rem', 'width': '6.8rem', 'maxWidth': '6.8rem',
-                    },
-                    {
-                        'if': {
-                            'column_id': 'Confirmed',
-                        },
-                        'color': '#F4B000',
-                        'minWidth': '4.2rem', 'width': '4.2rem', 'maxWidth': '4.2rem',
-                    },
-                    {
-                        'if': {
-                            'column_id': 'Deaths',
-                        },
-                        'color': '#E55465',
-                        'minWidth': '4.2rem', 'width': '4.2rem', 'maxWidth': '4.2rem',
-                    },
-                ],
+        data=df.to_dict("records"),
+        columns=[
+            {"name": "State/County", "id": "State/County",},
+            {
+                "name": "Confirmed",
+                "id": "Confirmed",
+                "type": "numeric",
+                "format": Format(group=","),
+            },
+            {
+                "name": "Deaths",
+                "id": "Deaths",
+                "type": "numeric",
+                "format": Format(group=","),
+            },
+        ],
+        editable=False,
+        sort_action="native",
+        sort_mode="multi",
+        column_selectable="single",
+        style_as_list_view=True,
+        fixed_rows={"headers": True},
+        fill_width=False,
+        style_table={
+            # # 'overflowX': 'scroll',
+            # 'minWidth': '0',
+            "width": "100%",
+        },
+        style_header={
+            "font-size": "0.65rem",
+            "backgroundColor": "#010915",
+            "border": "#010915",
+            "fontWeight": "bold",
+            "font": "Lato, sans-serif",
+        },
+        style_cell={
+            "font-size": "0.65rem",
+            "font-family": "Roboto, sans-serif",
+            "border-bottom": "0.01rem solid #313841",
+            "backgroundColor": "#010915",
+            "color": "#FFFFFF",
+            "height": "2.5rem",
+        },
+        style_cell_conditional=[
+            {
+                "if": {"column_id": "State/County",},
+                "minWidth": "6.8rem",
+                "width": "6.8rem",
+                "maxWidth": "6.8rem",
+            },
+            {
+                "if": {"column_id": "Confirmed",},
+                "color": "#F4B000",
+                "minWidth": "4.2rem",
+                "width": "4.2rem",
+                "maxWidth": "4.2rem",
+            },
+            {
+                "if": {"column_id": "Deaths",},
+                "color": "#E55465",
+                "minWidth": "4.2rem",
+                "width": "4.2rem",
+                "maxWidth": "4.2rem",
+            },
+        ],
     )
     return table
 
@@ -342,12 +347,12 @@ mobile_body = [
         className="mobile-states-dropdown-container",
         # justify='center',
         # no_gutter=True,
-        # width=2,  
+        # width=2,
     ),
     html.Div(
         # daily_stats_mobile()
         id="mobile-daily-stats",
-        className="mobile-top-bar-content"
+        className="mobile-top-bar-content",
     ),
     html.Div(
         mobile_us_maps_tabs,
@@ -356,9 +361,7 @@ mobile_body = [
     ),
     # adding stats content
     dbc.Col(stats_tabs, className="mobile-right-col-stats-content", width=2,),
-
     ##### MOBILE CHARTS #####
-
     # CHART 1
     html.Div(
         dbc.Card(
@@ -369,10 +372,7 @@ mobile_body = [
                         # "Confirmed Cases Timeline",
                         className="mobile-chart-h1-title",
                     ),
-                    html.Div(
-                        "Last 30 days",
-                        className="mobile-chart-h2-title",
-                    ),
+                    html.Div("Last 30 days", className="mobile-chart-h2-title",),
                     html.Div(
                         dcc.Graph(
                             id="mobile-confirmed-cases-timeline",
@@ -397,10 +397,7 @@ mobile_body = [
                         # "Death Trajectory",
                         className="mobile-chart-h1-title",
                     ),
-                    html.Div(
-                        "Last 30 days",
-                        className="mobile-chart-h2-title",
-                    ),
+                    html.Div("Last 30 days", className="mobile-chart-h2-title",),
                     html.Div(
                         dcc.Loading(
                             dcc.Graph(
@@ -421,7 +418,6 @@ mobile_body = [
                 #         "Days Since 200 Cases",
                 #         className="mobile-top-bottom-right-chart-h2-title",
                 #     ),
-                    
                 #     dcc.Graph(
                 #         figure=infection_trajectory_chart(),
                 #         config={"scrollZoom": False,},
@@ -434,22 +430,21 @@ mobile_body = [
         className="mobile-chart",
     ),
     # CHART 3
-     html.Div(
+    html.Div(
         dbc.Card(
             dbc.CardBody(
                 [
                     html.Div(
-                        id = 'mobile-trajectory-title',
+                        id="mobile-trajectory-title",
                         # "Placeholder",
                         className="mobile-chart-h1-title",
                     ),
                     html.Div(
-                        "Days Since 100 Cases",
-                        className="mobile-chart-h2-title",
+                        "Days Since 100 Cases", className="mobile-chart-h2-title",
                     ),
                     html.Div(
                         dcc.Graph(
-                            id = 'mobile-trajectory-chart',
+                            id="mobile-trajectory-chart",
                             # figure=deaths_chart(),
                             config={"scrollZoom": False},
                             style={"height": "20vh"},
@@ -474,15 +469,16 @@ mobile_body = [
 ########################################################################
 @app.callback(
     [Output("mobile-confirmed-cases-timeline", "figure")],
-    [Input("mobile-intermediate-value", "children")]
+    [Input("mobile-intermediate-value", "children")],
 )
 def mobile_confirmed_cases_callback(state="US"):
     fig = cases_chart(state)
     return [fig]
 
+
 @app.callback(
     [Output("mobile-confirmed-cases-chart-title", "children")],
-    [Input("mobile-intermediate-value", "children")]
+    [Input("mobile-intermediate-value", "children")],
 )
 def mobile_confirmed_cases_callback(state="US"):
     if state == "US":
@@ -498,7 +494,7 @@ def mobile_confirmed_cases_callback(state="US"):
 ########################################################################
 @app.callback(
     [Output("mobile-deaths-chart-title", "children")],
-    [Input("mobile-intermediate-value", "children")]
+    [Input("mobile-intermediate-value", "children")],
 )
 def mobile_death_callback(state="US"):
     if state == "US":
@@ -506,22 +502,26 @@ def mobile_death_callback(state="US"):
     else:
         return [f"{REVERSE_STATES_MAP[state]} Deaths"]
 
+
 @app.callback(
     [Output("mobile-deaths-timeline", "figure")],
-    [Input("mobile-intermediate-value", "children")]
+    [Input("mobile-intermediate-value", "children")],
 )
 def mobile_confirmed_cases_callback(state):
     fig = deaths_chart(state)
     return [fig]
 
+
 ########################################################################
 #
 #                           Trajectory callback
 #
-######################################################################## 
+########################################################################
+
 
 @app.callback(
-    [Output("mobile-trajectory-title", "children")], [Input("mobile-intermediate-value", "children")]
+    [Output("mobile-trajectory-title", "children")],
+    [Input("mobile-intermediate-value", "children")],
 )
 def mobile_trajectory_title_callback(state="US"):
     if state == "US":
@@ -529,8 +529,10 @@ def mobile_trajectory_title_callback(state="US"):
     else:
         return [f"{REVERSE_STATES_MAP[state]} Trajectory Comparison"]
 
+
 @app.callback(
-    [Output("mobile-trajectory-chart", "figure")], [Input("mobile-intermediate-value", "children")]
+    [Output("mobile-trajectory-chart", "figure")],
+    [Input("mobile-intermediate-value", "children")],
 )
 def mobile_trajectory_chart_callback(state):
     fig = new_infection_trajectory_chart(state)
@@ -542,11 +544,13 @@ def mobile_trajectory_chart_callback(state):
 #                          Top bar callback
 #
 ########################################################################
-@app.callback([Output("mobile-daily-stats", "children")], 
-              [Input("mobile-intermediate-value", "children")])
+@app.callback(
+    [Output("mobile-daily-stats", "children")],
+    [Input("mobile-intermediate-value", "children")],
+)
 def daily_stats_mobile_callback(state):
     # print(f'\n\nDaily_stats_mobile_callback for {state}')
-    cards = daily_stats_mobile(state) 
+    cards = daily_stats_mobile(state)
     return [cards]
 
 
@@ -556,9 +560,10 @@ def daily_stats_mobile_callback(state):
 #
 ########################################################################
 
+
 @app.callback(
-    [Output("mobile-intermediate-value", "children")], 
-    [Input("mobile-states-dropdown", "value")]
+    [Output("mobile-intermediate-value", "children")],
+    [Input("mobile-states-dropdown", "value")],
 )
 def update_output(state):
     state = STATES_COORD[state]["stateAbbr"]

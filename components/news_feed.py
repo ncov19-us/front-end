@@ -3,7 +3,8 @@ import pandas as pd
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
-from utils.settings import NCOV19_API, STATES_COORD
+from utils import STATES_COORD
+from utils import config
 import json
 
 
@@ -18,14 +19,14 @@ def news_feed(state="US") -> dbc.ListGroup:
     :return list_group: A bootstramp ListGroup containing ListGroupItem returns news feeds.
     :rtype: dbc.ListGroup    
     """
-
+    URL = config.NCOV19_API + config.NEWS
     if state == "US":
-        response = requests.get(NCOV19_API + "news")
+        response = requests.get(URL)
     else:
         payload = {"state": state, "topic": "coronavirus"}
         payload = json.dumps(payload)
-        response = requests.post(NCOV19_API + "news", data=payload)
-        
+        response = requests.post(config.NCOV19_API + config.NEWS, data=payload)
+
     if response.status_code == 200:
         json_data = response.json()
         json_data = json_data["message"]
@@ -37,16 +38,19 @@ def news_feed(state="US") -> dbc.ListGroup:
             [
                 dbc.ListGroupItem(
                     [
-                        html.Div([
-                            html.H6(
-                                f"{df.iloc[i]['title'].split(' - ')[0]}.",
-                                className="news-txt-headline",
-                            ),
-                            html.P(
-                                f"{df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['published']}",
-                                className="news-txt-by-dt",
-                            ),
-                        ], className="news-item-container")
+                        html.Div(
+                            [
+                                html.H6(
+                                    f"{df.iloc[i]['title'].split(' - ')[0]}.",
+                                    className="news-txt-headline",
+                                ),
+                                html.P(
+                                    f"{df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['published']}",
+                                    className="news-txt-by-dt",
+                                ),
+                            ],
+                            className="news-item-container",
+                        )
                     ],
                     className="news-item",
                     href=df.iloc[i]["url"],

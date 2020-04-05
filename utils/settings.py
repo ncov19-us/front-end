@@ -1,21 +1,3 @@
-from decouple import config
-
-
-# MapBox Token
-MAPBOX_ACCESS_TOKEN = config("MAPBOX_ACCESS_TOKEN")
-
-# MapBox Style
-MAPBOX_STYLE = "mapbox://styles/hurshd0/ck86zky880ory1ip18f5tw4y6"
-
-# ncov19.us API
-# NCOV19_API = "https://covid19-us-api.herokuapp.com/"
-# NCOV19_API = "https://44f38618.ngrok.io/"
-NCOV19_API = "https://covid19-us-api-staging.herokuapp.com/"
-
-# Drive Thru Facilities
-DRIVE_THRU_URL = "https://raw.githubusercontent.com/ncov19-us/ds/master/drive_thru_testing_locations/locations-with-addresses.csv"
-
-
 STATES_LAT_LONG = [
     {"state": "Alabama", "latitude": 32.806671, "longitude": -86.791130},
     {"state": "Alaska", "latitude": 61.370716, "longitude": -152.404419},

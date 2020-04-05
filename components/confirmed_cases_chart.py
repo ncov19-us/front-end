@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from app import cache
-from utils.settings import NCOV19_API
+from utils import config
 
 
 @cache.memoize(timeout=3600)
@@ -14,7 +14,7 @@ def confirmed_cases_chart(state=None) -> go.Figure:
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
 
-    URL = NCOV19_API + "country"
+    URL = config.NCOV19_API + config.COUNTRY
     payload = json.dumps({"alpha2Code": "US"})
     response = requests.post(URL, data=payload).json()
     data = response["message"]
@@ -48,7 +48,6 @@ def confirmed_cases_chart(state=None) -> go.Figure:
             hovertemplate=template_deaths,
         ),
     )
- 
 
     fig.update_layout(
         margin={"r": 0, "t": 0, "l": 0, "b": 1},
@@ -64,16 +63,11 @@ def confirmed_cases_chart(state=None) -> go.Figure:
         hoverlabel={"font": {"color": "black"}},
         xaxis_showgrid=False,
         yaxis_showgrid=False,
-        xaxis= {"tickformat": "%m/%y"},
-        font=dict(
-            family="Roboto, sans-serif",
-            size=10,
-            color="#f4f4f4"
-        ),
+        xaxis={"tickformat": "%m/%y"},
+        font=dict(family="Roboto, sans-serif", size=10, color="#f4f4f4"),
         legend=dict(
-                title=None, orientation="h", y=-.5, yanchor="bottom", x=0, xanchor="left"
-        )
+            title=None, orientation="h", y=-0.5, yanchor="bottom", x=0, xanchor="left"
+        ),
     )
 
     return fig
-

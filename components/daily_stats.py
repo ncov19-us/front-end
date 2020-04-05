@@ -4,8 +4,9 @@ from typing import List, Dict
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
+from utils import STATES_COORD
+from utils import config
 
-from utils.settings import NCOV19_API, STATES_COORD
 
 def safe_div(x, y):
     return 0 if int(y) == 0 else int(x) / int(y)
@@ -18,15 +19,15 @@ def get_daily_stats(state="United States") -> Dict:
     :return: :Dict: stats
     """
 
-    url = NCOV19_API + "stats"
+    URL = config.NCOV19_API + config.STATS
     tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
     try:
         if state in ["US", "United_States"]:
-            response = requests.get(url=url)
+            response = requests.get(url=URL)
         else:
             payload = json.dumps({"state": state})
-            response = requests.post(url=url, data=payload)
+            response = requests.post(url=URL, data=payload)
     except:
         print("[ERROR] get_daily_stats error accessing ncov19.us API")
 
@@ -55,8 +56,11 @@ def get_daily_stats(state="United States") -> Dict:
 
     todays_death_rate = round(safe_div(deaths, confirmed) * 100, 2)
     yesterdays_death_rate = round(
-        safe_div(int(deaths) - int(todays_deaths), 
-                int(confirmed) - int(todays_confirmed)) * 100, 2
+        safe_div(
+            int(deaths) - int(todays_deaths), int(confirmed) - int(todays_confirmed)
+        )
+        * 100,
+        2,
     )
     death_rate_change = todays_death_rate - yesterdays_death_rate
 
@@ -83,7 +87,7 @@ def daily_stats(state="US") -> List[dbc.Col]:
     """
     # 1. Fetch Stats
     # print(STATES_COORD[state]['stateAbbr'])
-    
+
     stats = get_daily_stats(state)
 
     # print("Desktop Site Stats ---> ", stats)
@@ -98,7 +102,9 @@ def daily_stats(state="US") -> List[dbc.Col]:
                     dbc.CardBody(
                         [
                             html.Br(),
-                            html.H1(f"{value:,d}", className=f"top-bar-value-{key.lower()}"),
+                            html.H1(
+                                f"{value:,d}", className=f"top-bar-value-{key.lower()}"
+                            ),
                             html.P(f"{key}", className="card-text"),
                         ],
                     ),
@@ -116,7 +122,9 @@ def daily_stats(state="US") -> List[dbc.Col]:
                                 f"{float(value[1]):+0.2f}% change",
                                 className=f"top-bar-perc-change-{key.lower()}",
                             ),
-                            html.H1(f"{value[0]}%", className=f"top-bar-value-{key.lower()}"),
+                            html.H1(
+                                f"{value[0]}%", className=f"top-bar-value-{key.lower()}"
+                            ),
                             html.P(f"{key}", className="card-text"),
                         ]
                     ),
@@ -134,7 +142,10 @@ def daily_stats(state="US") -> List[dbc.Col]:
                                 f"+ {value[1]:,d} new",
                                 className=f"top-bar-perc-change-{key.lower()}",
                             ),
-                            html.H1(f"{value[0]:,d}", className=f"top-bar-value-{key.lower()}"),
+                            html.H1(
+                                f"{value[0]:,d}",
+                                className=f"top-bar-value-{key.lower()}",
+                            ),
                             html.P(f"{key}", className="card-text"),
                         ]
                     ),
