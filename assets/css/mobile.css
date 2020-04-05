@@ -645,7 +645,8 @@ p.right-tabs-last-updated-text {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: -0.65rem;
+    margin-left: -10.5rem;
+    margin-top: 37.5rem;
     padding-bottom: 8rem;
 }
 
