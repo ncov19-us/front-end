@@ -648,6 +648,7 @@ p.right-tabs-last-updated-text {
     margin-left: -10.5rem;
     margin-top: 37.5rem;
     padding-bottom: 8rem;
+    position: fixed;
 }
 
 .hidden-menu-div a {
