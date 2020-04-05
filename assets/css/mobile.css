@@ -18,13 +18,15 @@
     --card-bg-color:#010915;
     --card-font-color:#F4F4F4;
 
+    /* Mobile Body Padding */
+    --mobile-body-margin: 3.2vw;
+
     /* About Page Variables */
     --about-font-color:#fefefe;
     --about-font-color-black:black;
     --about-border-color:#fefefe;
     --about-bg-color:#19202A;
     --about-bg-color-light:#D2D2D2;
-
     --about-font-family:'Roboto', sans-serif ;
 
 
@@ -34,98 +36,6 @@
     /* not using lato for now bc font weight is weird */
 
 }
-
-.mobile-us-map-content {
-    margin-top: 1rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-}
-
-.mobile-us-map-content .card .card-body {
-    padding: 0;
-}
-
-.mobile-top-bar-us-map-heading-content {
-    padding-left: 0px;
-    padding-right: 15px;
-}
-
-
-#mobile-map-tabs .tab.mobile-confirmed-us-map-tab {
-    padding: 1rem;
-}
-
-.tab.mobile-testing-us-map-tab {
-    padding: 1rem;
-    min-width: fit-content
-}
-
-.tab.mobile-confirmed-us-map-tab.tab--selected, .tab.mobile-testing-us-map-tab.tab--selected {
-    color: #FEFEFE !important;
-}
-
-/* 📱 Mobile Chart */
-
-.mobile-chart {
-    margin-top: 2rem;
-}
-
-.mobile-chart .card {
-    background-color: #010915;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    height: 35vh;
-} 
-
-.mobile-chart .card-body {
-    background-color: #010915;
-    margin-left: 0.6rem;
-    margin-right: 0.6rem;
-} 
-
-.mobile-chart-h1-title, .mobile-top-bottom-right-chart-h1-title {
-    font-size: 1.1rem;
-    font-weight: normal;
-    color: #F4F4F4;
-    max-width: 100%;
-    padding-top: .4rem;
-    padding-left: .1rem;
-}
-
-.mobile-chart-h2-title, .mobile-top-bottom-right-chart-h2-title {
-    font-size: 0.75rem;
-    color: #F4F4F4;
-    padding-left: .1rem;
-    padding-bottom: 1.5rem;
-}
-
-
-
-
-
-
-/* US MAP STYLING */
-.tab-mobile-confirmed-us-map-tab {
-    min-width: 5rem;
-    padding: 0.7rem;
-}
-
-.jsx-2597805859.tab.mobile-confirmed-us-map-tab.tab--selected {
-    padding: 0.7rem !important;
-    text-align: center;
-}
-
-.jsx-2597805859.tab.mobile-testing-us-map-tab {
-    padding: 0.7rem !important;
-    text-align: center;
-}
-
-.tab-mobile-testing-us-map-tab {
-    min-width: 5rem;
-    padding: 0.7rem;
-}
-
-
 
 /* Mobile Nav Bar */
 
@@ -178,7 +88,8 @@
     margin-bottom: 0rem;
 }
 
-/* Mobile Card 🎴 section */
+
+/* STATES DROPDOWN */
 
 .mt-4 {
     margin: 0rem;
@@ -288,6 +199,8 @@
     -webkit-transform: rotate(180deg);
 }
 
+/* Mobile Card 🎴 section */
+
 .mobile-top-bar-content {
     margin-left: 1rem;
     margin-right: 1rem;
@@ -303,8 +216,6 @@
     justify-content: space-evenly;
     background-color: none !important;
 }
-
-
 
 .mobile-top-bar-card-tested .list-group-item {
     border-top-left-radius: 0.3rem;
@@ -437,6 +348,90 @@
 }
 
 
+/* 📱 Mobile Chart */
+
+.mobile-chart {
+    margin-top: 4vh;
+}
+
+.mobile-chart .card {
+    background-color: #010915;
+    margin-left: var(--mobile-body-margin);
+    margin-right: var(--mobile-body-margin);
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    height: 37vh;
+} 
+
+.mobile-chart-h1-title {
+    font-size: var(--mobile-font-size-h1);
+    font-weight: normal;
+    color: #F4F4F4;
+    max-width: 100%;
+    padding-top: 0.8vh;
+    padding-left: .4vw;
+}
+
+.mobile-chart-h2-title {
+    font-size: var(--mobile-font-size-h2);
+    color: #F4F4F4;
+    padding-left: .4vw;
+    padding-bottom: 3.5vh;
+}
+
+
+/* US MAP STYLING */
+
+.mobile-us-map-content {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.tab-mobile-confirmed-us-map-tab {
+    min-width: 5rem;
+    padding: 0.7rem;
+}
+
+.jsx-2597805859.tab.mobile-confirmed-us-map-tab.tab--selected {
+    padding: 0.7rem !important;
+    text-align: center;
+}
+
+.jsx-2597805859.tab.mobile-testing-us-map-tab {
+    padding: 0.7rem !important;
+    text-align: center;
+}
+
+.tab-mobile-testing-us-map-tab {
+    min-width: 5rem;
+    padding: 0.7rem;
+}
+
+.mobile-us-map-content .card .card-body {
+    padding: 0;
+}
+
+.mobile-top-bar-us-map-heading-content {
+    padding-left: 0px;
+    padding-right: 15px;
+}
+
+#mobile-map-tabs .tab.mobile-confirmed-us-map-tab {
+    padding: 1rem;
+}
+
+.tab.mobile-testing-us-map-tab {
+    padding: 1rem;
+    min-width: fit-content
+}
+
+.tab.mobile-confirmed-us-map-tab.tab--selected, .tab.mobile-testing-us-map-tab.tab--selected {
+    color: #FEFEFE !important;
+}
+
+
+
 /* 📱 Mobile Map 🌎*/
 
 .mobile-top-bar-us-map-heading-content {
@@ -466,23 +461,12 @@
 
 .tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-testing-us-map-tab {
     border-top-right-radius: 1rem !important;
-
-    /* background-color: none !important; */
 }    
 
-.jsx-2597805859.tab.mobile-testing-us-map-tab, .jsx-2597805859.tab.mobile-confirmed-us-map-tab {
-    /* color: var(--font-color-tested) !important; */
-    /* background-color: none !important; */
-}
 
 .jsx-2597805859.tab.mobile-testing-us-map-tab:active, .jsx-2597805859.tab.mobile-testing-us-map-tab:hover, .jsx-2597805859.tab.mobile-confirmed-us-map-tab:active, .jsx-2597805859.tab.mobile-confirmed-us-map-tab:hover {
     color: white !important;
-    /* background-color: none !important; */
 }
-
-
-
-
 
 
 /* State/County Stats Table */
@@ -552,7 +536,7 @@ p.right-tabs-last-updated-text {
 
 /* Mobile Twitter and News */
 .mobile-feed-content {
-    padding: 1rem;
+    margin: 5vh var(--mobile-body-margin);
 }
 
 .mobile-feed-card-body {
