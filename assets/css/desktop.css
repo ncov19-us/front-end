@@ -187,7 +187,7 @@
 
 .navbar-brand-links:hover {
     text-decoration: none;
-    color: #aaaaaa;
+    color: var(--font-color-confirmed);
 }
 
 /* #navbar-resources-link {
@@ -209,7 +209,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 #page-content {
-    margin-top: 73px !important;
+    margin-top: -1vh !important;
 }
 
 .desktop {
@@ -415,6 +415,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     align-items: center;
     padding-left: 2rem;
     padding-right: 0;
+    margin-top: 10vh;
     font-family: var(--daily-stats-font-family);
     font-size: 2.1vw;
     max-width: 25%;
@@ -518,6 +519,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bar-content-col {
+    margin-top: 10vh;
     margin-left: auto;
     max-width: 75%;
 }
