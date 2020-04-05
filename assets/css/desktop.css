@@ -34,8 +34,8 @@
     --font-size-nav-title: 1.7vw;
     --font-size-nav-link: 1.0vw;
     --font-size-table-heading: .8vw;
-    --font-size-feed-body: 0.9vw;
-    --font-size-feed-author: 0.65vw;
+    --font-size-feed-body: 0.8vw;
+    --font-size-feed-author: 0.6vw;
     --font-size-card-value: 2.75vw;
     --font-size-card-category: 1vw;
     --font-size-card-perc-change: 0.75vw;
@@ -85,7 +85,7 @@
 
 /* Start
  */
-.navbar {
+.desktop-navbar {
     background-color: var(--nav-bg-color);
     border: none;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -831,6 +831,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     color: rgb(199, 199, 199) !important;
 }
 
+
+
 /* RIGHT SIDEBAR FEED STYLING */
 
 
@@ -844,17 +846,14 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     border-top-right-radius: 0.4rem;
 }
 
+#mobile-feed-tabs-styled-with-inline {
+    padding-bottom: 12px;
+}
 
 /* get rid of tab padding */
 .card-header {
     max-width:100%;
     padding: 0 0 .75rem 0;
-}
-
-.left-col-twitter-feed-content p {
-    margin-bottom: 1rem;
-    height: 100%;
-    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); */
 }
  
 .left-col-twitter-feed-content.col-2, .right-col-stats-content.col-2{
@@ -895,8 +894,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 
-/* .tweet-item p */
-
 /* overflow disable scroll bar */
 .left-col-feed-cards-text {
     overflow-y: scroll;
@@ -919,82 +916,38 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     display: none;  /* Safari and Chrome */
 }
 
-.news-item {
+.news-item, .tweet-item {
     border-bottom: 1px solid rgb(83, 83, 83) !important;
     padding: 0;
     margin: 0;
 }
 
-.news-item-container {
-    padding: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-bottom: 1rem;
-    padding-bottom: 0;
-    line-height: 1.35;
-    color: #F4F4F4;
-}
-
-.news-item:hover {
-    color: rgb(199, 199, 199) !important;
+.news-item:hover, .tweet-item:hover {
     text-decoration: none !important;
 }
 
-.tweet-item:hover {
-    color: rgb(199, 199, 199) !important;
-    text-decoration: none !important;
-}
-
-
-
-.tweet-item {
-    border-bottom: 1px solid rgb(83, 83, 83) !important;
-    padding: 0;
-    margin: 0;
-}
-
-.tweet-item-container {
-    padding: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-bottom: 1rem;
-    padding-bottom: 0;
+.tweet-item-container, .news-item-container {
+    padding: 0 1vw;
+    margin: 1vw 0;
     line-height: 1.35;
-    color: #F4F4F4;
-}
-
-p.tweet-dt {
-    margin-bottom: 0;
+    color: var(--nav-font-color);
 }
 
 /* Tweet/News Acticle Headline and source */
 
-.news-txt-headline {
+.news-txt-headline, .tweet-text {
     font-size: var(--font-size-feed-body);
     font-weight: normal;
     line-height: 1.35;
+    margin-bottom: 0.5vw
 }
 
-.news-txt-by-dt {
+.news-txt-by-dt, .tweet-dt{
     font-size: var(--font-size-feed-author);
 }
 
-.tweet-text {
-    font-size: var(--font-size-feed-body);
-    font-weight: normal;
-}
 
-.tweet-dt {
-    font-size: var(--font-size-feed-author);
-    color: #F4F4F4;
-}
-
-#mobile-feed-tabs-styled-with-inline {
-    padding-bottom: 12px;
-}
-
-
-.jsx-1990498210.tab.left-twitter-tab.tab--selected {
+.tab.left-twitter-tab.tab--selected {
     border-top-left-radius: 0.4rem;
 }
 
@@ -1002,12 +955,11 @@ p.tweet-dt {
     border-top-left-radius: 0.4rem;
 } 
 
-
 .left-col-twitter-feed-content .card-body {
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
-    padding-left: 0;
-    padding-right: 0;
+    /* padding-left: 0;
+    padding-right: 0; */
 }
 
 .left-col-twitter-feed-content .card-body::-webkit-scrollbar { 
@@ -1018,9 +970,11 @@ p.tweet-dt {
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 }
+
 .left-col-twitter-feed-content::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
+
 
 /* 👉👉👉👉LEFT SIDEBAR STATS TABLE STYLING */
 
@@ -1236,16 +1190,10 @@ p.tweet-dt {
 }
 
 
-.news-item:hover {
-    color: rgb(199, 199, 199) !important;
-    text-decoration: none !important;
-}
-
-.tweet-item:hover {
-    color: rgb(199, 199, 199) !important;
-    text-decoration: none !important;
-}
-
 .tweet-item a:hover {
     text-decoration: none !important;
+}
+
+.news-item-container:hover , .tweet-item-container:hover{
+    color: rgb(212, 212, 212) !important;
 }

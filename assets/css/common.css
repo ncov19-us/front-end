@@ -26,14 +26,13 @@ button {
     outline: none;
 }
 
-button:hover{
-    opacity: 0.5;
-    
-}
-
+/* button:hover{
+    opacity: 0.5; 
+} */
+/* 
 button:active{
     transform: translateY(4px);
-} 
+}  */
 
 
 /* Body */
