@@ -21,6 +21,10 @@
     /* Font Sizes */
     --mobile-font-size-h1: 2.5vh;
     --mobile-font-size-h2: 1.5vh;
+    --mobile-font-size-card-value: 7vh;
+    --mobile-font-size-card-category: 2vh;
+    --mobile-font-size-card-perc-change: 2vh;
+
 
     /* Mobile Body Padding */
     --mobile-body-margin: 3.2vw;
@@ -116,7 +120,6 @@
     
     /* padding-top: 1.5vh;
     padding-bottom: 1vh; */
-    margin-bottom: 5vh;
     /* padding-left: .2vw; */
     /* padding-right: 0; */
     padding: 1vh 5vw;
@@ -213,9 +216,14 @@
     margin: 7vh var(--mobile-body-margin);
 }
 
-.mobile-top-bar-content.list-group-item li {
-    margin-top: 50vh;
+#mobile-daily-stats {
+    padding-top: 7vh;
+    padding-bottom: 2vh;
+}
+
+.mobile-top-bar-content .list-group-item {
     background-color: none !important;
+    margin-bottom: 5vh;
 }
 
 .mobile-top-bar-content .list-group {
@@ -240,15 +248,15 @@
 }
 
 .mobile-card-text {
-    margin-top: -.65rem;
+    margin-top: -1vh;
     font-weight: normal;
     text-align: center;
-    margin-bottom: .95rem;
+    margin-bottom: -1vh;
 }
 
 .mobile-top-bar-card-tested {
     text-align: center;
-    font-size: .75rem;
+    font-size: var(--mobile-font-size-card-category);
     border: none;
     border-radius: .3rem;
     padding: .2rem; 
@@ -260,7 +268,7 @@
 .mobile-top-bar-value-tested {
     margin-top: -1rem;
     font-weight: 500;
-    font-size: 2.75rem;
+    font-size: var(--mobile-font-size-card-value);
     text-shadow: none;
     color: var(--font-color-tested);
 }
@@ -268,7 +276,7 @@
 .mobile-top-bar-card-confirmed {
     background-color: none;
     text-align: center;
-    font-size: .75rem;
+    font-size: var(--mobile-font-size-card-category);
     border: none;
     border-radius: .3rem;
     padding: .2rem; 
@@ -279,14 +287,14 @@
 .mobile-top-bar-value-confirmed {
     margin-top: -1rem;
     font-weight: 500;
-    font-size: 2.75rem;
+    font-size: var(--mobile-font-size-card-value);
     text-shadow: none;
 }
 
 .mobile-top-bar-card-deaths {
     background-color: none;
     text-align: center;
-    font-size: .75rem;
+    font-size: var(--mobile-font-size-card-category);
     border: none;
     border-radius: .3rem;
     padding: .2rem; 
@@ -304,13 +312,13 @@
 .mobile-top-bar-value-deaths {
     margin-top: -1rem;
     font-weight: 500;
-    font-size: 2.75rem;
+    font-size: var(--mobile-font-size-card-value);
     text-shadow: none;
 }
 
 .mobile-top-bar-card-death {
     text-align: center;
-    font-size: .75rem;
+    font-size: var(--mobile-font-size-card-category);
     border: none;
     border-radius: .3rem;
     padding: .2rem; 
@@ -325,33 +333,33 @@
 .mobile-top-bar-value-death {
     margin-top: -1rem;
     font-weight: 500;
-    font-size: 2.75rem;
+    font-size: var(--mobile-font-size-card-value);
     text-shadow: none;
 }
 
 .mobile-top-bar-perc-change-tested {
     color: #010915;
     margin-top: 0.2rem;
-    font-size: .70rem;
+    font-size: var(--mobile-font-size-card-perc-change);
 }
 
 
 .mobile-top-bar-perc-change-confirmed {
     color: #BDBDBD;
     margin-top: 0.2rem;
-    font-size: .7rem;
+    font-size: var(--mobile-font-size-card-perc-change);
 }
 
 .mobile-top-bar-perc-change-deaths {
     color: #BDBDBD;
     margin-top: 0.2rem;
-    font-size: .7rem;
+    font-size: var(--mobile-font-size-card-perc-change);
 }
 
 .mobile-top-bar-perc-change-death {
     color: #BDBDBD;
     margin-top: 0.2rem;
-    font-size: .7rem;
+    font-size: var(--mobile-font-size-card-perc-change);
 }
 
 
