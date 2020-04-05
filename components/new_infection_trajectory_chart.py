@@ -126,7 +126,7 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         )
 
     else:
-        URL = config.NCOV19_API + config.COUNTRY
+        URL = config.NCOV19_API + config.STATE
 
         # State selection for comparisons
 
