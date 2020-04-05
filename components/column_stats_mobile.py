@@ -1,14 +1,14 @@
 import requests
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-from utils.settings import NCOV19_API
+from utils import config
 from app import cache
 import pandas as pd
 
 
 # TODO: Remove logic from here and put it to AWS Lambda
 try:
-    URL = NCOV19_API + "county"
+    URL = config.NCOV19_API + config.COUNTY
     response = requests.get(URL).json()
     data = response["message"]
     data = pd.DataFrame.from_records(data)
@@ -19,7 +19,7 @@ try:
 
     death = data.groupby(["state_name"])["death"].sum()
     death = death.sort_values(ascending=False).to_dict()
-    mobile_last_updated = data['last_update'][0]
+    mobile_last_updated = data["last_update"][0]
 
 except Exception as ex:
     print(f"[ERROR]: {ex}")
@@ -28,6 +28,7 @@ except Exception as ex:
 STATES = list(set(data["state_name"].to_list()))
 
 del response, data
+
 
 @cache.memoize(timeout=600)
 def mobile_states_confirmed_stats() -> dbc.ListGroup:

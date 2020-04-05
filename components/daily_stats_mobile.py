@@ -4,12 +4,13 @@ from typing import List, Dict
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from app import cache
-
-from utils.settings import NCOV19_API, STATES_COORD
+from utils import config
+from utils import STATES_COORD
 
 
 def safe_div(x, y):
     return 0 if int(y) == 0 else int(x) / int(y)
+
 
 def get_daily_stats_mobile(state="United States") -> Dict:
     """Get daily stats from ncov19.us API, parse and return as a dictionary
@@ -18,7 +19,7 @@ def get_daily_stats_mobile(state="United States") -> Dict:
     :return: :Dict: stats
     """
 
-    url = NCOV19_API + "stats"
+    url = config.NCOV19_API + config.STATS
     tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
 
     try:
@@ -42,7 +43,7 @@ def get_daily_stats_mobile(state="United States") -> Dict:
         return stats
 
     data = response.json()["message"]
-    
+
     try:
         tested = data["tested"]
         confirmed = data["confirmed"]
@@ -55,8 +56,11 @@ def get_daily_stats_mobile(state="United States") -> Dict:
 
     todays_death_rate = round(safe_div(deaths, confirmed) * 100, 2)
     yesterdays_death_rate = round(
-        safe_div(int(deaths) - int(todays_deaths), 
-                int(confirmed) - int(todays_confirmed)) * 100, 2
+        safe_div(
+            int(deaths) - int(todays_deaths), int(confirmed) - int(todays_confirmed)
+        )
+        * 100,
+        2,
     )
     death_rate_change = todays_death_rate - yesterdays_death_rate
 
@@ -70,6 +74,7 @@ def get_daily_stats_mobile(state="United States") -> Dict:
     del data
 
     return stats
+
 
 # @cache.memoize(timeout=600)
 def daily_stats_mobile(state="US") -> List[dbc.Row]:
@@ -93,7 +98,9 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
             card = dbc.ListGroupItem(
                 [
                     html.P(" .", className=f"mobile-top-bar-perc-change-{key.lower()}"),
-                    html.H1(f"{value:,d}", className=f"mobile-top-bar-value-{key.lower()}"),
+                    html.H1(
+                        f"{value:,d}", className=f"mobile-top-bar-value-{key.lower()}"
+                    ),
                     html.P(f"{key}", className="mobile-card-text"),
                 ],
                 className=f"mobile-top-bar-card-{key.lower()}",
@@ -105,7 +112,9 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
                         f" {float(value[1]):+0.2f}% change",
                         className=f"mobile-top-bar-perc-change-{key.lower()}",
                     ),
-                    html.H1(f"{value[0]}%", className=f"mobile-top-bar-value-{key.lower()}"),
+                    html.H1(
+                        f"{value[0]}%", className=f"mobile-top-bar-value-{key.lower()}"
+                    ),
                     html.P(f"{key}", className="mobile-card-text"),
                 ],
                 className=f"mobile-top-bar-card-{key.lower()}",
@@ -117,12 +126,15 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
                         f"+ {value[1]} new",
                         className=f"mobile-top-bar-perc-change-{key.lower()}",
                     ),
-                    html.H1(f"{value[0]:,d}", className=f"mobile-top-bar-value-{key.lower()}"),
+                    html.H1(
+                        f"{value[0]:,d}",
+                        className=f"mobile-top-bar-value-{key.lower()}",
+                    ),
                     html.P(f"{key}", className="mobile-card-text"),
                 ],
                 className=f"mobile-top-bar-card-{key.lower()}",
             )
-            
+
         cards.append(card)
 
     cards = dbc.ListGroup(cards)

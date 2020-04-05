@@ -5,19 +5,23 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from app import cache
-from utils.settings import NCOV19_API, REVERSE_STATES_MAP
+from utils import REVERSE_STATES_MAP
+from utils import config
+
+
+# TODO: Population is hardcoded we can pull it from our BE
 
 
 @cache.memoize(timeout=3600)
-def new_infection_trajectory_chart(state='US') -> go.Figure:
+def new_infection_trajectory_chart(state="US") -> go.Figure:
     """Line chart data for the selected state.
 
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
 
-    if state == 'US':
+    if state == "US":
 
-        URL = NCOV19_API + "country"
+        URL = config.NCOV19_API + config.COUNTRY
 
         # US data
         payload = json.dumps({"alpha2Code": "US"})
@@ -54,9 +58,9 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
         ITALY_POP = 60500000
         SK_POP = 51200000
 
-        merged['South Korea'] = merged['South Korea']/(SK_POP/100000)
-        merged['US'] = merged['US']/(US_POP/100000)
-        merged['Italy'] = merged['Italy']/(ITALY_POP/100000)
+        merged["South Korea"] = merged["South Korea"] / (SK_POP / 100000)
+        merged["US"] = merged["US"] / (US_POP / 100000)
+        merged["Italy"] = merged["Italy"] / (ITALY_POP / 100000)
 
         del response, data, us, kr, it
         gc.collect()
@@ -64,15 +68,21 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
         fig = go.Figure()
 
         # <extra></extra> remove name from the end of the hover over text
-        template = "%{y:.0f} confirmed cases per 100,000 people<br>in %{text} <extra></extra>"
+        template = (
+            "%{y:.0f} confirmed cases per 100,000 people<br>in %{text} <extra></extra>"
+        )
 
-        countries = ['Italy', 'South Korea', 'US']
+        countries = ["Italy", "South Korea", "US"]
         colors = ["#009d00", "#009fe2", "#F4B000"]
 
         for i, country in enumerate(countries):
             # CALCULATE ANNOTATION POSITION:
-            annotation_x = merged[["Days", country]].dropna()['Days'].max()  # FIND LAST DAY ON LINE
-            annotation_y = merged[["Days", country]].dropna()[country].max()  # FIND HIGHEST POINT ON LINE
+            annotation_x = (
+                merged[["Days", country]].dropna()["Days"].max()
+            )  # FIND LAST DAY ON LINE
+            annotation_y = (
+                merged[["Days", country]].dropna()[country].max()
+            )  # FIND HIGHEST POINT ON LINE
 
             fig.add_trace(
                 go.Scatter(
@@ -81,10 +91,9 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                     name=country,
                     line={"color": colors[i]},
                     mode="lines",
-                    text=[country]*len(merged[country]),
+                    text=[country] * len(merged[country]),
                     hovertemplate=template,
                 )
-
             )
 
             # LINE CHART ANNOTATION
@@ -97,9 +106,9 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                 yshift=10,  # Annotation y displacement!
                 showarrow=False,
                 align="right",
-                xanchor="right"
+                xanchor="right",
             )
-        
+
         fig.update_layout(
             margin={"r": 0, "t": 0, "l": 0, "b": 1},
             template="plotly_dark",
@@ -112,25 +121,21 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
             hoverlabel={"font": {"color": "black"}},
             xaxis_showgrid=False,
             yaxis_showgrid=False,
-            font=dict(
-                family="Roboto, sans-serif",
-                size=10,
-                color="#f4f4f4"
-            ),
-            yaxis_title="Cases per 100k People"
+            font=dict(family="Roboto, sans-serif", size=10, color="#f4f4f4"),
+            yaxis_title="Cases per 100k People",
         )
 
     else:
-        URL = NCOV19_API + "state"
+        URL = config.NCOV19_API + config.COUNTRY
 
         # State selection for comparisons
 
-        comparison_states = ['NY', 'CA', 'WA']
+        comparison_states = ["NY", "CA", "WA"]
 
         states = [state]
-        
+
         for s in comparison_states:
-            if len(states)<3 and s not in states:
+            if len(states) < 3 and s not in states:
                 states.append(s)
 
         # Ingestion
@@ -141,14 +146,18 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
 
             if response.status_code == 200:
                 data = response.json()["message"]
-                data = pd.DataFrame(data)  
+                data = pd.DataFrame(data)
             else:
-                backup = [{'Date': '1/1/20', 'Confirmed': 1337},
-                          {'Date': '3/1/20', 'Confirmed': 1338}]
+                backup = [
+                    {"Date": "1/1/20", "Confirmed": 1337},
+                    {"Date": "3/1/20", "Confirmed": 1338},
+                ]
                 data = pd.DataFrame(backup)
-        
-            temp_data = data['Confirmed'].to_frame(REVERSE_STATES_MAP[comp_state])
-            temp_data = temp_data[temp_data[REVERSE_STATES_MAP[comp_state]] > 100].reset_index(drop=True)
+
+            temp_data = data["Confirmed"].to_frame(REVERSE_STATES_MAP[comp_state])
+            temp_data = temp_data[
+                temp_data[REVERSE_STATES_MAP[comp_state]] > 100
+            ].reset_index(drop=True)
             series[i] = temp_data
 
         merged = pd.concat([series[0], series[1], series[2]], axis=1)
@@ -160,37 +169,45 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
 
         # Population logic
         populations = {
-            'New York':19453561,
-            'Washington':7614893,
-            'California':39512223
+            "New York": 19453561,
+            "Washington": 7614893,
+            "California": 39512223,
         }
 
-        state_populations = pd.read_csv('components/state-population-est2019.csv')
-        state_populations = state_populations[['Region', '2019']]
-        state_populations['2019'] = state_populations['2019'].str.replace(',', '')
-        state_populations['2019'] = state_populations['2019'].fillna(0)
-        state_populations['2019'] = state_populations['2019'].astype(int)
-    
-        state_populations = state_populations[state_populations['Region']==f'.{REVERSE_STATES_MAP[state]}']
-        populations[REVERSE_STATES_MAP[state]] = state_populations['2019'].iloc[0]
+        state_populations = pd.read_csv("components/state-population-est2019.csv")
+        state_populations = state_populations[["Region", "2019"]]
+        state_populations["2019"] = state_populations["2019"].str.replace(",", "")
+        state_populations["2019"] = state_populations["2019"].fillna(0)
+        state_populations["2019"] = state_populations["2019"].astype(int)
+
+        state_populations = state_populations[
+            state_populations["Region"] == f".{REVERSE_STATES_MAP[state]}"
+        ]
+        populations[REVERSE_STATES_MAP[state]] = state_populations["2019"].iloc[0]
 
         # Get cases per 100,000 people and create state_names list
         state_names = []
         for s in states:
             name = REVERSE_STATES_MAP[s]
             state_names.append(name)
-            merged[name] = merged[name]/(populations[name]/100000)
+            merged[name] = merged[name] / (populations[name] / 100000)
 
         # Plotting
         colors = ["#F4B000", "#009d00", "#009fe2"]
         fig = go.Figure()
 
-        template = "%{y:.0f} confirmed cases per 100,000 people<br>in %{text} <extra></extra>"
+        template = (
+            "%{y:.0f} confirmed cases per 100,000 people<br>in %{text} <extra></extra>"
+        )
 
-        for i,name in enumerate(state_names):
+        for i, name in enumerate(state_names):
             # CALCULATE ANNOTATION POSITION:
-            annotation_x = merged[["Days", name]].dropna()['Days'].max()  # FIND LAST DAY ON LINE
-            annotation_y = merged[["Days", name]].dropna()[name].max()  # FIND HIGHEST POINT ON LINE
+            annotation_x = (
+                merged[["Days", name]].dropna()["Days"].max()
+            )  # FIND LAST DAY ON LINE
+            annotation_y = (
+                merged[["Days", name]].dropna()[name].max()
+            )  # FIND HIGHEST POINT ON LINE
 
             fig.add_trace(
                 go.Scatter(
@@ -199,8 +216,8 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                     name=name,
                     line={"color": colors[i]},
                     mode="lines",
-                    text = [name]*len(merged[name]),
-                    hovertemplate=template
+                    text=[name] * len(merged[name]),
+                    hovertemplate=template,
                 )
             )
 
@@ -213,7 +230,7 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
                 yshift=10,  # Annotation y displacement!
                 showarrow=False,
                 align="right",
-                xanchor="right"
+                xanchor="right",
             )
 
         fig.update_layout(
@@ -228,12 +245,8 @@ def new_infection_trajectory_chart(state='US') -> go.Figure:
             hoverlabel={"font": {"color": "black"}},
             xaxis_showgrid=False,
             yaxis_showgrid=False,
-            font=dict(
-                family="Roboto, sans-serif",
-                size=10,
-                color="#f4f4f4"
-            ),
-            yaxis_title="Cases per 100k People"
+            font=dict(family="Roboto, sans-serif", size=10, color="#f4f4f4"),
+            yaxis_title="Cases per 100k People",
         )
 
     return fig

@@ -4,7 +4,8 @@ import requests
 import pandas as pd
 import plotly.graph_objects as go
 from app import cache
-from utils.settings import REVERSE_STATES_MAP, NCOV19_API
+from utils import REVERSE_STATES_MAP
+from utils import config
 
 
 def human_format(num):
@@ -12,31 +13,33 @@ def human_format(num):
     Formats a number and returns a human-readable version of it in string form. Ex: 300,000 -> 300k
     :params num: number to be converted to a formatted string
     """
-    num = float('{:.3g}'.format(num))
+    num = float("{:.3g}".format(num))
     magnitude = 0
     while abs(num) >= 1000:
         magnitude += 1
         num /= 1000.0
-    return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
+    return "{}{}".format(
+        "{:f}".format(num).rstrip("0").rstrip("."), ["", "K", "M", "B", "T"][magnitude]
+    )
 
 
 @cache.memoize(timeout=3600)
-def cases_chart(state='US') -> go.Figure:
+def cases_chart(state="US") -> go.Figure:
     """Bar chart data for the selected state.
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
 
-    if state == 'US':
-        URL = NCOV19_API + 'country'
+    if state == "US":
+        URL = config.NCOV19_API + config.COUNTRY
         payload = json.dumps({"alpha2Code": "US"})
         response = requests.post(URL, data=payload).json()
         data = response["message"]
-        data = pd.DataFrame(data)  
+        data = pd.DataFrame(data)
         data = data.rename(columns={"Confirmed": "Confirmed Cases"})
         data = data.fillna(0)
 
     else:
-        URL = NCOV19_API + 'state'
+        URL = config.NCOV19_API + config.STATE
         payload = json.dumps({"stateAbbr": state})
         response = requests.post(URL, data=payload)
 
@@ -44,12 +47,14 @@ def cases_chart(state='US') -> go.Figure:
             data = response.json()["message"]
             data = pd.DataFrame(data)
         else:
-            backup = [{'Date': '1/1/20', 'Confirmed': 0, 'Deaths': 0},
-                      {'Date': '3/1/20', 'Confirmed': 0, 'Deaths': 0}]
+            backup = [
+                {"Date": "1/1/20", "Confirmed": 0, "Deaths": 0},
+                {"Date": "3/1/20", "Confirmed": 0, "Deaths": 0},
+            ]
             data = pd.DataFrame(backup)
 
         data = data.rename(columns={"Confirmed": "Confirmed Cases"})
-        
+
     del payload, response
     gc.collect()
 
@@ -58,7 +63,7 @@ def cases_chart(state='US') -> go.Figure:
     data["New Deaths"] = data["Deaths"].diff()
 
     # Turn date into datetime format
-    data['Date'] = pd.to_datetime(data['Date'], infer_datetime_format=False)
+    data["Date"] = pd.to_datetime(data["Date"], infer_datetime_format=False)
 
     data = data.tail(30)
     # Limit data to 1% of current maximum number of cases
@@ -68,7 +73,7 @@ def cases_chart(state='US') -> go.Figure:
     plot_tail = data.iloc[-1].to_list()
     annotation_x = plot_tail[0]  # LAST TIMESTAMP
     annotation_y1 = plot_tail[1]  # LAST CONFIRMED CASES COUNT
-    annotation_y2 = data['New Confirmed Cases'].max()  # HIGHEST BAR ON BAR CHART
+    annotation_y2 = data["New Confirmed Cases"].max()  # HIGHEST BAR ON BAR CHART
 
     template_new = "%{customdata} confirmed new cases on %{x}<extra></extra>"
     template_total = "%{customdata} confirmed total cases on %{x}<extra></extra>"
@@ -103,7 +108,7 @@ def cases_chart(state='US') -> go.Figure:
         text="Total COVID-19 Cases",
         font={"size": 10},
         xshift=-65,  # Annotation x displacement!
-        showarrow=False
+        showarrow=False,
     )
 
     # BAR CHART ANNOTATION
@@ -114,7 +119,7 @@ def cases_chart(state='US') -> go.Figure:
         font={"size": 10},
         xshift=-40,  # Annotation x displacement!
         yshift=10,  # Annotation y displacement!
-        showarrow=False
+        showarrow=False,
     )
 
     fig.update_layout(
@@ -134,11 +139,7 @@ def cases_chart(state='US') -> go.Figure:
         xaxis_showgrid=False,
         yaxis_showgrid=False,
         xaxis={"tickformat": "%m/%d"},
-        font=dict(
-            family="Roboto, sans-serif",
-            size=10,
-            color="#f4f4f4"
-        ),
+        font=dict(family="Roboto, sans-serif", size=10, color="#f4f4f4"),
         yaxis_title="Number of cases",
         # xaxis_title="Date"
         #         legend=dict(

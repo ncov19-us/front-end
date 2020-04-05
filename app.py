@@ -2,7 +2,7 @@ import flask
 from flask_caching import Cache
 import dash
 import dash_bootstrap_components as dbc
-
+from utils import config
 
 # stylesheet tbd
 external_stylesheets = [
@@ -39,10 +39,9 @@ cache = Cache(
     },
 )
 
-# TODO: BAD PRACTICE, MOVE IT OUT
-server.secret_key = b"ceb69b2819fc46ebba007cb598e77319"
+server.secret_key = config.SECRET_KEY
 app.config.suppress_callback_exceptions = True
-app.title = "Coronavirus COVID19 US Dashboard"
+app.title = "ncov19us | Coronavirus COVID-19 SARS-COV2 US Dashboard"
 
 
 ########################################################################
