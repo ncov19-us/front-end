@@ -28,11 +28,11 @@ def twitter_feed(state="US") -> List[dbc.Card]:
         payload = {"state": state}
         payload = json.dumps(payload)
         response = requests.post(
-            config.NCOV19_API + config.TWITTER, data=payload
+            config.NCOV19_API + config.TWITTER,
+            data=payload
         ).json()
 
     if response["success"] == True:
-
         data = response["message"]
         username = data["username"]
         full_name = data["full_name"]
@@ -50,9 +50,6 @@ def twitter_feed(state="US") -> List[dbc.Card]:
                 "created_at": "2020-03-25T22:05:24",
             }
         ]
-
-    del response
-    gc.collect()
 
     cards = [
         dbc.ListGroupItem(
@@ -86,5 +83,8 @@ def twitter_feed(state="US") -> List[dbc.Card]:
         for tweet in tweets
     ]
     list_group = dbc.ListGroup(cards, flush=True)
+    
+    del response, tweets
+    gc.collect()
 
     return list_group

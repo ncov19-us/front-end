@@ -29,23 +29,26 @@ from components.column_stats import STATES
 
 ################ TABS STYLING ####################
 
-font_size = "0.8vw"
+font_size = ".9vw"
+color_active = "#F4F4F4"
+color_inactive = "#AEAEAE"
+color_bg = "#010914"
+
 tabs_styles = {
     "flex-direction": "row",
 }
 tab_style = {
-    "padding": "0.5rem",
-    "color": "#AEAEAE",
-    "backgroundColor": "#010914",
+    "padding": "1.3vh",
+    "color": color_inactive,
     "fontSize": font_size,
+    "backgroundColor": color_bg,
 }
 
 tab_selected_style = {
     "fontSize": font_size,
-    # "backgroundColor": "#20242d",
-    "color": "white",
-    "padding": "0.5rem",
-    "backgroundColor": "#010914",
+    "color": color_active,
+    "padding": "1.3vh",
+    "backgroundColor": color_bg,
 }
 
 ################### STATE LABELS ########################
@@ -60,10 +63,6 @@ state_labels = [
     {"label": "Colorado", "value": "Colorado"},
     {"label": "Connecticut", "value": "Connecticut"},
     {"label": "Delaware", "value": "Delaware"},
-    {
-        "label": "District of Columbia",
-        "value": "District of Columbia",
-    },  # NOTE: of is lowercase not titlecase -> `Of`
     {"label": "Florida", "value": "Florida"},
     {"label": "Georgia", "value": "Georgia"},
     {"label": "Hawaii", "value": "Hawaii"},
@@ -103,6 +102,7 @@ state_labels = [
     {"label": "Vermont", "value": "Vermont"},
     {"label": "Virginia", "value": "Virginia"},
     {"label": "Washington", "value": "Washington"},
+    {"label": "Washington D.C.", "value": "Washington D.C."},  # NOTE: of is lowercase not titlecase -> `Of`
     {"label": "West Virginia", "value": "West Virginia"},
     {"label": "Wisconsin", "value": "Wisconsin"},
     {"label": "Wyoming", "value": "Wyoming"},
@@ -120,19 +120,19 @@ feed_tabs = dbc.Card(
         html.Div(
             dcc.Tabs(
                 id="left-tabs-styled-with-inline",
-                value="twitter-tab",
+                value="news-tab",
                 children=[
-                    dcc.Tab(
-                        label="Twitter Feed",
-                        value="twitter-tab",
-                        className="left-twitter-tab",
-                        style=tab_style,
-                        selected_style=tab_selected_style,
-                    ),
                     dcc.Tab(
                         label="News Feed",
                         value="news-tab",
                         className="left-news-tab",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
+                    ),
+                    dcc.Tab(
+                        label="Twitter Feed",
+                        value="twitter-tab",
+                        className="left-twitter-tab",
                         style=tab_style,
                         selected_style=tab_selected_style,
                     ),
@@ -189,8 +189,8 @@ stats_tabs = dbc.Card(
 def stats_tab_content(state):
     df = stats_table(state)
 
-    font_size_heading = "1vw"
-    font_size_body = "0.8vw"
+    font_size_heading = ".4vh"
+    font_size_body = ".9vw"
     table = dash_table.DataTable(
         data=df.to_dict("records"),
         columns=[
@@ -223,10 +223,12 @@ def stats_tab_content(state):
         },
         style_header={
             # "font-size": font_size_heading,
-            "backgroundColor": "#010915",
-            "border": "#010915",
+            "backgroundColor": color_bg,
+            "border": color_bg,
             "fontWeight": "bold",
             "font": "Lato, sans-serif",
+            # "padding": "1.5vh",
+            "height": "2vw",
         },
         style_cell={
             "font-size": font_size_body,
@@ -347,7 +349,7 @@ def map_tab_content(value, state):
 
 ########################################################################
 #
-#                       Desktop App Body
+#                           Desktop App Body
 #
 ########################################################################
 desktop_body = [
@@ -477,7 +479,7 @@ desktop_body = [
                                                 className="bottom-chart-h1-title",
                                             ),
                                             html.Div(
-                                                "Days Since 100 Cases",
+                                                "Days Since 100 Cases, per 100,000 people",
                                                 className="bottom-chart-h2-title",
                                             ),
                                             html.Div(
@@ -571,9 +573,9 @@ def death_callback(state="US"):
 )
 def trajectory_title_callback(state="US"):
     if state == "US":
-        return ["U.S. Trajectory Comparison"]
+        return ["U.S. Trajectory"]
     else:
-        return [f"{REVERSE_STATES_MAP[state]} Trajectory Comparison"]
+        return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
 
 
 @app.callback(

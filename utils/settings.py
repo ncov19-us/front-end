@@ -7,7 +7,7 @@ STATES_LAT_LONG = [
     {"state": "Colorado", "latitude": 39.059811, "longitude": -105.311104},
     {"state": "Connecticut", "latitude": 41.597782, "longitude": -72.755371},
     {"state": "Delaware", "latitude": 39.318523, "longitude": -75.507141},
-    {"state": "District of Columbia", "latitude": 38.897438, "longitude": -77.026817},
+    {"state": "Washington D.C.", "latitude": 38.897438, "longitude": -77.026817},
     {"state": "Florida", "latitude": 27.766279, "longitude": -81.686783},
     {"state": "Georgia", "latitude": 33.040619, "longitude": -83.643074},
     {"state": "Hawaii", "latitude": 21.094318, "longitude": -157.498337},
@@ -107,7 +107,8 @@ STATES_COORD = {
         "zoom": 6.5,
         "stateAbbr": "DE",
     },
-    "District of Columbia": {
+    # "District of Columbia": {
+    "Washington D.C.": {
         "latitude": 38.897438,
         "longitude": -77.026817,
         "zoom": 8,

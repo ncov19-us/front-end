@@ -75,8 +75,8 @@ def deaths_chart(state="US") -> go.Figure:
     annotation_y1 = plot_tail[2]  # LAST DEATHS COUNT
     annotation_y2 = data["New Deaths"].max()  # HIGHEST BAR ON BAR CHART
 
-    template_new = "%{customdata} confirmed new deaths on %{x}<extra></extra>"
-    template_total = "%{customdata} confirmed total deaths on %{x}<extra></extra>"
+    template_new = "%{customdata} new deaths on %{x}<extra></extra>"
+    template_total = "%{customdata} total deaths on %{x}<extra></extra>"
     fig = go.Figure()
     fig.add_trace(
         go.Bar(
@@ -145,4 +145,7 @@ def deaths_chart(state="US") -> go.Figure:
         #         )
     )
 
+    del data
+    gc.collect()
+    
     return fig
