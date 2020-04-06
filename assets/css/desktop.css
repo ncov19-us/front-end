@@ -534,6 +534,7 @@
 /*                             🌎 US Map Styling 🌎                              */
 /* ------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------ */
+
 .middle-col-map-content.col-8 {
     max-width: 56%;
     margin: 0 1.5%;
@@ -577,8 +578,6 @@
 .card-header-tabs{
     margin-right:0%;
 }
-
-
 
 .middle-styling {
     flex-wrap: nowrap;
@@ -686,7 +685,6 @@
 .tab:hover {
     color: rgb(199, 199, 199) !important;
 }
-
 
 
 #mobile-feed-tabs-styled-with-inline {
@@ -847,7 +845,7 @@
 }
 
 .stats-table-div.card{
-    height: calc(61vh + 2.8vw);
+    height: calc(61vh + 2.55vw);
     max-height: calc(var(--max-height-sidebar) + 3.3vw);
 }
 
