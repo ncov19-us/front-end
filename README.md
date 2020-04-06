@@ -20,7 +20,8 @@ Visualizing COVID19 pandemic in the U.S. by states and by the whole country, wit
 
 ### 3️⃣ Data Sources
 
-- For US and State [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19)
+- For US and International: [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19)
+- For US States: [New York Times](https://github.com/nytimes/covid-19-data)
 - For County comes from State & Local Govs. County Sites
 - For Tested Data: [COVIDTRACKING](https://covidtracking.com/api/)
 - Drive-Thru COVID-19 Testing Centers, hand labelled from News Articles
