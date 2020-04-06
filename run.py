@@ -51,12 +51,10 @@ def before_request_func():
 @server.route("/sitemap/")
 @server.route("/sitemap.xml")
 def sitemap():
-    """
-    https://www.brizzle.dev/post/how-to-generate-a-dynamic-sitemap-for-seo-using-python-flask
-    Route to dynamically generate a sitemap of your website/application. lastmod and priority tags
+    """Route to dynamically generate a sitemap of your website/application. lastmod and priority tags
     omitted on static pages. lastmod included on dynamic content such as blog posts.
+    https://www.brizzle.dev/post/how-to-generate-a-dynamic-sitemap-for-seo-using-python-flask
     """
-
 
     host_components = urlparse(request.host_url)
     host_base = host_components.scheme + "://" + host_components.netloc
@@ -96,6 +94,7 @@ def static_from_root():
     """
     response = send_from_directory(server.static_folder, request.path[1:])
     return response
+    
 
 @app.callback([Output("navbar-content", "children"),
                Output("page-content", "children"),
