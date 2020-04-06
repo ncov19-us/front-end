@@ -434,7 +434,7 @@ mobile_body = [
                         className="mobile-chart-h1-title",
                     ),
                     html.Div(
-                        "Days Since 100 Cases, per 100,000", className="mobile-chart-h2-title",
+                        "Days Since 100 Cases, per 100,000 people", className="mobile-chart-h2-title",
                     ),
                     html.Div(
                         dcc.Loading(
