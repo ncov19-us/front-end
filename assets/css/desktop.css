@@ -1084,16 +1084,16 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .about-page-title {
     font-family: var(--about-font-family);
     font-size: 2rem;
-    padding-left: 7.5%;
+    padding-left: 5%;
     margin-bottom: 50px;
     margin-top: 0;
     font-weight: bold;
 }
 
-#about-page-second-third .about-page-title {
-    padding-left: 125px;
+/* #about-page-second-third .about-page-title {
+    padding-left: 1vh;
     padding-bottom: 50px;
-}
+} */
 
 .about-section-title-container {
     border-left: 7px solid var(--about-border-color);
@@ -1159,7 +1159,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     background-color: var(--about-bg-color);
     color: var(--about-font-color);
     margin-right: 0;
-    padding-top: 120px;
+    padding-top: 7vh;
 }
 
 #about-page-second-third  {
@@ -1182,7 +1182,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .about-page-third {
-    width: 103vw;
+    /* width: 100vw !important; */
     height: 100%;
     padding-top: 50px; 
     margin-right: 0;
@@ -1197,8 +1197,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .web-about-sources {
     padding-left: 7vw;
-    margin-bottom: 1%;
-    /* padding-top: %; */
+    /* margin-bottom: 1%; */
+    margin: 1%;
 }
 
 
