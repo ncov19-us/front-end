@@ -178,7 +178,6 @@
     padding: 1vh 4vw;
     display: flex;
     /* justify-content: center; */
-
 }
 
 #mobile-states-dropdown {
@@ -233,22 +232,6 @@
     cursor: pointer;
     font-weight: var(--font-weight-normal);
 }
-
-/* #mobile-states-dropdown:hover .Select-value-label, #mobile-states-dropdown:hover .Select-arrow {
-    color: gray !important; */
-    /* border-color: gray !important; */
-/* } */
-
-
-/* .parent:hover .child, .parent.hover .child */
-
-/* #states-dropdown:hover { */
-    /* color: gray !important; */
-/* } */
-
-/* .states-dropdown:hover {
-    color: gray !important;
-} */
 
 .mobile-states-dropdown .Select-arrow {
     border-color: white transparent transparent;

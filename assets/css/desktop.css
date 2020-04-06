@@ -338,9 +338,8 @@
 } */
 
 /* #states-dropdown:hover .Select-value-label, #states-dropdown:hover .Select-arrow {
-    color: gray !important; */
-    /* border-color: gray !important; */
-/* } */
+    color: rgb(226, 226, 226) !important;
+} */
 
 
 
@@ -609,6 +608,7 @@
 
 .top-bottom-charts .card {
     margin: 0 2.2%;
+    margin-bottom: .5%;
 }
 
 /* .top-bottom-charts .card { */
@@ -642,7 +642,13 @@
     padding-left: 2%;
 }
 
+.top-bottom-left-chart .card {
+    margin-left: 1%;
+}
 
+.top-bottom-right-chart .card {
+    margin-right: 1%;
+}
 
 /* .top-bottom-left-chart , .top-bottom-mid-chart, .top-bottom-right-chart {
     padding: 0.5%;
@@ -1013,6 +1019,7 @@
 }
 
 .footer-disclaimer-content {
+    padding-left: 2vw;
     padding-top: 1rem;
     font-size: var(--font-size-card-perc-change);
 }
