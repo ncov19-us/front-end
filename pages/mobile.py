@@ -29,19 +29,26 @@ from components import stats_table
 
 ################ TABS STYLING ####################
 
+font_size = "4.3vw"
+color_active = "#F4F4F4"
+color_inactive = "#AEAEAE"
+color_bg = "#010914"
+
 tabs_styles = {
     "flex-direction": "row",
 }
 tab_style = {
-    "padding": "0.5rem",
-    "color": "#AEAEAE",
-    "backgroundColor": "#010914",
+    "padding": "1.3vh",
+    "color": color_inactive,
+    "fontSize": font_size,
+    "backgroundColor": color_bg,
 }
 
 tab_selected_style = {
-    "backgroundColor": "transparent",
-    "color": "white",
-    "padding": "0.5rem",
+    "fontSize": font_size,
+    "color": color_active,
+    "padding": "1.3vh",
+    "backgroundColor": color_bg,
 }
 
 ########################################################

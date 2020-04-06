@@ -288,7 +288,7 @@
 
 
 #mobile-daily-stats {
-    padding-top: 8vh;
+    padding-top: 7vh;
     padding-bottom: 2vh;
 }
 
@@ -699,8 +699,8 @@ th.dash-header.column-0 {
 /* 📖 About Page Mobile-Specific Styling 📖 */
 
 #mobile-about-page {
-    margin-left: -15px;
-    margin-top: -25px;
+    margin-left: -25px;
+    margin-right: -15px;
 }
 
 .mob-about-section-title-container {
@@ -739,11 +739,9 @@ th.dash-header.column-0 {
 
 #mobile-about-page #about-page-third-third {
     background-color: #D2D2D2;
-    padding-left: 20px;
     color: black;
-    padding-bottom: 100px;
-    padding-top: 100px;
     font-size: .8rem;
+    padding: 10vh 1vh 10vh 3vh;
 }
 
 #mobile-about-page .about-section {
@@ -814,9 +812,10 @@ th.dash-header.column-0 {
     font-size: .9rem;
 }
 
-.about-sources {
-    padding-left: 7vw;
-    padding-top: 10%;
+#mobile-about-page .about-sources {
+    /* padding-left: 7vw;
+    padding-top: 10%; */
+    padding: 3% 3% 3% 5%;
 }
 
 .about-source-2 {
