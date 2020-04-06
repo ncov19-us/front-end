@@ -1,0 +1,19 @@
+Sitemap: https://ncov19.us/sitemap.xml
+
+User-agent: Googlebot
+Disallow:
+
+User-agent: Mediapartners-Google
+Disallow:
+
+User-agent: bingbot
+Disallow:
+
+User-agent: Twitterbot
+Disallow:
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: *
+Disallow: /

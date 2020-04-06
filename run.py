@@ -1,8 +1,11 @@
-# Imports from 3rd party libraries
 import re
 import argparse
+import datetime
+from urllib.parse import urlparse
+
+# Imports from 3rd party libraries
 import flask
-from flask import request
+from flask import request, make_response, render_template, send_from_directory
 import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
@@ -53,9 +56,7 @@ def sitemap():
     Route to dynamically generate a sitemap of your website/application. lastmod and priority tags
     omitted on static pages. lastmod included on dynamic content such as blog posts.
     """
-    from flask import make_response, request, render_template
-    import datetime
-    from urllib.parse import urlparse
+
 
     host_components = urlparse(request.host_url)
     host_base = host_components.scheme + "://" + host_components.netloc
@@ -87,6 +88,13 @@ def sitemap():
     response = make_response(xml_sitemap)
     response.headers["Content-Type"] = "application/xml"
 
+    return response
+
+@server.route("/robots.txt")
+def static_from_root():
+    """robots.txt
+    """
+    response = send_from_directory(server.static_folder, request.path[1:])
     return response
 
 @app.callback([Output("navbar-content", "children"),
