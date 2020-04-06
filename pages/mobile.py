@@ -372,7 +372,7 @@ mobile_body = [
     html.Div(
         mobile_us_maps_tabs,
         className="mobile-us-map-content",
-        style={"margin-bottom": "1.5rem"},
+        # style={"margin-bottom": "1.5rem"},
     ),
     # adding stats content
     dbc.Col(stats_tabs, className="mobile-right-col-stats-content", width=2,),
@@ -401,7 +401,7 @@ mobile_body = [
                 ],
             ),
         ),
-        style={"margin-bottom": "1.5rem"},
+        # style={"margin-bottom": "1.5rem"},
         className="mobile-chart",
     ),
     # CHART 2
@@ -428,7 +428,7 @@ mobile_body = [
                 ],
             ),
         ),
-        style={"margin-bottom": "1.5rem"},
+        # style={"margin-bottom": "1.5rem"},
         className="mobile-chart",
     ),
     # CHART 3
@@ -457,12 +457,12 @@ mobile_body = [
                 ],
             ),
         ),
-        style={"margin-bottom": "1.5rem"},
+        # style={"margin-bottom": "1.5rem"},
         className="mobile-chart",
     ),
     html.Div(
         mobile_feed_tabs,
-        style={"margin-bottom": "1.5rem"},
+        # style={"margin-bottom": "1.5rem"},
         className="mobile-feed-content",
     ),
 ]

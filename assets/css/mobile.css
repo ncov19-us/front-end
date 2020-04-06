@@ -73,7 +73,7 @@
     width: 100%; /* Full width */
     z-index: 100000;
     margin: 0 !important;
-    padding: 0 5vw;
+    padding: 0 4vw;
     color: #F4F4F4;
     border: none;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -175,7 +175,7 @@
     padding-bottom: 1vh; */
     /* padding-left: .2vw; */
     /* padding-right: 0; */
-    padding: 1vh 5vw;
+    padding: 1vh 4vw;
     display: flex;
     /* justify-content: center; */
 
@@ -286,7 +286,7 @@
 
 
 #mobile-daily-stats {
-    padding-top: 5.5vh;
+    padding-top: 5vh;
     padding-bottom: 2vh;
 }
 
@@ -468,7 +468,7 @@
 /* ------------------------------------------------------------------------------ */
 
 .mobile-us-map-content {
-    margin: var(--mobile-body-margin) var(--mobile-body-margin);
+    margin: 7vh var(--mobile-body-margin);
 }
 
 
@@ -558,8 +558,8 @@ th.dash-header.column-0 {
 
 .mobile-right-col-stats-content.col-2 {
     max-width: 100%;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
     max-height: 30%;
 }
 
@@ -588,7 +588,7 @@ th.dash-header.column-0 {
 /* ------------------------------------------------------------------------------ */
 
 .mobile-feed-content {
-    margin: 5vh var(--mobile-body-margin);
+    margin: 10vh var(--mobile-body-margin) 7vh var(--mobile-body-margin);
 }
 
 .mobile-feed-card-body {
