@@ -13,8 +13,9 @@ from app import cache
 def stats_table(state="US"):
     """Callback to change between news and twitter feed
     """
+    print(f'stats_table state before translation is {state}')
     state = REVERSE_STATES_MAP[state]
-    # print(f'stats_table state is {state}')
+    print(f'stats_table state is {state}')
     URL = config.NCOV19_API + config.COUNTY
     try:
         response = requests.get(URL)
@@ -40,6 +41,8 @@ def stats_table(state="US"):
             }
         )
     else:
+        if state == "Washington D.C.":
+            state = "District of Columbia"
         data = data[data["state_name"] == state]
         data = data[["county_name", "confirmed", "death"]]
         data = data.sort_values(by=["confirmed"], ascending=False)
