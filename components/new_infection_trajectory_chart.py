@@ -193,6 +193,9 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             state_names.append(name)
             merged[name] = merged[name] / (populations[name] / 100000)
 
+        del state_populations, populations
+        gc.collect()
+
         # Plotting
         colors = ["#F4B000", "#009d00", "#009fe2"]
         fig = go.Figure()
@@ -250,7 +253,7 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             yaxis_title="Cases per 100k People",
         )
     
-    del merged, state_populations, populations
+    del merged
     gc.collect()
 
     return fig
