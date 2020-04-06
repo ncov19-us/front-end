@@ -55,7 +55,6 @@ state_labels = [
     {"label": "Colorado", "value": "Colorado"},
     {"label": "Connecticut", "value": "Connecticut"},
     {"label": "Delaware", "value": "Delaware"},
-    {"label": "District of Columbia", "value": "District of Columbia"},  # NOTE: of is lowercase not titlecase -> `Of`
     {"label": "Florida", "value": "Florida"},
     {"label": "Georgia", "value": "Georgia"},
     {"label": "Hawaii", "value": "Hawaii"},
@@ -95,10 +94,12 @@ state_labels = [
     {"label": "Vermont", "value": "Vermont"},
     {"label": "Virginia", "value": "Virginia"},
     {"label": "Washington", "value": "Washington"},
+    {"label": "Washington D.C.", "value": "Washington D.C."},  # NOTE: of is lowercase not titlecase -> `Of`
     {"label": "West Virginia", "value": "West Virginia"},
     {"label": "Wisconsin", "value": "Wisconsin"},
     {"label": "Wyoming", "value": "Wyoming"},
 ]
+
 
 ########################################################################
 #

@@ -102,10 +102,7 @@ state_labels = [
     {"label": "Vermont", "value": "Vermont"},
     {"label": "Virginia", "value": "Virginia"},
     {"label": "Washington", "value": "Washington"},
-    {
-        "label": "Washington D.C.",
-        "value": "District of Columbia",
-    },  # NOTE: of is lowercase not titlecase -> `Of`
+    {"label": "Washington D.C.", "value": "Washington D.C."},  # NOTE: of is lowercase not titlecase -> `Of`
     {"label": "West Virginia", "value": "West Virginia"},
     {"label": "Wisconsin", "value": "Wisconsin"},
     {"label": "Wyoming", "value": "Wyoming"},
@@ -575,9 +572,9 @@ def death_callback(state="US"):
 )
 def trajectory_title_callback(state="US"):
     if state == "US":
-        return ["U.S. Trajectory Comparison"]
+        return ["U.S. Trajectory"]
     else:
-        return [f"{REVERSE_STATES_MAP[state]} Trajectory Comparison"]
+        return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
 
 
 @app.callback(
