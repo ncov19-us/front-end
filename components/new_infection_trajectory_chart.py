@@ -9,12 +9,12 @@ from utils import REVERSE_STATES_MAP
 from utils import config
 
 
-# TODO: Population is hardcoded we can pull it from our BE
-
 
 @cache.memoize(timeout=3600)
 def new_infection_trajectory_chart(state="US") -> go.Figure:
     """Line chart data for the selected state.
+
+    # TODO: Population is hardcoded we can pull it from our BE
 
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
@@ -249,5 +249,8 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             font=dict(family="Roboto, sans-serif", size=10, color="#f4f4f4"),
             yaxis_title="Cases per 100k People",
         )
+    
+    del merged, state_populations, populations
+    gc.collect()
 
     return fig

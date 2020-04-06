@@ -1,3 +1,4 @@
+import gc
 import requests
 import pandas as pd
 import dash_bootstrap_components as dbc
@@ -60,6 +61,9 @@ def news_feed(state="US") -> dbc.ListGroup:
             ],
             flush=True,
         )
+
+        del response, json_data, df
+        gc.collect()
 
     else:
         list_group = []

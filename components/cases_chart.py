@@ -147,4 +147,7 @@ def cases_chart(state="US") -> go.Figure:
         #         )
     )
 
+    del data
+    gc.collect()
+
     return fig

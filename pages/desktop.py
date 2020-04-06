@@ -120,19 +120,19 @@ feed_tabs = dbc.Card(
         html.Div(
             dcc.Tabs(
                 id="left-tabs-styled-with-inline",
-                value="twitter-tab",
+                value="news-tab",
                 children=[
-                    dcc.Tab(
-                        label="Twitter Feed",
-                        value="twitter-tab",
-                        className="left-twitter-tab",
-                        style=tab_style,
-                        selected_style=tab_selected_style,
-                    ),
                     dcc.Tab(
                         label="News Feed",
                         value="news-tab",
                         className="left-news-tab",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
+                    ),
+                    dcc.Tab(
+                        label="Twitter Feed",
+                        value="twitter-tab",
+                        className="left-twitter-tab",
                         style=tab_style,
                         selected_style=tab_selected_style,
                     ),
@@ -477,7 +477,7 @@ desktop_body = [
                                                 className="bottom-chart-h1-title",
                                             ),
                                             html.Div(
-                                                "Days Since 100 Cases",
+                                                "Days Since 100 Cases, per 100,000",
                                                 className="bottom-chart-h2-title",
                                             ),
                                             html.Div(
