@@ -26,7 +26,7 @@
     --mobile-font-size-h1: 2.5vh;
     --mobile-font-size-h2: 1.7vh;
     --mobile-font-size-h4: 1.8vh;
-    --mobile-font-size-card-value: 6.7vh;
+    --mobile-font-size-card-value: 6.5vh;
     --mobile-font-size-card-category: 2vh;
     --mobile-font-size-card-perc-change: 1.8vh;
     --mobile-font-size-table-heading: 2vh;
@@ -294,7 +294,7 @@
 
 .mobile-top-bar-content .list-group-item {
     background-color: none !important;
-    margin-bottom: 5vh;
+    margin-bottom: 3vh;
 }
 
 .mobile-top-bar-content .list-group {
