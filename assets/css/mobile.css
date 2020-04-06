@@ -195,12 +195,12 @@
     font-size: 1rem;
 }
 
-.Select-arrow {
-    border-width: 0.9vh 0.8vh 0.25vh !important;
+#mobile-states-dropdown .Select-arrow {
+    border-width: 0.8vh 0.45vh 0.18vh !important;
 }
 
 #mobile-states-dropdown .is-open .Select-arrow {
-    border-width: 0.9vh 0.8vh 0.25vh !important;
+    border-width: 0.8vh 0.45vh 0.18vh !important;
 }
 
 .Select--single > .Select-control .Select-value {

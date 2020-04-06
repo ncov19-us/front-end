@@ -32,7 +32,7 @@
     --body-bg-color: #19202A;
 
     /* Font Sizes */
-    --font-size-nav-title: 4vh;
+    --font-size-nav-title: 3.7vh;
     --font-size-nav-link: 2.1vh;
     --font-size-state-name: 1.9vw;
     --font-size-table-heading: 4.6vh;
@@ -136,7 +136,8 @@
     flex-direction: row;
     align-items: center;
     text-decoration: none !important;
-    padding-right: 53px;
+    padding-right: 3.9vw;
+    padding-left: 1.5vw;
 }
 
 #get-mobile-updates {
@@ -158,7 +159,6 @@
 .navbar-brand-covid-19-text {
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-nav-title);
-    margin-left: .5rem;
     margin-bottom: auto;
 
 }
@@ -194,18 +194,27 @@
 
 /* Page Body */
 #page-content.desktop { 
-    padding: 0 2%;
+    padding: 0 2.5%;
     padding-top: 7.5vh;
+    margin: 0 !important;
 }
 
 /* First Row */
-.states-dropdown-container, .top-bar-content-col {
-    margin 3vh 0;
+.states-dropdown-container  {
+    /* margin: 2.5vh 0; */
+    margin: 0;
+    padding-bottom: 1vh;
+}
+
+.top-bar-content-col {
+    margin: 4vh 0 3.5vh 0;
+    padding: 0;
 }
 
 /* Second Row */
 .middle-map-news-content.mt-3.no-gutters.row {
     /* margin-top: 2% !important; */
+    margin-top: 0 !important;
     border: none;
     justify-content: space-evenly;
 }
@@ -246,9 +255,10 @@
     max-width: 23%;
     /* width: 37vw; */
     flex: 0 0 23%;
-    font-weight: var(--daily-stats-font-weight);
+    font-weight: 500;
     border-radius: var(--drop-down-rounded-corners);
     color:var(--nav-font-color);
+    
 }
 
 
@@ -259,6 +269,9 @@
 
 #states-dropdown .Select-input {
     background-color: transparent !important;
+    display: inline !important;
+    padding-left: .2vw;
+    padding-right: .2vw;
 }
 
 .states-dropdown .Select-control {
@@ -285,8 +298,8 @@
     position: unset !important;
 }
 
-.states-dropdown .Select-input {
-    display: inline !important;
+#states-dropdown .Select.states-dropdown {
+    /* width: 100vw; */
 }
 
 .states-dropdown .Select-menu-outer {
@@ -344,7 +357,7 @@
 
 .states-dropdown .Select-arrow {
     border-color: white transparent transparent;
-    border-width: 10px 5px 2.5px;
+    border-width: 0.8vw 0.45vw 0.18vw !important;
 }
 #states-dropdown .is-open .Select-control {
     background-color: transparent;
@@ -360,7 +373,7 @@
 
 #states-dropdown .is-open .Select-arrow {
     border-color: white transparent transparent;
-    border-width: 10px 5px 2.5px;
+    border-width: 0.8vw 0.45vw 0.18vw !important;
     transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
 }
@@ -1055,32 +1068,32 @@
 
 /* Every page is given some padding and margin, but I want the about page to fill the whole page so I need to negate it.
 This isn't perfect so if anyone knows how to disable .page-content padding on the about page only please fix this */
-/* #about-page {
-    margin-left: -50px;
-    margin-top: -25px;
+#about-page {
+    /* margin-left: -50px;
+    margin-top: -25px; */
+    padding: 0 -2%;
 }
-
-#page-content {
+/* #page-content {
     margin-top: -1vh !important;
 } */
 
-/* .desktop {
+.desktop {
     min-width: var(--minimum-screen-size);
-} */
+}
 
 .about-page-title {
     font-family: var(--about-font-family);
     font-size: 2rem;
-    padding-left: 7.5%;
+    padding-left: 5%;
     margin-bottom: 50px;
     margin-top: 0;
     font-weight: bold;
 }
 
-#about-page-second-third .about-page-title {
-    padding-left: 125px;
+/* #about-page-second-third .about-page-title {
+    padding-left: 1vh;
     padding-bottom: 50px;
-}
+} */
 
 .about-section-title-container {
     border-left: 7px solid var(--about-border-color);
@@ -1146,7 +1159,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     background-color: var(--about-bg-color);
     color: var(--about-font-color);
     margin-right: 0;
-    padding-top: 120px;
+    padding-top: 7vh;
 }
 
 #about-page-second-third  {
@@ -1169,7 +1182,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .about-page-third {
-    width: 103vw;
+    /* width: 100vw !important; */
     height: 100%;
     padding-top: 50px; 
     margin-right: 0;
@@ -1184,8 +1197,8 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .web-about-sources {
     padding-left: 7vw;
-    margin-bottom: 1%;
-    /* padding-top: %; */
+    /* margin-bottom: 1%; */
+    margin: 1%;
 }
 
 

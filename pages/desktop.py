@@ -29,7 +29,7 @@ from components.column_stats import STATES
 
 ################ TABS STYLING ####################
 
-font_size = "1vw"
+font_size = ".9vw"
 color_active = "#F4F4F4"
 color_inactive = "#AEAEAE"
 color_bg = "#010914"
@@ -38,7 +38,7 @@ tabs_styles = {
     "flex-direction": "row",
 }
 tab_style = {
-    "padding": "1.5vh",
+    "padding": "1.3vh",
     "color": color_inactive,
     "fontSize": font_size,
     "backgroundColor": color_bg,
@@ -47,7 +47,7 @@ tab_style = {
 tab_selected_style = {
     "fontSize": font_size,
     "color": color_active,
-    "padding": "1.5vh",
+    "padding": "1.3vh",
     "backgroundColor": color_bg,
 }
 
@@ -228,6 +228,7 @@ def stats_tab_content(state):
             "fontWeight": "bold",
             "font": "Lato, sans-serif",
             # "padding": "1.5vh",
+            "height": "2vw",
         },
         style_cell={
             "font-size": font_size_body,
@@ -235,7 +236,7 @@ def stats_tab_content(state):
             "border-bottom": "0.01rem solid #313841",
             "backgroundColor": "#010915",
             "color": "#FEFEFE",
-            "height": "2.77vw",
+            "height": "2.75vw",
         },
         style_cell_conditional=[
             {
