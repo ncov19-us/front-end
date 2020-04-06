@@ -63,10 +63,6 @@ state_labels = [
     {"label": "Colorado", "value": "Colorado"},
     {"label": "Connecticut", "value": "Connecticut"},
     {"label": "Delaware", "value": "Delaware"},
-    {
-        "label": "District of Columbia",
-        "value": "District of Columbia",
-    },  # NOTE: of is lowercase not titlecase -> `Of`
     {"label": "Florida", "value": "Florida"},
     {"label": "Georgia", "value": "Georgia"},
     {"label": "Hawaii", "value": "Hawaii"},
@@ -106,6 +102,10 @@ state_labels = [
     {"label": "Vermont", "value": "Vermont"},
     {"label": "Virginia", "value": "Virginia"},
     {"label": "Washington", "value": "Washington"},
+    {
+        "label": "Washington D.C.",
+        "value": "District of Columbia",
+    },  # NOTE: of is lowercase not titlecase -> `Of`
     {"label": "West Virginia", "value": "West Virginia"},
     {"label": "Wisconsin", "value": "Wisconsin"},
     {"label": "Wyoming", "value": "Wyoming"},
@@ -192,7 +192,7 @@ stats_tabs = dbc.Card(
 def stats_tab_content(state):
     df = stats_table(state)
 
-    font_size_heading = ".6vh"
+    font_size_heading = ".4vh"
     font_size_body = ".9vw"
     table = dash_table.DataTable(
         data=df.to_dict("records"),
@@ -481,7 +481,7 @@ desktop_body = [
                                                 className="bottom-chart-h1-title",
                                             ),
                                             html.Div(
-                                                "Days Since 100 Cases, per 100,000",
+                                                "Days Since 100 Cases, per 100,000 people",
                                                 className="bottom-chart-h2-title",
                                             ),
                                             html.Div(

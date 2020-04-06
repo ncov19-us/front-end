@@ -24,14 +24,14 @@
 
     /* Font Sizes */
     --mobile-font-size-h1: 2.5vh;
-    --mobile-font-size-h2: 1.5vh;
-    --mobile-font-size-h4: 1.3vh;
+    --mobile-font-size-h2: 1.7vh;
+    --mobile-font-size-h4: 1.8vh;
     --mobile-font-size-card-value: 6.7vh;
     --mobile-font-size-card-category: 2vh;
-    --mobile-font-size-card-perc-change: 1.7vh;
+    --mobile-font-size-card-perc-change: 1.8vh;
     --mobile-font-size-table-heading: 2vh;
-    --mobile-font-size-feed-body: 1.6vh;
-    --mobile-font-size-feed-author: 1.3vh;
+    --mobile-font-size-feed-body: 1.9vh;
+    --mobile-font-size-feed-author: 1.6vh;
     --mobile-font-size-stats-table-heading: 1.8vh;
     
     /* Font Weights */
@@ -60,7 +60,13 @@
 
 }
 
-/* Mobile Nav Bar */
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                NAVBAR STYLING                                  */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
 .mobile-navbar {
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
@@ -91,7 +97,12 @@
 
 
 
-/* Hamburger menu overlay */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                               Hamberger Menu                                   */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
 .mobile-hidden-menu-div {
     background-color: #010915;
     width: 100vw;
@@ -136,15 +147,23 @@
 }
 
 
-/* STATES DROPDOWN */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                STATES DROPDOWN                                 */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
 .mt-4 {
     margin: 0rem;
-    /* margin-top: 0rem !important; */
+}
+
+.mobile-top-bar-content {
+    margin: 5vh var(--mobile-body-margin);
 }
 
 .mobile-states-dropdown-container {
     width: 100%;
-    height: 10vh;
+    height: 10.2vh;
     position: fixed;
     z-index: 9999;
     font-size: 2vh;
@@ -259,14 +278,17 @@
     -webkit-transform: rotate(180deg);
 }
 
-/* Mobile Card 🎴 section */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                DAILY STATS                                     */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
 
-.mobile-top-bar-content {
-    margin: 6vh var(--mobile-body-margin);
-}
+
+
 
 #mobile-daily-stats {
-    padding-top: 7vh;
+    padding-top: 8vh;
     padding-bottom: 2vh;
 }
 
@@ -418,7 +440,8 @@
     margin-right: var(--mobile-body-margin);
     padding-left: 3vw;
     padding-right: 3vw;
-    height: 37vh;
+    padding: 3vw 4vw 3vw 4vw;
+    height: 38vh;
 } 
 
 .mobile-chart-h1-title {
@@ -545,8 +568,8 @@ th.dash-header.column-0 {
 
 .mobile-right-col-stats-content.col-2 .right-tabs-last-updated-text {
     font-size: var(--mobile-font-size-h4);
-    border-bottom-right-radius: .4rem;
-    border-bottom-left-radius: .4em;
+    border-bottom-right-radius: var(--mobile-border-radius);
+    border-bottom-left-radius: var(--mobile-border-radius);
     padding: 2vh 4vw;
     text-align: right !important;
 }
@@ -589,7 +612,7 @@ th.dash-header.column-0 {
 }
 
 .mobile-twitter-feed-tab {
-    border-top-left-radius: 4rem;
+    border-top-right-radius: var(--mobile-border-radius);
 }
 
 #mobile-feed-tabs-styled-with-inline {
@@ -637,7 +660,7 @@ th.dash-header.column-0 {
 }
 
 .mobile-footer-copyright-text {
-    font-size: 1rem;
+    font-size: var(--mobile-font-size-table-heading);
     align-self: center;
     color: #BDBDBD;
 }
@@ -654,8 +677,8 @@ th.dash-header.column-0 {
     color: var(--nav-font-color) !important;
 }
 
-.mobile-news-feed-tab {
-    border-top-right-radius: var(--mobile-border-radius);
+.tab.mobile-news-feed-tab {
+    border-top-left-radius: var(--mobile-border-radius);
 }
 
 .tab.mobile-left-twitter-tab {
