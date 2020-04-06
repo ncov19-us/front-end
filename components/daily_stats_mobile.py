@@ -1,3 +1,4 @@
+import gc
 import json
 import requests
 from typing import List, Dict
@@ -52,8 +53,7 @@ def get_daily_stats_mobile(state="United States") -> Dict:
         todays_deaths = data["todays_deaths"]
     except:
         tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
-    # print(tested, confirmed, todays_confirmed, deaths, todays_deaths)
-
+    
     todays_death_rate = round(safe_div(deaths, confirmed) * 100, 2)
     yesterdays_death_rate = round(
         safe_div(
@@ -72,11 +72,12 @@ def get_daily_stats_mobile(state="United States") -> Dict:
     }
 
     del data
+    gc.collect()
 
     return stats
 
 
-# @cache.memoize(timeout=600)
+@cache.memoize(timeout=600)
 def daily_stats_mobile(state="US") -> List[dbc.Row]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
     TODO: move to internal API.
@@ -138,4 +139,8 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
         cards.append(card)
 
     cards = dbc.ListGroup(cards)
+
+    del stats
+    gc.collect()
+
     return cards

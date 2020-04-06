@@ -45,9 +45,6 @@ def confirmed_scatter_mapbox(state="United States"):
     data = response["message"]
     data = pd.DataFrame.from_records(data)
 
-    del response
-    gc.collect()
-
     # color_scale = ['#fce9b8', '#fbe6ad','#fbe3a3','#fbdf99',
     #                 '#fadc8f','#fad985','#f9d67a',
     #                 '#f9d370','#f8d066','#f8cc5c','#f8c952',
@@ -108,6 +105,9 @@ def confirmed_scatter_mapbox(state="United States"):
         hovertemplate="%{customdata[3]}, %{customdata[2]}<br>Confirmed: %{customdata[0]}<br>Deaths: %{customdata[1]}"
     )
 
+    del response, data
+    gc.collect()
+
     return fig
 
 
@@ -125,8 +125,10 @@ def drive_thru_scatter_mapbox(state="United States"):
             STATES_COORD[state]["zoom"],
         )
 
+    df = get_drive_thru_testing_centers() 
+
     fig = px.scatter_mapbox(
-        get_drive_thru_testing_centers(),
+        df,
         lat="Latitude",
         lon="Longitude",
         hover_name="Name",
@@ -145,5 +147,8 @@ def drive_thru_scatter_mapbox(state="United States"):
         hovertemplate="<b><a href='%{customdata[0]}' style='color:#F4F4F4'>%{hovertext}</a></b><br> %{customdata[3]}<br>%{customdata[1]},%{customdata[2]}",
         marker={"symbol": "hospital", "color": "white"},
     )
+
+    del df
+    gc.collect()
 
     return fig
