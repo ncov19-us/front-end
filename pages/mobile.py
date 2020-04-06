@@ -55,10 +55,7 @@ state_labels = [
     {"label": "Colorado", "value": "Colorado"},
     {"label": "Connecticut", "value": "Connecticut"},
     {"label": "Delaware", "value": "Delaware"},
-    {
-        "label": "District of Columbia",
-        "value": "District of Columbia",
-    },  # NOTE: of is lowercase not titlecase -> `Of`
+    {"label": "District of Columbia", "value": "District of Columbia"},  # NOTE: of is lowercase not titlecase -> `Of`
     {"label": "Florida", "value": "Florida"},
     {"label": "Georgia", "value": "Georgia"},
     {"label": "Hawaii", "value": "Hawaii"},
@@ -113,19 +110,19 @@ mobile_feed_tabs = dbc.Card(
         html.Div(
             dcc.Tabs(
                 id="mobile-feed-tabs-styled-with-inline",
-                value="mobile-twitter-tab",
+                value="mobile-news-tab",
                 children=[
-                    dcc.Tab(
-                        label="Twitter Feed",
-                        value="mobile-twitter-tab",
-                        className="mobile-twitter-feed-tab",
+                     dcc.Tab(
+                        label="News Feed",
+                        value="mobile-news-tab",
+                        className="mobile-news-feed-tab",
                         style=tab_style,
                         selected_style=tab_selected_style,
                     ),
                     dcc.Tab(
-                        label="News Feed",
-                        value="mobile-news-tab",
-                        className="mobile-news-feed-tab",
+                        label="Twitter Feed",
+                        value="mobile-twitter-tab",
+                        className="mobile-twitter-feed-tab",
                         style=tab_style,
                         selected_style=tab_selected_style,
                     ),
@@ -358,9 +355,6 @@ mobile_body = [
             className="mobile-states-dropdown",
         ),
         className="mobile-states-dropdown-container",
-        # justify='center',
-        # no_gutter=True,
-        # width=2,
     ),
     html.Div(
         # daily_stats_mobile()
@@ -424,21 +418,6 @@ mobile_body = [
                         ),
                     ),
                 ],
-                # [
-                #     html.Div(
-                #         "Infection Trajectory",
-                #         className="mobile-top-bottom-right-chart-h1-title",
-                #     ),
-                #     html.Div(
-                #         "Days Since 200 Cases",
-                #         className="mobile-top-bottom-right-chart-h2-title",
-                #     ),
-                #     dcc.Graph(
-                #         figure=infection_trajectory_chart(),
-                #         config={"scrollZoom": False,},
-                #         style={"height": "20vh"},
-                #     ),
-                # ]
             ),
         ),
         style={"margin-bottom": "1.5rem"},
@@ -455,7 +434,7 @@ mobile_body = [
                         className="mobile-chart-h1-title",
                     ),
                     html.Div(
-                        "Days Since 100 Cases", className="mobile-chart-h2-title",
+                        "Days Since 100 Cases, per 100,000", className="mobile-chart-h2-title",
                     ),
                     html.Div(
                         dcc.Loading(

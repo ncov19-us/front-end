@@ -1,3 +1,4 @@
+import gc
 import json
 import requests
 from typing import List, Dict
@@ -43,7 +44,6 @@ def get_daily_stats(state="United States") -> Dict:
         return stats
 
     data = response.json()["message"]
-    # print(data)
     try:
         tested = data["tested"]
         confirmed = data["confirmed"]
@@ -52,8 +52,7 @@ def get_daily_stats(state="United States") -> Dict:
         todays_deaths = data["todays_deaths"]
     except:
         tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
-    # print(tested, confirmed, todays_confirmed, deaths, todays_deaths)
-
+    
     todays_death_rate = round(safe_div(deaths, confirmed) * 100, 2)
     yesterdays_death_rate = round(
         safe_div(
@@ -72,6 +71,7 @@ def get_daily_stats(state="United States") -> Dict:
     }
 
     del data
+    gc.collect()
 
     return stats
 
@@ -156,5 +156,8 @@ def daily_stats(state="US") -> List[dbc.Col]:
             )
 
         cards.append(card)
+
+    del stats
+    gc.collect()
 
     return cards
