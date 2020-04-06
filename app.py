@@ -23,7 +23,9 @@ meta_tags = [
 # Initialize app
 #
 ########################################################################
-server = flask.Flask(__name__)
+server = flask.Flask(__name__,
+                     static_folder='static',
+)
 app = dash.Dash(
     __name__,
     server=server,

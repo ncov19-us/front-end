@@ -13,9 +13,9 @@ from app import cache
 def stats_table(state="US"):
     """Callback to change between news and twitter feed
     """
-    print(f'stats_table state before translation is {state}')
+    # print(f'stats_table state before translation is {state}')
     state = REVERSE_STATES_MAP[state]
-    print(f'stats_table state is {state}')
+    # print(f'stats_table state is {state}')
     URL = config.NCOV19_API + config.COUNTY
     try:
         response = requests.get(URL)
