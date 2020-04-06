@@ -103,7 +103,7 @@ state_labels = [
     {"label": "Virginia", "value": "Virginia"},
     {"label": "Washington", "value": "Washington"},
     {
-        "label": "Washington DC",
+        "label": "Washington D.C.",
         "value": "District of Columbia",
     },  # NOTE: of is lowercase not titlecase -> `Of`
     {"label": "West Virginia", "value": "West Virginia"},

@@ -3,11 +3,6 @@
 * ⚠️ ONLY APPLIES TO DESKTOP DON'T PUT COMMON STYLING OR MOBILE STYLING HERE ⚠️
 */
 
-/*  Nav Bar */
-/* #navbar {
-    text-decoration: none;
-} */
-
 
 /*******COLOR VARIABLES*******/
 :root{
@@ -97,9 +92,11 @@
     background: #555;
   } */
 
-
-/* Start
- */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                NAVBAR STYLING                                  */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
 .desktop-navbar {
     background-color: var(--nav-bg-color);
     border: none;
@@ -159,50 +156,6 @@
 
 }
 
-
-/*         Dropdown Location Menu                   */ 
-
-/* .dropdown-location-menu .dropdown-toggle {
-    background-color: #262a32;
-    background-image: none;
-    min-width: 150px;
-    padding-top: 0;
-    padding-bottom: 0;
-    font-size: .9rem;
-    letter-spacing: .01rem;
-
-}
-
-.dropdown-menu.show {
-    transform: translate3d(-1px, 45px, 0px);
-    max-width: 150px;
-}
-
-.dropdown-menu { 
-    min-width: 150px;
-    background-color: #62686d;
-}
-
-.dropdown-item {
-    color: #F4F4F4;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
-} */
-
-/* .btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus, .show>.btn-secondary.dropdown-toggle:focus {
-    box-shadow: none;
-} */
-
-/* This targets the little drop down arrow on the location button */
-/* .dropdown-location-menu .dropdown-toggle::after {
-    margin-left: 43%;
-} */
-
-/* .dropdown .btn {
-    padding-top: 0;
-    padding-bottom: 0;
-    min-height: 35px;
-} */
-
 .navbar-brand-links {
     font-weight: 425;
     font-size: var(--font-size-nav-link);
@@ -217,218 +170,21 @@
     color: var(--font-color-confirmed);
 }
 
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                DESKTOP BODY                                    */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
 
-
-
-/* 📖 About Page Styling 📖 */
-
-/* Every page is given some padding and margin, but I want the about page to fill the whole page so I need to negate it.
-This isn't perfect so if anyone knows how to disable .page-content padding on the about page only please fix this */
-#about-page {
-    margin-left: -50px;
-    margin-top: -25px;
+#page-content.desktop {
+    padding: 0 2vh !important;
 }
 
-#page-content {
-    margin-top: -1vh !important;
-}
-
-.desktop {
-    min-width: var(--minimum-screen-size);
-}
-
-.about-page-title {
-    font-family: var(--about-font-family);
-    font-size: 2rem;
-    padding-left: 7.5%;
-    margin-bottom: 50px;
-    margin-top: 0;
-    font-weight: bold;
-}
-
-#about-page-second-third .about-page-title {
-    padding-left: 125px;
-    padding-bottom: 50px;
-}
-
-.about-section-title-container {
-    border-left: 7px solid var(--about-border-color);
-}
-
-.about-section-text-container {
-    border-left: 1px solid var(--about-border-color);
-    margin-left: 3px;
-}
-
-
-.about-section {
-    width: 40vw;
-}
-
-.about-section-title {
-    font-family: var(--about-font-family);
-    padding-left: 4%;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    margin: 0;
-}
-
-.about-section-text {
-    font-family: var(--about-font-family);
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 5%;
-}
-
-.about-section-container {
-    display: flex;
-    justify-content: center;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    padding-bottom: 100px;
-}
-
-.about-section-container-2 {
-    display: flex;
-    justify-content: center;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    padding-bottom: 90px;
-}
-
-#about-page-second-third .about-section-container {
-    padding-left: 5vw;
-    padding-right: 5vw;
-}
-
-#about-page-second-third .about-section-container-2 {
-    padding-left: 5vw;
-    padding-right: 5vw;
-}
-
-.about-section-padding {
-    padding-left: 7vw;
-    padding-top: 7vw;
-}
-
-#about-page-first-third  {
-    background-color: var(--about-bg-color);
-    color: var(--about-font-color);
-    margin-right: 0;
-    padding-top: 120px;
-}
-
-#about-page-second-third  {
-    background-color: #010915;
-    color: var(--about-font-color);
-    background-position: right top;
-    background-image: url('../images/map_1.svg');
-    background-repeat: no-repeat;
-    background-size: 45%;
-    padding-top: 100px;
-    /* padding-bottom: 50px; */
-}
-
-#about-page-third-third  {
-    background-color: var(--about-bg-color-light);
-    padding-left: 10vw;
-    color: var(--about-font-color-black);
-    padding-bottom: 100px;
-    padding-top: 100px;
-}
-
-.about-page-third {
-    width: 103vw;
-    height: 100%;
-    padding-top: 50px; 
-    margin-right: 0;
-}
-
-.top-bar-content {
-    padding-top: 1.3rem;
-    padding-bottom: .4rem;
-    margin-right: 50px;
-    margin-left: 50px;
-}
-
-
-
-.web-about-source {
-    text-align: right;
-    font-size: .75rem;
-    color: var(--about-font-color);
-}
-
-.web-about-sources {
-    padding-left: 7vw;
-    margin-bottom: 1%;
-    /* padding-top: %; */
-}
-
-
-#about-contributors-title {
-    font-family: var(--about-font-family);
-    font-size: 2.1rem;
-    margin-bottom: 3%;
-    text-shadow: none;
-    font-weight: bold;
-}
-
-#about-contributors-subtitle {
-    font-family: var(--about-font-family);
-    font-size: 1.2rem;
-    padding-bottom: 3%;
-    padding-top:.5%;
-    font-weight: 400;
-    text-shadow: none;
-}
-
-.about-contributor-name {
-    font-family: var(--about-font-family);
-    padding-right: 5px;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-.about-contributor-title {
-    font-family: var(--about-font-family);
-    font-size: 1.1rem;
-}
-
-.about-page-contributors {
-    display: flex;
-    flex-direction: row;
-}
-
-.about-page-contributor {
-    display: flex;
-    /* justify-content: space-between; */
-    align-items: flex-end;
-    margin-bottom: 1%;
-}
-
-.about-contributor-social-icon {
-    margin-right: 1%;
-    width: 21px;
-    height: 21px;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    margin-bottom: auto;
-}
-
-.about-contributor-github-icon {
-    background-image: url('../images/Github.svg');
-}
-
-.about-contributor-linkedin-icon {
-    background-image: url('../images/LinkedIN.svg');
-}
-
-.about-contributor-twitter-icon {
-    background-image: url('../images/Twitter.svg');
-}
-
-/* Top Card Section */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                STATES DROPDOWN                                 */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
 
 .states-dropdown-container {
     margin-top: 9vh;
@@ -444,7 +200,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     flex: 0 0 25%;
     font-weight: var(--daily-stats-font-weight);
 }
-
 
 
 #states-dropdown {
@@ -541,6 +296,12 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
 }
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                DAILY STATS                                     */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
 
 .top-bar-content-col {
     margin-top: 9.5vh;
@@ -695,17 +456,16 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     font-size: var(--font-size-card-perc-change);
 }
 
-/* 🌎 Map Styling 🌎*/
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                             🌎 US Map Styling 🌎                              */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
 #map-loading {
     margin-top: 22vh;
 }
-
-/* #map-container { */
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    height: 60vh;
-/* } */
 
 #chart-container {
     min-height: 20vh;
@@ -765,7 +525,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 
-/* Chart Styling */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                              Chart Styling                                     */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
 
 .bottom-chart-h1-title {
     font-size: var(--font-size-chart-h1);
@@ -785,8 +549,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 .top-bottom-charts {
-    margin-left: 0.75rem;
-    margin-right: 0.75rem;
+    margin: .4vw 0.8vw;
 }
 
 .top-bottom-charts .card {
@@ -796,8 +559,14 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     margin-bottom: 2rem;
 }
 
-.top-bottom-left-chart , .top-bottom-mid-chart, .top-bottom-right-chart{
+/* .top-bottom-left-chart , .top-bottom-mid-chart, .top-bottom-right-chart {
     padding: 0.5%;
+} */
+
+
+.top-bottom-charts .card-body {
+    background: var(--card-bg-color);
+    padding: 3vh;
 }
 
 /* .top-bottom-left-chart.col-6 .card , .top-bottom-mid-chart.col-6 .card, .top-bottom-right-chart.col-6 .card {
@@ -808,15 +577,6 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 } */
 
 
-
-.top-bottom-charts .card-body {
-    background: var(--card-bg-color);
-    padding: 3vh;
-}
-
-
-
-
 /* https://community.plot.ly/t/is-it-possible-to-hide-the-floating-toolbar/4911 */
 .modebar{
     display: none !important; 
@@ -824,7 +584,12 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 
-/* 👈 Left  Twitter 🐦 News 📰 Feed Sidebar */
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                    👈 Right  Twitter 🐦 News 📰 Feed Sidebar                  */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
 
 /* Active Tab Blur */
 .tab--selected {
@@ -841,12 +606,12 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 
 
-/* RIGHT SIDEBAR FEED STYLING */
+
 
 
 .middle-map-news-content.mt-3.no-gutters.row {
-    margin-left: 1.2rem;
-    margin-right: 1rem;
+    /* margin-left: 1.2rem;
+    margin-right: 1rem; */
     border: none;
 }
 
@@ -988,7 +753,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 }
 
 
-/* 👉👉👉👉LEFT SIDEBAR STATS TABLE STYLING */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                          👈 Left  Stats Table Sidebar                          */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
 
 .right-col-news-feed-content.col-2 {
     margin-left: 0.3rem;
@@ -1161,8 +930,12 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding-top: 1vh ;
 }
 
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                   Footer 🦶                                    */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
 
-/* Footer 🦶 */
 .footer-content {
     background-color: #010915;
     color: #BDBDBD;
@@ -1203,7 +976,7 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     padding-right: 45px;
 }
 
-
+/* needs to be here don't move */
 .tweet-item a:hover {
     text-decoration: none !important;
 }
@@ -1211,3 +984,211 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 .news-item-container:hover , .tweet-item-container:hover{
     color: rgb(212, 212, 212) !important;
 }
+/* END */
+
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                             📖 About Page Styling 📖                          */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+/* Every page is given some padding and margin, but I want the about page to fill the whole page so I need to negate it.
+This isn't perfect so if anyone knows how to disable .page-content padding on the about page only please fix this */
+/* #about-page {
+    margin-left: -50px;
+    margin-top: -25px;
+}
+
+#page-content {
+    margin-top: -1vh !important;
+} */
+
+/* .desktop {
+    min-width: var(--minimum-screen-size);
+} */
+
+.about-page-title {
+    font-family: var(--about-font-family);
+    font-size: 2rem;
+    padding-left: 7.5%;
+    margin-bottom: 50px;
+    margin-top: 0;
+    font-weight: bold;
+}
+
+#about-page-second-third .about-page-title {
+    padding-left: 125px;
+    padding-bottom: 50px;
+}
+
+.about-section-title-container {
+    border-left: 7px solid var(--about-border-color);
+}
+
+.about-section-text-container {
+    border-left: 1px solid var(--about-border-color);
+    margin-left: 3px;
+}
+
+
+.about-section {
+    width: 40vw;
+}
+
+.about-section-title {
+    font-family: var(--about-font-family);
+    padding-left: 4%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin: 0;
+}
+
+.about-section-text {
+    font-family: var(--about-font-family);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5%;
+}
+
+.about-section-container {
+    display: flex;
+    justify-content: center;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 100px;
+}
+
+.about-section-container-2 {
+    display: flex;
+    justify-content: center;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 90px;
+}
+
+#about-page-second-third .about-section-container {
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+#about-page-second-third .about-section-container-2 {
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+.about-section-padding {
+    padding-left: 7vw;
+    padding-top: 7vw;
+}
+
+#about-page-first-third  {
+    background-color: var(--about-bg-color);
+    color: var(--about-font-color);
+    margin-right: 0;
+    padding-top: 120px;
+}
+
+#about-page-second-third  {
+    background-color: #010915;
+    color: var(--about-font-color);
+    background-position: right top;
+    background-image: url('../images/map_1.svg');
+    background-repeat: no-repeat;
+    background-size: 45%;
+    padding-top: 100px;
+    /* padding-bottom: 50px; */
+}
+
+#about-page-third-third  {
+    background-color: var(--about-bg-color-light);
+    padding-left: 10vw;
+    color: var(--about-font-color-black);
+    padding-bottom: 100px;
+    padding-top: 100px;
+}
+
+.about-page-third {
+    width: 103vw;
+    height: 100%;
+    padding-top: 50px; 
+    margin-right: 0;
+}
+
+
+.web-about-source {
+    text-align: right;
+    font-size: .75rem;
+    color: var(--about-font-color);
+}
+
+.web-about-sources {
+    padding-left: 7vw;
+    margin-bottom: 1%;
+    /* padding-top: %; */
+}
+
+
+#about-contributors-title {
+    font-family: var(--about-font-family);
+    font-size: 2.1rem;
+    margin-bottom: 3%;
+    text-shadow: none;
+    font-weight: bold;
+}
+
+#about-contributors-subtitle {
+    font-family: var(--about-font-family);
+    font-size: 1.2rem;
+    padding-bottom: 3%;
+    padding-top:.5%;
+    font-weight: 400;
+    text-shadow: none;
+}
+
+.about-contributor-name {
+    font-family: var(--about-font-family);
+    padding-right: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.about-contributor-title {
+    font-family: var(--about-font-family);
+    font-size: 1.1rem;
+}
+
+.about-page-contributors {
+    display: flex;
+    flex-direction: row;
+}
+
+.about-page-contributor {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    margin-bottom: 1%;
+}
+
+.about-contributor-social-icon {
+    margin-right: 1%;
+    width: 21px;
+    height: 21px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-bottom: auto;
+}
+
+.about-contributor-github-icon {
+    background-image: url('../images/Github.svg');
+}
+
+.about-contributor-linkedin-icon {
+    background-image: url('../images/LinkedIN.svg');
+}
+
+.about-contributor-twitter-icon {
+    background-image: url('../images/Twitter.svg');
+}
+
+
