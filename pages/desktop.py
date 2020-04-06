@@ -29,23 +29,26 @@ from components.column_stats import STATES
 
 ################ TABS STYLING ####################
 
-font_size = "0.8vw"
+font_size = "1vw"
+color_active = "#F4F4F4"
+color_inactive = "#AEAEAE"
+color_bg = "#010914"
+
 tabs_styles = {
     "flex-direction": "row",
 }
 tab_style = {
-    "padding": "0.5rem",
-    "color": "#AEAEAE",
-    "backgroundColor": "#010914",
+    "padding": "1.5vh",
+    "color": color_inactive,
     "fontSize": font_size,
+    "backgroundColor": color_bg,
 }
 
 tab_selected_style = {
     "fontSize": font_size,
-    # "backgroundColor": "#20242d",
-    "color": "white",
-    "padding": "0.5rem",
-    "backgroundColor": "#010914",
+    "color": color_active,
+    "padding": "1.5vh",
+    "backgroundColor": color_bg,
 }
 
 ################### STATE LABELS ########################
@@ -189,8 +192,8 @@ stats_tabs = dbc.Card(
 def stats_tab_content(state):
     df = stats_table(state)
 
-    font_size_heading = "1vw"
-    font_size_body = "0.8vw"
+    font_size_heading = ".6vh"
+    font_size_body = ".9vw"
     table = dash_table.DataTable(
         data=df.to_dict("records"),
         columns=[
@@ -223,10 +226,11 @@ def stats_tab_content(state):
         },
         style_header={
             # "font-size": font_size_heading,
-            "backgroundColor": "#010915",
-            "border": "#010915",
+            "backgroundColor": color_bg,
+            "border": color_bg,
             "fontWeight": "bold",
             "font": "Lato, sans-serif",
+            # "padding": "1.5vh",
         },
         style_cell={
             "font-size": font_size_body,
@@ -234,7 +238,7 @@ def stats_tab_content(state):
             "border-bottom": "0.01rem solid #313841",
             "backgroundColor": "#010915",
             "color": "#FEFEFE",
-            "height": "2.75vw",
+            "height": "2.77vw",
         },
         style_cell_conditional=[
             {

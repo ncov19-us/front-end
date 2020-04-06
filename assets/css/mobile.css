@@ -6,50 +6,61 @@
 :root{
     /* Nav Colors */
     --nav-bg-color:#010915;
-    --nav-font-color:#FEFEFE;
+    --nav-font-color: #FEFEFE;
 
     /* Font Colors */
     --font-color-tested:#AEAEAE;
     --font-color-confirmed:#F4B000;
     --font-color-deaths:#E55465;
     --font-color-deathrate:#DD1E34;
+    --font-color-gray: #BDBDBD;
 
     /* Card Colors */
     --card-bg-color:#010915;
     --card-font-color:#F4F4F4;
+    
+    /* Body Background Color */
+    --mobile-body-bg-color: #19202A;
 
     /* Font Sizes */
     --mobile-font-size-h1: 2.5vh;
     --mobile-font-size-h2: 1.5vh;
     --mobile-font-size-h4: 1.3vh;
-    --mobile-font-size-card-value: 6.5vh;
-    --mobile-font-size-card-category: 1.6vh;
-    --mobile-font-size-card-perc-change: 1.5vh;
+    --mobile-font-size-card-value: 6.7vh;
+    --mobile-font-size-card-category: 2vh;
+    --mobile-font-size-card-perc-change: 1.7vh;
     --mobile-font-size-table-heading: 2vh;
     --mobile-font-size-feed-body: 1.6vh;
     --mobile-font-size-feed-author: 1.3vh;
+    --mobile-font-size-stats-table-heading: 1.8vh;
+    
+    /* Font Weights */
+    --font-weight-normal: 500;
+    --font-weight-bold: 700;
 
     /* Mobile Body Padding */
     --mobile-body-margin: 3.2vw;
 
+    /* Mobile Border Radius */
+    --mobile-border-radius: 0.4rem;
+
     /* About Page Variables */
-    --about-font-color:#fefefe;
+    --about-font-color:#FEFEFE;
     --about-font-color-black:black;
-    --about-border-color:#fefefe;
+    --about-border-color:#FEFEFE;
     --about-bg-color:#19202A;
     --about-bg-color-light:#D2D2D2;
     --about-font-family:'Roboto', sans-serif ;
 
 
     /* Daily Stats */
-    --daily-stats-font-mobile: 'Lato', sans-serif; 
-    --daily-stats-font-weight: 700;
-    /* not using lato for now bc font weight is weird */
+    --mobile-daily-stats-font: 'Lato', sans-serif; 
+    --mobile-daily-stats-cateogory-font: 'Roboto', sans-serif;
+    --mobile-daily-stats-font-weight: 700;
 
 }
 
 /* Mobile Nav Bar */
-
 .mobile-navbar {
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
@@ -70,7 +81,7 @@
 .navbar-toggler-icon {
     margin-left: 10%;
     margin-bottom: -0.2rem;
-    color: #F4F4F4;
+    color: var(--card-font-color);
 }
 
 #mobile-navbar-toggler {
@@ -108,7 +119,7 @@
 }
 
 .mobile-covid-19-text {
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
     font-size: 3.5vh;
     width: max-content;
     padding-right: 2vw;
@@ -117,7 +128,7 @@
 }
 
 .mobile-us-cases-text {
-    font-weight: normal;
+    font-weight: var(--font-weight-normal);
     font-size: 3.6vh;
     text-shadow: none;
     padding-bottom: .2vh;
@@ -126,22 +137,19 @@
 
 
 /* STATES DROPDOWN */
-
 .mt-4 {
     margin: 0rem;
     /* margin-top: 0rem !important; */
 }
 
-
-
 .mobile-states-dropdown-container {
     width: 100%;
-    height: 9.5vh;
+    height: 10vh;
     position: fixed;
     z-index: 9999;
     font-size: 2vh;
-    font-family: var(--daily-stats-font-family);
-    font-weight: var(--daily-stats-font-weight);
+    font-family: var(--mobile-daily-stats-font);
+    /* font-weight: var(--mobile-daily-stats-font-weight); */
     background-color: var(--card-bg-color);
     
     /* padding-top: 1.5vh;
@@ -158,8 +166,8 @@
     width: 60vw;
     height: 5vh;
     /* line-height: .7; */
-    background-color: #19202A;
-    border-radius: .3rem;
+    background-color: var(--card-bg-color);
+    border-radius: var(--mobile-border-radius);
     margin: 2.2vh 0;
 }
 
@@ -168,6 +176,17 @@
     font-size: 1rem;
 }
 
+.Select-arrow {
+    border-width: 0.9vh 0.8vh 0.25vh !important;
+}
+
+#mobile-states-dropdown .is-open .Select-arrow {
+    border-width: 0.9vh 0.8vh 0.25vh !important;
+}
+
+.Select--single > .Select-control .Select-value {
+    line-height: 5vh !important;
+}
 
 
 #mobile-states-dropdown .Select-input {
@@ -176,25 +195,24 @@
 
 #mobile-states-dropdown .Select-control {
     height: 5vh;
-    background-color: transparent !important;
+    background-color: var(--mobile-body-bg-color) !important;
     border-color: transparent;
     overflow: auto;
     box-shadow: none !important;
     border-color: transparent !important;
-    /* padding-right: 35px; */
 }
 
 .mobile-states-dropdown .Select-menu-outer {
-    background-color: #1F242D;
+    background-color: var(--mobile-body-bg-color);
     border-color: transparent;
     font-size: 3vw;
     z-index: 1000000;
 }
 
 .mobile-states-dropdown .Select-control .Select-value-label {
-    color: white !important;
+    color: var(--card-font-color) !important;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: var(--font-weight-normal);
 }
 
 /* #mobile-states-dropdown:hover .Select-value-label, #mobile-states-dropdown:hover .Select-arrow {
@@ -205,9 +223,9 @@
 
 /* .parent:hover .child, .parent.hover .child */
 
-/* #states-dropdown:hover {
-    color: gray !important;
-} */
+/* #states-dropdown:hover { */
+    /* color: gray !important; */
+/* } */
 
 /* .states-dropdown:hover {
     color: gray !important;
@@ -217,6 +235,11 @@
     border-color: white transparent transparent;
     /* border-width: 10px 5px 2.5px; */
 }
+
+.Select-control > *:last-child {
+    padding-right: 2vh !important;
+}
+
 #mobile-states-dropdown .is-open .Select-control {
     background-color: transparent;
 }
@@ -259,14 +282,14 @@
 }
 
 .mobile-top-bar-card-tested .list-group-item {
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;
+    border-top-left-radius: var(--mobile-border-radius);
+    border-top-right-radius: var(--mobile-border-radius);
     background-color: none !important;
 }
 
 .mobile-top-bar-card-death.list-group-item {
-    border-bottom-left-radius: 0.3rem;
-    border-bottom-right-radius: 0.3rem;
+    border-bottom-left-radius: var(--mobile-border-radius);
+    border-bottom-right-radius: var(--mobile-border-radius);
 }
 
 .list-group-item, .list-group-item:hover, .list-group-item:active {
@@ -275,115 +298,109 @@
 
 .mobile-card-text {
     margin-top: -1vh;
-    font-weight: normal;
+    font-weight: var(--font-weight-bold);
     text-align: center;
     margin-bottom: -1vh;
 }
 
 .mobile-top-bar-card-tested {
-    text-align: center;
+    font-family: var(--mobile-daily-stats-cateogory-font);
     font-size: var(--mobile-font-size-card-category);
-    border: none;
-    border-radius: .3rem;
-    padding: .2rem; 
-    font-family: var(--daily-stats-font-mobile);
     color: var(--font-color-tested);
+    text-align: center;
+    border: none;
+    border-radius: var(--mobile-border-radius);
+    padding: .2rem; 
     margin-top: 2rem;
 }
 
 .mobile-top-bar-value-tested {
-    margin-top: -1rem;
-    font-weight: 500;
+    font-family: var(--mobile-daily-stats-font);
+    font-weight: var(--mobile-daily-stats-font-weight);
     font-size: var(--mobile-font-size-card-value);
+    margin-top: -1rem;
     text-shadow: none;
     color: var(--font-color-tested);
+
 }
 
 .mobile-top-bar-card-confirmed {
+    font-size: var(--mobile-font-size-card-category);
+    color: var(--font-color-confirmed);
     background-color: none;
     text-align: center;
-    font-size: var(--mobile-font-size-card-category);
     border: none;
-    border-radius: .3rem;
+    border-radius: var(--mobile-border-radius);
     padding: .2rem; 
-    color: var(--font-color-confirmed);
-    font-family: var(--daily-stats-font-mobile);
+
 }
 
 .mobile-top-bar-value-confirmed {
-    margin-top: -1rem;
-    font-weight: 500;
+    font-family: var(--mobile-daily-stats-font);
     font-size: var(--mobile-font-size-card-value);
+    font-weight: var(--mobile-daily-stats-font-weight);
+    margin-top: -1rem;
     text-shadow: none;
 }
 
 .mobile-top-bar-card-deaths {
+    font-size: var(--mobile-font-size-card-category);
+    color: var(--font-color-deaths);
     background-color: none;
     text-align: center;
-    font-size: var(--mobile-font-size-card-category);
     border: none;
-    border-radius: .3rem;
+    border-radius: var(--mobile-border-radius);
     padding: .2rem; 
-    color: var(--font-color-deaths);
-    font-family: var(--daily-stats-font-mobile);
-}
-.mobile-top-bar-card-deaths .mobile-card-text {
-    font-weight: 650;
 }
 
-.mobile-top-bar-card-death {
-    background: transparent !important;
-}
 
 .mobile-top-bar-value-deaths {
-    margin-top: -1rem;
-    font-weight: 500;
+    font-family: var(--mobile-daily-stats-font);
     font-size: var(--mobile-font-size-card-value);
+    font-weight: var(--mobile-daily-stats-font-weight);
+    margin-top: -1rem;
     text-shadow: none;
 }
 
 .mobile-top-bar-card-death {
-    text-align: center;
     font-size: var(--mobile-font-size-card-category);
-    border: none;
-    border-radius: .3rem;
-    padding: .2rem; 
     color: var(--font-color-deathrate);
-    font-family: var(--daily-stats-font-mobile);
-}
+    text-align: center;
+    border: none;
+    border-radius: var(--mobile-border-radius);
+    padding: .2rem; 
 
-.mobile-top-bar-card-death .mobile-card-text {
-    font-weight: 650;
 }
 
 .mobile-top-bar-value-death {
-    margin-top: -1rem;
-    font-weight: 500;
+    font-family: var(--mobile-daily-stats-font);
     font-size: var(--mobile-font-size-card-value);
+    margin-top: -1rem;
+    font-weight: var(--mobile-daily-stats-font-weight);
     text-shadow: none;
 }
 
 .mobile-top-bar-perc-change-tested {
-    color: #010915;
+    color: var(--mobile-body-bg-color);
     margin-top: 0.2rem;
     font-size: var(--mobile-font-size-card-perc-change);
 }
 
 
 .mobile-top-bar-perc-change-confirmed {
-    color: #BDBDBD;
+    color: var(--font-color-gray);
     margin-top: 0.2rem;
     font-size: var(--mobile-font-size-card-perc-change);
 }
 
 .mobile-top-bar-perc-change-deaths {
-    color: #BDBDBD;
+    color: var(--font-color-gray);
     margin-top: 0.2rem;
     font-size: var(--mobile-font-size-card-perc-change);
 }
 
 .mobile-top-bar-perc-change-death {
-    color: #BDBDBD;
+    color: var(--font-color-gray);
     margin-top: 0.2rem;
     font-size: var(--mobile-font-size-card-perc-change);
 }
@@ -406,7 +423,7 @@
 
 .mobile-chart-h1-title {
     font-size: var(--mobile-font-size-h1);
-    font-weight: normal;
+    font-weight: var(--font-weight-normal);
     color: #F4F4F4;
     max-width: 100%;
     padding-top: 0.8vh;
@@ -455,7 +472,7 @@
 
 
 .tab.mobile-testing-us-map-tab, .tab.mobile-testing-us-map-tab {
-    border-top-right-radius: 1rem !important;
+    border-top-right-radius: var(--mobile-border-radius) !important;
 }    
 
 
@@ -474,8 +491,8 @@
 
 .stats-table-div .column-header-name {
     font-family: Lato, sans-serif;
-    font-size: var(--mobile-font-size-table-heading);
-    font-weight: 500;
+    font-size: var(--mobile-font-size-stats-table-heading);
+    font-weight: var(--font-weight-normal);
     /* padding-left: 1rem; */
     /* padding: 1rem; */
     color: var(--nav-font-color);
@@ -572,13 +589,13 @@ th.dash-header.column-0 {
 }
 
 .mobile-twitter-feed-tab {
-    border-top-left-radius: 0.3rem;
+    border-top-left-radius: 4rem;
 }
 
 #mobile-feed-tabs-styled-with-inline {
     background-color: var(--card-bg-color);
-    border-top-right-radius: .3rem;
-    border-top-left-radius: .3rem;
+    border-top-right-radius: var(--mobile-border-radius);
+    border-top-left-radius: var(--mobile-border-radius);
     padding-bottom: 0;
 }
 
@@ -638,15 +655,15 @@ th.dash-header.column-0 {
 }
 
 .mobile-news-feed-tab {
-    border-top-right-radius: 0.3rem;
+    border-top-right-radius: var(--mobile-border-radius);
 }
 
 .tab.mobile-left-twitter-tab {
-    border-top-left-radius: 0.3rem;
+    border-top-left-radius: var(--mobile-border-radius);
 }
 
 .tab.mobile-left-news-tab {
-    border-top-right-radius: 0.3rem;
+    border-top-right-radius: var(--mobile-border-radius);
 }
 
 .tab.mobile-twitter-feed-tab.tab--selected, .tab.mobile-news-feed-tab.tab--selected {
@@ -717,7 +734,7 @@ th.dash-header.column-0 {
     padding-left: 10%;
     margin-bottom: 8%;
     margin-top: 0;
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
     width: 90%;
     align-items: left;
 }
@@ -750,7 +767,7 @@ th.dash-header.column-0 {
     font-size: 2rem;
     margin-bottom: 8%;
     text-shadow: none;
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
 }
 
 #mob-about-contributors-subtitle {
@@ -758,14 +775,14 @@ th.dash-header.column-0 {
     font-size: 1rem;
     padding-bottom: 50px;
     padding-top:2%;
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
     text-shadow: none;
 }
 
 .mob-about-contributor-name {
     font-family: 'Roboto', sans-serif;
     padding-right: 5px;
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
     font-size: .9rem;
 }
 

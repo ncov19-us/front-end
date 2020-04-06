@@ -207,7 +207,7 @@ mobile_us_maps_tabs = dbc.Card(
                 dcc.Graph(
                     id="mobile-us-map",
                     config={"scrollZoom": False},
-                    style={"height": "65vh"},
+                    style={"height": "55vh"},
                 )
             ),
         ]

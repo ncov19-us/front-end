@@ -35,6 +35,11 @@ mobile_navbar = [
                         href="/",
                     ),
                     html.A(
+                        html.P("About", className="mobile-nav-header",),
+                        className="mobile-hidden-menu-anchor-tag",
+                        href="/about",
+                    ),
+                    html.A(
                         html.P("CDC", className="mobile-nav-header",),
                         # id="navbar-resources-link",
                         className="mobile-hidden-menu-anchor-tag",
@@ -47,11 +52,6 @@ mobile_navbar = [
                         className="mobile-hidden-menu-anchor-tag",
                         href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
                         target="_blank",
-                    ),
-                    html.A(
-                        html.P("About", className="mobile-nav-header",),
-                        className="mobile-hidden-menu-anchor-tag",
-                        href="/about",
                     ),
                     # html.A(html.P("Resources", className="mobile-nav-header"), href="/resources", className="hidden-menu-anchor-tag"),
                     # html.A(html.P("Github", className="mobile-nav-header"), href="/#", className="hidden-menu-anchor-tag"),
