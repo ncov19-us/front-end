@@ -733,9 +733,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
     font-size: var(--font-size-table-heading)
 }
 
-.tab.confirmed-us-map-tab.tab--selected, .tab.testing-us-map-tab , .tab.confirmed-us-map-tab {
+.tab.confirmed-us-map-tab.tab--selected, .tab.testing-us-map-tab.tab--selected, .tab.testing-us-map-tab , .tab.confirmed-us-map-tab {
     min-width: max-content;
     border-top-left-radius:  0.3rem;
+    padding-left: 3vh !important;
+    padding-right: 3vh !important;
 }
 
 
@@ -1152,7 +1154,11 @@ This isn't perfect so if anyone knows how to disable .page-content padding on th
 
 .right-col-stats-content.col-2 .row.row-0, .right-col-stats-content.col-2 .row.row-1 {
     margin: 0;
-    padding: 0 .5vw;
+    padding: 0 .75vw;
+}
+
+.right-col-stats-content.col-2 .row.row-0 {
+    padding-top: 1vh ;
 }
 
 
