@@ -75,8 +75,8 @@ def cases_chart(state="US") -> go.Figure:
     annotation_y1 = plot_tail[1]  # LAST CONFIRMED CASES COUNT
     annotation_y2 = data["New Confirmed Cases"].max()  # HIGHEST BAR ON BAR CHART
 
-    template_new = "%{customdata} confirmed new cases on %{x}<extra></extra>"
-    template_total = "%{customdata} confirmed total cases on %{x}<extra></extra>"
+    template_new = "%{customdata} new cases on %{x}<extra></extra>"
+    template_total = "%{customdata} total cases on %{x}<extra></extra>"
     fig = go.Figure()
     fig.add_trace(
         go.Bar(
