@@ -46,7 +46,7 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         it = it["Confirmed"].to_frame("Italy")
 
         # load in China, UK, and (TODO) data from JHU
-        new_countries = ['China', 'United Kingdom', ]#TODO add country]
+        new_countries = ['China', 'United Kingdom', 'Singapore']#TODO add country]
 
         jhu = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/' \
             'COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/'\
@@ -64,9 +64,11 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         US_POP = 331002651	
         ITALY_POP = 60461826
         SK_POP = 51269185
+        SI_POP = 5850342
 
         jhu['China'] = jhu['China'] / (CH_POP/100000)
         jhu['United Kingdom'] = jhu['United Kingdom'] / (UK_POP/100000)
+        jhu['Singapore'] = jhu['Singapore'] / (SI_POP/100000)
         kr["South Korea"] = kr["South Korea"] / (SK_POP / 100000)
         us["US"] = us["US"] / (US_POP / 100000)
         it["Italy"] = it["Italy"] / (ITALY_POP / 100000)
@@ -77,10 +79,11 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         it = it[it["Italy"] > 1].reset_index(drop=True)
         ch = jhu[jhu['China'] > 1].reset_index(drop=True)
         uk = jhu[jhu['United Kingdom'] > 1].reset_index(drop=True)
+        si = jhu[jhu['Singapore'] > 1].reset_index(drop=True)
 
         # merge dataframes
         merged = pd.concat([kr["South Korea"], it["Italy"], us["US"], \
-            ch['China'], uk['United Kingdom']], axis=1)
+            ch['China'], uk['United Kingdom'], si['Singapore']], axis=1)
         merged = merged.reset_index()
         merged = merged.rename(columns={"index": "Days"})
 
@@ -94,9 +97,9 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             "%{y:.0f} confirmed cases per 100,000 people<br>in %{text} <extra></extra>"
         )
 
-        countries = ["Italy", "South Korea", "US"]
-        countries += new_countries #TODO remove when API is implemented
-        colors = ["#009d00", "#009fe2", "#F4B000", '#ff6059', '#dc93ff']
+        countries = ["Italy", "South Korea", "Singapore", "United Kingdom", "China", "US"]
+        # countries += new_countries #TODO remove when API is implemented
+        colors = ["#009d00", "#009fe2", '#dbdbdb', '#dc93ff', '#ff6059', "#F4B000"]
 
         for i, country in enumerate(countries):
             # CALCULATE ANNOTATION POSITION:
@@ -120,14 +123,14 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             )
 
             # LINE CHART ANNOTATION
-            if country != 'China':
+            if country != 'China' and country != 'South Korea':
                 fig.add_annotation(
                     x=annotation_x,
                     y=annotation_y,
                     text=country,
                     font={"size": 10},
                     xshift=1,  # Annotation x displacement!
-                    yshift=6,  # Annotation y displacement!
+                    yshift=7,  # Annotation y displacement!
                     showarrow=False,
                     align="left",
                     xanchor="left",
@@ -138,8 +141,8 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
                     y=annotation_y,
                     text=country,
                     font={"size": 10},
-                    xshift=2,  # Annotation x displacement!
-                    yshift=7,  # Annotation y displacement!
+                    xshift=1,  # Annotation x displacement!
+                    yshift=6,  # Annotation y displacement!
                     showarrow=False,
                     align="right",
                     xanchor="right",
