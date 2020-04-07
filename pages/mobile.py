@@ -438,7 +438,6 @@ mobile_body = [
                 [
                     html.Div(
                         id="mobile-trajectory-title",
-                        # "Placeholder",
                         className="mobile-chart-h1-title",
                     ),
                     html.Div(
@@ -529,9 +528,9 @@ def mobile_confirmed_cases_callback(state):
 )
 def mobile_trajectory_title_callback(state="US"):
     if state == "US":
-        return ["U.S. Trajectory"]
+        return ["U.S. Trajectory Comparison"]
     else:
-        return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
+        return [f"{REVERSE_STATES_MAP[state]} Trajectory Comparison"]
 
 
 @app.callback(
