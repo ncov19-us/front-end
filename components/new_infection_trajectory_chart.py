@@ -221,7 +221,15 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             ].reset_index(drop=True)
             series[i] = temp_data
 
-        merged = pd.concat([series[0], series[1], series[2]], axis=1)
+        jhu = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/' \
+            'COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/'\
+            'time_series_covid19_confirmed_global.csv')
+
+        series[3] = jhu[jhu['Province/State'] == 'Hubei'].T.iloc[4:]
+        series[3].columns = ['Hubei']
+        series[3] = series[3][series[3]['Hubei']/(59020000 / 100000) > 1].reset_index(drop=True)
+
+        merged = pd.concat([series[0], series[1], series[2], series[3]], axis=1)
         merged = merged.reset_index()
         merged = merged.rename(columns={"index": "Days"})
 
@@ -234,12 +242,15 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             name = REVERSE_STATES_MAP[s]
             state_names.append(name)
             merged[name] = merged[name] / (populations[name] / 100000)
+        
+        merged['Hubei'] = merged['Hubei'] / (59020000 / 100000)
+        state_names.append('Hubei')
 
         del state_populations, populations
         gc.collect()
 
         # Plotting
-        colors = ["#009fe2", "#009d00", "#F4B000"]
+        colors = ["#009fe2", "#009d00", "#F4B000", '#ff6059']
         fig = go.Figure()
 
         template = (
