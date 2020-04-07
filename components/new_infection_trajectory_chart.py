@@ -10,7 +10,7 @@ from utils import config
 
 
 
-@cache.memoize(timeout=3600)
+# @cache.memoize(timeout=3600)
 def new_infection_trajectory_chart(state="US") -> go.Figure:
     """Line chart data for the selected state.
 
@@ -45,16 +45,7 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         it = pd.DataFrame.from_records(data)
         it = it["Confirmed"].to_frame("Italy")
 
-        us = us[us["US"] > 100].reset_index(drop=True)
-        kr = kr[kr["South Korea"] > 100].reset_index(drop=True)
-        it = it[it["Italy"] > 100].reset_index(drop=True)
-
-        merged = pd.concat([kr["South Korea"], it["Italy"], us["US"]], axis=1)
-        merged = merged.reset_index()
-        merged = merged.rename(columns={"index": "Days"})
-
         # load in China, UK, and (TODO) data from JHU
-
         new_countries = ['China', 'United Kingdom', ]#TODO add country]
 
         jhu = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/' \
@@ -66,9 +57,6 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         jhu = jhu.T.iloc[2:]
 
 
-        
-
-
         # scale per 100000 people
         # source: https://www.worldometers.info/world-population/population-by-country/
         CH_POP = 1439323776
@@ -77,9 +65,24 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         ITALY_POP = 60461826
         SK_POP = 51269185
 
-        merged["South Korea"] = merged["South Korea"] / (SK_POP / 100000)
-        merged["US"] = merged["US"] / (US_POP / 100000)
-        merged["Italy"] = merged["Italy"] / (ITALY_POP / 100000)
+        jhu['China'] = jhu['China'] / (CH_POP/100000)
+        jhu['United Kingdom'] = jhu['United Kingdom'] / (UK_POP/100000)
+        kr["South Korea"] = kr["South Korea"] / (SK_POP / 100000)
+        us["US"] = us["US"] / (US_POP / 100000)
+        it["Italy"] = it["Italy"] / (ITALY_POP / 100000)
+
+        # filter to only after country reached 1 case per 100K people
+        us = us[us["US"] > 1].reset_index(drop=True)
+        kr = kr[kr["South Korea"] > 1].reset_index(drop=True)
+        it = it[it["Italy"] > 1].reset_index(drop=True)
+        ch = jhu[jhu['China'] > 1].reset_index(drop=True)
+        uk = jhu[jhu['United Kingdom'] > 1].reset_index(drop=True)
+
+        # merge dataframes
+        merged = pd.concat([kr["South Korea"], it["Italy"], us["US"], \
+            ch['China'], uk['United Kingdom']], axis=1)
+        merged = merged.reset_index()
+        merged = merged.rename(columns={"index": "Days"})
 
         del response, data, us, kr, it
         gc.collect()
@@ -92,7 +95,8 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         )
 
         countries = ["Italy", "South Korea", "US"]
-        colors = ["#009d00", "#009fe2", "#F4B000"]
+        countries += new_countries #TODO remove when API is implemented
+        colors = ["#009d00", "#009fe2", "#F4B000", '#ff6059', '#dc93ff']
 
         for i, country in enumerate(countries):
             # CALCULATE ANNOTATION POSITION:
@@ -157,36 +161,7 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             if len(states) < 3 and s not in states:
                 states.append(s)
 
-        # Ingestion
-        series = dict()
-        for i, comp_state in enumerate(states):
-            payload = json.dumps({"stateAbbr": comp_state})
-            response = requests.post(URL, data=payload)
-
-            if response.status_code == 200:
-                data = response.json()["message"]
-                data = pd.DataFrame(data)
-            else:
-                backup = [
-                    {"Date": "1/1/20", "Confirmed": 1337},
-                    {"Date": "3/1/20", "Confirmed": 1338},
-                ]
-                data = pd.DataFrame(backup)
-
-            temp_data = data["Confirmed"].to_frame(REVERSE_STATES_MAP[comp_state])
-            temp_data = temp_data[
-                temp_data[REVERSE_STATES_MAP[comp_state]] > 100
-            ].reset_index(drop=True)
-            series[i] = temp_data
-
-        merged = pd.concat([series[0], series[1], series[2]], axis=1)
-        merged = merged.reset_index()
-        merged = merged.rename(columns={"index": "Days"})
-
-        del series, response
-        gc.collect()
-
-        # Population logic
+        # Get population data
         populations = {
             "New York": 19453561,
             "Washington": 7614893,
@@ -205,6 +180,37 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
 
         populations[REVERSE_STATES_MAP[state]] = state_populations["2019"].iloc[0]
 
+        # Ingestion
+        series = dict()
+        for i, comp_state in enumerate(states):
+            payload = json.dumps({"stateAbbr": comp_state})
+            response = requests.post(URL, data=payload)
+
+            if response.status_code == 200:
+                data = response.json()["message"]
+                data = pd.DataFrame(data)
+            else:
+                backup = [
+                    {"Date": "1/1/20", "Confirmed": 1337},
+                    {"Date": "3/1/20", "Confirmed": 1338},
+                ]
+                data = pd.DataFrame(backup)
+            temp_data = data["Confirmed"].to_frame(REVERSE_STATES_MAP[comp_state])
+            
+            # convert data to per 100K and filter where greater than 1/100K
+            population = populations[REVERSE_STATES_MAP[comp_state]]
+            temp_data = temp_data[
+                temp_data[REVERSE_STATES_MAP[comp_state]]/(population/100000) > 1
+            ].reset_index(drop=True)
+            series[i] = temp_data
+
+        merged = pd.concat([series[0], series[1], series[2]], axis=1)
+        merged = merged.reset_index()
+        merged = merged.rename(columns={"index": "Days"})
+
+        del series, response
+        gc.collect()
+
         # Get cases per 100,000 people and create state_names list
         state_names = []
         for s in states:
@@ -216,12 +222,15 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         gc.collect()
 
         # Plotting
-        colors = ["#F4B000", "#009d00", "#009fe2"]
+        colors = ["#009fe2", "#009d00", "#F4B000"]
         fig = go.Figure()
 
         template = (
             "%{y:.0f} confirmed cases per 100,000 people<br>in %{text} <extra></extra>"
         )
+
+        # reversing list so the line for input state is on top
+        state_names.reverse()
 
         for i, name in enumerate(state_names):
             # CALCULATE ANNOTATION POSITION:
