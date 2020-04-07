@@ -53,10 +53,29 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         merged = merged.reset_index()
         merged = merged.rename(columns={"index": "Days"})
 
+        # load in China, UK, and (TODO) data from JHU
+
+        new_countries = ['China', 'United Kingdom', ]#TODO add country]
+
+        jhu = pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/' \
+            'COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/'\
+            'time_series_covid19_confirmed_global.csv')
+
+        jhu = jhu[jhu['Country/Region'].isin(new_countries)]
+        jhu = jhu.groupby(['Country/Region']).sum()
+        jhu = jhu.T.iloc[2:]
+
+
+        
+
+
         # scale per 100000 people
-        US_POP = 329450000
-        ITALY_POP = 60500000
-        SK_POP = 51200000
+        # source: https://www.worldometers.info/world-population/population-by-country/
+        CH_POP = 1439323776
+        UK_POP = 67886011
+        US_POP = 331002651	
+        ITALY_POP = 60461826
+        SK_POP = 51269185
 
         merged["South Korea"] = merged["South Korea"] / (SK_POP / 100000)
         merged["US"] = merged["US"] / (US_POP / 100000)
