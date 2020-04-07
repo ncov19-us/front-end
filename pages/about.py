@@ -305,14 +305,14 @@ about_body = [
                 ], className="about-page-contributor"),
 
                 html.Div([
-                    html.A(href="https://github.com/lkimsey", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
+                    html.A(href="https://github.com/BuildABuddha", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
 
                     html.A(href="https://www.linkedin.com/in/lawrence-kimsey/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
 
                     html.A(href="https://twitter.com/lawrence_kimsey", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
 
                 html.Div([
-                        html.Div("Lawrence Kinsey", className="about-contributor-name"),
+                        html.Div("Lawrence Kimsey", className="about-contributor-name"),
 
                         html.Div(" | Data Scientist", className="about-contributor-title")
                      ], className="about-page-contributors")
@@ -320,11 +320,11 @@ about_body = [
                 ], className="about-page-contributor"),
 
                 html.Div([
-                    html.A(href="https://github.com/orgs/ncov19-us/people/AceMouty", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
+                    html.A(href="https://github.com/AceMouty", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
 
                     html.A(href="https://www.linkedin.com/in/acemouty/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
 
-                    html.A(href="https://twitter.com/ncov19us", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
+                    html.A(href="https://twitter.com/AceMouty", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
 
                 html.Div([
                         html.Div("Kyle Guerrero", className="about-contributor-name"),

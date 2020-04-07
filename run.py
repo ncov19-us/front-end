@@ -125,9 +125,11 @@ def display_page(pathname):
         error_page = [
             html.Div(
                 html.Img(
-                    src='assets/images/sjackson.jpg',
+                    src='assets/images/404_image.png',
                     style={"margin": "0 auto",
-                           "width": "100%"
+                           "width": "100%",
+                           "display": "flex",
+                           "padding": "5vh 2vw",
                     },
                 ),
             ),
