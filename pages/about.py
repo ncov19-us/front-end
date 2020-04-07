@@ -164,7 +164,7 @@ about_body = [
                 html.Div([
                         html.Div("Han Lee", className="about-contributor-name"),
 
-                        html.Div("Data Scientist", className="about-contributor-title")
+                        html.Div(" | Machine Learning Engineer", className="about-contributor-title")
                      ], className="about-page-contributors")
 
                 ], className="about-page-contributor"),
@@ -179,67 +179,7 @@ about_body = [
                 html.Div([
                         html.Div("Hursh Desai", className="about-contributor-name"),
 
-                        html.Div("Data Scientist", className="about-contributor-title")
-                     ], className="about-page-contributors")
-
-                ], className="about-page-contributor"),
-
-                html.Div([
-                    html.A(href="https://github.com/Turtled", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
-
-                    html.A(href="https://www.linkedin.com/in/daniel-firpo/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
-
-                    html.A(href="https://twitter.com/danielfirpo2", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
-
-                html.Div([
-                        html.Div("Daniel Firpo", className="about-contributor-name"),
-
-                        html.Div("Web Developer", className="about-contributor-title")
-                     ], className="about-page-contributors")
-
-                ], className="about-page-contributor"),
-
-                html.Div([
-                    html.A(href="https://github.com/alex-pakalniskis", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
-
-                    html.A(href="https://www.linkedin.com/in/alexpakalniskis3/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
-
-                    html.A(href="https://twitter.com/AlexPakalniskis", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
-
-                html.Div([
-                        html.Div("Alex Pakalniskis", className="about-contributor-name"),
-
-                        html.Div("Data Scientist", className="about-contributor-title")
-                     ], className="about-page-contributors")
-
-                ], className="about-page-contributor"),
-
-                html.Div([
-                    html.A(href="https://github.com/mchrupcala", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
-
-                    html.A(href="https://www.linkedin.com/in/michaelchrupcala/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
-
-                    html.A(href="https://twitter.com/mikespellcheck", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
-
-                html.Div([
-                        html.Div("Michael Chrupcala", className="about-contributor-name"),
-
-                        html.Div("Web Developer", className="about-contributor-title")
-                     ], className="about-page-contributors")
-
-                ], className="about-page-contributor"),
-
-                html.Div([
-                    html.A(href="https://github.com/ars394", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
-
-                    html.A(href="https://www.linkedin.com/in/anishasunkerneni/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
-
-                    html.A(href="https://twitter.com/youfoundanisha", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
-
-                html.Div([
-                        html.Div("Anisha Sunkerneni", className="about-contributor-name"),
-
-                        html.Div("Web Developer", className="about-contributor-title")
+                        html.Div(" | Data Scientist", className="about-contributor-title")
                      ], className="about-page-contributors")
 
                 ], className="about-page-contributor"),
@@ -254,10 +194,145 @@ about_body = [
                 html.Div([
                         html.Div("Elizabeth Ter Sahakyan", className="about-contributor-name"),
 
-                        html.Div("Data Scientist", className="about-contributor-title")
+                        html.Div(" | Data Scientist", className="about-contributor-title")
                      ], className="about-page-contributors")
 
-                ], className="about-page-contributor")
+                ], className="about-page-contributor"),
+
+                html.Div([
+                    html.A(href="https://github.com/Turtled", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://www.linkedin.com/in/daniel-firpo/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://twitter.com/danielfirpo2", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
+
+                html.Div([
+                        html.Div("Daniel Firpo", className="about-contributor-name"),
+
+                        html.Div(" | Web Developer", className="about-contributor-title")
+                     ], className="about-page-contributors")
+
+                ], className="about-page-contributor"),
+
+                html.Div([
+                    html.A(href="https://github.com/alex-pakalniskis", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://www.linkedin.com/in/alexpakalniskis3/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://twitter.com/AlexPakalniskis", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
+
+                html.Div([
+                        html.Div("Alex Pakalniskis", className="about-contributor-name"),
+
+                        html.Div(" | Data Scientist", className="about-contributor-title")
+                     ], className="about-page-contributors")
+
+                ], className="about-page-contributor"),
+
+                html.Div([
+                    html.A(href="https://github.com/mchrupcala", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://www.linkedin.com/in/michaelchrupcala/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://twitter.com/mikespellcheck", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
+
+                html.Div([
+                        html.Div("Michael Chrupcala", className="about-contributor-name"),
+
+                        html.Div(" | Web Developer", className="about-contributor-title")
+                     ], className="about-page-contributors")
+
+                ], className="about-page-contributor"),
+
+                html.Div([
+                    html.A(href="https://github.com/ars394", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://www.linkedin.com/in/anishasunkerneni/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://twitter.com/youfoundanisha", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
+
+                html.Div([
+                        html.Div("Anisha Sunkerneni", className="about-contributor-name"),
+
+                        html.Div(" | Web Developer", className="about-contributor-title")
+                     ], className="about-page-contributors")
+
+                ], className="about-page-contributor"),
+
+                html.Div([
+                    html.A(href="https://github.com/dereketman", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://www.linkedin.com/in/dereketman/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://twitter.com/DerekEtman", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
+
+                html.Div([
+                        html.Div("Derek Etman", className="about-contributor-name"),
+
+                        html.Div(" | Web Developer", className="about-contributor-title")
+                     ], className="about-page-contributors")
+
+                ], className="about-page-contributor"),
+
+                html.Div([
+                    html.A(href="https://medium.com/@RK_yen", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://www.linkedin.com/in/ryankyen/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://twitter.com/RK_yen", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
+
+                html.Div([
+                        html.Div("Ryan Yen", className="about-contributor-name"),
+
+                        html.Div(" | UI/UX Designer", className="about-contributor-title")
+                     ], className="about-page-contributors")
+
+                ], className="about-page-contributor"),
+
+                html.Div([
+                    html.A(href="https://github.com/Scott-Huston", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://www.linkedin.com/in/scott-huston-616512126/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://twitter.com/genuine_doubt", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
+
+                html.Div([
+                        html.Div("Scott Huston", className="about-contributor-name"),
+
+                        html.Div(" | Data Scientist", className="about-contributor-title")
+                     ], className="about-page-contributors")
+
+                ], className="about-page-contributor"),
+
+                html.Div([
+                    html.A(href="https://github.com/BuildABuddha", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://www.linkedin.com/in/lawrence-kimsey/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://twitter.com/lawrence_kimsey", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
+
+                html.Div([
+                        html.Div("Lawrence Kimsey", className="about-contributor-name"),
+
+                        html.Div(" | Data Scientist", className="about-contributor-title")
+                     ], className="about-page-contributors")
+
+                ], className="about-page-contributor"),
+
+                html.Div([
+                    html.A(href="https://github.com/AceMouty", target="_blank", className="about-contributor-github-icon about-contributor-social-icon"),
+
+                    html.A(href="https://www.linkedin.com/in/acemouty/", target="_blank", className="about-contributor-linkedin-icon about-contributor-social-icon"),
+
+                    html.A(href="https://twitter.com/AceMouty", target="_blank", className="about-contributor-twitter-icon about-contributor-social-icon"),
+
+                html.Div([
+                        html.Div("Kyle Guerrero", className="about-contributor-name"),
+
+                        html.Div(" | Full Stack Developer", className="about-contributor-title")
+                     ], className="about-page-contributors")
+
+                ], className="about-page-contributor"),
 
         ], className="about-page-third", id="about-page-third-third")
     ], id="about-page")

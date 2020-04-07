@@ -8,6 +8,7 @@ import flask
 from flask import request, make_response, render_template, send_from_directory
 import dash
 from dash.dependencies import Input, Output
+import dash_html_components as html
 import dash_core_components as dcc
 
 # Imports from this application
@@ -120,7 +121,20 @@ def display_page(pathname):
         else:
             return navbar, resources_body, footer
     else:
-        error_page = [dcc.Markdown("404: PAGE NOT FOUND")]
+
+        error_page = [
+            html.Div(
+                html.Img(
+                    src='assets/images/404_image.png',
+                    style={"margin": "0 auto",
+                           "width": "100%",
+                           "display": "flex",
+                           "padding": "5vh 2vw",
+                    },
+                ),
+            ),
+        ]
+
         if is_mobile:
             return mobile_navbar, error_page, mobile_footer
         else:
