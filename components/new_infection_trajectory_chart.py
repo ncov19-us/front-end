@@ -120,17 +120,31 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             )
 
             # LINE CHART ANNOTATION
-            fig.add_annotation(
-                x=annotation_x,
-                y=annotation_y,
-                text=country,
-                font={"size": 10},
-                xshift=-2,  # Annotation x displacement!
-                yshift=10,  # Annotation y displacement!
-                showarrow=False,
-                align="right",
-                xanchor="right",
-            )
+            if country != 'China':
+                fig.add_annotation(
+                    x=annotation_x,
+                    y=annotation_y,
+                    text=country,
+                    font={"size": 10},
+                    xshift=1,  # Annotation x displacement!
+                    yshift=6,  # Annotation y displacement!
+                    showarrow=False,
+                    align="left",
+                    xanchor="left",
+                )
+            else:
+                fig.add_annotation(
+                    x=annotation_x,
+                    y=annotation_y,
+                    text=country,
+                    font={"size": 10},
+                    xshift=2,  # Annotation x displacement!
+                    yshift=7,  # Annotation y displacement!
+                    showarrow=False,
+                    align="right",
+                    xanchor="right",
+                )
+                
 
         fig.update_layout(
             margin={"r": 0, "t": 0, "l": 0, "b": 1},
