@@ -120,6 +120,41 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
                         last_x[i] = x
                 comparison_lines[i].append(next)
 
+        # Add comparison lines (these need to be behind country lines)
+        annotation_texts = ['Cases double every 3 days', '...every 7 days', '...every 10 days']
+        for i, line in enumerate(comparison_lines):
+            # CALCULATE ANNOTATION POSITION:
+            annotation_x = last_x[i]
+            annotation_y = max(comparison_lines[i])
+
+            fig.add_trace(
+                go.Scatter(
+                    x=linspace,
+                    y=line,
+                    line={"color": '#454545'},
+                    mode="lines",
+                    opacity = .3,
+                    hoverinfo='skip'
+                )
+            )
+
+            x_anchor = 'center'
+            if annotation_x == len(merged):
+                x_anchor = 'right'
+
+            fig.add_annotation(
+                x=annotation_x,
+                y=annotation_y,
+                text=annotation_texts[i],
+                font={"size": 7},
+                xshift=3,  # Annotation x displacement!
+                yshift=7,  # Annotation y displacement!
+                showarrow=False,
+                align="center",
+                xanchor=x_anchor,
+                opacity=.6
+            )   
+
         for i, country in enumerate(countries):
             # CALCULATE ANNOTATION POSITION:
             annotation_x = (
@@ -167,41 +202,6 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
                     xanchor="right",
                 )
 
-        # Add comparison lines
-        annotation_texts = ['Cases double every 3 days', '...every 7 days', '...every 10 days']
-        for i, line in enumerate(comparison_lines):
-            # CALCULATE ANNOTATION POSITION:
-            annotation_x = last_x[i]
-            annotation_y = max(comparison_lines[i])
-
-            fig.add_trace(
-                go.Scatter(
-                    x=linspace,
-                    y=line,
-                    line={"color": '#454545'},
-                    mode="lines",
-                    opacity = .3,
-                    hoverinfo='none'
-                )
-            )
-
-            x_anchor = 'center'
-            if annotation_x == len(merged):
-                x_anchor = 'right'
-
-            fig.add_annotation(
-                x=annotation_x,
-                y=annotation_y,
-                text=annotation_texts[i],
-                font={"size": 7},
-                xshift=3,  # Annotation x displacement!
-                yshift=7,  # Annotation y displacement!
-                showarrow=False,
-                align="center",
-                xanchor=x_anchor,
-                opacity=.6
-            )   
-
         fig.update_layout(
             margin={"r": 0, "t": 0, "l": 0, "b": 1},
             template="plotly_dark",
@@ -217,6 +217,10 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             font=dict(family="Roboto, sans-serif", size=10, color="#f4f4f4"),
             yaxis_title="Cases per 100k People",
         )
+
+    ###########################################################################
+    #############               END OF COUNTRY CHART             ##############
+    ###########################################################################
 
     else:
         URL = config.NCOV19_API + config.STATE
@@ -316,17 +320,96 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             "%{y:.0f} confirmed cases per 100,000 people<br>in %{text} <extra></extra>"
         )
 
-        # reversing list so the line for input state is on top
-        state_names.reverse()
+        ##############################################################################
+        ### getting state name annotation positions and adjusting to avoid overlap ###
+        ##############################################################################
+
+        x_pos = []
+        y_pos = []
+
+        for name in state_names:
+            x = merged[["Days", name]].dropna()["Days"].max()
+            y = merged[["Days", name]].dropna()[name].max()
+            x_pos.append(x)
+            y_pos.append(y)
+
+        zipped = zip(x_pos, y_pos, state_names, colors)
+        ordered = sorted(zipped, key = lambda x: x[1]) 
+
+        x_pos = []
+        y_pos = []
+        state_names = []
+        colors = []
+
+        input_state = dict()
+
+        last_y = None
+        for coordinate in ordered:
+            new_y = coordinate[1]
+            if last_y:
+                difference = new_y-last_y
+                if  difference < 60:
+                    new_y = coordinate[1] + (60-difference)
+            
+            if coordinate[2] == REVERSE_STATES_MAP[state]:
+                input_state['x_pos'] = coordinate[0]
+                input_state['y_pos'] = new_y
+                input_state['name'] = coordinate[2]
+                input_state['color'] = coordinate[3]
+            else:
+                x_pos.append(coordinate[0])
+                y_pos.append(new_y)
+                state_names.append(coordinate[2])
+                colors.append(coordinate[3])
+            
+            last_y = coordinate[1]
+            
+        ##############################################################
+        ###                    Add comparison lines                ###
+        ##############################################################
+
+        annotation_texts = ['Cases double every 2 days', '...every 3 days', '...every 4 days']
+        for i, line in enumerate(comparison_lines):
+            # CALCULATE ANNOTATION POSITION:
+            annotation_x = last_x[i]
+            annotation_y = max(comparison_lines[i])
+
+            fig.add_trace(
+                go.Scatter(
+                    x=linspace,
+                    y=line,
+                    line={"color": '#454545'},
+                    mode="lines",
+                    opacity = .3,
+                    hoverinfo = 'skip'
+                )
+            )
+
+            x_anchor = 'center'
+            if annotation_x == len(merged):
+                x_anchor = 'right'
+
+            fig.add_annotation(
+                x=annotation_x,
+                y=annotation_y,
+                text=annotation_texts[i],
+                font={"size": 7},
+                xshift=3,  # Annotation x displacement!
+                yshift=2,  # Annotation y displacement!
+                showarrow=False,
+                align="center",
+                xanchor=x_anchor,
+                opacity=.6
+            )   
+
+
+        ##########################################
+        ###   add lines for comparison states  ###
+        ##########################################
 
         for i, name in enumerate(state_names):
-            # CALCULATE ANNOTATION POSITION:
-            annotation_x = (
-                merged[["Days", name]].dropna()["Days"].max()
-            )  # FIND LAST DAY ON LINE
-            annotation_y = (
-                merged[["Days", name]].dropna()[name].max()
-            )  # FIND HIGHEST POINT ON LINE
+            annotation_x = x_pos[i]
+            annotation_y = y_pos[i]
 
             fig.add_trace(
                 go.Scatter(
@@ -352,42 +435,38 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
                 xanchor="right",
             )
 
-        # Add comparison lines
-        annotation_texts = ['Cases double every 2 days', '...every 3 days', '...every 4 days']
-        for i, line in enumerate(comparison_lines):
-            # CALCULATE ANNOTATION POSITION:
-            annotation_x = last_x[i]
-            annotation_y = max(comparison_lines[i])
+        ###############################################################
+        ###             add line for input state                    ###
+        ###  needs to be last so line is on top and most prominent  ###
+        ###############################################################
 
-            fig.add_trace(
-                go.Scatter(
-                    x=linspace,
-                    y=line,
-                    line={"color": '#454545'},
-                    mode="lines",
-                    opacity = .3,
-                    hoverinfo = 'none'
-                )
+        name = input_state['name']
+
+        fig.add_trace(
+            go.Scatter(
+                x=merged["Days"],
+                y=merged[name],
+                name=name,
+                line={"color": input_state['color']},
+                mode="lines",
+                text=[name] * len(merged[name]),
+                hovertemplate=template,
             )
+        )
 
-            x_anchor = 'center'
-            if annotation_x == len(merged):
-                x_anchor = 'right'
+        fig.add_annotation(
+            x=input_state['x_pos'],
+            y=input_state['y_pos'],
+            text=name,
+            font={"size": 10},
+            xshift=-2,  # Annotation x displacement!
+            yshift=10,  # Annotation y displacement!
+            showarrow=False,
+            align="right",
+            xanchor="right",
+        )
 
-            fig.add_annotation(
-                x=annotation_x,
-                y=annotation_y,
-                text=annotation_texts[i],
-                font={"size": 7},
-                xshift=3,  # Annotation x displacement!
-                yshift=2,  # Annotation y displacement!
-                showarrow=False,
-                align="center",
-                xanchor=x_anchor,
-                opacity=.6
-            )   
-
-
+        # formatting specifics
         fig.update_layout(
             margin={"r": 0, "t": 0, "l": 0, "b": 1},
             template="plotly_dark",
@@ -403,6 +482,9 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             font=dict(family="Roboto, sans-serif", size=10, color="#f4f4f4"),
             yaxis_title="Cases per 100k People",
         )
+        
+        del x_pos, y_pos, state_names, colors, input_state
+        gc.collect()
     
     del merged
     gc.collect()
