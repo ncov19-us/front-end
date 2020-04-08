@@ -2,6 +2,7 @@ import gc
 import json
 import requests
 import pandas as pd
+import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from app import cache
@@ -56,7 +57,6 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         jhu = jhu.groupby(['Country/Region']).sum()
         jhu = jhu.T.iloc[2:]
 
-
         # scale per 100000 people
         # source: https://www.worldometers.info/world-population/population-by-country/
         CH_POP = 1439323776
@@ -87,6 +87,8 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         merged = merged.reset_index()
         merged = merged.rename(columns={"index": "Days"})
 
+        # data for doubling lines
+
         del response, data, us, kr, it
         gc.collect()
 
@@ -100,6 +102,23 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         countries = ["Italy", "South Korea", "Singapore", "United Kingdom", "China", "US"]
         # countries += new_countries #TODO remove when API is implemented
         colors = ["#009d00", "#009fe2", '#dbdbdb', '#dc93ff', '#ff6059', "#F4B000"]
+
+
+        # Adding lines for doubling times
+        max_y = merged.max().max()
+        # these are y values for doubling times of [3 days, 7 days, 10 days]
+        linspace = np.linspace(0,len(merged),200)
+        comparison_lines = [[],[],[]]
+        last_x = [len(merged)]*3
+        doubling_rates = [1.2599, 1.1041, 1.0718]
+        for x in linspace:
+            for i, rate in enumerate(doubling_rates):
+                next = 1*(rate**x)
+                if next>max_y:
+                    next = np.NaN
+                    if last_x[i]==len(merged):
+                        last_x[i] = x
+                comparison_lines[i].append(next)
 
         for i, country in enumerate(countries):
             # CALCULATE ANNOTATION POSITION:
@@ -147,7 +166,41 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
                     align="right",
                     xanchor="right",
                 )
-                
+
+        # Add comparison lines
+        annotation_texts = ['Cases double every 3 days', '...every 7 days', '...every 10 days']
+        for i, line in enumerate(comparison_lines):
+            # CALCULATE ANNOTATION POSITION:
+            annotation_x = last_x[i]
+            annotation_y = max(comparison_lines[i])
+
+            fig.add_trace(
+                go.Scatter(
+                    x=linspace,
+                    y=line,
+                    line={"color": '#454545'},
+                    mode="lines",
+                    opacity = .3,
+                    hoverinfo='none'
+                )
+            )
+
+            x_anchor = 'center'
+            if annotation_x == len(merged):
+                x_anchor = 'right'
+
+            fig.add_annotation(
+                x=annotation_x,
+                y=annotation_y,
+                text=annotation_texts[i],
+                font={"size": 7},
+                xshift=3,  # Annotation x displacement!
+                yshift=7,  # Annotation y displacement!
+                showarrow=False,
+                align="center",
+                xanchor=x_anchor,
+                opacity=.6
+            )   
 
         fig.update_layout(
             margin={"r": 0, "t": 0, "l": 0, "b": 1},
@@ -238,6 +291,23 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         del state_populations, populations
         gc.collect()
 
+        # Adding lines for doubling times
+        max_y = merged.max().max()
+        # these are y values for doubling times of [3 days, 7 days, 10 days]
+        linspace = np.linspace(0,len(merged),200)
+        comparison_lines = [[],[],[]]
+        last_x = [len(merged)]*3
+        doubling_rates = [1.4142, 1.2599, 1.1892]
+        for x in linspace:
+            for i, rate in enumerate(doubling_rates):
+                next = 1*(rate**x)
+                if next>max_y:
+                    next = np.NaN
+                    if last_x[i]==len(merged):
+                        last_x[i] = x
+                comparison_lines[i].append(next)
+
+
         # Plotting
         colors = ["#009fe2", "#009d00", "#F4B000"]
         fig = go.Figure()
@@ -281,6 +351,42 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
                 align="right",
                 xanchor="right",
             )
+
+        # Add comparison lines
+        annotation_texts = ['Cases double every 2 days', '...every 3 days', '...every 4 days']
+        for i, line in enumerate(comparison_lines):
+            # CALCULATE ANNOTATION POSITION:
+            annotation_x = last_x[i]
+            annotation_y = max(comparison_lines[i])
+
+            fig.add_trace(
+                go.Scatter(
+                    x=linspace,
+                    y=line,
+                    line={"color": '#454545'},
+                    mode="lines",
+                    opacity = .3,
+                    hoverinfo = 'none'
+                )
+            )
+
+            x_anchor = 'center'
+            if annotation_x == len(merged):
+                x_anchor = 'right'
+
+            fig.add_annotation(
+                x=annotation_x,
+                y=annotation_y,
+                text=annotation_texts[i],
+                font={"size": 7},
+                xshift=3,  # Annotation x displacement!
+                yshift=2,  # Annotation y displacement!
+                showarrow=False,
+                align="center",
+                xanchor=x_anchor,
+                opacity=.6
+            )   
+
 
         fig.update_layout(
             margin={"r": 0, "t": 0, "l": 0, "b": 1},
