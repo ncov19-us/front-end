@@ -41,7 +41,7 @@ about_bar = dbc.Row(
             html.A(
                 "About", 
                 className="navbar-brand-links", 
-                href="https://pedantic-boyd-2e5947.netlify.com/about"),
+                href="/about"),
         ]
     ),
     className="ml-auto flex-nowrap mt-md-0",
