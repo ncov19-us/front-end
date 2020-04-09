@@ -16,9 +16,9 @@ from app import app, server
 from layout.desktop_layout import build_desktop_layout
 from layout.mobile_layout import build_mobile_layout
 from pages import desktop, navbar, footer
-from pages import about_body, resources_body
+from pages import about_body
 from pages import mobile, mobile_navbar, mobile_footer
-from pages import mobile_about_body, mobile_resources_body
+from pages import mobile_about_body
 
 
 # Set default layout so Flask can start
@@ -35,7 +35,6 @@ def before_request_func():
     re_mobile = re.compile(mobile_string)
     is_mobile = len(re_mobile.findall(agent)) > 0
 
-    # print(f'[DEBUG]: Requests from Mobile? {is_mobile}')
     if is_mobile:
         app.layout = build_mobile_layout
         flask.session['mobile'] = True
@@ -45,8 +44,6 @@ def before_request_func():
         flask.session['mobile'] = False
         flask.session['zoom'] = 2.8
     
-    # print(f"[DEBUG]: Session: 'mobile': {flask.session['mobile']}, 'zoom': {flask.session['zoom']}")
-
 
 @server.route("/sitemap")
 @server.route("/sitemap/")
@@ -72,22 +69,13 @@ def sitemap():
 
     static_urls.append({"loc": f"{host_base}/about"})
     static_urls.append({"loc": f"{host_base}/resources"})
-    # print(static_urls)
-    # # Dynamic routes with dynamic content
-    # dynamic_urls = list()
-    # blog_posts = Post.objects(published=True)
-    # for post in blog_posts:
-    #     url = {
-    #         "loc": f"{host_base}/blog/{post.category.name}/{post.url}",
-    #         "lastmod": post.date_published.strftime("%Y-%m-%dT%H:%M:%SZ")
-    #         }
-    #     dynamic_urls.append(url)
 
     xml_sitemap = render_template("sitemap.xml", static_urls=static_urls, host_base=host_base) #, dynamic_urls=dynamic_urls, 
     response = make_response(xml_sitemap)
     response.headers["Content-Type"] = "application/xml"
 
     return response
+
 
 @server.route("/robots.txt")
 def static_from_root():
@@ -103,8 +91,7 @@ def static_from_root():
               [Input("url", "pathname")])
 def display_page(pathname):
     is_mobile = flask.session['mobile']
-    # print(f"[DEBUG]: Session: 'mobile': {flask.session['mobile']}")
-
+    
     if pathname == "/":
         if is_mobile:
             return mobile_navbar, mobile.mobile_body, mobile_footer
@@ -115,11 +102,6 @@ def display_page(pathname):
             return mobile_navbar, mobile_about_body, mobile_footer
         else:
             return navbar, about_body, footer
-    # elif pathname == "/resources":
-    #     if is_mobile:
-    #         return mobile_navbar, mobile_resources_body, mobile_footer
-    #     else:
-    #         return navbar, resources_body, footer
     else:
         error_page = [
             html.Div(

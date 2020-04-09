@@ -29,8 +29,8 @@ def get_daily_stats_mobile(state="United States") -> Dict:
         else:
             payload = json.dumps({"state": state})
             response = requests.post(url=url, data=payload)
-    except:
-        print("[ERROR] get_daily_stats_mobile error accessing ncov19.us API")
+    except ex:
+        print(f"[ERROR] get_daily_stats_mobile error accessing ncov19.us API, {ex}")
 
     # return all zeros if response statsus code is not 200
     if response.status_code != 200:
@@ -51,7 +51,8 @@ def get_daily_stats_mobile(state="United States") -> Dict:
         todays_confirmed = data["todays_confirmed"]
         deaths = data["deaths"]
         todays_deaths = data["todays_deaths"]
-    except:
+    except ex:
+        print(f"[ERROR] get_daily_stats_mobile error parsing ncov19.us API, {ex}")
         tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
     
     todays_death_rate = round(safe_div(deaths, confirmed) * 100, 2)

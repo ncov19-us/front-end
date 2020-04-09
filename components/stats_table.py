@@ -13,13 +13,12 @@ from app import cache
 def stats_table(state="US"):
     """Callback to change between news and twitter feed
     """
-    # print(f'stats_table state before translation is {state}')
     state = REVERSE_STATES_MAP[state]
-    # print(f'stats_table state is {state}')
     URL = config.NCOV19_API + config.COUNTY
     try:
         response = requests.get(URL)
-    except:
+    except ex:
+        print(f"[ERROR] stats_table error accessing ncov19.us API, {ex}")
         data = {"state_name": "john", "county_name": "cena", "confirmed": 0, "death": 0}
 
     if response.status_code == 200:

@@ -29,8 +29,8 @@ def get_daily_stats(state="United States") -> Dict:
         else:
             payload = json.dumps({"state": state})
             response = requests.post(url=URL, data=payload)
-    except:
-        print("[ERROR] get_daily_stats error accessing ncov19.us API")
+    except ex:
+        print(f"[ERROR] get_daily_stats error accessing ncov19.us API, {ex}")
 
     # return all zeros if response statsus code is not 200
     if response.status_code != 200:
@@ -50,7 +50,8 @@ def get_daily_stats(state="United States") -> Dict:
         todays_confirmed = data["todays_confirmed"]
         deaths = data["deaths"]
         todays_deaths = data["todays_deaths"]
-    except:
+    except ex:
+        print(f"[ERROR] get_daily_stats error parsing ncov19.us API, {ex}")
         tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
     
     todays_death_rate = round(safe_div(deaths, confirmed) * 100, 2)
@@ -85,12 +86,8 @@ def daily_stats(state="US") -> List[dbc.Col]:
     :rtype: list of plotly dash bootstrap coomponent Col objects.
     """
     # 1. Fetch Stats
-    # print(STATES_COORD[state]['stateAbbr'])
-
     stats = get_daily_stats(state)
 
-    # print("Desktop Site Stats ---> ", stats)
-    # print(stats)
     # 2. Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays
     # items and values of the stats pulled from the API.
     cards = []
