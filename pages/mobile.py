@@ -11,17 +11,9 @@ from utils.settings import STATES_COORD, REVERSE_STATES_MAP
 
 from components import daily_stats_mobile
 from components import news_feed, twitter_feed
-from components import (
-    confirmed_cases_chart,
-    infection_trajectory_chart,
-    new_infection_trajectory_chart,
-)
+from components import confirmed_cases_chart, new_infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
-from components import (
-    mobile_states_confirmed_stats,
-    mobile_states_deaths_stats,
-    mobile_last_updated,
-)
+from components import mobile_last_updated
 from components.column_stats import STATES
 from components import cases_chart, deaths_chart
 from components import stats_table
@@ -169,8 +161,6 @@ def mobile_feed_tab_content(tab_value, state):
 #              Confirmed and Testing Center Map Tabs
 #
 ########################################################################
-
-
 mobile_us_maps_tabs = dbc.Card(
     dbc.CardBody(
         [
@@ -466,6 +456,8 @@ mobile_body = [
         className="mobile-feed-content",
     ),
 ]
+
+
 ########################################################################
 #
 #                    Confirm cases chart callback
@@ -521,8 +513,6 @@ def mobile_confirmed_cases_callback(state):
 #                           Trajectory callback
 #
 ########################################################################
-
-
 @app.callback(
     [Output("mobile-trajectory-title", "children")],
     [Input("mobile-intermediate-value", "children")],
@@ -563,8 +553,6 @@ def daily_stats_mobile_callback(state):
 #                   State Dropdown Menu Callback
 #
 ########################################################################
-
-
 @app.callback(
     [Output("mobile-intermediate-value", "children")],
     [Input("mobile-states-dropdown", "value")],

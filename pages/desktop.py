@@ -11,17 +11,11 @@ from dash.exceptions import PreventUpdate
 from app import app
 from utils.settings import STATES_COORD, REVERSE_STATES_MAP
 
-
 from components import daily_stats
 from components import news_feed, twitter_feed
-from components import (
-    confirmed_cases_chart,
-    infection_trajectory_chart,
-    new_infection_trajectory_chart,
-)
-
+from components import confirmed_cases_chart, new_infection_trajectory_chart
 from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
-from components import states_confirmed_stats, states_deaths_stats, last_updated
+from components import last_updated
 from components import cases_chart, deaths_chart
 from components import stats_table
 from components.column_stats import STATES
@@ -170,7 +164,6 @@ def feed_tab_content(tab_value, state):
 #                       Confirm/Death Table
 #
 ########################################################################
-
 stats_tabs = dbc.Card(
     [
         dbc.CardBody(id="stats-table", className="stats-table-col",),
@@ -189,7 +182,7 @@ stats_tabs = dbc.Card(
 def stats_tab_content(state):
     df = stats_table(state)
 
-    font_size_heading = ".4vh"
+    # font_size_heading = ".4vh"
     font_size_body = ".9vw"
     table = dash_table.DataTable(
         data=df.to_dict("records"),
@@ -271,12 +264,6 @@ def stats_tab_content(state):
         ],
     )
     return table
-    # Tried to add thousands separater w/ this following week, but cant get it to work.
-    # https://community.plotly.com/t/dash-datatable-thousands-separator/6713/10
-    # TypeError: ('grouping is not a format method. Expected one of',
-    #  "['align', 'decimal_delimiter', 'fill', 'group', 'group_delimiter',
-    #  'groups', 'nully', 'padding', 'padding_width', 'precision',
-    # 'scheme', 'si_prefix', 'sign', 'symbol', 'symbol_prefix', 'symbol_suffix', 'trim']")
 
 
 ########################################################################
@@ -512,6 +499,8 @@ desktop_body = [
         ]
     ),
 ]
+
+
 ########################################################################
 #
 #                           Confirm cases callback
@@ -565,8 +554,6 @@ def death_callback(state="US"):
 #                           Trajectory callback
 #
 ########################################################################
-
-
 @app.callback(
     [Output("infection-trajectory-title", "children")],
     [Input("intermediate-value", "children")],
@@ -605,8 +592,6 @@ def daily_stats_callback(state):
 #                   State Dropdown Menu Callback
 #
 ########################################################################
-
-
 @app.callback(
     [Output("intermediate-value", "children")], [Input("states-dropdown", "value")]
 )
