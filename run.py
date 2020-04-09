@@ -115,13 +115,12 @@ def display_page(pathname):
             return mobile_navbar, mobile_about_body, mobile_footer
         else:
             return navbar, about_body, footer
-    elif pathname == "/resources":
-        if is_mobile:
-            return mobile_navbar, mobile_resources_body, mobile_footer
-        else:
-            return navbar, resources_body, footer
+    # elif pathname == "/resources":
+    #     if is_mobile:
+    #         return mobile_navbar, mobile_resources_body, mobile_footer
+    #     else:
+    #         return navbar, resources_body, footer
     else:
-
         error_page = [
             html.Div(
                 html.Img(
@@ -134,7 +133,6 @@ def display_page(pathname):
                 ),
             ),
         ]
-
         if is_mobile:
             return mobile_navbar, error_page, mobile_footer
         else:

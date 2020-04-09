@@ -479,7 +479,7 @@ desktop_body = [
                                                 className="bottom-chart-h1-title",
                                             ),
                                             html.Div(
-                                                "Days Since 100 Cases, per 100,000 people",
+                                                "Days since 1 confirmed case per 100,000 people",
                                                 className="bottom-chart-h2-title",
                                             ),
                                             html.Div(
