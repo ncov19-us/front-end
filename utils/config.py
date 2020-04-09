@@ -4,8 +4,8 @@ from decouple import config
 class Config(object):
     """Base config, uses staging API"""
 
-    DEBUG = False
-    TESTING = False
+    DEBUG = True
+    TESTING = True
 
     # Secret Key
     SECRET_KEY = config("SECRET_KEY")

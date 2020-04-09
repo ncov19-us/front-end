@@ -1,16 +1,23 @@
 Sitemap: https://ncov19.us/sitemap.xml
 
 User-agent: Googlebot
+Crawl-delay: 5000
 Disallow:
 
 User-agent: Mediapartners-Google
+Crawl-delay: 5000
 Disallow:
 
 User-agent: bingbot
-Crawl-delay: 5
+Crawl-delay: 5000
 Disallow:
 
 User-agent: Twitterbot
+Crawl-delay: 5000
+Disallow:
+
+User-agent: ia_archiver
+Crawl-delay: 5000
 Disallow:
 
 User-agent: Bytespider

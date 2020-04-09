@@ -10,7 +10,7 @@ from utils import config
 
 
 
-# @cache.memoize(timeout=3600)
+@cache.memoize(timeout=3600)
 def new_infection_trajectory_chart(state="US") -> go.Figure:
     """Line chart data for the selected state.
 
