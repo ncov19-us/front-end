@@ -17,7 +17,7 @@ def stats_table(state="US"):
     URL = config.NCOV19_API + config.COUNTY
     try:
         response = requests.get(URL)
-    except ex:
+    except Exception as ex:
         print(f"[ERROR] stats_table error accessing ncov19.us API, {ex}")
         data = {"state_name": "john", "county_name": "cena", "confirmed": 0, "death": 0}
 
