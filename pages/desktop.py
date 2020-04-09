@@ -379,16 +379,16 @@ desktop_body = [
         ]
     ),
     dbc.Row(  # MIDDLE - MAP & NEWS FEED CONTENT
-        [  # RIGHT - STATS COL
+        [  # STATS COL
             dbc.Col(stats_tabs, className="right-col-stats-content", width=2,),
-            # MIDDLE - MAPS COL
+            # MAPS COL
             dbc.Col(
                 # big map
                 html.Div(us_maps_tabs),
                 className="middle-col-map-content",
                 width=8,
             ),
-            # LEFT - TWITTER & NEWS FEED COL
+            # TWITTER & NEWS FEED COL
             dbc.Col(feed_tabs, className="left-col-twitter-feed-content", width=2),
         ],
         no_gutters=True,
