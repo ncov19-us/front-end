@@ -7,10 +7,6 @@ from app import cache
 import pandas as pd
 
 
-# DEPRECATED?
-# TODO: Remove logic from here and put it to AWS Lambda
-
-# worked when i moved this into the try/except in the states_confirmed_stats function
 try:
     URL = config.NCOV19_API + config.COUNTY
     response = requests.get(URL).json()
