@@ -2,7 +2,12 @@ from utils.config import *
 from utils.settings import *
 import os
 
-STAGING = os.environ["STAGING"]
+
+# Set default config to ProductionConfig unless STAGING environment 
+# is set to true on Linux `export STAGING=True` or Windows Powershell
+# `$Env:STAGING="True"`. Using os.environ directly will throw errors
+# if not set.
+STAGING = os.getenv("STAGING") or "False"
 
 if STAGING == "True":
     config = StagingConfig()

@@ -28,7 +28,7 @@ def stats_table(state="US"):
         data = {"state_name": "john", "county_name": "cena", "confirmed": 0, "death": 0}
 
     if state in ["US", "United States"]:
-        data = data.groupby(["state_name"])["confirmed", "death"].sum()
+        data = data.groupby(["state_name"])[["confirmed", "death"]].sum()
 
         data = data.sort_values(by=["confirmed"], ascending=False)
         data = data.reset_index()
