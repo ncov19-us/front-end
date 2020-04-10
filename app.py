@@ -76,6 +76,16 @@ app.index_string = """<!DOCTYPE html>
         <meta property="article:published_time" content="2020-03-30">
         <meta property="article:author" content="https://twitter.com/ncov19us">
 
+        <script>
+
+            (function(window) {
+            if (window.location !== window.top.location) {
+                window.top.location = window.location;
+            }
+            })(this);
+
+        </script>
+
     </head>
     <body>
         {%app_entry%}
