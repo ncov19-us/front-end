@@ -6,7 +6,6 @@ from app import cache
 import pandas as pd
 
 
-# TODO: Remove logic from here and put it to AWS Lambda
 try:
     URL = config.NCOV19_API + config.COUNTY
     response = requests.get(URL).json()

@@ -19,7 +19,7 @@ from pages import desktop, navbar, footer
 from pages import about_body, resources_body
 from pages import mobile, mobile_navbar, mobile_footer
 from pages import mobile_about_body, mobile_resources_body
-
+from utils import config
 
 # Set default layout so Flask can start
 app.layout = build_desktop_layout
@@ -38,13 +38,13 @@ def before_request_func():
     # print(f'[DEBUG]: Requests from Mobile? {is_mobile}')
     if is_mobile:
         app.layout = build_mobile_layout
-        flask.session['mobile'] = True
-        flask.session['zoom'] = 1.9#2.0
+        flask.session["mobile"] = True
+        flask.session["zoom"] = 1.9  # 2.0
     else:  # Desktop request
         app.layout = build_desktop_layout
-        flask.session['mobile'] = False
-        flask.session['zoom'] = 2.8
-    
+        flask.session["mobile"] = False
+        flask.session["zoom"] = 2.8
+
     # print(f"[DEBUG]: Session: 'mobile': {flask.session['mobile']}, 'zoom': {flask.session['zoom']}")
 
 
@@ -65,9 +65,7 @@ def sitemap():
     for rule in server.url_map.iter_rules():
         if not str(rule).startswith("/admin") and not str(rule).startswith("/user"):
             if "GET" in rule.methods and len(rule.arguments) == 0:
-                url = {
-                    "loc": f"{host_base}{str(rule)}"
-                }
+                url = {"loc": f"{host_base}{str(rule)}"}
                 static_urls.append(url)
 
     static_urls.append({"loc": f"{host_base}/about"})
@@ -83,11 +81,14 @@ def sitemap():
     #         }
     #     dynamic_urls.append(url)
 
-    xml_sitemap = render_template("sitemap.xml", static_urls=static_urls, host_base=host_base) #, dynamic_urls=dynamic_urls, 
+    xml_sitemap = render_template(
+        "sitemap.xml", static_urls=static_urls, host_base=host_base
+    )  # , dynamic_urls=dynamic_urls,
     response = make_response(xml_sitemap)
     response.headers["Content-Type"] = "application/xml"
 
     return response
+
 
 @server.route("/robots.txt")
 def static_from_root():
@@ -95,14 +96,18 @@ def static_from_root():
     """
     response = send_from_directory(server.static_folder, request.path[1:])
     return response
-    
 
-@app.callback([Output("navbar-content", "children"),
-               Output("page-content", "children"),
-               Output("footer-content", "children")],
-              [Input("url", "pathname")])
+
+@app.callback(
+    [
+        Output("navbar-content", "children"),
+        Output("page-content", "children"),
+        Output("footer-content", "children"),
+    ],
+    [Input("url", "pathname")],
+)
 def display_page(pathname):
-    is_mobile = flask.session['mobile']
+    is_mobile = flask.session["mobile"]
     # print(f"[DEBUG]: Session: 'mobile': {flask.session['mobile']}")
 
     if pathname == "/":
@@ -124,11 +129,12 @@ def display_page(pathname):
         error_page = [
             html.Div(
                 html.Img(
-                    src='assets/images/404_image.png',
-                    style={"margin": "0 auto",
-                           "width": "100%",
-                           "display": "flex",
-                           "padding": "5vh 2vw",
+                    src="assets/images/404_image.png",
+                    style={
+                        "margin": "0 auto",
+                        "width": "100%",
+                        "display": "flex",
+                        "padding": "5vh 2vw",
                     },
                 ),
             ),
@@ -140,4 +146,4 @@ def display_page(pathname):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=config.DEBUG)

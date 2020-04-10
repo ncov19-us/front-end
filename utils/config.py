@@ -1,11 +1,11 @@
 from decouple import config
 
 
-class Config(object):
+class StagingConfig(object):
     """Base config, uses staging API"""
 
-    DEBUG = False
-    TESTING = False
+    DEBUG = True
+    TESTING = True
 
     # Secret Key
     SECRET_KEY = config("SECRET_KEY")
@@ -31,7 +31,7 @@ class Config(object):
     DRIVE_THRU_URL = config("DRIVE_THRU_STAGING_URL")
 
 
-class ProductionConfig(Config):
+class ProductionConfig(StagingConfig):
     """Uses production database server."""
 
     DEBUG = False
