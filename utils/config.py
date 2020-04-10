@@ -1,7 +1,7 @@
 from decouple import config
 
 
-class Config(object):
+class StagingConfig(object):
     """Base config, uses staging API"""
 
     DEBUG = True
