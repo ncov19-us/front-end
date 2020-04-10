@@ -31,7 +31,7 @@ class StagingConfig(object):
     DRIVE_THRU_URL = config("DRIVE_THRU_STAGING_URL")
 
 
-class ProductionConfig(Config):
+class ProductionConfig(StagingConfig):
     """Uses production database server."""
 
     DEBUG = False
