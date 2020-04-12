@@ -45,6 +45,8 @@
     --font-size-chart-h1: 1.5vw;
     --font-size-chart-h2: .9vw;
     --font-size-last-updated: .7vw;
+    --font-size-dropdown-arrow: 1rem;
+    --font-size-github-favicon: 2rem;
 
     /* Font Weights */
     --font-weight-stats-numbers: 500;
@@ -63,7 +65,7 @@
 
     /* About Page Variables */
     --about-font-color:#fefefe;
-    --about-font-color-black:black;
+    --about-font-color-black: #010915;
     --about-border-color:#fefefe;
     --about-bg-color:#19202A;
     --about-bg-color-light:#D2D2D2;
@@ -82,7 +84,6 @@
     --drop-down-bg-color:#1F242D;
     --drop-down-border-color:#FFFFFF;
     --drop-down-rounded-corners: 7px;
-
 }
 
 /* Custom Scroll bar */
@@ -258,7 +259,6 @@
     font-weight: 500;
     border-radius: var(--drop-down-rounded-corners);
     color:var(--nav-font-color);
-    
 }
 
 
@@ -305,7 +305,7 @@
 .states-dropdown .Select-menu-outer {
     background-color: var(--drop-down-bg-color);
     border-color: transparent;
-    font-size: 1rem;
+    font-size: var(--font-size-dropdown-arrow);
     z-index: 1000000;
     width:91%;
     margin-top: 5%;
@@ -1034,7 +1034,7 @@
 }
 
 .fab.fa-github {
-    font-size: 2rem;
+    font-size: var(--font-size-github-favicon);
     color: #BDBDBD;
 }
 
