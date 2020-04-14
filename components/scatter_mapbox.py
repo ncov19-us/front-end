@@ -22,7 +22,7 @@ def get_drive_thru_testing_centers():
         drive_thru_df = pd.read_csv(config.DRIVE_THRU_URL)
         drive_thru_df["Street Address"] = drive_thru_df["Street Address"].fillna("")
     except Exception as ex:
-        print(ex)
+        print(f'[ERROR] get_drive_thru_testing_center error, {ex}')
     return drive_thru_df
 
 

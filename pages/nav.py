@@ -30,18 +30,15 @@ about_bar = dbc.Row(
             # html.A(
             #     "Get Mobile Updates",
             #     className="navbar-brand-links",
-            #     href="https://ncov19-sms-bot-fe-prod.netlify.com/",
-            #     id="get-mobile-updates"
+            #     href="https://ncov19-sms-bot-fe-staging.herokuapp.com/",
+            #     id="get-mobile-updates",
             # ),
             # html.A(
             #     "Vaccine Tracker",
             #     className="navbar-brand-links",
             #     href="https://pedantic-boyd-2e5947.netlify.com/"
             # ),
-            html.A(
-                "About", 
-                className="navbar-brand-links", 
-                href="/about"),
+            html.A("About", className="navbar-brand-links", href="/about"),
         ]
     ),
     className="ml-auto flex-nowrap mt-md-0",

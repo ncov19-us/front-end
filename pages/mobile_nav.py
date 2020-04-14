@@ -53,8 +53,6 @@ mobile_navbar = [
                         href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
                         target="_blank",
                     ),
-                    # html.A(html.P("Resources", className="mobile-nav-header"), href="/resources", className="hidden-menu-anchor-tag"),
-                    # html.A(html.P("Github", className="mobile-nav-header"), href="/#", className="hidden-menu-anchor-tag"),
                 ],
                 className="mobile-hidden-menu-div",
             ),
