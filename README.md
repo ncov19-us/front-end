@@ -1,13 +1,14 @@
-### <img src="assets/images/covid19-logo.png" width="45px" height="45px">[COVID-19 US Dashboard](https://ncov19.us/)
+# [nCOV19.US Tracker](https://ncov19.us/)
 
-# Project Overview
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+![Python Version](https://img.shields.io/badge/python-v3.7-blue)
+[![CodeFactor](https://www.codefactor.io/repository/github/ncov19-us/front-end/badge)](https://www.codefactor.io/repository/github/ncov19-us/front-end)
 
-### 1️⃣ About this app
-Visualizing COVID19 pandemic in the U.S. by states and by the whole country, with newsfeeds from major news channels and twitter feeds from public officials and institutions. The app can be [found here](https://ncov19.us/).
+## 1️⃣ Description
 
----
+Visualizing COVID19 pandemic in the U.S. by states and by the whole country, with newsfeeds from major news channels and twitter feeds from public officials and institutions tailored to your state, along with interactive charts to see how your state is doing in combating the pandemic.
 
-### 2️⃣ Key Features
+## 2️⃣ Key Features
 
 - drive-thru testing center locations
 - testing counts
@@ -16,68 +17,83 @@ Visualizing COVID19 pandemic in the U.S. by states and by the whole country, wit
 - twitter feeds
 - news feeds
 
----
-
-### 3️⃣ Data Sources
+## 3️⃣ Data Sources
 
 - For US and International: [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19)
-- For US States: [New York Times](https://github.com/nytimes/covid-19-data)
+- For US States/Counties: [New York Times](https://github.com/nytimes/covid-19-data)
 - For County comes from State & Local Govs. County Sites
-- For Tested Data: [COVIDTRACKING](https://covidtracking.com/api/)
-- Drive-Thru COVID-19 Testing Centers, hand labelled from News Articles
+- [COVIDTRACKING API](https://covidtracking.com/api/)
+- COVID-19 Testing Centers, hand labelled from News Articles
 - Twitter API
 - News API
 - Google News API
 
+## 4️⃣ Tech Stack
+
+- Plotly Dash
+- Flask
+
+## 5️⃣ Contributors
+
+[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/hurshd0)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/hurshd/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/hurshd0)    **[Hursh Desai](https://hurshdesai.com)**    |  Project Lead & Maintainer (Data Scientist)
+
+[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/leehanchung)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/hanchunglee/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/hanchunglee)    **[Han Lee](https://leehanchung.github.io/)**    |    Project Lead & Maintainer (Machine Learning Engineer)
+
+[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/elizabethts)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/elizabethts/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/elizabethets)    **[Elizabeth Ter Sahakyan](https://lizzie.codes/)**    |    Project Lead & Maintainer (Data Scientist)
+
+### Version 1
+
+[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/ars394)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/anishasunkerneni/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/youfoundanisha)    **[Anisha Sunkerneni](https://github.com/ars394)**    |    Contributor (Web Developer) 
+
+[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/mchrupcala)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/michaelchrupcala/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/mikespellcheck)    **[Michael Chrupcala](https://github.com/mchrupcala)**    |    Contributor (Web Developer) 
+
+[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/Turtled)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/daniel-firpo/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/DanielFirpo2)    **[Daniel Firpo](https://github.com/Turtled)**    |    Contributor (Web Developer) 
+
+[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/alex-pakalniskis)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/alexpakalniskis3/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/AlexPakalniskis)    **[Alex Pakalniskis](https://alex-pakalniskis.github.io/)**    |    Contributor (Data Scientist)
+
+### Version 2
+
+[<img src="https://medium.com/favicon.ico" width="20"> ](https://medium.com/@RK_yen)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/ryankyen/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/RK_yen)    **[Ryan Yen](https://www.linkedin.com/in/ryankyen/)**    |    Contributor (UI/UX Designer)
+
+[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/DerekEtman)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/dereketman/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/DerekEtman)    **[Derek Etman](https://github.com/DerekEtman)**    |    Contributor (Web Developer) 
+
+[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/Scott-Huston)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/scott-huston-616512126/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/genuine_doubt)    **[Scott Huston](https://github.com/Scott-Huston)**    |    Contributor (Data Scientist)
+
+[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/BuildABuddha)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/lawrence-kimsey/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/lawrence_kimsey)    **[Lawrence Kimsey](https://www.linkedin.com/in/lawrence-kimsey/)**    |    Contributor (Data Scientist)
+
+[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/AceMouty)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/acemouty/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/AceMouty)    **[Kyle Guerrero](https://github.com/AceMouty)**    |    Contributor (Kyle Guerrero)
+
 ---
 
-## 4️⃣ Contributors
+## 6️⃣ Contributing
 
-| [Harsh Desai](https://github.com/hurshd0)     | [Elizabeth Ter Sahakyan](https://github.com/elizabethts) | [Han Lee](https://github.com/leehanchung) |[Anisha Sunkerneni](https://github.com/ars394) | [Michael Chrupcala](https://github.com/mchrupcala) | [Daniel Firpo](https://github.com/Turtled) |
-| :--------------------: | :--------------------: | :--------------------: | :--------------------: | :--------------------: | :--------------------: | 
-| <img src="https://avatars2.githubusercontent.com/u/16807421?s=400&u=844b3a27a223f7e3e2b3318e6a917d3641f93d6a&v=4" width = "200" /> | <img src="https://avatars1.githubusercontent.com/u/30808123?s=400&u=7757b1986b1e1713f378b402cb4e0a43b33ed451&v=4" width = "200" /> | <img src="https://avatars2.githubusercontent.com/u/4794839?s=400&u=1b4ce1a3a102b472ceaeae0f7f5b45df39f80322&v=4" width = "200" /> | <img src="https://media-exp1.licdn.com/dms/image/C5603AQGNbwDHi380iw/profile-displayphoto-shrink_200_200/0?e=1590624000&v=beta&t=EADYs8ZsWrS495ZsoIXd3X-7h8JYydf8RLPwMzIQbT4" width = "200" /> | <img src="https://avatars2.githubusercontent.com/u/52679312?s=400&u=9867ceebb039cd6d281940d5afb7a080e45e7385&v=4" width = "200" /> | <img src="https://avatars1.githubusercontent.com/u/17069338?s=460&u=cffb3688f1e8ad08518b791de36467775c8d92f3&v=4" width = "200" /> | 
-| Data Scientist | Data Scientist | Machine Learning Engineer | Web Developer |  Web Developer |  Web Developer |
-| [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/hurshd0) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/hurshd/)                   |[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/elizabethts) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/elizabethts/)    |[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/leehanchung) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/hanchunglee/)    |[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/ars394) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/anishasunkerneni/) | [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/mchrupcala) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/michaelchrupcala/) | [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/Turtled) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/daniel-firpo/)     
+### Git Workflow 
 
----
+- Our commits use a style called **[semantic commits](https://seesparkbox.com/foundry/semantic_commit_messages)**. 
+- Pick a task to work on from the Github issues or Trello board, assign your name to it via the top right of the Trello card, and confirm that no one is already working on this task, or another task that is likely to cause merge issues with yours.
 
-## 5️⃣ Tech Stack
-
-### Front end built using:
-
-- **Plotly Dash** for its interactive and easy to create dashboard 
+```sh
+git clone https://github.com/ncov19-us/ncov19-vacc-dash-front-end.git
+git checkout staging
+git checkout -b <your-feature-branch>
 ```
-NOTE:
-Dash uses React under the hood to render the user interface you see when you load a web page created with Dash. Because React allows you to write your user interface in encapsulated components that manage their own state, it is easy to split up parts of code for Dash too. At the end of this tutorial, you will see that Dash components and React components map one to one!
+Commit your work using semantic commits structure.
 
-For now, the important thing to know is that Dash components are mostly simple wrappers around existing React components. This means the entire React ecosystem is potentially usable in a Dash application!
+When done:
+```sh
+git checkout staging
+git pull  # sync your local feature branch with origin/github
+git checkout <your-feature-branch>
+git rebase staging  # merge your branch w/ feature-branch
+git commit
 ```
 
-- **Flask** is lightweight framework that is integrated with Plotly Dash
+Push your branch: `git push origin <your-feature-branch>`. Then open a pull request from your working branch into `staging` for review.
 
-👉 [Plotly Dash Tutorial](https://dash.plotly.com/layout)
+Please note we have a [CODE OF CONDUCT](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
-#### Back end built using:
+### Issue/Bug Request
 
-- [FAST API](https://fastapi.tiangolo.com/)
-
----
-
-# 6️⃣ Environment Variables
-
-    *  MAPBOX_ACCESS_TOKEN - this is Mapbox API Token from Mapbox.com
-    *  MAPBOX_STYLE - created using Mapbox Studio
-
----
-
-# 7️⃣ Contributing
-
-When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
-
-Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
-
-## Issue/Bug Request
-   
  **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
  - Check first to see if your issue has already been reported.
  - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
