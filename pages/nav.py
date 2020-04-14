@@ -13,26 +13,26 @@ dropdown_bar = dbc.Row(
 about_bar = dbc.Row(
     dbc.NavbarBrand(
         [
-            html.A(
-                "CDC",
-                id="navbar-resources-link",
-                className="navbar-brand-links",
-                href="https://www.cdc.gov/coronavirus/2019-ncov/index.html",
-                target="_blank",
-            ),
-            html.A(
-                "World Health Organization",
-                id="navbar-resources-link",
-                className="navbar-brand-links",
-                href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
-                target="_blank",
-            ),
             # html.A(
-            #     "Get Mobile Updates",
+            #     "CDC",
+            #     id="navbar-resources-link",
             #     className="navbar-brand-links",
-            #     href="https://ncov19-sms-bot-fe-staging.herokuapp.com/",
-            #     id="get-mobile-updates",
+            #     href="https://www.cdc.gov/coronavirus/2019-ncov/index.html",
+            #     target="_blank",
             # ),
+            # html.A(
+            #     "World Health Organization",
+            #     id="navbar-resources-link",
+            #     className="navbar-brand-links",
+            #     href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019",
+            #     target="_blank",
+            # ),
+            html.A(
+                "Get Mobile Updates",
+                className="navbar-brand-links",
+                href="https://ncov19-sms-bot-fe-staging.herokuapp.com/",
+                id="get-mobile-updates",
+            ),
             # html.A(
             #     "Vaccine Tracker",
             #     className="navbar-brand-links",
