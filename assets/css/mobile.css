@@ -83,13 +83,6 @@
 
 }
 
-
-.navbar-toggler-icon {
-    margin-left: 10%;
-    margin-bottom: -0.2rem;
-    color: var(--card-font-color);
-}
-
 #mobile-navbar-toggler {
     padding: 0;
     width: auto !important;
@@ -116,17 +109,13 @@
     padding-bottom: 8rem;
 }
 
-
-.mobile-hidden-menu-div a {
-    font-size: 2.4rem
-}
-
 .mobile-nav-header {
     font-size: 1.8rem;
 }
 
 .mobile-hidden-menu-anchor-tag:hover {
     text-decoration: none;
+    color: var(--font-color-confirmed);
 }
 
 .mobile-covid-19-text {
@@ -139,7 +128,7 @@
 }
 
 .mobile-us-cases-text {
-    font-weight: var(--font-weight-normal);
+    font-weight: 350;
     font-size: 3.6vh;
     text-shadow: none;
     padding-bottom: .2vh;
@@ -234,7 +223,7 @@
 }
 
 .mobile-states-dropdown .Select-arrow {
-    border-color: white transparent transparent;
+    border-color: #f4f4f4 transparent transparent;
     /* border-width: 10px 5px 2.5px; */
 }
 
@@ -247,7 +236,7 @@
 }
 
 #mobile-states-dropdown .is-open .Select-value-label {
-    color: white;
+    color: #f4f4f4;
 }
 
 #mobile-states-dropdown .is-open .Select-value-label {
@@ -255,7 +244,7 @@
 }
 
 #mobile-states-dropdown .is-open .Select-arrow {
-    border-color: white transparent transparent;
+    border-color: #f4f4f4 transparent transparent;
     border-width: 10px 5px 2.5px;
     transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
@@ -650,7 +639,7 @@ th.dash-header.column-0 {
 .mobile-fa-icons {
     font-size: 2rem;
     color: #BDBDBD;
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
 }
 
 .mobile-footer-copyright-text {
