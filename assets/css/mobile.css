@@ -83,13 +83,6 @@
 
 }
 
-
-.navbar-toggler-icon {
-    margin-left: 10%;
-    margin-bottom: -0.2rem;
-    color: var(--card-font-color);
-}
-
 #mobile-navbar-toggler {
     padding: 0;
     width: auto !important;
@@ -116,17 +109,13 @@
     padding-bottom: 8rem;
 }
 
-
-.mobile-hidden-menu-div a {
-    font-size: 2.4rem
-}
-
 .mobile-nav-header {
     font-size: 1.8rem;
 }
 
 .mobile-hidden-menu-anchor-tag:hover {
     text-decoration: none;
+    color: var(--font-color-confirmed);
 }
 
 .mobile-covid-19-text {
@@ -650,7 +639,7 @@ th.dash-header.column-0 {
 .mobile-fa-icons {
     font-size: 2rem;
     color: #BDBDBD;
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
 }
 
 .mobile-footer-copyright-text {
