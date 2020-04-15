@@ -3,9 +3,9 @@ import json
 import requests
 import pandas as pd
 import plotly.graph_objects as go
-from app import cache
-from utils import REVERSE_STATES_MAP
-from utils import config
+from ncov19_dash.flask_server import cache
+from ncov19_dash.utils import REVERSE_STATES_MAP
+from ncov19_dash.utils import config
 
 
 def human_format(num):
@@ -24,7 +24,7 @@ def human_format(num):
 
 
 @cache.memoize(timeout=3600)
-def deaths_chart(state="US") -> go.Figure:
+def cases_chart(state="US") -> go.Figure:
     """Bar chart data for the selected state.
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
     """
@@ -72,19 +72,19 @@ def deaths_chart(state="US") -> go.Figure:
     # Calculate annotation placements
     plot_tail = data.iloc[-1].to_list()
     annotation_x = plot_tail[0]  # LAST TIMESTAMP
-    annotation_y1 = plot_tail[2]  # LAST DEATHS COUNT
-    annotation_y2 = data["New Deaths"].max()  # HIGHEST BAR ON BAR CHART
+    annotation_y1 = plot_tail[1]  # LAST CONFIRMED CASES COUNT
+    annotation_y2 = data["New Confirmed Cases"].max()  # HIGHEST BAR ON BAR CHART
 
-    template_new = "%{customdata} new deaths on %{x}<extra></extra>"
-    template_total = "%{customdata} total deaths on %{x}<extra></extra>"
+    template_new = "%{customdata} new cases on %{x}<extra></extra>"
+    template_total = "%{customdata} total cases on %{x}<extra></extra>"
     fig = go.Figure()
     fig.add_trace(
         go.Bar(
             x=data["Date"],
-            y=data["New Deaths"],
-            name="New Deaths",
-            marker={"color": "#dd1e34"},
-            customdata=[human_format(x) for x in data["New Deaths"].to_list()],
+            y=data["New Confirmed Cases"],
+            name="New Cases Added",
+            marker={"color": "#F4B000"},
+            customdata=[human_format(x) for x in data["New Confirmed Cases"].to_list()],
             hovertemplate=template_new,
         )
     )
@@ -92,11 +92,11 @@ def deaths_chart(state="US") -> go.Figure:
     fig.add_trace(
         go.Scatter(
             x=data["Date"],
-            y=data["Deaths"],
-            name="Total Deaths",
-            line={"color": "#dd1e34"},
+            y=data["Confirmed Cases"],
+            name="Total Confirmed Cases",
+            line={"color": "#F4B000"},
             mode="lines",
-            customdata=[human_format(x) for x in data["Deaths"].to_list()],
+            customdata=[human_format(x) for x in data["Confirmed Cases"].to_list()],
             hovertemplate=template_total,
         )
     )
@@ -105,7 +105,7 @@ def deaths_chart(state="US") -> go.Figure:
     fig.add_annotation(
         x=annotation_x,
         y=annotation_y1,
-        text="Total COVID-19 Deaths",
+        text="Total COVID-19 Cases",
         font={"size": 10},
         xshift=-65,  # Annotation x displacement!
         showarrow=False,
@@ -115,7 +115,7 @@ def deaths_chart(state="US") -> go.Figure:
     fig.add_annotation(
         x=annotation_x,
         y=annotation_y2,
-        text="Daily New Deaths",
+        text="Daily New Cases",
         font={"size": 10},
         xshift=-40,  # Annotation x displacement!
         yshift=10,  # Annotation y displacement!
@@ -130,7 +130,9 @@ def deaths_chart(state="US") -> go.Figure:
         showlegend=False,
         legend_orientation="h",
         paper_bgcolor="rgba(0,0,0,0)",
+        #         paper_bgcolor="black",
         plot_bgcolor="rgba(0,0,0,0)",
+        #         plot_bgcolor="black",
         # xaxis_title="Number of Days",
         yaxis={"linecolor": "rgba(0,0,0,0)"},
         hoverlabel={"font": {"color": "black"}},
@@ -138,7 +140,7 @@ def deaths_chart(state="US") -> go.Figure:
         yaxis_showgrid=False,
         xaxis={"tickformat": "%m/%d"},
         font=dict(family="Roboto, sans-serif", size=10, color="#f4f4f4"),
-        yaxis_title="Number of deaths",
+        yaxis_title="Number of cases",
         # xaxis_title="Date"
         #         legend=dict(
         #                 title=None, orientation="h", y=-.5, yanchor="bottom", x=0, xanchor="left"
@@ -147,5 +149,5 @@ def deaths_chart(state="US") -> go.Figure:
 
     del data
     gc.collect()
-    
+
     return fig

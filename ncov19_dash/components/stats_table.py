@@ -4,10 +4,10 @@ import pandas as pd
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 import dash_table
-from utils import REVERSE_STATES_MAP
-from utils import config
+from ncov19_dash.utils import REVERSE_STATES_MAP
+from ncov19_dash.utils import config
 
-from app import cache
+from ncov19_dash.flask_server import cache
 
 
 def stats_table(state="US"):

@@ -3,9 +3,9 @@ import requests
 import pandas as pd
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-from app import cache
-from utils import STATES_COORD
-from utils import config
+from ncov19_dash.flask_server import cache
+from ncov19_dash.utils import STATES_COORD
+from ncov19_dash.utils import config
 import json
 
 

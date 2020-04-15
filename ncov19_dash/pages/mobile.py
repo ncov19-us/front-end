@@ -6,17 +6,17 @@ import dash_table
 from dash_table.Format import Format
 from dash.dependencies import Input, Output, State
 
-from app import app
-from utils.settings import STATES_COORD, REVERSE_STATES_MAP, STATE_LABELS
+from ncov19_dash.dash_app import app
+from ncov19_dash.utils.settings import STATES_COORD, REVERSE_STATES_MAP, STATE_LABELS
 
-from components import daily_stats_mobile
-from components import news_feed, twitter_feed
-from components import confirmed_cases_chart, new_infection_trajectory_chart
-from components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
-from components import mobile_last_updated
-from components.column_stats import STATES
-from components import cases_chart, deaths_chart
-from components import stats_table
+from ncov19_dash.components import daily_stats_mobile
+from ncov19_dash.components import news_feed, twitter_feed
+from ncov19_dash.components import confirmed_cases_chart, new_infection_trajectory_chart
+from ncov19_dash.components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
+from ncov19_dash.components import mobile_last_updated
+from ncov19_dash.components.column_stats import STATES
+from ncov19_dash.components import cases_chart, deaths_chart
+from ncov19_dash.components import stats_table
 
 
 ################ TABS STYLING ####################

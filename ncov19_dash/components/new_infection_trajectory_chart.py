@@ -4,9 +4,9 @@ import requests
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from app import cache
-from utils import REVERSE_STATES_MAP
-from utils import config
+from ncov19_dash.flask_server import cache
+from ncov19_dash.utils import REVERSE_STATES_MAP
+from ncov19_dash.utils import config
 
 
 

@@ -1,7 +1,8 @@
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-from app import app, server
 from dash.dependencies import Input, Output, State
+
+from ncov19_dash.dash_app import app
 
 
 mobile_navbar = [
