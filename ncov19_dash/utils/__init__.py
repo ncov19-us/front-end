@@ -1,9 +1,9 @@
-from utils.config import *
-from utils.settings import *
 import os
+from .config import *
+from .settings import *
 
 
-# Set default config to ProductionConfig unless STAGING environment 
+# Set default config to ProductionConfig unless STAGING environment
 # is set to true on Linux `export STAGING=True` or Windows Powershell
 # `$Env:STAGING="True"`. Using os.environ directly will throw errors
 # if not set.

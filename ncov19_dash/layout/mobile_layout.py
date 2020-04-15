@@ -2,9 +2,7 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-
-from app import app
-from pages import mobile_navbar, mobile_footer
+from ncov19_dash.pages import mobile_navbar, mobile_footer
 
 ########################################################
 state_labels = [
