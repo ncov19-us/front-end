@@ -139,7 +139,7 @@
 }
 
 .mobile-us-cases-text {
-    font-weight: var(--font-weight-normal);
+    font-weight: 350;
     font-size: 3.6vh;
     text-shadow: none;
     padding-bottom: .2vh;
@@ -234,7 +234,7 @@
 }
 
 .mobile-states-dropdown .Select-arrow {
-    border-color: white transparent transparent;
+    border-color: #f4f4f4 transparent transparent;
     /* border-width: 10px 5px 2.5px; */
 }
 
@@ -247,7 +247,7 @@
 }
 
 #mobile-states-dropdown .is-open .Select-value-label {
-    color: white;
+    color: #f4f4f4;
 }
 
 #mobile-states-dropdown .is-open .Select-value-label {
@@ -255,7 +255,7 @@
 }
 
 #mobile-states-dropdown .is-open .Select-arrow {
-    border-color: white transparent transparent;
+    border-color: #f4f4f4 transparent transparent;
     border-width: 10px 5px 2.5px;
     transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
