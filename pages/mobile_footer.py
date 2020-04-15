@@ -15,24 +15,20 @@ mobile_footer = dbc.Row(
                     Reliance on this Website for medical guidance is strictly prohibited.""",
                 className="mobile-footer-disclaimer-text",
             ),
-            className="mobile-footer-disclaimer-content"  
+            className="mobile-footer-disclaimer-content",
         ),
         dbc.Row(
             [
-                
-                html.Span(
-                    "Copyright 2020",
-                    className="mobile-footer-copyright-text",
-                ),
                 html.Span(
                     html.A(
                         html.I(className="fab fa-github mobile-fa-icons"),
                         href="https://github.com/ncov19-us/front-end",
                     ),
                     className="mobile-footer-social-icons mr-3",
-                )
+                ),
+                html.Span("Copyright 2020", className="mobile-footer-copyright-text",),
             ],
-            className="mobile-footer-social-copyright-content"
+            className="mobile-footer-social-copyright-content",
         ),
     ],
 )
