@@ -150,7 +150,6 @@
 
 #get-mobile-updates:hover {
     border-color: var(--font-color-confirmed);
-    color: var(--font-color-confirmed);
 }
 
 .page-title-link:hover {
