@@ -1,15 +1,16 @@
 import gc
+import json
+
 import requests
 import pandas as pd
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-from ncov19_dash.flask_server import cache
-from ncov19_dash.utils import STATES_COORD
+
+from ncov19_dash.cache import server_cache
 from ncov19_dash.utils import config
-import json
 
 
-@cache.memoize(timeout=900)
+@server_cache.memoize(timeout=900)
 def news_feed(state="US") -> dbc.ListGroup:
     """Displays news feed on the right hand side of the display. Adjust the NewsAPI time
     time to Eastern Time (w/ DST).

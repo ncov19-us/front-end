@@ -7,8 +7,6 @@ import dash_table
 from ncov19_dash.utils import REVERSE_STATES_MAP
 from ncov19_dash.utils import config
 
-from ncov19_dash.flask_server import cache
-
 
 def stats_table(state="US"):
     """Callback to change between news and twitter feed

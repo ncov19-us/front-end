@@ -1,11 +1,11 @@
 import gc
 import json
-import requests
 from typing import List, Dict
+
+import requests
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-from ncov19_dash.flask_server import cache
-from ncov19_dash.utils import STATES_COORD
+
 from ncov19_dash.utils import config
 
 

@@ -3,7 +3,7 @@ import json
 import requests
 import pandas as pd
 import plotly.graph_objects as go
-from ncov19_dash.flask_server import cache
+from ncov19_dash.cache import server_cache
 from ncov19_dash.utils import REVERSE_STATES_MAP
 from ncov19_dash.utils import config
 
@@ -23,7 +23,7 @@ def human_format(num):
     )
 
 
-@cache.memoize(timeout=3600)
+@server_cache.memoize(timeout=3600)
 def deaths_chart(state="US") -> go.Figure:
     """Bar chart data for the selected state.
     :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
