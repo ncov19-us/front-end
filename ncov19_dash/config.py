@@ -6,6 +6,29 @@ from decouple import config
 PACKAGE_ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 
+################################################################################
+#                               Custom Exceptions
+################################################################################
+class DataReadingError(Exception):
+    """DataReadingError exception used for sanity checking.
+    """
+    def __init__(self, *args):
+        super(DataReadingError, self).__init__(*args)
+        if args:
+            self.message = args[0]
+        else:
+            self.message = None
+
+    def __str__(self):
+        if self.message:
+            return f"DataReadingError {self.message}"
+
+        return "DataReadingError"
+
+
+################################################################################
+#                               Configs
+################################################################################
 class StagingConfig:
     """Base config, uses staging API"""
 
@@ -65,3 +88,4 @@ def get_config():
     return ProductionConfig
 
 config = get_config()
+# print(f"[DEBUG] Config being used is: {config.__class__.__name__}")

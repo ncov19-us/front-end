@@ -8,17 +8,17 @@ import dash_bootstrap_components as dbc
 import dash_html_components as html
 from ncov19_dash.cache import server_cache
 from ncov19_dash import config
-from ncov19_dash.utils import STATES_COORD
 
 
 @server_cache.memoize(timeout=900)
 def twitter_feed(state="US") -> List[dbc.Card]:
     """Displays twitter feed on the left hand side of the display.
-    
-    :params state: display twitter feed for a particular state. If None, display twitter feed
-        for the whole US.
 
-    :return cards: A list of dash boostrap Card components, where each card contains tweets for twitter feed.
+    :params state: display twitter feed for a particular state. If None,
+        display twitter feed for the whole US.
+
+    :return cards: A list of dash boostrap Card components, where each card
+        contains tweets for twitter feed.
     :rtype: list
     """
 
@@ -32,7 +32,7 @@ def twitter_feed(state="US") -> List[dbc.Card]:
             data=payload
         ).json()
 
-    if response["success"] == True:
+    if response["success"]:
         data = response["message"]
         username = data["username"]
         full_name = data["full_name"]
@@ -61,14 +61,16 @@ def twitter_feed(state="US") -> List[dbc.Card]:
                                 tweet["full_text"][:100] + "...",
                                 className="tweet-text",
                             ),
-                            href=f"https://twitter.com/{username}/status/{tweet['tweet_id']}",
+                            href=(f"https://twitter.com/{username}"
+                                  f"/status/{tweet['tweet_id']}"),
                             target="_blank",
                         ),
                         html.P(
                             [
                                 # html.Strong(f"- {full_name} (@{username})"),
                                 html.P(
-                                    f"- {username} (@{full_name}) {parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}",
+            (f"- {username} (@{full_name}) "
+            f"{parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}"),
                                     className="tweet-dt",
                                 ),
                             ],
@@ -83,7 +85,7 @@ def twitter_feed(state="US") -> List[dbc.Card]:
         for tweet in tweets
     ]
     list_group = dbc.ListGroup(cards, flush=True)
-    
+
     del response, tweets
     gc.collect()
 

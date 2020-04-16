@@ -1,0 +1,4 @@
+from .routes_callbacks import register_routes_callbacks
+from .desktop_callbacks import register_desktop_callbacks
+from .mobile_callbacks import register_mobile_callbacks
+from .before_request import register_before_request

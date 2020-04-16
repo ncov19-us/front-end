@@ -1,13 +1,8 @@
 import gc
-from datetime import datetime, timedelta
-
 import requests
-import numpy as np
 import pandas as pd
 import flask
-from dash.dependencies import Input, Output, State
 import plotly.express as px
-import plotly.graph_objects as go
 
 from ncov19_dash.utils import STATES_COORD
 from ncov19_dash import config
@@ -20,23 +15,23 @@ px.set_mapbox_access_token(config.MAPBOX_ACCESS_TOKEN)
 def get_drive_thru_testing_centers():
     try:
         drive_thru_df = pd.read_csv(config.DRIVE_THRU_URL)
-        drive_thru_df["Street Address"] = drive_thru_df["Street Address"].fillna("")
-    except Exception as ex:
+        drive_thru_df["Street Address"] = \
+            drive_thru_df["Street Address"].fillna("")
+    except ValueError as ex:
         print(f'[ERROR] get_drive_thru_testing_center error, {ex}')
+        drive_thru_df = pd.DataFrame()
+
     return drive_thru_df
 
 
-########################################################################
-#
-# App Callbacks
-#
-########################################################################
-
-
+################################################################################
 def confirmed_scatter_mapbox(state="United States"):
-    """Displays choroplepth map for the data. For the whole US, the map is divided by state.
-    
-    :return card: A dash boostrap component Card object with a dash component Graph inside drawn using plotly express scatter_mapbox
+    """Displays choroplepth map for the data. For the whole US, the map is
+    divided by state.
+
+    :return card: A dash boostrap component Card object with a dash component
+    Graph inside drawn using plotly express scatter_mapbox
+
     :rtype: dbc.Card
     """
 
@@ -44,13 +39,6 @@ def confirmed_scatter_mapbox(state="United States"):
     response = requests.get(URL).json()
     data = response["message"]
     data = pd.DataFrame.from_records(data)
-
-    # color_scale = ['#fce9b8', '#fbe6ad','#fbe3a3','#fbdf99',
-    #                 '#fadc8f','#fad985','#f9d67a',
-    #                 '#f9d370','#f8d066','#f8cc5c','#f8c952',
-    #                 '#f7c647','#f7c33d','#f6c033',
-    #                 '#f6bd29','#f5b91f','#f5b614','#f4b30a',
-    #                 '#F4B000','#efac00','#eaa900','#e5a500','#e0a200','#dc9e00']
 
     color_scale = [
         "#fadc8f",
@@ -102,7 +90,8 @@ def confirmed_scatter_mapbox(state="United States"):
     # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
     # print(fig.data[0].hovertemplate)
     fig.data[0].update(
-        hovertemplate="%{customdata[3]}, %{customdata[2]}<br>Confirmed: %{customdata[0]}<br>Deaths: %{customdata[1]}"
+        hovertemplate=("%{customdata[3]}, %{customdata[2]}<br>Confirmed:"
+                      " %{customdata[0]}<br>Deaths: %{customdata[1]}")
     )
 
     del response, data
@@ -125,7 +114,7 @@ def drive_thru_scatter_mapbox(state="United States"):
             STATES_COORD[state]["zoom"],
         )
 
-    df = get_drive_thru_testing_centers() 
+    df = get_drive_thru_testing_centers()
 
     fig = px.scatter_mapbox(
         df,
@@ -144,7 +133,9 @@ def drive_thru_scatter_mapbox(state="United States"):
     )
 
     fig.data[0].update(
-        hovertemplate="<b><a href='%{customdata[0]}' style='color:#F4F4F4'>%{hovertext}</a></b><br> %{customdata[3]}<br>%{customdata[1]},%{customdata[2]}",
+        hovertemplate=("<b><a href='%{customdata[0]}' style='color:#F4F4F4'>"
+                       "%{hovertext}</a></b><br> %{customdata[3]}<br>"
+                       "%{customdata[1]}, %{customdata[2]}"),
         marker={"symbol": "hospital", "color": "white"},
     )
 

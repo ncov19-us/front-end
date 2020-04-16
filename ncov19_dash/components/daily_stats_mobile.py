@@ -8,7 +8,7 @@ import dash_html_components as html
 
 from ncov19_dash.cache import server_cache
 from ncov19_dash import config
-from ncov19_dash.utils import STATES_COORD
+from ncov19_dash.config import DataReadingError
 
 
 def safe_div(x, y):
@@ -31,8 +31,9 @@ def get_daily_stats_mobile(state="United States") -> Dict:
         else:
             payload = json.dumps({"state": state})
             response = requests.post(url=url, data=payload)
-    except Exception as ex:
-        print(f"[ERROR] get_daily_stats_mobile error accessing ncov19.us API, {ex}")
+    except DataReadingError as ex:
+        print("[ERROR] get_daily_stats_mobile error"
+             f" accessing ncov19.us API, {ex}")
 
     # return all zeros if response statsus code is not 200
     if response.status_code != 200:
@@ -53,14 +54,17 @@ def get_daily_stats_mobile(state="United States") -> Dict:
         todays_confirmed = data["todays_confirmed"]
         deaths = data["deaths"]
         todays_deaths = data["todays_deaths"]
-    except Exception as ex:
-        print(f"[ERROR] get_daily_stats_mobile error parsing ncov19.us API, {ex}")
-        tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
-    
+    except DataReadingError as ex:
+        print("[ERROR] get_daily_stats_mobile error "
+              f"parsing ncov19.us API, {ex}")
+        tested, confirmed, todays_confirmed = 0, 0, 0
+        deaths, todays_deaths = 0, 0
+
     todays_death_rate = round(safe_div(deaths, confirmed) * 100, 2)
     yesterdays_death_rate = round(
         safe_div(
-            int(deaths) - int(todays_deaths), int(confirmed) - int(todays_confirmed)
+            int(deaths) - int(todays_deaths),
+            int(confirmed) - int(todays_confirmed)
         )
         * 100,
         2,
@@ -82,11 +86,13 @@ def get_daily_stats_mobile(state="United States") -> Dict:
 
 @server_cache.memoize(timeout=600)
 def daily_stats_mobile(state="US") -> List[dbc.Row]:
-    """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
+    """Returns a top bar as a list of Plotly dash components displaying tested,
+    confirmed , and death cases for the top row.
     TODO: move to internal API.
 
     :param none: none
-    :return cols: A list of plotly dash boostrap components Card objects displaying tested, confirmed, deaths.
+    :return cols: A list of plotly dash boostrap components Card objects
+    displaying tested, confirmed, deaths.
     :rtype: list of plotly dash bootstrap coomponent Col objects.
     """
     # 1. Fetch Stats
@@ -94,18 +100,26 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
     stats = get_daily_stats_mobile(state)
 
     # print("Mobile Site ---> ", stats)
-    # 2. Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays
-    # items and values of the stats pulled from the API.
+    # 2. Dynamically generate list of dbc Cols. Each Col contains a single
+    #    Card. Each card displays items and values of the stats pulled from
+    #    the API.
     cards = []
     for key, value in stats.items():
         if key == "Tested":
             card = dbc.ListGroupItem(
                 [
-                    html.P(" .", className=f"mobile-top-bar-perc-change-{key.lower()}"),
-                    html.H1(
-                        f"{value:,d}", className=f"mobile-top-bar-value-{key.lower()}"
+                    html.P(
+                        " .",
+                        className=f"mobile-top-bar-perc-change-{key.lower()}",
                     ),
-                    html.P(f"{key}", className="mobile-card-text"),
+                    html.H1(
+                        f"{value:,d}",
+                        className=f"mobile-top-bar-value-{key.lower()}",
+                    ),
+                    html.P(
+                        f"{key}",
+                        className="mobile-card-text",
+                    ),
                 ],
                 className=f"mobile-top-bar-card-{key.lower()}",
             )
@@ -117,9 +131,13 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
                         className=f"mobile-top-bar-perc-change-{key.lower()}",
                     ),
                     html.H1(
-                        f"{value[0]}%", className=f"mobile-top-bar-value-{key.lower()}"
+                        f"{value[0]}%",
+                        className=f"mobile-top-bar-value-{key.lower()}",
                     ),
-                    html.P(f"{key}", className="mobile-card-text"),
+                    html.P(
+                        f"{key}",
+                        className="mobile-card-text",
+                    ),
                 ],
                 className=f"mobile-top-bar-card-{key.lower()}",
             )
@@ -134,7 +152,10 @@ def daily_stats_mobile(state="US") -> List[dbc.Row]:
                         f"{value[0]:,d}",
                         className=f"mobile-top-bar-value-{key.lower()}",
                     ),
-                    html.P(f"{key}", className="mobile-card-text"),
+                    html.P(
+                        f"{key}",
+                        className="mobile-card-text",
+                    ),
                 ],
                 className=f"mobile-top-bar-card-{key.lower()}",
             )

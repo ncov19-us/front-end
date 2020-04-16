@@ -434,7 +434,7 @@ STATE_LABELS = [
     {"label": "Vermont", "value": "Vermont"},
     {"label": "Virginia", "value": "Virginia"},
     {"label": "Washington", "value": "Washington"},
-    {"label": "Washington D.C.", "value": "Washington D.C."}, 
+    {"label": "Washington D.C.", "value": "Washington D.C."},
     {"label": "West Virginia", "value": "West Virginia"},
     {"label": "Wisconsin", "value": "Wisconsin"},
     {"label": "Wyoming", "value": "Wyoming"},

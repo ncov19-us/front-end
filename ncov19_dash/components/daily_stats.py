@@ -7,6 +7,7 @@ import dash_bootstrap_components as dbc
 import dash_html_components as html
 
 from ncov19_dash import config
+from ncov19_dash.config import DataReadingError
 
 
 def safe_div(x, y):
@@ -29,7 +30,7 @@ def get_daily_stats(state="United States") -> Dict:
         else:
             payload = json.dumps({"state": state})
             response = requests.post(url=URL, data=payload)
-    except Exception as ex:
+    except DataReadingError as ex:
         print(f"[ERROR] get_daily_stats error accessing ncov19.us API, {ex}")
 
     # return all zeros if response statsus code is not 200
@@ -50,14 +51,17 @@ def get_daily_stats(state="United States") -> Dict:
         todays_confirmed = data["todays_confirmed"]
         deaths = data["deaths"]
         todays_deaths = data["todays_deaths"]
-    except Exception as ex:
-        print(f"[ERROR] get_daily_stats error parsing ncov19.us API, {ex}")
-        tested, confirmed, todays_confirmed, deaths, todays_deaths = 0, 0, 0, 0, 0
-    
+    except DataReadingError as ex:
+        print("[ERROR] get_daily_stats error"
+              f" parsing ncov19.us API, {ex}")
+        tested, confirmed, todays_confirmed = 0, 0, 0
+        deaths, todays_deaths = 0, 0
+
     todays_death_rate = round(safe_div(deaths, confirmed) * 100, 2)
     yesterdays_death_rate = round(
         safe_div(
-            int(deaths) - int(todays_deaths), int(confirmed) - int(todays_confirmed)
+            int(deaths) - int(todays_deaths),
+            int(confirmed) - int(todays_confirmed),
         )
         * 100,
         2,
@@ -78,18 +82,20 @@ def get_daily_stats(state="United States") -> Dict:
 
 
 def daily_stats(state="US") -> List[dbc.Col]:
-    """Returns a top bar as a list of Plotly dash components displaying tested, confirmed ,
-     and death cases for the top row.
+    """Returns a top bar as a list of Plotly dash components displaying
+    tested, confirmed, and death cases for the top row.
 
     :param none: none
-    :return cols: A list of plotly dash boostrap components Card objects displaying tested, confirmed, deaths.
+    :return cols: A list of plotly dash boostrap components Card objects
+    displaying tested, confirmed, deaths.
     :rtype: list of plotly dash bootstrap coomponent Col objects.
     """
     # 1. Fetch Stats
     stats = get_daily_stats(state)
 
-    # 2. Dynamically generate list of dbc Cols. Each Col contains a single Card. Each card displays
-    # items and values of the stats pulled from the API.
+    # 2. Dynamically generate list of dbc Cols. Each Col contains a single
+    #    Card. Each card displays items and values of the stats pulled
+    #    from the API.
     cards = []
     for key, value in stats.items():
         if key == "Tested":
@@ -99,9 +105,13 @@ def daily_stats(state="US") -> List[dbc.Col]:
                         [
                             html.Br(),
                             html.H1(
-                                f"{value:,d}", className=f"top-bar-value-{key.lower()}"
+                                f"{value:,d}",
+                                className=f"top-bar-value-{key.lower()}",
                             ),
-                            html.P(f"{key}", className="card-text"),
+                            html.P(
+                                f"{key}",
+                                className="card-text",
+                            ),
                         ],
                     ),
                     className=f"top-bar-card-{key.lower()}",
@@ -119,9 +129,13 @@ def daily_stats(state="US") -> List[dbc.Col]:
                                 className=f"top-bar-perc-change-{key.lower()}",
                             ),
                             html.H1(
-                                f"{value[0]}%", className=f"top-bar-value-{key.lower()}"
+                                f"{value[0]}%",
+                                className=f"top-bar-value-{key.lower()}",
                             ),
-                            html.P(f"{key}", className="card-text"),
+                            html.P(
+                                f"{key}",
+                                className="card-text",
+                            ),
                         ]
                     ),
                     className=f"top-bar-card-{key.lower()}",

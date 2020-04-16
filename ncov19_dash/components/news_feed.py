@@ -12,14 +12,15 @@ from ncov19_dash import config
 
 @server_cache.memoize(timeout=900)
 def news_feed(state="US") -> dbc.ListGroup:
-    """Displays news feed on the right hand side of the display. Adjust the NewsAPI time
-    time to Eastern Time (w/ DST).
-    
-    :params state: display news feed for a particular state. If None, display news feed
-                    for the whole US
+    """Displays news feed on the right hand side of the display. Adjust the
+    NewsAPI time time to Eastern Time (w/ DST).
 
-    :return list_group: A bootstramp ListGroup containing ListGroupItem returns news feeds.
-    :rtype: dbc.ListGroup    
+    :params state: display news feed for a particular state. If None, display
+    news feed for the whole US
+
+    :return list_group: A bootstramp ListGroup containing ListGroupItem returns
+    news feeds.
+    :rtype: dbc.ListGroup
     """
     URL = config.NCOV19_API + config.NEWS
     if state == "US":
@@ -47,7 +48,8 @@ def news_feed(state="US") -> dbc.ListGroup:
                                     className="news-txt-headline",
                                 ),
                                 html.P(
-                                    f"{df.iloc[i]['title'].split(' - ')[1]}  {df.iloc[i]['published']}",
+                                    f"{df.iloc[i]['title'].split(' - ')[1]}"
+                                    f"  {df.iloc[i]['published']}",
                                     className="news-txt-by-dt",
                                 ),
                             ],
