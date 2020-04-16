@@ -28,16 +28,14 @@ jobs:
     #===============================================#
     - name: STEP 5. Test with pytest
       env:
-        MONGODB_CONNECTION_URI: ${{ secrets.MONGODB_CONNECTION_URI }}
-        TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
-        TWITTER_CONSUMER_SECRET_KEY: ${{ secrets.TWITTER_CONSUMER_SECRET_KEY }}
-        TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-        TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-        NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
-        COUNTY_URL: ${{ secrets.COUNTY_URL }}
-        STATE_CONFIRMED: ${{ secrets.STATE_CONFIRMED }}
-        STATE_DEATH: ${{ secrets.STATE_DEATH }}
-        NYT_STATE: ${{ secrets.NYT_STATE }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
+        MAPBOX_PRODUCTION_STYLE: ${{ secrets.MAPBOX_PRODUCTION_STYLE }}
+        MAPBOX_STAGING_STYLE: ${{ secrets.MAPBOX_STAGING_STYLE }}
+        NCOV19_STAGING_API: ${{ secrets.NCOV19_STAGING_API }}
+        NCOV19_PROD_API: ${{ secrets.NCOV19_PROD_API }}
+        DRIVE_THRU_PROD_URL: ${{ secrets.DRIVE_THRU_PROD_URL }}
+        DRIVE_THRU_STAGING_URL: ${{ secrets.DRIVE_THRU_STAGING_URL }}
       run: |
         coverage run --omit */.virtualenvs/* -m pytest ncov19_dash
     #===============================================#
