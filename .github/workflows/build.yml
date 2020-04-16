@@ -26,7 +26,7 @@ jobs:
     #===============================================#
     - name: STEP 4. Lint with pylint
       run: |
-        pipenv run pylint --rcfile=.pylintrc api
+        pipenv run pylint --rcfile=.pylintrc ncov19_dash
     #===============================================#
     - name: STEP 5. Test with pytest
       env:
@@ -41,7 +41,7 @@ jobs:
         STATE_DEATH: ${{ secrets.STATE_DEATH }}
         NYT_STATE: ${{ secrets.NYT_STATE }}
       run: |
-        coverage run --omit */.virtualenvs/* -m pytest api
+        coverage run --omit */.virtualenvs/* -m pytest ncov19_dash
     #===============================================#
     - name: STEP 6. Generate coverage reports
       env:
