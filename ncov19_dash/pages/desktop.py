@@ -2,9 +2,8 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 
-from ncov19_dash.components import cases_chart, deaths_chart
 from ncov19_dash.components import last_updated
-from ncov19_dash.utils.settings import STATES_COORD, REVERSE_STATES_MAP, STATE_LABELS
+from ncov19_dash.utils.settings import STATE_LABELS
 
 
 ################ TABS STYLING ####################
@@ -206,7 +205,7 @@ desktop_body = [
                                                 dcc.Loading(
                                                     dcc.Graph(
                                                         id="confirmed-cases-timeline",
-                                                        figure=cases_chart(),
+                                                        # figure=cases_chart(),
                                                         config={"responsive": False},
                                                         style={"height": "20vh"},
                                                         className='top-bottom-left-chart-figure"',
@@ -238,7 +237,7 @@ desktop_body = [
                                                 dcc.Loading(
                                                     dcc.Graph(
                                                         id="deaths-timeline",
-                                                        figure=deaths_chart(),
+                                                        # figure=deaths_chart(),
                                                         config={"responsive": False},
                                                         style={"height": "20vh"},
                                                         className="top-bottom-mid-chart-figure",

@@ -5,16 +5,17 @@ import pandas as pd
 import plotly.graph_objects as go
 from ncov19_dash.cache import server_cache
 from ncov19_dash.utils import REVERSE_STATES_MAP
-from ncov19_dash.utils import config
+from ncov19_dash import config
 
 
 @server_cache.memoize(timeout=3600)
-def new_infection_trajectory_chart(state="US") -> go.Figure:
+def infection_trajectory_chart(state="US") -> go.Figure:
     """Line chart data for the selected state.
 
     # TODO: Population is hardcoded we can pull it from our BE
 
-    :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
+    :params state: get the time series data for a particular state for
+    confirmed, deaths, and recovered. If None, the whole US.
     """
 
     if state == "US":
@@ -69,7 +70,8 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
 
         # <extra></extra> remove name from the end of the hover over text
         template = (
-            "%{y:.0f} confirmed cases per 100,000 people<br>in %{text} <extra></extra>"
+            "%{y:.0f} confirmed cases per 100,000 people<br>in"
+            " %{text} <extra></extra>"
         )
 
         countries = ["Italy", "South Korea", "US"]
@@ -145,9 +147,12 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             "California": 39512223,
         }
 
-        state_populations = pd.read_csv("components/state-population-est2019.csv")
+        state_populations = pd.read_csv(
+            "ncov19_dash/components/state-population-est2019.csv"
+            )
         state_populations = state_populations[["Region", "2019"]]
-        state_populations["2019"] = state_populations["2019"].str.replace(",", "")
+        state_populations["2019"] = state_populations["2019"].\
+                                                        str.replace(",", "")
         state_populations["2019"] = state_populations["2019"].fillna(0)
         state_populations["2019"] = state_populations["2019"].astype(int)
 
@@ -172,8 +177,10 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
                     {"Date": "3/1/20", "Confirmed": 1338},
                 ]
                 data = pd.DataFrame(backup)
-            temp_data = data["Confirmed"].to_frame(REVERSE_STATES_MAP[comp_state])
-            
+            temp_data = data["Confirmed"].to_frame(
+                                            REVERSE_STATES_MAP[comp_state]
+                                        )
+
             # convert data to per 100K and filter where greater than 1/100K
             population = populations[REVERSE_STATES_MAP[comp_state]]
             temp_data = temp_data[
@@ -203,7 +210,8 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
         fig = go.Figure()
 
         template = (
-            "%{y:.0f} confirmed cases per 100,000 people<br>in %{text} <extra></extra>"
+            "%{y:.0f} confirmed cases per 100,000 people<br>in"
+            " %{text} <extra></extra>"
         )
 
         # reversing list so the line for input state is on top
@@ -257,7 +265,7 @@ def new_infection_trajectory_chart(state="US") -> go.Figure:
             font=dict(family="Roboto, sans-serif", size=10, color="#f4f4f4"),
             yaxis_title="Cases per 100k People",
         )
-    
+
     del merged
     gc.collect()
 

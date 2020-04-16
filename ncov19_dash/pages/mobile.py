@@ -1,22 +1,9 @@
-import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
-import dash_table
-from dash_table.Format import Format
-from dash.dependencies import Input, Output, State
 
-# from ncov19_dash.dash_app import app
-from ncov19_dash.utils.settings import STATES_COORD, REVERSE_STATES_MAP, STATE_LABELS
-
-from ncov19_dash.components import daily_stats_mobile
-from ncov19_dash.components import news_feed, twitter_feed
-from ncov19_dash.components import new_infection_trajectory_chart
-from ncov19_dash.components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
-from ncov19_dash.components import mobile_last_updated
-from ncov19_dash.components.column_stats import STATES
-from ncov19_dash.components import cases_chart, deaths_chart
-from ncov19_dash.components import stats_table
+from ncov19_dash.components import last_updated
+from ncov19_dash.utils.settings import STATE_LABELS
 
 
 ################ TABS STYLING ####################
@@ -149,7 +136,7 @@ stats_tabs = dbc.Card(
     [
         dbc.CardBody(id="mobile-stats-table", className="stats-table-col",),
         html.P(
-            f"Last Updated {mobile_last_updated.upper()}",
+            f"Last Updated {last_updated.upper()}",
             className="right-tabs-last-updated-text",
         ),
     ],
@@ -204,7 +191,7 @@ mobile_body = [
                         dcc.Loading(
                             dcc.Graph(
                                 id="mobile-confirmed-cases-timeline",
-                                figure=cases_chart(),
+                                # figure=cases_chart(),
                                 config={"scrollZoom": False},
                                 style={"height": "20vh"},
                             ),
