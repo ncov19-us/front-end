@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
@@ -59,11 +60,20 @@ feed_tabs = dbc.Card(
                     ),
                 ],
                 style=tabs_styles,
-                colors={"border": None, "primary": None, "background": None},
+                colors={
+                    "border": None,
+                    "primary": None,
+                    "background": None,
+                },
             ),
             className="left-tabs",
         ),
-        dbc.CardBody(html.P(id="feed-content", className="left-col-feed-cards-text")),
+        dbc.CardBody(
+            html.P(
+                id="feed-content",
+                className="left-col-feed-cards-text",
+                ),
+            ),
     ]
 )
 
@@ -127,7 +137,11 @@ us_maps_tabs = dbc.Card(
                 className="d-flex justify-content-between top-bar-us-map-heading-content",
             ),
             html.Div(
-                dcc.Graph(id="us-map", style={"height": "60vh"}), id="map-container"
+                dcc.Graph(
+                    id="us-map",
+                    style={"height": "60vh"},
+                ),
+                id="map-container",
             ),
         ]
     ),
@@ -175,7 +189,11 @@ desktop_body = [
                 width=8,
             ),
             # TWITTER & NEWS FEED COL
-            dbc.Col(feed_tabs, className="left-col-twitter-feed-content", width=2),
+            dbc.Col(
+                feed_tabs,
+                className="left-col-twitter-feed-content",
+                width=2,
+            ),
         ],
         no_gutters=True,
         className="middle-map-news-content mt-3",
