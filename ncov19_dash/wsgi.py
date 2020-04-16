@@ -1,7 +1,4 @@
-from werkzeug.middleware.dispatcher import DispatcherMiddleware
-# from .app import server
-# from .app import app
+from ncov19_dash import server
 
-application = DispatcherMiddleware(server, {
-    '/': app.server,
-})
+if __name__ == "__main__":
+    server.run(debug=True, port=8050)

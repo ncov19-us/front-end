@@ -5,7 +5,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from ncov19_dash.cache import server_cache
 from ncov19_dash.utils import REVERSE_STATES_MAP
-from ncov19_dash.utils import config
+from ncov19_dash import config
 
 
 def human_format(num):

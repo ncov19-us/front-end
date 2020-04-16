@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 
-from ncov19_dash.utils import config
+from ncov19_dash import config
 
 
 try:

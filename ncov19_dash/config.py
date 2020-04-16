@@ -1,7 +1,12 @@
+import os
+import pathlib
 from decouple import config
 
 
-class StagingConfig(object):
+PACKAGE_ROOT = pathlib.Path(__file__).resolve().parent.parent
+
+
+class StagingConfig:
     """Base config, uses staging API"""
 
     DEBUG = True
@@ -45,3 +50,18 @@ class ProductionConfig(StagingConfig):
 
     # MapBox Style
     MAPBOX_STYLE = config("MAPBOX_PRODUCTION_STYLE")
+
+
+# Set default config to ProductionConfig unless STAGING environment
+# is set to true on Linux `export STAGING=True` or Windows Powershell
+# `$Env:STAGING="True"`. Using os.environ directly will throw errors
+# if not set.
+def get_config():
+    STAGING = os.getenv("STAGING") or "False"
+
+    if STAGING == "True":
+        return StagingConfig
+
+    return ProductionConfig
+
+config = get_config()

@@ -1,50 +1,38 @@
 import re
-# from urllib.parse import urlparse
 
-# Imports from 3rd party libraries
 import flask
 from flask import request
-
-# from flask import request, make_response, render_template, send_from_directory
-
 import dash
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
 import dash_table
-# import dash_table.FormatTemplate as FormatTemplate
-
-
-# Imports from this application
-# from ncov19_dash import cache
+from dash_table.Format import Format
 
 from ncov19_dash.flask_server import server
-from ncov19_dash.cache import server_cache
 from ncov19_dash.layout.desktop_layout import build_desktop_layout
 from ncov19_dash.layout.mobile_layout import build_mobile_layout
 from ncov19_dash.pages import desktop, navbar, footer
 from ncov19_dash.pages import about_body
 from ncov19_dash.pages import mobile, mobile_navbar, mobile_footer
 from ncov19_dash.pages import mobile_about_body
-# from ncov19_dash.utils import config
 
-
-from ncov19_dash.utils.settings import STATES_COORD, REVERSE_STATES_MAP, STATE_LABELS
-
+from ncov19_dash.utils.settings import STATES_COORD, REVERSE_STATES_MAP
 from ncov19_dash.components import daily_stats
+from ncov19_dash.components import daily_stats_mobile
 from ncov19_dash.components import news_feed, twitter_feed
-from ncov19_dash.components import new_infection_trajectory_chart
-from ncov19_dash.components import confirmed_scatter_mapbox, drive_thru_scatter_mapbox
-
+from ncov19_dash.components import infection_trajectory_chart
+from ncov19_dash.components import confirmed_scatter_mapbox
+from ncov19_dash.components import drive_thru_scatter_mapbox
 from ncov19_dash.components import cases_chart, deaths_chart
 from ncov19_dash.components import stats_table
-from ncov19_dash.components.column_stats import STATES
 
 
-# Set default layout so Flask can start
-
-
-# stylesheet tbd
+###############################################################################
+#
+#    Dash app style sheets and tags
+#
+################################################################################
 external_stylesheets = [
     # Bootswatch theme
     dbc.themes.SLATE,
@@ -66,7 +54,11 @@ meta_tags = [
         "content": "width=device-width, initial-scale=1.0"},
 ]
 
-
+################################################################################
+#
+#    Initialize Dash app
+#
+################################################################################
 app = dash.Dash(
     __name__,
     server=server,
@@ -78,26 +70,16 @@ app = dash.Dash(
 app.layout = build_desktop_layout
 
 
-# cache = Cache(
-#     app.server,
-#     config={
-#         "CACHE_TYPE": "filesystem",
-#         "CACHE_DEFAULT_TIMEOUT": 3600,
-#         "CACHE_DIR": "cache",
-#     },
-# )
-
-
 app.config.suppress_callback_exceptions = True
 app.title = ("ncov19 | Coronavirus COVID-19 Tracker with Testing Centers,"
             " SARS-COV-2 Vaccine Information, and SMS notification.")
 
 
-########################################################################
+################################################################################
 #
-#  For Google Analytics
+#    For Google Analytics
 #
-########################################################################
+################################################################################
 app.index_string = """<!DOCTYPE html>
 <html>
     <head>
@@ -134,6 +116,16 @@ app.index_string = """<!DOCTYPE html>
     </body>
 </html>"""
 
+
+################################################################################
+#
+#    Dash callbacks
+#
+################################################################################
+font_size = ".9vw"
+color_active = "#F4F4F4"
+color_inactive = "#AEAEAE"
+color_bg = "#010914"
 
 
 @server.before_request
@@ -198,8 +190,6 @@ def display_page(pathname):
         return navbar, error_page, footer
 
 
-
-
 @app.callback(
     Output("mobile-navbar-collapse", "is_open"),
     [Input("mobile-navbar-toggler", "n_clicks")],
@@ -211,9 +201,11 @@ def toggle_collapse(n, is_open):
     return is_open
 
 
-
-
-#################### FEED CALLBACKS ###########################
+################################################################################
+#
+#    Feed callbacks
+#
+################################################################################
 @app.callback(
     Output("feed-content", "children"),
     [
@@ -232,10 +224,9 @@ def feed_tab_content(tab_value, state):
         return news_feed(state)
 
 
-
-
 @app.callback(
-    Output("stats-table", "children"), [Input("intermediate-value", "children"),],
+    Output("stats-table", "children"),
+    [Input("intermediate-value", "children"),],
 )
 def stats_tab_content(state):
     df = stats_table(state)
@@ -312,7 +303,6 @@ def stats_tab_content(state):
     return table
 
 
-
 @app.callback(
     Output("us-map", "figure"),
     [
@@ -325,17 +315,15 @@ def map_tab_content(value, state):
     """
     if value == "testing-us-map-tab":
         return drive_thru_scatter_mapbox(state=REVERSE_STATES_MAP[state])
-    else:
-        return confirmed_scatter_mapbox(state=REVERSE_STATES_MAP[state])
+
+    return confirmed_scatter_mapbox(state=REVERSE_STATES_MAP[state])
 
 
-
-
-########################################################################
+################################################################################
 #
-#                           Confirm cases callback
+#    Confirm cases callback
 #
-########################################################################
+################################################################################
 @app.callback(
     [Output("confirmed-cases-timeline", "figure")],
     [Input("intermediate-value", "children")],
@@ -352,39 +340,41 @@ def confirmed_cases_callback(state):
 def confirmed_cases_callback(state="US"):
     if state == "US":
         return ["U.S. Confirmed Cases"]
-    else:
-        return [f"{REVERSE_STATES_MAP[state]} Confirmed Cases"]
+
+    return [f"{REVERSE_STATES_MAP[state]} Confirmed Cases"]
 
 
-
-########################################################################
+################################################################################
 #
-#                           Deaths callback
+#    Deaths callback
 #
-########################################################################
+################################################################################
 @app.callback(
-    [Output("deaths-timeline", "figure")], [Input("intermediate-value", "children")]
+    [Output("deaths-timeline", "figure")],
+    [Input("intermediate-value", "children")]
 )
 def confirmed_cases_callback(state):
     fig = deaths_chart(state)
+
     return [fig]
 
 
 @app.callback(
-    [Output("death-chart-title", "children")], [Input("intermediate-value", "children")]
+    [Output("death-chart-title", "children")],
+    [Input("intermediate-value", "children")]
 )
 def death_callback(state="US"):
     if state == "US":
         return ["U.S. Deaths"]
-    else:
-        return [f"{REVERSE_STATES_MAP[state]} Deaths"]
+
+    return [f"{REVERSE_STATES_MAP[state]} Deaths"]
 
 
-########################################################################
+################################################################################
 #
-#                           Trajectory callback
+#    Trajectory callback
 #
-########################################################################
+################################################################################
 @app.callback(
     [Output("infection-trajectory-title", "children")],
     [Input("intermediate-value", "children")],
@@ -392,8 +382,8 @@ def death_callback(state="US"):
 def trajectory_title_callback(state="US"):
     if state == "US":
         return ["U.S. Trajectory"]
-    else:
-        return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
+
+    return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
 
 
 @app.callback(
@@ -401,48 +391,53 @@ def trajectory_title_callback(state="US"):
     [Input("intermediate-value", "children")],
 )
 def trajectory_chart_callback(state):
-    fig = new_infection_trajectory_chart(state)
+    fig = infection_trajectory_chart(state)
+
     return [fig]
 
 
-########################################################################
+################################################################################
 #
-#                           Top bar callback
+#    Top bar callback
 #
-########################################################################
+################################################################################
 @app.callback(
-    [Output("daily-stats", "children")], [Input("intermediate-value", "children")]
+    [Output("daily-stats", "children")],
+    [Input("intermediate-value", "children")]
 )
 def daily_stats_callback(state):
     cards = daily_stats(state)
+
     return [cards]
 
 
-########################################################################
+################################################################################
 #
-#                   State Dropdown Menu Callback
+#    State Dropdown Menu Callback
 #
-########################################################################
+################################################################################
 @app.callback(
-    [Output("intermediate-value", "children")], [Input("states-dropdown", "value")]
+    [Output("intermediate-value", "children")],
+    [Input("states-dropdown", "value")]
 )
 def update_output(state):
     state = STATES_COORD[state]["stateAbbr"]
+
     return [state]
 
 
-
-########################################################################
+################################################################################
 #
-#                    Confirm cases chart callback
+#    Confirm cases chart callback
 #
-########################################################################
+################################################################################
 @app.callback(
     [Output("mobile-confirmed-cases-timeline", "figure")],
     [Input("mobile-intermediate-value", "children")],
 )
 def mobile_confirmed_cases_callback(state="US"):
     fig = cases_chart(state)
+
     return [fig]
 
 
@@ -453,15 +448,15 @@ def mobile_confirmed_cases_callback(state="US"):
 def mobile_confirmed_cases_callback(state="US"):
     if state == "US":
         return ["U.S. Confirmed Cases"]
-    else:
-        return [f"{REVERSE_STATES_MAP[state]} Confirmed Cases"]
+
+    return [f"{REVERSE_STATES_MAP[state]} Confirmed Cases"]
 
 
-########################################################################
+################################################################################
 #
-#                     Deaths chart callback
+#    Deaths chart callback
 #
-########################################################################
+################################################################################
 @app.callback(
     [Output("mobile-deaths-chart-title", "children")],
     [Input("mobile-intermediate-value", "children")],
@@ -469,8 +464,8 @@ def mobile_confirmed_cases_callback(state="US"):
 def mobile_death_callback(state="US"):
     if state == "US":
         return ["U.S. Deaths"]
-    else:
-        return [f"{REVERSE_STATES_MAP[state]} Deaths"]
+
+    return [f"{REVERSE_STATES_MAP[state]} Deaths"]
 
 
 @app.callback(
@@ -479,14 +474,15 @@ def mobile_death_callback(state="US"):
 )
 def mobile_confirmed_cases_callback(state):
     fig = deaths_chart(state)
+
     return [fig]
 
 
-########################################################################
+################################################################################
 #
-#                           Trajectory callback
+#    Trajectory callback
 #
-########################################################################
+################################################################################
 @app.callback(
     [Output("mobile-trajectory-title", "children")],
     [Input("mobile-intermediate-value", "children")],
@@ -494,8 +490,8 @@ def mobile_confirmed_cases_callback(state):
 def mobile_trajectory_title_callback(state="US"):
     if state == "US":
         return ["U.S. Trajectory"]
-    else:
-        return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
+
+    return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
 
 
 @app.callback(
@@ -503,36 +499,38 @@ def mobile_trajectory_title_callback(state="US"):
     [Input("mobile-intermediate-value", "children")],
 )
 def mobile_trajectory_chart_callback(state):
-    fig = new_infection_trajectory_chart(state)
+    fig = infection_trajectory_chart(state)
+
     return [fig]
 
 
-########################################################################
+################################################################################
 #
-#                          Top bar callback
+#    Top bar callback
 #
-########################################################################
+################################################################################
 @app.callback(
     [Output("mobile-daily-stats", "children")],
     [Input("mobile-intermediate-value", "children")],
 )
 def daily_stats_mobile_callback(state):
-    # print(f'\n\nDaily_stats_mobile_callback for {state}')
     cards = daily_stats_mobile(state)
+
     return [cards]
 
 
-########################################################################
+################################################################################
 #
-#                   State Dropdown Menu Callback
+#    State Dropdown Menu Callback
 #
-########################################################################
+################################################################################
 @app.callback(
     [Output("mobile-intermediate-value", "children")],
     [Input("mobile-states-dropdown", "value")],
 )
 def update_output(state):
     state = STATES_COORD[state]["stateAbbr"]
+
     return [state]
 
 
@@ -611,7 +609,6 @@ def mobile_stats_tab_content(state):
     return table
 
 
-
 @app.callback(
     Output("mobile-us-map", "figure"),
     [
@@ -624,9 +621,8 @@ def mobile_map_tab_content(value, state):
     """
     if value == "mobile-testing-us-map-tab":
         return drive_thru_scatter_mapbox(state=REVERSE_STATES_MAP[state])
-    else:
-        return confirmed_scatter_mapbox(state=REVERSE_STATES_MAP[state])
 
+    return confirmed_scatter_mapbox(state=REVERSE_STATES_MAP[state])
 
 
 @app.callback(
@@ -641,6 +637,5 @@ def mobile_feed_tab_content(tab_value, state):
     """
     if tab_value == "mobile-twitter-tab":
         return twitter_feed(state)
-    else:
-        return news_feed(state)
 
+    return news_feed(state)

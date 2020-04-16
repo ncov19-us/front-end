@@ -10,7 +10,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 from ncov19_dash.utils import STATES_COORD
-from ncov19_dash.utils import config
+from ncov19_dash import config
 
 
 px.set_mapbox_access_token(config.MAPBOX_ACCESS_TOKEN)
