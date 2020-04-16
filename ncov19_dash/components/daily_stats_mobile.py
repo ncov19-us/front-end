@@ -1,10 +1,12 @@
 import gc
 import json
-import requests
 from typing import List, Dict
+
+import requests
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-from ncov19_dash.flask_server import cache
+
+from ncov19_dash.cache import server_cache
 from ncov19_dash.utils import config
 from ncov19_dash.utils import STATES_COORD
 
@@ -78,7 +80,7 @@ def get_daily_stats_mobile(state="United States") -> Dict:
     return stats
 
 
-@cache.memoize(timeout=600)
+@server_cache.memoize(timeout=600)
 def daily_stats_mobile(state="US") -> List[dbc.Row]:
     """Returns a top bar as a list of Plotly dash components displaying tested, confirmed , and death cases for the top row.
     TODO: move to internal API.

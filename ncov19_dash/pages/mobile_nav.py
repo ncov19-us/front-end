@@ -1,8 +1,5 @@
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-from dash.dependencies import Input, Output, State
-
-from ncov19_dash.dash_app import app
 
 
 mobile_navbar = [
@@ -65,14 +62,3 @@ mobile_navbar = [
         navbar=False,
     ),
 ]
-
-
-@app.callback(
-    Output("mobile-navbar-collapse", "is_open"),
-    [Input("mobile-navbar-toggler", "n_clicks")],
-    [State("mobile-navbar-collapse", "is_open")],
-)
-def toggle_collapse(n, is_open):
-    if n:
-        return not is_open
-    return is_open

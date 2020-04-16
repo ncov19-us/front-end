@@ -5,6 +5,7 @@ import flask
 from flask import request, make_response, render_template, send_from_directory
 
 # Imports from this application
+from ncov19_dash.cache import server_cache
 from ncov19_dash.utils import config
 
 
@@ -17,6 +18,9 @@ server = flask.Flask(__name__,
                     static_folder='static',
 )
 server.secret_key = config.SECRET_KEY
+
+server_cache.init_app(server)
+
 
 @server.route("/sitemap")
 @server.route("/sitemap/")

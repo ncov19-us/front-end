@@ -2,15 +2,13 @@ import gc
 import json
 import requests
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
-from ncov19_dash.flask_server import cache
+from ncov19_dash.cache import server_cache
 from ncov19_dash.utils import REVERSE_STATES_MAP
 from ncov19_dash.utils import config
 
 
-
-@cache.memoize(timeout=3600)
+@server_cache.memoize(timeout=3600)
 def new_infection_trajectory_chart(state="US") -> go.Figure:
     """Line chart data for the selected state.
 

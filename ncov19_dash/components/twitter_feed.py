@@ -6,12 +6,12 @@ from dateutil.parser import parse
 import requests
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-from ncov19_dash.flask_server import cache
+from ncov19_dash.cache import server_cache
 from ncov19_dash.utils import config
 from ncov19_dash.utils import STATES_COORD
 
 
-@cache.memoize(timeout=900)
+@server_cache.memoize(timeout=900)
 def twitter_feed(state="US") -> List[dbc.Card]:
     """Displays twitter feed on the left hand side of the display.
     

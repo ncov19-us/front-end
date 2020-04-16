@@ -1,9 +1,6 @@
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
-from ncov19_dash.pages import desktop, navbar, footer
-from ncov19_dash.dash_app import app
-from dash.dependencies import Input, Output
 
 build_desktop_layout = html.Div(
     [

@@ -1,5 +1,7 @@
 import gc
 from datetime import datetime, timedelta
+
+import requests
 import numpy as np
 import pandas as pd
 import flask
@@ -7,10 +9,8 @@ from dash.dependencies import Input, Output, State
 import plotly.express as px
 import plotly.graph_objects as go
 
-from ncov19_dash.flask_server import cache
 from ncov19_dash.utils import STATES_COORD
 from ncov19_dash.utils import config
-import requests
 
 
 px.set_mapbox_access_token(config.MAPBOX_ACCESS_TOKEN)
