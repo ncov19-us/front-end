@@ -1,0 +1,48 @@
+name: Push
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: STEP 1. Check out repo
+      uses: actions/checkout@v2
+    #===============================================#
+    - name: STEP 2. Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    #===============================================#
+    - name: STEP 3. Install pipenv dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pipenv
+        python -m pipenv install --dev --system
+    #===============================================#
+    - name: STEP 4. Lint with pylint
+      run: |
+        pipenv run pylint --rcfile=.pylintrc ncov19_dash
+    #===============================================#
+    - name: STEP 5. Test with pytest
+      env:
+        MONGODB_CONNECTION_URI: ${{ secrets.MONGODB_CONNECTION_URI }}
+        TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+        TWITTER_CONSUMER_SECRET_KEY: ${{ secrets.TWITTER_CONSUMER_SECRET_KEY }}
+        TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+        TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+        NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+        COUNTY_URL: ${{ secrets.COUNTY_URL }}
+        STATE_CONFIRMED: ${{ secrets.STATE_CONFIRMED }}
+        STATE_DEATH: ${{ secrets.STATE_DEATH }}
+        NYT_STATE: ${{ secrets.NYT_STATE }}
+      run: |
+        coverage run --omit */.virtualenvs/* -m pytest ncov19_dash
+    #===============================================#
+    - name: STEP 6. Generate coverage reports
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN}}
+      run: |
+        coveralls
