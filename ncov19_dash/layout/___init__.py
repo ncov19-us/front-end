@@ -1,2 +1,10 @@
-# from desktop_layout import build_desktop_layout
-# from mobile_layout import build_mobile_layout
+from .desktop_layout import build_desktop_layout
+from .mobile_layout import build_mobile_layout
+from .desktop_nav import navbar
+from .desktop_body import desktop_body
+from .desktop_about import about_body
+from .desktop_footer import footer
+from .mobile_nav import mobile_navbar
+from .mobile_body import mobile_body
+from .mobile_about import mobile_about_body
+from .mobile_footer import mobile_footer

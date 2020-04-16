@@ -4,13 +4,13 @@ import requests
 import pandas as pd
 import plotly.graph_objects as go
 from ncov19_dash.cache import server_cache
-from ncov19_dash.utils import REVERSE_STATES_MAP
 from ncov19_dash import config
 
 
 def human_format(num):
-    """
-    Formats a number and returns a human-readable version of it in string form. Ex: 300,000 -> 300k
+    """Formats a number and returns a human-readable version of it in string
+    form. Ex: 300,000 -> 300k
+
     :params num: number to be converted to a formatted string
     """
     num = float("{:.3g}".format(num))
@@ -19,14 +19,18 @@ def human_format(num):
         magnitude += 1
         num /= 1000.0
     return "{}{}".format(
-        "{:f}".format(num).rstrip("0").rstrip("."), ["", "K", "M", "B", "T"][magnitude]
+        "{:f}".format(
+            num
+            ).rstrip("0").rstrip("."), ["", "K", "M", "B", "T"][magnitude]
     )
 
 
 @server_cache.memoize(timeout=3600)
 def cases_chart(state="US") -> go.Figure:
     """Bar chart data for the selected state.
-    :params state: get the time series data for a particular state for confirmed, deaths, and recovered. If None, the whole US.
+
+    :params state: get the time series data for a particular state for
+    confirmed, deaths, and recovered. If None, the whole US.
     """
 
     if state == "US":
@@ -67,13 +71,13 @@ def cases_chart(state="US") -> go.Figure:
 
     data = data.tail(30)
     # Limit data to 1% of current maximum number of cases
-    #     data = data[data['Confirmed Cases'] > data['Confirmed Cases'].max() * 0.01]
+    #data = data[data['Confirmed Cases'] > data['Confirmed Cases'].max() * 0.01]
 
     # Calculate annotation placements
     plot_tail = data.iloc[-1].to_list()
     annotation_x = plot_tail[0]  # LAST TIMESTAMP
     annotation_y1 = plot_tail[1]  # LAST CONFIRMED CASES COUNT
-    annotation_y2 = data["New Confirmed Cases"].max()  # HIGHEST BAR ON BAR CHART
+    annotation_y2 = data["New Confirmed Cases"].max()# HIGHEST BAR ON BAR CHART
 
     template_new = "%{customdata} new cases on %{x}<extra></extra>"
     template_total = "%{customdata} total cases on %{x}<extra></extra>"
@@ -84,7 +88,8 @@ def cases_chart(state="US") -> go.Figure:
             y=data["New Confirmed Cases"],
             name="New Cases Added",
             marker={"color": "#F4B000"},
-            customdata=[human_format(x) for x in data["New Confirmed Cases"].to_list()],
+            customdata=[human_format(x) for x in \
+                data["New Confirmed Cases"].to_list()],
             hovertemplate=template_new,
         )
     )
@@ -96,7 +101,8 @@ def cases_chart(state="US") -> go.Figure:
             name="Total Confirmed Cases",
             line={"color": "#F4B000"},
             mode="lines",
-            customdata=[human_format(x) for x in data["Confirmed Cases"].to_list()],
+            customdata=[human_format(x) for x in \
+                data["Confirmed Cases"].to_list()],
             hovertemplate=template_total,
         )
     )
@@ -141,10 +147,6 @@ def cases_chart(state="US") -> go.Figure:
         xaxis={"tickformat": "%m/%d"},
         font=dict(family="Roboto, sans-serif", size=10, color="#f4f4f4"),
         yaxis_title="Number of cases",
-        # xaxis_title="Date"
-        #         legend=dict(
-        #                 title=None, orientation="h", y=-.5, yanchor="bottom", x=0, xanchor="left"
-        #         )
     )
 
     del data

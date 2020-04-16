@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 
 from ncov19_dash import config
+from ncov19_dash.config import DataReadingError
 
 
 try:
@@ -18,7 +19,7 @@ try:
     # death = death.sort_values(ascending=False).to_dict()
     last_updated = data["last_update"][0]
 
-except Exception as ex:
+except DataReadingError as ex:
     print(f"[ERROR]: {ex}")
 
 

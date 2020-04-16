@@ -3,7 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 from ncov19_dash.components import last_updated
-from ncov19_dash.utils.settings import STATE_LABELS
+from ncov19_dash.utils import STATE_LABELS
 
 
 ################ TABS STYLING ####################
