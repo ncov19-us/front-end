@@ -12,6 +12,7 @@ PACKAGE_ROOT = pathlib.Path(__file__).resolve().parent.parent
 class DataReadingError(Exception):
     """DataReadingError exception used for sanity checking.
     """
+
     def __init__(self, *args):
         super(DataReadingError, self).__init__(*args)
         if args:
@@ -58,6 +59,9 @@ class StagingConfig:
     # Drive Thru Facilities
     DRIVE_THRU_URL = config("DRIVE_THRU_STAGING_URL")
 
+    # SMS App URL
+    SMS_APP_URL = config("SMS_APP_URL")
+
 
 class ProductionConfig(StagingConfig):
     """Uses production database server."""
@@ -86,6 +90,7 @@ def get_config():
         return StagingConfig
 
     return ProductionConfig
+
 
 config = get_config()
 # print(f"[DEBUG] Config being used is: {config.__class__.__name__}")

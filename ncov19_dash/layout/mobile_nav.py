@@ -1,6 +1,6 @@
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-
+from ncov19_dash import config
 
 mobile_navbar = [
     # User row and col to control vertical alignment of logo/brand
@@ -32,7 +32,7 @@ mobile_navbar = [
                     html.A(
                         html.P("Get Mobile Updates", className="mobile-nav-header"),
                         className="mobile-hidden-menu-anchor-tag",
-                        href="https://ncov19-sms-bot-fe-staging.herokuapp.com/",
+                        href=config.SMS_APP_URL,
                     ),
                     html.A(
                         html.P("About", className="mobile-nav-header",),
