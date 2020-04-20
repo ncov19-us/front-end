@@ -1,6 +1,6 @@
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-
+from ncov19_dash import config
 
 dropdown_bar = dbc.Row(
     dbc.DropdownMenu(label="Location", children=[dbc.DropdownMenuItem("US"),]),
@@ -29,7 +29,7 @@ about_bar = dbc.Row(
             html.A(
                 "Get Mobile Updates",
                 className="navbar-brand-links",
-                href="https://ncov19-sms-bot-fe-staging.herokuapp.com/",
+                href=config.SMS_APP_URL,
                 id="get-mobile-updates",
             ),
             # html.A(
