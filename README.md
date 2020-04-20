@@ -3,7 +3,8 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![Python Version](https://img.shields.io/badge/python-v3.7-blue)
 [![CodeFactor](https://www.codefactor.io/repository/github/ncov19-us/front-end/badge)](https://www.codefactor.io/repository/github/ncov19-us/front-end)
-
+![Build](https://github.com/ncov19-us/front-end/workflows/Build/badge.svg?branch=master&event=push)
+![Staging](https://github.com/ncov19-us/front-end/workflows/Staging/badge.svg?branch=staging&event=push)
 ## 1️⃣ Description
 
 Visualizing COVID19 pandemic in the U.S. by states and by the whole country, with newsfeeds from major news channels and twitter feeds from public officials and institutions tailored to your state, along with interactive charts to see how your state is doing in combating the pandemic.
@@ -61,7 +62,7 @@ Visualizing COVID19 pandemic in the U.S. by states and by the whole country, wit
 
 [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/BuildABuddha)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/lawrence-kimsey/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/lawrence_kimsey)    **[Lawrence Kimsey](https://www.linkedin.com/in/lawrence-kimsey/)**    |    Contributor (Data Scientist)
 
-[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/AceMouty)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/acemouty/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/AceMouty)    **[Kyle Guerrero](https://github.com/AceMouty)**    |    Contributor (Kyle Guerrero)
+[<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/AceMouty)    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/acemouty/)    [<img src="https://twitter.com/favicon.ico" width="20">](https://twitter.com/AceMouty)    **[Kyle Guerrero](https://github.com/AceMouty)**    |    Contributor (Web Developer)
 
 ---
 

@@ -1,1 +1,1 @@
-web: gunicorn --workers=3 run:server 
+web: gunicorn --workers=3 ncov19_dash:server 

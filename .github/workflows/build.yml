@@ -1,0 +1,48 @@
+name: Build
+
+on:
+    pull_request:
+        branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: STEP 1. Check out repo
+      uses: actions/checkout@v2
+    #===============================================#
+    - name: STEP 2. Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    #===============================================#
+    - name: STEP 3. Install pipenv dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pipenv
+        python -m pipenv install --dev --system
+    #===============================================#
+    - name: STEP 4. Lint with pylint
+      run: |
+        pipenv run pylint --rcfile=.pylintrc ncov19_dash
+    #===============================================#
+    - name: STEP 5. Test with pytest
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
+        MAPBOX_PRODUCTION_STYLE: ${{ secrets.MAPBOX_PRODUCTION_STYLE }}
+        MAPBOX_STAGING_STYLE: ${{ secrets.MAPBOX_STAGING_STYLE }}
+        NCOV19_STAGING_API: ${{ secrets.NCOV19_STAGING_API }}
+        NCOV19_PROD_API: ${{ secrets.NCOV19_PROD_API }}
+        DRIVE_THRU_PROD_URL: ${{ secrets.DRIVE_THRU_PROD_URL }}
+        DRIVE_THRU_STAGING_URL: ${{ secrets.DRIVE_THRU_STAGING_URL }}
+      run: |
+        coverage run --omit */.virtualenvs/* -m pytest ncov19_dash
+    #===============================================#
+    - name: STEP 6. Generate coverage reports
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN}}
+      run: |
+        coveralls

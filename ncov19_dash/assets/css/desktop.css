@@ -1,0 +1,1270 @@
+/************************* 💻 Desktop Styling 💻 **************************/
+/*
+* ⚠️ ONLY APPLIES TO DESKTOP DON'T PUT COMMON STYLING OR MOBILE STYLING HERE ⚠️
+*/
+
+
+/*******COLOR VARIABLES*******/
+:root{
+
+    /* At what screen size do we no longer want to squish the site more? */
+    /* MAKES HAMBURGER MENU DISAPPEAR */
+    /* --minimum-screen-size: 860px; */
+
+    /* Nav Colors */
+    --nav-bg-color:#010915;
+    --nav-font-color:#FEFEFE;
+
+    /* Font Colors */
+    --font-color-tested:#AEAEAE;
+    --font-color-confirmed:#F4B000;
+    --font-color-deaths:#E55465;
+    --font-color-deathrate:#DD1E34;
+
+    /* Card Colors */
+    --card-bg-color:#010915;
+    --card-font-color:#F4F4F4;
+
+    /* Highlight Colors */
+    --background-color-dropdown-hover: ;
+    
+    /* Body Background Color */
+    --body-bg-color: #19202A;
+
+    /* Font Sizes */
+    --font-size-nav-title: 3.7vh;
+    --font-size-nav-link: 2.1vh;
+    --font-size-state-name: 1.9vw;
+    --font-size-table-heading: 4.6vh;
+    --font-size-stats-table-heading: .85vw;
+    --font-size-feed-body: 1.65vh;
+    --font-size-feed-author: 1.2vh;
+    --font-size-card-value: 2.75vw;
+    --font-size-card-category: 2vh;
+    --font-size-card-perc-change: 1.6vh;
+    --font-size-chart-h1: 1.5vw;
+    --font-size-chart-h2: .9vw;
+    --font-size-last-updated: .7vw;
+    --font-size-dropdown-arrow: 1rem;
+    --font-size-github-favicon: 2rem;
+
+    /* Font Weights */
+    --font-weight-stats-numbers: 500;
+    --font-weight-table-headings: 500;
+    --font-weight-bold: 700;
+
+    /* Heights */
+    --max-height-sidebar: 700px;
+    --max-height-chart: 450px;
+
+    /* Margins */
+    --margin-dashboard-containers: 2vw;
+
+    /* Border Radius */
+    --border-radius: .4rem;
+
+    /* About Page Variables */
+    --about-font-color:#fefefe;
+    --about-font-color-black: #010915;
+    --about-border-color:#fefefe;
+    --about-bg-color:#19202A;
+    --about-bg-color-light:#D2D2D2;
+
+    --about-font-family:'Roboto', sans-serif ;
+
+
+    /* Daily Stats */
+    --daily-stats-font-family: 'Lato', sans-serif; 
+    --daily-stats-font-weight: 700;
+    --font-weight-daily-stats-category: 700;
+
+
+    /* Drop Down Selectors */
+    --drop-down-hover-color: #40495B;
+    --drop-down-bg-color:#1F242D;
+    --drop-down-border-color:#f4f4f4;
+    --drop-down-rounded-corners: 7px;
+}
+
+/* Custom Scroll bar */
+
+ /*::-webkit-scrollbar {
+     width: 10px; 
+    border-radius: 5px;
+  } */
+  
+  /* Track */
+  /* ::-webkit-scrollbar-track {
+    background: transparent;
+  } */
+  
+  /* Handle */
+  /* ::-webkit-scrollbar-thumb {
+    background: var(--card-bg-color);
+    border-radius: 10px;
+  } */
+  
+  /* Handle on hover */
+  /* ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  } */
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                NAVBAR STYLING                                  */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+.desktop-navbar {
+    background-color: var(--nav-bg-color);
+    border: none;
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+    text-shadow: none;
+    position: fixed;
+    z-index: 10000;
+    width: 100vw;
+    height: 7.5vh;
+    top: 0;
+    min-width: var(--minimum-screen-size);
+    flex-flow: nowrap;
+}
+
+.navbar-toggler-1 {
+    display: none;
+}
+
+.navbar-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none !important;
+    padding-right: 3.9vw;
+    padding-left: 1.5vw;
+}
+
+#get-mobile-updates {
+    border-radius: var(--border-radius);
+    border: 1px solid #f4f4f4;
+    padding: .3rem 1rem;
+    margin-right: -1rem;
+}
+
+#get-mobile-updates:hover {
+    border-color: var(--font-color-confirmed);
+}
+
+.page-title-link:hover {
+    text-decoration: none;
+}
+
+.navbar-brand-covid-19-text {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-nav-title);
+    margin-bottom: auto;
+
+}
+
+.navbar-brand-us-cases-text {
+    font-weight: 350;
+    font-size: var(--font-size-nav-title);
+    text-shadow: none;
+    margin-bottom: auto;
+    margin-left: .5rem;
+
+}
+
+.navbar-brand-links {
+    font-weight: 425;
+    font-size: var(--font-size-nav-link);
+    letter-spacing: 0.01rem;
+    text-shadow: none;
+    padding-left: 2rem;
+    margin-right: 0rem;
+}
+
+.navbar-brand-links:hover {
+    text-decoration: none;
+    color: var(--font-color-confirmed);
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                DESKTOP BODY                                    */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+/* Page Body */
+#page-content.desktop { 
+    padding: 0 2.5%;
+    padding-top: 7.5vh;
+    margin: 0 !important;
+}
+
+/* First Row */
+.states-dropdown-container  {
+    /* margin: 2.5vh 0; */
+    margin: 0;
+    /* padding-bottom: 1vh; */
+}
+
+.top-bar-content-col {
+    margin: 4vh 0 3.5vh 0;
+    padding: 0;
+}
+
+/* Second Row */
+.middle-map-news-content.mt-3.no-gutters.row {
+    /* margin-top: 2% !important; */
+    margin-top: 0 !important;
+    border: none;
+    justify-content: space-evenly;
+}
+
+/* Third Row */
+.desktop .bottom-chart-row {
+    /* padding: 0; */
+    margin: 1.3% 0;
+    padding: 0 0.4%;
+    /* margin: 0; */
+    /* justify-content: center; */
+}
+
+/* Applies to all Cards 🎴 */
+.card-body {
+    background-color: var(--card-bg-color);
+    padding: 1vw;
+    border: none;
+    border-radius: var(--border-radius);
+    /* box-shadow: 0px 5px rgba(0, 0, 0, 0.2); */
+}
+
+
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                STATES DROPDOWN                                 */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+.states-dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 0;
+    font-family: var(--daily-stats-font-family);
+    font-size: var(--font-size-state-name);
+    max-width: 23%;
+    /* width: 37vw; */
+    flex: 0 0 23%;
+    font-weight: 500;
+    border-radius: var(--drop-down-rounded-corners);
+    color:var(--nav-font-color);
+}
+
+
+#states-dropdown {
+    width: 100%;
+    line-height: .7;
+}
+
+#states-dropdown .Select-input {
+    background-color: transparent !important;
+    display: inline !important;
+    padding-left: .2vw;
+    padding-right: .2vw;
+}
+
+.states-dropdown .Select-control {
+    background-color: transparent !important;
+    border-color: transparent;
+    overflow: auto;
+    box-shadow: none !important;
+    border-color: transparent !important;
+    display: inline !important;
+}
+
+.states-dropdown .Select-multi-value-wrapper {
+    display: inline !important;
+}
+
+.states-dropdown .Select-multi-value-wrapper .Select-value {
+    display: inline !important;
+    position: unset !important;
+}
+
+
+.states-dropdown .Select-value-label {
+    display: inline !important;
+    position: unset !important;
+}
+
+#states-dropdown .Select.states-dropdown {
+    /* width: 100vw; */
+}
+
+.states-dropdown .Select-menu-outer {
+    background-color: var(--drop-down-bg-color);
+    border-color: transparent;
+    font-size: var(--font-size-dropdown-arrow);
+    z-index: 1000000;
+    width:91%;
+    margin-top: 5%;
+}
+
+.states-dropdown .Select-control .Select-value-label {
+    color: var(--nav-font-color) !important;
+    cursor: pointer;
+}
+
+.states-dropdown .Select-arrow-zone {
+    text-align: unset;
+}
+
+.Select-menu{
+    border-radius: var(--drop-down-rounded-corners);
+}
+
+.VirtualizedSelectOption{
+    border-bottom:0.1px solid rgba(255, 255, 255, 0.849);
+    color: var(--nav-font-color) !important;
+}
+
+.VirtualizedSelectOption.VirtualizedSelectFocusedOption{
+    background-color: var(--drop-down-hover-color);
+}
+
+/* .VirtualizedSelectOption:hover{
+    background-color: var(--drop-down-hover-color);
+} */
+
+/* #states-dropdown:hover .Select-value-label, #states-dropdown:hover .Select-arrow {
+    color: rgb(226, 226, 226) !important;
+} */
+
+
+
+
+/* .parent:hover .child, .parent.hover .child */
+
+/* #states-dropdown:hover {
+    color: gray !important;
+} */
+
+/* .states-dropdown:hover {
+    color: gray !important;
+} */
+
+.states-dropdown .Select-arrow {
+    border-color: #f4f4f4 transparent transparent;
+    border-width: 0.8vw 0.45vw 0.18vw !important;
+}
+#states-dropdown .is-open .Select-control {
+    background-color: transparent;
+}
+
+#states-dropdown .is-open .Select-value-label {
+    color: #f4f4f4;
+}
+
+#states-dropdown .is-open .Select-value-label {
+    background-color: transparent;
+}
+
+#states-dropdown .is-open .Select-arrow {
+    border-color: #f4f4f4 transparent transparent;
+    border-width: 0.8vw 0.45vw 0.18vw !important;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                DAILY STATS                                     */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+.top-bar-content-col {
+    max-width: 75%;
+}
+
+.top-bar-content.row .card-body {
+    background-color: var(--body-bg-color);
+    box-shadow: none;
+}
+
+.top-bar-card-body .card-body {
+    background-color: var(--body-bg-color);
+    padding: 0;
+}
+
+.top-bar-card-body {
+    padding-left: 12px;
+    padding-right: 12px;
+    box-shadow: none;
+}
+
+.top-bar-content .card-text {
+    font-weight: var(--font-weight-daily-stats-category);
+    margin-top: -.5vw;
+}
+
+.top-bar-card-tested {
+    color: var(--font-color-tested);
+    font-size: var(--font-size-card-category);
+    border-radius: var(--border-radius);
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    padding: .2rem; 
+    
+}
+
+.top-bar-card-tested.card{
+    box-shadow: none;
+}
+
+
+.top-bar-value-tested {
+    margin-top: -1.1vw;
+    font-weight: var(--daily-stats-font-weight);
+    font-size: var(--font-size-card-value);
+    font-family: var(--daily-stats-font-family);
+    text-shadow: none;
+}
+
+.top-bar-card-confirmed {
+    color: var(--font-color-confirmed);
+    font-size: var(--font-size-card-category);
+    border-radius: var(--border-radius);
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    padding: .2rem;
+}
+
+.top-bar-card-confirmed.card{
+    box-shadow: none;
+}
+
+.top-bar-value-confirmed {
+    margin-top: -1.1vw;
+    font-family: var(--daily-stats-font-family);
+    font-weight: var(--daily-stats-font-weight);
+    font-size: var(--font-size-card-value);
+    text-shadow: none;
+    
+}
+
+
+.top-bar-card-deaths {
+    color: var(--font-color-deaths);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-card-category);
+    background-color: transparent;
+    text-align: center;
+    border: none;
+    padding: .2rem;
+}
+
+.top-bar-card-deaths.card{
+    box-shadow: none;
+}
+
+.top-bar-value-deaths {
+    margin-top: -1.1vw;
+    font-family: var(--daily-stats-font-family);
+    font-weight: var(--daily-stats-font-weight);
+    font-size: var(--font-size-card-value);
+    text-shadow: none;
+}
+
+
+.top-bar-card-death {
+    color: var(--font-color-deathrate);
+    font-size: var(--font-size-card-category);
+    border-radius: var(--border-radius);
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    padding: .2rem;
+}
+
+.top-bar-card-death.card {
+    box-shadow: none;
+    
+}
+
+.top-bar-value-death {
+    margin-top: -1.1vw;
+    font-family: var(--daily-stats-font-family);
+    font-weight: var(--daily-stats-font-weight);
+    font-size: var(--font-size-card-value);
+    text-shadow: none;
+}
+
+.top-bar-perc-change-tested {
+    color: #19202A;
+    margin-top: -.7rem;
+    font-size: var(--font-size-card-perc-change);
+}
+
+.top-bar-perc-change-confirmed {
+    color: #BDBDBD;
+    margin-top: -.7rem;
+    font-size: var(--font-size-card-perc-change);
+}
+
+.top-bar-perc-change-deaths {
+    color: #BDBDBD;
+    margin-top: -.7rem;
+    font-size: var(--font-size-card-perc-change);
+}
+
+.top-bar-perc-change-death {
+    color: #BDBDBD;
+    margin-top: -.7rem;
+    font-size: var(--font-size-card-perc-change);
+}
+
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                             🌎 US Map Styling 🌎                              */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+.middle-col-map-content.col-8 {
+    max-width: 56%;
+    margin: 0 1.5%;
+} 
+
+
+#chart-container {
+    min-height: 20vh;
+}
+
+.main-svg {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+#us-map.dash-graph {
+    min-height: 20vh;
+    max-height: var(--max-height-sidebar);
+}
+
+.middle-col-map-content.col-8 .card{
+    background-color: #010915;
+}
+
+.middle-col-map-content.col-8 .card .card-body{
+    padding: 0;
+    background-color: #010915;
+}
+
+.middle-map-tabs-styled-with-inline-parent {
+    font-size: var(--font-size-table-heading)
+}
+
+.tab.confirmed-us-map-tab.tab--selected, .tab.testing-us-map-tab.tab--selected, .tab.testing-us-map-tab , .tab.confirmed-us-map-tab {
+    min-width: max-content;
+    border-top-left-radius:  0.3rem;
+    padding-left: 3vh !important;
+    padding-right: 3vh !important;
+}
+
+
+.card-header-tabs{
+    margin-right:0%;
+}
+
+.middle-styling {
+    flex-wrap: nowrap;
+}
+
+.middle-col-map-content {
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+}
+
+.graph-styling {
+    padding: 0px;
+}
+
+#map-loading {
+    margin-top: 22vh;
+}
+
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                              Chart Styling                                     */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+/* .top-bottom-charts {
+    margin: --var(--margin-dashboard-containers) 0;
+}  */
+
+.top-bottom-charts .card {
+    margin: 0 2.2%;
+    margin-bottom: .5%;
+}
+
+/* .top-bottom-charts .card { */
+    /* margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem; */
+    /* margin: 0 2.5%;
+} */
+
+.top-bottom-charts .card-body {
+    background: var(--card-bg-color);
+    padding: 3vh 4vh 4vh 4vh;
+}
+
+
+.bottom-chart-h1-title {
+    font-size: var(--font-size-chart-h1);
+    color: #F4F4F4;
+    max-width: 100%;
+    padding-left: 2%;
+    margin-bottom: 0;
+}
+
+.bottom-chart-h2-title {
+    font-size: var(--font-size-chart-h2);
+    color: #F4F4F4;
+    max-width: 100%;
+    margin-top: 0;
+    margin-bottom: 9%;
+    padding-left: 2%;
+}
+
+.top-bottom-left-chart .card {
+    margin-left: 1%;
+}
+
+.top-bottom-right-chart .card {
+    margin-right: 1%;
+}
+
+/* .top-bottom-left-chart , .top-bottom-mid-chart, .top-bottom-right-chart {
+    padding: 0.5%;
+} */
+
+
+
+
+/* .top-bottom-left-chart.col-6 .card , .top-bottom-mid-chart.col-6 .card, .top-bottom-right-chart.col-6 .card {
+    margin-top: 1vh;
+    margin-right: 1.3vh;
+    margin-bottom: 6vh;
+    padding: 2vh;
+} */
+
+
+/* https://community.plot.ly/t/is-it-possible-to-hide-the-floating-toolbar/4911 */
+.modebar{
+    display: none !important; 
+    /* remove plotly toolbar */
+}
+
+
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                    👈 Right  Twitter 🐦 News 📰 Feed Sidebar                  */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+/* Active Tab Blur */
+.tab--selected {
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, .4); */
+    z-index: 100;
+    position: relative;
+    /* background-color: #1F242D; */
+    border-bottom: 1px solid #f4f4f4 !important;
+}
+
+.tab:hover {
+    color: rgb(199, 199, 199) !important;
+}
+
+
+#mobile-feed-tabs-styled-with-inline {
+    padding-bottom: 12px;
+}
+
+/* get rid of tab padding */
+.card-header {
+    max-width:100%;
+    padding: 0 0 .75rem 0;
+}
+ 
+.left-col-twitter-feed-content.col-2, .right-col-stats-content.col-2{
+    flex: 0 0 20.49%;
+    max-width: 20.49%;
+}
+
+.left-col-twitter-feed-content.col-2 .card .card-body {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.left-col-twitter-feed-content.col-2 .list-group-item {
+    background-color: none
+}
+
+
+.left-col-twitter-feed-content .card-body {
+    height: 60vh;
+    max-height: var(--max-height-sidebar);
+    overflow: scroll;
+    padding-bottom: 0;
+}  
+
+/* cards inside the sidebar for tweets and news */
+
+.left-col-feed-cards-text .tweet-item.list-group-item {
+    background-color: var(--card-bg-color);
+}
+
+.left-col-feed-cards-text .list-group .list-group-flush li {
+    background-color: none
+}
+
+.tweet-item.list-group-item , .news-item.list-group-item{
+    background-color: transparent;
+    border: none;
+}
+
+
+.left-col-twitter-feed-content .left-tabs{
+    font-size: var(--font-size-table-heading);
+}
+
+.news-item, .tweet-item {
+    border-bottom: 1px solid rgb(83, 83, 83) !important;
+    padding: 0;
+    margin: 0;
+}
+
+.news-item:hover, .tweet-item:hover {
+    text-decoration: none !important;
+}
+
+.tweet-item-container, .news-item-container {
+    padding: 0 1vw;
+    margin: 1vw 0;
+    line-height: 1.35;
+    color: var(--nav-font-color);
+}
+
+/* Tweet/News Acticle Headline and source */
+
+.news-txt-headline, .tweet-text {
+    font-size: var(--font-size-feed-body);
+    font-weight: normal;
+    line-height: 1.35;
+    margin-bottom: 0.5vw
+}
+
+.news-txt-by-dt, .tweet-dt{
+    font-size: var(--font-size-feed-author);
+}
+
+.tab.left-news-tab {
+    border-top-left-radius: 0.4rem;
+}
+
+.tab.left-twitter-tab.tab--selected {
+    border-top-right-radius: 0.4rem;
+}
+
+.left-twitter-tab {
+    border-top-right-radius: 0.4rem;
+} 
+
+/* overflow disable scroll bar */
+.left-col-feed-cards-text {
+    overflow-y: scroll;
+    height: 73.5vh;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.left-col-feed-cards-text::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+
+.left-col-twitter-feed-content {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.left-col-twitter-feed-content::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.left-col-twitter-feed-content .card-body {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    /* padding-left: 0;
+    padding-right: 0; */
+}
+
+.left-col-twitter-feed-content .card-body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.left-col-twitter-feed-content {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.left-col-twitter-feed-content::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                          👈 Left  Stats Table Sidebar                          */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+.right-col-news-feed-content.col-2 {
+    margin-left: 0.3rem;
+}
+
+.stats-table-col.card-body {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0.6vh;
+}
+
+#stats-content {
+    margin-bottom: 0;
+}
+
+.stats-table-div.card{
+    height: calc(61vh + 2.55vw);
+    max-height: calc(var(--max-height-sidebar) + 3.3vw);
+}
+
+.dash-table-container .row{
+    margin: 0 auto; 
+}
+
+.column-header--sort{
+    float: none !important;
+}
+
+.stats-table-col .card-body{
+    overflow: hidden;
+}
+
+.dash-spreadsheet-container table {
+    /* Change the default color of hover and Selected objects on chart */
+    --accent: none !important;
+    --hover: none !important;
+    --selected-background: none !important;
+    --selected-color: none !important;
+}
+
+.dash-table-container .row::-webkit-scrollbar {
+    display: none;
+}
+
+/* .dash-freeze-top .dash-list-view .dash-no-filter  */
+.dash-spreadsheet-inner.dash-spreadsheet.dash-freeze-top.dash-list-view.dash-no-filter  {
+    min-height: 99vh !important;
+}
+
+.stats-table {
+    /* margin-right: 1rem; */
+    overflow-y: scroll;
+    height: 62vh;
+    
+    /* Disable scroll bar */
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* disable scroll bar */
+.stats-table::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.right-col-stats-content.col-2 .card-body {
+    padding-top: 0rem;
+    padding-bottom:0;
+}
+
+.right-col-stats-content.col-2 .column-header-name {
+    font-family: Lato, sans-serif;
+    font-size: var(--font-size-stats-table-heading);
+    font-weight: 500;
+    color: var(--nav-font-color);
+}
+
+.dash-cell.column-0 {
+    padding-left: 2rem;
+}
+
+.dash-table-container td {
+    background-clip: padding-box;
+    padding: 1rem;
+    overflow-x: visible;
+    white-space: nowrap;
+    height: 30px;
+    text-align: left;
+}
+
+.dash-cell.column-0 .stats-table-div td {
+    /* text-align: left !important; */
+    /* padding-left: 0.2rem; */
+}
+
+.right-tabs-last-updated-text {
+    padding 1vh 0 1vh 0;
+    margin: 0;
+    font-size: var(--font-size-last-updated);
+    background: #010915;
+}
+
+.right-tabs-last-updated-text.card-footer {
+    text-align: right;
+    padding: 1.5vh;
+}
+
+.card-footer:last-child {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+/* overflow disable scroll bar */
+.right-col-feed-cards-text {
+    overflow-y: scroll;
+    /* Match the height except minus the height of the "last updated" text */
+    height: calc(60vh - 1rem - 16px);
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    background: none;
+    background-color: none;
+}
+
+.right-col-feed-cards-text::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.right-col-stats-content .col-2 .card .card-body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.right-col-news-feed-content {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  /* Firefox */
+}
+
+.right-col-news-feed-content::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.stats-table-div .card-body{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+    scroll-behavior: smooth;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+
+    height: 59vh;
+}
+
+/* disable scroll bar */
+.stats-table-div .card-body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.right-col-stats-content .col-2 .card .card-body {
+    /* height: calc(60vh) !important; */
+    overflow: scroll;
+    padding-top: 0;
+    
+}
+
+.right-col-stats-content.col-2 .row.row-0, .right-col-stats-content.col-2 .row.row-1 {
+    margin: 0;
+    padding: 0 .75vw;
+}
+
+.right-col-stats-content.col-2 .row.row-0 {
+    padding-top: 1vh ;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                   Footer 🦶                                    */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+.footer-content {
+    background-color: #010915;
+    color: #BDBDBD;
+}
+
+.footer-disclaimer-content {
+    padding-left: 2vw;
+    padding-top: 1rem;
+    font-size: var(--font-size-card-perc-change);
+}
+
+.footer-disclaimer-text {
+    width: 90%;
+}
+
+.footer-social-copyright-content.col-2 {
+    /* margin-right: -5rem; */
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.fab.fa-github {
+    font-size: var(--font-size-github-favicon);
+    color: #BDBDBD;
+}
+
+.footer-copyright-text {
+    font-size: var(--font-size-card-category);
+    text-align: center;
+    color: #BDBDBD;
+    min-width: 120px;
+}
+
+.footer-social-copyright-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 8px;
+    padding-right: 45px;
+}
+
+/* needs to be here don't move */
+.tweet-item a:hover {
+    text-decoration: none !important;
+}
+
+.news-item-container:hover , .tweet-item-container:hover{
+    color: rgb(212, 212, 212) !important;
+}
+/* END */
+
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                             📖 About Page Styling 📖                          */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+/* Every page is given some padding and margin, but I want the about page to fill the whole page so I need to negate it.
+This isn't perfect so if anyone knows how to disable .page-content padding on the about page only please fix this */
+#about-page {
+    /* margin-left: -50px;
+    margin-top: -25px; */
+    padding: 0 -2%;
+}
+/* #page-content {
+    margin-top: -1vh !important;
+} */
+
+.desktop {
+    min-width: var(--minimum-screen-size);
+}
+
+.about-page-title {
+    font-family: var(--about-font-family);
+    font-size: 2rem;
+    padding-left: 5%;
+    margin-bottom: 50px;
+    margin-top: 0;
+    font-weight: bold;
+}
+
+/* #about-page-second-third .about-page-title {
+    padding-left: 1vh;
+    padding-bottom: 50px;
+} */
+
+.about-section-title-container {
+    border-left: 7px solid var(--about-border-color);
+}
+
+.about-section-text-container {
+    border-left: 1px solid var(--about-border-color);
+    margin-left: 3px;
+}
+
+
+.about-section {
+    width: 40vw;
+}
+
+.about-section-title {
+    font-family: var(--about-font-family);
+    padding-left: 4%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin: 0;
+}
+
+.about-section-text {
+    font-family: var(--about-font-family);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5%;
+}
+
+.about-section-container {
+    display: flex;
+    justify-content: center;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 100px;
+}
+
+.about-section-container-2 {
+    display: flex;
+    justify-content: center;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 90px;
+}
+
+#about-page-second-third .about-section-container {
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+#about-page-second-third .about-section-container-2 {
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+.about-section-padding {
+    padding-left: 7vw;
+    padding-top: 7vw;
+}
+
+#about-page-first-third  {
+    background-color: var(--about-bg-color);
+    color: var(--about-font-color);
+    margin-right: 0;
+    padding-top: 7vh;
+}
+
+#about-page-second-third  {
+    background-color: #010915;
+    color: var(--about-font-color);
+    background-position: right top;
+    background-image: url('../images/map_1.svg');
+    background-repeat: no-repeat;
+    background-size: 45%;
+    padding-top: 100px;
+    /* padding-bottom: 50px; */
+}
+
+#about-page-third-third  {
+    background-color: var(--about-bg-color-light);
+    padding-left: 10vw;
+    color: var(--about-font-color-black);
+    padding-bottom: 100px;
+    padding-top: 100px;
+}
+
+.about-page-third {
+    /* width: 100vw !important; */
+    height: 100%;
+    padding-top: 50px; 
+    margin-right: 0;
+}
+
+
+.web-about-source {
+    text-align: right;
+    font-size: .75rem;
+    color: var(--about-font-color);
+}
+
+.web-about-sources {
+    padding-left: 7vw;
+    /* margin-bottom: 1%; */
+    margin: 1%;
+}
+
+
+#about-contributors-title {
+    font-family: var(--about-font-family);
+    font-size: 2.1rem;
+    margin-bottom: 3%;
+    text-shadow: none;
+    font-weight: bold;
+}
+
+#about-contributors-subtitle {
+    font-family: var(--about-font-family);
+    font-size: 1.2rem;
+    padding-bottom: 3%;
+    padding-top:.5%;
+    font-weight: 400;
+    text-shadow: none;
+}
+
+.about-contributor-name {
+    font-family: var(--about-font-family);
+    padding-right: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.about-contributor-title {
+    font-family: var(--about-font-family);
+    font-size: 1.1rem;
+}
+
+.about-page-contributors {
+    display: flex;
+    flex-direction: row;
+}
+
+.about-page-contributor {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    margin-bottom: 1%;
+}
+
+.about-contributor-social-icon {
+    margin-right: 1%;
+    width: 21px;
+    height: 21px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-bottom: auto;
+}
+
+.about-contributor-github-icon {
+    background-image: url('../images/Github.svg');
+}
+
+.about-contributor-linkedin-icon {
+    background-image: url('../images/LinkedIN.svg');
+}
+
+.about-contributor-twitter-icon {
+    background-image: url('../images/Twitter.svg');
+}
+
+

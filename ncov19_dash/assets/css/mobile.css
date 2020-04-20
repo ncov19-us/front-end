@@ -1,0 +1,817 @@
+
+/********************* 📱 MOBILE STYLING 📱 **********************/
+/*
+* ⚠️ ONLY APPLIES TO MOBILE DON'T PUT COMMON STYLING OR DESKTOP STYLING HERE ⚠️
+*/
+:root{
+    /* Nav Colors */
+    --nav-bg-color:#010915;
+    --nav-font-color: #FEFEFE;
+
+    /* Font Colors */
+    --font-color-tested:#AEAEAE;
+    --font-color-confirmed:#F4B000;
+    --font-color-deaths:#E55465;
+    --font-color-deathrate:#DD1E34;
+    --font-color-gray: #BDBDBD;
+
+    /* Card Colors */
+    --card-bg-color:#010915;
+    --card-font-color:#F4F4F4;
+    
+    /* Body Background Color */
+    --mobile-body-bg-color: #19202A;
+
+    /* Font Sizes */
+    --mobile-font-size-h1: 2.5vh;
+    --mobile-font-size-h2: 1.7vh;
+    --mobile-font-size-h4: 1.8vh;
+    --mobile-font-size-card-value: 6.5vh;
+    --mobile-font-size-card-category: 2vh;
+    --mobile-font-size-card-perc-change: 1.8vh;
+    --mobile-font-size-table-heading: 2vh;
+    --mobile-font-size-feed-body: 1.9vh;
+    --mobile-font-size-feed-author: 1.6vh;
+    --mobile-font-size-stats-table-heading: 1.8vh;
+    
+    /* Font Weights */
+    --font-weight-normal: 500;
+    --font-weight-bold: 700;
+
+    /* Mobile Body Padding */
+    --mobile-body-margin: 3.2vw;
+
+    /* Mobile Border Radius */
+    --mobile-border-radius: 0.4rem;
+
+    /* About Page Variables */
+    --about-font-color:#FEFEFE;
+    --about-font-color-black:black;
+    --about-border-color:#FEFEFE;
+    --about-bg-color:#19202A;
+    --about-bg-color-light:#D2D2D2;
+    --about-font-family:'Roboto', sans-serif ;
+
+
+    /* Daily Stats */
+    --mobile-daily-stats-font: 'Lato', sans-serif;
+    --mobile-daily-stats-cateogory-font: 'Roboto', sans-serif;
+    --mobile-daily-stats-font-weight: 700;
+
+}
+
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                NAVBAR STYLING                                  */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+.mobile-navbar {
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 100000;
+    margin: 0 !important;
+    padding: 0 4vw;
+    color: #F4F4F4;
+    border: none;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: none;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#mobile-navbar-toggler {
+    padding: 0;
+    width: auto !important;
+}
+
+
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                               Hamberger Menu                                   */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+.mobile-hidden-menu-div {
+    background-color: #010915;
+    width: 100vw;
+    height: 100vh;
+    padding:0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: -0.65rem;
+    padding-bottom: 8rem;
+}
+
+.mobile-nav-header {
+    font-size: 1.8rem;
+}
+
+.mobile-hidden-menu-anchor-tag:hover {
+    text-decoration: none;
+    color: var(--font-color-confirmed);
+}
+
+.mobile-covid-19-text {
+    font-weight: var(--font-weight-bold);
+    font-size: 3.5vh;
+    width: max-content;
+    padding-right: 2vw;
+    padding-bottom: .2vh;
+    margin: 0.4vh 0;
+}
+
+.mobile-us-cases-text {
+    font-weight: 350;
+    font-size: 3.6vh;
+    text-shadow: none;
+    padding-bottom: .2vh;
+    margin: .4vh 0;
+}
+
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                STATES DROPDOWN                                 */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+.mt-4 {
+    margin: 0;
+}
+
+.mobile-top-bar-content {
+    margin: 5vh var(--mobile-body-margin);
+}
+
+.mobile-states-dropdown-container {
+    width: 100%;
+    height: 10.2vh;
+    position: fixed;
+    z-index: 9999;
+    font-size: 2vh;
+    font-family: var(--mobile-daily-stats-font);
+    /* font-weight: var(--mobile-daily-stats-font-weight); */
+    background-color: var(--card-bg-color);
+    
+    /* padding-top: 1.5vh;
+    padding-bottom: 1vh; */
+    /* padding-left: .2vw; */
+    /* padding-right: 0; */
+    padding: 1vh 4vw;
+    display: flex;
+    /* justify-content: center; */
+}
+
+#mobile-states-dropdown {
+    width: 60vw;
+    height: 5vh;
+    /* line-height: .7; */
+    background-color: var(--card-bg-color);
+    border-radius: var(--mobile-border-radius);
+    margin: 2.2vh 0;
+}
+
+.Select-arrow-zone{
+    padding-left: -10rem;
+    font-size: 1rem;
+}
+
+#mobile-states-dropdown .Select-arrow {
+    border-width: 0.8vh 0.45vh 0.18vh !important;
+}
+
+#mobile-states-dropdown .is-open .Select-arrow {
+    border-width: 0.8vh 0.45vh 0.18vh !important;
+}
+
+.Select--single > .Select-control .Select-value {
+    line-height: 5vh !important;
+}
+
+
+#mobile-states-dropdown .Select-input {
+    background-color: transparent !important;
+}
+
+#mobile-states-dropdown .Select-control {
+    height: 5vh;
+    background-color: var(--mobile-body-bg-color) !important;
+    border-color: transparent;
+    overflow: auto;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+.mobile-states-dropdown .Select-menu-outer {
+    background-color: var(--mobile-body-bg-color);
+    border-color: transparent;
+    font-size: 3vw;
+    z-index: 1000000;
+}
+
+.mobile-states-dropdown .Select-control .Select-value-label {
+    color: var(--card-font-color) !important;
+    cursor: pointer;
+    font-weight: var(--font-weight-normal);
+}
+
+.mobile-states-dropdown .Select-arrow {
+    border-color: #f4f4f4 transparent transparent;
+    /* border-width: 10px 5px 2.5px; */
+}
+
+.Select-control > *:last-child {
+    padding-right: 2vh !important;
+}
+
+#mobile-states-dropdown .is-open .Select-control {
+    background-color: transparent;
+}
+
+#mobile-states-dropdown .is-open .Select-value-label {
+    color: #f4f4f4;
+}
+
+#mobile-states-dropdown .is-open .Select-value-label {
+    background-color: transparent;
+}
+
+#mobile-states-dropdown .is-open .Select-arrow {
+    border-color: #f4f4f4 transparent transparent;
+    border-width: 10px 5px 2.5px;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                DAILY STATS                                     */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+
+#mobile-daily-stats {
+    padding-top: 5vh;
+    padding-bottom: 2vh;
+}
+
+.mobile-top-bar-content .list-group-item {
+    background-color: none !important;
+    margin-bottom: 3vh;
+}
+
+.mobile-top-bar-content .list-group {
+    height: 75vh;
+    justify-content: space-evenly;
+    background-color: none !important;
+}
+
+.mobile-top-bar-card-tested .list-group-item {
+    border-top-left-radius: var(--mobile-border-radius);
+    border-top-right-radius: var(--mobile-border-radius);
+    background-color: none !important;
+}
+
+.mobile-top-bar-card-death.list-group-item {
+    border-bottom-left-radius: var(--mobile-border-radius);
+    border-bottom-right-radius: var(--mobile-border-radius);
+}
+
+.list-group-item, .list-group-item:hover, .list-group-item:active {
+    background: transparent;
+}
+
+.mobile-card-text {
+    margin-top: -1vh;
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    margin-bottom: -1vh;
+}
+
+.mobile-top-bar-card-tested {
+    font-family: var(--mobile-daily-stats-cateogory-font);
+    font-size: var(--mobile-font-size-card-category);
+    color: var(--font-color-tested);
+    text-align: center;
+    border: none;
+    border-radius: var(--mobile-border-radius);
+    padding: .2rem;
+    margin-top: 2rem;
+}
+
+.mobile-top-bar-value-tested {
+    font-family: var(--mobile-daily-stats-font);
+    font-weight: var(--mobile-daily-stats-font-weight);
+    font-size: var(--mobile-font-size-card-value);
+    margin-top: -1rem;
+    text-shadow: none;
+    color: var(--font-color-tested);
+
+}
+
+.mobile-top-bar-card-confirmed {
+    font-size: var(--mobile-font-size-card-category);
+    color: var(--font-color-confirmed);
+    background-color: none;
+    text-align: center;
+    border: none;
+    border-radius: var(--mobile-border-radius);
+    padding: .2rem;
+
+}
+
+.mobile-top-bar-value-confirmed {
+    font-family: var(--mobile-daily-stats-font);
+    font-size: var(--mobile-font-size-card-value);
+    font-weight: var(--mobile-daily-stats-font-weight);
+    margin-top: -1rem;
+    text-shadow: none;
+}
+
+.mobile-top-bar-card-deaths {
+    font-size: var(--mobile-font-size-card-category);
+    color: var(--font-color-deaths);
+    background-color: none;
+    text-align: center;
+    border: none;
+    border-radius: var(--mobile-border-radius);
+    padding: .2rem;
+}
+
+
+.mobile-top-bar-value-deaths {
+    font-family: var(--mobile-daily-stats-font);
+    font-size: var(--mobile-font-size-card-value);
+    font-weight: var(--mobile-daily-stats-font-weight);
+    margin-top: -1rem;
+    text-shadow: none;
+}
+
+.mobile-top-bar-card-death {
+    font-size: var(--mobile-font-size-card-category);
+    color: var(--font-color-deathrate);
+    text-align: center;
+    border: none;
+    border-radius: var(--mobile-border-radius);
+    padding: .2rem;
+
+}
+
+.mobile-top-bar-value-death {
+    font-family: var(--mobile-daily-stats-font);
+    font-size: var(--mobile-font-size-card-value);
+    margin-top: -1rem;
+    font-weight: var(--mobile-daily-stats-font-weight);
+    text-shadow: none;
+}
+
+.mobile-top-bar-perc-change-tested {
+    color: var(--mobile-body-bg-color);
+    margin-top: 0.2rem;
+    font-size: var(--mobile-font-size-card-perc-change);
+}
+
+
+.mobile-top-bar-perc-change-confirmed {
+    color: var(--font-color-gray);
+    margin-top: 0.2rem;
+    font-size: var(--mobile-font-size-card-perc-change);
+}
+
+.mobile-top-bar-perc-change-deaths {
+    color: var(--font-color-gray);
+    margin-top: 0.2rem;
+    font-size: var(--mobile-font-size-card-perc-change);
+}
+
+.mobile-top-bar-perc-change-death {
+    color: var(--font-color-gray);
+    margin-top: 0.2rem;
+    font-size: var(--mobile-font-size-card-perc-change);
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                            📱 Mobile Chart                                     */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+.mobile-chart {
+    margin-top: 4vh;
+}
+
+.mobile-chart .card {
+    background-color: #010915;
+    margin-left: var(--mobile-body-margin);
+    margin-right: var(--mobile-body-margin);
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding: 3vw 4vw;
+    height: 38vh;
+}
+
+.mobile-chart-h1-title {
+    font-size: var(--mobile-font-size-h1);
+    font-weight: var(--font-weight-normal);
+    color: #F4F4F4;
+    max-width: 100%;
+    padding-top: 0.8vh;
+    padding-left: .4vw;
+}
+
+.mobile-chart-h2-title {
+    font-size: var(--mobile-font-size-h2);
+    color: #F4F4F4;
+    padding-left: .4vw;
+    padding-bottom: 3.5vh;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                            📱 Mobile US Map 🌎                                */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+.mobile-us-map-content {
+    margin: 7vh var(--mobile-body-margin);
+}
+
+
+.mobile-us-map-content .card .card-body {
+    padding: 0;
+}
+
+#mobile-us-map {
+    height: 75vh;
+}
+
+#mobile-map-tabs {
+    border-top-left-radius: 0.4rem !important;
+
+}
+
+.tab.mobile-confirmed-us-map-tab.tab--selected, .tab.mobile-testing-us-map-tab.tab--selected, .tab.mobile-confirmed-us-map-tab, .tab.mobile-testing-us-map-tab {
+    padding: 0.7rem 1.4rem !important;
+    text-align: center;
+    min-width: max-content;
+    border-top-left-radius: 0.4rem !important;
+    font-size: var(--mobile-font-size-table-heading);
+    
+}
+
+.tab.mobile-confirmed-us-map-tab.tab--selected, .tab.mobile-testing-us-map-tab.tab--selected {
+    color: #FEFEFE !important;
+}
+
+
+.tab.mobile-testing-us-map-tab, .tab.mobile-testing-us-map-tab {
+    border-top-right-radius: var(--mobile-border-radius) !important;
+}
+
+
+.tab.mobile-testing-us-map-tab:active, .tab.mobile-testing-us-map-tab:hover, .tab.mobile-confirmed-us-map-tab:active, .tab.mobile-confirmed-us-map-tab:hover {
+    color: var(--nav-font-color) !important;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                                     Stats Table                                */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+.stats-table-div .row.row-0, .stats-table-div .row.row-1 {
+    margin: 0;
+    padding: 0 2vw;
+}
+
+.stats-table-div .column-header-name {
+    font-family: Lato, sans-serif;
+    font-size: var(--mobile-font-size-stats-table-heading);
+    font-weight: var(--font-weight-normal);
+    /* padding-left: 1rem; */
+    /* padding: 1rem; */
+    color: var(--nav-font-color);
+}
+
+td.dash-cell.column-0 {
+    text-align: left !important;
+}
+
+span.column-header-name {
+    padding-left: 5px;
+}
+.dash-spreadsheet-container.dash-spreadsheet.dash-freeze-top.dash-list-view.dash-no-filter {
+    width: 100%;
+}
+
+
+.cell.cell-1-1.dash-fixed-content {
+    width: 100%;
+}
+
+
+td.dash-cell.column-1, td.dash-cell.column-2, th.dash-header.column-1,  th.dash-header.column-2.cell--right-last{
+    text-align: center !important;
+    margin: 0 1px;
+}
+
+th.dash-header.column-0 {
+    text-align: left !important;
+    margin: 0 1px;
+}
+
+
+.mobile-right-col-stats-content.col-2 {
+    max-width: 100%;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    max-height: 30%;
+}
+
+.mobile-stats-card-body {
+    height: 60vh;
+    overflow: scroll;
+    padding-top: 0;
+}
+
+/* p.right-tabs-last-updated-text {
+    text-align: right !important;
+} */
+
+.mobile-right-col-stats-content.col-2 .right-tabs-last-updated-text {
+    font-size: var(--mobile-font-size-h4);
+    border-bottom-right-radius: var(--mobile-border-radius);
+    border-bottom-left-radius: var(--mobile-border-radius);
+    padding: 2vh 4vw;
+    text-align: right !important;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*                    👈 Mobile  Twitter News Feed Sidebar  🐦 📰                */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
+.mobile-feed-content {
+    margin: 10vh var(--mobile-body-margin) 7vh var(--mobile-body-margin);
+}
+
+.mobile-feed-card-body {
+    height: 57vh;
+    overflow: scroll;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.mobile-feed-card-body.card-body {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.mobile-card-text .tweet-item-container , .mobile-card-text .news-item-container {
+    padding: 0 5vw;
+    margin: 5vw 0;
+    line-height: 1.35;
+    color: var(--nav-font-color);
+}
+
+.mobile-card-text .tweet-text , .mobile-card-text .news-txt-headline {
+    padding-bottom: 1vh;
+}
+
+.mobile-feed-card-body .tweet-text, .mobile-feed-card-body .news-txt-headline {
+    font-size: var(--mobile-font-size-feed-body)
+}
+
+.mobile-feed-card-body .tweet-dt, .mobile-feed-card-body .news-txt-by-dt {
+    font-size: var(--mobile-font-size-feed-author)
+}
+
+.mobile-twitter-feed-tab {
+    border-top-right-radius: var(--mobile-border-radius);
+}
+
+#mobile-feed-tabs-styled-with-inline {
+    background-color: var(--card-bg-color);
+    border-top-right-radius: var(--mobile-border-radius);
+    border-top-left-radius: var(--mobile-border-radius);
+    padding-bottom: 0;
+}
+
+.mobile-twitter-feed-tab, .mobile-news-feed-tab {
+    font-size: var(--mobile-font-size-table-heading);
+}
+
+/* 📱 Footer 🦶 */
+/* #footer-content {
+    padding: 1vh 2vh 1vh 8vh;
+} */
+
+.mobile-footer-content {
+    background-color: #010915;
+}
+
+.mobile-footer-disclaimer-content {
+    font-size: var(--mobile-font-size-h4);
+}
+
+.mobile-footer-disclaimer-content.row {
+    margin-right: 3rem;
+    margin-left: 5vh;
+}
+
+.mobile-footer-disclaimer-text {
+    padding-top: 2rem;
+}
+
+.mobile-footer-social-copyright-content.row {
+    padding-bottom: 1.1rem;
+    margin-left: 5vh;
+}
+
+.mobile-fa-icons {
+    font-size: 2rem;
+    color: #BDBDBD;
+    /* padding-left: 1rem; */
+}
+
+.mobile-footer-copyright-text {
+    font-size: var(--mobile-font-size-table-heading);
+    align-self: center;
+    color: #BDBDBD;
+}
+
+
+/* 📱 END Footer 🦶 */
+
+.jsx-2597805859.tab.mobile-news-feed-tab:active, .jsx-2597805859.tab.mobile-twitter-feed-tab:active,
+.jsx-2597805859.tab.mobile-news-feed-tab:hover,
+.jsx-2597805859.tab.mobile-twitter-feed-tab:target,
+.jsx-2597805859.tab.mobile-news-feed-tab:target,
+.jsx-2597805859.tab.mobile-twitter-feed-tab:focus,
+.jsx-2597805859.tab.mobile-news-feed-tab:focus, .jsx-2597805859.tab.mobile-twitter-feed-tab:hover {
+    color: var(--nav-font-color) !important;
+}
+
+.tab.mobile-news-feed-tab {
+    border-top-left-radius: var(--mobile-border-radius);
+}
+
+.tab.mobile-left-twitter-tab {
+    border-top-left-radius: var(--mobile-border-radius);
+}
+
+.tab.mobile-left-news-tab {
+    border-top-right-radius: var(--mobile-border-radius);
+}
+
+.tab.mobile-twitter-feed-tab.tab--selected, .tab.mobile-news-feed-tab.tab--selected {
+    background-color: var(--card-bg-color) !important;
+}
+
+
+
+
+/* 📖 About Page Mobile-Specific Styling 📖 */
+
+#mobile-about-page {
+    margin-left: -25px;
+    margin-right: -15px;
+}
+
+.mob-about-section-title-container {
+    border-left: 7px solid #fefefe;
+    margin-left: 5%;
+}
+
+.mob-about-section-text-container {
+    border-left: 1px solid #fefefe;
+    margin-left: 5.7%;
+}
+
+.mob-about-section-text-container-2 {
+    border-left: 1px solid #fefefe;
+    margin-left: 5.7%;
+}
+
+#mobile-about-page .about-section-container {
+    display: inline-block;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 7vw;
+}
+
+#mobile-about-page .about-section-container-2 {
+    display: inline-block;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 5vw;
+}
+
+#mobile-about-page #about-page-first-third {
+    padding-top: 100px;
+    color: #F4F4F4;
+}
+
+#mobile-about-page #about-page-third-third {
+    background-color: #D2D2D2;
+    color: black;
+    font-size: .8rem;
+    padding: 10vh 1vh 10vh 3vh;
+}
+
+#mobile-about-page .about-section {
+    width: 90%;
+}
+
+.mob-about-page-title {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    padding-left: 10%;
+    margin-bottom: 8%;
+    margin-top: 0;
+    font-weight: var(--font-weight-bold);
+    width: 90%;
+    align-items: left;
+}
+
+.mob-about-page-contributors {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: .5%;
+}
+
+.mob-about-page-contributor {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    margin-bottom: 1.8%;
+}
+
+
+.mob-about-contributor-social-icon {
+    margin-right: 2.5%;
+    width: 18px;
+    height: 18px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-bottom: auto;
+}
+
+#mob-about-contributors-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 8%;
+    text-shadow: none;
+    font-weight: var(--font-weight-bold);
+}
+
+#mob-about-contributors-subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    padding-bottom: 50px;
+    padding-top:2%;
+    font-weight: var(--font-weight-normal);
+    text-shadow: none;
+}
+
+.mob-about-contributor-name {
+    font-family: 'Roboto', sans-serif;
+    padding-right: 5px;
+    font-weight: var(--font-weight-bold);
+    font-size: .9rem;
+}
+
+.mob-about-contributor-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: .9rem;
+}
+
+#mobile-about-page .about-sources {
+    /* padding-left: 7vw;
+    padding-top: 10%; */
+    padding: 3% 3% 3% 5%;
+}
+
+.about-source-2 {
+    text-align: right;
+    font-size: 0.75rem;
+    color: #F4F4F4;
+    margin-bottom: 3.5%
+}
+
+.about-source {
+    text-align: right;
+    font-size: 0.75rem;
+    color: #F4F4F4;
+}
+
+/* END ABOUT SECTION */
