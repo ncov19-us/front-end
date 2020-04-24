@@ -82,7 +82,7 @@ app.index_string = """<!DOCTYPE html>
         <meta property="og:title" content="ncov19 | Coronavirus COVID-19 Tracker with Testing Centers, SARS-COV-2 Vaccine Information, and SMS notification.">
         <meta property="og:site_name" content="ncov19.us">
         <meta property="og:url" content="ncov19.us">
-        <meta property="og:image" content="https://github.com/ncov19-us/front-end/blob/staging/assets/images/ncov19_v2_mobile_thumbnail.png?raw=true">
+        <meta property="og:image" content="https://github.com/ncov19-us/front-end/blob/staging/ncov19_dash/assets/images/ncov19_dash_thumbnail.png">
         <meta property="article:published_time" content="2020-03-30">
         <meta property="article:author" content="https://twitter.com/ncov19us">
 
