@@ -85,8 +85,6 @@ def confirmed_scatter_mapbox(state="United States"):
         mapbox=dict(center=dict(lat=lat, lon=lon), zoom=zoom,),
     )
 
-    # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
-    # print(fig.data[0].hovertemplate)
     fig.data[0].update(
         hovertemplate=("%{customdata[3]}, %{customdata[2]}<br>Confirmed:"
                       " %{customdata[0]}<br>Deaths: %{customdata[1]}")
