@@ -58,6 +58,9 @@ class StagingConfig:
     # Drive Thru Facilities
     DRIVE_THRU_URL = config("DRIVE_THRU_STAGING_URL")
 
+    # SMS App URL
+    SMS_APP_URL = config("SMS_APP_URL")
+
 
 class ProductionConfig(StagingConfig):
     """Uses production database server."""
