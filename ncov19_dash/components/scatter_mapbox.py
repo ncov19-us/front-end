@@ -1,17 +1,19 @@
 import gc
-import requests
 import pandas as pd
 import flask
 import plotly.express as px
 
 from ncov19_dash.utils import STATES_COORD
+from ncov19_dash.components import get_all_county_data
 from ncov19_dash import config
+from ncov19_dash.cache import server_cache
 
 
 px.set_mapbox_access_token(config.MAPBOX_ACCESS_TOKEN)
 
 
 # TODO: Make Drive-thru testing center API
+@server_cache.memoize(timeout=3600)
 def get_drive_thru_testing_centers():
     try:
         drive_thru_df = pd.read_csv(config.DRIVE_THRU_URL)
@@ -34,11 +36,7 @@ def confirmed_scatter_mapbox(state="United States"):
 
     :rtype: dbc.Card
     """
-
-    URL = config.NCOV19_API + config.COUNTY
-    response = requests.get(URL).json()
-    data = response["message"]
-    data = pd.DataFrame.from_records(data)
+    data = get_all_county_data()
 
     color_scale = [
         "#fadc8f",
@@ -94,7 +92,7 @@ def confirmed_scatter_mapbox(state="United States"):
                       " %{customdata[0]}<br>Deaths: %{customdata[1]}")
     )
 
-    del response, data
+    del data
     gc.collect()
 
     return fig

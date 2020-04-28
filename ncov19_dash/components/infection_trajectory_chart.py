@@ -8,6 +8,7 @@ from ncov19_dash.utils import REVERSE_STATES_MAP
 from ncov19_dash import config
 
 
+@server_cache.memoize(timeout=3600)
 def get_country_trajectory_data() -> pd.DataFrame:
     URL = config.NCOV19_API + config.COUNTRY
 
@@ -58,6 +59,7 @@ def get_country_trajectory_data() -> pd.DataFrame:
     return merged
 
 
+@server_cache.memoize(timeout=3600)
 def get_state_trajectory_data(state) -> pd.DataFrame:
     URL = config.NCOV19_API + config.STATE
 
@@ -142,7 +144,6 @@ def get_state_trajectory_data(state) -> pd.DataFrame:
     return merged, state_names
 
 
-@server_cache.memoize(timeout=3600)
 def infection_trajectory_chart(state="US") -> go.Figure:
     """Line chart data for the selected state.
 

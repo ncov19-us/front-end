@@ -1,4 +1,3 @@
-
 from dash.dependencies import Input, Output
 import dash_table
 from dash_table.Format import Format

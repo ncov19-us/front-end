@@ -1,31 +1,13 @@
 import gc
-import requests
-import pandas as pd
 from ncov19_dash.utils import REVERSE_STATES_MAP
-from ncov19_dash import config
+from ncov19_dash.components import get_all_county_data
 
 
 def stats_table(state="US"):
-    """Callback to change between news and twitter feed
+    """Gathering data for stats table
     """
+    data = get_all_county_data()
     state = REVERSE_STATES_MAP[state]
-    URL = config.NCOV19_API + config.COUNTY
-    try:
-        response = requests.get(URL)
-    except ValueError as ex:
-        print(f"[ERROR] stats_table error accessing ncov19.us API, {ex}")
-    else:
-        data = {"state_name": "john",
-                "county_name": "cena",
-                "confirmed": 0, "death": 0}
-
-    if response.status_code == 200:
-        data = response.json()["message"]
-        data = pd.DataFrame.from_records(data)
-    else:
-        data = {"state_name": "john",
-                "county_name": "cena",
-                "confirmed": 0, "death": 0}
 
     if state in ["US", "United States"]:
         data = data.groupby(["state_name"])[["confirmed", "death"]].sum()
@@ -53,7 +35,6 @@ def stats_table(state="US"):
             }
         )
 
-    del response
     gc.collect()
 
     return data
