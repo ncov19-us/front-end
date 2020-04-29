@@ -30,8 +30,6 @@ def deaths_chart(state="US") -> go.Figure:
     data["Date"] = pd.to_datetime(data["Date"], infer_datetime_format=False)
 
     data = data.tail(30)
-    # Limit data to 1% of current maximum number of cases
-    #data = data[data['Confirmed Cases'] > data['Confirmed Cases'].max() * 0.01]
 
     # Calculate annotation placements
     plot_tail = data.iloc[-1].to_list()

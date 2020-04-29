@@ -36,10 +36,7 @@ def daily_stats(state="US") -> List[dbc.Col]:
                                 f"{value:,d}",
                                 className=f"top-bar-value-{key.lower()}",
                             ),
-                            html.P(
-                                f"{key}",
-                                className="card-text",
-                            ),
+                            html.P(f"{key}", className="card-text",),
                         ],
                     ),
                     className=f"top-bar-card-{key.lower()}",
@@ -60,10 +57,7 @@ def daily_stats(state="US") -> List[dbc.Col]:
                                 f"{value[0]}%",
                                 className=f"top-bar-value-{key.lower()}",
                             ),
-                            html.P(
-                                f"{key}",
-                                className="card-text",
-                            ),
+                            html.P(f"{key}", className="card-text",),
                         ]
                     ),
                     className=f"top-bar-card-{key.lower()}",

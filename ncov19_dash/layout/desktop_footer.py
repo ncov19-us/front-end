@@ -3,7 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 
-footer =dbc.Row(
+footer = dbc.Row(
     [
         dbc.Col(
             html.P(
@@ -27,9 +27,7 @@ footer =dbc.Row(
                     ),
                     className="footer-social-icons mr-3",
                 ),
-                html.Span(
-                    "Copyright 2020", className="footer-copyright-text"
-                ),
+                html.Span("Copyright 2020", className="footer-copyright-text"),
             ],
             className="footer-social-copyright-content",
             width=2,

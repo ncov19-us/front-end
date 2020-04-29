@@ -14,18 +14,24 @@ def get_all_county_data() -> pd.DataFrame:
     except ValueError as ex:
         print(f"[ERROR] stats_table error accessing ncov19.us API, {ex}")
     else:
-        data = {"state_name": "john",
-                "county_name": "cena",
-                "confirmed": 0, "death": 0}
+        data = {
+            "state_name": "john",
+            "county_name": "cena",
+            "confirmed": 0,
+            "death": 0,
+        }
 
     if response.status_code == 200:
         data = response.json()["message"]
         data = pd.DataFrame.from_records(data)
         last = data["last_update"][0]
     else:
-        data = {"state_name": "john",
-                "county_name": "cena",
-                "confirmed": 0, "death": 0}
+        data = {
+            "state_name": "john",
+            "county_name": "cena",
+            "confirmed": 0,
+            "death": 0,
+        }
         last = "2100-01-01 00:00 EDT"
 
     return data, last

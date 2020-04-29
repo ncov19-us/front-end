@@ -82,10 +82,9 @@ def get_state_trajectory_data(state) -> pd.DataFrame:
 
     state_populations = pd.read_csv(
         "ncov19_dash/components/state-population-est2019.csv"
-        )
+    )
     state_populations = state_populations[["Region", "2019"]]
-    state_populations["2019"] = state_populations["2019"].\
-                                                    str.replace(",", "")
+    state_populations["2019"] = state_populations["2019"].str.replace(",", "")
     state_populations["2019"] = state_populations["2019"].fillna(0)
     state_populations["2019"] = state_populations["2019"].astype(int)
 
@@ -93,8 +92,7 @@ def get_state_trajectory_data(state) -> pd.DataFrame:
         state_populations["Region"] == f".{REVERSE_STATES_MAP[state]}"
     ]
 
-    populations[REVERSE_STATES_MAP[state]] = \
-        state_populations["2019"].iloc[0]
+    populations[REVERSE_STATES_MAP[state]] = state_populations["2019"].iloc[0]
 
     # Ingestion
     series = dict()
@@ -111,17 +109,14 @@ def get_state_trajectory_data(state) -> pd.DataFrame:
                 {"Date": "3/1/20", "Confirmed": 1338},
             ]
             data = pd.DataFrame(backup)
-        temp_data = data["Confirmed"].to_frame(
-                                        REVERSE_STATES_MAP[comp_state]
-                                    )
+        temp_data = data["Confirmed"].to_frame(REVERSE_STATES_MAP[comp_state])
 
         # convert data to per 100K and filter where greater than 1/100K
         population = populations[REVERSE_STATES_MAP[comp_state]]
         temp_data = temp_data[
-                        temp_data[
-                            REVERSE_STATES_MAP[comp_state]
-                            ]/(population/100000) > 1
-                    ].reset_index(drop=True)
+            temp_data[REVERSE_STATES_MAP[comp_state]] / (population / 100000)
+            > 1
+        ].reset_index(drop=True)
         series[i] = temp_data
 
     merged = pd.concat([series[0], series[1], series[2]], axis=1)

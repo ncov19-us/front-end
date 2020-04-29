@@ -55,8 +55,14 @@ navbar = [
                 html.A(
                     dbc.NavbarBrand(
                         [
-                            html.P("COVID-19", className="navbar-brand-covid-19-text"),
-                            html.P("Tracker", className="navbar-brand-us-cases-text"),
+                            html.P(
+                                "COVID-19",
+                                className="navbar-brand-covid-19-text",
+                            ),
+                            html.P(
+                                "Tracker",
+                                className="navbar-brand-us-cases-text",
+                            ),
                         ]
                     ),
                     className="page-title-link",

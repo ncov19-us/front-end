@@ -17,10 +17,11 @@ px.set_mapbox_access_token(config.MAPBOX_ACCESS_TOKEN)
 def get_drive_thru_testing_centers():
     try:
         drive_thru_df = pd.read_csv(config.DRIVE_THRU_URL)
-        drive_thru_df["Street Address"] = \
-            drive_thru_df["Street Address"].fillna("")
+        drive_thru_df["Street Address"] = drive_thru_df[
+            "Street Address"
+        ].fillna("")
     except ValueError as ex:
-        print(f'[ERROR] get_drive_thru_testing_center error, {ex}')
+        print(f"[ERROR] get_drive_thru_testing_center error, {ex}")
         drive_thru_df = pd.DataFrame()
 
     return drive_thru_df
@@ -86,8 +87,10 @@ def confirmed_scatter_mapbox(state="United States"):
     )
 
     fig.data[0].update(
-        hovertemplate=("%{customdata[3]}, %{customdata[2]}<br>Confirmed:"
-                      " %{customdata[0]}<br>Deaths: %{customdata[1]}")
+        hovertemplate=(
+            "%{customdata[3]}, %{customdata[2]}<br>Confirmed:"
+            " %{customdata[0]}<br>Deaths: %{customdata[1]}"
+        )
     )
 
     del data
@@ -129,9 +132,11 @@ def drive_thru_scatter_mapbox(state="United States"):
     )
 
     fig.data[0].update(
-        hovertemplate=("<b><a href='%{customdata[0]}' style='color:#F4F4F4'>"
-                       "%{hovertext}</a></b><br> %{customdata[3]}<br>"
-                       "%{customdata[1]}, %{customdata[2]}"),
+        hovertemplate=(
+            "<b><a href='%{customdata[0]}' style='color:#F4F4F4'>"
+            "%{hovertext}</a></b><br> %{customdata[3]}<br>"
+            "%{customdata[1]}, %{customdata[2]}"
+        ),
         marker={"symbol": "hospital", "color": "white"},
     )
 

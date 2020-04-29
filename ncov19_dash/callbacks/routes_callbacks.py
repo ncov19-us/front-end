@@ -14,7 +14,6 @@ from ncov19_dash.layout.mobile_about import mobile_about_body
 
 
 def register_routes_callbacks(app):
-
     @app.callback(
         [
             Output("navbar-content", "children"),
@@ -22,11 +21,11 @@ def register_routes_callbacks(app):
             Output("footer-content", "children"),
         ],
         [Input("url", "pathname")],
-    )                                           # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def display_page(pathname):
-        is_mobile = flask.session['mobile']
+        is_mobile = flask.session["mobile"]
 
-        if pathname == "/":                     # pylint: disable=R1705
+        if pathname == "/":  # pylint: disable=R1705
             if is_mobile:
                 return mobile_navbar, mobile_body, mobile_footer
 
@@ -55,12 +54,11 @@ def register_routes_callbacks(app):
 
             return navbar, error_page, footer
 
-
     @app.callback(
         Output("mobile-navbar-collapse", "is_open"),
         [Input("mobile-navbar-toggler", "n_clicks")],
         [State("mobile-navbar-collapse", "is_open")],
-    )                                           # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def toggle_collapse(n, is_open):
         if n:
             return not is_open

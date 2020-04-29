@@ -47,8 +47,7 @@ def get_daily_stats(state="United States") -> Dict:
         deaths = data["deaths"]
         todays_deaths = data["todays_deaths"]
     except DataReadingError as ex:
-        print("[ERROR] get_daily_stats error"
-              f" parsing ncov19.us API, {ex}")
+        print("[ERROR] get_daily_stats error" f" parsing ncov19.us API, {ex}")
         tested, confirmed, todays_confirmed = 0, 0, 0
         deaths, todays_deaths = 0, 0
 

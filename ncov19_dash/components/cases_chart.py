@@ -30,14 +30,14 @@ def cases_chart(state="US") -> go.Figure:
     data["Date"] = pd.to_datetime(data["Date"], infer_datetime_format=False)
 
     data = data.tail(30)
-    # Limit data to 1% of current maximum number of cases
-    #data = data[data['Confirmed Cases'] > data['Confirmed Cases'].max() * 0.01]
 
     # Calculate annotation placements
     plot_tail = data.iloc[-1].to_list()
     annotation_x = plot_tail[0]  # LAST TIMESTAMP
     annotation_y1 = plot_tail[1]  # LAST CONFIRMED CASES COUNT
-    annotation_y2 = data["New Confirmed Cases"].max()# HIGHEST BAR ON BAR CHART
+    annotation_y2 = data[
+        "New Confirmed Cases"
+    ].max()  # HIGHEST BAR ON BAR CHART
 
     template_new = "%{customdata} new cases on %{x}<extra></extra>"
     template_total = "%{customdata} total cases on %{x}<extra></extra>"
@@ -48,8 +48,9 @@ def cases_chart(state="US") -> go.Figure:
             y=data["New Confirmed Cases"],
             name="New Cases Added",
             marker={"color": "#F4B000"},
-            customdata=[human_format(x) for x in \
-                data["New Confirmed Cases"].to_list()],
+            customdata=[
+                human_format(x) for x in data["New Confirmed Cases"].to_list()
+            ],
             hovertemplate=template_new,
         )
     )
@@ -61,8 +62,9 @@ def cases_chart(state="US") -> go.Figure:
             name="Total Confirmed Cases",
             line={"color": "#F4B000"},
             mode="lines",
-            customdata=[human_format(x) for x in \
-                data["Confirmed Cases"].to_list()],
+            customdata=[
+                human_format(x) for x in data["Confirmed Cases"].to_list()
+            ],
             hovertemplate=template_total,
         )
     )

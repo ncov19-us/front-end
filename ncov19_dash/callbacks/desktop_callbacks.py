@@ -31,7 +31,7 @@ def register_desktop_callbacks(app):
             Input("left-tabs-styled-with-inline", "value"),
             Input("intermediate-value", "children"),
         ],
-    )                                                   # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def feed_tab_content(tab_value, state):
         """Callback to change between news and twitter feed
         """
@@ -42,11 +42,10 @@ def register_desktop_callbacks(app):
 
         return news_feed(state)
 
-
     @app.callback(
         Output("stats-table", "children"),
         [Input("intermediate-value", "children"),],
-    )                                                   # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def stats_tab_content(state):
         df = stats_table(state)
 
@@ -76,10 +75,7 @@ def register_desktop_callbacks(app):
             style_as_list_view=True,
             fixed_rows={"headers": True},
             fill_width=False,
-            style_table={
-                "width": "100%",
-                "height": "100vh",
-            },
+            style_table={"width": "100%", "height": "100vh",},
             style_header={
                 "backgroundColor": color_bg,
                 "border": color_bg,
@@ -121,14 +117,13 @@ def register_desktop_callbacks(app):
 
         return table
 
-
     @app.callback(
         Output("us-map", "figure"),
         [
             Input("middle-map-tabs-styled-with-inline", "value"),
             Input("intermediate-value", "children"),
         ],
-    )                                               # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def map_tab_content(value, state):
         """Callback to change between news and twitter feed
         """
@@ -136,7 +131,6 @@ def register_desktop_callbacks(app):
             return drive_thru_scatter_mapbox(state=REVERSE_STATES_MAP[state])
 
         return confirmed_scatter_mapbox(state=REVERSE_STATES_MAP[state])
-
 
     ############################################################################
     #
@@ -146,22 +140,20 @@ def register_desktop_callbacks(app):
     @app.callback(
         [Output("confirmed-cases-timeline", "figure")],
         [Input("intermediate-value", "children")],
-    )                                                   # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def confirmed_cases_chart_callback(state):
         fig = cases_chart(state)
         return [fig]
 
-
     @app.callback(
         [Output("confirmed-cases-chart-title", "children")],
         [Input("intermediate-value", "children")],
-    )                                                   # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def confirmed_cases_chart_title_callback(state="US"):
         if state == "US":
             return ["U.S. Confirmed Cases"]
 
         return [f"{REVERSE_STATES_MAP[state]} Confirmed Cases"]
-
 
     ############################################################################
     #
@@ -170,24 +162,22 @@ def register_desktop_callbacks(app):
     ############################################################################
     @app.callback(
         [Output("deaths-timeline", "figure")],
-        [Input("intermediate-value", "children")]
-    )                                                   # pylint: disable=W0612
+        [Input("intermediate-value", "children")],
+    )  # pylint: disable=W0612
     def death_chart_callback(state):
         fig = deaths_chart(state)
 
         return [fig]
 
-
     @app.callback(
         [Output("death-chart-title", "children")],
-        [Input("intermediate-value", "children")]
-    )                                                   # pylint: disable=W0612
+        [Input("intermediate-value", "children")],
+    )  # pylint: disable=W0612
     def death_chart_title_callback(state="US"):
         if state == "US":
             return ["U.S. Deaths"]
 
         return [f"{REVERSE_STATES_MAP[state]} Deaths"]
-
 
     ############################################################################
     #
@@ -197,23 +187,21 @@ def register_desktop_callbacks(app):
     @app.callback(
         [Output("infection-trajectory-title", "children")],
         [Input("intermediate-value", "children")],
-    )                                                   # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def trajectory_title_callback(state="US"):
         if state == "US":
             return ["U.S. Trajectory"]
 
         return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
 
-
     @app.callback(
         [Output("infection-trajectory-chart", "figure")],
         [Input("intermediate-value", "children")],
-    )                                                   # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def trajectory_chart_callback(state):
         fig = infection_trajectory_chart(state)
 
         return [fig]
-
 
     ############################################################################
     #
@@ -222,13 +210,12 @@ def register_desktop_callbacks(app):
     ############################################################################
     @app.callback(
         [Output("daily-stats", "children")],
-        [Input("intermediate-value", "children")]
-    )                                                   # pylint: disable=W0612
+        [Input("intermediate-value", "children")],
+    )  # pylint: disable=W0612
     def daily_stats_callback(state):
         cards = daily_stats(state)
 
         return [cards]
-
 
     ############################################################################
     #
@@ -237,8 +224,8 @@ def register_desktop_callbacks(app):
     ############################################################################
     @app.callback(
         [Output("intermediate-value", "children")],
-        [Input("states-dropdown", "value")]
-    )                                                   # pylint: disable=W0612
+        [Input("states-dropdown", "value")],
+    )  # pylint: disable=W0612
     def update_output(state):
         state = STATES_COORD[state]["stateAbbr"]
 

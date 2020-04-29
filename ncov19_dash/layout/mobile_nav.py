@@ -30,7 +30,9 @@ mobile_navbar = [
                         href="/",
                     ),
                     html.A(
-                        html.P("Get Mobile Updates", className="mobile-nav-header"),
+                        html.P(
+                            "Get Mobile Updates", className="mobile-nav-header"
+                        ),
                         className="mobile-hidden-menu-anchor-tag",
                         href=config.SMS_APP_URL,
                     ),
