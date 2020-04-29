@@ -36,7 +36,7 @@ def confirmed_scatter_mapbox(state="United States"):
 
     :rtype: dbc.Card
     """
-    data = get_all_county_data()
+    data, _ = get_all_county_data()
 
     color_scale = [
         "#fadc8f",

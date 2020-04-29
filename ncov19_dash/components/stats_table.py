@@ -6,7 +6,7 @@ from ncov19_dash.components import get_all_county_data
 def stats_table(state="US"):
     """Gathering data for stats table
     """
-    data = get_all_county_data()
+    data, _ = get_all_county_data()
     state = REVERSE_STATES_MAP[state]
 
     if state in ["US", "United States"]:
