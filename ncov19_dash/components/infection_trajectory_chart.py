@@ -1,5 +1,4 @@
 import gc
-import pandas as pd
 import plotly.graph_objects as go
 
 from ncov19_dash.components import get_country_trajectory_data

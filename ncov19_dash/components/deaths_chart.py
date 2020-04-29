@@ -4,7 +4,6 @@ import pandas as pd
 import plotly.graph_objects as go
 
 from ncov19_dash.cache import server_cache
-from ncov19_dash import config
 from ncov19_dash.components import get_country_timeseries
 from ncov19_dash.components import get_state_timeseries
 from ncov19_dash.components import human_format

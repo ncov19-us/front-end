@@ -11,7 +11,7 @@ from ncov19_dash import config
 def get_country_timeseries(alpha2code: str = "US") -> pd.DataFrame:
 
     URL = config.NCOV19_API + config.COUNTRY
-    payload = json.dumps({"alpha2Code": "US"})
+    payload = json.dumps({"alpha2Code": alpha2code})
     response = requests.post(URL, data=payload).json()
     data = response["message"]
     data = pd.DataFrame(data)
