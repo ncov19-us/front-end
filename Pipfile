@@ -15,11 +15,11 @@ flask-caching = "*"
 gunicorn = "*"
 
 [dev-packages]
-pylint = "*"
 black = "*"
 pytest = "*"
 coverage = "*"
 coveralls = "*"
+pylint = "==2.4.4"
 
 [requires]
 python_version = "3.7"

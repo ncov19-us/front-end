@@ -72,7 +72,8 @@ def twitter_feed(state="US") -> List[dbc.Card]:
                                 html.P(
                                     (
                                         f"- {username} (@{full_name}) "
-                                        f"{parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}"  # pylint: disable=W0611
+                                        # pylint: disable=C0301
+                                        f"{parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}"
                                     ),
                                     className="tweet-dt",
                                 ),
