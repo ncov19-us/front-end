@@ -24,15 +24,16 @@ external_stylesheets = [
 meta_tags = [
     {
         "name": "description",
-        "content": ("Live coronavirus news, statistics, and visualizations"
-                    " tracking the number of cases and death toll due to "
-                    "COVID-19, with up-to-date testing center information "
-                    "by US states and counties. Also provides current "
-                    "SARS-COV-2 vaccine progress and treatment research "
-                    "across different countries. Sign up for SMS updates."),
+        "content": (
+            "Live coronavirus news, statistics, and visualizations"
+            " tracking the number of cases and death toll due to "
+            "COVID-19, with up-to-date testing center information "
+            "by US states and counties. Also provides current "
+            "SARS-COV-2 vaccine progress and treatment research "
+            "across different countries. Sign up for SMS updates."
+        ),
     },
-    {"name": "viewport",
-        "content": "width=device-width, initial-scale=1.0"},
+    {"name": "viewport", "content": "width=device-width, initial-scale=1.0"},
 ]
 
 
@@ -46,12 +47,14 @@ app = dash.Dash(
     server=server,
     external_stylesheets=external_stylesheets,
     meta_tags=meta_tags,
-    routes_pathname_prefix='/',
+    routes_pathname_prefix="/",
 )
 
 app.config.suppress_callback_exceptions = True
-app.title = ("ncov19 | Coronavirus COVID-19 Tracker with Testing Centers,"
-            " SARS-COV-2 Vaccine Information, and SMS notification.")
+app.title = (
+    "ncov19 | Coronavirus COVID-19 Tracker with Testing Centers,"
+    " SARS-COV-2 Vaccine Information, and SMS notification."
+)
 
 app.layout = build_desktop_layout
 

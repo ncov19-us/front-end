@@ -60,20 +60,13 @@ feed_tabs = dbc.Card(
                     ),
                 ],
                 style=tabs_styles,
-                colors={
-                    "border": None,
-                    "primary": None,
-                    "background": None,
-                },
+                colors={"border": None, "primary": None, "background": None,},
             ),
             className="left-tabs",
         ),
         dbc.CardBody(
-            html.P(
-                id="feed-content",
-                className="left-col-feed-cards-text",
-                ),
-            ),
+            html.P(id="feed-content", className="left-col-feed-cards-text",),
+        ),
     ]
 )
 
@@ -137,10 +130,7 @@ us_maps_tabs = dbc.Card(
                 className="d-flex justify-content-between top-bar-us-map-heading-content",
             ),
             html.Div(
-                dcc.Graph(
-                    id="us-map",
-                    style={"height": "60vh"},
-                ),
+                dcc.Graph(id="us-map", style={"height": "60vh"},),
                 id="map-container",
             ),
         ]
@@ -190,9 +180,7 @@ desktop_body = [
             ),
             # TWITTER & NEWS FEED COL
             dbc.Col(
-                feed_tabs,
-                className="left-col-twitter-feed-content",
-                width=2,
+                feed_tabs, className="left-col-twitter-feed-content", width=2,
             ),
         ],
         no_gutters=True,
@@ -224,8 +212,12 @@ desktop_body = [
                                                     dcc.Graph(
                                                         id="confirmed-cases-timeline",
                                                         # figure=cases_chart(),
-                                                        config={"responsive": False},
-                                                        style={"height": "20vh"},
+                                                        config={
+                                                            "responsive": False
+                                                        },
+                                                        style={
+                                                            "height": "20vh"
+                                                        },
                                                         className='top-bottom-left-chart-figure"',
                                                     ),
                                                 ),
@@ -256,11 +248,17 @@ desktop_body = [
                                                     dcc.Graph(
                                                         id="deaths-timeline",
                                                         # figure=deaths_chart(),
-                                                        config={"responsive": False},
-                                                        style={"height": "20vh"},
+                                                        config={
+                                                            "responsive": False
+                                                        },
+                                                        style={
+                                                            "height": "20vh"
+                                                        },
                                                         className="top-bottom-mid-chart-figure",
                                                     ),
-                                                    style={"padding-top": "8px",},
+                                                    style={
+                                                        "padding-top": "8px",
+                                                    },
                                                     color="#19202A",
                                                 ),
                                                 id="chart-container",
@@ -289,11 +287,17 @@ desktop_body = [
                                                 dcc.Loading(
                                                     dcc.Graph(
                                                         id="infection-trajectory-chart",
-                                                        config={"responsive": False},
-                                                        style={"height": "20vh"},
+                                                        config={
+                                                            "responsive": False
+                                                        },
+                                                        style={
+                                                            "height": "20vh"
+                                                        },
                                                         className="top-bottom-right-chart-figure",
                                                     ),
-                                                    style={"padding-top": "8px",},
+                                                    style={
+                                                        "padding-top": "8px",
+                                                    },
                                                     color="#19202A",
                                                 ),
                                                 id="chart-container",

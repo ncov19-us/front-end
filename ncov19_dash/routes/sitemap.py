@@ -3,9 +3,7 @@ from urllib.parse import urlparse
 from flask import Blueprint, render_template, make_response, request
 
 
-sitemap = Blueprint('sitemap',
-                    __name__,
-                    template_folder='templates')
+sitemap = Blueprint("sitemap", __name__, template_folder="templates")
 
 
 @sitemap.route("/sitemap")
@@ -29,9 +27,12 @@ def sitemap_route():
     static_urls.append({"loc": f"{host_base}/robots.txt"})
     static_urls.append({"loc": f"{host_base}/about"})
     static_urls.append({"loc": f"{host_base}/404"})
-    static_urls.append({"loc": f"{host_components.scheme}"+"://sms.ncov19.us/"})
-    static_urls.append({"loc": f"{host_components.scheme}"+\
-                                "://vaccine.ncov19.us/"})
+    static_urls.append(
+        {"loc": f"{host_components.scheme}" + "://sms.ncov19.us/"}
+    )
+    static_urls.append(
+        {"loc": f"{host_components.scheme}" + "://vaccine.ncov19.us/"}
+    )
 
     xml_sitemap = render_template(
         "sitemap.xml", static_urls=static_urls, host_base=host_base

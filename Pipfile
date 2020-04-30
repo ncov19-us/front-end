@@ -6,22 +6,20 @@ name = "pypi"
 [packages]
 dash = "*"
 dash-bootstrap-components = "*"
-dash-daq = "*"
 plotly = "*"
 pandas = "*"
 python-decouple = "*"
 requests = "*"
-flask-mobility = "*"
 python-dateutil = "*"
 flask-caching = "*"
 gunicorn = "*"
 
 [dev-packages]
-pylint = "*"
 black = "*"
 pytest = "*"
 coverage = "*"
 coveralls = "*"
+pylint = "==2.4.4"
 
 [requires]
 python_version = "3.7"

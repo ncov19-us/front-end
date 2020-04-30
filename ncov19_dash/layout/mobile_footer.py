@@ -26,7 +26,9 @@ mobile_footer = dbc.Row(
                     ),
                     className="mobile-footer-social-icons mr-3",
                 ),
-                html.Span("Copyright 2020", className="mobile-footer-copyright-text",),
+                html.Span(
+                    "Copyright 2020", className="mobile-footer-copyright-text",
+                ),
             ],
             className="mobile-footer-social-copyright-content",
         ),

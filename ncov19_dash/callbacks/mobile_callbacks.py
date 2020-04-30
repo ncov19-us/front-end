@@ -28,23 +28,21 @@ def register_mobile_callbacks(app):
     @app.callback(
         [Output("mobile-confirmed-cases-timeline", "figure")],
         [Input("mobile-intermediate-value", "children")],
-    )                                                   # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def mobile_confirmed_cases_chart_callback(state="US"):
         fig = cases_chart(state)
 
         return [fig]
 
-
     @app.callback(
         [Output("mobile-confirmed-cases-chart-title", "children")],
         [Input("mobile-intermediate-value", "children")],
-    )                                                   # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def mobile_confirmed_cases_chart_title_callback(state="US"):
         if state == "US":
             return ["U.S. Confirmed Cases"]
 
         return [f"{REVERSE_STATES_MAP[state]} Confirmed Cases"]
-
 
     ############################################################################
     #
@@ -54,23 +52,21 @@ def register_mobile_callbacks(app):
     @app.callback(
         [Output("mobile-deaths-chart-title", "children")],
         [Input("mobile-intermediate-value", "children")],
-    )                                                     # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def mobile_death_chart_callback(state="US"):
         if state == "US":
             return ["U.S. Deaths"]
 
         return [f"{REVERSE_STATES_MAP[state]} Deaths"]
 
-
     @app.callback(
         [Output("mobile-deaths-timeline", "figure")],
         [Input("mobile-intermediate-value", "children")],
-    )                                                     # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def mobile_death_chart_title_callback(state):
         fig = deaths_chart(state)
 
         return [fig]
-
 
     ############################################################################
     #
@@ -80,23 +76,21 @@ def register_mobile_callbacks(app):
     @app.callback(
         [Output("mobile-trajectory-chart", "figure")],
         [Input("mobile-intermediate-value", "children")],
-    )                                                     # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def mobile_trajectory_chart_callback(state):
         fig = infection_trajectory_chart(state)
 
         return [fig]
 
-
     @app.callback(
         [Output("mobile-trajectory-title", "children")],
         [Input("mobile-intermediate-value", "children")],
-    )                                                     # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def mobile_trajectory_title_callback(state="US"):
         if state == "US":
             return ["U.S. Trajectory"]
 
         return [f"{REVERSE_STATES_MAP[state]} Trajectory"]
-
 
     ############################################################################
     #
@@ -106,12 +100,11 @@ def register_mobile_callbacks(app):
     @app.callback(
         [Output("mobile-daily-stats", "children")],
         [Input("mobile-intermediate-value", "children")],
-    )                                                     # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def daily_stats_mobile_callback(state):
         cards = daily_stats_mobile(state)
 
         return [cards]
-
 
     ############################################################################
     #
@@ -121,17 +114,16 @@ def register_mobile_callbacks(app):
     @app.callback(
         [Output("mobile-intermediate-value", "children")],
         [Input("mobile-states-dropdown", "value")],
-    )                                                     # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def update_output(state):
         state = STATES_COORD[state]["stateAbbr"]
 
         return [state]
 
-
     @app.callback(
         Output("mobile-stats-table", "children"),
         [Input("mobile-intermediate-value", "children"),],
-    )                                                     # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def mobile_stats_tab_content(state):
         df = stats_table(state)
 
@@ -159,9 +151,7 @@ def register_mobile_callbacks(app):
             style_as_list_view=True,
             fixed_rows={"headers": True},
             fill_width=False,
-            style_table={
-                "width": "100%",
-            },
+            style_table={"width": "100%",},
             style_header={
                 "font-size": "0.65rem",
                 "backgroundColor": "#010915",
@@ -202,14 +192,13 @@ def register_mobile_callbacks(app):
         )
         return table
 
-
     @app.callback(
         Output("mobile-us-map", "figure"),
         [
             Input("mobile-map-tabs", "value"),
             Input("mobile-intermediate-value", "children"),
         ],
-    )                                                  # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def mobile_map_tab_content(value, state):
         """Callback to change between news and twitter feed
         """
@@ -218,14 +207,13 @@ def register_mobile_callbacks(app):
 
         return confirmed_scatter_mapbox(state=REVERSE_STATES_MAP[state])
 
-
     @app.callback(
         Output("mobile-feed-content-id", "children"),
         [
             Input("mobile-feed-tabs-styled-with-inline", "value"),
             Input("mobile-intermediate-value", "children"),
         ],
-    )                                                   # pylint: disable=W0612
+    )  # pylint: disable=W0612
     def mobile_feed_tab_content(tab_value, state):
         """Callback to change between news and twitter feed
         """

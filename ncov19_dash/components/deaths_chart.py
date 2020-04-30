@@ -1,28 +1,12 @@
 import gc
-import json
-import requests
 import pandas as pd
+
 import plotly.graph_objects as go
+
 from ncov19_dash.cache import server_cache
-from ncov19_dash import config
-
-
-def human_format(num):
-    """Formats a number and returns a human-readable version of it in
-    string form. Ex: 300,000 -> 300k
-
-    :params num: number to be converted to a formatted string
-    """
-    num = float("{:.3g}".format(num))
-    magnitude = 0
-    while abs(num) >= 1000:
-        magnitude += 1
-        num /= 1000.0
-    return "{}{}".format(
-        "{:f}".format(
-            num
-            ).rstrip("0").rstrip("."), ["", "K", "M", "B", "T"][magnitude]
-    )
+from ncov19_dash.components import get_country_timeseries
+from ncov19_dash.components import get_state_timeseries
+from ncov19_dash.components import human_format
 
 
 @server_cache.memoize(timeout=3600)
@@ -34,33 +18,9 @@ def deaths_chart(state="US") -> go.Figure:
     """
 
     if state == "US":
-        URL = config.NCOV19_API + config.COUNTRY
-        payload = json.dumps({"alpha2Code": "US"})
-        response = requests.post(URL, data=payload).json()
-        data = response["message"]
-        data = pd.DataFrame(data)
-        data = data.rename(columns={"Confirmed": "Confirmed Cases"})
-        data = data.fillna(0)
-
+        data = get_country_timeseries(alpha2code=state)
     else:
-        URL = config.NCOV19_API + config.STATE
-        payload = json.dumps({"stateAbbr": state})
-        response = requests.post(URL, data=payload)
-
-        if response.status_code == 200:
-            data = response.json()["message"]
-            data = pd.DataFrame(data)
-        else:
-            backup = [
-                {"Date": "1/1/20", "Confirmed": 0, "Deaths": 0},
-                {"Date": "3/1/20", "Confirmed": 0, "Deaths": 0},
-            ]
-            data = pd.DataFrame(backup)
-
-        data = data.rename(columns={"Confirmed": "Confirmed Cases"})
-
-    del payload, response
-    gc.collect()
+        data = get_state_timeseries(state=state)
 
     # Calculate new cases and death for each day
     data["New Confirmed Cases"] = data["Confirmed Cases"].diff()
@@ -70,8 +30,6 @@ def deaths_chart(state="US") -> go.Figure:
     data["Date"] = pd.to_datetime(data["Date"], infer_datetime_format=False)
 
     data = data.tail(30)
-    # Limit data to 1% of current maximum number of cases
-    #data = data[data['Confirmed Cases'] > data['Confirmed Cases'].max() * 0.01]
 
     # Calculate annotation placements
     plot_tail = data.iloc[-1].to_list()

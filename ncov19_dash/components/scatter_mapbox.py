@@ -1,24 +1,27 @@
 import gc
-import requests
 import pandas as pd
 import flask
 import plotly.express as px
 
 from ncov19_dash.utils import STATES_COORD
+from ncov19_dash.components import get_all_county_data
 from ncov19_dash import config
+from ncov19_dash.cache import server_cache
 
 
 px.set_mapbox_access_token(config.MAPBOX_ACCESS_TOKEN)
 
 
 # TODO: Make Drive-thru testing center API
+@server_cache.memoize(timeout=3600)
 def get_drive_thru_testing_centers():
     try:
         drive_thru_df = pd.read_csv(config.DRIVE_THRU_URL)
-        drive_thru_df["Street Address"] = \
-            drive_thru_df["Street Address"].fillna("")
+        drive_thru_df["Street Address"] = drive_thru_df[
+            "Street Address"
+        ].fillna("")
     except ValueError as ex:
-        print(f'[ERROR] get_drive_thru_testing_center error, {ex}')
+        print(f"[ERROR] get_drive_thru_testing_center error, {ex}")
         drive_thru_df = pd.DataFrame()
 
     return drive_thru_df
@@ -34,11 +37,7 @@ def confirmed_scatter_mapbox(state="United States"):
 
     :rtype: dbc.Card
     """
-
-    URL = config.NCOV19_API + config.COUNTY
-    response = requests.get(URL).json()
-    data = response["message"]
-    data = pd.DataFrame.from_records(data)
+    data, _ = get_all_county_data()
 
     color_scale = [
         "#fadc8f",
@@ -87,14 +86,14 @@ def confirmed_scatter_mapbox(state="United States"):
         mapbox=dict(center=dict(lat=lat, lon=lon), zoom=zoom,),
     )
 
-    # https://community.plot.ly/t/plotly-express-scatter-mapbox-hide-legend/36306/2
-    # print(fig.data[0].hovertemplate)
     fig.data[0].update(
-        hovertemplate=("%{customdata[3]}, %{customdata[2]}<br>Confirmed:"
-                      " %{customdata[0]}<br>Deaths: %{customdata[1]}")
+        hovertemplate=(
+            "%{customdata[3]}, %{customdata[2]}<br>Confirmed:"
+            " %{customdata[0]}<br>Deaths: %{customdata[1]}"
+        )
     )
 
-    del response, data
+    del data
     gc.collect()
 
     return fig
@@ -133,9 +132,11 @@ def drive_thru_scatter_mapbox(state="United States"):
     )
 
     fig.data[0].update(
-        hovertemplate=("<b><a href='%{customdata[0]}' style='color:#F4F4F4'>"
-                       "%{hovertext}</a></b><br> %{customdata[3]}<br>"
-                       "%{customdata[1]}, %{customdata[2]}"),
+        hovertemplate=(
+            "<b><a href='%{customdata[0]}' style='color:#F4F4F4'>"
+            "%{hovertext}</a></b><br> %{customdata[3]}<br>"
+            "%{customdata[1]}, %{customdata[2]}"
+        ),
         marker={"symbol": "hospital", "color": "white"},
     )
 

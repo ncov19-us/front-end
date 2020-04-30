@@ -44,7 +44,7 @@ mobile_feed_tabs = dbc.Card(
                 id="mobile-feed-tabs-styled-with-inline",
                 value="mobile-news-tab",
                 children=[
-                     dcc.Tab(
+                    dcc.Tab(
                         label="News Feed",
                         value="mobile-news-tab",
                         className="mobile-news-feed-tab",
@@ -170,10 +170,7 @@ mobile_body = [
         id="mobile-daily-stats",
         className="mobile-top-bar-content",
     ),
-    html.Div(
-        mobile_us_maps_tabs,
-        className="mobile-us-map-content",
-    ),
+    html.Div(mobile_us_maps_tabs, className="mobile-us-map-content",),
     # adding stats content
     dbc.Col(stats_tabs, className="mobile-right-col-stats-content", width=2,),
     ##### MOBILE CHARTS #####
@@ -187,7 +184,9 @@ mobile_body = [
                         # "Confirmed Cases Timeline",
                         className="mobile-chart-h1-title",
                     ),
-                    html.Div("Last 30 days", className="mobile-chart-h2-title",),
+                    html.Div(
+                        "Last 30 days", className="mobile-chart-h2-title",
+                    ),
                     html.Div(
                         dcc.Loading(
                             dcc.Graph(
@@ -213,7 +212,9 @@ mobile_body = [
                         # "Death Trajectory",
                         className="mobile-chart-h1-title",
                     ),
-                    html.Div("Last 30 days", className="mobile-chart-h2-title",),
+                    html.Div(
+                        "Last 30 days", className="mobile-chart-h2-title",
+                    ),
                     html.Div(
                         dcc.Loading(
                             dcc.Graph(
@@ -240,7 +241,8 @@ mobile_body = [
                         className="mobile-chart-h1-title",
                     ),
                     html.Div(
-                        "Days since 1 confirmed case per 100,000 people", className="mobile-chart-h2-title",
+                        "Days since 1 confirmed case per 100,000 people",
+                        className="mobile-chart-h2-title",
                     ),
                     html.Div(
                         dcc.Loading(
@@ -257,8 +259,5 @@ mobile_body = [
         ),
         className="mobile-chart",
     ),
-    html.Div(
-        mobile_feed_tabs,
-        className="mobile-feed-content",
-    ),
+    html.Div(mobile_feed_tabs, className="mobile-feed-content",),
 ]

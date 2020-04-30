@@ -24,6 +24,7 @@ jobs:
     #===============================================#
     - name: STEP 4. Lint with pylint
       run: |
+        pipenv run black ncov19_dash
         pipenv run pylint --rcfile=.pylintrc ncov19_dash
     #===============================================#
     - name: STEP 5. Test with pytest

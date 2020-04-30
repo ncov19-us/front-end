@@ -28,8 +28,7 @@ def twitter_feed(state="US") -> List[dbc.Card]:
         payload = {"state": state}
         payload = json.dumps(payload)
         response = requests.post(
-            config.NCOV19_API + config.TWITTER,
-            data=payload
+            config.NCOV19_API + config.TWITTER, data=payload
         ).json()
 
     if response["success"]:
@@ -61,16 +60,21 @@ def twitter_feed(state="US") -> List[dbc.Card]:
                                 tweet["full_text"][:100] + "...",
                                 className="tweet-text",
                             ),
-                            href=(f"https://twitter.com/{username}"
-                                  f"/status/{tweet['tweet_id']}"),
+                            href=(
+                                f"https://twitter.com/{username}"
+                                f"/status/{tweet['tweet_id']}"
+                            ),
                             target="_blank",
                         ),
                         html.P(
                             [
                                 # html.Strong(f"- {full_name} (@{username})"),
                                 html.P(
-            (f"- {username} (@{full_name}) "
-            f"{parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}"),
+                                    (
+                                        f"- {username} (@{full_name}) "
+                                        # pylint: disable=C0301
+                                        f"{parse(tweet['created_at']).strftime('%a %d, %Y at %I: %M %p')}"
+                                    ),
                                     className="tweet-dt",
                                 ),
                             ],
